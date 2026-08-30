@@ -11,6 +11,9 @@ export type CloudSession<T> = {
   last_advanced_at: string;
   updated_at: string;
   server_now: string;
+  projected_through?: string;
+  projected_seconds?: number;
+  catchup_capped?: boolean;
 };
 
 export type CreatedCloudSession = {
@@ -23,6 +26,15 @@ export type CreatedCloudSession = {
   public_url_hint: string;
 };
 
+export class CloudConflictError extends Error {
+  currentVersion?: number;
+  constructor(message: string, currentVersion?: number) {
+    super(message);
+    this.name = "CloudConflictError";
+    this.currentVersion = currentVersion;
+  }
+}
+
 const request = async <T>(path: string, init?: RequestInit): Promise<T> => {
   const response = await fetch(`${GAMECAST_CLOUD_API}${path}`, {
     ...init,
@@ -30,7 +42,10 @@ const request = async <T>(path: string, init?: RequestInit): Promise<T> => {
     headers: { "Content-Type": "application/json", ...(init?.headers ?? {}) },
   });
   const body = await response.json();
-  if (!response.ok) throw new Error(body?.error ?? `Cloud request failed (${response.status})`);
+  if (!response.ok) {
+    if (response.status === 409) throw new CloudConflictError(body?.error ?? "version conflict", body?.current_version);
+    throw new Error(body?.error ?? `Cloud request failed (${response.status})`);
+  }
   return body as T;
 };
 
@@ -43,11 +58,11 @@ export const createCloudSession = <T>(state: T, metadata?: { week_key?: string; 
 export const readCloudSession = <T>(slug: string) =>
   request<CloudSession<T>>(`/sessions/${encodeURIComponent(slug)}`);
 
-export const checkpointCloudSession = <T>(slug: string, operatorToken: string, expectedVersion: number, state: T, eventType = "CHECKPOINT") =>
+export const checkpointCloudSession = <T>(slug: string, operatorToken: string, expectedVersion: number, state: T, eventType = "CHECKPOINT", gameId?: string) =>
   request<CloudSession<T>>(`/sessions/${encodeURIComponent(slug)}`, {
     method: "PUT",
     headers: { "x-operator-token": operatorToken },
-    body: JSON.stringify({ state, expected_version: expectedVersion, event_type: eventType }),
+    body: JSON.stringify({ state, expected_version: expectedVersion, event_type: eventType, game_id: gameId ?? null }),
   });
 
 export const cloudCatchupSeconds = (lastAdvancedAt: string, serverNow: string, maxSeconds = 21600) => {
@@ -63,6 +78,11 @@ export const sessionFromLocation = () => {
 export const isPublicView = () => {
   if (typeof window === "undefined") return false;
   return new URLSearchParams(window.location.search).get("view") === "public";
+};
+
+export const operatorTokenFromLocation = () => {
+  if (typeof window === "undefined") return "";
+  return window.location.hash.startsWith("#operator=") ? window.location.hash.slice("#operator=".length) : "";
 };
 
 export const operatorTokenKey = (slug: string) => `gamecast-v12-operator:${slug}`;
