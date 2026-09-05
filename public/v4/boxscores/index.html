@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b0e">
+<title>Synthcast V4 · Simulation Box Scores</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:#090b0e;color:#f4f5f7;font-family:Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%}button,input,select{font:inherit;min-height:44px;background:#20252c;color:#fff;border:1px solid #4b525d;padding:9px 11px;font-weight:800;border-radius:3px}button.primary{background:#b5121b;border-color:#e31b23}button:disabled{opacity:.4}a{color:#8ab4f8}.wrap{max-width:1450px;margin:auto;padding:16px max(16px,env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}header{position:sticky;top:0;z-index:4;background:#0d1014;border-bottom:1px solid #363b43;padding:calc(14px + env(safe-area-inset-top)) 18px 14px;display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{font-size:22px;font-weight:900;letter-spacing:.04em}.brand b{color:#d71920}.sub,.status,.mono{font:11px ui-monospace,SFMono-Regular,Menlo,monospace}.sub{color:#aeb5bf}.toolbar{display:flex;gap:8px;align-items:end;flex-wrap:wrap;padding:12px;background:#15191e;border:1px solid #303640}.field{display:flex;flex-direction:column;gap:5px;min-width:220px;flex:1}.field label{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:#aeb5bf}.field input,.field select{width:100%}.status{margin-left:auto;align-self:center}.notice{margin:12px 0;padding:10px 12px;background:#161b21;border-left:3px solid #b5121b;font-size:12px;line-height:1.45;color:#cbd0d6}.summary{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.pill{padding:7px 9px;border:1px solid #3a414b;background:#11161b;font:10px ui-monospace,SFMono-Regular,Menlo,monospace}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:12px}.card{background:#101419;border:1px solid #303640;min-width:0}.card.final{border-color:#4b525d}.card.live{border-color:#b5121b}.head{padding:9px 11px;background:#181d23;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font:11px ui-monospace,SFMono-Regular,Menlo,monospace}.teams{padding:10px 12px}.team{display:grid;grid-template-columns:minmax(0,1fr) 60px;align-items:center;padding:4px 0;font-size:16px;font-weight:800}.score{text-align:right;font-size:29px}.line-wrap{overflow-x:auto;border-top:1px solid #303640}.line{width:100%;border-collapse:collapse;min-width:330px;font:11px ui-monospace,SFMono-Regular,Menlo,monospace}.line th,.line td{padding:8px;text-align:center;border-right:1px solid #282e36}.line th:first-child,.line td:first-child{text-align:left;min-width:125px}.line th{color:#929aa5;background:#0d1116}.line td:last-child,.line th:last-child{font-weight:900;color:#fff}.meta{border-top:1px solid #303640;padding:8px 11px;display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:#b6bdc6}.warn{color:#e8bc68}.empty{padding:40px 16px;text-align:center;border:1px dashed #40464f;color:#aeb5bf}.error{color:#ff9b9b}.nav{margin:0 0 12px;font:11px ui-monospace,SFMono-Regular,Menlo,monospace}.small{font-size:11px;color:#aeb5bf;line-height:1.45}@media(max-width:650px){header{align-items:flex-start}.grid{grid-template-columns:1fr}.toolbar>*{flex:1 1 100%}.status{width:100%;margin-left:0}.team{font-size:15px}.score{font-size:30px}.line{font-size:10px}}
+</style>
+</head>
+<body>
+<header><div><div class="brand">SYNTHCAST <b>V4 BOX SCORES</b></div><div class="sub">READ-ONLY SIMULATION RESULT FETCHER</div></div><div class="sub">CHAIRMAN ANALYSIS</div></header>
+<div class="wrap">
+  <div class="nav"><a href="../">← V4 CONTROL CONSOLE</a></div>
+  <div class="toolbar">
+    <div class="field"><label>SOURCE SESSION</label><input id="source" autocomplete="off" spellcheck="false" value="w2-af3d280cfb772ed5"></div>
+    <div class="field" style="max-width:230px"><label>KICKOFF FILTER</label><select id="kickoff"><option value="12:00 PM ET">NOON · 12:00 PM ET</option><option value="ALL">ALL KICKOFFS</option></select></div>
+    <button class="primary" id="fetchBtn">FETCH BOX SCORES</button>
+    <span class="status" id="status">READY</span>
+  </div>
+  <div class="notice"><b>READ ONLY.</b> This page fetches the stored quarter scoring and current/final game state from a GameCast cloud session. It does not advance, checkpoint, edit, reset, lock, accept, or otherwise modify the simulation. V3 and V4 Week 2 session slugs are supported.</div>
+  <div class="summary" id="summary"></div>
+  <div class="grid" id="grid"><div class="empty">Tap FETCH BOX SCORES to load the noon simulation results.</div></div>
+</div>
+<script>
+'use strict';
+const V3='https://percrnamjzetzjjuxuuw.supabase.co/functions/v1/gamecast-week2';
+const V4='https://percrnamjzetzjjuxuuw.supabase.co/functions/v1/gamecast-week2-v4';
+const qs=new URLSearchParams(location.search);
+const source=document.getElementById('source'),kickoff=document.getElementById('kickoff'),grid=document.getElementById('grid'),summary=document.getElementById('summary'),statusEl=document.getElementById('status'),fetchBtn=document.getElementById('fetchBtn');
+if(qs.get('source'))source.value=qs.get('source');
+if(qs.get('kickoff'))kickoff.value=qs.get('kickoff');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const total=(g,t)=>Object.values(g.scores||{}).reduce((s,q)=>s+(Array.isArray(q)?Number(q[t]||0):0),0);
+const elapsed=s=>{s=Math.max(0,Number(s||0));return Math.floor(s/3600)+':'+String(Math.floor((s%3600)/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0')};
+const clk=s=>{s=Math.max(0,Number(s||0));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0')};
+function setStatus(t,error=false){statusEl.textContent=t;statusEl.classList.toggle('error',error)}
+function periods(g){const base=['1','2','3','4'];const extra=Object.keys(g.scores||{}).filter(k=>!base.includes(k));return [...base,...extra]}
+function periodLabel(p){return ['1','2','3','4'].includes(p)?'Q'+p:p}
+function engineFor(slug){return String(slug).startsWith('w2v4-')?{url:V4,name:'V4'}:{url:V3,name:'V3'}}
+function stateClass(g){return g.lifecycle==='ACTIVE'?'live':(['FINAL_PENDING','LOCKED','READY','SEUD'].includes(g.lifecycle)?'final':'')}
+function completeness(g){if(g.lifecycle==='ACTIVE')return '<span>IN PROGRESS</span>';if(g.lifecycle==='FINAL_PENDING'&&g.period!=='4th'&&g.period!=='OT'&&!String(g.period).includes('OT'))return '<span class="warn">OPERATOR-ENDED BEFORE REGULATION COMPLETE</span>';if(g.lifecycle==='FINAL_PENDING'&&Number(g.scoreboardSeconds||0)>0)return '<span class="warn">FINAL PENDING WITH CLOCK REMAINING</span>';return '<span>'+esc(g.lifecycle||'')+'</span>'}
+function lineScore(g){const ps=periods(g);return '<div class="line-wrap"><table class="line"><thead><tr><th>TEAM</th>'+ps.map(p=>'<th>'+periodLabel(p)+'</th>').join('')+'<th>T</th></tr></thead><tbody><tr><td>'+esc(g.away?.name||g.away||'Away')+'</td>'+ps.map(p=>'<td>'+Number((g.scores[p]||[0,0])[0]||0)+'</td>').join('')+'<td>'+total(g,0)+'</td></tr><tr><td>'+esc(g.home?.name||g.home||'Home')+'</td>'+ps.map(p=>'<td>'+Number((g.scores[p]||[0,0])[1]||0)+'</td>').join('')+'<td>'+total(g,1)+'</td></tr></tbody></table></div>'}
+function card(g){const away=g.away?.name||g.away||'Away',home=g.home?.name||g.home||'Home';return '<article class="card '+stateClass(g)+'"><div class="head"><span>'+esc(g.id)+' · '+esc(g.kickoff||'')+'</span><b>'+esc(g.network||'')+' · '+esc(g.lifecycle||'')+'</b></div><div class="teams"><div class="team"><span>'+esc(away)+'</span><span class="score">'+total(g,0)+'</span></div><div class="team"><span>'+esc(home)+'</span><span class="score">'+total(g,1)+'</span></div></div>'+lineScore(g)+'<div class="meta"><span>'+completeness(g)+'</span><span>'+esc(g.period||'')+' · '+clk(g.scoreboardSeconds)+'</span><span>GAME LENGTH '+elapsed(g.elapsedSeconds)+'</span></div><div class="meta"><span>'+esc(g.lastPlay||'')+'</span></div></article>'}
+async function fetchScores(){const slug=source.value.trim();if(!slug){setStatus('SESSION REQUIRED',true);return}fetchBtn.disabled=true;setStatus('FETCHING');grid.innerHTML='<div class="empty">Loading cloud session…</div>';summary.innerHTML='';try{const eng=engineFor(slug),u=eng.url+'?api=read&session='+encodeURIComponent(slug),r=await fetch(u,{method:'GET',mode:'cors',cache:'no-store'});let b;try{b=await r.json()}catch{throw new Error('Non-JSON cloud response')}if(!r.ok)throw new Error(b.error||('HTTP '+r.status));let games=Array.isArray(b.state)?b.state:[];const k=kickoff.value;if(k!=='ALL')games=games.filter(g=>g.kickoff===k);games.sort((a,b)=>(a.kickoffOrder||0)-(b.kickoffOrder||0)||String(a.id).localeCompare(String(b.id)));const finals=games.filter(g=>['FINAL_PENDING','LOCKED','READY','SEUD'].includes(g.lifecycle)).length,active=games.filter(g=>g.lifecycle==='ACTIVE').length,odd=games.filter(g=>g.lifecycle==='FINAL_PENDING'&&(g.period!=='4th'||Number(g.scoreboardSeconds||0)>0)).length;summary.innerHTML='<span class="pill">SOURCE '+esc(eng.name)+'</span><span class="pill">SESSION '+esc(slug)+'</span><span class="pill">GAMES '+games.length+'</span><span class="pill">FINAL/FINAL PENDING '+finals+'</span><span class="pill">ACTIVE '+active+'</span>'+(odd?'<span class="pill warn">EARLY/INCOMPLETE FINALS '+odd+'</span>':'');grid.innerHTML=games.length?games.map(card).join(''):'<div class="empty">No games match this kickoff filter.</div>';setStatus('FETCHED · CLOUD V'+(b.state_version??'?'));const q=new URLSearchParams();q.set('source',slug);q.set('kickoff',k);history.replaceState(null,'',location.pathname+'?'+q.toString())}catch(e){grid.innerHTML='<div class="empty error">'+esc(e.message)+'</div>';setStatus('FETCH ERROR · '+e.message,true)}finally{fetchBtn.disabled=false}}
+fetchBtn.addEventListener('click',fetchScores);kickoff.addEventListener('change',()=>{if(source.value.trim())fetchScores()});
+</script>
+</body>
+</html>
