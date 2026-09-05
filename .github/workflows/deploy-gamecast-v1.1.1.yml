@@ -1,6 +1,10 @@
 name: Deploy GameCast V4 Preview
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/deploy-gamecast-v1.1.1.yml'
   workflow_dispatch:
 
 permissions:
@@ -19,7 +23,7 @@ jobs:
       - name: Checkout isolated V4 release
         uses: actions/checkout@v4
         with:
-          ref: 3fd93305215b81258266c46f6af1adf79612e975
+          ref: 6797f93d1927360c4a3b88b77b5fc507289bb748
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -38,9 +42,11 @@ jobs:
           test -f out/index.html
           test -f out/week2/index.html
           test -f out/v4/index.html
+          test -f out/v4/boxscores/index.html
           grep -q "PC-GAMECAST-v1.1.1" out/index.html
           grep -q "GAMECAST" out/week2/index.html
           grep -q "GAMECAST V4" out/v4/index.html
+          grep -q "V4 BOX SCORES" out/v4/boxscores/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
