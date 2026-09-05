@@ -1,9 +1,9 @@
-name: Deploy GameCast v1.1.1 to GitHub Pages
+name: Deploy GameCast Week 2 to GitHub Pages
 
 on:
   push:
     branches:
-      - cloud/v1.1.1
+      - gamecast/week2-2026-09-05
   workflow_dispatch:
 
 permissions:
@@ -19,7 +19,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout cloud release
+      - name: Checkout Week 2 deployment branch
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -33,6 +33,9 @@ jobs:
 
       - name: Build static GameCast
         run: npm run build:pages
+
+      - name: Verify Week 2 static console
+        run: test -f out/week2/index.html && grep -q "GAMECAST" out/week2/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b0e">
+<title>GameCast Week 2 · POWER 1B</title>
+<style>
+*{box-sizing:border-box}html{background:#090b0e}body{margin:0;background:#090b0e;color:#f4f5f7;font-family:Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%}button,select{font:inherit}header{position:sticky;top:0;z-index:3;background:#0d1014;border-bottom:1px solid #363b43;padding:calc(14px + env(safe-area-inset-top)) 18px 14px;display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{font-size:22px;font-weight:900;letter-spacing:.04em}.brand b{color:#d71920}.sub{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;color:#aeb5bf}.wrap{max-width:1500px;margin:auto;padding:16px max(16px,env(safe-area-inset-right)) calc(20px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}.bar,.filters{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.bar{padding:11px;background:#15191e;border:1px solid #303640}.bar button,.controls button,.filters button,select{background:#20252c;color:#fff;border:1px solid #4b525d;padding:9px 11px;font-weight:800;border-radius:3px;min-height:38px}.bar button.primary,.controls button.primary,.filters button.active{background:#b5121b;border-color:#e31b23}.bar button:disabled,.controls button:disabled,select:disabled{opacity:.36}.status{margin-left:auto;font:11px ui-monospace,SFMono-Regular,Menlo,monospace}.notice{margin:12px 0;padding:10px 12px;background:#161b21;border-left:3px solid #b5121b;font-size:12px;line-height:1.45;color:#cbd0d6}.filters{margin:12px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:10px}.card{background:#101419;border:1px solid #303640}.card.live{border-color:#b5121b}.head{padding:9px 11px;background:#181d23;display:flex;justify-content:space-between;gap:8px;font:11px ui-monospace,SFMono-Regular,Menlo,monospace}.teams{padding:10px 12px}.team{display:grid;grid-template-columns:1fr 54px;align-items:center;padding:5px 0;font-size:16px;font-weight:800}.score{text-align:right;font-size:26px}.power{display:inline-block;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:#8f98a5;margin-left:6px}.override{color:#e8bc68}.meta{border-top:1px solid #303640;padding:8px 11px;display:flex;justify-content:space-between;gap:8px;font:11px ui-monospace,SFMono-Regular,Menlo,monospace;color:#c2c8d0}.play{min-height:32px}.controls{border-top:1px solid #303640;padding:9px;display:flex;gap:6px;flex-wrap:wrap}.score-row{display:flex;gap:4px;flex-wrap:wrap;width:100%;padding-top:4px;border-top:1px solid #282e36}.score-row span{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:#98a0aa;align-self:center;margin-right:2px}.score-row button{padding:6px 8px;min-height:32px;font-size:11px}.links{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;margin:8px 0;word-break:break-all}.links a{color:#8ab4f8}.empty{padding:36px 16px;text-align:center;border:1px dashed #40464f;color:#aeb5bf}.error{color:#ff9b9b}@media(max-width:600px){header{align-items:flex-start}.grid{grid-template-columns:1fr}.status{width:100%;margin-left:0}.bar button{flex:1 1 auto}.head{font-size:10px}.team{font-size:15px}.score{font-size:28px}.meta{font-size:10px;flex-wrap:wrap}.controls button,.controls select{flex:1 1 auto}.score-row button{flex:0 0 auto}}
+</style>
+</head>
+<body>
+<header><div><div class="brand">GAMECAST <b>WEEK 2</b></div><div class="sub">POWER 1B · 10:00 QUARTERS · CLOUD SESSION</div></div><div class="sub">SEN / EBC · MOBILE OPERATOR</div></header>
+<div class="wrap">
+  <div class="bar">
+    <button class="primary" id="create">CREATE WEEK 2 SESSION</button>
+    <button id="refresh">REFRESH CLOUD</button>
+    <button id="copy">COPY PUBLIC LINK</button>
+    <span class="status" id="status">NO SESSION</span>
+  </div>
+  <div class="links" id="links"></div>
+  <div class="notice"><b>POWER 1B</b> is the sole team-strength input for AUTO. Sacramento State and Idaho use Chairman-authorized overrides equal to 1/10 of their Week 2 opponent's POWER 1B rating. Eastern Michigan remains manual-only because no POWER 1B value or override has been authorized.</div>
+  <div class="filters"><button data-f="TODAY" class="active">TODAY · SEP 5</button><button data-f="ALL">ALL W2</button><button data-f="LIVE">LIVE</button><button data-f="READY">FINAL</button></div>
+  <div class="grid" id="grid"><div class="empty">Create or open a Week 2 cloud session.</div></div>
+</div>
+<script>
+'use strict';
+const API='https://percrnamjzetzjjuxuuw.supabase.co/functions/v1/gamecast-week2';
+let slug=new URLSearchParams(location.search).get('session')||'';
+let token=location.hash.startsWith('#operator=')?location.hash.slice(10):'';
+let publicView=new URLSearchParams(location.search).get('view')==='public';
+let state=[],version=0,filter='TODAY',loading=false;
+const total=(g,t)=>Object.values(g.scores||{}).reduce((s,q)=>s+(q&&q[t]||0),0);
+const clk=s=>String(Math.floor(Math.max(0,s)/60)).padStart(2,'0')+':'+String(Math.floor(Math.max(0,s)%60)).padStart(2,'0');
+const elapsed=s=>Math.floor((s||0)/3600)+':'+String(Math.floor(((s||0)%3600)/60)).padStart(2,'0')+':'+String((s||0)%60).padStart(2,'0');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function api(action,body){
+  const url=API+'?api='+encodeURIComponent(action)+(slug?'&session='+encodeURIComponent(slug):'');
+  const r=await fetch(url,{method:body?'POST':'GET',mode:'cors',cache:'no-store',headers:{'content-type':'application/json',...(token?{'x-operator-token':token}:{})},body:body?JSON.stringify(body):undefined});
+  let b; try{b=await r.json()}catch{throw Object.assign(new Error('API returned a non-JSON response'),{status:r.status})}
+  if(!r.ok)throw Object.assign(new Error(b.error||('HTTP '+r.status)),{status:r.status,body:b});
+  return b;
+}
+function setStatus(s,isError=false){const el=document.getElementById('status');el.textContent=s;el.classList.toggle('error',isError)}
+function visible(g){if(filter==='ALL')return true;if(filter==='TODAY')return g.date==='SAT 05 SEP';if(filter==='LIVE')return g.lifecycle==='ACTIVE';if(filter==='READY')return ['FINAL_PENDING','LOCKED','READY','SEUD'].includes(g.lifecycle);return true}
+function overrideLabel(g,team){const v=team===0?g.awayPower1B:g.homePower1B;const n=team===0?g.away.name:g.home.name;const isOverride=(g.id==='G0045'&&n==='Sacramento State')||(g.id==='G0056'&&n==='Idaho');return '<small class="power '+(isOverride?'override':'')+'">P1B '+(v==null?'N/A':Number(v).toFixed(3))+(isOverride?' · OVR':'')+'</small>'}
+function scoreButtons(g,team,label){return '<div class="score-row"><span>'+label+'</span>'+[1,2,3,6,7,8].map(p=>'<button '+(g.lifecycle!=='ACTIVE'?'disabled':'')+' onclick="cmd(\''+g.id+'\',\'score\',{team:'+team+',points:'+p+'})">+'+p+'</button>').join('')+'</div>'}
+function render(){
+  document.getElementById('create').disabled=!!slug||publicView;
+  document.getElementById('refresh').disabled=loading;
+  document.getElementById('copy').disabled=!slug;
+  document.getElementById('links').innerHTML=slug?'SESSION '+esc(slug)+' · VERSION '+version+'<br><a href="'+location.pathname+'?session='+encodeURIComponent(slug)+'&view=public">PUBLIC READ-ONLY VIEW</a>':'';
+  const games=state.filter(visible).sort((a,b)=>a.kickoffOrder-b.kickoffOrder||a.id.localeCompare(b.id));
+  if(!games.length){document.getElementById('grid').innerHTML='<div class="empty">No games in this view.</div>';return}
+  document.getElementById('grid').innerHTML=games.map(g=>{
+    const autoBlocked=!g.autoEligible;
+    const controls=publicView?'':'<div class="controls">'+
+      '<button '+(g.lifecycle!=='UNLAUNCHED'?'disabled':'')+' onclick="cmd(\''+g.id+'\',\'launch\')">LAUNCH</button>'+
+      '<button class="primary" '+(g.lifecycle!=='ACTIVE'||autoBlocked?'disabled':'')+' onclick="cmd(\''+g.id+'\',\'auto\')">'+(autoBlocked?'AUTO BLOCKED':g.auto?'STOP AUTO':'START AUTO')+'</button>'+
+      '<select '+(g.lifecycle!=='ACTIVE'?'disabled':'')+' onchange="cmd(\''+g.id+'\',\'speed\',{speed:+this.value})"><option value="1" '+(g.speed===1?'selected':'')+'>1x</option><option value="4" '+(g.speed===4?'selected':'')+'>4x</option><option value="10" '+(g.speed===10?'selected':'')+'>10x</option></select>'+
+      '<button '+(g.lifecycle!=='ACTIVE'?'disabled':'')+' onclick="cmd(\''+g.id+'\',\'pause\')">'+(g.activity==='BREAK'&&g.breakLabel==='Operator pause'?'RESUME':'PAUSE')+'</button>'+
+      '<button '+(g.lifecycle!=='ACTIVE'?'disabled':'')+' onclick="cmd(\''+g.id+'\',\'end\')">END</button>'+
+      scoreButtons(g,0,'AWAY')+scoreButtons(g,1,'HOME')+'</div>';
+    return '<article class="card '+(g.lifecycle==='ACTIVE'?'live':'')+'"><div class="head"><span>'+esc(g.id)+' · '+esc(g.date)+' · '+esc(g.kickoff)+'</span><b>'+esc(g.network)+' · '+esc(g.activity)+'</b></div><div class="teams"><div class="team"><span>'+esc(g.away.name)+overrideLabel(g,0)+'</span><span class="score">'+total(g,0)+'</span></div><div class="team"><span>'+esc(g.home.name)+overrideLabel(g,1)+'</span><span class="score">'+total(g,1)+'</span></div></div><div class="meta"><span>'+esc(g.lifecycle)+'</span><span>'+esc(g.period)+' · '+clk(g.scoreboardSeconds)+'</span><span>GL '+elapsed(g.elapsedSeconds)+'</span></div><div class="meta play"><span>'+esc(g.lastPlay||'')+'</span></div>'+controls+'</article>'
+  }).join('');
+}
+async function load(){
+  if(!slug){setStatus('NO SESSION');render();return}
+  if(loading)return;loading=true;setStatus('SYNCING');
+  try{const b=await api('read');state=b.state||[];version=b.state_version||0;setStatus('CLOUD V'+version+' · +'+(b.projected_seconds||0)+'s');render()}
+  catch(e){setStatus('ERROR · '+e.message,true)}finally{loading=false}
+}
+async function cmd(id,command,payload={}){
+  try{setStatus('WRITING');const b=await api('command',{id,command,payload,expected_version:version});state=b.state||[];version=b.state_version||version;setStatus('CHECKPOINTED V'+version);render()}
+  catch(e){if(e.status===409){setStatus('VERSION CONFLICT · RELOADING');await load()}else setStatus('WRITE ERROR · '+e.message,true)}
+}
+document.getElementById('create').onclick=async()=>{
+  try{setStatus('CREATING');const b=await api('create',{});slug=b.public_slug;token=b.operator_token;history.replaceState(null,'',location.pathname+'?session='+encodeURIComponent(slug)+'#operator='+token);version=b.state_version||0;await load()}
+  catch(e){setStatus('CREATE ERROR · '+e.message,true)}
+};
+document.getElementById('refresh').onclick=load;
+document.getElementById('copy').onclick=async()=>{const u=location.origin+location.pathname+'?session='+encodeURIComponent(slug)+'&view=public';try{await navigator.clipboard.writeText(u);setStatus('PUBLIC LINK COPIED')}catch{prompt('Copy public link',u)}};
+document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{filter=b.dataset.f;document.querySelectorAll('[data-f]').forEach(x=>x.classList.toggle('active',x===b));render()});
+load();setInterval(()=>{if(slug&&!loading)load()},publicView?4000:8000);
+</script>
+</body>
+</html>
