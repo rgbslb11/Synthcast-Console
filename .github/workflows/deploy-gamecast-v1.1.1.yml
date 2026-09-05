@@ -1,9 +1,6 @@
 name: Deploy GameCast V4 Preview
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
@@ -22,7 +19,7 @@ jobs:
       - name: Checkout isolated V4 release
         uses: actions/checkout@v4
         with:
-          ref: ad3b43b7a0b29622be630aea1193ffc937ded289
+          ref: 3fd93305215b81258266c46f6af1adf79612e975
 
       - name: Setup Node
         uses: actions/setup-node@v4
