@@ -1,6 +1,7 @@
 name: Deploy GameCast V4 Preview
 
 on:
+  push:
   workflow_dispatch:
 
 permissions:
@@ -19,7 +20,7 @@ jobs:
       - name: Checkout isolated V4 release
         uses: actions/checkout@v4
         with:
-          ref: 6797f93d1927360c4a3b88b77b5fc507289bb748
+          ref: 78112b5f46d9a0790ff251f3c2b0d523f07cc15e
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -43,6 +44,7 @@ jobs:
           grep -q "GAMECAST" out/week2/index.html
           grep -q "GAMECAST V4" out/v4/index.html
           grep -q "V4 BOX SCORES" out/v4/boxscores/index.html
+          grep -q "EDITING · SYNC HELD" out/v4/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
