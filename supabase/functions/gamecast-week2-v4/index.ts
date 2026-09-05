@@ -2,7 +2,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import { WEEK2 } from "./week2.ts";
 
-const ENGINE_VERSION="GC-W2-V4.0.0", DATA_VERSION="POWER_1B-W1-121+CHAIRMAN_OVR", WEEK_KEY="2026-W02";
+const ENGINE_VERSION="GC-W2-V4.0.0-RC2", DATA_VERSION="POWER_1B-W1-121+CHAIRMAN_OVR", WEEK_KEY="2026-W02";
 const CONSOLE_URL="https://rgbslb11.github.io/Synthcast-Console/v4/", SPEEDS=[1,4,10,50];
 const cors={"Access-Control-Allow-Origin":"*","Access-Control-Allow-Headers":"content-type,x-operator-token","Access-Control-Allow-Methods":"GET,POST,OPTIONS","Cache-Control":"no-store"};
 const json=(body:unknown,status=200)=>new Response(JSON.stringify(body),{status,headers:{...cors,"content-type":"application/json; charset=utf-8"}});
@@ -55,7 +55,7 @@ else if(c==="return_final"&&g.lifecycle==="CORRECTION"){const r=reason(p);g.life
 else if(c==="lock"&&g.lifecycle==="FINAL_PENDING"){g.lifecycle="LOCKED";g.activity="FINAL";g.locked=true;g.lastPlay=`Result locked · ${total(g,0)}-${total(g,1)}`}
 else if(c==="unlock"&&g.lifecycle==="LOCKED"){const r=reason(p);g.lifecycle="FINAL_PENDING";g.locked=false;g.lastPlay=`Result unlocked by Chairman · ${r}`;event.reason=r}
 else if(c==="accept"&&g.lifecycle==="LOCKED"){g.lifecycle="READY";g.activity="FINAL";g.lastPlay=`Accepted result · READY for SEUD · ${total(g,0)}-${total(g,1)}`}
-else if(c==="restart_same_seed"&&["ACTIVE","FINAL_PENDING","CORRECTION"].includes(g.lifecycle)){const r=reason(p),snapshot=structuredClone(g),a=resetRun(g,false,"RESTART_SAME_SEED",r);event={...event,reason:r,archived:a,snapshot}}
+else if(c==="restart_same_seed"&&["ACTIVE","FINAL_PENDING","CORRECTION"].includes(g.lifecycle)){const r=reason(p),snapshot=structuredClone(g),rngState=seedWords(g.seedHex,g.id,g.runNumber),a=resetRun(g,false,"RESTART_SAME_SEED",r);g.rngState=rngState;event={...event,reason:r,archived:a,snapshot,replay_seed_basis_run:a.runNumber}}
 else if(c==="purge_new_seed"&&["UNLAUNCHED","ACTIVE","FINAL_PENDING","CORRECTION"].includes(g.lifecycle)){const r=reason(p),snapshot=structuredClone(g),a=resetRun(g,true,"PURGE_NEW_SEED",r);event={...event,reason:r,archived:a,snapshot,newRunId:g.runId,newSeedHex:g.seedHex}}
 else return json({error:"command unavailable for current lifecycle"},409);
 const stamp=now(),{data,error}=await client.rpc("gamecast_v12_update_session",{p_session_id:current.session_id,p_expected_version:current.state_version,p_state:state,p_stamp:stamp});if(error)throw error;const updated=Array.isArray(data)?data[0]:data;if(!updated)return json({error:"version conflict"},409);await client.rpc("gamecast_v12_insert_event",{p_session_id:current.session_id,p_state_version:updated.state_version,p_event_type:`V4_${c.toUpperCase()}`,p_game_id:g.id,p_payload:{...event,power_source:"POWER_1B",auto_eligible:g.autoEligible}});return json({state:updated.state,state_version:updated.state_version,last_advanced_at:updated.last_advanced_at,server_now:stamp,engine_version:ENGINE_VERSION})}
