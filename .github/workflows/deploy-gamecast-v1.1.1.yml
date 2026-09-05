@@ -1,4 +1,4 @@
-name: Deploy GameCast v1.1.1
+name: Deploy GameCast Week 2
 
 on:
   workflow_dispatch:
@@ -16,10 +16,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout cloud release
+      - name: Checkout Week 2 deployment
         uses: actions/checkout@v4
         with:
-          ref: cloud/v1.1.1
+          ref: b68f85f53c90d500ba73040e9c487913112d4e14
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -32,6 +32,9 @@ jobs:
 
       - name: Build static GameCast
         run: npm run build:pages
+
+      - name: Verify Week 2 static console
+        run: test -f out/week2/index.html && grep -q "GAMECAST" out/week2/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
