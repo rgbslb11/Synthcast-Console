@@ -1,6 +1,9 @@
-name: Deploy GameCast Week 2
+name: Deploy GameCast V4 Preview
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -16,10 +19,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Week 2 deployment
+      - name: Checkout isolated V4 release
         uses: actions/checkout@v4
         with:
-          ref: b68f85f53c90d500ba73040e9c487913112d4e14
+          ref: ad3b43b7a0b29622be630aea1193ffc937ded289
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -33,8 +36,14 @@ jobs:
       - name: Build static GameCast
         run: npm run build:pages
 
-      - name: Verify Week 2 static console
-        run: test -f out/week2/index.html && grep -q "GAMECAST" out/week2/index.html
+      - name: Verify preserved and V4 surfaces
+        run: |
+          test -f out/index.html
+          test -f out/week2/index.html
+          test -f out/v4/index.html
+          grep -q "PC-GAMECAST-v1.1.1" out/index.html
+          grep -q "GAMECAST" out/week2/index.html
+          grep -q "GAMECAST V4" out/v4/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
