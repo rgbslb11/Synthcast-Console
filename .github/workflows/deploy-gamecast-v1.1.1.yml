@@ -1,6 +1,8 @@
-name: Deploy GameCast V4 Preview
+name: Deploy GameCast 4.1 Preview
 
 on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -16,10 +18,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout isolated V4 release
+      - name: Checkout isolated GameCast 4.1 release
         uses: actions/checkout@v4
         with:
-          ref: 78112b5f46d9a0790ff251f3c2b0d523f07cc15e
+          ref: 8ce3874268f8a3886f3d4f1d412dd34073f083de
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -33,17 +35,20 @@ jobs:
       - name: Build static GameCast
         run: npm run build:pages
 
-      - name: Verify preserved and V4 surfaces
+      - name: Verify preserved and 4.1 surfaces
         run: |
           test -f out/index.html
           test -f out/week2/index.html
           test -f out/v4/index.html
           test -f out/v4/boxscores/index.html
+          test -f out/v4.1/index.html
           grep -q "PC-GAMECAST-v1.1.1" out/index.html
           grep -q "GAMECAST" out/week2/index.html
           grep -q "GAMECAST V4" out/v4/index.html
           grep -q "V4 BOX SCORES" out/v4/boxscores/index.html
-          grep -q "EDITING · SYNC HELD" out/v4/index.html
+          grep -q "GAMECAST 4.1" out/v4.1/index.html
+          grep -q "LOCKED FINALS · 47" out/v4.1/index.html
+          grep -q "SIMULATABLE · 6" out/v4.1/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
