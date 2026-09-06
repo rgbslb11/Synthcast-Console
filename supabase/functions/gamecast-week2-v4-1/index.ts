@@ -1,6 +1,6 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
-import { WEEK2 } from "../gamecast-week2-v4/week2.ts";
+import { WEEK2 } from "./week2.ts";
 
 const ENGINE_VERSION="GC-W2-V4.1.0-RC1";
 const DATA_VERSION="POWER_1B-W1-121+CHAIRMAN_OVR+W2_LEDGER_FINALS_47";
