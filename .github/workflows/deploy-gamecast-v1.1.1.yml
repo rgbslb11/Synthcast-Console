@@ -1,8 +1,6 @@
 name: Deploy GameCast 4.1 Preview
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 permissions:
