@@ -286,6 +286,14 @@ function maybeBreak(g: Game, before: number, after: number) {
   }
   return false;
 }
+function nextBreakBoundary(g: Game, before: number) {
+  let next: number | null = null;
+  for (const [th] of thresholds(g)) {
+    const k = `Q${g.quarter}-${th}`;
+    if (before > th && !g.tvBreaksTaken.includes(k) && (next === null || th > next)) next = th;
+  }
+  return next;
+}
 function finishGame(g: Game, label: string) {
   g.lifecycle = "FINAL_PENDING"; g.activity = "FINAL"; g.auto = false; g.onAir = false; g.operatorPaused = false; g.delayed = false;
   g.pendingPlay = null; g.breakSeconds = 0; g.gameClockStatus = "STOPPED"; g.completedAt = now();
@@ -331,17 +339,32 @@ function advanceGame(g: Game, seconds: number) {
     const p = g.pendingPlay as Play | null;
     if (p) {
       if (p.phase === "PLAY") {
-        const s = Math.min(rem, p.remaining, g.scoreboardSeconds);
-        p.remaining -= s; g.scoreboardSeconds -= s; g.glSeconds += s; g.teamTopSeconds[p.team] += s; rem -= s; g.gameClockStatus = "RUNNING";
+        // A snap begun before 0:00 must be allowed to finish even if its play duration extends past the period clock.
+        // Only the portion before 0:00 is charged to the scoreboard clock/TOP; the entire play duration counts toward GL.
+        const s = Math.min(rem, p.remaining), clockUsed = Math.min(s, g.scoreboardSeconds);
+        p.remaining -= s; g.scoreboardSeconds -= clockUsed; g.glSeconds += s; g.teamTopSeconds[p.team] += clockUsed; rem -= s; g.gameClockStatus = "RUNNING";
         if (p.remaining <= 0) { applyPlay(g, p); maybeBreak(g, p.clockBefore, g.scoreboardSeconds); if (g.scoreboardSeconds <= 0) finishPeriod(g); }
         continue;
       }
-      const clockRuns = p.remaining <= p.runoffSec || p.deadSec === 0;
-      let s = Math.min(rem, p.remaining); if (clockRuns) s = Math.min(s, g.scoreboardSeconds);
-      p.remaining -= s; g.glSeconds += s; rem -= s;
-      if (clockRuns) {
-        const before = g.scoreboardSeconds; g.scoreboardSeconds -= s; g.teamTopSeconds[p.team] += s; g.gameClockStatus = "RUNNING"; maybeBreak(g, before, g.scoreboardSeconds);
-      } else g.gameClockStatus = "STOPPED";
+      // POST is two deterministic segments: stopped dead-ball time, then clock-running runoff.
+      // Never let a caller's wall-time chunk straddle that boundary, or the same seed can diverge by poll cadence.
+      const deadRemaining = p.deadSec > 0 && p.remaining > p.runoffSec ? p.remaining - p.runoffSec : 0;
+      if (deadRemaining > 0) {
+        const s = Math.min(rem, deadRemaining);
+        p.remaining -= s; g.glSeconds += s; rem -= s; g.gameClockStatus = "STOPPED";
+        if (p.remaining <= 0) g.pendingPlay = null;
+        continue;
+      }
+      const before = g.scoreboardSeconds, boundary = nextBreakBoundary(g, before);
+      let s = Math.min(rem, p.remaining, g.scoreboardSeconds);
+      if (boundary !== null) s = Math.min(s, before - boundary);
+      if (s <= 0) {
+        if (g.scoreboardSeconds <= 0) finishPeriod(g);
+        else if (p.remaining <= 0) g.pendingPlay = null;
+        continue;
+      }
+      p.remaining -= s; g.glSeconds += s; rem -= s; g.scoreboardSeconds -= s; g.teamTopSeconds[p.team] += s; g.gameClockStatus = "RUNNING";
+      maybeBreak(g, before, g.scoreboardSeconds);
       if (p.remaining <= 0) g.pendingPlay = null;
       if (g.scoreboardSeconds <= 0) finishPeriod(g);
       continue;
