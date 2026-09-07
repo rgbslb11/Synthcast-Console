@@ -14,6 +14,7 @@ if(!fs.existsSync(pagePath))throw new Error('Run build-gamecast-v422.mjs first')
 let app=read(baseApp);
 app=all(app,"const API='https://percrnamjzetzjjuxuuw.supabase.co/functions/v1/gamecast-week3-v4-2',STORE='synthcastGameCast42Operator'","const API='https://percrnamjzetzjjuxuuw.supabase.co/functions/v1/gamecast-week3-v4-2-2',STORE='synthcastGameCast422Operator'",'direct 4.2.2 API/store binding');
 app=all(app,"engine='GC-W3-V4.2.0-RC1'","engine='GC-W3-V4.2.2-RC1'",'4.2.2 UI engine identity');
+app=all(app,"const esc=s=>String(s??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c]));const total=(g,t)=>Object.values(g.scores||{}).reduce((s,q)=>s+Number((q||[])[t]||0),0)","const esc=s=>String(s??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c]));const validPeriod=k=>['1','2','3','4','OT'].includes(k)||/^(?:[2-9]|[1-9][0-9]+)OT$/.test(k),total=(g,t)=>Object.entries(g.scores||{}).reduce((s,[k,q])=>validPeriod(k)?s+Number((q||[])[t]||0):s,0)",'valid-period UI totals');
 write(dstApp,app);
 
 let page=read(pagePath);
@@ -25,5 +26,6 @@ write(pagePath,page);
 const check=read(dstApp);
 if(!check.includes('gamecast-week3-v4-2-2'))throw new Error('4.2.2 app is not bound to 4.2.2 backend');
 if(!check.includes("synthcastGameCast422Operator"))throw new Error('4.2.2 app does not use isolated operator storage');
+if(!check.includes('const validPeriod='))throw new Error('4.2.2 UI does not protect score totals from invalid period keys');
 if(check.includes('gamecast-week3-v4-2\''))throw new Error('4.2 backend endpoint remains in 4.2.2 app');
-console.log('GameCast 4.2.2 UI directly wired to isolated backend.');
+console.log('GameCast 4.2.2 UI directly wired to isolated backend with valid-period score totals.');
