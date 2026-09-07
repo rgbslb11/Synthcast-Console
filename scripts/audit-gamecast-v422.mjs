@@ -21,12 +21,18 @@ function mk(seed='AUDIT',quarterSeconds=600){
     strategyMode:'NORMAL',lastPlay:'',teamPlayCount:[0,0],teamTopSeconds:[0,0]};
 }
 function ok(v,m){if(!v)throw new Error(m)}
-function football(g){return JSON.stringify({l:g.lifecycle,q:g.quarter,p:g.period,a:g.activePeriod,c:g.scoreboardSeconds,gl:g.glSeconds,s:g.scores,pos:g.possession,f:g.fieldPos,d:g.down,x:g.distance,ato:g.awayTimeouts,hto:g.homeTimeouts,b:g.breakSeconds,bl:g.breakLabel,pp:g.pendingPeriod,pending:g.pendingPlay,rng:g.rngState,plays:g.teamPlayCount,top:g.teamTopSeconds,auto:g.auto,on:g.onAir,paused:g.operatorPaused,delayed:g.delayed});}
-function runToFinal(g,chunk=10){let n=0;while(!FINALISH.has(g.lifecycle)&&n++<3000)advanceGame(g,chunk);if(g.lifecycle!=='FINAL_PENDING'){console.log('NONFINAL_DIAGNOSTIC '+JSON.stringify({seed:g.seedHex,chunk,iterations:n,lifecycle:g.lifecycle,quarter:g.quarter,period:g.period,activePeriod:g.activePeriod,clock:g.scoreboardSeconds,gl:g.glSeconds,breakSeconds:g.breakSeconds,breakLabel:g.breakLabel,pendingPeriod:g.pendingPeriod,auto:g.auto,pendingPlay:g.pendingPlay,score:g.scores,plays:g.teamPlayCount,lastPlay:g.lastPlay}));}ok(g.lifecycle==='FINAL_PENDING','did not reach FinalPending');return g;}
+function snap(g){return {l:g.lifecycle,q:g.quarter,p:g.period,a:g.activePeriod,c:g.scoreboardSeconds,gl:g.glSeconds,s:g.scores,pos:g.possession,f:g.fieldPos,d:g.down,x:g.distance,ato:g.awayTimeouts,hto:g.homeTimeouts,b:g.breakSeconds,bl:g.breakLabel,pp:g.pendingPeriod,pending:g.pendingPlay,rng:g.rngState,plays:g.teamPlayCount,top:g.teamTopSeconds,auto:g.auto,on:g.onAir,paused:g.operatorPaused,delayed:g.delayed,tv:g.tvBreaksTaken,strategy:g.strategyMode,last:g.lastPlay};}
+function football(g){return JSON.stringify(snap(g));}
+function runToFinal(g,chunk=10){let n=0;while(!FINALISH.has(g.lifecycle)&&n++<3000)advanceGame(g,chunk);if(g.lifecycle!=='FINAL_PENDING'){console.log('NONFINAL_DIAGNOSTIC '+JSON.stringify({seed:g.seedHex,chunk,iterations:n,...snap(g)}));}ok(g.lifecycle==='FINAL_PENDING','did not reach FinalPending');return g;}
 
 // Same seed must not depend on the server's advancement chunk size.
 {
   const a=runToFinal(mk('CHUNK'),10),b=runToFinal(mk('CHUNK'),37);
+  if(football(a)!==football(b)){
+    const sa=snap(a),sb=snap(b),diff={};
+    for(const k of Object.keys(sa))if(JSON.stringify(sa[k])!==JSON.stringify(sb[k]))diff[k]={chunk10:sa[k],chunk37:sb[k]};
+    console.log('CHUNK_INVARIANCE_DIAGNOSTIC '+JSON.stringify(diff));
+  }
   ok(football(a)===football(b),'fixed-seed result changes with advancement chunk size');
 }
 
