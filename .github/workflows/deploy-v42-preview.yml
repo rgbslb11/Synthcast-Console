@@ -36,8 +36,12 @@ jobs:
         run: |
           test -f out/v4.1/index.html
           test -f out/v4.2/index.html
+          test -f out/v4.2/app.js
+          test -f out/v4.2/patch-rc2.js
           grep -q "GAMECAST 4.2" out/v4.2/index.html
           grep -q "MASTER ZULU" out/v4.2/index.html
+          grep -q "patch-rc2.js" out/v4.2/index.html
+          grep -q "GC-W3-V4.2.0-RC2" out/v4.2/patch-rc2.js
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
