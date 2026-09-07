@@ -32,21 +32,26 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Generate corrective 4.2.2 package
-        run: node scripts/build-gamecast-v422.mjs
+        run: |
+          node scripts/build-gamecast-v422.mjs
+          node scripts/wire-gamecast-v422-ui.mjs
       - name: Verify reported-defect corrections
         run: |
           test -f supabase/functions/gamecast-week3-v4-2-2/index.ts
           test -f supabase/functions/gamecast-week3-v4-2-2/power.ts
           test -f supabase/functions/gamecast-week3-v4-2-2/week3.ts
           test -f public/v4.2.2/index.html
-          test -f public/v4.2.2/shim-422.js
+          test -f public/v4.2.2/app.js
           test -f public/v4.2.2/patch-422.js
           grep -q 'if (g.pendingPeriod !== 0) advancePeriod(g);' supabase/functions/gamecast-week3-v4-2-2/index.ts
           grep -q 'invalid score period' supabase/functions/gamecast-week3-v4-2-2/index.ts
           grep -q 'invalid pending period transition' supabase/functions/gamecast-week3-v4-2-2/index.ts
           grep -q 'GC-W3-V4.2.2-RC1' supabase/functions/gamecast-week3-v4-2-2/index.ts
-          grep -q 'gamecast-week3-v4-2-2' public/v4.2.2/shim-422.js
+          grep -q 'gamecast-week3-v4-2-2' public/v4.2.2/app.js
+          grep -q 'synthcastGameCast422Operator' public/v4.2.2/app.js
           if grep -q 'if (g.breakSeconds === 0) advancePeriod(g)' supabase/functions/gamecast-week3-v4-2-2/index.ts; then exit 1; fi
+          if grep -q 'shim-422.js' public/v4.2.2/index.html; then exit 1; fi
+          if grep -q '../v4.2/app.js' public/v4.2.2/index.html; then exit 1; fi
           cmp supabase/functions/gamecast-week3-v4-2-1/power.ts supabase/functions/gamecast-week3-v4-2-2/power.ts
           cmp supabase/functions/gamecast-week3-v4-2-1/week3.ts supabase/functions/gamecast-week3-v4-2-2/week3.ts
       - name: Commit generated 4.2.2 package
@@ -64,10 +69,11 @@ jobs:
         run: |
           test -f out/v4.2.1/index.html
           test -f out/v4.2.2/index.html
-          test -f out/v4.2.2/shim-422.js
+          test -f out/v4.2.2/app.js
           test -f out/v4.2.2/patch-422.js
           grep -q 'GAMECAST 4.2.2' out/v4.2.2/index.html
-          grep -q 'gamecast-week3-v4-2-2' out/v4.2.2/shim-422.js
+          grep -q 'gamecast-week3-v4-2-2' out/v4.2.2/app.js
+          if grep -q 'shim-422.js' out/v4.2.2/index.html; then exit 1; fi
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
