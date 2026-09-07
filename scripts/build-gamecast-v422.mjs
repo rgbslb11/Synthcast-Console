@@ -189,7 +189,6 @@ index = replaceOnce(index, oldPostAdvance, newPostAdvance, 'post-play determinis
 
 write(path.join(dstFn, 'index.ts'), index);
 
-// The 4.2.2 correction intentionally leaves ratings and schedule bytes unchanged.
 if (read(path.join(dstFn, 'power.ts')) !== read(path.join(srcFn, 'power.ts'))) throw new Error('Power package changed unexpectedly');
 if (read(path.join(dstFn, 'week3.ts')) !== read(path.join(srcFn, 'week3.ts'))) throw new Error('Week 3 schedule changed unexpectedly');
 
@@ -237,13 +236,12 @@ periods=function(g){
 `;
 write(path.join(dstUi, 'patch-422.js'), uiPatch);
 
-// Regression assertions tied directly to the reported defects and authoritative-cloud determinism.
 const builtIndex = read(path.join(dstFn, 'index.ts'));
 for (const forbidden of ['w3v421-', 'V421_', 'GC-W3-V4.2.1-RC1', 'gamecast-week3-v4-2-1']) {
   if (builtIndex.includes(forbidden)) throw new Error(`4.2.1 runtime token leaked into 4.2.2: ${forbidden}`);
 }
 if (builtIndex.includes('if (g.breakSeconds === 0) advancePeriod(g)')) throw new Error('Unconditional break-to-period transition still present');
-if (builtIndex.includes('Math.min(rem, p.remaining, g.scoreboardSeconds)')) throw new Error('End-period play completion bug still present');
+if (builtIndex.includes('const s = Math.min(rem, p.remaining, g.scoreboardSeconds);')) throw new Error('End-period play completion bug still present');
 for (const required of [
   'if (g.pendingPeriod !== 0) advancePeriod(g);',
   'clockUsed = Math.min(s, g.scoreboardSeconds)',
