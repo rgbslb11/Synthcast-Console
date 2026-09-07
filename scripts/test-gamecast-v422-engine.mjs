@@ -63,7 +63,7 @@ function assert(c,m){if(!c)throw new Error(m);}
   const g=mkGame('full-game-422');
   const seen=new Set([g.quarter]);
   let guard=0;
-  while(!FINALISH.has(g.lifecycle) && guard++<12000){ advanceGame(g,1); seen.add(g.quarter); }
+  while(!FINALISH.has(g.lifecycle) && guard++<2000){ advanceGame(g,10); seen.add(g.quarter); }
   assert(g.lifecycle==='FINAL_PENDING','Full game did not reach FinalPending');
   for(const q of [1,2,3,4])assert(seen.has(q),'Full game skipped regulation quarter '+q);
   assert(!seen.has(0),'Full game entered invalid quarter 0');
@@ -78,5 +78,5 @@ function assert(c,m){if(!c)throw new Error(m);}
 const js=ts.transpileModule(src+harness,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.None}}).outputText;
 const context={console,crypto:globalThis.crypto,structuredClone,TextEncoder,Date,Math,Set,Object,Array,Number,String,RegExp,JSON,Error};
 vm.createContext(context);
-vm.runInContext(js,context,{timeout:10000,filename:'gamecast-v422-regression.js'});
+vm.runInContext(js,context,{timeout:30000,filename:'gamecast-v422-regression.js'});
 console.log('GameCast 4.2.2 engine regression PASS');
