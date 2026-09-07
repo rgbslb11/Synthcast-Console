@@ -1,0 +1,58 @@
+name: Deploy GameCast 4.2.1 Preview
+
+on:
+  push:
+    branches:
+      - release/gamecast-v4.2.1
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: gamecast-v421-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout GameCast 4.2.1 branch
+        uses: actions/checkout@v4
+        with:
+          ref: release/gamecast-v4.2.1
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build static GameCast
+        run: npm run build:pages
+      - name: Verify existing and 4.2.1 surfaces
+        run: |
+          test -f out/v4.1/index.html
+          test -f out/v4.2/index.html
+          test -f out/v4.2.1/index.html
+          test -f out/v4.2.1/power-421.js
+          grep -q "GAMECAST 4.2.1" out/v4.2.1/index.html
+          grep -q "102 / 102" out/v4.2.1/index.html
+          grep -q "Southern Utah|62|62|62" out/v4.2.1/power-421.js
+          grep -q "Cal Poly|63|61|62" out/v4.2.1/power-421.js
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./out
+  deploy:
+    environment:
+      name: gamecast-v421-preview
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
