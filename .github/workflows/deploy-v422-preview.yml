@@ -60,6 +60,8 @@ jobs:
         run: node scripts/audit-gamecast-v422.mjs
       - name: Run 4.2.2 multi-seed structural calibration
         run: node scripts/calibrate-gamecast-v422.mjs
+      - name: Run 4.2.2 full Week 3 power-board audit
+        run: node scripts/audit-gamecast-v422-week3.mjs
       - name: Commit generated 4.2.2 package
         run: |
           git config user.name "github-actions[bot]"
