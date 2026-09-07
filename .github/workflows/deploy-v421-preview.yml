@@ -37,9 +37,11 @@ jobs:
           test -f out/v4.1/index.html
           test -f out/v4.2/index.html
           test -f out/v4.2.1/index.html
+          test -f out/v4.2.1/review.html
           test -f out/v4.2.1/power-421.js
           grep -q "GAMECAST 4.2.1" out/v4.2.1/index.html
-          grep -q "102 / 102" out/v4.2.1/index.html
+          grep -q "102/102" out/v4.2.1/index.html
+          grep -q "102 / 102" out/v4.2.1/review.html
           grep -q "Southern Utah|62|62|62" out/v4.2.1/power-421.js
           grep -q "Cal Poly|63|61|62" out/v4.2.1/power-421.js
       - name: Upload Pages artifact
