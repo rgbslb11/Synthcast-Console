@@ -110,6 +110,22 @@ const newBreakBlock = `    if (g.breakSeconds > 0) {
     }`;
 index = replaceOnce(index, oldBreakBlock, newBreakBlock, 'scheduled-break completion');
 
+const oldPlayAdvance = `      if (p.phase === "PLAY") {
+        const s = Math.min(rem, p.remaining, g.scoreboardSeconds);
+        p.remaining -= s; g.scoreboardSeconds -= s; g.glSeconds += s; g.teamTopSeconds[p.team] += s; rem -= s; g.gameClockStatus = "RUNNING";
+        if (p.remaining <= 0) { applyPlay(g, p); maybeBreak(g, p.clockBefore, g.scoreboardSeconds); if (g.scoreboardSeconds <= 0) finishPeriod(g); }
+        continue;
+      }`;
+const newPlayAdvance = `      if (p.phase === "PLAY") {
+        // A snap begun before 0:00 must be allowed to finish even if its play duration extends past the period clock.
+        // Only the portion before 0:00 is charged to the scoreboard clock/TOP; the entire play duration counts toward GL.
+        const s = Math.min(rem, p.remaining), clockUsed = Math.min(s, g.scoreboardSeconds);
+        p.remaining -= s; g.scoreboardSeconds -= clockUsed; g.glSeconds += s; g.teamTopSeconds[p.team] += clockUsed; rem -= s; g.gameClockStatus = "RUNNING";
+        if (p.remaining <= 0) { applyPlay(g, p); maybeBreak(g, p.clockBefore, g.scoreboardSeconds); if (g.scoreboardSeconds <= 0) finishPeriod(g); }
+        continue;
+      }`;
+index = replaceOnce(index, oldPlayAdvance, newPlayAdvance, 'end-period play completion');
+
 write(path.join(dstFn, 'index.ts'), index);
 
 // The 4.2.2 correction intentionally leaves ratings and schedule bytes unchanged.
@@ -166,8 +182,10 @@ for (const forbidden of ['w3v421-', 'V421_', 'GC-W3-V4.2.1-RC1', 'gamecast-week3
   if (builtIndex.includes(forbidden)) throw new Error(`4.2.1 runtime token leaked into 4.2.2: ${forbidden}`);
 }
 if (builtIndex.includes('if (g.breakSeconds === 0) advancePeriod(g)')) throw new Error('Unconditional break-to-period transition still present');
+if (builtIndex.includes('Math.min(rem, p.remaining, g.scoreboardSeconds)')) throw new Error('End-period play completion bug still present');
 for (const required of [
   'if (g.pendingPeriod !== 0) advancePeriod(g);',
+  'clockUsed = Math.min(s, g.scoreboardSeconds)',
   'invalid regulation quarter',
   'invalid score period',
   'invalid quarter at period end',
