@@ -58,6 +58,8 @@ jobs:
         run: node scripts/test-gamecast-v422-engine.mjs
       - name: Run 4.2.2 broader backend audit
         run: node scripts/audit-gamecast-v422.mjs
+      - name: Run 4.2.2 multi-seed structural calibration
+        run: node scripts/calibrate-gamecast-v422.mjs
       - name: Commit generated 4.2.2 package
         run: |
           git config user.name "github-actions[bot]"
