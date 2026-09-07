@@ -1,0 +1,156 @@
+name: Validate GameCast 4.2.2 Cloud Session
+
+on:
+  push:
+    branches:
+      - release/gamecast-v4.2.2
+    paths:
+      - .github/workflows/qa-v422-cloud-session.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cloud-session-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      API: https://percrnamjzetzjjuxuuw.supabase.co/functions/v1/gamecast-week3-v4-2-2
+      UI: https://rgbslb11.github.io/Synthcast-Console/v4.2.2/
+      GAME_ID: G0066
+    steps:
+      - name: Create isolated 4.2.2 QA session
+        shell: bash
+        run: |
+          set -euo pipefail
+          create=$(curl -fsS -X POST "${API}?api=create" -H 'content-type: application/json' -d '{}')
+          slug=$(jq -r '.public_slug // empty' <<<"$create")
+          token=$(jq -r '.operator_token // empty' <<<"$create")
+          engine=$(jq -r '.engine_version // empty' <<<"$create")
+          power=$(jq -r '.governance.power_ready // -1' <<<"$create")
+          test -n "$slug"
+          test -n "$token"
+          test "$engine" = "GC-W3-V4.2.2-RC1"
+          test "$power" = "51"
+          [[ "$slug" == w3v422-* ]]
+          echo "::add-mask::$token"
+          echo "QA_SLUG=$slug" >> "$GITHUB_ENV"
+          echo "QA_TOKEN=$token" >> "$GITHUB_ENV"
+          echo "GameCast 4.2.2 QA session created: $slug"
+          echo "Engine: $engine"
+          echo "POWER READY: $power/51"
+
+      - name: Verify authoritative cloud state 51 of 51
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsS "${API}?api=read&session=${QA_SLUG}" -H "x-operator-token: ${QA_TOKEN}" > read.json
+          jq -e '.engine_version == "GC-W3-V4.2.2-RC1"' read.json >/dev/null
+          jq -e '.operator == true' read.json >/dev/null
+          jq -e '.governance.games == 51 and .governance.power_ready == 51 and .governance.power_pending == 0' read.json >/dev/null
+          jq -e '(.state | length) == 51' read.json >/dev/null
+          jq -e '[.state[] | select(.powerReady != true)] | length == 0' read.json >/dev/null
+          version=$(jq -r '.state_version' read.json)
+          echo "QA_VERSION=$version" >> "$GITHUB_ENV"
+          echo "Cloud state verified: 51 games / 51 POWER READY / 0 pending / state version $version"
+
+      - name: Verify deployed UI points directly to 4.2.2 backend
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsS "$UI" > ui.html
+          curl -fsS "${UI}app.js" > ui-app.js
+          curl -fsS "${UI}patch-422.js" > ui-patch.js
+          grep -q 'GAMECAST 4.2.2' ui.html
+          grep -q 'app.js' ui.html
+          grep -q 'patch-422.js' ui.html
+          grep -q 'gamecast-week3-v4-2-2' ui-app.js
+          grep -q 'synthcastGameCast422Operator' ui-app.js
+          grep -q "validPeriod" ui-app.js
+          grep -q "periods=function" ui-patch.js
+          grep -q "k==='OT'" ui-patch.js
+          echo "UI wiring verified: 4.2.2 page -> isolated 4.2.2 API with valid-period rendering patch"
+
+      - name: Launch controlled Rutgers at Boston College game
+        shell: bash
+        run: |
+          set -euo pipefail
+          command_call() {
+            local command="$1"
+            local payload="$2"
+            jq -n --arg id "$GAME_ID" --arg command "$command" --argjson expected "$QA_VERSION" --argjson payload "$payload" \
+              '{id:$id,command:$command,payload:$payload,expected_version:$expected}' > body.json
+            curl -fsS -X POST "${API}?api=command&session=${QA_SLUG}" \
+              -H 'content-type: application/json' \
+              -H "x-operator-token: ${QA_TOKEN}" \
+              --data-binary @body.json > command.json
+            QA_VERSION=$(jq -r '.state_version' command.json)
+            export QA_VERSION
+          }
+          command_call launch '{}'
+          command_call auto '{}'
+          command_call speed '{"speed":50}'
+          echo "QA_VERSION=$QA_VERSION" >> "$GITHUB_ENV"
+          echo "Controlled game launched: $GAME_ID / AUTO / 50x / version $QA_VERSION"
+
+      - name: Observe all regulation quarters and final projection
+        shell: bash
+        run: |
+          set -euo pipefail
+          : > seen-quarters.txt
+          final=0
+          for i in $(seq 1 70); do
+            sleep 3
+            curl -fsS "${API}?api=read&session=${QA_SLUG}" -H "x-operator-token: ${QA_TOKEN}" > poll.json
+            jq -c --arg id "$GAME_ID" '.state[] | select(.id==$id)' poll.json > game.json
+            q=$(jq -r '.quarter' game.json)
+            lifecycle=$(jq -r '.lifecycle' game.json)
+            gl=$(jq -r '.glSeconds' game.json)
+            printf '%s\n' "$q" >> seen-quarters.txt
+            echo "poll $i: quarter=$q lifecycle=$lifecycle GL=$gl"
+            if [[ "$lifecycle" == "FINAL_PENDING" || "$lifecycle" == "LOCKED" || "$lifecycle" == "READY" || "$lifecycle" == "FINAL" ]]; then
+              final=1
+              break
+            fi
+          done
+          test "$final" = "1"
+          sort -u seen-quarters.txt > seen-unique.txt
+          for q in 1 2 3 4; do grep -qx "$q" seen-unique.txt; done
+          jq -e '.scores["1"] and .scores["2"] and .scores["3"] and .scores["4"]' game.json >/dev/null
+          jq -e '(.scores | has("0")) | not' game.json >/dev/null
+          jq -e '(.scores | keys | all(. == "1" or . == "2" or . == "3" or . == "4" or . == "OT" or test("^(?:[2-9]|[1-9][0-9]+)OT$")))' game.json >/dev/null
+          jq -e '.glSeconds >= 7200' game.json >/dev/null
+          jq -e '([.history[]?.period] | all(. == "1" or . == "2" or . == "3" or . == "4" or . == "OT" or test("^(?:[2-9]|[1-9][0-9]+)OT$")))' game.json >/dev/null
+          away=$(jq '[.scores | to_entries[] | select(.key=="1" or .key=="2" or .key=="3" or .key=="4" or .key=="OT" or (.key|test("^(?:[2-9]|[1-9][0-9]+)OT$"))) | .value[0]] | add' game.json)
+          home=$(jq '[.scores | to_entries[] | select(.key=="1" or .key=="2" or .key=="3" or .key=="4" or .key=="OT" or (.key|test("^(?:[2-9]|[1-9][0-9]+)OT$"))) | .value[1]] | add' game.json)
+          gl=$(jq -r '.glSeconds' game.json)
+          echo "Controlled simulation PASS: quarters 1/2/3/4 observed, no period 0, GL=${gl}s, score=${away}-${home}"
+
+      - name: Persist projected final as LOCKED and verify read-back
+        shell: bash
+        run: |
+          set -euo pipefail
+          version=$(jq -r '.state_version' poll.json)
+          jq -n --arg id "$GAME_ID" --argjson expected "$version" '{id:$id,command:"lock",payload:{},expected_version:$expected}' > lock-body.json
+          curl -fsS -X POST "${API}?api=command&session=${QA_SLUG}" \
+            -H 'content-type: application/json' \
+            -H "x-operator-token: ${QA_TOKEN}" \
+            --data-binary @lock-body.json > lock.json
+          curl -fsS "${API}?api=read&session=${QA_SLUG}" -H "x-operator-token: ${QA_TOKEN}" > final-read.json
+          jq -e --arg id "$GAME_ID" '.state[] | select(.id==$id) | .lifecycle == "LOCKED"' final-read.json >/dev/null
+          jq -e --arg id "$GAME_ID" '.state[] | select(.id==$id) | ((.scores | has("0")) | not)' final-read.json >/dev/null
+          jq -e --arg id "$GAME_ID" '.state[] | select(.id==$id) | .glSeconds >= 7200' final-read.json >/dev/null
+          echo "Authoritative final checkpoint persisted and read back as LOCKED"
+          echo "Public QA scoreboard: ${UI}?session=${QA_SLUG}&view=public"
+          {
+            echo "## GameCast 4.2.2 Cloud QA PASS"
+            echo "- Session: \`${QA_SLUG}\`"
+            echo "- Engine: \`GC-W3-V4.2.2-RC1\`"
+            echo "- Power: 51/51 READY"
+            echo "- Controlled game: G0066 Rutgers at Boston College"
+            echo "- Q1/Q2/Q3/Q4 all observed"
+            echo "- No invalid period 0"
+            echo "- Final persisted as LOCKED"
+            echo "- Public scoreboard: ${UI}?session=${QA_SLUG}&view=public"
+          } >> "$GITHUB_STEP_SUMMARY"
