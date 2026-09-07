@@ -96,6 +96,34 @@ const newAdvanceStart = `function advancePeriod(g: Game) {
   if (q === -1) {`;
 index = replaceOnce(index, oldAdvanceStart, newAdvanceStart, 'advance-period transition guard');
 
+const oldMaybeBreak = `function maybeBreak(g: Game, before: number, after: number) {
+  for (const [th, dur, label] of thresholds(g)) {
+    const k = \`Q\${g.quarter}-\${th}\`;
+    if (before > th && after <= th && !g.tvBreaksTaken.includes(k)) {
+      g.tvBreaksTaken.push(k); g.breakSeconds = dur; g.breakLabel = label; g.activity = "BREAK"; g.gameClockStatus = "STOPPED"; return true;
+    }
+  }
+  return false;
+}`;
+const newMaybeBreak = `function maybeBreak(g: Game, before: number, after: number) {
+  for (const [th, dur, label] of thresholds(g)) {
+    const k = \`Q\${g.quarter}-\${th}\`;
+    if (before > th && after <= th && !g.tvBreaksTaken.includes(k)) {
+      g.tvBreaksTaken.push(k); g.breakSeconds = dur; g.breakLabel = label; g.activity = "BREAK"; g.gameClockStatus = "STOPPED"; return true;
+    }
+  }
+  return false;
+}
+function nextBreakBoundary(g: Game, before: number) {
+  let next: number | null = null;
+  for (const [th] of thresholds(g)) {
+    const k = \`Q\${g.quarter}-\${th}\`;
+    if (before > th && !g.tvBreaksTaken.includes(k) && (next === null || th > next)) next = th;
+  }
+  return next;
+}`;
+index = replaceOnce(index, oldMaybeBreak, newMaybeBreak, 'scheduled break boundary helper');
+
 const oldBreakBlock = `    if (g.breakSeconds > 0) {
       const s = Math.min(rem, g.breakSeconds); g.breakSeconds -= s; g.glSeconds += s; rem -= s;
       if (g.breakSeconds === 0) advancePeriod(g); continue;
@@ -125,6 +153,39 @@ const newPlayAdvance = `      if (p.phase === "PLAY") {
         continue;
       }`;
 index = replaceOnce(index, oldPlayAdvance, newPlayAdvance, 'end-period play completion');
+
+const oldPostAdvance = `      const clockRuns = p.remaining <= p.runoffSec || p.deadSec === 0;
+      let s = Math.min(rem, p.remaining); if (clockRuns) s = Math.min(s, g.scoreboardSeconds);
+      p.remaining -= s; g.glSeconds += s; rem -= s;
+      if (clockRuns) {
+        const before = g.scoreboardSeconds; g.scoreboardSeconds -= s; g.teamTopSeconds[p.team] += s; g.gameClockStatus = "RUNNING"; maybeBreak(g, before, g.scoreboardSeconds);
+      } else g.gameClockStatus = "STOPPED";
+      if (p.remaining <= 0) g.pendingPlay = null;
+      if (g.scoreboardSeconds <= 0) finishPeriod(g);
+      continue;`;
+const newPostAdvance = `      // POST is two deterministic segments: stopped dead-ball time, then clock-running runoff.
+      // Never let a caller's wall-time chunk straddle that boundary, or the same seed can diverge by poll cadence.
+      const deadRemaining = p.deadSec > 0 && p.remaining > p.runoffSec ? p.remaining - p.runoffSec : 0;
+      if (deadRemaining > 0) {
+        const s = Math.min(rem, deadRemaining);
+        p.remaining -= s; g.glSeconds += s; rem -= s; g.gameClockStatus = "STOPPED";
+        if (p.remaining <= 0) g.pendingPlay = null;
+        continue;
+      }
+      const before = g.scoreboardSeconds, boundary = nextBreakBoundary(g, before);
+      let s = Math.min(rem, p.remaining, g.scoreboardSeconds);
+      if (boundary !== null) s = Math.min(s, before - boundary);
+      if (s <= 0) {
+        if (g.scoreboardSeconds <= 0) finishPeriod(g);
+        else if (p.remaining <= 0) g.pendingPlay = null;
+        continue;
+      }
+      p.remaining -= s; g.glSeconds += s; rem -= s; g.scoreboardSeconds -= s; g.teamTopSeconds[p.team] += s; g.gameClockStatus = "RUNNING";
+      maybeBreak(g, before, g.scoreboardSeconds);
+      if (p.remaining <= 0) g.pendingPlay = null;
+      if (g.scoreboardSeconds <= 0) finishPeriod(g);
+      continue;`;
+index = replaceOnce(index, oldPostAdvance, newPostAdvance, 'post-play deterministic segment timing');
 
 write(path.join(dstFn, 'index.ts'), index);
 
@@ -176,7 +237,7 @@ periods=function(g){
 `;
 write(path.join(dstUi, 'patch-422.js'), uiPatch);
 
-// Regression assertions tied directly to the reported defects.
+// Regression assertions tied directly to the reported defects and authoritative-cloud determinism.
 const builtIndex = read(path.join(dstFn, 'index.ts'));
 for (const forbidden of ['w3v421-', 'V421_', 'GC-W3-V4.2.1-RC1', 'gamecast-week3-v4-2-1']) {
   if (builtIndex.includes(forbidden)) throw new Error(`4.2.1 runtime token leaked into 4.2.2: ${forbidden}`);
@@ -186,6 +247,8 @@ if (builtIndex.includes('Math.min(rem, p.remaining, g.scoreboardSeconds)')) thro
 for (const required of [
   'if (g.pendingPeriod !== 0) advancePeriod(g);',
   'clockUsed = Math.min(s, g.scoreboardSeconds)',
+  'deadRemaining = p.deadSec > 0 && p.remaining > p.runoffSec',
+  'boundary = nextBreakBoundary(g, before)',
   'invalid regulation quarter',
   'invalid score period',
   'invalid quarter at period end',
@@ -195,8 +258,6 @@ for (const required of [
   'GC-W3-V4.2.2-RC1'
 ]) if (!builtIndex.includes(required)) throw new Error(`Missing 4.2.2 invariant: ${required}`);
 
-// Micro-regression of the break transition contract: TV timeout must stay in-quarter;
-// end-quarter break must transition only when pendingPeriod is set.
 let probe={quarter:1,pendingPeriod:0,breakSeconds:1,breakLabel:'Scheduled TV timeout',activity:'BREAK'};
 probe.breakSeconds=0;
 if(probe.breakSeconds===0){if(probe.pendingPeriod!==0)probe.quarter=probe.pendingPeriod;else{probe.breakLabel='';probe.activity='LIVE';}}
@@ -205,4 +266,4 @@ probe={quarter:1,pendingPeriod:2,breakSeconds:0,breakLabel:'END 1ST',activity:'B
 if(probe.breakSeconds===0){if(probe.pendingPeriod!==0)probe.quarter=probe.pendingPeriod;else{probe.breakLabel='';probe.activity='LIVE';}}
 if(probe.quarter!==2)throw new Error('End-quarter transition regression failed');
 
-console.log('GameCast 4.2.2 source generated and period/box-score regression checks passed.');
+console.log('GameCast 4.2.2 source generated and period/box-score/deterministic-timing checks passed.');
