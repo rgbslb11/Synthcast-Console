@@ -44,7 +44,7 @@ jobs:
           path: ./out
   deploy:
     environment:
-      name: github-pages
+      name: gamecast-v42-preview
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
