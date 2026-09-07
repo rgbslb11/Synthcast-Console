@@ -47,6 +47,18 @@ function assert(c,m){if(!c)throw new Error(m);}
   assert(g.scoreboardSeconds===600,'Q2 clock was not initialized to 10:00');
 }
 
+// A play snapped before 0:00 must finish instead of leaving the backend stuck at clock 0.
+{
+  const g=mkGame('cross-zero'); g.quarter=1; g.period='1st'; g.activePeriod='1'; g.scoreboardSeconds=2; g.auto=false;
+  g.pendingPlay={team:0,desc:'Incomplete pass',yards:0,points:0,turnover:false,punt:false,fg:false,first:false,inBounds:false,incomplete:true,playSec:3,runoffSec:0,deadSec:0,strategy:'NORMAL',phase:'PLAY',remaining:3,clockBefore:2,edgeAtSnap:0};
+  advanceGame(g,3);
+  assert(g.pendingPlay===null,'End-period play remained pending at 0:00');
+  assert(g.scoreboardSeconds===0,'End-period play did not finish at 0:00');
+  assert(g.pendingPeriod===2 && g.breakLabel==='END 1ST','End-period play did not advance to the Q1 break');
+  assert(g.glSeconds===3,'Full live-play duration was not charged to GL');
+  assert(g.teamTopSeconds[0]===2,'TOP should stop when the period clock reaches 0:00');
+}
+
 // Fourth-down FG from opponent 11: score is attributed to the active quarter and possession flips after the kick.
 {
   const g=mkGame('fg'); g.quarter=2; g.period='2nd'; g.activePeriod='2'; g.scoreboardSeconds=300;
