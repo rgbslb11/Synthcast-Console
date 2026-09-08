@@ -1,0 +1,29 @@
+name: GameCast 4.2.3 UI regression
+on:
+  push:
+    branches: [release/gamecast-v4.2.3]
+  pull_request:
+    paths:
+      - public/v4.2.3/**
+      - scripts/test-gamecast-v423-ui.mjs
+      - .github/workflows/qa-v423-ui.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ui-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install isolated DOM test dependency
+        run: npm install --prefix "$RUNNER_TEMP/gamecast-v423-qa" --no-audit --no-fund jsdom@26.1.0
+      - name: Check UI JavaScript
+        run: node --check public/v4.2.3/app.js
+      - name: Test edit preservation and concurrency
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gamecast-v423-qa
+        run: node --test scripts/test-gamecast-v423-ui.mjs
+# This workflow does not deploy, modify Supabase, or create cloud QA sessions.
