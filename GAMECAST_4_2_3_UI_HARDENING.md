@@ -1,6 +1,6 @@
 # GameCast 4.2.3 — operator edit preservation
 
-Status: implemented and tested; Chairman authorized 4.2.3 branch deployment on 2026-09-08. Publication is pending workflow verification; not certified final.
+Status: DEPLOYED to GitHub Pages from the separate 4.2.3 branch with Chairman authorization on 2026-09-08; not certified final.
 Date: 2026-09-08.
 Base: `42e57e5dcfaa688a2ff40573c7e1a8d726e9432f` on `release/gamecast-v4.2.3` (identical to 4.2.2 when work resumed).
 
@@ -89,17 +89,26 @@ The unmodified 4.2.2 fixed-seed regression and broader backend audit were rerun 
 | 6 | 1x vs 50x invariance | PASS | Existing equal-synthetic-time backend audit assertion. |
 | 7 | Backend persistence/versioning | PASS | Fresh live-session save/readback/cancel; conflict UI tested with simulated external writer. |
 | 8 | Chairman console integration | PASS | Actual scripts, local DOM, real staging HTTP; native browser testing remains untested. |
-| 9 | Public scoreboard integration | PASS | Public DOM fixture and live unauthenticated corrected-state readback; deployed 4.2.3 page untested. |
+| 9 | Public scoreboard integration | PASS | Public DOM fixture and live unauthenticated corrected-state readback; 4.2.3 static publication verified separately; native browser behavior remains untested. |
 | 10 | Mobile Safari | NOT TESTED | No Safari/device test performed. |
 | 11 | Existing-session compatibility | NOT TESTED | Same API/storage contract preserved; pre-existing operational sessions were not exercised. |
 | 12 | Chairman approval | PASS | Chairman explicitly authorized deployment from the separate 4.2.3 branch on 2026-09-08; no production merge or final certification authorized. |
 
 ## Next step / handoff
 
-Patch source is ready for review on `release/gamecast-v4.2.3`. The 4.2.3 route has not been published. No production merge, older-release overwrite, backend deployment, ratings/schedule modification or accepted-result change is included. Native desktop/mobile browser verification and Chairman review remain before final release certification. Do not infer a new backend or alter engine identity to match the UI label.
+Patch source is on `release/gamecast-v4.2.3`. The 4.2.3 route is published at https://rgbslb11.github.io/Synthcast-Console/v4.2.3/. No production merge, older-release overwrite, backend deployment, ratings/schedule modification or accepted-result change is included. Native desktop/mobile browser verification and Chairman review remain before final release certification. Do not infer a new backend or alter engine identity to match the UI label.
 
 ## Deployment authorization and Week 3 verification
 
 The Chairman requested deployment on the separate 4.2.3 branch. `.github/workflows/deploy-v423-preview.yml` publishes the existing GitHub Pages site with the added `/v4.2.3/` route. It verifies the 51 canonical Week 3 games plus the single explicitly labeled Week 2 carryover G0021, the `2026-W03` engine key, all prior public/backend source files against the base commit, all exported public file bytes, and the UI regression before deploying. It does not regenerate or redeploy the backend. Changes confined to this document do not trigger deployment. The existing regression-only workflow remains read-only.
 
 A fresh read of the previously created QA session confirmed `2026-W03`, 51 Week 3 games, one Week 2 carryover (SMU at Florida State), 52/52 power-ready games, and `GC-W3-V4.2.2-RC1`. The patch did not change the week or schedule.
+
+## Confirmed deployment
+
+- Published source commit: `7996a26f0fcd9e17882f5ccb62c5d4852948de83`.
+- Successful deployment run: https://github.com/rgbslb11/Synthcast-Console/actions/runs/34186740957.
+- Console: https://rgbslb11.github.io/Synthcast-Console/v4.2.3/.
+- Workflow verified Week 3 data counts/binding, protected earlier source, UI regression and byte-for-byte preservation of every exported public file before publication.
+- No production branch merge or backend deployment occurred. Existing Week 3 sessions and storage namespace remain in use.
+- This documentation update records the completed deployment and does not republish the site.
