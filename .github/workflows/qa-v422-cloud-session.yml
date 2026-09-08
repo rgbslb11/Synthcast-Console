@@ -18,7 +18,7 @@ jobs:
     env:
       API: https://percrnamjzetzjjuxuuw.supabase.co/functions/v1/gamecast-week3-v4-2-2
       UI: https://rgbslb11.github.io/Synthcast-Console/v4.2.2/
-      GAME_ID: G0066
+      GAME_ID: G0021
     steps:
       - name: Create isolated 4.2.2 QA session
         shell: bash
@@ -29,31 +29,39 @@ jobs:
           token=$(jq -r '.operator_token // empty' <<<"$create")
           engine=$(jq -r '.engine_version // empty' <<<"$create")
           power=$(jq -r '.governance.power_ready // -1' <<<"$create")
+          games=$(jq -r '.governance.games // -1' <<<"$create")
+          week3=$(jq -r '.governance.week3_games // -1' <<<"$create")
+          carryovers=$(jq -r '.governance.week2_carryovers // -1' <<<"$create")
           test -n "$slug"
           test -n "$token"
           test "$engine" = "GC-W3-V4.2.2-RC1"
-          test "$power" = "51"
+          test "$games" = "52"
+          test "$power" = "52"
+          test "$week3" = "51"
+          test "$carryovers" = "1"
           [[ "$slug" == w3v422-* ]]
           echo "::add-mask::$token"
           echo "QA_SLUG=$slug" >> "$GITHUB_ENV"
           echo "QA_TOKEN=$token" >> "$GITHUB_ENV"
           echo "GameCast 4.2.2 QA session created: $slug"
           echo "Engine: $engine"
-          echo "POWER READY: $power/51"
+          echo "Operating slate: $games games = $week3 canonical W3 + $carryovers W2 carryover"
+          echo "POWER READY: $power/$games"
 
-      - name: Verify authoritative cloud state 51 of 51
+      - name: Verify authoritative cloud state and G0021 identity
         shell: bash
         run: |
           set -euo pipefail
           curl -fsS "${API}?api=read&session=${QA_SLUG}" -H "x-operator-token: ${QA_TOKEN}" > read.json
           jq -e '.engine_version == "GC-W3-V4.2.2-RC1"' read.json >/dev/null
           jq -e '.operator == true' read.json >/dev/null
-          jq -e '.governance.games == 51 and .governance.power_ready == 51 and .governance.power_pending == 0' read.json >/dev/null
-          jq -e '(.state | length) == 51' read.json >/dev/null
+          jq -e '.governance.games == 52 and .governance.week3_games == 51 and .governance.week2_carryovers == 1 and .governance.power_ready == 52 and .governance.power_pending == 0' read.json >/dev/null
+          jq -e '(.state | length) == 52' read.json >/dev/null
           jq -e '[.state[] | select(.powerReady != true)] | length == 0' read.json >/dev/null
+          jq -e --arg id "$GAME_ID" '.state[] | select(.id==$id) | .canonicalWeek=="W2" and .carryover==true and .date=="2026-09-07" and .kickoff=="8:00 PM" and .network=="EBC" and .away.name=="SMU" and .home.name=="Florida State" and .powerReady==true and .awayPower.offense==83 and .awayPower.defense==81 and .awayPower.overall==82 and .homePower.offense==74 and .homePower.defense==76 and .homePower.overall==75' read.json >/dev/null
           version=$(jq -r '.state_version' read.json)
           echo "QA_VERSION=$version" >> "$GITHUB_ENV"
-          echo "Cloud state verified: 51 games / 51 POWER READY / 0 pending / state version $version"
+          echo "Cloud state verified: 52 games / 52 POWER READY / G0021 canonical W2 carryover / state version $version"
 
       - name: Verify deployed UI points directly to 4.2.2 backend
         shell: bash
@@ -63,16 +71,18 @@ jobs:
           curl -fsS "${UI}app.js" > ui-app.js
           curl -fsS "${UI}patch-422.js" > ui-patch.js
           grep -q 'GAMECAST 4.2.2' ui.html
+          grep -q 'G0021 SMU at Florida State' ui.html
           grep -q 'app.js' ui.html
           grep -q 'patch-422.js' ui.html
           grep -q 'gamecast-week3-v4-2-2' ui-app.js
           grep -q 'synthcastGameCast422Operator' ui-app.js
+          grep -q 'W2 CARRYOVER' ui-app.js
           grep -q "validPeriod" ui-app.js
           grep -q "periods=function" ui-patch.js
           grep -q "k==='OT'" ui-patch.js
-          echo "UI wiring verified: 4.2.2 page -> isolated 4.2.2 API with valid-period rendering patch"
+          echo "UI wiring verified: 4.2.2 page -> isolated 4.2.2 API and G0021 carryover label"
 
-      - name: Launch controlled Rutgers at Boston College game
+      - name: Launch controlled SMU at Florida State carryover
         shell: bash
         run: |
           set -euo pipefail
@@ -92,7 +102,7 @@ jobs:
           command_call auto '{}'
           command_call speed '{"speed":50}'
           echo "QA_VERSION=$QA_VERSION" >> "$GITHUB_ENV"
-          echo "Controlled game launched: $GAME_ID / AUTO / 50x / version $QA_VERSION"
+          echo "Controlled carryover launched: $GAME_ID SMU at Florida State / AUTO / 50x / version $QA_VERSION"
 
       - name: Observe all regulation quarters and final projection
         shell: bash
@@ -125,9 +135,9 @@ jobs:
           away=$(jq '[.scores | to_entries[] | select(.key=="1" or .key=="2" or .key=="3" or .key=="4" or .key=="OT" or (.key|test("^(?:[2-9]|[1-9][0-9]+)OT$"))) | .value[0]] | add' game.json)
           home=$(jq '[.scores | to_entries[] | select(.key=="1" or .key=="2" or .key=="3" or .key=="4" or .key=="OT" or (.key|test("^(?:[2-9]|[1-9][0-9]+)OT$"))) | .value[1]] | add' game.json)
           gl=$(jq -r '.glSeconds' game.json)
-          echo "Controlled simulation PASS: quarters 1/2/3/4 observed, no period 0, GL=${gl}s, score=${away}-${home}"
+          echo "G0021 simulation QA PASS: Q1/Q2/Q3/Q4 observed, no period 0, GL=${gl}s, score=SMU ${away} - Florida State ${home}"
 
-      - name: Persist projected final as LOCKED and verify read-back
+      - name: Persist QA final as LOCKED and verify read-back
         shell: bash
         run: |
           set -euo pipefail
@@ -141,16 +151,17 @@ jobs:
           jq -e --arg id "$GAME_ID" '.state[] | select(.id==$id) | .lifecycle == "LOCKED"' final-read.json >/dev/null
           jq -e --arg id "$GAME_ID" '.state[] | select(.id==$id) | ((.scores | has("0")) | not)' final-read.json >/dev/null
           jq -e --arg id "$GAME_ID" '.state[] | select(.id==$id) | .glSeconds >= 7200' final-read.json >/dev/null
-          echo "Authoritative final checkpoint persisted and read back as LOCKED"
-          echo "Public QA scoreboard: ${UI}?session=${QA_SLUG}&view=public"
+          echo "QA-only final checkpoint persisted and read back as LOCKED"
+          echo "Public QA scoreboard: ${UI}?session=${QA_SLUG}&game=${GAME_ID}&view=public"
           {
-            echo "## GameCast 4.2.2 Cloud QA PASS"
+            echo "## GameCast 4.2.2 G0021 Carryover QA PASS"
             echo "- Session: \`${QA_SLUG}\`"
             echo "- Engine: \`GC-W3-V4.2.2-RC1\`"
-            echo "- Power: 51/51 READY"
-            echo "- Controlled game: G0066 Rutgers at Boston College"
+            echo "- Operating slate: 52 games = 51 canonical W3 + 1 canonical W2 carryover"
+            echo "- Power: 52/52 READY"
+            echo "- Controlled game: G0021 SMU at Florida State · Mon 9/7 · 8:00 PM · EBC"
             echo "- Q1/Q2/Q3/Q4 all observed"
             echo "- No invalid period 0"
-            echo "- Final persisted as LOCKED"
-            echo "- Public scoreboard: ${UI}?session=${QA_SLUG}&view=public"
+            echo "- QA final persisted as LOCKED; NOT ACCEPTED / NOT OFFICIAL / NOT SEUD"
+            echo "- Public scoreboard: ${UI}?session=${QA_SLUG}&game=${GAME_ID}&view=public"
           } >> "$GITHUB_STEP_SUMMARY"
