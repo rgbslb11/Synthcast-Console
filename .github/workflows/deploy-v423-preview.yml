@@ -1,0 +1,98 @@
+name: Deploy GameCast 4.2.3 Preview
+
+on:
+  push:
+    branches: [release/gamecast-v4.2.3]
+    paths:
+      - public/v4.2.3/**
+      - .github/workflows/deploy-v423-preview.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: gamecast-v423-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the exact 4.2.3 release commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify release branch and preserve previous releases
+        run: |
+          test "$GITHUB_REF" = refs/heads/release/gamecast-v4.2.3
+          git diff --exit-code 42e57e5dcfaa688a2ff40573c7e1a8d726e9432f -- supabase public ':!public/v4.2.3'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Verify Week 3 data contract and UI backend binding
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          import {WEEK3,OPERATING_SLATE} from './supabase/functions/gamecast-week3-v4-2-2/week3.ts';
+          assert.equal(WEEK3.length,51);
+          assert.equal(OPERATING_SLATE.length,52);
+          assert.equal(new Set(OPERATING_SLATE.map(g=>g.id)).size,52);
+          assert.equal(OPERATING_SLATE.filter(g=>g.canonicalWeek==='W3').length,51);
+          const carry=OPERATING_SLATE.filter(g=>g.canonicalWeek==='W2');
+          assert.equal(carry.length,1);
+          assert.deepEqual([carry[0].id,carry[0].away,carry[0].home,carry[0].carryover],['G0021','SMU','Florida State',true]);
+          const app=fs.readFileSync('public/v4.2.3/app.js','utf8');
+          assert.ok(app.includes('functions/v1/gamecast-week3-v4-2-2'));
+          assert.ok(app.includes('synthcastGameCast422Operator'));
+          const engine=fs.readFileSync('supabase/functions/gamecast-week3-v4-2-2/index.ts','utf8');
+          assert.ok(engine.includes('const WEEK_KEY = "2026-W03"'));
+          console.log('PASS: 51 canonical Week 3 games + one labeled Week 2 carryover; existing Week 3 engine/session binding preserved.');
+          JS
+      - name: Install dependencies
+        run: npm ci
+      - name: Install isolated DOM test dependency
+        run: npm install --prefix "$RUNNER_TEMP/gamecast-v423-qa" --no-audit --no-fund jsdom@26.1.0
+      - name: Verify edit preservation before publication
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gamecast-v423-qa
+        run: |
+          node --check public/v4.2.3/app.js
+          node --test scripts/test-gamecast-v423-ui.mjs
+      - name: Build existing static site with new 4.2.3 route
+        run: npm run build:pages
+      - name: Verify built route and preserved public files
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          import path from 'node:path';
+          function verify(dir){
+            for(const e of fs.readdirSync(dir,{withFileTypes:true})){
+              const p=path.join(dir,e.name);
+              if(e.isDirectory())verify(p);
+              else assert.ok(fs.readFileSync(p).equals(fs.readFileSync(path.join('out',path.relative('public',p)))),p+' differs in exported site');
+            }
+          }
+          verify('public');
+          assert.match(fs.readFileSync('out/v4.2.3/index.html','utf8'),/GAMECAST 4\.2\.3/);
+          assert.match(fs.readFileSync('out/v4.2.3/index.html','utf8'),/WEEK 3/);
+          JS
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: gamecast-v423-preview
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish 4.2.3 from its release branch
+        id: deployment
+        uses: actions/deploy-pages@v4
