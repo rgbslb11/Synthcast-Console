@@ -1,10 +1,10 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
-import { WEEK3 } from "./week3.ts";
+import { OPERATING_SLATE } from "./week3.ts";
 import { TEAM_POWER, type TeamPowerInput } from "./power.ts";
 
 const ENGINE_VERSION = "GC-W3-V4.2.2-RC1";
-const DATA_VERSION = "W3-51+POWER_60_99_V422+PERIOD_STATE_FIX+PLAYVOL_CAL_2500";
+const DATA_VERSION = "W3-51+W2-G0021+POWER_60_99_V422+PERIOD_STATE_FIX+PLAYVOL_CAL_2500";
 const WEEK_KEY = "2026-W03";
 const CONSOLE_URL = "https://rgbslb11.github.io/Synthcast-Console/v4.2.2/";
 const SPEEDS = [1, 4, 10, 50];
@@ -450,11 +450,11 @@ Deno.serve(async (req: Request) => {
   try {
     const client = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!, { auth: { persistSession: false } }), slug = u.searchParams.get("session") ?? "";
     if (action === "create" && req.method === "POST") {
-      if (WEEK3.length !== 51) throw new Error("Week 3 schedule count mismatch");
-      const operator = randHex(32), publicSlug = `w3v422-${randHex(8)}`, state = WEEK3.map(initialGame);
+      if (OPERATING_SLATE.length !== 52) throw new Error("4.2.2 operating slate count mismatch");
+      const operator = randHex(32), publicSlug = `w3v422-${randHex(8)}`, state = OPERATING_SLATE.map(initialGame);
       const { data, error } = await client.rpc("gamecast_v12_create_session", { p_public_slug: publicSlug, p_operator_token_hash: await sha256(operator), p_week_key: WEEK_KEY, p_engine_version: ENGINE_VERSION, p_data_version: DATA_VERSION, p_state: state });
       if (error) throw error; const row = Array.isArray(data) ? data[0] : data;
-      return json({ ...row, engine_version: ENGINE_VERSION, operator_token: operator, master_zulu: now(), governance: { games: 51, power_ready: state.filter(g => g.powerReady).length } }, 201);
+      return json({ ...row, engine_version: ENGINE_VERSION, operator_token: operator, master_zulu: now(), governance: { games: state.length, week3_games: state.filter(g => g.canonicalWeek === "W3").length, week2_carryovers: state.filter(g => g.canonicalWeek === "W2").length, power_ready: state.filter(g => g.powerReady).length } }, 201);
     }
     if (!slug) return json({ error: "session required" }, 400);
     const { data: rows, error: re } = await client.rpc("gamecast_v12_read_session", { p_slug: slug }); if (re) throw re;
@@ -464,7 +464,7 @@ Deno.serve(async (req: Request) => {
     const sup = req.headers.get("x-operator-token") ?? "", operator = !!sup && await sha256(sup) === cur.operator_token_hash;
     if (action === "read" && req.method === "GET") {
       const ready = state.filter(g => g.powerReady).length;
-      return json({ public_slug: slug, week_key: WEEK_KEY, engine_version: ENGINE_VERSION, data_version: DATA_VERSION, state: operator ? state : state.map(publicGame), state_version: cur.state_version, master_zulu: dt.toISOString(), operator, governance: { games: 51, power_ready: ready, power_pending: 51 - ready } });
+      return json({ public_slug: slug, week_key: WEEK_KEY, engine_version: ENGINE_VERSION, data_version: DATA_VERSION, state: operator ? state : state.map(publicGame), state_version: cur.state_version, master_zulu: dt.toISOString(), operator, governance: { games: state.length, week3_games: state.filter(g => g.canonicalWeek === "W3").length, week2_carryovers: state.filter(g => g.canonicalWeek === "W2").length, power_ready: ready, power_pending: state.length - ready } });
     }
     if (!operator) return json({ error: "operator token invalid" }, 403);
     const body = await req.json();

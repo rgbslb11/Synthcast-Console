@@ -24,6 +24,7 @@ Duke|71|84|77|MEASURED|
 East Carolina|69|65|67|MEASURED|
 Florida Atlantic|79|70|75|MEASURED|
 Florida International|68|80|74|MEASURED|
+Florida State|74|76|75|OPEN4|
 Fresno State|67|72|70|MEASURED|
 Georgia|92|96|94|MEASURED|
 Georgia Southern|60|60|60|MEASURED|
@@ -76,6 +77,7 @@ San Diego State|84|86|85|MEASURED|
 San Jose State|86|70|78|MEASURED|
 South Carolina|71|71|71|MEASURED|
 South Florida|75|87|81|MEASURED|
+SMU|83|81|82|OPEN4|
 Southern Miss|75|67|72|MEASURED|
 Southern Utah|62|62|62|CHAIRMAN 0.10x OPPONENT|Colorado State
 Syracuse|82|80|81|PRIOR-ONLY|

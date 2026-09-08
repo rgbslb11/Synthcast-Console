@@ -57,3 +57,25 @@ G0096|2026-09-12|Sat 9/12|11:00 PM|CBSSN|Cal Poly at San Jose State
 export const WEEK3:Week3Game[]=RAW.split("\n").map((line,k)=>{const [id,date,dateLabel,kickoff,network,matchup]=line.split("|");const [away,home]=matchup.split(" at ");return{id,date,dateLabel,kickoff,network,matchup,away,home,flexTime:kickoff.endsWith("*"),kickoffOrder:k+1};});
 if(WEEK3.length!==51)throw new Error(`Week 3 schedule count mismatch: ${WEEK3.length}`);
 if(new Set(WEEK3.map(g=>g.id)).size!==51)throw new Error("Week 3 duplicate game ID");
+
+export type OperatingSlateGame=Week3Game&{canonicalWeek:"W2"|"W3";carryover:boolean};
+export const WEEK2_CARRYOVER_G0021:OperatingSlateGame={
+  id:"G0021",
+  date:"2026-09-07",
+  dateLabel:"Mon 9/7",
+  kickoff:"8:00 PM",
+  network:"EBC",
+  matchup:"SMU at Florida State",
+  away:"SMU",
+  home:"Florida State",
+  flexTime:false,
+  kickoffOrder:0,
+  canonicalWeek:"W2",
+  carryover:true
+};
+export const OPERATING_SLATE:OperatingSlateGame[]=[
+  WEEK2_CARRYOVER_G0021,
+  ...WEEK3.map(g=>({...g,canonicalWeek:"W3" as const,carryover:false}))
+];
+if(OPERATING_SLATE.length!==52)throw new Error(`4.2.2 operating slate count mismatch: ${OPERATING_SLATE.length}`);
+if(new Set(OPERATING_SLATE.map(g=>g.id)).size!==52)throw new Error("4.2.2 operating slate duplicate game ID");
