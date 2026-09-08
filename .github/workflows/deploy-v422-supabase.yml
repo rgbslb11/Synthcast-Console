@@ -32,7 +32,7 @@ jobs:
           ref: release/gamecast-v4.2.2
           fetch-depth: 1
 
-      - name: Verify deploy source
+      - name: Verify deploy source and G0021 carryover
         run: |
           test -n "$SUPABASE_ACCESS_TOKEN" || { echo 'SUPABASE_ACCESS_TOKEN repository/environment secret is not configured'; exit 2; }
           test -f supabase/functions/$FUNCTION_NAME/index.ts
@@ -40,8 +40,17 @@ jobs:
           test -f supabase/functions/$FUNCTION_NAME/week3.ts
           grep -q 'GC-W3-V4.2.2-RC1' supabase/functions/$FUNCTION_NAME/index.ts
           grep -q 'w3v422-' supabase/functions/$FUNCTION_NAME/index.ts
-          cmp supabase/functions/gamecast-week3-v4-2-1/power.ts supabase/functions/$FUNCTION_NAME/power.ts
-          cmp supabase/functions/gamecast-week3-v4-2-1/week3.ts supabase/functions/$FUNCTION_NAME/week3.ts
+          grep -q 'OPERATING_SLATE.map(initialGame)' supabase/functions/$FUNCTION_NAME/index.ts
+          grep -q 'OPERATING_SLATE.length!==52' supabase/functions/$FUNCTION_NAME/week3.ts
+          grep -q 'id:"G0021"' supabase/functions/$FUNCTION_NAME/week3.ts
+          grep -q 'date:"2026-09-07"' supabase/functions/$FUNCTION_NAME/week3.ts
+          grep -q 'kickoff:"8:00 PM"' supabase/functions/$FUNCTION_NAME/week3.ts
+          grep -q 'network:"EBC"' supabase/functions/$FUNCTION_NAME/week3.ts
+          grep -q 'canonicalWeek:"W2"' supabase/functions/$FUNCTION_NAME/week3.ts
+          grep -q 'SMU|83|81|82|OPEN4|' supabase/functions/$FUNCTION_NAME/power.ts
+          grep -q 'Florida State|74|76|75|OPEN4|' supabase/functions/$FUNCTION_NAME/power.ts
+          grep -q 'if (g.pendingPeriod !== 0) advancePeriod(g);' supabase/functions/$FUNCTION_NAME/index.ts
+          grep -q 'deadRemaining = p.deadSec > 0 && p.remaining > p.runoffSec' supabase/functions/$FUNCTION_NAME/index.ts
 
       - name: Publish isolated 4.2.2 Edge Function
         run: |
