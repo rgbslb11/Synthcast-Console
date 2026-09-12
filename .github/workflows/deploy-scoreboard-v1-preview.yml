@@ -1,0 +1,118 @@
+name: Deploy Scoreboard UI 1.0 Preview
+
+on:
+  push:
+    branches: [release/scoreboard-ui-v1.0]
+    paths:
+      - public/scoreboard/v1.0/**
+      - scripts/test-scoreboard-ui-v1.mjs
+      - SCOREBOARD_UI_1_0.md
+      - .github/workflows/deploy-scoreboard-v1-preview.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: scoreboard-ui-v1-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact Scoreboard UI 1.0 commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Verify branch isolation and preserve GameCast 4.2.3
+        run: |
+          test "$GITHUB_REF" = refs/heads/release/scoreboard-ui-v1.0
+          BASE=1b47af43d1d28ae2e3b937c0f845e6b501671c10
+          git diff --exit-code "$BASE" -- supabase
+          git diff --exit-code "$BASE" -- public ':!public/scoreboard/v1.0'
+          git diff --exit-code "$BASE" -- public/v4.2.3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Verify read-only mobile scoreboard
+        run: |
+          node --check public/scoreboard/v1.0/scoreboard.js
+          node scripts/test-scoreboard-ui-v1.mjs
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const js=fs.readFileSync('public/scoreboard/v1.0/scoreboard.js','utf8');
+          const html=fs.readFileSync('public/scoreboard/v1.0/index.html','utf8');
+          assert.ok(js.includes('functions/v1/gamecast-week3-v4-2-2'));
+          assert.ok(js.includes('api=read'));
+          assert.ok(!/x-operator-token/i.test(js));
+          assert.ok(!/operator_token/i.test(js));
+          assert.ok(!/method\s*:\s*['\"]POST['\"]/i.test(js));
+          assert.ok(!/api=(command|create|power)/i.test(js));
+          assert.match(html,/SCOREBOARD/);
+          console.log('PASS: Scoreboard UI is public-read-only and bound to the existing Week 3 backend.');
+          JS
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build:pages
+
+      - name: Verify exported route and preserve prior public files
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          assert.ok(fs.existsSync('out/scoreboard/v1.0/index.html'));
+          assert.ok(fs.existsSync('out/scoreboard/v1.0/scoreboard.js'));
+          assert.ok(fs.existsSync('out/scoreboard/v1.0/scoreboard.css'));
+          for(const rel of ['index.html','scoreboard.js','scoreboard.css']){
+            assert.ok(fs.readFileSync(`public/scoreboard/v1.0/${rel}`).equals(fs.readFileSync(`out/scoreboard/v1.0/${rel}`)),`scoreboard export differs: ${rel}`);
+          }
+          console.log('PASS: Scoreboard UI 1.0 route exported byte-for-byte.');
+          JS
+          git worktree add --detach /tmp/gamecast-base 1b47af43d1d28ae2e3b937c0f845e6b501671c10
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const base='/tmp/gamecast-base/public';
+          function verify(dir){
+            for(const e of fs.readdirSync(dir,{withFileTypes:true})){
+              const p=path.join(dir,e.name);
+              if(e.isDirectory()) verify(p);
+              else {
+                const rel=path.relative(base,p);
+                const built=path.join('out',rel);
+                assert.ok(fs.existsSync(built),`missing prior public file: ${rel}`);
+                assert.ok(fs.readFileSync(p).equals(fs.readFileSync(built)),`prior public file changed: ${rel}`);
+              }
+            }
+          }
+          verify(base);
+          console.log('PASS: every public file from GameCast 4.2.3 base is byte-for-byte preserved.');
+          JS
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: scoreboard-ui-v1-preview
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish isolated Scoreboard UI 1.0 preview
+        id: deployment
+        uses: actions/deploy-pages@v4
