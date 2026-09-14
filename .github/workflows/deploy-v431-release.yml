@@ -1,0 +1,159 @@
+name: Publish GameCast 4.3.1 Week 4 Corrective RC
+
+on:
+  push:
+    branches: [release/gamecast-v4.3.1]
+    paths:
+      - scripts/build-gamecast-v431.mjs
+      - GAMECAST_4_3_1_CORRECTIVE_RELEASE.md
+      - .github/workflows/deploy-v431-release.yml
+      - release-assets/gamecast-v4.3/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: gamecast-v431-release
+  cancel-in-progress: false
+
+jobs:
+  build-test-publish-backend:
+    runs-on: ubuntu-latest
+    environment:
+      name: gamecast-v422-supabase-staging
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      PROJECT_REF: percrnamjzetzjjuxuuw
+      FUNCTION_NAME: gamecast-week4-v4-3-1
+    steps:
+      - name: Checkout exact 4.3.1 branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Verify branch and prior-release protection
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/release/gamecast-v4.3.1
+          git diff --exit-code release/gamecast-v4.3 -- public supabase
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build isolated 4.3.1 source
+        run: node scripts/build-gamecast-v431.mjs
+
+      - name: Verify schedule, power, isolation, and purge control
+        run: |
+          node --experimental-strip-types --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {WEEK4} from './supabase/functions/gamecast-week4-v4-3-1/week4.ts';
+          import {TEAM_POWER} from './supabase/functions/gamecast-week4-v4-3-1/power.ts';
+          const ready=p=>p&&Number.isFinite(p.offense)&&Number.isFinite(p.defense)&&Number.isFinite(p.overall);
+          assert.equal(WEEK4.length,55);
+          assert.equal(new Set(WEEK4.flatMap(g=>[g.away,g.home])).size,110);
+          assert.ok(WEEK4.every(g=>ready(TEAM_POWER[g.away])&&ready(TEAM_POWER[g.home])));
+          const g142=WEEK4.find(g=>g.id==='G0142');
+          assert.deepEqual([g142.away,g142.home,g142.kickoff,g142.network],['Colorado','Northwestern','TBD','TV TBD']);
+          console.log('PASS: Schedule v5 and 55/55 Week 4 power coverage preserved.');
+          JS
+          grep -q 'GC-W4-V4.3.1-RC1' supabase/functions/$FUNCTION_NAME/index.ts
+          grep -q 'w4v431-' supabase/functions/$FUNCTION_NAME/index.ts
+          grep -q 'gamecast-week4-v4-3-1' public/v4.3.1/app.js
+          grep -q "synthcastGameCast431Operator" public/v4.3.1/app.js
+          grep -q 'PURGE UI + NEW SESSION' public/v4.3.1/index.html
+          grep -q 'purgeUiNewSession' public/v4.3.1/app.js
+          node --check public/v4.3.1/app.js
+          node --check public/v4.3.1/patch-431.js
+
+      - name: Run inherited fixed-seed engine regression
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          let s=fs.readFileSync('scripts/test-gamecast-v422-engine.mjs','utf8');
+          s=s.replace("const file='supabase/functions/gamecast-week3-v4-2-2/index.ts';","const file='supabase/functions/gamecast-week4-v4-3-1/index.ts';");
+          s=s.replace('GameCast 4.2.2 engine regression PASS','GameCast 4.3.1 inherited engine regression PASS');
+          fs.writeFileSync('scripts/.generated-test-gamecast-v431-engine.mjs',s);
+          JS
+          node scripts/.generated-test-gamecast-v431-engine.mjs | tee v431-engine-regression.log
+          grep -q '"glSeconds":7541' v431-engine-regression.log
+          grep -q '"plays":\[60,66\]' v431-engine-regression.log
+          grep -q 'GameCast 4.3.1 inherited engine regression PASS' v431-engine-regression.log
+          rm scripts/.generated-test-gamecast-v431-engine.mjs
+
+      - name: Install isolated DOM test dependency
+        run: npm install --prefix "$RUNNER_TEMP/gamecast-v423-qa" --no-audit --no-fund jsdom@26.1.0
+
+      - name: Re-run 4.2.3 UI interaction regression
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gamecast-v423-qa
+        run: node --test scripts/test-gamecast-v423-ui.mjs
+
+      - name: Publish isolated 4.3.1 Edge Function
+        run: |
+          test -n "$SUPABASE_ACCESS_TOKEN"
+          npx --yes supabase@latest functions deploy "$FUNCTION_NAME" --project-ref "$PROJECT_REF" --no-verify-jwt
+
+      - name: Fresh-session smoke — 55/55 POWER READY
+        run: |
+          set -euo pipefail
+          base="https://${PROJECT_REF}.supabase.co/functions/v1/${FUNCTION_NAME}"
+          code=$(curl -sS -o create.json -w '%{http_code}' -X POST "$base?api=create" -H 'content-type: application/json' -d '{}')
+          test "$code" = "201"
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const x=JSON.parse(fs.readFileSync('create.json','utf8'));
+          assert.match(x.public_slug,/^w4v431-[0-9a-f]{16}$/);
+          assert.equal(x.engine_version,'GC-W4-V4.3.1-RC1');
+          assert.equal(x.governance.games,55);
+          assert.equal(x.governance.power_ready,55);
+          console.log('PASS: fresh 4.3.1 session is 55/55 POWER READY.');
+          JS
+          slug=$(node -e "const x=require('./create.json');process.stdout.write(x.public_slug)")
+          curl -sS "$base?api=read&session=$slug" > read.json
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const x=JSON.parse(fs.readFileSync('read.json','utf8'));
+          assert.equal(x.state.length,55);
+          assert.equal(x.governance.power_ready,55);
+          assert.equal(x.governance.power_pending,0);
+          assert.ok(x.state.every(g=>g.lifecycle==='UNLAUNCHED'&&g.powerReady===true));
+          console.log('PASS: 4.3.1 readback = 55 unlaunched, 55 POWER READY, 0 pending.');
+          JS
+
+      - name: Build Pages site
+        run: npm run build:pages
+
+      - name: Verify 4.3.1 Pages route
+        run: |
+          test -f out/v4.3.1/index.html
+          grep -q 'GAMECAST 4.3.1' out/v4.3.1/index.html
+          grep -q 'PURGE UI + NEW SESSION' out/v4.3.1/index.html
+          cmp --silent public/v4.3.1/app.js out/v4.3.1/app.js
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+
+  deploy-pages:
+    needs: build-test-publish-backend
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: gamecast-v431-preview
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish 4.3.1
+        id: deployment
+        uses: actions/deploy-pages@v4
