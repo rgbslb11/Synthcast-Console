@@ -39,7 +39,7 @@ jobs:
         run: |
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/release/gamecast-v4.3.1
-          git diff --exit-code release/gamecast-v4.3 -- public supabase
+          git diff --exit-code origin/release/gamecast-v4.3 -- public supabase
 
       - uses: actions/setup-node@v4
         with:
