@@ -1,74 +1,47 @@
-# GameCast 4.3.1 — Post-Week-3 power and UI reset preview
+# GameCast 4.3.1 - Week 4 GameCast-ready v1.1 power deployment
 
-Status: CORRECTIVE RELEASE CANDIDATE / STAGING.
+Status: PREVIEW / CORRECTIVE RELEASE CANDIDATE. No production merge or SEUD publication authorized.
 
-## Chairman-authorized scope
+## Chairman authorization and scope
 
-1. Correct the operator experience where a browser can automatically resume a Week 4 session created before the 4.3 Week 4 power package was loaded, leaving persisted `powerReady=false` state visible as POWER PENDING even though the currently deployed 4.3 power package is complete.
-2. Add a Chairman control to purge the browser's current UI session binding and start from a brand-new Week 4 cloud session.
-3. Preserve all prior cloud sessions for audit; the UI purge control does not delete authoritative cloud history.
-4. Preserve the 55-game Schedule v5 slate, 4.2.2 football/play/timing mechanics, and 4.2.3 edit/focus hardening.
-5. Do not alter accepted results, publish SEUD, retune football, or overwrite GameCast 4.3.
-6. Load the complete 121-team post-Week-3 TEAM/OFF/DEF package for Week 4 into the isolated 4.3.1 preview.
+The Chairman authorized deployment of Week 4 GameCast-ready TEAM, OFF and DEF values for all 121 canonical teams into v4.3.1, with all four existing synthetic Schedule-v5 FCS-path opponents fixed at 60/60/60. This supersedes the previous POWERCRUNCH candidate and opponent-derived 0.10x rule for this preview only. It does not authorize retuning football, changing schedule/carriage, altering accepted results, or migrating existing sessions.
 
-## Root cause
+## Exact ratings source
 
-GameCast persists TEAM/OFF/DEF snapshots and `powerReady` inside each cloud session at creation. The UI also automatically resumes the last saved session from browser `localStorage`. Therefore a session created before a power-package update retains its old rating snapshots indefinitely. Fresh 4.3.1 sessions are required to receive the post-Week-3 package.
+Source workbook: `SYNTHCAST_GAMECAST_W4_TEAM_OFF_DEF_POWER_121_v1.1.xlsx`, worksheet `GameCast Power`, uploaded 2026-09-15T01:17:18Z, source reference `file_00000000b68c822f86a4be90030b22a5`.
 
-## Post-Week-3 power package
+Load the integer TEAM/OFF/DEF columns exactly; do not recompute the blend. TEAM maps to runtime `overall`, OFF to `offense`, DEF to `defense`.
 
-The preview source is `POWERCRUNCH_W4_TEAM_STRENGTH_60_99_CANDIDATE`, promoted for the isolated 4.3.1 preview by the Chairman's request to update all 121 teams for the Week 4 schedule and matchups. This promotion does not authorize a production merge, accepted-result change, or SEUD publication.
+- 121 canonical teams x 3 ratings = 363 fields.
+- 4 schedule-only FCS opponents x 3 ratings = 12 fields.
+- 125 runtime team rows and 375 rating fields total.
+- 55 Week 4 games, 110 participants and 330 scheduled rating fields.
+- Canonical split: 42 offense-leaning, 41 defense-leaning, 38 balanced.
+- Each canonical TEAM equals (OFF + DEF) / 2; all fields are integers in 60-99.
+- Charlotte, Duquesne, Idaho and Western Kentucky: TEAM=OFF=DEF=60.
+- Synthetic canonical membership is preserved, including ECL teams and North Dakota State. Real-world subdivision labels are not substituted.
+- Tempo remains 1.0 and specialTeams remains null.
 
-- Canonical population: exactly 121 unique teams.
-- Fields loaded: offense, defense, and overall for every canonical team (363 governed fields).
-- Overall basis: current Week 3 Elo.
-- Offense basis: `PSCORE_PostW3_Offense`.
-- Defense basis: inverted `PSCORE_PostW3_Defense` so higher is better.
-- Display mapping: each dimension independently maps the current 121-team surface to integer 60–99.
-- Source JSON SHA-256: `0eb9913a3a5806c90dc7dafd662892d5ef8590d318fe5f5a07bc1601173277eb`.
-- Source CSV SHA-256: `5d7924b1977087b5ddf200461f7f747a3fba9e87efb9e98092f6edfea5e299bb`.
-- Runtime source identity: `SYNTHCAST-v4.3.1-W4-POST-W3-2026-09-14-POWERCRUNCH-121-60_99+FCS_0.10X`.
+Approved deployment file: `release-assets/gamecast-v4.3.1/power.ts`.
+Git blob identity: `6eb58cdc1bce4f5a63b8c62e23f72a397c2f8f55`.
+Power source: `SYNTHCAST-v4.3.1-W4-POST-W3-2026-09-14-GAMECAST-TEAM-OFF-DEF-v1.1-121+FCS_60`.
 
-The 121-team canonical population excludes four Schedule-v5 FCS-path opponents. Those four remain schedule-only sidecars under the previously authorized rule:
+## Preserved engine and schedule
 
-`FCS rating = 60 + 0.10 × (FBS opponent rating − 60)`
+Engine: `GC-W4-V4.3.1-RC1`; function: `gamecast-week4-v4-3-1`; project: `percrnamjzetzjjuxuuw`; branch: `release/gamecast-v4.3.1`; route: `/v4.3.1/`; namespace: `w4v431-`.
 
-The rule is applied independently to OFF, DEF, and TEAM and rounded to the deployment integer after the 121-team update. The runtime table therefore contains 125 rows: 121 canonical ratings plus four governed FCS sidecars. All 110 Week 4 participants remain covered and all 55 games remain POWER READY.
+Data identity: `W4-55+SCHEDULE_V5+TV54_EXACT_1_BLOCKED+POWER_W4_POST_W3_121_60_99+GAMECAST_V1_1_FCS60+V431_UI_RESET`.
 
-## Corrective design
+The prior generator is preserved byte-for-byte in `scripts/build-gamecast-v431-base.mjs`. The wrapper overlays only the approved power table and its data/UI provenance. Existing football probabilities, timing constants, RNG, HFA, lifecycle, edit/pause/delay behavior and controls remain unchanged.
 
-GameCast 4.3.1 uses a new isolated identity and namespace:
+The Week 4 schedule file must retain Git blob `9a4095335fd1b440017641c9cc514b2a01510739`. G0165 remains NC State at Vanderbilt. G0142 remains Colorado at Northwestern with kickoff/network TBD; the upstream carriage issue is not changed.
 
-- Branch: `release/gamecast-v4.3.1`
-- UI route: `/v4.3.1/`
-- Edge Function: `gamecast-week4-v4-3-1`
-- Engine identity: `GC-W4-V4.3.1-RC1`
-- Session namespace: `w4v431-`
-- Browser storage namespace: `synthcastGameCast431Operator`
+## Deployment and session safety
 
-This guarantees that opening 4.3.1 cannot silently resume an older 4.3 session.
+The earlier CI deployment attempt returned Supabase 401 Unauthorized. The authorized connected Supabase tool can deploy without exposing or changing the GitHub secret. CI now verifies whether the exact requested data is already present before attempting a redundant CLI deployment. A mismatch requires deployment; a failed CLI deployment still fails the job. All releases require a mandatory fresh-session authenticated readback of every scheduled power snapshot and a matching sanitized public readback before Pages publication.
 
-The new **PURGE UI + NEW SESSION** control:
+Only fresh QA sessions are created for verification. No QA game is launched, accepted or published by these deployment checks. Existing sessions retain their original snapshots and are not edited or deleted. The Chairman should use PURGE UI + NEW SESSION to bind the console to a fresh Week 4 board; the previous cloud session remains intact.
 
-- requires Chairman confirmation;
-- creates a new cloud session with new seeds for all 55 games;
-- switches the browser to the new operator session;
-- replaces the browser's saved 4.3.1 session binding;
-- leaves the prior cloud session intact for audit and reproducibility.
+## Evidence and release gates
 
-It is intentionally not a destructive cloud-session delete.
-
-## Release gates
-
-4.3.1 must not be released for use until CI demonstrates:
-
-- 55/55 Week 4 games and Schedule-v5 identity;
-- exactly 121 canonical post-Week-3 rows with 363 integer rating fields in the 60–99 range;
-- exactly four opponent-derived FCS sidecars and 125 total runtime rows;
-- 110/110 Week 4 participant coverage and 55/55 POWER READY on a fresh session;
-- distinct `w4v431-` session namespace and `synthcastGameCast431Operator` browser namespace;
-- PURGE UI + NEW SESSION control present and wired;
-- inherited fixed-seed engine regression passes unchanged;
-- 4.2.3 interaction regression remains green;
-- Edge Function deploy and fresh-session smoke pass;
-- Pages route `/v4.3.1/` builds and deploys.
+`verify-gamecast-v431-power.mjs` produces row-level all-team and 110-participant CSVs plus a cloud verification JSON artifact. CI also reruns the inherited fixed-seed regression and the ten existing UI interaction tests. A passing pipeline is deployment evidence, not blanket certification. Multi-seed distribution, full-board simulated outcomes, current-release poll/chunk and 1x/50x invariance, and physical Mobile Safari remain NOT TESTED unless separately recorded. Chairman authorization covers this scoped deployment, not official game results or production promotion.
