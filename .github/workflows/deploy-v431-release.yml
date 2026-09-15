@@ -57,16 +57,38 @@ jobs:
           node --experimental-strip-types --input-type=module <<'JS'
           import assert from 'node:assert/strict';
           import {WEEK4} from './supabase/functions/gamecast-week4-v4-3-1/week4.ts';
-          import {TEAM_POWER} from './supabase/functions/gamecast-week4-v4-3-1/power.ts';
+          import {CANONICAL_TEAM_COUNT,POWER_SOURCE_VERSION,SCHEDULE_FCS_TEAM_COUNT,TEAM_POWER} from './supabase/functions/gamecast-week4-v4-3-1/power.ts';
           const ready=p=>p&&Number.isFinite(p.offense)&&Number.isFinite(p.defense)&&Number.isFinite(p.overall);
           assert.equal(WEEK4.length,55);
           assert.equal(new Set(WEEK4.flatMap(g=>[g.away,g.home])).size,110);
+          const fcs={
+            Charlotte:'San Diego State',
+            Duquesne:'Washington State',
+            Idaho:'Boise State',
+            'Western Kentucky':'Oregon State',
+          };
+          const canonical=Object.entries(TEAM_POWER).filter(([team])=>!(team in fcs));
+          assert.equal(CANONICAL_TEAM_COUNT,121);
+          assert.equal(SCHEDULE_FCS_TEAM_COUNT,4);
+          assert.equal(canonical.length,121);
+          assert.equal(Object.keys(TEAM_POWER).length,125);
+          assert.ok(canonical.every(([,p])=>ready(p)&&[p.offense,p.defense,p.overall].every(v=>Number.isInteger(v)&&v>=60&&v<=99)));
+          assert.ok(canonical.every(([,p])=>p.flag==='POST-W3 POWERCRUNCH'&&p.sourceVersion===POWER_SOURCE_VERSION));
+          assert.match(POWER_SOURCE_VERSION,/POST-W3-2026-09-14-POWERCRUNCH-121-60_99/);
+          for(const [team,basis] of Object.entries(fcs)){
+            const p=TEAM_POWER[team],b=TEAM_POWER[basis];
+            const expected=['offense','defense','overall'].map(k=>Math.round(60+0.10*(b[k]-60)));
+            assert.equal(p.flag,'CHAIRMAN 0.10x OPPONENT');
+            assert.equal(p.opponentBasis,basis);
+            assert.deepEqual([p.offense,p.defense,p.overall],expected);
+          }
           assert.ok(WEEK4.every(g=>ready(TEAM_POWER[g.away])&&ready(TEAM_POWER[g.home])));
           const g142=WEEK4.find(g=>g.id==='G0142');
           assert.deepEqual([g142.away,g142.home,g142.kickoff,g142.network],['Colorado','Northwestern','TBD','TV TBD']);
-          console.log('PASS: Schedule v5 and 55/55 Week 4 power coverage preserved.');
+          console.log('PASS: 121/121 canonical post-Week-3 ratings, 4 governed FCS sidecars, and 55/55 Week 4 power coverage.');
           JS
           grep -q 'GC-W4-V4.3.1-RC1' supabase/functions/$FUNCTION_NAME/index.ts
+          grep -q 'POWER_W4_POST_W3_121_60_99' supabase/functions/$FUNCTION_NAME/index.ts
           grep -q 'w4v431-' supabase/functions/$FUNCTION_NAME/index.ts
           grep -q 'gamecast-week4-v4-3-1' public/v4.3.1/app.js
           grep -q "synthcastGameCast431Operator" public/v4.3.1/app.js
@@ -137,6 +159,7 @@ jobs:
         run: |
           test -f out/v4.3.1/index.html
           grep -q 'GAMECAST 4.3.1' out/v4.3.1/index.html
+          grep -q '121/121 POST-W3 POWER' out/v4.3.1/index.html
           grep -q 'PURGE UI + NEW SESSION' out/v4.3.1/index.html
           cmp --silent public/v4.3.1/app.js out/v4.3.1/app.js
 
