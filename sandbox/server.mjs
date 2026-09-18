@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import {createRuntime} from './runtime.mjs';
 import './build-ui.mjs';
 const port=Number(process.env.GAMECAST_SANDBOX_PORT||4311);
-const runtime=createRuntime({file:new URL('./data/qa-sessions.json',import.meta.url)});
+const runtime=createRuntime({receiver:true,file:new URL('./data/qa-receiver1-sessions.json',import.meta.url)});
 const assets=new Set(['index.html','app.js','app.css','patch-rc2.js','patch-422.js','patch-431.js']);
 const csp="default-src 'none'; connect-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'";
 const server=http.createServer(async(req,res)=>{

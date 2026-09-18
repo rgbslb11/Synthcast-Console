@@ -1,5 +1,7 @@
 # GameCast isolated sandbox — branch 4.3.2.SB
 
+**Current update:** Item 5 is authorized and implemented as the local `RECEIVER1` sandbox candidate. See [RECEIVER1.md](RECEIVER1.md) for current behavior, commands and all 12 gate statuses. The server now starts this candidate with separate session/storage identities. Sections below describe the original unchanged-engine setup and its historical checks, not the current candidate's implementation status. Items 1–4 remain drafts; 6 and 7 are authorized for later sandbox work and are not implemented here.
+
 Sandbox setup only. No candidate enhancement or football-mechanics change is implemented. The Chairman authorized branch name `4.3.2.SB`; this does not assign a new product release. No production merge, cloud deployment, live session write, official result acceptance or SEUD publication was performed.
 
 ## Verified baseline

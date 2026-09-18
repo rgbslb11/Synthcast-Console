@@ -1,0 +1,33 @@
+{
+  "qaOnly": true,
+  "candidate": "RECEIVER1",
+  "testedAt": "2026-09-18T01:54:20.731Z",
+  "seedBalance": {
+    "samples": 10000,
+    "away": 4972,
+    "home": 5028
+  },
+  "games": 55,
+  "checks": [
+    {
+      "name": "10,000-seed deterministic receipt balance within 48–52%",
+      "status": "PASS"
+    },
+    {
+      "name": "55 games: both receivers, halftime reciprocity, 1s/13s chunk and full-game 1x/50x invariance, same-seed replay",
+      "status": "PASS"
+    },
+    {
+      "name": "Away-opening candidates reproduce baseline football history; receiver selection leaves play RNG untouched",
+      "status": "PASS"
+    },
+    {
+      "name": "Continuation and same-seed reset retain receipts; new-seed reset recomputes",
+      "status": "PASS"
+    },
+    {
+      "name": "Candidate API initialization, clocks, Chairman continuation, public redaction, reload and old/live session rejection",
+      "status": "PASS"
+    }
+  ]
+}
