@@ -1,5 +1,9 @@
 # Consolidated GameCast rulings and smoke-test specification
 
+## D4 ruling addendum — governs conflicting D3 text below
+
+Chairman approved smoke testing on 2026-09-18. OT timeouts are 30 seconds (not the proposed 60); regulation timeout behavior is unchanged. R2 is approved: PAT in OT1 unless two are needed to tie; omit an unnecessary try when the answering touchdown already wins, including OT2. R3 is approved: defensive OT2 try return awards two, then evaluate score and remaining opportunity, not automatic termination. Offensive dead-ball penalty is 15 yards; Chairman explicitly corrected OPP3 -> OPP18, not OPP20. Offsetting is nullified; replay interpretation remains to be explicitly confirmed. Timeout pool interpretation remains as proposed below, not a newly confirmed ruling. Smoke authorization does not approve invented event probabilities, production deployment or a release number. See SMOKE_RESULTS_2026-09-18.md for actual execution and blockers; no new football implementation is claimed.
+
 Revision D3 — 2026-09-18. Branch `4.3.2.SB`. Source inspected: `8df9c10f3f65e9f51285ed71ffcc17384ad1eda0`. This is a documentation-only consolidation of the Chairman's subsequent conversation rulings. It supersedes conflicting portions of ITEM4_DESIGN.md; untouched provenance, record-model and failure-handling provisions there remain applicable. No smoke tests or new implementation were performed in this consolidation. Mode: Design; experimental sandbox; not certified or fully build-ready.
 
 ## A. Scope and current implementation

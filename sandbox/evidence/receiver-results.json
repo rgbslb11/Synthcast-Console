@@ -1,7 +1,7 @@
 {
   "qaOnly": true,
   "candidate": "RECEIVER1",
-  "testedAt": "2026-09-18T01:54:20.731Z",
+  "testedAt": "2026-09-18T03:09:11.267Z",
   "seedBalance": {
     "samples": 10000,
     "away": 4972,
