@@ -1,7 +1,7 @@
 // Requirement probe, not an implementation of the proposed OT rules.
 import {createRuntime} from './runtime.mjs';
 import {OPERATING_SLATE} from '../supabase/functions/gamecast-week4-v4-3-1/week4.ts';
-const e = createRuntime({receiver:true}).inspect;
+const e = createRuntime({receiver:true,otEntry:!process.argv.includes('--unpatched')}).inspect;
 const g = e.initialGame(OPERATING_SLATE[0]);
 g.seedHex = 'QA_ONLY-OT-readiness';
 g.rngState = e.seedWords(g.seedHex, g.id);

@@ -4,6 +4,7 @@ import {stripTypeScriptTypes} from 'node:module';
 import {createHash, randomUUID} from 'node:crypto';
 import {OPERATING_SLATE} from '../supabase/functions/gamecast-week4-v4-3-1/week4.ts';
 import {patchReceiver,receivingChoice} from './receiver.mjs';
+import {patchOtEntry} from './ot-entry.mjs';
 import {TEAM_POWER} from '../supabase/functions/gamecast-week4-v4-3-1/power.ts';
 
 export const ENGINE='GC-W4-V4.3.1-RC1-SANDBOX';
@@ -18,9 +19,10 @@ const copy=x=>structuredClone(x);
 const mark=state=>state.map(g=>({...g,qaOnly:true,environment:'SANDBOX',official:false}));
 
 // This is a local test double of the observed RPC interface, NOT a reconstruction of database DDL.
-export function createRuntime({file,clock=Date,baseline=false,receiver=false}={}){
+export function createRuntime({file,clock=Date,baseline=false,receiver=false,otEntry=false}={}){
+  if(otEntry&&(!receiver||baseline))throw Error('OT entry candidate requires RECEIVER1');
   if(baseline&&receiver)throw Error("Choose baseline or receiver candidate");
-  const engine=receiver?ENGINE+"-RECEIVER1":ENGINE, prefix=receiver?"qa-receiver1-":PREFIX;
+  const engine=otEntry?ENGINE+"-RECEIVER1-OTENTRY1":receiver?ENGINE+"-RECEIVER1":ENGINE, prefix=otEntry?'qa-otentry1-':receiver?"qa-receiver1-":PREFIX;
   let db={qaOnly:true,environment:'SANDBOX',sessions:{},events:[]};
   if(file&&fs.existsSync(file))db=JSON.parse(fs.readFileSync(file,'utf8'));
   if(db.qaOnly!==true||db.environment!=='SANDBOX')throw Error('Refusing non-sandbox persistence');
@@ -54,6 +56,7 @@ export function createRuntime({file,clock=Date,baseline=false,receiver=false}={}
   const context=vm.createContext({console,crypto:globalThis.crypto,structuredClone,TextEncoder,Date:clock,Response,Request,URL,OPERATING_SLATE:copy(OPERATING_SLATE),TEAM_POWER:copy(TEAM_POWER),receivingChoice,createClient:()=>({rpc}),Deno:{env:{get:()=>undefined},serve:fn=>{handler=fn;}}},{codeGeneration:{strings:false,wasm:false}});
   let src=fs.readFileSync(SOURCE,'utf8').replace(/^import .*;\s*$/gm,'');
   if(receiver)src=patchReceiver(src);
+  if(otEntry)src=patchOtEntry(src);
   if(!baseline)src=src.replaceAll('GC-W4-V4.3.1-RC1',engine).replaceAll('w4v431-',prefix).replace('https://rgbslb11.github.io/Synthcast-Console/v4.3.1/','/sandbox/').replace('`${id}-R${','`QA-${id}-R${');
   src+='\nglobalThis.inspection={initialGame,seedWords,advanceGame,project,reset,advancePeriod,beginEdit,cancelEdit,finishGame,total,validScorePeriod,continuation,commitEdit};';
   vm.runInContext(stripTypeScriptTypes(src),context,{timeout:5000});
