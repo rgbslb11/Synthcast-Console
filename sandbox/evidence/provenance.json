@@ -1,0 +1,35 @@
+[
+  {
+    "file": "index.ts",
+    "built": "33fecdd438ea497458a878dc437ff0c7dfb3dbc64810b154370b3a45ec31fdcf",
+    "deployed": "33fecdd438ea497458a878dc437ff0c7dfb3dbc64810b154370b3a45ec31fdcf",
+    "equal": true
+  },
+  {
+    "file": "week4.ts",
+    "built": "13cfad6038c0fb7400aaa13ee020462b58754f2e7e9591dc6145df8412e58a22",
+    "deployed": "13cfad6038c0fb7400aaa13ee020462b58754f2e7e9591dc6145df8412e58a22",
+    "equal": true
+  },
+  {
+    "file": "power.ts",
+    "built": "f0609f8715c691f256f6bc4234eee08664099d69a146a4e47f4b702218762b94",
+    "deployed": "f0609f8715c691f256f6bc4234eee08664099d69a146a4e47f4b702218762b94",
+    "equal": true
+  },
+  {
+    "file": "v4.3.1/index.html",
+    "sha256": "45f72bbedddcc9d773192db3a9bc953c86fdbc68abccd7839b1c80d803a3e7da",
+    "equal": true
+  },
+  {
+    "file": "v4.3.1/app.js",
+    "sha256": "a95481b7e465e10598c4dd8d1724caae810189bd7d67fb132446d480740be2d0",
+    "equal": true
+  },
+  {
+    "file": "v4.2/app.css",
+    "sha256": "ebbd83345ccdb0aec2963ee17cd4e21da96988348d840b52060f559633d3ba3f",
+    "equal": true
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "qaOnly": true,
+  "checks": [
+    {
+      "name": "Sandbox route and CSP",
+      "status": "PASS",
+      "httpStatus": 200
+    },
+    {
+      "name": "Old UI unavailable",
+      "status": "PASS",
+      "httpStatus": 404
+    },
+    {
+      "name": "Foreign Host rejected",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "Foreign Origin rejected",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "Cross-site rejected",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "Publication disabled",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "Live namespace rejected",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "Served UI sandbox API/identity bindings",
+      "status": "PASS"
+    }
+  ]
+}

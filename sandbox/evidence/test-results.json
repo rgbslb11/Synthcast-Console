@@ -1,0 +1,124 @@
+{
+  "qaOnly": true,
+  "official": false,
+  "baselineCommit": "8163e9d1a2b22789f0579a761d1e4ae926eaa430",
+  "engine": "GC-W4-V4.3.1-RC1-SANDBOX",
+  "sourceHash": "33fecdd438ea497458a878dc437ff0c7dfb3dbc64810b154370b3a45ec31fdcf",
+  "testedAt": "2026-09-18T01:31:49.231Z",
+  "checks": [
+    {
+      "name": "55-game slate, 110 participants, all 330 scheduled rating fields and QA identities",
+      "status": "PASS"
+    },
+    {
+      "name": "Public API redaction and QA-only envelope",
+      "status": "PASS"
+    },
+    {
+      "name": "Promotion/feed/power/foreign-session/foreign-token rejection; no persistence change; no engine network APIs",
+      "status": "PASS"
+    },
+    {
+      "name": "Optimistic state-version conflict rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Pause, Delay and Edit: GL and Master Zulu advance; scoreboard and RNG freeze even at 50x",
+      "status": "PASS"
+    },
+    {
+      "name": "Local persistence reload with QA tags and event history",
+      "status": "PASS"
+    },
+    {
+      "name": "5 fixed-seed baseline-vs-sandbox full games; 1-second vs 13-second chunks; equal-time 1x vs 50x",
+      "status": "PASS"
+    },
+    {
+      "name": "55/55 local QA full-game structural smoke checks (one seed per matchup; not distribution certification)",
+      "status": "PASS"
+    },
+    {
+      "name": "Same-seed restart football-history replay",
+      "status": "PASS"
+    }
+  ],
+  "samples": [
+    {
+      "game": "G0115",
+      "seed": "QA_ONLY-baseline-0",
+      "qaOnly": true,
+      "gl": 7539,
+      "plays": [
+        45,
+        79
+      ],
+      "score": [
+        0,
+        38
+      ]
+    },
+    {
+      "game": "G0116",
+      "seed": "QA_ONLY-baseline-1",
+      "qaOnly": true,
+      "gl": 7675,
+      "plays": [
+        45,
+        79
+      ],
+      "score": [
+        0,
+        42
+      ]
+    },
+    {
+      "game": "G0117",
+      "seed": "QA_ONLY-baseline-2",
+      "qaOnly": true,
+      "gl": 7625,
+      "plays": [
+        70,
+        60
+      ],
+      "score": [
+        45,
+        7
+      ]
+    },
+    {
+      "game": "G0118",
+      "seed": "QA_ONLY-baseline-3",
+      "qaOnly": true,
+      "gl": 7574,
+      "plays": [
+        60,
+        66
+      ],
+      "score": [
+        20,
+        31
+      ]
+    },
+    {
+      "game": "G0119",
+      "seed": "QA_ONLY-baseline-4",
+      "qaOnly": true,
+      "gl": 7433,
+      "plays": [
+        67,
+        59
+      ],
+      "score": [
+        31,
+        24
+      ]
+    }
+  ],
+  "limitations": [
+    "Local RPC mock; not cloud DDL or cloud persistence parity",
+    "Browser rendering and Mobile Safari not tested",
+    "No population-distribution calibration or candidate football change"
+  ],
+  "expectedCandidates": 7
+}
