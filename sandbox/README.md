@@ -100,3 +100,6 @@ Proposed bounded correction, pending Chairman approval:
 Material design decisions needing approval: (a) unbiased 50/50 receipt directly, with no separate coin-toss/defer strategy model; (b) the independent seeded stream instead of inserting a draw into the play RNG; (c) future candidate engine/release identity and explicit exclusion of existing sessions. Branch 4.3.2.SB is already approved, but no release number is assigned by this recommendation.
 
 Authorization required? Yes: implement candidate 5 only after selection. The seven candidates remain proposals. No permission is needed to retain this completed sandbox setup on the already-authorized branch.
+# Latest opt-in candidate: OTMODEL1
+
+Full OT transition logic is now available to the local test harness through `createRuntime({receiver:true,otModel:true,otFixture})`. It uses a separate `qa-otmodel1-` namespace. No stochastic OT event model is approved: without a host-provided scripted fixture, AUTO stops visibly at the first OT opportunity. The served Chairman UI remains RECEIVER1. See [OT_MODEL_PROGRESS.md](design/OT_MODEL_PROGRESS.md) for all 32 scenario statuses, remaining rulings and implementation gaps. No deployment or official use is authorized.

@@ -1,0 +1,20 @@
+{
+  "qaOnly": true,
+  "official": false,
+  "candidate": "OTMODEL1",
+  "testedAt": "2026-09-18T04:42:19.782Z",
+  "games": 55,
+  "naturalOT": 1,
+  "checks": [
+    {
+      "id": "REGULATION_55",
+      "status": "PASS",
+      "detail": "Identical regulation trajectory at 13-second checkpoints through Final/OT entry"
+    },
+    {
+      "id": "OT_API",
+      "status": "PASS",
+      "detail": "Mid-play persistence reload, exactly-once completion, private OT redaction, GL/Master/scoreboard pause, publication denial and unsupported correction rejection without persistence mutation"
+    }
+  ]
+}

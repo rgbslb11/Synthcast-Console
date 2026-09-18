@@ -1,0 +1,95 @@
+{
+  "qaOnly": true,
+  "official": false,
+  "candidate": "OTMODEL1",
+  "testedAt": "2026-09-18T04:42:39.063Z",
+  "winners": [
+    5024,
+    4976
+  ],
+  "defense": 9468,
+  "checks": [
+    {
+      "id": "O01",
+      "status": "PASS",
+      "detail": "10,000 seeded tosses; both winners and 95% defense choice within sample bounds"
+    },
+    {
+      "id": "O02",
+      "status": "PASS",
+      "detail": "600-second boundary -> OPP25 first-and-10; untimed OT/TOP unchanged"
+    },
+    {
+      "id": "O03",
+      "status": "PASS",
+      "detail": "OT1 full series, separate PAT, both opportunities and tied 5-minute break"
+    },
+    {
+      "id": "O04",
+      "status": "PASS",
+      "detail": "OT2 reverses order, requires two-point tries, tied 5-minute break"
+    },
+    {
+      "id": "O05",
+      "status": "PASS",
+      "detail": "OPP3, matched success/failure extends, unmatched ends, 90-second breaks, tries excluded from play counts"
+    },
+    {
+      "id": "O06",
+      "status": "PASS",
+      "detail": "Ordinary defensive TD ends; OT1 blocked-PAT/OT2 return does not auto-end; OT3 return ends immediately"
+    },
+    {
+      "id": "O07-PROVISIONAL",
+      "status": "PASS",
+      "detail": "30 seconds; proposed shared pools/no stacking/exhaustion verified, policy confirmation still pending"
+    },
+    {
+      "id": "O08-SUBSET",
+      "status": "PASS",
+      "detail": "Half-distance fractions, OPP18 dead-ball, successful foul replay/failed foul decline; unresolved offsetting blocks"
+    },
+    {
+      "id": "O09",
+      "status": "PASS",
+      "detail": "Nullified answering success does not end game; losing retry ends; winning answering TD skips unnecessary try"
+    },
+    {
+      "id": "O10-GUARD",
+      "status": "PASS",
+      "detail": "OT edits fail before mutation until checkpoint support exists; restart clears OT state"
+    },
+    {
+      "id": "REPLAY_CLOCKS",
+      "status": "PASS",
+      "detail": "Full scripted OT 1s/13s and 1x/50x invariance; Pause freezes break/RNG while GL runs"
+    },
+    {
+      "id": "NO_MODEL",
+      "status": "PASS",
+      "detail": "Without fixture/model, block at first opportunity; never invent scores or probabilities"
+    },
+    {
+      "id": "ISOLATION",
+      "status": "PASS",
+      "detail": "Distinct candidate namespace, persistence reload, foreign/live sessions and publication denied; no engine network capabilities"
+    },
+    {
+      "id": "SERIES_EDGES",
+      "status": "PASS",
+      "detail": "Multiple downs, first down, sack, turnover on downs, FG win/miss, scoreless extension, reject losing FG, OT1 two needed to tie"
+    },
+    {
+      "id": "INVALID_INPUT",
+      "status": "PASS",
+      "detail": "Malformed/out-of-range/unsupported events and provider failure block before scoring"
+    }
+  ],
+  "limitations": [
+    "Fixture-driven OT only; no calibrated stochastic event model",
+    "Timeout pool policy provisional",
+    "Offsetting and rare penalties BLOCKED",
+    "OT Chairman edits BLOCKED before mutation",
+    "Stats worker, UI countdown and drill-down not implemented"
+  ]
+}
