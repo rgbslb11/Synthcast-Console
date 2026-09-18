@@ -1,5 +1,7 @@
 # Consolidated GameCast rulings and smoke-test specification
 
+Latest Chairman rulings: timeout pools and offsetting replay are now approved as recorded in [OT_PROBABILITY_DRAFT.md](OT_PROBABILITY_DRAFT.md). They supersede provisional language below. The probability design is a proposal; no numeric rates or new test passes are approved by that document.
+
 Implementation update: [OT_MODEL_PROGRESS.md](OT_MODEL_PROGRESS.md) records the opt-in OTMODEL1 state machine and its per-scenario evidence. It supersedes earlier claims that all full-OT logic is absent, but does not claim normal stochastic AUTO, full statistics or UI completion. Seven of the 32 scenarios pass under scripted local outcomes; 25 remain BLOCKED. D4 rulings below remain authoritative.
 
 ## D4 ruling addendum — governs conflicting D3 text below
