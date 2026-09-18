@@ -1,5 +1,7 @@
 # Item 4: team statistics and Chairman reconstruction — approval draft
 
+**Successor:** [CONSOLIDATED_SMOKE_SPEC.md](CONSOLIDATED_SMOKE_SPEC.md) combines the later full-OT, OPP3, defensive-return, timeout/penalty, Unavailable-first and Chairman countdown rulings. Its explicit overrides take precedence over this D2 draft. This file remains architectural lineage and the S01–S20 test-plan reference.
+
 Design revision D2, 2026-09-18. Engineering baseline: branch `4.3.2.SB`, commit `b7e88fade09a41b1616a3f27fb9ff8cce61d4abd`, RECEIVER1 sandbox. No new product release. This change contains design documentation only. No #4 implementation, migration, smoke test, deployment or active session change was performed.
 
 Owner and approval authority: Chairman Gary Baxter. Users: Chairman/operator and read-only public viewers. Mode: Design. Criticality: experimental now, intended public-facing output later. Maturity: architected draft, not build-ready or certified. Reversibility: append-only revisions and explicit supersession. Modules: authority/data lineage, transactions/async processing, UI permissions, reliability and test planning. No LLM is required for the reconstruction algorithm.
