@@ -1,0 +1,18 @@
+[
+  {
+    "source": "rules",
+    "url": "https://ncaaorg.s3.amazonaws.com/championships/sports/football/rules/PRMFB_RulesBook.pdf",
+    "sha256": "2a9e63b038b6efc70ad846487f33fdda175993c2229c911c3e06291ec74a9dd5",
+    "bytes": 10917166,
+    "edition": "2026, May 2026",
+    "accessDate": "2026-09-18"
+  },
+  {
+    "source": "stats",
+    "url": "https://s3.amazonaws.com/fs.ncaa.org/Docs/stats/Stats_Manuals/Football.pdf",
+    "sha256": "adbe9bbd4a34538386a5ddb60551899d563b76afb670fc25fd5848b90a7da26d",
+    "bytes": 367488,
+    "edition": "Official hosted manual; no explicit edition year identified in extracted text",
+    "accessDate": "2026-09-18"
+  }
+]
