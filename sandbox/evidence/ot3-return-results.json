@@ -1,0 +1,44 @@
+{
+  "qaOnly": true,
+  "official": false,
+  "testedAt": "2026-09-23T09:43:44.442Z",
+  "checks": [
+    {
+      "id": "FIRST_RETURN_ANSWER_REQUIRED",
+      "status": "PASS"
+    },
+    {
+      "id": "SECOND_RETURN_WINS",
+      "status": "PASS"
+    },
+    {
+      "id": "SECOND_RETURN_TIES",
+      "status": "PASS"
+    },
+    {
+      "id": "RETURN_NULLIFIED_BY_FOUL",
+      "status": "PASS"
+    },
+    {
+      "id": "RETRY_BEFORE_COMPLETION",
+      "status": "PASS"
+    },
+    {
+      "id": "UNRESOLVED_FOUL_BLOCKS",
+      "status": "PASS"
+    },
+    {
+      "id": "REPLAY_CHUNKS_SPEED_PAUSE_GL",
+      "status": "PASS"
+    },
+    {
+      "id": "PERSISTENCE_EXACTLY_ONCE_CHAIRMAN_PUBLIC",
+      "status": "PASS"
+    }
+  ],
+  "limitations": [
+    "Local fixture-driven runtime only",
+    "UI source helpers tested; no browser or deployed OT runtime test",
+    "No stochastic OT model or general foul adjudicator"
+  ]
+}

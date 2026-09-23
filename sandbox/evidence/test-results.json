@@ -4,7 +4,7 @@
   "baselineCommit": "8163e9d1a2b22789f0579a761d1e4ae926eaa430",
   "engine": "GC-W4-V4.3.1-RC1-SANDBOX",
   "sourceHash": "33fecdd438ea497458a878dc437ff0c7dfb3dbc64810b154370b3a45ec31fdcf",
-  "testedAt": "2026-09-18T04:42:39.242Z",
+  "testedAt": "2026-09-23T09:43:52.803Z",
   "checks": [
     {
       "name": "55-game slate, 110 participants, all 330 scheduled rating fields and QA identities",

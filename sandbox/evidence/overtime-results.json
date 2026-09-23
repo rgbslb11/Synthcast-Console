@@ -2,7 +2,7 @@
   "qaOnly": true,
   "official": false,
   "candidate": "OTMODEL1",
-  "testedAt": "2026-09-18T04:42:39.063Z",
+  "testedAt": "2026-09-23T09:43:52.690Z",
   "winners": [
     5024,
     4976
@@ -37,7 +37,7 @@
     {
       "id": "O06",
       "status": "PASS",
-      "detail": "Ordinary defensive TD ends; OT1 blocked-PAT/OT2 return does not auto-end; OT3 return ends immediately"
+      "detail": "Ordinary defensive TD ends; try returns in OT1/OT2/OT3 preserve the scheduled answering opportunity"
     },
     {
       "id": "O07-PROVISIONAL",

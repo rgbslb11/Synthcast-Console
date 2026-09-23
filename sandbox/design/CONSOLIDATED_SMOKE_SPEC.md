@@ -1,3 +1,5 @@
+> Current narrow amendment (2026-09-23): [OT3 return correction and verification](OT3_RETURN_CORRECTION.md). It replaces the prior immediate-Final rule. Historical approval/status notes below retain their original dates.
+
 # Consolidated GameCast rulings and smoke-test specification
 
 Latest Chairman rulings: timeout pools and offsetting replay are now approved as recorded in [OT_PROBABILITY_DRAFT.md](OT_PROBABILITY_DRAFT.md). They supersede provisional language below. The probability design is a proposal; no numeric rates or new test passes are approved by that document.
@@ -64,7 +66,7 @@ AUTO -> Chairman Edit -> authoritative Save & Resume AUTO or Save & Hold. Footba
 - OT1 permits PAT or a two-point option after a touchdown. OT2 requires a two-point attempt after a touchdown, subject to unresolved unnecessary-try decision R2 below. OT3+ consists of alternating two-point attempts from OPP 3, NOT OPP 2.
 - Second offense must finish tied to extend or ahead to win. If its completed opportunity leaves it behind, it loses. Its strategy must seek enough points; no guaranteed scoring or rubber-banding. Both scoreless or equal scoring means continue after the prescribed break.
 - A first-offense score alone does not ordinarily prevent the answering opportunity. Finish at the decisive legal result rather than run extra plays/breaks. Maintain explicit OT number, first offense, current offense, series/try number, completed opportunities, pending penalty/try and possession checkpoint.
-- Defensive return touchdown on an ordinary OT series: game ends immediately under the Chairman's ruling. A blocked PAT returned for 2 points: credit the defense, but **do not automatically end**; evaluate score and remaining opportunity. In OT3+, a defensive return of the two-point attempt for 2 points **ends the game immediately**, even on the first attempt. OT2 defensive try return handling remains R3.
+- Defensive return touchdown on an ordinary OT series: game ends immediately under the Chairman's ruling. A blocked PAT returned for 2 points: credit the defense, but **do not automatically end**; evaluate score and remaining opportunity. In OT3+, a defensive return on a try awards two points but does not waive equal series. After the first resolved try, the other team must receive its scheduled try. After the second resolved try, compare totals: unequal means Final; tied means the next OT. Resolve fouls, nullification and any retry before counting a completed opportunity. This Chairman correction supersedes the earlier immediate-Final ruling (2026-09-23). OT2 handling follows approved R3.
 - OT is untimed: no regulation countdown or regulation TOP allocation. Play processing, timeouts and TV stoppages still consume GL; Master Zulu remains real operations time. Scoreless OT periods remain visible as zeros. Valid score-period keys: OT, 2OT, 3OT, etc.; never 0.
 - Ordinary OT1/OT2 offensive plays count toward supported full-game statistics. PAT and two-point try activity in OT1, OT2 and OT3+ is excluded from ordinary full-game team-stat production/efficiency totals. Try points remain in scores and line scores; keep attempt/result/penalty detail in the OT event/audit record, not silently deleted.
 
@@ -87,7 +89,7 @@ Respect effective AUTO speed: 50x advances simulated break seconds at 50x, not M
 | Earlier statement | Governing replacement |
 |---|---|
 | OT3 starts OPP2 | OPP3 |
-| Every defensive OT score ends the game | Ordinary-series defensive TD ends; blocked PAT return does not automatically end; OT3+ defensive try return ends; OT2 try return awaits R3 |
+| Every defensive OT score ends the game | Ordinary-series defensive TD ends; returns ON tries do not waive equal series, including OT3+; resolve fouls/retries before the final score comparison |
 | Stats may require engine hooks/counters/new write transaction | External stats only; full OT and signed controls are separately bounded approved change scopes |
 | Missing detail can be automatically reconstructed | Unavailable first; explicit Chairman reconstruction option only |
 | Approved edit makes all stats permanently final | Exact revision immutable; later events produce successor; final seal after validation/lock |
@@ -99,7 +101,7 @@ Respect effective AUTO speed: 50x advances simulated break seconds at 50x, not M
 |---|---|---|
 | R1 | Timeout pool meaning, carryover and duration | Confirm shared OT1–2 pool and replacement shared OT3+ pool, no stacking/refill. Choose a 60-second timeout duration as a proposed GameCast setting; pending Chairman approval. |
 | R2 | OT1 PAT-vs-two strategy and unnecessary final try | For initial smoke scope, choose PAT in OT1 unless two are needed to tie; do not add a new discretionary coaching-risk model. End when the answering TD already wins, without a needless try. This is an explicit exception to literal OT2 'after any touchdown'; Chairman must resolve it. |
-| R3 | Defensive return of OT2 two-point try | Recommend credit 2, then evaluate score/opportunities like blocked-PAT treatment; do not import the automatic OT3+ ending rule. |
+| R3 | Defensive return of OT2 two-point try | Recommend credit 2, then evaluate score/opportunities like blocked-PAT treatment; OT3+ now also requires equal resolved series under the 2026-09-23 correction. |
 | R4 | Penalty/rare-event fallback | Apply verified 2026 rule cases for unspecified penalty types, dead-ball, offsetting, replay enforcement and rare scoring; retain explicit approved GameCast overrides. First smoke fixtures use an enumerated verified subset; unsupported cases BLOCKED. No blanket claim all penalties are implemented. |
 | R5 | Probability calibration for new OT event types | Separate logic smoke from realism calibration. Initially force scripted outcomes in the test harness only, leaving candidate runtime probabilities unset/BLOCKED where no approved formula exists. Reuse existing applicable verified play formulas without retuning regulation; obtain approval of new PAT/try/block/return/penalty rates before randomized full-OT acceptance. No hidden guessed percentages. |
 
@@ -118,7 +120,7 @@ Add the following 12 scenario groups (20 + 12 = 32 total):
 | O03 | OT1 possession order and answering strategy; PAT/two, scoreless/matched scores; tied -> exact 300-second break |
 | O04 | OT2 order reverses; OPP25, mandatory two-point rule and R2/R3 decisions; tied -> exact 300-second break |
 | O05 | OT3+ OPP3 alternating attempts; both success/fail extends; one success wins; tied -> exact 90 seconds |
-| O06 | Ordinary defensive TD ending, blocked PAT nonautomatic ending and OT3+ defensive try automatic ending tested separately |
+| O06 | Ordinary defensive TD ending and try-return equal-series handling tested separately; OT3+ first return, second winning return, second tying return, and foul-nullified return required |
 | O07 | Timeout pool exhaustion, OT3 replacement, no unwanted refill/carryover, approved duration |
 | O08 | Defensive half-distance/fractional placement; successful-offense penalty replay; failed-offense decline; R4 exceptions |
 | O09 | Penalty-nullified winning score, repeated tries and scoreless periods; no premature Final or extra post-Final break |

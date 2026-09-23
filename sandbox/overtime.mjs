@@ -50,7 +50,10 @@ function validEvent(g,p) {
     if(p.code==='OFF_LIVE'&&typeof p.success==='boolean'&&[5,10,15].includes(p.yards))return !p.success||g.fieldPos>p.yards?null:'Penalty placement outside supported field';
     return 'Unsupported penalty: '+String(p.code);
   }
-  if(phase==='TRY')return p.kind==='try'&&['success','fail','defensive_return'].includes(p.result)?null:'Expected conversion attempt';
+  if(phase==='TRY'){
+    if(p.foul!==undefined && !(g.ot.number>=3 && p.kind==='try' && p.result==='defensive_return' && p.foul==='RETURN_TEAM_LIVE_BALL'))return 'Unsupported try foul adjudication';
+    return p.kind==='try'&&['success','fail','defensive_return'].includes(p.result)?null:'Expected conversion attempt';
+  }
   if(phase!=='SERIES')return 'No active OT opportunity';
   if(['run','pass','sack'].includes(p.kind))return Number.isInteger(p.yards)&&Math.abs(p.yards)<=100&&g.fieldPos+p.yards>0&&(p.kind!=='sack'||p.yards<=0)?null:'Invalid yardage or unsupported safety';
   if(p.kind==='fg')return typeof p.good==='boolean'&&!(g.ot.completed===1&&sum(g,1-g.possession)-sum(g,g.possession)>3)?null:'Field goal cannot meet answering score';
@@ -70,10 +73,13 @@ function apply(g,p,h) {
     return;
   }
   if(o.phase==='TRY'){
+    // Rule 3-1-3(g): ordinary live-ball foul by the returning/scoring team
+    // cancels its return score; the resolved try still completes the series.
+    if(p.foul==='RETURN_TEAM_LIVE_BALL'){endOpportunity(g,h);return;}
     if(p.result==='success')h.score(g,t,o.tryValue);
     if(p.result==='defensive_return'){
       h.score(g,1-t,2);
-      if(o.number>=3){o.phase='FINAL';h.finish(g,'OT defensive conversion return');return;}
+      // A score ON a try does not waive the opponent's equal series (3-1-3f).
     }
     endOpportunity(g,h);return;
   }

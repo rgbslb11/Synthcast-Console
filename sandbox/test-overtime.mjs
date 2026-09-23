@@ -29,7 +29,7 @@ function tiedPeriod(s){touchdown(s);tryGood(s);touchdown(s);tryGood(s);}
  const s=setup();s.ready();s.play({kind:'defensive_td'});assert.equal(s.g.lifecycle,'FINAL_PENDING');
  const b=setup();b.ready();touchdown(b);b.play({kind:'try',result:'defensive_return'});assert.equal(b.g.lifecycle,'ACTIVE');assert.equal(b.g.ot.completed,1);
  const c=setup();c.ready();tiedPeriod(c);c.ready();touchdown(c);c.play({kind:'try',result:'defensive_return'});assert.equal(c.g.lifecycle,'ACTIVE');assert.equal(c.g.ot.completed,1);
- const d=setup();d.ready();tiedPeriod(d);d.ready();tiedPeriod(d);d.ready();d.play({kind:'try',result:'defensive_return'});assert.equal(d.g.lifecycle,'FINAL_PENDING');assert.equal(d.g.ot.completed,0);pass('O06','Ordinary defensive TD ends; OT1 blocked-PAT/OT2 return does not auto-end; OT3 return ends immediately');
+ const d=setup();d.ready();tiedPeriod(d);d.ready();tiedPeriod(d);d.ready();d.play({kind:'try',result:'defensive_return'});assert.equal(d.g.lifecycle,'ACTIVE');assert.equal(d.g.ot.completed,1);pass('O06','Ordinary defensive TD ends; try returns in OT1/OT2/OT3 preserve the scheduled answering opportunity');
 }
 {
  const s=setup();s.ready();s.play({kind:'timeout',team:0,duration:30});assert.equal(s.g.ot.timeouts[0],0);tiedPeriod(s);s.ready();assert.equal(s.g.ot.timeouts[0],0);tiedPeriod(s);s.ready();assert.deepEqual(copy(s.g.ot.timeouts),[1,1]);s.play({kind:'timeout',team:0,duration:30});tryGood(s);tryGood(s);s.ready();assert.equal(s.g.ot.timeouts[0],0);s.play({kind:'timeout',team:0,duration:30});assert.match(s.g.ot.blocked,/exhausted/);pass('O07-PROVISIONAL','30 seconds; proposed shared pools/no stacking/exhaustion verified, policy confirmation still pending');
