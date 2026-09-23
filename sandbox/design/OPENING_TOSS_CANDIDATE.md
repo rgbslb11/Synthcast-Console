@@ -27,10 +27,10 @@ The rule allows the toss winner to designate the kicking team, choose the goal t
 | E1 | 2024: 35 deferrals / 41 distinct selected FBS-versus-FBS games = 85.3659% | Chairman-supplied audit summary involving Texas, Oregon and Boise State. Oregon–Boise State counted once; FCS excluded, as reported. Raw game register and official page extracts not supplied here: independent verification BLOCKED. |
 | E2 | 2025: 35 / 40 = 87.5% | Same reported selection frame; independent game-level verification BLOCKED. |
 | E3 | Pooled arithmetic: 70 / 81 = 86.4198% | Calculated from E1/E2. Selected samples, repeated programs, different seasons. Not an FBS-wide estimate and not 81 independent samples of team strategy. |
-| E4 | Earlier 60% toss-winner opening-kickoff assumption | Conflicting prior identified by Chairman. Its original data/method/version is BLOCKED. Not found as an opening-choice parameter in inspected RECEIVER1. It describes opening kickoff, not necessarily deferral. |
+| E4 | Earlier 60% toss-winner opening-kickoff assumption | **CANCELED by Chairman, 2026-09-23.** Historical record only. Excluded from active assumptions, alternatives, calibration, sensitivity tests and pending approvals. |
 | E5 | Current RECEIVER1: nominal 50/50 opening receiver with reciprocal halftime receiver | Actual inspected code. This is an unconditional receiver selection, not a 50% deferral rate. |
 
-Recommendation: propose **p(defer) = 0.85**, a rounded experimental value near E1/E2, explicitly labeled selected-sample-informed. Do not average it with 0.60: the evidence quality is unknown for E4 and the events being measured differ. Retain E4 as a rejected-for-now alternative, not erase it. Neither 85%, 86.4%, 87.5% nor 60% becomes a canonical population rate through this memo.
+Recommendation: propose **p(defer) = 0.85**, a rounded experimental value near E1/E2, explicitly labeled selected-sample-informed. E4 has been canceled by the Chairman and has no role in this recommendation. Neither 85%, 86.4% nor 87.5% becomes a canonical population rate through this memo.
 
 For initial future sandbox automation, propose a clearly labeled **common-sequence profile**: defer 85%; otherwise select receipt by designating the opponent as kicker. When given first kickoff choice after an opponent's defer, choose receipt. At halftime the first chooser also chooses receipt. This conditional profile is a simplifying design assumption; E1/E2 only measure deferral, not these conditional choices. It requires Chairman approval separately.
 
@@ -175,11 +175,10 @@ Every numeric proposal below requires approval; none is a runtime change. Rule-r
 | Halftime first chooser's choice | Receive in 100% of common-profile auto cases | Simplifying conditional policy; supporting counts BLOCKED | Manual/fixture goal-first or voluntary-kick supported by resolver |
 | Goal chosen when that is the remaining option | END_A 50%, END_B 50% provisional neutral orientation | Administrative symmetry assumption; no empirical goal-choice sample | No weather, home, ratings or team-strength effect; explicit goal overrides permitted |
 | Goal-first or voluntary-kick automatic strategy | No random rate proposed; outside common-profile auto generator | Legal branches; occurrence evidence BLOCKED | Exercise with fixtures/manual choices; do not describe omission as real-world 0% |
-| Prior winner opening-kickoff assumption | 60%, retained as conflicting alternative; not selected | E4, provenance BLOCKED; different event from defer | No averaging with selected sample rates |
 | Current direct receiver selector | Nominal 50/50; unchanged until authorized replacement | E5, inspected RECEIVER1 code | Existing reciprocal halftime assumption continues in current runtime |
 | Kickoff recovery / first-snap outcome | No new probability proposed | Data and kickoff simulator calibration BLOCKED | Proposed existing assumed handoff; no unapproved kickoff mechanics |
 
-Uncertainty: selected programs and game selection limit generalization; opponent records, season context and coaching changes are not controlled. Exact game lists, selection method and reported choices need preservation before treating E1/E2 as independently verified. Do not infer a wind preference, team effect or trend from the 2.13-percentage-point difference between the two samples. Future evaluation should compare 0.60, 0.85 and 70/81 as labeled sensitivity profiles, never silently switch production parameters.
+Uncertainty: selected programs and game selection limit generalization; opponent records, season context and coaching changes are not controlled. Exact game lists, selection method and reported choices need preservation before treating E1/E2 as independently verified. Do not infer a wind preference, team effect or trend from the 2.13-percentage-point difference between the two samples. Future evaluation should compare 0.85 and 70/81 as labeled sensitivity profiles, never silently switch production parameters.
 
 ## 5. Test matrix — specified, not executed
 
@@ -218,7 +217,7 @@ These are ten separate open decisions; recommendations are proposals, not presum
 
 | ID | Decision | Recommendation / missing evidence |
 |---|---|---|
-| D01 | Provisional deferral rate and treatment of 60% prior | Approve 0.85 for new sandbox sessions only; retain 0.60 as documented alternate. Raw E1/E2 register and E4 origin BLOCKED. |
+| D01 | Provisional deferral rate | Approve 0.85 for new sandbox sessions only. Raw E1/E2 register remains BLOCKED. E4 cancellation is resolved and requires no further approval. |
 | D02 | Nondefer, response-to-defer and halftime conditional strategy | Approve common-profile receive-first assumptions explicitly; no observed conditional counts available. |
 | D03 | Automatic frequency of unusual legal branches | Keep fixture/manual only until measured; determine later whether automatic mixing is desired. |
 | D04 | Coin call and goal orientation model | Approve fixed visitor HEADS call, fair toss and neutral 50/50 physical ends; no weather effect. |

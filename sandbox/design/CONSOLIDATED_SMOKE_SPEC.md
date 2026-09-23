@@ -1,4 +1,4 @@
-> Design-only candidate (2026-09-23): [Opening toss and halftime choice specification](OPENING_TOSS_CANDIDATE.md) expands item 5. It includes the 85% proposal and conflicting 60% prior; runtime approval is pending.
+> Design-only candidate (2026-09-23): [Opening toss and halftime choice specification](OPENING_TOSS_CANDIDATE.md) expands item 5. It includes the 85% proposal; E4 has been canceled by the Chairman and removed from active alternatives. Runtime approval remains pending.
 
 > Current narrow amendment (2026-09-23): [OT3 return correction and verification](OT3_RETURN_CORRECTION.md). It replaces the prior immediate-Final rule. Historical approval/status notes below retain their original dates.
 
