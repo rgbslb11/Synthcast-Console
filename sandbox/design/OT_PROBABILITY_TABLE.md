@@ -1,3 +1,5 @@
+> PAT design update (2026-09-23): [PAT-kick calibration candidate](PAT_KICK_CALIBRATION_CANDIDATE.md) evaluates the supplied 2025/2026 evidence, two baseline alternatives and team shrinkage. It supersedes the earlier 97% PAT recommendation for review purposes only; runtime changes remain unapproved. Other probability domains are unchanged.
+
 # Proposed OT probability table — approval draft
 
 2026-09-18. Sandbox branch 4.3.2.SB. Design mode, experimental prototype. No engine changes, enabled probabilities, calibration run or new smoke passes in this step. This adds a numeric proposal to OT_PROBABILITY_DRAFT.md; it does not supersede approved rules.

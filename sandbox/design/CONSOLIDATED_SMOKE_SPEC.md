@@ -1,3 +1,5 @@
+> PAT design update (2026-09-23): [PAT-kick calibration candidate](PAT_KICK_CALIBRATION_CANDIDATE.md) evaluates the supplied 2025/2026 evidence, two baseline alternatives and team shrinkage. It supersedes the earlier 97% PAT recommendation for review purposes only; runtime changes remain unapproved. Other probability domains are unchanged.
+
 > Design-only candidate (2026-09-23): [Opening toss and halftime choice specification](OPENING_TOSS_CANDIDATE.md) expands item 5. It includes the 85% proposal; E4 has been canceled by the Chairman and removed from active alternatives. Runtime approval remains pending.
 
 > Current narrow amendment (2026-09-23): [OT3 return correction and verification](OT3_RETURN_CORRECTION.md). It replaces the prior immediate-Final rule. Historical approval/status notes below retain their original dates.
