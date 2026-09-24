@@ -1,0 +1,99 @@
+name: Publish GameCast 4.3.2.1 Week 5 Carriage Patch
+on:
+  push:
+    branches: [release/gamecast-v4.3.2.1]
+    paths:
+      - scripts/build-gamecast-v4321.mjs
+      - scripts/verify-gamecast-v4321.mjs
+      - release-assets/gamecast-v4.3.2.1/**
+      - .github/workflows/deploy-v4321-release.yml
+      - GAMECAST_4_3_2_1_RELEASE.md
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: gamecast-v4321-release
+  cancel-in-progress: false
+jobs:
+  build-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Protect predecessor and restrict scope
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/release/gamecast-v4.3.2.1
+          test "$(git rev-parse origin/release/gamecast-v4.3.2)" = 8a7ee426e8a2f537bedb098bee06c7df7fbc69a1
+          git diff --exit-code 8a7ee426e8a2f537bedb098bee06c7df7fbc69a1 -- public supabase release-assets/gamecast-v4.3.2 scripts/build-gamecast-v432.mjs scripts/verify-gamecast-v432-power.mjs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Build separate carriage patch
+        run: node --experimental-strip-types scripts/build-gamecast-v4321.mjs
+      - name: Verify all 58 rows and unchanged football and ratings
+        run: |
+          node --experimental-strip-types scripts/verify-gamecast-v4321.mjs --source-only
+          node --check public/v4.3.2.1/app.js
+          node --check public/v4.3.2.1/patch-4321.js
+      - name: Inherited fixed-seed engine regression on patched entrypoint
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          let s=fs.readFileSync('scripts/test-gamecast-v422-engine.mjs','utf8');
+          s=s.replace("const file='supabase/functions/gamecast-week3-v4-2-2/index.ts';","const file='supabase/functions/gamecast-week5-v4-3-2-1/index.ts';");
+          fs.writeFileSync('scripts/.test-v4321.mjs',s);
+          JS
+          node scripts/.test-v4321.mjs | tee v4321-evidence/inherited-engine-regression.log
+          grep -q '"glSeconds":7541' v4321-evidence/inherited-engine-regression.log
+          grep -q '"plays":\[60,66\]' v4321-evidence/inherited-engine-regression.log
+          rm scripts/.test-v4321.mjs
+      - name: Preserve build and exact deployment payload for authorized connector deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: gamecast-v4321-build
+          path: |
+            v4321-evidence/
+            supabase/functions/gamecast-week5-v4-3-2-1/
+            public/v4.3.2.1/
+      - run: npm install --prefix "$RUNNER_TEMP/gamecast-qa" --no-audit --no-fund jsdom@26.1.0
+      - name: Inherited UI interaction regression
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gamecast-qa
+        run: node --test scripts/test-gamecast-v423-ui.mjs
+      - name: Verify deployed backend and render all 58 Chairman and public cards
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gamecast-qa
+        run: node --experimental-strip-types scripts/verify-gamecast-v4321.mjs
+      - name: Archive verification evidence without credentials
+        uses: actions/upload-artifact@v4
+        with:
+          name: gamecast-v4321-verification
+          path: v4321-evidence/
+      - run: npm run build:pages
+      - name: Verify isolated route and preserve v4.3.2 assets
+        run: |
+          test -f out/v4.3.2.1/index.html
+          grep -q 'GAMECAST 4.3.2.1' out/v4.3.2.1/index.html
+          grep -q 'gamecast-week5-v4-3-2-1' out/v4.3.2.1/app.js
+          cmp --silent public/v4.3.2.1/app.js out/v4.3.2.1/app.js
+          cmp --silent public/v4.3.2/app.js out/v4.3.2/app.js
+          test -f out/v4.3.1/index.html
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+  deploy-pages:
+    needs: build-verify
+    runs-on: ubuntu-latest
+    environment:
+      name: gamecast-v4321-preview
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

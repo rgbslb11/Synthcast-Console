@@ -1,0 +1,58 @@
+Thu 9/24|7:30 PM|ESPN|Wake Forest at Louisville
+Thu 9/24|7:30 PM|SEN|Troy at Buffalo
+Thu 9/24|9:30 PM|SEN|NC State at Arizona State
+Thu 9/24|10:00 PM|ESPN|Oregon State at UTEP
+Fri 9/25|4:00 PM|ESPN|Army at Princeton
+Fri 9/25|8:00 PM|EBC|Northwestern at Indiana
+Fri 9/25|8:00 PM|ESPN|Navy at UAB
+Fri 9/25|10:00 PM|CW|Temple at Utah State
+Fri 9/25|11:59 PM|EBC|Clemson at California
+Sat 9/26|12:00 PM|ABC|UNLV at Syracuse
+Sat 9/26|12:00 PM|ACCN|Harvard at Duke
+Sat 9/26|12:00 PM|CBS|Wisconsin at Penn State
+Sat 9/26|12:00 PM|CBSSN|Kentucky at Lehigh
+Sat 9/26|12:00 PM|CBSSN (OTT)|Penn at Cornell
+Sat 9/26|12:00 PM|CW|Boise State at Western Michigan
+Sat 9/26|12:00 PM|EBC|East Carolina at Miami
+Sat 9/26|12:00 PM|ESPN|Kansas State at Cincinnati
+Sat 9/26|12:00 PM|ESPN+|Southern Miss at Florida Atlantic
+Sat 9/26|12:00 PM|ESPN+|Louisiana Monroe at Louisiana Tech
+Sat 9/26|12:00 PM|FOX|Illinois at Ohio State
+Sat 9/26|12:00 PM|SECN|Missouri at Mississippi State
+Sat 9/26|12:00 PM|SEN+|Delaware at Old Dominion
+Sat 9/26|12:00 PM|TNT|Utah at Iowa State
+Sat 9/26|12:00 PM|USA|San Diego State at Toledo
+Sat 9/26|12:00 PM|SEN|Virginia Tech at Boston College
+Sat 9/26|12:00 PM|NBC|Notre Dame at Purdue
+Sat 9/26|3:00 PM|SEN|Houston at Georgia Southern
+Sat 9/26|3:30 PM|B1G|UCLA at Maryland
+Sat 9/26|3:30 PM|CBS|Minnesota at Washington
+Sat 9/26|3:30 PM|ACCN|Tulane at Florida State
+Sat 9/26|3:30 PM|CW|Texas Tech at Pittsburgh
+Sat 9/26|3:30 PM|ESPN+|Rice at Memphis
+Sat 9/26|3:30 PM|ESPN2|Hawaii at Wyoming
+Sat 9/26|3:30 PM|FOX|Nebraska at Michigan State
+Sat 9/26|3:30 PM|SEN+|North Texas at UTSA
+Sat 9/26|3:30 PM|TNT|Colorado at Baylor
+Sat 9/26|3:30 PM|SECN|Tulsa at Arkansas
+Sat 9/26|3:30 PM|EBC|Texas A&M at LSU
+Sat 9/26|4:00 PM|CBSSN|Air Force at Nevada
+Sat 9/26|4:15 PM|B1G|SMU at Rutgers
+Sat 9/26|6:00 PM|USA|Arkansas State at Texas State
+Sat 9/26|7:00 PM|SEN+|Middle Tennessee at South Florida
+Sat 9/26|7:15 PM|ESPN|Ole Miss at Florida
+Sat 9/26|7:30 PM|NBC|Iowa at Michigan
+Sat 9/26|7:30 PM|ESPN2|South Carolina at Alabama
+Sat 9/26|7:34 PM|SEN|Oklahoma State at West Virginia
+Sat 9/26|8:00 PM|FS1|TCU at UCF
+Sat 9/26|8:00 PM|CBS|Oregon at USC
+Sat 9/26|8:00 PM|SECN|Vanderbilt at Auburn
+Sat 9/26|8:00 PM|SEN+|Coastal Carolina at FIU
+Sat 9/26|8:00 PM|SEN+|Northern Illinois at Georgia State
+Sat 9/26|8:17 PM|ABC|Texas at Tennessee
+Sat 9/26|8:24 PM|EBC|Oklahoma at Georgia
+Sat 9/26|10:00 PM|CW|Marshall at Fresno State
+Sat 9/26|10:30 PM|SEN|Colgate at New Mexico State
+Sat 9/26|10:30 PM|ESPN|Georgia Tech at Stanford
+Sat 9/26|10:30 PM|ESPN2|Virginia at New Mexico
+Sat 9/26|11:30 PM|CBS|Arizona at Washington State
