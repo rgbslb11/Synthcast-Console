@@ -82,6 +82,10 @@ let app=read(`${oldUi}/app.js`);
 for(const [a,b] of [['gamecast-week5-v4-3-2-1','gamecast-week5-saturday-v4-3-2-2'],['synthcastGameCast4321Operator','synthcastGameCast4322SaturdayOperator'],['GC-W5-V4.3.2.1-RC1','GC-W5-SAT-V4.3.2.2-RC1']])app=app.replaceAll(a,b);
 app=once(app,"+run+ctl+'</article>'","+run+ctl+dmCard(g)+'</article>'");
 app=once(app,"function anchorMaster(x){","function anchorMaster(x){dmLastSync=Date.now();");
+app=once(app,
+  "if(card.dataset.game!==releaseId&&(card.querySelector('.edit-panel')||card.contains(focus)))protectedCards.add(card);",
+  "if(card.dataset.game!==releaseId&&(card.querySelector('.edit-panel')||card.contains(focus)||card.querySelector('.dm-box details[open]')))protectedCards.add(card);"
+);
 // UI helpers are loaded before the inherited app invokes render/load.
 app=read(`${assets}/ui.js`)+ '\n'+app;
 write(`${ui}/app.js`,app);
