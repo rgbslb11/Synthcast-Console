@@ -86,6 +86,10 @@ app=once(app,
   "if(card.dataset.game!==releaseId&&(card.querySelector('.edit-panel')||card.contains(focus)))protectedCards.add(card);",
   "if(card.dataset.game!==releaseId&&(card.querySelector('.edit-panel')||card.contains(focus)||card.querySelector('.dm-box details[open]')))protectedCards.add(card);"
 );
+app=once(app,
+  "return !publicView&&(!!document.querySelector('#grid .edit-panel')||!!focusedControl());",
+  "return !publicView&&(!!document.querySelector('#grid .edit-panel')||!!focusedControl()||!!document.querySelector('#grid .dm-box details[open]'));"
+);
 // UI helpers are loaded before the inherited app invokes render/load.
 app=read(`${assets}/ui.js`)+ '\n'+app;
 write(`${ui}/app.js`,app);
