@@ -1,0 +1,81 @@
+name: Publish GameCast 4.3.2.2 Saturday Only
+on:
+  push:
+    branches: [release/gamecast-v4.3.2.2]
+    paths:
+      - scripts/build-gamecast-v4322.mjs
+      - release-assets/gamecast-v4.3.2.2/**
+      - .github/workflows/deploy-v4322-release.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: gamecast-v4322-release
+  cancel-in-progress: false
+jobs:
+  build-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Protect predecessor
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/release/gamecast-v4.3.2.2
+          test "$(git merge-base HEAD e6dbe1107ecb6542d41d156246f2209da31ca6c4)" = e6dbe1107ecb6542d41d156246f2209da31ca6c4
+          git diff --exit-code e6dbe1107ecb6542d41d156246f2209da31ca6c4 -- public/v4.3.2.1 supabase/functions/gamecast-week5-v4-3-2-1 release-assets/gamecast-v4.3.2.1
+      - name: Build Saturday-only successor
+        run: node scripts/build-gamecast-v4322.mjs
+      - name: Deterministic and Dead-Man regression
+        run: node release-assets/gamecast-v4.3.2.2/test.mjs
+      - name: Install isolated DOM QA
+        run: npm install --prefix "$RUNNER_TEMP/gc4322-qa" --no-audit --no-fund jsdom@26.1.0
+      - name: Chairman and public UI regression
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gc4322-qa
+        run: node release-assets/gamecast-v4.3.2.2/ui-test.mjs
+      - name: Verify release payload
+        run: |
+          test -f public/v4.3.2.2/index.html
+          test -f public/v4.3.2.2/app.js
+          test -f public/v4.3.2.2/deadman.css
+          grep -q 'WEEK 5 - SATURDAY ONLY' public/v4.3.2.2/index.html
+          grep -q 'gamecast-week5-saturday-v4-3-2-2' public/v4.3.2.2/app.js
+          grep -q 'GC-W5-SAT-V4.3.2.2-RC1' supabase/functions/gamecast-week5-saturday-v4-3-2-2/index.ts
+          test "$(node -e "import('./supabase/functions/gamecast-week5-saturday-v4-3-2-2/week5.ts').then(m=>process.stdout.write(String(m.OPERATING_SLATE.length)))")" = "49"
+      - run: npm run build:pages
+      - name: Verify isolated Pages route and predecessor retention
+        run: |
+          test -f out/v4.3.2.2/index.html
+          grep -q 'WEEK 5 - SATURDAY ONLY' out/v4.3.2.2/index.html
+          grep -q 'gamecast-week5-saturday-v4-3-2-2' out/v4.3.2.2/app.js
+          test -f out/v4.3.2.1/index.html
+          test -f out/v4.3.2/index.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gamecast-v4322-release-evidence
+          path: |
+            v4322-evidence/
+            public/v4.3.2.2/
+            supabase/functions/gamecast-week5-saturday-v4-3-2-2/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+  deploy-pages:
+    needs: build-verify
+    runs-on: ubuntu-latest
+    environment:
+      name: gamecast-v4322-preview
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
