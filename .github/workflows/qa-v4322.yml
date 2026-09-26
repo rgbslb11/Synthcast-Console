@@ -1,0 +1,61 @@
+name: Verify GameCast 4.3.2.2 Saturday Only
+on:
+  push:
+    branches: [release/gamecast-v4.3.2.2]
+    paths:
+      - release-assets/gamecast-v4.3.2.2/**
+      - scripts/build-gamecast-v4322.mjs
+      - .github/workflows/qa-v4322.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: gamecast-v4322-qa
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Preserve candidate source for inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: gamecast-v4322-source
+          include-hidden-files: true
+          path: |
+            release-assets/
+            scripts/
+            public/
+            supabase/
+            package.json
+            .github/workflows/qa-v4322.yml
+      - name: Verify predecessor protection
+        run: |
+          test "$GITHUB_REF" = refs/heads/release/gamecast-v4.3.2.2
+          test "$(git merge-base HEAD e6dbe1107ecb6542d41d156246f2209da31ca6c4)" = e6dbe1107ecb6542d41d156246f2209da31ca6c4
+          git diff --exit-code e6dbe1107ecb6542d41d156246f2209da31ca6c4 -- public supabase release-assets/gamecast-v4.3.2 release-assets/gamecast-v4.3.2.1 scripts/build-gamecast-v4321.mjs
+      - name: Build isolated Saturday successor
+        run: node scripts/build-gamecast-v4322.mjs
+      - name: Source and deterministic regression tests
+        run: node release-assets/gamecast-v4.3.2.2/test.mjs
+      - name: Install isolated DOM test dependency
+        run: npm install --prefix "$RUNNER_TEMP/gc4322-qa" --no-audit --no-fund jsdom@26.1.0
+      - name: Chairman and public integration
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gc4322-qa
+        run: node release-assets/gamecast-v4.3.2.2/ui-test.mjs
+      - name: Archive build and test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gamecast-v4322-build
+          path: |
+            v4322-evidence/
+            supabase/functions/gamecast-week5-saturday-v4-3-2-2/
+            public/v4.3.2.2/
