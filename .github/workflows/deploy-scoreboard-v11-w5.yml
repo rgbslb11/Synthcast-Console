@@ -1,0 +1,75 @@
+name: Publish Week 5 Saturday Scoreboard 1.1
+
+on:
+  push:
+    branches: [release/scoreboard-ui-v1.1-w5]
+    paths:
+      - public/scoreboard/v1.1/**
+      - .github/workflows/deploy-scoreboard-v11-w5.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: scoreboard-ui-v11-w5-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Protect GameCast 4.3.2.2 sources
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/release/scoreboard-ui-v1.1-w5
+          git diff --exit-code 3f3b27629fd498177f94288aa4369a3d37e948a3 -- supabase release-assets public/v4.3.2.2
+      - run: npm ci
+      - name: Build retained GameCast routes
+        run: node scripts/build-gamecast-v4322.mjs
+      - name: Verify public-only scoreboard source
+        run: |
+          node --check public/scoreboard/v1.1/scoreboard.js
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const js=fs.readFileSync('public/scoreboard/v1.1/scoreboard.js','utf8');
+          const html=fs.readFileSync('public/scoreboard/v1.1/index.html','utf8');
+          assert.match(js,/gamecast-week5-saturday-v4-3-2-2/);
+          assert.match(js,/GC-W5-SAT-V4\.3\.2\.2-RC1/);
+          assert.match(js,/data\.state\.length!==49/);
+          assert.match(js,/cache:'no-store'/);
+          assert.doesNotMatch(js,/x-operator-token|operator_token|method\s*:\s*['"]POST['"]|api=(?:command|create|power)/i);
+          assert.match(html,/w5satv4322-/);
+          JS
+      - run: npm run build:pages
+      - name: Verify Pages route
+        run: |
+          test -f out/scoreboard/v1.1/index.html
+          test -f out/scoreboard/v1.1/scoreboard.js
+          test -f out/scoreboard/v1.1/scoreboard.css
+          test -f out/v4.3.2.2/index.html
+          cmp public/scoreboard/v1.1/scoreboard.js out/scoreboard/v1.1/scoreboard.js
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: scoreboard-ui-v11-w5-preview
+      url: ${{ steps.publish.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: publish
