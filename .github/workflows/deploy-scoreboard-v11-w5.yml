@@ -4,6 +4,7 @@ on:
   push:
     branches: [release/scoreboard-ui-v1.1-w5]
     paths:
+      - public/scoreboard/v1.0/**
       - public/scoreboard/v1.1/**
       - .github/workflows/deploy-scoreboard-v11-w5.yml
   workflow_dispatch:
@@ -55,10 +56,13 @@ jobs:
       - run: npm run build:pages
       - name: Verify Pages route
         run: |
+          test -f out/scoreboard/v1.0/index.html
+          test -f out/scoreboard/v1.0/scoreboard.js
           test -f out/scoreboard/v1.1/index.html
           test -f out/scoreboard/v1.1/scoreboard.js
           test -f out/scoreboard/v1.1/scoreboard.css
           test -f out/v4.3.2.2/index.html
+          cmp public/scoreboard/v1.0/scoreboard.js out/scoreboard/v1.0/scoreboard.js
           cmp public/scoreboard/v1.1/scoreboard.js out/scoreboard/v1.1/scoreboard.js
       - uses: actions/upload-pages-artifact@v4
         with:

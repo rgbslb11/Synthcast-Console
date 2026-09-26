@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090b0e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Synthcast Scoreboard 1.0</title>
+  <link rel="stylesheet" href="scoreboard.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brandline">
+      <div class="brand">SYNTHCAST <b>SCOREBOARD</b></div>
+      <div class="version">UI 1.0</div>
+    </div>
+    <div class="statusline">
+      <span id="weekLabel">WEEK 3</span>
+      <span id="localTime">--:--</span>
+      <span id="syncDot" class="sync-dot" aria-hidden="true"></span>
+      <span id="syncText">NO SESSION</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="summary" aria-label="Scoreboard summary">
+      <div><b id="liveCount">0</b><span>LIVE</span></div>
+      <div><b id="finalCount">0</b><span>FINAL</span></div>
+      <div><b id="upcomingCount">0</b><span>UPCOMING</span></div>
+      <div><b id="delayCount">0</b><span>DELAY</span></div>
+    </section>
+
+    <nav class="filters" aria-label="Scoreboard filters">
+      <button type="button" data-filter="ALL" class="active">ALL</button>
+      <button type="button" data-filter="LIVE">LIVE</button>
+      <button type="button" data-filter="FINAL">FINAL</button>
+      <button type="button" data-filter="UPCOMING">UPCOMING</button>
+      <button type="button" id="networkToggle" aria-pressed="false">SEN / EBC</button>
+    </nav>
+
+    <section id="sessionNotice" class="session-notice">
+      Add <code>?session=w3v422-...</code> to the URL to load the public scoreboard.
+    </section>
+
+    <section id="scoreboard" class="scoreboard" aria-live="polite"></section>
+  </main>
+
+  <template id="emptyTemplate">
+    <div class="empty-state">No games match this view.</div>
+  </template>
+
+  <script src="scoreboard.js"></script>
+</body>
+</html>
