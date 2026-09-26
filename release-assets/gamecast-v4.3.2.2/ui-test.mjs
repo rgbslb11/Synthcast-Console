@@ -29,6 +29,8 @@ for(const mode of ['chairman','public']){
     assert.ok(confirmations[0].startsWith('ARM 2 SELECTED GAMES?'));
     assert.equal(h.db.sessions.get(slug).state.filter(g=>g.deadman.status==='ARMED').length,2);
     const el=w.document.getElementById('dm-G0207-offset');el.focus();el.value='22';w.render();assert.equal(w.document.activeElement,el);assert.equal(el.value,'22');el.blur();
+    const drawer=w.document.querySelector('article[data-game="G0207"] .dm-box details');drawer.open=true;const drawerNode=drawer;
+    await w.load({background:true});assert.equal(drawerNode.isConnected,true);assert.equal(drawerNode.open,true);assert.equal(w.document.querySelector('article[data-game="G0207"] .dm-box details'),drawerNode);
     w.dmDisarm(['G0211','G0180']);await new Promise(r=>setTimeout(r,100));
     assert.equal(h.db.sessions.get(slug).state.filter(g=>g.deadman.status==='DISARMED').length,2);
   }
