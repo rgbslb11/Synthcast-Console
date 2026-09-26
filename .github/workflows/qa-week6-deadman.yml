@@ -1,0 +1,53 @@
+name: QA Week 6 Dead-Man Branch
+
+on:
+  push:
+    branches: [4.2.2.1]
+    paths:
+      - deadman/**
+      - scripts/build-gamecast-w6-deadman.mjs
+      - .github/workflows/qa-week6-deadman.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deadman-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Verify branch parent and bounded scope
+        run: |
+          set -euo pipefail
+          test "$(git merge-base HEAD e6dbe1107ecb6542d41d156246f2209da31ca6c4)" = "e6dbe1107ecb6542d41d156246f2209da31ca6c4"
+          changed="$(git diff --name-only e6dbe1107ecb6542d41d156246f2209da31ca6c4...HEAD)"
+          while IFS= read -r f; do
+            case "$f" in
+              deadman/*|scripts/build-gamecast-w6-deadman.mjs|.github/workflows/qa-week6-deadman.yml) ;;
+              "") ;;
+              *) echo "Unexpected changed file: $f"; exit 1 ;;
+            esac
+          done <<< "$changed"
+
+      - name: Run Dead-Man controller tests
+        run: node deadman/test.mjs
+
+      - name: Build isolated Week-5-data QA integration fixture
+        run: node --experimental-strip-types scripts/build-gamecast-w6-deadman.mjs
+
+      - name: Validate generated candidate syntax and boundaries
+        run: |
+          node --check public/v4.3.2.1-deadman-qa/app.js
+          grep -q 'GC-W5-V4.3.2.1-DMF1-QA' supabase/functions/gamecast-week5-v4-3-2-1-deadman-qa/index.ts
+          grep -q 'qa-w5v4321-dmf-' supabase/functions/gamecast-week5-v4-3-2-1-deadman-qa/index.ts
+          grep -q 'deadman_tick' supabase/functions/gamecast-week5-v4-3-2-1-deadman-qa/index.ts
+          grep -q 'DO NOT DEPLOY AS WEEK 6' public/v4.3.2.1-deadman-qa/index.html
