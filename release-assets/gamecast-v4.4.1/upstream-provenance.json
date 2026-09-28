@@ -1,0 +1,16 @@
+{
+  "dataBaselineCommit": "11622efbdfb5716d87ba124e3157a81961f12e91",
+  "deadmanSourceCommit": "3f3b27629fd498177f94288aa4369a3d37e948a3",
+  "deadmanBackend": {
+    "id": "71e23c72-c381-4d69-8374-981cef0ee95f",
+    "slug": "gamecast-week5-saturday-v4-3-2-2",
+    "version": 1,
+    "ezbr_sha256": "abbf43b97b22b660d6e84f767c57542ec155a0aa1bb3a92e0ed0260e132569c3"
+  },
+  "sourceDifference": "Live 4.3.2.2 week5.ts omits canonicalWeek/carryover. That Week 5 schedule is not imported. Live index.ts, power.ts and deadman.mjs match inspected source after terminal newline normalization.",
+  "unchangedDeadmanAssets": {
+    "deadman.mjs": "b78624b253214e954a8fe4cd81ee76740c17c47e5ca98b759f6a1b8cfab1d349",
+    "deadman.css": "515f94be2951ec5b4bb2f4a27976eb72c9ffda07688d1da93d3a84936817d066",
+    "ui.js": "a249c6305e99d9a3ddd7ccb758686312e656c3a38f86bd9b30c978d1847d0543"
+  }
+}

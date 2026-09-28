@@ -1,0 +1,68 @@
+name: Publish GameCast 4.4.1 Week 6
+on:
+  push:
+    branches: [release/gamecast-v4.4.1]
+    paths:
+      - scripts/*v441.mjs
+      - release-assets/gamecast-v4.4.1/**
+      - .github/workflows/deploy-v441-release.yml
+      - GAMECAST_4_4_1_RELEASE.md
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: gamecast-v441-pages
+  cancel-in-progress: false
+jobs:
+  build-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Protect baseline and scope
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/release/gamecast-v4.4.1
+          test "$(git rev-parse origin/release/gamecast-v4.4.0)" = 11622efbdfb5716d87ba124e3157a81961f12e91
+          git diff --exit-code 11622efbdfb5716d87ba124e3157a81961f12e91 -- public supabase package.json package-lock.json scripts/build-gamecast-v440.mjs scripts/verify-gamecast-v440.mjs release-assets/gamecast-v4.4.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: node scripts/build-gamecast-v441.mjs
+      - run: node scripts/verify-gamecast-v441.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/gamecast-qa" --no-audit --no-fund jsdom@26.1.0
+      - name: Actual 4.4.1 entrypoint and console regressions
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gamecast-qa
+        run: |
+          node scripts/test-gamecast-v441.mjs
+          node release-assets/gamecast-v4.4.1/test.mjs
+          node release-assets/gamecast-v4.4.1/ui-test.mjs
+      - name: Reconcile deployed backend and both views
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gamecast-qa
+        run: node release-assets/gamecast-v4.4.1/cloud-verify.mjs --read-only
+      - name: Preserve live Pages bytes and add isolated route
+        run: node scripts/preserve-gamecast-pages-v441.mjs restore out release-assets/gamecast-v4.4.1/preserved-pages-manifest.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gamecast-v441-verification
+          path: v441-evidence/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+  deploy-pages:
+    needs: build-verify
+    runs-on: ubuntu-latest
+    environment:
+      name: gamecast-v441-preview
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
