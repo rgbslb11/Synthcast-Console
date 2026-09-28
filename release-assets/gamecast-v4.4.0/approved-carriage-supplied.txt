@@ -1,0 +1,70 @@
+## Week 6 — Full Carriage with FOX Coaches Rank + Overall Record + NWS Weather
+
+**All times Eastern. 56 games.** The carriage order remains the locked Week 6 board. :chatgpt-content-reference{index="0"} Rankings are the active **FOX Sports Coaches Top 25 — Post Week 5, Successor R4**. :chatgpt-content-reference{index="1"} Records are the Post-Week 5 overall records. :chatgpt-content-reference{index="2"}
+
+**Weather methodology:** These are the latest **National Weather Service** venue forecasts available Sunday, Sept. 27. At 4–6 days out, NWS frequently publishes day/night forecast periods rather than an exact kickoff-hour temperature. I therefore use the NWS period containing kickoff when available, otherwise the closest gameday period, and **do not interpolate an exact temperature** that NWS has not issued. Rows explicitly marked *area guidance* are cases where the exact stadium point forecast was not yet available far enough into the period.
+
+| Date | Kickoff | Network | Matchup | Weather — NWS kickoff window |
+|---|---:|---|---|---|
+| Thu 10/1 | 7:30 PM | ESPN | Oklahoma State (2-1) at North Texas (1-3) | **50% thunderstorms/showers; mostly cloudy, low 69°F** — Denton Thursday night. :chatgpt-content-reference{index="3"} |
+| Thu 10/1 | 7:30 PM | SEN | Tulsa (3-1) at Memphis (4-1) | **30% showers; mostly cloudy, low 71°F.** :chatgpt-content-reference{index="4"} |
+| Fri 10/2 | 6:30 PM | Fox | Troy (0-3) at Middle Tennessee (1-2) | **40% showers; partly sunny, high 89°F.** :chatgpt-content-reference{index="5"} |
+| Fri 10/2 | 7:00 PM | Fox | #24 Penn State (3-1) at Northwestern (1-2) | **Chance of showers near early evening; then partly cloudy, low 55°F.** :chatgpt-content-reference{index="6"} |
+| Fri 10/2 | 7:30 PM | ESPN | Delaware (3-1) at Marshall (2-1) | **30% showers; mostly cloudy, low 62°F.** :chatgpt-content-reference{index="7"} |
+| Fri 10/2 | 8:00 PM | EBC | Pittsburgh (2-2) at #19 Virginia Tech (4-0) | **Mostly cloudy, low 59°F.** :chatgpt-content-reference{index="8"} |
+| Sat 10/3 | 12:00 AM | SEN | San Jose State (2-2) at Hawai'i (0-3) | **20% isolated showers; partly cloudy, low 76°F.** Kickoff is Friday 6 PM HST locally. :chatgpt-content-reference{index="9"} |
+| Sat 10/3 | 12:00 PM | ABC | Georgia Tech (0-3) at Northern Illinois (0-3) | **Partly sunny, high 66°F.** :chatgpt-content-reference{index="10"} |
+| Sat 10/3 | 12:00 PM | ACCN | Louisville (1-2) at NC State (0-3) | **30% showers; partly sunny, high 78°F.** :chatgpt-content-reference{index="11"} |
+| Sat 10/3 | 12:00 PM | B1G | Michigan State (1-2) at Wisconsin (1-2) | **30% showers; partly sunny, high 64°F.** :chatgpt-content-reference{index="12"} |
+| Sat 10/3 | 12:00 PM | CBS | Navy (1-3) at Air Force (1-2) | **Sunny, high 75°F.** :chatgpt-content-reference{index="13"} |
+| Sat 10/3 | 12:00 PM | CBSSN | Harvard (0-4) at Penn (2-2) | **Partly sunny, high 71°F.** :chatgpt-content-reference{index="14"} |
+| Sat 10/3 | 12:00 PM | CBSSN | Syracuse (0-3) at UConn (2-1) | **Mostly sunny, high 67°F; NW wind 5–7 mph.** :chatgpt-content-reference{index="15"} |
+| Sat 10/3 | 12:00 PM | CBSSN | Princeton (0-3) at Yale (0-4) | **Mostly sunny, high 69°F.** :chatgpt-content-reference{index="16"} |
+| Sat 10/3 | 12:00 PM | CW | Boston College (1-3) at #25 SMU (2-1) | **40% showers/thunderstorms; partly sunny, high 79°F.** :chatgpt-content-reference{index="17"} |
+| Sat 10/3 | 12:00 PM | EBC | UCF (3-1) at Houston (2-2) | **Showers/thunderstorms likely, 60%; mostly cloudy, high 83°F.** :chatgpt-content-reference{index="18"} |
+| Sat 10/3 | 12:00 PM | ESPN | Kentucky (2-2) at South Carolina (1-3) | **50% showers; partly sunny, high 83°F.** :chatgpt-content-reference{index="19"} |
+| Sat 10/3 | 12:00 PM | ESPN+ | UAB (1-2) at Army (2-1) | **Mostly sunny, around 67°F** — West Point-area NWS forecast. :chatgpt-content-reference{index="20"} |
+| Sat 10/3 | 12:00 PM | ESPN+ | Temple (0-3) at ECU (0-4) | **30% showers; mostly sunny, high 85°F.** :chatgpt-content-reference{index="21"} |
+| Sat 10/3 | 12:00 PM | ESPN+ | Rice (0-4) at FAU (2-2) | **50% showers/thunderstorms; mostly sunny, high 88°F.** :chatgpt-content-reference{index="22"} |
+| Sat 10/3 | 12:00 PM | FS1 | Lehigh (2-2) at Buffalo (2-2) | **Partly sunny, high 66°F.** :chatgpt-content-reference{index="23"} |
+| Sat 10/3 | 12:00 PM | Fox | #5 Ohio State (2-1) at #17 Iowa (3-0) | **Sunny, high 65°F.** :chatgpt-content-reference{index="24"} |
+| Sat 10/3 | 12:00 PM | NBC | #7 Notre Dame (4-0) at North Carolina (2-1) | **30% showers; partly sunny, high 76°F.** :chatgpt-content-reference{index="25"} |
+| Sat 10/3 | 12:00 PM | SECN | #12 Florida (3-0) at Missouri (2-2) | **30% showers; partly sunny, around 74°F** — Columbia-area NWS guidance. :chatgpt-content-reference{index="26"} |
+| Sat 10/3 | 12:00 PM | SEN | Virginia (3-1) at Florida State (2-2) | **50% showers/thunderstorms; partly sunny, high 86°F.** :chatgpt-content-reference{index="27"} |
+| Sat 10/3 | 12:00 PM | SEN+ | Holy Cross (3-0) at #23 USF (4-0) | **60% showers/thunderstorms; partly sunny, high 90°F.** :chatgpt-content-reference{index="28"} |
+| Sat 10/3 | 2:10 PM | SEN | Arkansas (2-2) at #22 Texas A&M (1-2) | **40% showers/thunderstorms; mostly cloudy, high 85°F.** :chatgpt-content-reference{index="29"} |
+| Sat 10/3 | 3:30 PM | ABC | #11 Oregon (2-1) at Kansas (0-3) | **20% showers; mostly sunny, high 69°F.** :chatgpt-content-reference{index="30"} |
+| Sat 10/3 | 3:30 PM | B1G | Maryland (1-3) at Nebraska (2-1) | **Mostly sunny, high 66°F.** :chatgpt-content-reference{index="31"} |
+| Sat 10/3 | 3:30 PM | CBS | Purdue (0-4) at Illinois (2-2) | **Mostly sunny, upper 60s** — NWS central-Illinois area guidance; exact Champaign point period not yet available. :chatgpt-content-reference{index="32"} |
+| Sat 10/3 | 3:30 PM | CBSSN | Southern Miss (1-3) at Colgate (2-1) | **Partly sunny, around 63°F.** :chatgpt-content-reference{index="33"} |
+| Sat 10/3 | 3:30 PM | CW | Oregon State (2-2) at Colorado State (2-1) | **Sunny, high 78°F.** :chatgpt-content-reference{index="34"} |
+| Sat 10/3 | 3:30 PM | EBC | #10 BYU (3-0) at TCU (1-3) | **40% showers; partly sunny, high 78°F.** :chatgpt-content-reference{index="35"} |
+| Sat 10/3 | 3:30 PM | ESPN | New Mexico State (0-4) at Louisiana Tech (1-3) | **Chance of showers; mostly cloudy, upper 80s** — NWS Ruston-area guidance. :chatgpt-content-reference{index="36"} |
+| Sat 10/3 | 3:30 PM | ESPN2 | California (2-2) at UNLV (2-2) | **Sunny, high 94°F.** :chatgpt-content-reference{index="37"} |
+| Sat 10/3 | 3:30 PM | Fox | Michigan (3-1) at Minnesota (1-2) | **Mostly sunny, high 63°F; south wind 5–10 mph.** :chatgpt-content-reference{index="38"} |
+| Sat 10/3 | 3:30 PM | SECN | #6 Alabama (4-0) at #21 Mississippi State (3-0) | **50% showers/thunderstorms; partly sunny, high 84°F.** :chatgpt-content-reference{index="39"} |
+| Sat 10/3 | 3:30 PM | SEN+ | Georgia Southern (0-3) at Coastal Carolina (0-3) | **40% showers; partly sunny, high 81°F.** :chatgpt-content-reference{index="40"} |
+| Sat 10/3 | 4:30 PM | SEN | Vanderbilt (3-1) at #2 Georgia (4-0) | **50% showers/thunderstorms; partly sunny, around 84°F** — Athens-area NWS forecast. :chatgpt-content-reference{index="41"} |
+| Sat 10/3 | 4:30 PM | TNT | West Virginia (4-1) at Iowa State (1-2) | **Partly sunny, high 66°F.** :chatgpt-content-reference{index="42"} |
+| Sat 10/3 | 6:00 PM | ACCN | Stanford (2-2) at Wake Forest (3-1) | **40% showers near kickoff; partly sunny, high 76°F. Evening rain chance rises to 50%.** :chatgpt-content-reference{index="43"} |
+| Sat 10/3 | 6:00 PM | USA | Texas State (2-2) at San Diego State (2-2) | **Sunny, high 86°F.** :chatgpt-content-reference{index="44"} |
+| Sat 10/3 | 6:15 PM | SEN | #16 Ole Miss (2-1) at Nevada (0-3) | **Sunny, high 84°F.** :chatgpt-content-reference{index="45"} |
+| Sat 10/3 | 7:15 PM | ESPN | Auburn (3-1) at #14 Tennessee (3-1) | **50% showers; mostly cloudy, low 65°F Saturday night.** :chatgpt-content-reference{index="46"} |
+| Sat 10/3 | 7:30 PM | CBSSN | Cornell (1-3) at Tulane (1-3) | **Chance of showers/thunderstorms; mostly cloudy, low 75°F Saturday night.** :chatgpt-content-reference{index="47"} |
+| Sat 10/3 | 7:30 PM | NBC | Washington (2-1) at #20 USC (4-1) | **Sunny, high 93°F.** Kickoff is 4:30 PM PDT locally. :chatgpt-content-reference{index="48"} |
+| Sat 10/3 | 8:00 PM | CBS | Wyoming (1-2) at North Dakota State (2-1) | **20% shower chance Saturday night; low 43°F. Breezy earlier, with gusts up to 25 mph.** :chatgpt-content-reference{index="49"} |
+| Sat 10/3 | 8:00 PM | CW | Fresno State (2-2) at Washington State (1-3) | **Sunny, around 70°F.** :chatgpt-content-reference{index="50"} |
+| Sat 10/3 | 8:00 PM | EBC | #3 Miami (3-0) at Clemson (3-1) | **50% showers during the day; cloudy with a chance of showers into the evening, upper 60s.** :chatgpt-content-reference{index="51"} |
+| Sat 10/3 | 8:00 PM | Fox | #4 Indiana (4-0) at Rutgers (0-4) | **Partly cloudy, low 54°F; daytime high 71°F.** :chatgpt-content-reference{index="52"} |
+| Sat 10/3 | 8:00 PM | SEN+ | Old Dominion (1-3) at Georgia State (3-1) | **Showers likely, 60%; mostly cloudy, low 68°F.** :chatgpt-content-reference{index="53"} |
+| Sat 10/3 | 8:30 PM | SEN | #8 Texas Tech (4-0) at Colorado (1-2) | **Sunny through 6 PM MDT, high 78°F. Exact Saturday-night point period not yet issued for Boulder.** :chatgpt-content-reference{index="54"} |
+| Sat 10/3 | 9:00 PM | FS1 | Baylor (1-2) at Arizona State (2-1) | **Sunny, around 98°F near the 6 PM local-time boundary** — Phoenix/Tempe-area NWS guidance. :chatgpt-content-reference{index="55"} |
+| Sat 10/3 | 9:30 PM | USA | Utah State (2-2) at Boise State (3-1) | **Sunny through 6 PM MDT, high 75–76°F. Exact Saturday-night point period not yet issued.** :chatgpt-content-reference{index="56"} |
+| Sat 10/3 | 10:00 PM | SEN | #18 Cincinnati (4-0) at Arizona (3-1) | **Sunny through 6 PM MST, high 92°F. Exact Saturday-night point period not yet issued.** :chatgpt-content-reference{index="57"} |
+| Sat 10/3 | 10:30 PM | ESPN2 | UTEP (0-4) at New Mexico (0-3) | **Mostly clear, low 52°F; daytime sunny with a high of 74°F.** :chatgpt-content-reference{index="58"} |
+
+**Reconciled cardinality:** Thursday **2** + Friday **4** + Saturday **50** = **56 / 56**.
+
+The early weather board has several games worth watching closely for rain or thunderstorms: **UCF–Houston, Holy Cross–USF, Alabama–Mississippi State, Vanderbilt–Georgia, Auburn–Tennessee, Miami–Clemson, and Old Dominion–Georgia State** all currently carry meaningful precipitation risk. Because this is still several days out, the most useful operational refresh will be once NWS hourly products extend through the actual kickoff windows—especially for the Mountain/Pacific late games where Saturday-night point periods are not yet published.
+
+I can refresh the entire **56-game NWS board Friday night or Saturday morning** so the weather column becomes much closer to true kickoff-specific conditions.

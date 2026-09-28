@@ -1,0 +1,21 @@
+# GameCast 4.4.0 — Week 6 rollover
+
+Authorized scope is the locked Week 6 slate and the supplied post-Week-5 TEAM/OFF/DEF values. The baseline is release/gamecast-v4.3.2.1 at e6dbe1107ecb6542d41d156246f2209da31ca6c4. No sandbox or 4.3.2.2 football/control features are imported.
+
+The 56 games have canonical IDs G0228–G0283, 112 distinct participants, and 336 scheduled rating fields. All 121 canonical teams match the predecessor population exactly and supply 363 numeric deployment fields on the 60–99 scale. There are zero Week 6 FCS participants and zero FCS overrides. Tempo, special teams, HFA, probabilities, clocks, RNG, lifecycle and controls are unchanged.
+
+The newly supplied `Pasted text(2).txt` table controls the final order and supplied rankings, records, display labels, and September 27 weather snapshot. All dates, times, networks, and pairings agree with the locked workbook. Metadata is retained in both cloud views without adding UI controls or weather/scoring behavior; inherited cards continue showing canonical names. Aliases resolve Hawai'i to Hawaii, ECU to East Carolina, FAU to Florida Atlantic, and USF to South Florida. Opaque citation tokens are omitted from runtime weather text; raw supplied text is preserved.
+
+The corroborating approved carriage source is `2026_TV_Carriage_Updated 09212026.xlsx`, W6 tab, and its matching Carriage_Master rows. The W6 CSV hash exactly matches the recorded Chairman lock: `6cce5420c6fa9f34730a90398eb53262b90c569204d4df7be7745309f08d5429`. Schedule v5 supplies canonical IDs and synthetic membership. Its October 3 nominal dates are supplemented by the locked carriage dates. Sorting uses the literal date and ET kickoff, preserving source order for ties. Hawaii's Saturday 12:00 AM remains Saturday midnight. Exact network strings are retained; ECL OTT labels in the source basis are retained in the verification board's distribution column.
+
+The ratings input is `SYNTHCAST_GAMECAST_W6_POST_W5_TEAM_OFF_DEF_POWER_121_v1.3.xlsx`, SHA-256 `aaba3e9d9eddb3a9dcb129dc57ff6dbae6d990ff35580ff9b4f27a550abf9a54`, GameCast Power columns TEAM/OFF/DEF. Supplied cached deployment values are loaded exactly; no blend, scale, rounding, clipping or recalibration is performed. Detailed provenance is in release-assets/gamecast-v4.4.0/provenance.json.
+
+Target engine: GC-W6-V4.4.0-RC1. Backend: gamecast-week6-v4-4-0. Week: 2026-W06. Route: /v4.4.0/. Session prefix: w6v440-. Browser storage: synthcastGameCast440Operator. Actual publication is established by the workflow and cloud receipt, not this document alone.
+
+Build with `node scripts/build-gamecast-v440.mjs`. Verify local source with `node scripts/verify-gamecast-v440.mjs --source-only`. Run the inherited fixed-seed, 500-seed distribution, 100-seed chunk, 100-seed speed, 280-run full-board and ten UI interaction tests using `GAMECAST_QA_MODULES=<jsdom installation> node scripts/test-gamecast-v440.mjs`. Cloud verification creates only fresh unlaunched QA sessions; it issues no accepted game commands or official results. Tokens remain only in memory.
+
+Backend publication uses the connected Supabase deployment path and the predecessor's custom operator-token authentication. Pages publication runs only after actual cloud reconciliation passes. The Pages script captures existing files from the latest successful publication and requires exact hashes before overlaying only /v4.4.0/. Earlier root/version routes and the newer scoreboard v1.0–v1.3 assets are preserved. If an existing asset changes concurrently, publication fails instead of restoring stale bytes.
+
+Open https://rgbslb11.github.io/Synthcast-Console/v4.4.0/ after publication. Select CREATE OPERATING SLATE. Save COPY OPERATOR LINK privately. COPY PUBLIC LINK supplies the corresponding read-only scoreboard. An entry/public URL alone does not grant control. Existing Week 4/5 sessions are not migrated or changed.
+
+The release receipt must state all twelve gates individually. Physical Mobile Safari and interactive Chairman acceptance are not established by automated DOM tests. Chairman authorization covers this isolated weekly deployment only, not production merge, official-result acceptance or SEUD publication.

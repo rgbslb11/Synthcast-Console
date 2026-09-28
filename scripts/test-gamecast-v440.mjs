@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import {spawnSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+const dir='v440-evidence';fs.mkdirSync(dir,{recursive:true});
+function run(name,source){const file=`scripts/.v440-${name}.mjs`;fs.writeFileSync(file,source);try{const r=spawnSync(process.execPath,[file],{encoding:'utf8',env:process.env});fs.writeFileSync(`${dir}/${name}.log`,r.stdout+r.stderr);console.log(r.stdout);if(r.status!==0)console.error(r.stderr);assert.equal(r.status,0,name);}finally{fs.rmSync(file);}}
+const target='supabase/functions/gamecast-week6-v4-4-0/index.ts';
+const fixed=fs.readFileSync('scripts/test-gamecast-v422-engine.mjs','utf8').replaceAll('supabase/functions/gamecast-week3-v4-2-2/index.ts',target).replaceAll('GameCast 4.2.2 engine regression','GameCast 4.4.0 inherited engine regression');run('fixed-seed',fixed);
+assert.match(fs.readFileSync(`${dir}/fixed-seed.log`,'utf8'),/"glSeconds":7541/);assert.match(fs.readFileSync(`${dir}/fixed-seed.log`,'utf8'),/"plays":\[60,66\]/);
+let multi=fs.readFileSync('scripts/calibrate-gamecast-v422.mjs','utf8').replaceAll('supabase/functions/gamecast-week3-v4-2-2/index.ts',target).replaceAll('GameCast 4.2.2','GameCast 4.4.0').replaceAll('V422_CALIBRATION','V440_INHERITED_DISTRIBUTION');run('multi-seed-invariance',multi);
+let board=fs.readFileSync('scripts/audit-gamecast-v422-week3.mjs','utf8').replaceAll('supabase/functions/gamecast-week3-v4-2-2/week3.ts','supabase/functions/gamecast-week6-v4-4-0/week6.ts').replaceAll('supabase/functions/gamecast-week3-v4-2-2/power.ts','supabase/functions/gamecast-week6-v4-4-0/power.ts').replaceAll('supabase/functions/gamecast-week3-v4-2-2/index.ts',target).replaceAll('51','56').replaceAll('Week 3','Week 6').replaceAll('Week3','Week6').replaceAll('W3','W6').replaceAll('V422_WEEK3','V440_WEEK6').replaceAll('GameCast 4.2.2','GameCast 4.4.0');run('full-board-280',board);
+let ui=fs.readFileSync('scripts/test-gamecast-v423-ui.mjs','utf8').replaceAll('supabase/functions/gamecast-week3-v4-2-2/index.ts',target).replaceAll('public/v4.2.3/index.html','public/v4.4.0/index.html').replaceAll('public/v4.2.3/app.js','public/v4.4.0/app.js').replaceAll('GC-W3-V4.2.2-RC1','GC-W6-V4.4.0-RC1').replaceAll('/v4.2.3/','/v4.4.0/').replaceAll('w3v422-qa','w6v440-qa');run('chairman-interaction',ui);

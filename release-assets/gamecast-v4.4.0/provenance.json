@@ -1,0 +1,64 @@
+{
+  "release": "4.4.0",
+  "sourceFiles": [
+    {
+      "filename": "SYNTHCAST_GAMECAST_W6_POST_W5_TEAM_OFF_DEF_POWER_121_v1.3.xlsx",
+      "sha256": "aaba3e9d9eddb3a9dcb129dc57ff6dbae6d990ff35580ff9b4f27a550abf9a54"
+    },
+    {
+      "filename": "Pasted text(2).txt",
+      "sha256": "c44f803f16bda79ddc48da2d65fa94bbb99341e75f6bcb068c8e244922fa2ec8"
+    },
+    {
+      "filename": "2026_TV_Carriage_Updated 09212026.xlsx",
+      "sha256": "b5438c7aac53eeda5dbdb4cc784101fa33851b821b251d12783e4e964c1dafe5"
+    },
+    {
+      "filename": "2026_FBS_Schedule_LOCKED_v5.xlsx",
+      "sha256": "db26c3fff15a61ce8e7efa3b93100fa017e02248c96076d291495b55e855da12"
+    }
+  ],
+  "ratingsSheet": "GameCast Power",
+  "deploymentColumns": [
+    "TEAM",
+    "OFF",
+    "DEF"
+  ],
+  "carriageSheet": "W6",
+  "carriageMasterWeek6SHA256": "6cce5420c6fa9f34730a90398eb53262b90c569204d4df7be7745309f08d5429",
+  "carriageApproval": "LOCKED 2026-09-20 by AUTHORIZED OSF CHAIRMAN. 56/56 placed. T-8 gate PASS under Model_Parameters_TV_patch_v5: 0 linear collisions, 0 package violations (5 per-game carve-outs), 0 R-TV-LATEHOST-01 violations, 0 unruled grid exceptions. Obligations: TNT 1 (G0247), BTSN ['G0277'], ECL linear ['G0236'], TNF 1/2. USA at CEILING 2. Days: {'Sat': 50, 'Fri': 4, 'Thu': 2}. Linear 48, OTT 8.",
+  "sourceOrder": "Chronological by literal supplied date and ET time; ties preserve the newly supplied Pasted text(2).txt table order. Sat 10/3 12:00am remains that exact instant.",
+  "aliases": [
+    {
+      "supplied": "Hawai'i",
+      "canonical": "Hawaii"
+    },
+    {
+      "supplied": "ECU",
+      "canonical": "East Carolina"
+    },
+    {
+      "supplied": "FAU",
+      "canonical": "Florida Atlantic"
+    },
+    {
+      "supplied": "USF",
+      "canonical": "South Florida"
+    }
+  ],
+  "carriageAttachmentSHA256": "c44f803f16bda79ddc48da2d65fa94bbb99341e75f6bcb068c8e244922fa2ec8",
+  "metadataPolicy": "Supplied ranks, records, display labels, and Sep 27 weather snapshot retained in runtime metadata; no rating or simulation influence. Weather is not independently refreshed. Unresolved opaque citation tokens removed from runtime text; raw source preserved.",
+  "fcsOverridesApplied": [],
+  "canonicalTeams": 121,
+  "canonicalRatingFields": 363,
+  "games": 56,
+  "teamAppearances": 112,
+  "distinctScheduledTeams": 112,
+  "scheduledRatingFields": 336,
+  "fcsScheduleParticipants": 0,
+  "allNeutralFlags": false,
+  "ratingsHashMatchesSuppliedValidation": true,
+  "recomputedRatings": false,
+  "nonRequestedInputs": "Keep runtime tempo=1 and specialTeams=null; no HFA or other tuning changes.",
+  "networkPolicy": "Exact network column is preserved, including case. ECL OTT designation is retained separately in source basis/distribution metadata."
+}
