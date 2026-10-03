@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+// Read-only public-session verification for the isolated Week 6 route.
 
 const base='public/scoreboard/v1.4/';
 const html=fs.readFileSync(base+'index.html','utf8');
