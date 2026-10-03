@@ -16,6 +16,7 @@ assert.match(css,/--bg:#ECECEC/);
 assert.match(css,/--text:#000000/);
 assert.match(css,/\.game-head \.state\{font-size:10px/);
 assert.match(html,/SATURDAY · 50 GAMES/);
+assert.match(html,/WEEK 6/);
 assert.match(html,/THURSDAY &amp; FRIDAY · 6 GAMES/);
 assert.match(js,/gamecast-week6-v4-4-1/);
 assert.match(js,/GC-W6-V4\.4\.1-RC1/);
