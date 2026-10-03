@@ -1,0 +1,63 @@
+name: Publish Week 6 Scoreboard 1.4
+on:
+  push:
+    branches: [release/scoreboard-ui-v1.4-w6]
+    paths:
+      - public/scoreboard/**
+      - scripts/test-scoreboard-v14.mjs
+      - .github/workflows/deploy-scoreboard-v14-w6.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: scoreboard-ui-v14-w6-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Protect the Week 6 engine and release baseline
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/release/scoreboard-ui-v1.4-w6
+          git diff --exit-code bf1d67a7c174b46ccf9d98cb6dcded5a8fc18616 -- supabase release-assets public/v4 public/v4.1 public/v4.2 public/v4.2.1 public/v4.2.2 public/v4.2.3 public/week2 scripts/build-gamecast-v441.mjs scripts/preserve-gamecast-pages-v441.mjs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: node scripts/build-gamecast-v441.mjs
+      - run: node scripts/verify-gamecast-v441.mjs
+      - run: node --check public/scoreboard/v1.4/scoreboard.js
+      - run: node scripts/test-scoreboard-v14.mjs
+      - run: npm run build:pages
+      - name: Preserve previously published routes and add 1.4
+        run: |
+          set -euo pipefail
+          mv out/v4.4.1 "$RUNNER_TEMP/gamecast-v441"
+          node scripts/preserve-gamecast-pages-v441.mjs restore out release-assets/gamecast-v4.4.1/preserved-pages-manifest.json
+          diff -qr "$RUNNER_TEMP/gamecast-v441" out/v4.4.1
+          for version in v1.0 v1.1 v1.2 v1.3 v1.4; do
+            test -f "out/scoreboard/$version/index.html"
+          done
+          cmp public/scoreboard/v1.4/index.html out/scoreboard/v1.4/index.html
+          cmp public/scoreboard/v1.4/scoreboard.css out/scoreboard/v1.4/scoreboard.css
+          cmp public/scoreboard/v1.4/scoreboard.js out/scoreboard/v1.4/scoreboard.js
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: scoreboard-ui-v14-w6-preview
+      url: ${{ steps.publish.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: publish
