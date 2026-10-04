@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "games": 56,
+  "ratings": 121,
+  "exact441Carriage": true,
+  "exact441Power": true,
+  "footballOnlyShortGainChanged": true,
+  "separateTestPersistence": true,
+  "qaOnlyForced": true
+}

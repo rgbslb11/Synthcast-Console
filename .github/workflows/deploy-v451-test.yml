@@ -1,0 +1,57 @@
+name: Publish GameCast 4.5.1 Week 6 test
+on:
+  push:
+    branches: [release/gamecast-v4.5.1]
+    paths:
+      - scripts/*v451-test.mjs
+      - release-assets/gamecast-v4.5.1-test/**
+      - .github/workflows/deploy-v451-test.yml
+      - GAMECAST_4_5_1_TEST.md
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: gamecast-v451-test-pages
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Preserve operating releases
+        run: git diff --exit-code bf1d67a7c174b46ccf9d98cb6dcded5a8fc18616 -- public supabase package.json package-lock.json scripts/build-gamecast-v441.mjs release-assets/gamecast-v4.4.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node scripts/build-gamecast-v451-test.mjs
+      - run: node scripts/verify-gamecast-v451-test.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/gamecast-qa" --no-audit --no-fund jsdom@26.1.0
+      - name: Complete-game invariance and console tests
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gamecast-qa
+        run: node release-assets/gamecast-v4.5.1-test/ui-test.mjs
+      - name: Reconcile hosted test backend
+        run: node release-assets/gamecast-v4.5.1-test/cloud-verify.mjs --read-only
+      - name: Preserve current published bytes and add test route
+        run: node scripts/preserve-gamecast-pages-v451-test.mjs restore out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gamecast-v451-test-verification
+          path: v451-test-evidence/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    environment:
+      name: gamecast-v451-test-preview
+      url: ${{ steps.publish.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: publish

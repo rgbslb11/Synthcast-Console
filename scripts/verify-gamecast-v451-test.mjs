@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {OPERATING_SLATE} from '../supabase/functions/gamecast-week6-v4-5-1-test/week6.ts';
+import {TEAM_POWER} from '../supabase/functions/gamecast-week6-v4-5-1-test/power.ts';
+const read=p=>fs.readFileSync(p,'utf8'),hash=s=>createHash('sha256').update(s).digest('hex'),old='supabase/functions/gamecast-week6-v4-4-1',fn='supabase/functions/gamecast-week6-v4-5-1-test';
+for(const[p,h]of Object.entries(JSON.parse(read('release-assets/gamecast-v4.5.1/parent-hashes.json'))))assert.equal(hash(read(p)),h,p);
+for(const f of ['week6.ts','power.ts','deadman.mjs'])assert.equal(read(fn+'/'+f),read(old+'/'+f));
+const before=read(old+'/index.ts'),after=read(fn+'/index.ts');
+assert.equal(after.slice(after.indexOf('const CAL ='),after.indexOf('// Release-scoped persistence')).replace('chainSustainMultiplier: 0.5','chainSustainMultiplier: 5.0'),before.slice(before.indexOf('const CAL ='),before.indexOf('// Release-scoped persistence')),'Football/state functions changed beyond short-gain recalibration');
+assert.ok(after.includes('qaOnly:true'));assert.ok(!after.includes('gamecast_v12'));assert.ok(after.includes('gamecast_test451_create_session'));assert.ok(after.includes('gamecast_test451_read_session'));assert.ok(after.includes('gamecast_test451_commit'));
+assert.equal(OPERATING_SLATE.length,56);assert.equal(new Set(OPERATING_SLATE.map(g=>g.id)).size,56);assert.equal(Object.keys(TEAM_POWER).length,121);
+let app=read('public/v4.5.1-test/app.js');for(const[a,b]of [['gamecast-week6-v4-5-1-test','gamecast-week6-v4-4-1'],['synthcastGameCast451TestOperator','synthcastGameCast441Operator'],['GC-W6-V4.5.1-TEST1','GC-W6-V4.4.1-RC1']])app=app.replaceAll(a,b);
+app=app.replace("if(filter==='FINAL_UNACCEPTED')return['FINAL_PENDING','LOCKED'].includes(g.lifecycle);",'');assert.equal(app,read('public/v4.4.1/app.js'));
+const sql=read('release-assets/gamecast-v4.5.1-test/persistence.sql');assert.ok(!sql.includes('gamecast_v12'));assert.ok(sql.includes('enable row level security'));assert.ok(sql.includes("where g->>'qaOnly' is distinct from 'true'"));
+fs.writeFileSync('v451-test-evidence/source-verification.json',JSON.stringify({status:'PASS',games:56,ratings:121,exact441Carriage:true,exact441Power:true,footballOnlyShortGainChanged:true,separateTestPersistence:true,qaOnlyForced:true},null,2));
+console.log('PASS exact 4.4.1 carriage/ratings, sole short-gain football change, test persistence, QA-only creation, filter-only console change.');

@@ -1,0 +1,157 @@
+{
+  "results": [
+    {
+      "id": "D01",
+      "name": "Every game starts UNARMED",
+      "status": "PASS"
+    },
+    {
+      "id": "D02",
+      "name": "Arming days ahead survives serialized reload",
+      "status": "PASS"
+    },
+    {
+      "id": "D03",
+      "name": "No early launch",
+      "status": "PASS"
+    },
+    {
+      "id": "D04",
+      "name": "Due launch exactly once with GL zero and 1x",
+      "status": "PASS"
+    },
+    {
+      "id": "D05",
+      "name": "Manual AUTO satisfies and never rearms when stopped",
+      "status": "PASS"
+    },
+    {
+      "id": "D06",
+      "name": "Manual ON AIR satisfies",
+      "status": "PASS"
+    },
+    {
+      "id": "D07",
+      "name": "DISARM and REARM are explicit",
+      "status": "PASS"
+    },
+    {
+      "id": "D08",
+      "name": "Missing TV/kickoff metadata blocked, never fabricated",
+      "status": "PASS"
+    },
+    {
+      "id": "D09",
+      "name": "Unavailable or null power fails closed",
+      "status": "PASS"
+    },
+    {
+      "id": "D10",
+      "name": "Changed authorized kickoff recomputes deadline",
+      "status": "PASS"
+    },
+    {
+      "id": "D11",
+      "name": "TV start and exact kickoff are distinct triggers",
+      "status": "PASS"
+    },
+    {
+      "id": "D12",
+      "name": "Launched but untouched idle game can start AUTO without resetting GL",
+      "status": "PASS"
+    },
+    {
+      "id": "D13",
+      "name": "Pause/Edit/Delay individually protect football and preserve arm audit",
+      "status": "PASS"
+    },
+    {
+      "id": "D14",
+      "name": "Edit Cancel does not restore obsolete arm or ownership",
+      "status": "PASS"
+    },
+    {
+      "id": "D15",
+      "name": "Completed game never restarted or accepted by scheduler",
+      "status": "PASS"
+    },
+    {
+      "id": "D16",
+      "name": "Restart/new seed return to UNARMED with separate run",
+      "status": "PASS"
+    },
+    {
+      "id": "D17",
+      "name": "15-minute mode preserved; arming does not touch football fields",
+      "status": "PASS"
+    },
+    {
+      "id": "D18",
+      "name": "UTC, past trigger, fractional offset and invalid calendar validation",
+      "status": "PASS"
+    },
+    {
+      "id": "D19",
+      "name": "Chairman takeover changes ownership without reseeding",
+      "status": "PASS"
+    },
+    {
+      "id": "D20",
+      "name": "All 56 Eastern-to-UTC conversions, midnight and unusual time preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "D21",
+      "name": "Full API session creation, public redaction and scheduler auth",
+      "status": "PASS"
+    },
+    {
+      "id": "D22",
+      "name": "Bulk ARM applies only selected IDs atomically",
+      "status": "PASS"
+    },
+    {
+      "id": "D23",
+      "name": "No browser required: scheduler starts both games once",
+      "status": "PASS"
+    },
+    {
+      "id": "D24",
+      "name": "Read cadence does not write state or generate an extra start",
+      "status": "PASS"
+    },
+    {
+      "id": "D25",
+      "name": "Version race rejects stale scheduler and stale Chairman changes",
+      "status": "PASS"
+    },
+    {
+      "id": "D26",
+      "name": "Final checkpoint persists once and QA acceptance is denied",
+      "status": "PASS"
+    },
+    {
+      "id": "F01",
+      "name": "168 paired full games: inherited manual vs scheduled candidate",
+      "status": "PASS"
+    },
+    {
+      "id": "F02",
+      "name": "56 full-game poll/chunk comparisons: 1-second vs 37-second",
+      "status": "PASS"
+    },
+    {
+      "id": "F03",
+      "name": "56 equal-synthetic-time 1x/50x comparisons",
+      "status": "PASS"
+    },
+    {
+      "id": "F04",
+      "name": "GL continues through Pause/Edit/Delay while football/RNG freeze",
+      "status": "PASS"
+    }
+  ],
+  "expected": 30,
+  "actual": 30,
+  "pairedGames": 168
+}
