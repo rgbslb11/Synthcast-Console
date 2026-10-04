@@ -1,0 +1,10 @@
+{
+  "supabase/functions/gamecast-week6-v4-4-1/index.ts": "04eaca91b7cb8e842ebe2bde828ea3bf5d0872a34cd8ba070378e891626acd80",
+  "supabase/functions/gamecast-week6-v4-4-1/week6.ts": "319719b6094f77d5643833243ebc523ed59ea3ebbf2f0d908c1d79e7908e1d29",
+  "supabase/functions/gamecast-week6-v4-4-1/power.ts": "34e4ef1bc881d8a3492bee0c0a01cdce58aa82dd36bb43ad77d54175cd9447e1",
+  "supabase/functions/gamecast-week6-v4-4-1/deadman.mjs": "b78624b253214e954a8fe4cd81ee76740c17c47e5ca98b759f6a1b8cfab1d349",
+  "public/v4.4.1/index.html": "d275890e2558db349cd496b6e13d65e4ab6a4c5aa95a217d05d7b1241c88275c",
+  "public/v4.4.1/app.js": "411e77cea87857cc157a6ebf5a720bbf13ed099c4ef91f1d7405d8f3a5d2bc89",
+  "public/v4.4.1/patch-441.js": "62af08bf7c7af150a0591121415249daee9981d76cebfe9ceb292ff3b10a31a3",
+  "public/v4.4.1/deadman.css": "515f94be2951ec5b4bb2f4a27976eb72c9ffda07688d1da93d3a84936817d066"
+}

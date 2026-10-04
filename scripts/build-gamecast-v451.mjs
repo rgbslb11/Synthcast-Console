@@ -1,0 +1,28 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+if(!fs.existsSync('supabase/functions/gamecast-week6-v4-4-1/index.ts'))await import('./build-gamecast-v441.mjs');
+const old='supabase/functions/gamecast-week6-v4-4-1',fn='supabase/functions/gamecast-week7-v4-5-1',oldUi='public/v4.4.1',ui='public/v4.5.1',assets='release-assets/gamecast-v4.5.1';
+const read=p=>fs.readFileSync(p,'utf8'),hash=s=>createHash('sha256').update(s).digest('hex');
+const once=(s,a,b)=>{assert.equal(s.split(a).length,2,a);return s.replace(a,()=>b);};
+const hashes=JSON.parse(read(assets+'/parent-hashes.json'));
+for(const [p,h]of Object.entries(hashes))assert.equal(hash(read(p)),h,'4.4.1 baseline drift: '+p);
+const slate=JSON.parse(read(assets+'/week7-slate-draft.json'));assert.equal(slate.length,54);assert.equal(new Set(slate.map(g=>g.id)).size,54);
+const provenance=JSON.parse(read(assets+'/input-provenance.json'));
+const data='W7-54+SCHEDULE_'+provenance.schedule.sha256.slice(0,12)+'+TV_DRAFT_'+provenance.carriage.sha256.slice(0,12)+'+POST_W5_GAMECAST_v1.3_aaba3e9d9edd+CANONICAL121_FCS0+V451+SHORTGAIN05+DEADMAN1';
+const replacements=[['GC-W6-V4.4.1-RC1','GC-W7-V4.5.1-RC1'],['gamecast-week6-v4-4-1','gamecast-week7-v4-5-1'],['2026-W06','2026-W07'],['w6v441-','w7v451-'],['gamecast_v441_','gamecast_v451_'],['V441_','V451_'],['scheduler441','scheduler451'],['commit441','commit451'],['4.4.1','4.5.1'],['Week 6','Week 7'],['week6_games','week7_games'],['canonicalWeek === "W6"','canonicalWeek === "W7"'],['"./week6.ts"','"./week7.ts"'],['games:56','games:54'],['length !== 56','length !== 54'],['ids.length>56','ids.length>54']];
+fs.mkdirSync(fn,{recursive:true});fs.mkdirSync(ui,{recursive:true});
+let code=read(old+'/index.ts');for(const [a,b]of replacements)code=code.replaceAll(a,b);
+code=once(code,'chainSustainMultiplier: 5.0','chainSustainMultiplier: 0.5');code=code.replace(/^const DATA_VERSION = .*$/m,'const DATA_VERSION = '+JSON.stringify(data)+';');
+fs.writeFileSync(fn+'/index.ts',code);fs.copyFileSync(old+'/power.ts',fn+'/power.ts');fs.copyFileSync(old+'/deadman.mjs',fn+'/deadman.mjs');
+fs.writeFileSync(fn+'/week7.ts','// Week 7 working carriage draft. Deployment blocked pending authoritative carriage.\nexport const OPERATING_SLATE = '+JSON.stringify(slate,null,2)+';\n');
+let app=read(oldUi+'/app.js');for(const [a,b]of [['gamecast-week6-v4-4-1','gamecast-week7-v4-5-1'],['synthcastGameCast441Operator','synthcastGameCast451Operator'],['GC-W6-V4.4.1-RC1','GC-W7-V4.5.1-RC1']])app=app.replaceAll(a,b);
+app=once(app,"if(filter==='FINAL')", "if(filter==='FINAL_UNACCEPTED')return['FINAL_PENDING','LOCKED'].includes(g.lifecycle);if(filter==='FINAL')");fs.writeFileSync(ui+'/app.js',app);
+let html=read(oldUi+'/index.html').replaceAll('4.4.1','4.5.1').replaceAll('patch-441.js','patch-451.js').replaceAll('WEEK 6','WEEK 7').replaceAll('Week 6','Week 7').replaceAll('56','54');
+html=once(html,'<button data-f="FINAL">FINAL</button>','<button data-f="FINAL">FINAL</button><button data-f="FINAL_UNACCEPTED" class="operator-only">FINAL — NOT ACCEPTED</button>');
+html=html.replace('54 approved Week 7 games with exact carriage and canonical IDs.','54 Week 7 games staged from the current working carriage draft.');html=html.replace('Football mechanics are unchanged.','Short-gain bonus recalibrated; other football mechanics retained.');
+html=html.replace('WEEK 7 ROLLOVER: approved slate and post-Week-5 ratings only.','WEEK 7 CANDIDATE: working carriage draft; post-Week-5 ratings retained.');
+fs.writeFileSync(ui+'/index.html',html);fs.writeFileSync(ui+'/patch-451.js',"'use strict';\nengine='GC-W7-V4.5.1-RC1';\n");fs.copyFileSync(oldUi+'/deadman.css',ui+'/deadman.css');
+for(const file of ['persistence.sql','scheduler.sql']){let sql=read('release-assets/gamecast-v4.4.1/'+file);for(const[a,b]of [['gamecast_v441','gamecast_v451'],['gamecast-v441','gamecast-v451'],['gamecast-week6-v4-4-1','gamecast-week7-v4-5-1'],['GC-W6-V4.4.1-RC1','GC-W7-V4.5.1-RC1'],['2026-W06','2026-W07'],['w6v441','w7v451'],['V441_','V451_'],['4.4.1','4.5.1'],['Week 6','Week 7'],['<>56','<>54']])sql=sql.replaceAll(a,b);fs.writeFileSync(assets+'/'+file,sql);}
+fs.mkdirSync('v451-evidence',{recursive:true});fs.writeFileSync('v451-evidence/identity.json',JSON.stringify({engine:'GC-W7-V4.5.1-RC1',function:'gamecast-week7-v4-5-1',week:'2026-W07',namespace:'w7v451-',storage:'synthcastGameCast451Operator',route:'/v4.5.1/',data,games:54,ratings:'UNCHANGED_POST_W5',deploymentStatus:provenance.releaseStatus,shortGainMultiplier:.5,ratingMultiplier:4,homeFieldRaw:.035},null,2));
+console.log('BUILT 4.5.1 Week 7 candidate: 54 games; short-gain 0.5; final-unaccepted filter; deployment blocked on carriage.');

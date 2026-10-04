@@ -1,0 +1,26 @@
+{
+  "schedule": {
+    "name": "2026_FBS_Schedule_LOCKED_v5.xlsx",
+    "sha256": "db26c3fff15a61ce8e7efa3b93100fa017e02248c96076d291495b55e855da12"
+  },
+  "carriage": {
+    "name": "2026_TV_Carriage_W1-W16_W7_WORKING_DRAFT_20261003.xlsx",
+    "sha256": "66618a96e2ed4500917bdd187f0e95e00ba39cd28349a4dd1fce7341b27887c2",
+    "libraryFileId": "libfile_7998020bcf4c8191842e7ef0ed5ad68c",
+    "status": "WORKING_DRAFT",
+    "unresolvedGameId": "G0331",
+    "unresolvedBasis": "NEEDS-RULING-NM-O23"
+  },
+  "games": 54,
+  "teamAppearances": 108,
+  "uniqueParticipants": 108,
+  "canonicalRatings": 121,
+  "scheduledRatingFields": 324,
+  "ratingsPolicy": "Byte-identical 4.4.1 approved post-W5 v1.3 ratings. No post-W6 ratings are substituted.",
+  "releaseStatus": "BLOCKED_PENDING_AUTHORITATIVE_WEEK7_CARRIAGE",
+  "unknownDisplayMetadata": [
+    "Week7 records",
+    "Week7 poll ranks",
+    "Week7 weather"
+  ]
+}

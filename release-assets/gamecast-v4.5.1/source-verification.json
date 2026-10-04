@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "games": 54,
+  "teamAppearances": 108,
+  "uniqueTeams": 108,
+  "canonicalRatings": 121,
+  "canonicalRatingFields": 363,
+  "scheduledRatingFields": 324,
+  "shortGainOnlyFootballChange": true,
+  "consoleFilterOnlyBehaviorChange": true,
+  "ratingsByteIdentical": true,
+  "deadmanByteIdentical": true,
+  "priorReleaseHashesPreserved": true,
+  "carriageStatus": "BLOCKED_WORKING_DRAFT_G0331"
+}

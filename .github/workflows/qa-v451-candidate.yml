@@ -1,0 +1,39 @@
+name: Verify GameCast 4.5.1 Week 7 candidate
+on:
+  push:
+    branches: [release/gamecast-v4.5.1]
+    paths:
+      - scripts/*v451.mjs
+      - release-assets/gamecast-v4.5.1/**
+      - .github/workflows/qa-v451-candidate.yml
+      - GAMECAST_4_5_1_RELEASE.md
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Preserve 4.4.1 and previous releases
+        run: |
+          git diff --exit-code bf1d67a7c174b46ccf9d98cb6dcded5a8fc18616 -- public supabase package.json package-lock.json scripts/build-gamecast-v441.mjs scripts/verify-gamecast-v441.mjs release-assets/gamecast-v4.4.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: node scripts/build-gamecast-v451.mjs
+      - run: node scripts/verify-gamecast-v451.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/gamecast-qa" --no-audit --no-fund jsdom@26.1.0
+      - name: Deadman, simulation invariance, console, and acceptance filter
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gamecast-qa
+        run: node release-assets/gamecast-v4.5.1/ui-test.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gamecast-v451-candidate-verification
+          path: v451-evidence/
