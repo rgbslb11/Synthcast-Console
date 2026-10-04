@@ -1,0 +1,110 @@
+{
+  "status": "LIVE_TEST_BUILD",
+  "week7Status": "AWAITING_FINALIZED_CARRIAGE",
+  "route": "https://rgbslb11.github.io/Synthcast-Console/v4.5.1-test/",
+  "engine": "GC-W6-V4.5.1-TEST1",
+  "sourceRelease": "4.4.1",
+  "sourceWeek": "2026-W06",
+  "carriage": "EXACT_DEPLOYED_441",
+  "power": "EXACT_DEPLOYED_441_POST_WEEK_5_GAMECAST_V1_3",
+  "games": 56,
+  "qaOnlyForced": true,
+  "acceptanceBlocked": true,
+  "dedicatedFunction": "gamecast-week6-v4-5-1-test",
+  "dedicatedPersistence": "gamecast_test451",
+  "baselinePreservation": {
+    "priorPublishedFiles": 70,
+    "operatingSessionCountBeforeAfter": 52,
+    "v441SessionCountBeforeAfter": 7,
+    "priorRpcAndCronHashesUnchanged": true
+  },
+  "githubCommit": "9c5ea0d626b4efeb34a06999a3ecb7ecf12ae60a",
+  "githubWorkflow": {
+    "id": 37177479066,
+    "conclusion": "success"
+  },
+  "sourceVerification": {
+    "status": "PASS",
+    "games": 56,
+    "ratings": 121,
+    "exact441Carriage": true,
+    "exact441Power": true,
+    "footballOnlyShortGainChanged": true,
+    "separateTestPersistence": true,
+    "qaOnlyForced": true
+  },
+  "localTests": 30,
+  "pairedFullGames": 168,
+  "chunkComparisons": 56,
+  "speedComparisons": 56,
+  "hostedChairman": {
+    "status": "PASS",
+    "url": "https://rgbslb11.github.io/Synthcast-Console/v4.5.1-test/",
+    "hostedAssetsLoaded": true,
+    "hostedChairmanCreate": true,
+    "cards": 56,
+    "powerReady": 56,
+    "filterButton": true,
+    "isolatedStorage": true
+  },
+  "hostedDeadman": {
+    "status": "PASS",
+    "qaOnly": true,
+    "publicSlug": "testw6v451-5674eb02f0a54c54",
+    "engine": "GC-W6-V4.5.1-TEST1",
+    "games": 56,
+    "participants": 112,
+    "starts": [
+      {
+        "id": "G0276",
+        "dueZulu": "2026-10-04T04:35:10.409Z",
+        "triggeredAtZulu": "2026-10-04T04:35:20.949Z",
+        "glSeconds": 24
+      },
+      {
+        "id": "G0250",
+        "dueZulu": "2026-10-04T04:35:10.409Z",
+        "triggeredAtZulu": "2026-10-04T04:35:20.949Z",
+        "glSeconds": 24
+      }
+    ],
+    "publicRedaction": "PASS",
+    "qaAcceptanceDenied": "PASS"
+  },
+  "mobileSafari": "NOT_TESTED",
+  "chairmanDistributionApproval": "PENDING",
+  "hostedNaturalFullGames": {
+    "status": "PASS",
+    "naturalFinal": true,
+    "engine": "GC-W6-V4.5.1-TEST1",
+    "speed": 50,
+    "qaAcceptanceDenied": true,
+    "publicSlug": "testw6v451-97592280703e03a5",
+    "results": [
+      {
+        "id": "G0247",
+        "away": "West Virginia",
+        "home": "Iowa State",
+        "scores": [
+          13,
+          20
+        ],
+        "glSeconds": 7762,
+        "plays": 126,
+        "qaOnly": true
+      },
+      {
+        "id": "G0264",
+        "away": "Indiana",
+        "home": "Rutgers",
+        "scores": [
+          34,
+          17
+        ],
+        "glSeconds": 7305,
+        "plays": 114,
+        "qaOnly": true
+      }
+    ]
+  }
+}
