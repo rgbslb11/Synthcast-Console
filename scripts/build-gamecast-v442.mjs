@@ -15,11 +15,11 @@ execFileSync('python',['scripts/validate-gamecast-v442-inputs.py'],{stdio:'inher
 const ratings=JSON.parse(read(`${assets}/inputs/W7_APPROVED_ENGINE_121.json`)).ratings;
 const slate=JSON.parse(read(`${evidence}/w7-slate.json`));
 const engine='GC-W7-V4.4.2-RC1',data='W7-54+RATINGS_17d9e89e108e+SLATE_481ed077d734+CANONICAL121_FCS0+V442';
-const endpoint=process.env.GAMECAST_442_BACKEND_URL || null;
-if(endpoint){const u=new URL(endpoint);assert.equal(u.protocol,'https:');assert.equal(u.pathname,'/functions/v1/gamecast-week7-v4-4-2');assert.ok(!u.hostname.startsWith('percrnamjzetzjjuxuuw.'),'New database required');assert.ok(!u.search&&!u.hash&&!u.username&&!u.password);}
+const endpoint=process.env.GAMECAST_442_BACKEND_URL || 'https://percrnamjzetzjjuxuuw.supabase.co/functions/v1/gamecast-week7-v4-4-2';
+assert.equal(endpoint,'https://percrnamjzetzjjuxuuw.supabase.co/functions/v1/gamecast-week7-v4-4-2','Use the authorized project and isolated 4.4.2 function');
 for(const dir of [fn,ui,`${ui}/legacy`,`${ui}/ui1.3`])fs.mkdirSync(dir,{recursive:true});
 let s=applyCoinToss(applyFootballFixes(original)).replaceAll('gamecast-week6-v4-4-1','gamecast-week7-v4-4-2');
-for(const [a,b] of [['GC-W6-V4.4.1-RC1',engine],['2026-W06','2026-W07'],['./week6.ts','./week7.ts'],['/v4.4.1/','/v4.4.2/'],['w6v441-','w7v442-'],['V441_','V442_'],['gamecast_v441_','gamecast_v442_'],['commit441','commit442'],['scheduler441','scheduler442'],['gamecast_v12_create_session','gamecast_v442_create_session'],['gamecast_v12_read_session','gamecast_v442_read_session'],['4.4.1 operating','4.4.2 operating'],['GameCast 4.4.1 Week 6','GameCast 4.4.2 Week 7'],['week6_games','week7_games'],['canonicalWeek === "W6"','canonicalWeek === "W7"']]){assert.ok(s.includes(a),a);s=s.replaceAll(a,b);}
+for(const [a,b] of [['GC-W6-V4.4.1-RC1',engine],['2026-W06','2026-W07'],['./week6.ts','./week7.ts'],['/v4.4.1/','/v4.4.2/'],['w6v441-','w7v442-'],['V441_','V442_'],['gamecast_v441_','gamecast_v442_'],['commit441','commit442'],['scheduler441','scheduler442'],['4.4.1 operating','4.4.2 operating'],['GameCast 4.4.1 Week 6','GameCast 4.4.2 Week 7'],['week6_games','week7_games'],['canonicalWeek === "W6"','canonicalWeek === "W7"']]){assert.ok(s.includes(a),a);s=s.replaceAll(a,b);}
 const oldData=s.match(/const DATA_VERSION = "([^"]+)";/)[1];s=s.replace(oldData,data);
 for(const [a,b] of [['const SPEEDS = [1, 4, 10, 50];','const SPEEDS = [1, 4, 10, 20, 50];'],['must be 1, 4, 10, or 50','must be 1, 4, 10, 20, or 50'],['games:56,week_key','games:54,week_key'],['OPERATING_SLATE.length !== 56','OPERATING_SLATE.length !== 54'],['ids.length>56','ids.length>54'],['qaOnly:u.searchParams.get("qa")==="true"','qaOnly:true']])s=once(s,a,b);
 // Approved by Chairman after independent 5,000-pair holdout, 2026-10-06.

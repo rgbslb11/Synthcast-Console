@@ -1,0 +1,92 @@
+{
+  "classification": "OBSERVED FACT",
+  "project": "percrnamjzetzjjuxuuw",
+  "migration": "gamecast_v442_isolated_persistence",
+  "status": "APPLIED",
+  "priorFunctionsUnchanged": true,
+  "before": [
+    {
+      "kind": "rpc",
+      "name": "gamecast_v12_create_session",
+      "definition_hash": "b7362f14b413634e8846af5f7b3133f4"
+    },
+    {
+      "kind": "rpc",
+      "name": "gamecast_v12_read_session",
+      "definition_hash": "40418070bd784fe2409d25cdfb581482"
+    },
+    {
+      "kind": "rpc",
+      "name": "gamecast_v441_commit",
+      "definition_hash": "102d0954876b0e33f3474645a842f64d"
+    },
+    {
+      "kind": "rpc",
+      "name": "gamecast_v441_scheduler_auth",
+      "definition_hash": "191156dd0da41d6ae83cf833d357d775"
+    },
+    {
+      "kind": "rpc",
+      "name": "gamecast_v441_scheduler_sessions",
+      "definition_hash": "6aba32c333bc1ab8b0b40ab7117afe05"
+    }
+  ],
+  "after": {
+    "rls": [
+      {
+        "relname": "events",
+        "relrowsecurity": true
+      },
+      {
+        "relname": "sessions",
+        "relrowsecurity": true
+      }
+    ],
+    "functions": [
+      {
+        "grants": "{postgres=X/postgres,service_role=X/postgres}",
+        "proname": "gamecast_v12_create_session",
+        "definition_hash": "b7362f14b413634e8846af5f7b3133f4"
+      },
+      {
+        "grants": "{postgres=X/postgres,service_role=X/postgres}",
+        "proname": "gamecast_v12_read_session",
+        "definition_hash": "40418070bd784fe2409d25cdfb581482"
+      },
+      {
+        "grants": "{postgres=X/postgres,service_role=X/postgres}",
+        "proname": "gamecast_v441_commit",
+        "definition_hash": "102d0954876b0e33f3474645a842f64d"
+      },
+      {
+        "grants": "{postgres=X/postgres,service_role=X/postgres}",
+        "proname": "gamecast_v441_scheduler_auth",
+        "definition_hash": "191156dd0da41d6ae83cf833d357d775"
+      },
+      {
+        "grants": "{postgres=X/postgres,service_role=X/postgres}",
+        "proname": "gamecast_v441_scheduler_sessions",
+        "definition_hash": "6aba32c333bc1ab8b0b40ab7117afe05"
+      },
+      {
+        "grants": "{postgres=X/postgres,service_role=X/postgres}",
+        "proname": "gamecast_v442_commit",
+        "definition_hash": "eca88708d832f0dc1ea18b8f13149591"
+      },
+      {
+        "grants": "{postgres=X/postgres,service_role=X/postgres}",
+        "proname": "gamecast_v442_scheduler_auth",
+        "definition_hash": "6a32f417816f17ca99f0b1584f31b7b3"
+      },
+      {
+        "grants": "{postgres=X/postgres,service_role=X/postgres}",
+        "proname": "gamecast_v442_scheduler_sessions",
+        "definition_hash": "5af9ec6359fbe32ea32aea6be4753fcd"
+      }
+    ],
+    "candidate_sessions": 0
+  },
+  "secretValueReturned": false,
+  "earlierTableAlterations": 0,
+  "priorRecordUpdates": 0
+}

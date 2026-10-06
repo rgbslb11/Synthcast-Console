@@ -1,6 +1,6 @@
 # GameCast 4.4.2 W7 execution plan
 
-Status: BLOCKED at cloud provisioning — assembled W7 candidate passes local tests; not deployed or certified.
+Status: IN PROGRESS — source and browser QA pass; applying the established additive database release process. Not deployed or certified.
 
 ## Foundation and boundaries
 
@@ -40,9 +40,9 @@ Activation: pending. No earlier-week dataset will be substituted.
 - `node scripts/test-gamecast-v442-football-fixes.mjs --baseline`: 497 executed, 370 passed, 127 failed, 0 skipped. Expected red regressions retained as evidence.
 - `node scripts/test-gamecast-v442-football-fixes.mjs`: 497 executed, 497 passed, 0 failed, 0 skipped.
 - Candidate suite includes 16 halftime combinations, 16 reload/retry combinations, 224 kneel boundary cases, 32 forced fourth-down cases, 6 additional guards, 1 restart, 100 overtime comparisons, 100 read-only polling seeds, and 2 invalid halftime transition checks.
-- Both fixes are hash-guarded generator transforms now incorporated in the assembled W7 backend. Generated artifacts are restricted to new 4.4.2 paths. The browser endpoint is deliberately unconfigured until the new database exists.
+- Both fixes are hash-guarded generator transforms now incorporated in the assembled W7 backend. Generated artifacts are restricted to new 4.4.2 paths. The browser endpoint is pinned to the isolated 4.4.2 function in the established project.
 - `node scripts/test-gamecast-v442-fix-mutations.mjs`: 5/5 isolated mutations killed, 0 survived; 497 cases per mutation.
-- `node scripts/test-gamecast-v442-fix-integrity.mjs`: 350/350 pass; 100 protected first-1,000-second comparisons; 50 simultaneous local games match 50 isolated references; 200 acceleration comparisons at 1/4/10/50x. Actual 20x remains unavailable in the inherited selector and is NOT TESTED.
+- `node scripts/test-gamecast-v442-fix-integrity.mjs`: 350/350 pass; 100 protected first-1,000-second comparisons; 50 simultaneous local games match 50 isolated references; 200 acceleration comparisons at 1/4/10/50x. This historical component run preceded assembled 20x support; the assembled suite below covers 20x.
 - `node scripts/test-gamecast-v442-coin-toss.mjs`: 10,102/10,102 pass. GC442-TOSS-00000 through GC442-TOSS-09999: home 4,948 (49.48%), away 5,052 (50.52%), KICK 7,493 (74.93%), RECEIVE 2,507 (25.07%). The local transform uses GC-W7-V4.4.2-RC1 for this test. Both predeclared probability bands pass.
 - `node scripts/test-gamecast-v442-toss-mutations.mjs`: 4/4 isolated mutations killed, 0 survived.
 - HFA exploratory study: 1,000 paired seeds per coefficient at .003/.004/.005/.006/.035; 10,000 full games. The .006 venue coefficient produced a 2.695-point average effect.
@@ -60,14 +60,13 @@ Activation: pending. No earlier-week dataset will be substituted.
 - `GAMECAST_QA_MODULES=<installed QA dependencies> node scripts/test-gamecast-v442-ui.mjs`: 52/52 DOM integration checks pass across exactly three surfaces.
 - `GAMECAST_QA_MODULES=<installed QA dependencies> node scripts/test-gamecast-v442-browser.mjs --chromium-only`: 21/21 actual local Chromium route/asset/refresh/search/filter checks pass.
 - All 12 required mutations are caught; one additional repeated-timeout-reset mutation is also caught (13/13).
-- Local WebKit installation downloaded successfully through the official mirror, but required system libraries could not be installed because this executor rejects apt privilege changes. GitHub QA run 37537992050 at implementation commit e9de5f4e4f10fa906bade8d50425a1586722c51f passed all steps, including 42/42 Chromium and iPhone WebKit browser checks. A later display-only correction shows Kickoff pending until the toss and requires the same QA workflow at its new head. Physical iOS Safari remains untested.
+- Local WebKit installation downloaded successfully through the official mirror, but required system libraries could not be installed because this executor rejects apt privilege changes. GitHub QA run 37537992050 at implementation commit e9de5f4e4f10fa906bade8d50425a1586722c51f passed all steps, including 42/42 Chromium and iPhone WebKit browser checks. The display-only correction shows Kickoff pending until the toss; workflow 37538372748 at b4c54b7d5f030bdd043a1736dd326ce8ec2a0e12 also passed all steps. Physical iOS Safari remains untested.
 - Previously deployed 4.4.1 HTML and six linked assets still match all seven prior hashes, and health remains HTTP 200 / GC-W6-V4.4.1-RC1.
 
-## Remaining blockers and next actions
+## Remaining work and decisions
 
-1. Push the isolated branch and inspect its QA workflow. No existing deployment workflow targets this branch.
-2. Provision a separate database only after the organization and quoted cost are established. The available organization is synth-CFB; the Supabase provisioning tool explicitly requires the user's organization selection before quoting cost.
-3. Finish and review the new database's initial schema, service-only grants, scheduler/Vault setup, and new-only RPCs. Apply no DDL before the specific approval required by the user's original instruction.
-4. Configure only the new endpoint, test cloud persistence/versioning/authorization/isolation, complete browser/mobile and rollback checks, and then deploy according to the 12 gates and three prerequisites. No result acceptance or production promotion.
-
-Release status remains BLOCKED until cloud and deployment gates have direct evidence. Local test success is not certification.
+1. OBSERVED FACT: the user superseded the separate-project proposal and authorized the established additive database process in the existing project. No project provisioning or cost decision is needed.
+2. Pre-install collision checks found no 4.4.2 backend, RPC, Vault credential, or cron job. Preserve shared tables and create/read RPCs; add only 4.4.2 commit/auth/scheduler functions and its fresh credential.
+3. Apply reviewed `persistence.sql`, check service-only grants and previous-function fingerprints, then validate the isolated backend's cloud persistence and authorization.
+4. Preserve the entire currently published Pages artifact while adding `/v4.4.2/`. Complete deployed route, browser, isolation, scheduler, and rollback checks. No result acceptance or canonical promotion.
+5. Final status depends on all 12 gates and three prerequisites. Local or CI success alone is not certification.

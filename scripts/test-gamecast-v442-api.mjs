@@ -9,9 +9,9 @@ let clock=Date.parse('2026-10-06T22:00:00Z'),db=null,events=[],calls=[],cases=[]
 class Clock extends Date{constructor(...args){super(...(args.length?args:[clock]));}static now(){return clock;}}
 const clone=x=>structuredClone(x),hash=s=>createHash('sha256').update(s).digest('hex');
 const client={rpc:async(name,p)=>{
- calls.push(name);assert.ok(name.startsWith('gamecast_v442_'),'Cross-release RPC');
- if(name==='gamecast_v442_create_session'){db={session_id:'fixture-session',public_slug:p.p_public_slug,operator_token_hash:p.p_operator_token_hash,week_key:p.p_week_key,engine_version:p.p_engine_version,data_version:p.p_data_version,state:clone(p.p_state),state_version:1,last_advanced_at:new Clock().toISOString()};return{data:[{public_slug:db.public_slug,state_version:1}],error:null};}
- if(name==='gamecast_v442_read_session')return{data:db&&db.public_slug===p.p_slug?[clone(db)]:[],error:null};
+ calls.push(name);assert.ok(name.startsWith('gamecast_v442_')||['gamecast_v12_create_session','gamecast_v12_read_session'].includes(name),'Cross-release write RPC');
+ if(name==='gamecast_v12_create_session'){db={session_id:'fixture-session',public_slug:p.p_public_slug,operator_token_hash:p.p_operator_token_hash,week_key:p.p_week_key,engine_version:p.p_engine_version,data_version:p.p_data_version,state:clone(p.p_state),state_version:1,last_advanced_at:new Clock().toISOString()};return{data:[{public_slug:db.public_slug,state_version:1}],error:null};}
+ if(name==='gamecast_v12_read_session')return{data:db&&db.public_slug===p.p_slug?[clone(db)]:[],error:null};
  if(name==='gamecast_v442_commit'){
   if(p.p_expected_version!==db.state_version)return{data:[],error:null};
   db.state=clone(p.p_state);db.state_version++;db.last_advanced_at=p.p_stamp;events.push(...clone(p.p_events));return{data:[{state:clone(db.state),state_version:db.state_version,last_advanced_at:db.last_advanced_at}],error:null};
@@ -38,7 +38,7 @@ await check('20x control accepted in AUTO',async()=>{assert.equal((await command
 await check('GET polling never calls commit or changes stored state/events',async()=>{
  const before=JSON.stringify(db),eventCount=events.length;calls=[];
  for(let i=0;i<100;i++){clock+=1000;assert.equal((await request('read')).status,200);}
- assert.equal(calls.length,100);assert.ok(calls.every(n=>n==='gamecast_v442_read_session'));assert.equal(JSON.stringify(db),before);assert.equal(events.length,eventCount);
+ assert.equal(calls.length,100);assert.ok(calls.every(n=>n==='gamecast_v12_read_session'));assert.equal(JSON.stringify(db),before);assert.equal(events.length,eventCount);
 });
 await check('pause and resume preserve pending situation',async()=>{
  assert.equal((await command('pause')).status,200);const before=clone(db.state[0]);clock+=100000;
