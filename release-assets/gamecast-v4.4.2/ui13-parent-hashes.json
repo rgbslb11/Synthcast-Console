@@ -1,0 +1,9 @@
+{
+  "branch": "release/scoreboard-ui-v1.3-w5-light",
+  "commit": "01613cf661a9b438affeb5e5fd923d1d0cc69e59",
+  "sha256": {
+    "scoreboard.js": "54e687bb4cd20592eb4412c31cfc2720640605a9db9794eba9bd2d8fec010800",
+    "index.html": "d7d07eb59e332190c87da326ac98e60e58b3bb96c3f50041998c3bde1883e7d4",
+    "scoreboard.css": "3a5f8fd314b584e151a2f825ae838437735e8d4ad8eac0e934ea5b1d1aa1b786"
+  }
+}

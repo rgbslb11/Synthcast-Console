@@ -1,0 +1,60 @@
+{
+  "classification": "TEST RESULT",
+  "uiChecks": [
+    {
+      "url": "https://rgbslb11.github.io/Synthcast-Console/v4.4.1/",
+      "status": 200,
+      "sha256": "d275890e2558db349cd496b6e13d65e4ab6a4c5aa95a217d05d7b1241c88275c",
+      "matches_prior": true
+    },
+    {
+      "url": "https://rgbslb11.github.io/Synthcast-Console/v4.2/app.css",
+      "status": 200,
+      "sha256": "ebbd83345ccdb0aec2963ee17cd4e21da96988348d840b52060f559633d3ba3f",
+      "matches_prior": true
+    },
+    {
+      "url": "https://rgbslb11.github.io/Synthcast-Console/v4.4.1/deadman.css",
+      "status": 200,
+      "sha256": "515f94be2951ec5b4bb2f4a27976eb72c9ffda07688d1da93d3a84936817d066",
+      "matches_prior": true
+    },
+    {
+      "url": "https://rgbslb11.github.io/Synthcast-Console/v4.4.1/app.js",
+      "status": 200,
+      "sha256": "411e77cea87857cc157a6ebf5a720bbf13ed099c4ef91f1d7405d8f3a5d2bc89",
+      "matches_prior": true
+    },
+    {
+      "url": "https://rgbslb11.github.io/Synthcast-Console/v4.2/patch-rc2.js",
+      "status": 200,
+      "sha256": "c21dc3c688ce27c41e2c4a8e66434dca2a45553b78e95e0459b21f2483794c15",
+      "matches_prior": true
+    },
+    {
+      "url": "https://rgbslb11.github.io/Synthcast-Console/v4.2.2/patch-422.js",
+      "status": 200,
+      "sha256": "fce66b555276765cc7a16d3478c5960ebd96eb2446cc751af683cf278e46d827",
+      "matches_prior": true
+    },
+    {
+      "url": "https://rgbslb11.github.io/Synthcast-Console/v4.4.1/patch-441.js",
+      "status": 200,
+      "sha256": "62af08bf7c7af150a0591121415249daee9981d76cebfe9ceb292ff3b10a31a3",
+      "matches_prior": true
+    }
+  ],
+  "backendHealth": {
+    "url": "https://percrnamjzetzjjuxuuw.supabase.co/functions/v1/gamecast-week6-v4-4-1?api=health",
+    "status": 200,
+    "body": {
+      "engine_version": "GC-W6-V4.4.1-RC1",
+      "data_version": "W6-56+SLATE_c44f803f16bd+TV_6cce5420c6fa+POST_W5_GAMECAST_v1.3_aaba3e9d9edd+CANONICAL121_FCS0+V441+DEADMAN1",
+      "games": 56,
+      "week_key": "2026-W06",
+      "deadman": true
+    }
+  },
+  "databaseWritesByThisTask": 0,
+  "deploymentsByThisTask": 0
+}

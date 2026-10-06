@@ -1,0 +1,1268 @@
+{
+  "baseline-football-fixes": {
+    "mode": "baseline",
+    "executed": 497,
+    "passed": 370,
+    "failed": 127,
+    "skipped": 0,
+    "groups": {
+      "halftime": {
+        "executed": 16,
+        "passed": 1,
+        "failed": 15,
+        "skipped": 0
+      },
+      "halftime-reload-retry": {
+        "executed": 16,
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "halftime-invalid-transition": {
+        "executed": 2,
+        "passed": 0,
+        "failed": 2,
+        "skipped": 0
+      },
+      "kneel-boundary": {
+        "executed": 224,
+        "passed": 120,
+        "failed": 104,
+        "skipped": 0
+      },
+      "forced-fourth-kneel": {
+        "executed": 32,
+        "passed": 28,
+        "failed": 4,
+        "skipped": 0
+      },
+      "kneel-guard": {
+        "executed": 6,
+        "passed": 5,
+        "failed": 1,
+        "skipped": 0
+      },
+      "restart": {
+        "executed": 1,
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0
+      },
+      "overtime-unchanged": {
+        "executed": 100,
+        "passed": 100,
+        "failed": 0,
+        "skipped": 0
+      },
+      "read-only-polling": {
+        "executed": 100,
+        "passed": 100,
+        "failed": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "candidate-football-fixes": {
+    "mode": "candidate",
+    "executed": 497,
+    "passed": 497,
+    "failed": 0,
+    "skipped": 0,
+    "groups": {
+      "halftime": {
+        "executed": 16,
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "halftime-reload-retry": {
+        "executed": 16,
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "halftime-invalid-transition": {
+        "executed": 2,
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "kneel-boundary": {
+        "executed": 224,
+        "passed": 224,
+        "failed": 0,
+        "skipped": 0
+      },
+      "forced-fourth-kneel": {
+        "executed": 32,
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0
+      },
+      "kneel-guard": {
+        "executed": 6,
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0
+      },
+      "restart": {
+        "executed": 1,
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "overtime-unchanged": {
+        "executed": 100,
+        "passed": 100,
+        "failed": 0,
+        "skipped": 0
+      },
+      "read-only-polling": {
+        "executed": 100,
+        "passed": 100,
+        "failed": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "assembled-football-fixes": {
+    "mode": "assembled",
+    "executed": 497,
+    "passed": 497,
+    "failed": 0,
+    "skipped": 0,
+    "groups": {
+      "halftime": {
+        "executed": 16,
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "halftime-reload-retry": {
+        "executed": 16,
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "halftime-invalid-transition": {
+        "executed": 2,
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "kneel-boundary": {
+        "executed": 224,
+        "passed": 224,
+        "failed": 0,
+        "skipped": 0
+      },
+      "forced-fourth-kneel": {
+        "executed": 32,
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0
+      },
+      "kneel-guard": {
+        "executed": 6,
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0
+      },
+      "restart": {
+        "executed": 1,
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "overtime-unchanged": {
+        "executed": 100,
+        "passed": 100,
+        "failed": 0,
+        "skipped": 0
+      },
+      "read-only-polling": {
+        "executed": 100,
+        "passed": 100,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    "halftimeCases": [
+      {
+        "group": "halftime",
+        "name": "0/0",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "0/1",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "0/2",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "0/3",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "1/0",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "1/1",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "1/2",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "1/3",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "2/0",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "2/1",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "2/2",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "2/3",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "3/0",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "3/1",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "3/2",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      },
+      {
+        "group": "halftime",
+        "name": "3/3",
+        "status": "PASS",
+        "expected": [
+          3,
+          3
+        ],
+        "observed": [
+          3,
+          3
+        ]
+      }
+    ]
+  },
+  "fix-mutations": {
+    "mutations": 5,
+    "killed": 5,
+    "survived": 0,
+    "results": [
+      {
+        "mutation": "automatic-fourth-kneel",
+        "status": "KILLED",
+        "executed": 497,
+        "failedAssertions": 32,
+        "failedGroups": [
+          "kneel-boundary"
+        ]
+      },
+      {
+        "mutation": "forced-kneel-clock",
+        "status": "KILLED",
+        "executed": 497,
+        "failedAssertions": 4,
+        "failedGroups": [
+          "forced-fourth-kneel"
+        ]
+      },
+      {
+        "mutation": "forced-kneel-possession",
+        "status": "KILLED",
+        "executed": 497,
+        "failedAssertions": 32,
+        "failedGroups": [
+          "forced-fourth-kneel"
+        ]
+      },
+      {
+        "mutation": "halftime-carryover",
+        "status": "KILLED",
+        "executed": 497,
+        "failedAssertions": 16,
+        "failedGroups": [
+          "halftime",
+          "restart"
+        ]
+      },
+      {
+        "mutation": "duplicate-half-reset",
+        "status": "KILLED",
+        "executed": 497,
+        "failedAssertions": 16,
+        "failedGroups": [
+          "halftime-reload-retry"
+        ]
+      }
+    ]
+  },
+  "fix-integrity": {
+    "classification": "TEST RESULT",
+    "scope": "Kneel and halftime transform only; full release integration pending",
+    "executed": 350,
+    "passed": 350,
+    "failed": 0,
+    "skipped": 0,
+    "protectedFirst1000Seconds": {
+      "seeds": [
+        "GC442-PROTECTED-0",
+        "GC442-PROTECTED-99"
+      ],
+      "comparisons": 100
+    },
+    "simultaneousGames": 50,
+    "seedRange": [
+      "GC442-LOAD-0",
+      "GC442-LOAD-49"
+    ],
+    "referenceFinals": 50,
+    "concurrentFinals": 50,
+    "rounds": 159,
+    "concurrentMilliseconds": 214.86596499999996,
+    "accelerationComparisons": 200,
+    "speedsTested": [
+      1,
+      4,
+      10,
+      50
+    ],
+    "twentyX": "NOT TESTED: inherited SPEEDS excludes 20; release UI/backend integration required",
+    "runtimeMilliseconds": 1814.255944
+  },
+  "coin-toss": {
+    "classification": "TEST RESULT",
+    "engineIdentity": "GC-W7-V4.4.2-RC1 in isolated transform harness; deployed integration still required",
+    "executed": 10102,
+    "passed": 10102,
+    "failed": 0,
+    "skipped": 0,
+    "seeds": [
+      "GC442-TOSS-00000",
+      "GC442-TOSS-09999"
+    ],
+    "distributionCases": 10000,
+    "predeclaredBands": {
+      "homeAway": [
+        0.48,
+        0.52
+      ],
+      "kick": [
+        0.73,
+        0.77
+      ]
+    },
+    "counts": {
+      "home": 4948,
+      "away": 5052,
+      "KICK": 7493,
+      "RECEIVE": 2507
+    },
+    "rates": {
+      "home": 0.4948,
+      "away": 0.5052,
+      "KICK": 0.7493,
+      "RECEIVE": 0.2507
+    },
+    "invarianceSeeds": 100
+  },
+  "toss-mutations": {
+    "executed": 4,
+    "killed": 4,
+    "survived": 0,
+    "results": [
+      {
+        "mutation": "away-always-receives",
+        "status": "KILLED",
+        "exitCode": 1,
+        "firstFailure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n0 !== 1"
+      },
+      {
+        "mutation": "q3-not-reciprocal",
+        "status": "KILLED",
+        "exitCode": 1,
+        "firstFailure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n0 !== 1"
+      },
+      {
+        "mutation": "retry-rerolls",
+        "status": "KILLED",
+        "exitCode": 1,
+        "firstFailure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ '{\"winnerTeamId\":\"Home\",\"choice\":\"RECEIVE\",\"openingKickingTeamId\":\"Home\",\"openingReceivingTeamId\":\"Away\",\"q3KickingTeamId\":\"Away\",\"q3ReceivingTeamId\":\"Home\",\"seedHex\":\"GC442-TOSS-00000\",\"runId\":\"TEST-R01\",\"engineVersion\":\"GC-W7-V4.4.2-RC1\"}'"
+      },
+      {
+        "mutation": "wrong-kick-probability",
+        "status": "KILLED",
+        "exitCode": 1,
+        "firstFailure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(counts.KICK>=7300&&counts.KICK<=7700)"
+      }
+    ]
+  },
+  "hfa-HFA442-EXPLORE": {
+    "classification": "TEST RESULT",
+    "purpose": "Diagnostic conversion study; no approved calibration or acceptance tolerance inferred",
+    "engine": "Verified 4.4.1 plus only candidate kneel and halftime fixes",
+    "ratings": {
+      "home": [
+        80,
+        80,
+        80
+      ],
+      "away": [
+        80,
+        80,
+        80
+      ]
+    },
+    "quarterSeconds": 600,
+    "seedRange": [
+      "HFA442-EXPLORE-00000",
+      "HFA442-EXPLORE-00999"
+    ],
+    "chunkSeconds": 10,
+    "results": [
+      {
+        "normalizedEdge": 0.003,
+        "pairs": 1000,
+        "games": 2000,
+        "meanHomeMargin": 1.209,
+        "meanNeutralMargin": -0.297,
+        "pairedVenueEffectPoints": 1.506,
+        "standardError": 0.48871956254155696,
+        "empirical95PercentInterval": [
+          0.5481096574185483,
+          2.463890342581452
+        ]
+      },
+      {
+        "normalizedEdge": 0.004,
+        "pairs": 1000,
+        "games": 2000,
+        "meanHomeMargin": 1.289,
+        "meanNeutralMargin": -0.297,
+        "pairedVenueEffectPoints": 1.586,
+        "standardError": 0.4905417772577941,
+        "empirical95PercentInterval": [
+          0.6245381165747237,
+          2.5474618834252762
+        ]
+      },
+      {
+        "normalizedEdge": 0.005,
+        "pairs": 1000,
+        "games": 2000,
+        "meanHomeMargin": 1.713,
+        "meanNeutralMargin": -0.297,
+        "pairedVenueEffectPoints": 2.01,
+        "standardError": 0.5004841499831781,
+        "empirical95PercentInterval": [
+          1.0290510660329706,
+          2.990948933967029
+        ]
+      },
+      {
+        "normalizedEdge": 0.006,
+        "pairs": 1000,
+        "games": 2000,
+        "meanHomeMargin": 2.398,
+        "meanNeutralMargin": -0.297,
+        "pairedVenueEffectPoints": 2.695,
+        "standardError": 0.49496562099398983,
+        "empirical95PercentInterval": [
+          1.7248673828517798,
+          3.66513261714822
+        ]
+      },
+      {
+        "normalizedEdge": 0.035,
+        "pairs": 1000,
+        "games": 2000,
+        "meanHomeMargin": 19.953,
+        "meanNeutralMargin": -0.297,
+        "pairedVenueEffectPoints": 20.25,
+        "standardError": 0.5161995369641104,
+        "empirical95PercentInterval": [
+          19.238248907550343,
+          21.261751092449657
+        ]
+      }
+    ],
+    "runtimeMilliseconds": 42317.897154
+  },
+  "hfa-HFA442-HOLDOUT": {
+    "classification": "TEST RESULT",
+    "purpose": "Diagnostic conversion study; no approved calibration or acceptance tolerance inferred",
+    "engine": "Verified 4.4.1 plus only candidate kneel and halftime fixes",
+    "ratings": {
+      "home": [
+        80,
+        80,
+        80
+      ],
+      "away": [
+        80,
+        80,
+        80
+      ]
+    },
+    "quarterSeconds": 600,
+    "seedRange": [
+      "HFA442-HOLDOUT-00000",
+      "HFA442-HOLDOUT-04999"
+    ],
+    "chunkSeconds": 10,
+    "results": [
+      {
+        "normalizedEdge": 0.006,
+        "pairs": 5000,
+        "games": 10000,
+        "meanHomeMargin": 2.718,
+        "meanNeutralMargin": -0.211,
+        "pairedVenueEffectPoints": 2.929,
+        "standardError": 0.21633120819319543,
+        "empirical95PercentInterval": [
+          2.504990831941337,
+          3.3530091680586627
+        ]
+      }
+    ],
+    "runtimeMilliseconds": 53902.630035
+  },
+  "release-local": {
+    "classification": "TEST RESULT",
+    "scope": "Assembled 4.4.2 backend, local QA only",
+    "executed": 870,
+    "passed": 870,
+    "failed": 0,
+    "skipped": 0,
+    "groups": {
+      "data": 1,
+      "HFA": 4,
+      "protected": 1,
+      "full-board": 54,
+      "acceleration": 648,
+      "poll/chunk": 54,
+      "pause/reload": 54,
+      "simultaneous-load": 54
+    },
+    "fullBoardGames": 54,
+    "simultaneousGames": 54,
+    "seedPattern": "GC442-W7-{canonical game ID}",
+    "loadMilliseconds": 216.42416299999968,
+    "rounds": 159,
+    "runtimeMilliseconds": 4417.514257
+  },
+  "api-local": {
+    "classification": "TEST RESULT",
+    "scope": "Actual request handler with in-memory RPC double; not cloud persistence proof",
+    "executed": 14,
+    "passed": 14,
+    "failed": 0,
+    "skipped": 0,
+    "readOnlyPolls": 100,
+    "cases": [
+      {
+        "name": "create isolated QA W7 state",
+        "status": "PASS"
+      },
+      {
+        "name": "Chairman token enforced",
+        "status": "PASS"
+      },
+      {
+        "name": "earlier release namespace rejected",
+        "status": "PASS"
+      },
+      {
+        "name": "launch persists one toss",
+        "status": "PASS"
+      },
+      {
+        "name": "retry cannot commit a second toss",
+        "status": "PASS"
+      },
+      {
+        "name": "public response excludes private fields",
+        "status": "PASS"
+      },
+      {
+        "name": "20x control accepted in AUTO",
+        "status": "PASS"
+      },
+      {
+        "name": "GET polling never calls commit or changes stored state/events",
+        "status": "PASS"
+      },
+      {
+        "name": "pause and resume preserve pending situation",
+        "status": "PASS"
+      },
+      {
+        "name": "delay/resume and edit/cancel retain toss",
+        "status": "PASS"
+      },
+      {
+        "name": "QA final cannot be accepted",
+        "status": "PASS"
+      },
+      {
+        "name": "same-seed restart reproduces toss",
+        "status": "PASS"
+      },
+      {
+        "name": "scheduler authorization enforced",
+        "status": "PASS"
+      },
+      {
+        "name": "Dead-Man launch commits its toss once",
+        "status": "PASS"
+      }
+    ]
+  },
+  "ui-local": {
+    "classification": "TEST RESULT",
+    "scope": "DOM integration with actual generated scripts and a read-only fixture API; not deployed browser or Safari proof",
+    "executed": 50,
+    "passed": 50,
+    "failed": 0,
+    "skipped": 0,
+    "uiSurfaceCount": 3,
+    "cases": [
+      {
+        "surface": "filters",
+        "name": "FINAL_PENDING",
+        "status": "PASS"
+      },
+      {
+        "surface": "filters",
+        "name": "LOCKED",
+        "status": "PASS"
+      },
+      {
+        "surface": "filters",
+        "name": "READY",
+        "status": "PASS"
+      },
+      {
+        "surface": "filters",
+        "name": "FINAL",
+        "status": "PASS"
+      },
+      {
+        "surface": "filters",
+        "name": "SEUD PUBLISHED",
+        "status": "PASS"
+      },
+      {
+        "surface": "filters",
+        "name": "ACTIVE",
+        "status": "PASS"
+      },
+      {
+        "surface": "filters",
+        "name": "DELAY",
+        "status": "PASS"
+      },
+      {
+        "surface": "filters",
+        "name": "DELAYED",
+        "status": "PASS"
+      },
+      {
+        "surface": "filters",
+        "name": "UNLAUNCHED",
+        "status": "PASS"
+      },
+      {
+        "surface": "filters",
+        "name": "EDIT",
+        "status": "PASS"
+      },
+      {
+        "surface": "search",
+        "name": "away Tex",
+        "status": "PASS"
+      },
+      {
+        "surface": "search",
+        "name": "away tex",
+        "status": "PASS"
+      },
+      {
+        "surface": "search",
+        "name": "away TEX",
+        "status": "PASS"
+      },
+      {
+        "surface": "search",
+        "name": "away  tex ",
+        "status": "PASS"
+      },
+      {
+        "surface": "search",
+        "name": "home Tex",
+        "status": "PASS"
+      },
+      {
+        "surface": "search",
+        "name": "home tex",
+        "status": "PASS"
+      },
+      {
+        "surface": "search",
+        "name": "home TEX",
+        "status": "PASS"
+      },
+      {
+        "surface": "search",
+        "name": "home  tex ",
+        "status": "PASS"
+      },
+      {
+        "surface": "search",
+        "name": "approved abbreviation",
+        "status": "PASS"
+      },
+      {
+        "surface": "routes",
+        "name": "exactly three named surfaces",
+        "status": "PASS"
+      },
+      {
+        "surface": "Chairman UI",
+        "name": "loads full 54-game board and linked assets",
+        "status": "PASS"
+      },
+      {
+        "surface": "Chairman UI",
+        "name": "substring search Tex",
+        "status": "PASS"
+      },
+      {
+        "surface": "Chairman UI",
+        "name": "substring search tex",
+        "status": "PASS"
+      },
+      {
+        "surface": "Chairman UI",
+        "name": "substring search TEX",
+        "status": "PASS"
+      },
+      {
+        "surface": "Chairman UI",
+        "name": "substring search  tex ",
+        "status": "PASS"
+      },
+      {
+        "surface": "Chairman UI",
+        "name": "clearing search restores order",
+        "status": "PASS"
+      },
+      {
+        "surface": "Chairman UI",
+        "name": "empty result and safe text",
+        "status": "PASS"
+      },
+      {
+        "surface": "Chairman UI",
+        "name": "pending and locked included; accepted excluded",
+        "status": "PASS"
+      },
+      {
+        "surface": "Chairman UI",
+        "name": "final filter AND team search",
+        "status": "PASS"
+      },
+      {
+        "surface": "Chairman UI",
+        "name": "lifecycle updates while search focused without reload",
+        "status": "PASS"
+      },
+      {
+        "surface": "Chairman UI",
+        "name": "clear filter restores normal board",
+        "status": "PASS"
+      },
+      {
+        "surface": "Chairman UI",
+        "name": "filter/search never writes",
+        "status": "PASS"
+      },
+      {
+        "surface": "Public UI",
+        "name": "loads full 54-game board and linked assets",
+        "status": "PASS"
+      },
+      {
+        "surface": "Public UI",
+        "name": "substring search Tex",
+        "status": "PASS"
+      },
+      {
+        "surface": "Public UI",
+        "name": "substring search tex",
+        "status": "PASS"
+      },
+      {
+        "surface": "Public UI",
+        "name": "substring search TEX",
+        "status": "PASS"
+      },
+      {
+        "surface": "Public UI",
+        "name": "substring search  tex ",
+        "status": "PASS"
+      },
+      {
+        "surface": "Public UI",
+        "name": "clearing search restores order",
+        "status": "PASS"
+      },
+      {
+        "surface": "Public UI",
+        "name": "empty result and safe text",
+        "status": "PASS"
+      },
+      {
+        "surface": "Public UI",
+        "name": "no Chairman controls or token",
+        "status": "PASS"
+      },
+      {
+        "surface": "Public UI",
+        "name": "filter/search never writes",
+        "status": "PASS"
+      },
+      {
+        "surface": "Condensed UI (UI 1.3)",
+        "name": "loads full 54-game board and linked assets",
+        "status": "PASS"
+      },
+      {
+        "surface": "Condensed UI (UI 1.3)",
+        "name": "substring search Tex",
+        "status": "PASS"
+      },
+      {
+        "surface": "Condensed UI (UI 1.3)",
+        "name": "substring search tex",
+        "status": "PASS"
+      },
+      {
+        "surface": "Condensed UI (UI 1.3)",
+        "name": "substring search TEX",
+        "status": "PASS"
+      },
+      {
+        "surface": "Condensed UI (UI 1.3)",
+        "name": "substring search  tex ",
+        "status": "PASS"
+      },
+      {
+        "surface": "Condensed UI (UI 1.3)",
+        "name": "clearing search restores order",
+        "status": "PASS"
+      },
+      {
+        "surface": "Condensed UI (UI 1.3)",
+        "name": "empty result and safe text",
+        "status": "PASS"
+      },
+      {
+        "surface": "Condensed UI (UI 1.3)",
+        "name": "no Chairman controls or token",
+        "status": "PASS"
+      },
+      {
+        "surface": "Condensed UI (UI 1.3)",
+        "name": "filter/search never writes",
+        "status": "PASS"
+      }
+    ]
+  },
+  "remaining-mutations": {
+    "executed": 4,
+    "killed": 4,
+    "survived": 0,
+    "results": [
+      {
+        "mutation": "locked-hidden",
+        "status": "KILLED",
+        "exitCode": 1
+      },
+      {
+        "mutation": "exact-search",
+        "status": "KILLED",
+        "exitCode": 1
+      },
+      {
+        "mutation": "neutral-hfa",
+        "status": "KILLED",
+        "exitCode": 1
+      },
+      {
+        "mutation": "double-hfa",
+        "status": "KILLED",
+        "exitCode": 1
+      }
+    ]
+  },
+  "browser-local": {
+    "classification": "TEST RESULT",
+    "scope": "Actual browsers against local HTTP routes/assets and fixture read-only API; cloud and physical iOS Safari not tested",
+    "executed": 21,
+    "passed": 21,
+    "failed": 0,
+    "skipped": 0,
+    "surfaces": 3,
+    "browsers": 1,
+    "cases": [
+      {
+        "browser": "Chromium desktop",
+        "surface": "public",
+        "name": "direct navigation and 54 cards",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "public",
+        "name": "assets and JavaScript load",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "public",
+        "name": "search variants and substring",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "public",
+        "name": "empty result and safe text",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "public",
+        "name": "no operator controls or token sent",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "public",
+        "name": "refresh and viewport usable",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "public",
+        "name": "read-only API requests",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "chairman",
+        "name": "direct navigation and 54 cards",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "chairman",
+        "name": "assets and JavaScript load",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "chairman",
+        "name": "search variants and substring",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "chairman",
+        "name": "empty result and safe text",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "chairman",
+        "name": "final action filter and live lifecycle update",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "chairman",
+        "name": "refresh and viewport usable",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "chairman",
+        "name": "read-only API requests",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "ui1.3",
+        "name": "direct navigation and 54 cards",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "ui1.3",
+        "name": "assets and JavaScript load",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "ui1.3",
+        "name": "search variants and substring",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "ui1.3",
+        "name": "empty result and safe text",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "ui1.3",
+        "name": "no operator controls or token sent",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "ui1.3",
+        "name": "refresh and viewport usable",
+        "status": "PASS"
+      },
+      {
+        "browser": "Chromium desktop",
+        "surface": "ui1.3",
+        "name": "read-only API requests",
+        "status": "PASS"
+      }
+    ]
+  },
+  "reproducible-build": {
+    "classification": "TEST RESULT",
+    "status": "PASS",
+    "files": 16,
+    "sha256": {
+      "public/v4.4.2/index.html": "1c234b783f1abbae8d5b27a624fd96d8fe14755d4970f73674e42f57dd4841a2",
+      "public/v4.4.2/release-config.js": "133e68ca371ef06c6af3cc5e7814f1586be1b2c035f76dd97f8693e6ab796e58",
+      "public/v4.4.2/app.js": "f3872c2325eeb9d3c0870c73c03c8dc304dba0c401c5c41754556e187d382423",
+      "public/v4.4.2/patch-442.js": "474f47ddb60d3a12e2a18edb7ea7aa05881f5a29088216de219b916bf4e7db4a",
+      "public/v4.4.2/list-filters.js": "f552fd3066a4ac822e8f367dfaecf0b83b71d3fee319a91e9035580ecfbb7aa5",
+      "public/v4.4.2/deadman.css": "515f94be2951ec5b4bb2f4a27976eb72c9ffda07688d1da93d3a84936817d066",
+      "public/v4.4.2/legacy/app.css": "ebbd83345ccdb0aec2963ee17cd4e21da96988348d840b52060f559633d3ba3f",
+      "public/v4.4.2/legacy/patch-rc2.js": "c21dc3c688ce27c41e2c4a8e66434dca2a45553b78e95e0459b21f2483794c15",
+      "public/v4.4.2/legacy/patch-422.js": "fce66b555276765cc7a16d3478c5960ebd96eb2446cc751af683cf278e46d827",
+      "public/v4.4.2/ui1.3/scoreboard.js": "b362b9d8b7b41308cf6e50870264225562ef77d12e5358b927f9fba40fbab752",
+      "public/v4.4.2/ui1.3/index.html": "a1b5a90e521dd253b3b70bf47a58c7f87c8d61b6a4538cd99c39b53296f962b0",
+      "public/v4.4.2/ui1.3/scoreboard.css": "3a5f8fd314b584e151a2f825ae838437735e8d4ad8eac0e934ea5b1d1aa1b786",
+      "supabase/functions/gamecast-week7-v4-4-2/week7.ts": "5b85db3f065179f20a7d371212f042002bb380fdb3f7f338e3f122e5f3a4de93",
+      "supabase/functions/gamecast-week7-v4-4-2/index.ts": "1fb183a1a7e1d8000b6b37e7a4cd09ac8790de327eadd6529cdb45c22e72a774",
+      "supabase/functions/gamecast-week7-v4-4-2/deadman.mjs": "b78624b253214e954a8fe4cd81ee76740c17c47e5ca98b759f6a1b8cfab1d349",
+      "supabase/functions/gamecast-week7-v4-4-2/power.ts": "3f3ed01dbd6bfc2faf9cdff90b4d312cc44b1a6ce966184695373b5fa4dd4496"
+    }
+  },
+  "identity": {
+    "engine": "GC-W7-V4.4.2-RC1",
+    "week": "2026-W07",
+    "function": "gamecast-week7-v4-4-2",
+    "namespace": "w7v442-",
+    "storage": "synthcastGameCast442Operator",
+    "data": "W7-54+RATINGS_17d9e89e108e+SLATE_481ed077d734+CANONICAL121_FCS0+V442",
+    "backendUrl": null,
+    "deployment": "NOT DEPLOYED",
+    "qaOnly": true,
+    "hfa": {
+      "targetPoints": 2.66,
+      "approvedNormalizedEdge": 0.006,
+      "holdoutMeanPoints": 2.929
+    },
+    "uiSurfaceCount": 3,
+    "surfaces": [
+      {
+        "name": "Public UI",
+        "route": "/v4.4.2/?view=public"
+      },
+      {
+        "name": "Chairman UI",
+        "route": "/v4.4.2/"
+      },
+      {
+        "name": "Condensed UI (UI 1.3)",
+        "route": "/v4.4.2/ui1.3/"
+      }
+    ]
+  },
+  "source-hashes": {
+    "index.ts": "1fb183a1a7e1d8000b6b37e7a4cd09ac8790de327eadd6529cdb45c22e72a774",
+    "week7.ts": "5b85db3f065179f20a7d371212f042002bb380fdb3f7f338e3f122e5f3a4de93",
+    "power.ts": "3f3ed01dbd6bfc2faf9cdff90b4d312cc44b1a6ce966184695373b5fa4dd4496",
+    "deadman.mjs": "b78624b253214e954a8fe4cd81ee76740c17c47e5ca98b759f6a1b8cfab1d349"
+  },
+  "hfaApproval": {
+    "classification": "OBSERVED FACT",
+    "user_instruction": "I approve the HFA holdout",
+    "approvedNormalizedEdge": 0.006,
+    "targetPoints": 2.66,
+    "holdoutObservedPoints": 2.929
+  }
+}

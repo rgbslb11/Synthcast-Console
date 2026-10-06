@@ -1,0 +1,629 @@
+{
+  "status": "CHAIRMAN_APPROVED_RATINGS / NOT DEPLOYED",
+  "target": "GameCast Week7",
+  "effective_week": "2026-W07",
+  "canonical_teams": 121,
+  "rating_values": 363,
+  "methodology": "GC-W07-REAL-SCORE-REGULATION-R2.0 + Chairman rulings R2",
+  "synthetic_cutoff": "accepted W1-W6",
+  "real_cutoff": "completed real W0-W5",
+  "source_cutoff": "Synthetic accepted W1-W6; real completed W0-W5 through Oct3 local/Oct4 ET; prelaunch snapshot Oct6",
+  "synthetic_only_codes": [
+    "COR",
+    "HARV",
+    "LEH",
+    "PENN",
+    "PRIN",
+    "YALE"
+  ],
+  "component_order": "TEAM/OFF/DEF -> overall/offense/defense",
+  "relationship_policy": "OFF+DEF=2TEAM for120 teams; Georgia explicit approved97/96/99 exception. Never recompute approved TEAM or normalize components.",
+  "deployment_authorization": "NOT AUTHORIZED; rating approval is distinct from deployment",
+  "ratings": {
+    "Air Force": {
+      "overall": 73,
+      "offense": 72,
+      "defense": 74
+    },
+    "Alabama": {
+      "overall": 94,
+      "offense": 99,
+      "defense": 89
+    },
+    "Arizona": {
+      "overall": 88,
+      "offense": 87,
+      "defense": 89
+    },
+    "Arizona State": {
+      "overall": 77,
+      "offense": 81,
+      "defense": 73
+    },
+    "Arkansas": {
+      "overall": 76,
+      "offense": 74,
+      "defense": 78
+    },
+    "Army": {
+      "overall": 83,
+      "offense": 82,
+      "defense": 84
+    },
+    "Auburn": {
+      "overall": 82,
+      "offense": 80,
+      "defense": 84
+    },
+    "BYU": {
+      "overall": 92,
+      "offense": 90,
+      "defense": 94
+    },
+    "Baylor": {
+      "overall": 81,
+      "offense": 79,
+      "defense": 83
+    },
+    "Boise State": {
+      "overall": 86,
+      "offense": 86,
+      "defense": 86
+    },
+    "Boston College": {
+      "overall": 71,
+      "offense": 66,
+      "defense": 76
+    },
+    "Buffalo": {
+      "overall": 70,
+      "offense": 70,
+      "defense": 70
+    },
+    "California": {
+      "overall": 78,
+      "offense": 78,
+      "defense": 78
+    },
+    "Cincinnati": {
+      "overall": 82,
+      "offense": 83,
+      "defense": 81
+    },
+    "Clemson": {
+      "overall": 81,
+      "offense": 79,
+      "defense": 83
+    },
+    "Coastal Carolina": {
+      "overall": 70,
+      "offense": 68,
+      "defense": 72
+    },
+    "Colgate": {
+      "overall": 78,
+      "offense": 76,
+      "defense": 80
+    },
+    "Colorado": {
+      "overall": 74,
+      "offense": 70,
+      "defense": 78
+    },
+    "Colorado State": {
+      "overall": 73,
+      "offense": 79,
+      "defense": 67
+    },
+    "Cornell": {
+      "overall": 70,
+      "offense": 71,
+      "defense": 69
+    },
+    "Delaware": {
+      "overall": 73,
+      "offense": 71,
+      "defense": 75
+    },
+    "Duke": {
+      "overall": 87,
+      "offense": 85,
+      "defense": 89
+    },
+    "East Carolina": {
+      "overall": 74,
+      "offense": 72,
+      "defense": 76
+    },
+    "Florida": {
+      "overall": 87,
+      "offense": 93,
+      "defense": 81
+    },
+    "Florida Atlantic": {
+      "overall": 76,
+      "offense": 78,
+      "defense": 74
+    },
+    "Florida International": {
+      "overall": 73,
+      "offense": 67,
+      "defense": 79
+    },
+    "Florida State": {
+      "overall": 84,
+      "offense": 85,
+      "defense": 83
+    },
+    "Fresno State": {
+      "overall": 78,
+      "offense": 75,
+      "defense": 81
+    },
+    "Georgia": {
+      "overall": 97,
+      "offense": 96,
+      "defense": 99
+    },
+    "Georgia Southern": {
+      "overall": 71,
+      "offense": 70,
+      "defense": 72
+    },
+    "Georgia State": {
+      "overall": 81,
+      "offense": 83,
+      "defense": 79
+    },
+    "Georgia Tech": {
+      "overall": 78,
+      "offense": 77,
+      "defense": 79
+    },
+    "Harvard": {
+      "overall": 70,
+      "offense": 69,
+      "defense": 71
+    },
+    "Hawaii": {
+      "overall": 65,
+      "offense": 63,
+      "defense": 67
+    },
+    "Holy Cross": {
+      "overall": 80,
+      "offense": 81,
+      "defense": 79
+    },
+    "Houston": {
+      "overall": 90,
+      "offense": 92,
+      "defense": 88
+    },
+    "Illinois": {
+      "overall": 83,
+      "offense": 84,
+      "defense": 82
+    },
+    "Indiana": {
+      "overall": 93,
+      "offense": 92,
+      "defense": 94
+    },
+    "Iowa": {
+      "overall": 86,
+      "offense": 82,
+      "defense": 90
+    },
+    "Iowa State": {
+      "overall": 78,
+      "offense": 79,
+      "defense": 77
+    },
+    "Kansas": {
+      "overall": 78,
+      "offense": 77,
+      "defense": 79
+    },
+    "Kansas State": {
+      "overall": 82,
+      "offense": 82,
+      "defense": 82
+    },
+    "Kentucky": {
+      "overall": 84,
+      "offense": 85,
+      "defense": 83
+    },
+    "LSU": {
+      "overall": 91,
+      "offense": 92,
+      "defense": 90
+    },
+    "Lehigh": {
+      "overall": 86,
+      "offense": 86,
+      "defense": 86
+    },
+    "Louisiana Tech": {
+      "overall": 73,
+      "offense": 75,
+      "defense": 71
+    },
+    "Louisville": {
+      "overall": 84,
+      "offense": 87,
+      "defense": 81
+    },
+    "Marshall": {
+      "overall": 71,
+      "offense": 72,
+      "defense": 70
+    },
+    "Maryland": {
+      "overall": 79,
+      "offense": 80,
+      "defense": 78
+    },
+    "Memphis": {
+      "overall": 86,
+      "offense": 89,
+      "defense": 83
+    },
+    "Miami": {
+      "overall": 97,
+      "offense": 99,
+      "defense": 95
+    },
+    "Michigan": {
+      "overall": 85,
+      "offense": 81,
+      "defense": 89
+    },
+    "Michigan State": {
+      "overall": 79,
+      "offense": 75,
+      "defense": 83
+    },
+    "Middle Tennessee": {
+      "overall": 67,
+      "offense": 66,
+      "defense": 68
+    },
+    "Minnesota": {
+      "overall": 78,
+      "offense": 77,
+      "defense": 79
+    },
+    "Mississippi State": {
+      "overall": 86,
+      "offense": 89,
+      "defense": 83
+    },
+    "Missouri": {
+      "overall": 86,
+      "offense": 86,
+      "defense": 86
+    },
+    "NC State": {
+      "overall": 81,
+      "offense": 83,
+      "defense": 79
+    },
+    "Navy": {
+      "overall": 79,
+      "offense": 77,
+      "defense": 81
+    },
+    "Nebraska": {
+      "overall": 87,
+      "offense": 90,
+      "defense": 84
+    },
+    "Nevada": {
+      "overall": 68,
+      "offense": 67,
+      "defense": 69
+    },
+    "New Mexico": {
+      "overall": 82,
+      "offense": 82,
+      "defense": 82
+    },
+    "New Mexico State": {
+      "overall": 68,
+      "offense": 68,
+      "defense": 68
+    },
+    "North Carolina": {
+      "overall": 82,
+      "offense": 80,
+      "defense": 84
+    },
+    "North Dakota State": {
+      "overall": 81,
+      "offense": 81,
+      "defense": 81
+    },
+    "North Texas": {
+      "overall": 78,
+      "offense": 83,
+      "defense": 73
+    },
+    "Northern Illinois": {
+      "overall": 68,
+      "offense": 67,
+      "defense": 69
+    },
+    "Northwestern": {
+      "overall": 83,
+      "offense": 82,
+      "defense": 84
+    },
+    "Notre Dame": {
+      "overall": 95,
+      "offense": 96,
+      "defense": 94
+    },
+    "Ohio State": {
+      "overall": 94,
+      "offense": 96,
+      "defense": 92
+    },
+    "Oklahoma": {
+      "overall": 86,
+      "offense": 81,
+      "defense": 91
+    },
+    "Oklahoma State": {
+      "overall": 87,
+      "offense": 88,
+      "defense": 86
+    },
+    "Old Dominion": {
+      "overall": 70,
+      "offense": 68,
+      "defense": 72
+    },
+    "Ole Miss": {
+      "overall": 86,
+      "offense": 89,
+      "defense": 83
+    },
+    "Oregon": {
+      "overall": 92,
+      "offense": 96,
+      "defense": 88
+    },
+    "Oregon State": {
+      "overall": 82,
+      "offense": 82,
+      "defense": 82
+    },
+    "Penn": {
+      "overall": 74,
+      "offense": 76,
+      "defense": 72
+    },
+    "Penn State": {
+      "overall": 86,
+      "offense": 85,
+      "defense": 87
+    },
+    "Pittsburgh": {
+      "overall": 85,
+      "offense": 84,
+      "defense": 86
+    },
+    "Princeton": {
+      "overall": 70,
+      "offense": 71,
+      "defense": 69
+    },
+    "Purdue": {
+      "overall": 75,
+      "offense": 76,
+      "defense": 74
+    },
+    "Rice": {
+      "overall": 63,
+      "offense": 63,
+      "defense": 63
+    },
+    "Rutgers": {
+      "overall": 69,
+      "offense": 72,
+      "defense": 66
+    },
+    "SMU": {
+      "overall": 87,
+      "offense": 87,
+      "defense": 87
+    },
+    "San Diego State": {
+      "overall": 75,
+      "offense": 73,
+      "defense": 77
+    },
+    "San Jose State": {
+      "overall": 72,
+      "offense": 70,
+      "defense": 74
+    },
+    "South Carolina": {
+      "overall": 77,
+      "offense": 79,
+      "defense": 75
+    },
+    "South Florida": {
+      "overall": 82,
+      "offense": 79,
+      "defense": 85
+    },
+    "Southern Miss": {
+      "overall": 69,
+      "offense": 70,
+      "defense": 68
+    },
+    "Stanford": {
+      "overall": 68,
+      "offense": 70,
+      "defense": 66
+    },
+    "Syracuse": {
+      "overall": 77,
+      "offense": 78,
+      "defense": 76
+    },
+    "TCU": {
+      "overall": 82,
+      "offense": 77,
+      "defense": 87
+    },
+    "Temple": {
+      "overall": 76,
+      "offense": 74,
+      "defense": 78
+    },
+    "Tennessee": {
+      "overall": 90,
+      "offense": 90,
+      "defense": 90
+    },
+    "Texas": {
+      "overall": 93,
+      "offense": 91,
+      "defense": 95
+    },
+    "Texas A&M": {
+      "overall": 86,
+      "offense": 85,
+      "defense": 87
+    },
+    "Texas State": {
+      "overall": 74,
+      "offense": 79,
+      "defense": 69
+    },
+    "Texas Tech": {
+      "overall": 93,
+      "offense": 92,
+      "defense": 94
+    },
+    "Troy": {
+      "overall": 72,
+      "offense": 69,
+      "defense": 75
+    },
+    "Tulane": {
+      "overall": 77,
+      "offense": 74,
+      "defense": 80
+    },
+    "Tulsa": {
+      "overall": 79,
+      "offense": 76,
+      "defense": 82
+    },
+    "UAB": {
+      "overall": 70,
+      "offense": 68,
+      "defense": 72
+    },
+    "UCF": {
+      "overall": 86,
+      "offense": 84,
+      "defense": 88
+    },
+    "UCLA": {
+      "overall": 90,
+      "offense": 93,
+      "defense": 87
+    },
+    "UConn": {
+      "overall": 79,
+      "offense": 82,
+      "defense": 76
+    },
+    "UNLV": {
+      "overall": 76,
+      "offense": 74,
+      "defense": 78
+    },
+    "USC": {
+      "overall": 87,
+      "offense": 91,
+      "defense": 83
+    },
+    "UTEP": {
+      "overall": 63,
+      "offense": 65,
+      "defense": 61
+    },
+    "UTSA": {
+      "overall": 78,
+      "offense": 80,
+      "defense": 76
+    },
+    "Utah": {
+      "overall": 92,
+      "offense": 92,
+      "defense": 92
+    },
+    "Utah State": {
+      "overall": 76,
+      "offense": 73,
+      "defense": 79
+    },
+    "Vanderbilt": {
+      "overall": 84,
+      "offense": 83,
+      "defense": 85
+    },
+    "Virginia": {
+      "overall": 86,
+      "offense": 86,
+      "defense": 86
+    },
+    "Virginia Tech": {
+      "overall": 85,
+      "offense": 87,
+      "defense": 83
+    },
+    "Wake Forest": {
+      "overall": 85,
+      "offense": 85,
+      "defense": 85
+    },
+    "Washington": {
+      "overall": 83,
+      "offense": 81,
+      "defense": 85
+    },
+    "Washington State": {
+      "overall": 71,
+      "offense": 69,
+      "defense": 73
+    },
+    "West Virginia": {
+      "overall": 78,
+      "offense": 82,
+      "defense": 74
+    },
+    "Wisconsin": {
+      "overall": 82,
+      "offense": 81,
+      "defense": 83
+    },
+    "Wyoming": {
+      "overall": 67,
+      "offense": 62,
+      "defense": 72
+    },
+    "Yale": {
+      "overall": 70,
+      "offense": 71,
+      "defense": 69
+    }
+  }
+}

@@ -1,0 +1,52 @@
+name: GameCast 4.4.2 W7 isolated QA
+on:
+  push:
+    branches: [release/gamecast-v4.4.2]
+    paths:
+      - scripts/*v442*
+      - scripts/lib/gamecast-v442-harness.mjs
+      - release-assets/gamecast-v4.4.2/**
+      - .github/workflows/qa-v442.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  local-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Guard source lineage and previous release files
+        run: |
+          test "$GITHUB_REF" = refs/heads/release/gamecast-v4.4.2
+          git merge-base --is-ancestor bf1d67a7c174b46ccf9d98cb6dcded5a8fc18616 HEAD
+          git diff --exit-code bf1d67a7c174b46ccf9d98cb6dcded5a8fc18616 -- public supabase release-assets/gamecast-v4.4.1 scripts/build-gamecast-v441.mjs
+      - run: node scripts/build-gamecast-v441.mjs
+      - run: node scripts/verify-gamecast-v441.mjs
+      - run: node scripts/build-gamecast-v442.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/gamecast-qa" --ignore-scripts --no-audit --no-fund jsdom@26.1.0 playwright@1.56.1
+      - run: node "$RUNNER_TEMP/gamecast-qa/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Component and assembled release tests
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gamecast-qa
+        run: |
+          node scripts/test-gamecast-v442-football-fixes.mjs
+          node scripts/test-gamecast-v442-football-fixes.mjs --assembled
+          node scripts/test-gamecast-v442-fix-mutations.mjs
+          node scripts/test-gamecast-v442-coin-toss.mjs --assembled
+          node scripts/test-gamecast-v442-toss-mutations.mjs
+          node scripts/test-gamecast-v442-release.mjs
+          node scripts/test-gamecast-v442-api.mjs
+          node scripts/test-gamecast-v442-ui.mjs
+          node scripts/test-gamecast-v442-remaining-mutations.mjs
+          node scripts/test-gamecast-v442-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v442-local-qa
+          path: outputs/v442/
+      # No deployment job, production credentials, database writes, or Pages publication.
