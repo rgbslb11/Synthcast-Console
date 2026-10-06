@@ -1,0 +1,478 @@
+{
+  "timeoutCases": [
+    {
+      "entering": [
+        0,
+        0
+      ],
+      "q": 3,
+      "actual": [
+        0,
+        0
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        0,
+        1
+      ],
+      "q": 3,
+      "actual": [
+        0,
+        1
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        0,
+        2
+      ],
+      "q": 3,
+      "actual": [
+        0,
+        2
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        0,
+        3
+      ],
+      "q": 3,
+      "actual": [
+        0,
+        3
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        1,
+        0
+      ],
+      "q": 3,
+      "actual": [
+        1,
+        0
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        1,
+        1
+      ],
+      "q": 3,
+      "actual": [
+        1,
+        1
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        1,
+        2
+      ],
+      "q": 3,
+      "actual": [
+        1,
+        2
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        1,
+        3
+      ],
+      "q": 3,
+      "actual": [
+        1,
+        3
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        2,
+        0
+      ],
+      "q": 3,
+      "actual": [
+        2,
+        0
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        2,
+        1
+      ],
+      "q": 3,
+      "actual": [
+        2,
+        1
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        2,
+        2
+      ],
+      "q": 3,
+      "actual": [
+        2,
+        2
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        2,
+        3
+      ],
+      "q": 3,
+      "actual": [
+        2,
+        3
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        3,
+        0
+      ],
+      "q": 3,
+      "actual": [
+        3,
+        0
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        3,
+        1
+      ],
+      "q": 3,
+      "actual": [
+        3,
+        1
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        3,
+        2
+      ],
+      "q": 3,
+      "actual": [
+        3,
+        2
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": false,
+      "reloadUnchanged": true
+    },
+    {
+      "entering": [
+        3,
+        3
+      ],
+      "q": 3,
+      "actual": [
+        3,
+        3
+      ],
+      "expected": [
+        3,
+        3
+      ],
+      "pass": true,
+      "reloadUnchanged": true
+    }
+  ],
+  "kneelCases": [
+    {
+      "down": 1,
+      "opponentTimeouts": 0,
+      "clock": 160,
+      "strategy": "KNEEL"
+    },
+    {
+      "down": 1,
+      "opponentTimeouts": 1,
+      "clock": 160,
+      "strategy": "FOUR_MINUTE"
+    },
+    {
+      "down": 1,
+      "opponentTimeouts": 2,
+      "clock": 160,
+      "strategy": "FOUR_MINUTE"
+    },
+    {
+      "down": 1,
+      "opponentTimeouts": 3,
+      "clock": 160,
+      "strategy": "FOUR_MINUTE"
+    },
+    {
+      "down": 2,
+      "opponentTimeouts": 0,
+      "clock": 160,
+      "strategy": "KNEEL"
+    },
+    {
+      "down": 2,
+      "opponentTimeouts": 1,
+      "clock": 160,
+      "strategy": "FOUR_MINUTE"
+    },
+    {
+      "down": 2,
+      "opponentTimeouts": 2,
+      "clock": 160,
+      "strategy": "FOUR_MINUTE"
+    },
+    {
+      "down": 2,
+      "opponentTimeouts": 3,
+      "clock": 160,
+      "strategy": "FOUR_MINUTE"
+    },
+    {
+      "down": 3,
+      "opponentTimeouts": 0,
+      "clock": 160,
+      "strategy": "KNEEL"
+    },
+    {
+      "down": 3,
+      "opponentTimeouts": 1,
+      "clock": 160,
+      "strategy": "FOUR_MINUTE"
+    },
+    {
+      "down": 3,
+      "opponentTimeouts": 2,
+      "clock": 160,
+      "strategy": "FOUR_MINUTE"
+    },
+    {
+      "down": 3,
+      "opponentTimeouts": 3,
+      "clock": 160,
+      "strategy": "FOUR_MINUTE"
+    },
+    {
+      "down": 4,
+      "opponentTimeouts": 0,
+      "clock": 160,
+      "strategy": "KNEEL"
+    },
+    {
+      "down": 4,
+      "opponentTimeouts": 1,
+      "clock": 160,
+      "strategy": "FOUR_MINUTE"
+    },
+    {
+      "down": 4,
+      "opponentTimeouts": 2,
+      "clock": 160,
+      "strategy": "FOUR_MINUTE"
+    },
+    {
+      "down": 4,
+      "opponentTimeouts": 3,
+      "clock": 160,
+      "strategy": "FOUR_MINUTE"
+    }
+  ],
+  "hfa": {
+    "edge": {
+      "homeVenue": 0.035,
+      "awayVenue": -0.035,
+      "homeNeutral": 0,
+      "awayNeutral": 0,
+      "homePerformance": 0.14,
+      "awayPerformance": -0.14
+    },
+    "distribution": {
+      "seeds": "HFA441-0000 through HFA441-0999",
+      "pairs": 1000,
+      "fullGames": 2000,
+      "ratings": "Both teams TEAM/OFF/DEF 80/80/80",
+      "quarterSeconds": 600,
+      "chunk": 10,
+      "meanHomeMargin": 19.197,
+      "meanNeutralMargin": -0.149,
+      "pairedMeanMarginEffect": 19.346,
+      "standardError": 0.4930734280058147,
+      "empirical95PercentInterval": [
+        18.379576081108603,
+        20.312423918891398
+      ],
+      "interpretation": "Diagnostic score effect, not an approved calibration definition or release tolerance"
+    }
+  },
+  "readProjection": {
+    "storedUnchanged": true,
+    "storedPlays": [
+      0,
+      0
+    ],
+    "projectedPlays": [
+      3,
+      0
+    ],
+    "projectedRngChanged": true
+  },
+  "speedConstants": [
+    1,
+    4,
+    10,
+    50
+  ],
+  "forcedFourthKneel": {
+    "possession": 1,
+    "fieldPos": 51,
+    "down": 1,
+    "clock": 57,
+    "clockStatus": "RUNNING",
+    "pendingStrategy": "KNEEL",
+    "postRunoff": 30
+  },
+  "timeoutSummary": {
+    "executed": 16,
+    "passed": 1,
+    "failed": 15
+  },
+  "runtimeMilliseconds": 7640.973683,
+  "baseline_expectation_summary": {
+    "suites": [
+      {
+        "suite": "Halftime second-half allotment",
+        "executed": 16,
+        "passed": 1,
+        "failed": 15,
+        "skipped": 0
+      },
+      {
+        "suite": "Automatic kneel unsafe 160-second boundaries",
+        "executed": 16,
+        "passed": 12,
+        "failed": 4,
+        "skipped": 0
+      },
+      {
+        "suite": "Fourth-down kneel post-play clock stopped",
+        "executed": 1,
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0
+      },
+      {
+        "suite": "Projection does not generate football events",
+        "executed": 1,
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0
+      },
+      {
+        "suite": "Neutral symmetric raw venue effect zero",
+        "executed": 1,
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      }
+    ],
+    "executed": 35,
+    "passed": 14,
+    "failed": 21,
+    "skipped": 0,
+    "note": "Derived comparisons from executed characterization cases. These are baseline expectation failures, not candidate test-run results. HFA 1000-pair experiment and 16 reload observations are separate diagnostics."
+  }
+}

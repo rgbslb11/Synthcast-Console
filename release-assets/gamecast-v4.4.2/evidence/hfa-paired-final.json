@@ -1,0 +1,51 @@
+{
+  "classification": "TEST RESULT",
+  "status": "PASS",
+  "meaning": "Identical fixed seeds and symmetric ratings; correct approved coefficients and exact neutral zero; effect estimates reported without inventing a tolerance",
+  "executed": 2000,
+  "passed": 2000,
+  "failed": 0,
+  "skipped": 0,
+  "fullGames": 4000,
+  "seedRange": [
+    "GC442-HFA-PAIRED-0000",
+    "GC442-HFA-PAIRED-0999"
+  ],
+  "ratings": [
+    80,
+    80,
+    80
+  ],
+  "quarterSeconds": 600,
+  "results": [
+    {
+      "version": "4.4.1",
+      "pairs": 1000,
+      "fullGames": 2000,
+      "normalizedEdge": 0.035,
+      "homeMeanMargin": 19.06,
+      "neutralMeanMargin": 0.57,
+      "pairedVenueEffectPoints": 18.49,
+      "standardError": 0.4827037423750752,
+      "empirical95PercentInterval": [
+        17.54390066494485,
+        19.436099335055147
+      ]
+    },
+    {
+      "version": "4.4.2",
+      "pairs": 1000,
+      "fullGames": 2000,
+      "normalizedEdge": 0.006,
+      "homeMeanMargin": 2.507,
+      "neutralMeanMargin": -0.319,
+      "pairedVenueEffectPoints": 2.826,
+      "standardError": 0.48016693376812636,
+      "empirical95PercentInterval": [
+        1.8848728098144725,
+        3.7671271901855277
+      ]
+    }
+  ],
+  "runtimeMilliseconds": 15573.576905
+}

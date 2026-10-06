@@ -40,6 +40,7 @@ jobs:
           node scripts/test-gamecast-v442-coin-toss.mjs --assembled
           node scripts/test-gamecast-v442-toss-mutations.mjs
           node scripts/test-gamecast-v442-release.mjs
+          node scripts/test-gamecast-v442-hfa-paired.mjs
           node scripts/test-gamecast-v442-api.mjs
           node scripts/test-gamecast-v442-ui.mjs
           node scripts/test-gamecast-v442-remaining-mutations.mjs

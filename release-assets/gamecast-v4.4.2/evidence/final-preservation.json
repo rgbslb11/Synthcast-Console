@@ -1,0 +1,28 @@
+{
+  "classification": "OBSERVED FACT",
+  "candidate": {
+    "sessions": 6,
+    "active_games": 0,
+    "accepted_games": 0,
+    "all_game_rows_qa": true
+  },
+  "load_test": {
+    "games": 54,
+    "state_version": 57,
+    "distinct_launch_games": 54,
+    "one_launch_event_each": 54
+  },
+  "previous_sessions": {
+    "hash": "cc0cccb26e594ab48adc37fa52d31dbb",
+    "count": 52
+  },
+  "previous_jobs_hash": "69bb367a16a6e513dcc470bca5220e61",
+  "eligible_scheduler_sessions": 0,
+  "previousBackendFunctions": 25,
+  "previousBackendVersionsAndHashesUnchanged": true,
+  "previousPublishedFiles": 74,
+  "previousPublishedHashesUnchanged": true,
+  "uiPublicationCommit": "200757b9663fe033adda9190790b5947ae3146fc",
+  "workflowRun": 37540806064,
+  "deploymentId": 6896822191
+}

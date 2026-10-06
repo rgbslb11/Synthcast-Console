@@ -1,0 +1,97 @@
+{
+  "classification": "OBSERVED FACT and TEST RESULT",
+  "status": "PASS",
+  "logicalInputs": 2,
+  "inputs": [
+    {
+      "filename": "W7_APPROVED_ENGINE_121.json",
+      "archive_member": "W7_APPROVED_ENGINE_121.json",
+      "size_bytes": 11531,
+      "sha256": "17d9e89e108e2528232a6f6ef18cddb8739653b38e87db67ad01165bb13911e0",
+      "format": "JSON",
+      "schema": [
+        "overall",
+        "offense",
+        "defense"
+      ],
+      "expected_rows": 121,
+      "actual_rows": 121,
+      "accepted_rows": 121,
+      "rejected_rows": 0,
+      "unique_teams": 121,
+      "rating_records": 121,
+      "game_count": 0,
+      "activation_status": "ISOLATED QA CANDIDATE ONLY"
+    },
+    {
+      "filename": "W7_RECONCILED_SLATE_54.csv",
+      "archive_member": "W7_RECONCILED_SLATE_54.csv",
+      "size_bytes": 17428,
+      "sha256": "481ed077d734dce9fd9aa25517fb5b5ea073ababdf77f55fdca650034dabbd4a",
+      "format": "CSV",
+      "schema": [
+        "slate_order",
+        "game_id",
+        "week",
+        "date_ET",
+        "time_ET",
+        "kickoff_ET",
+        "kickoff_UTC",
+        "kickoff_CT",
+        "network",
+        "away",
+        "away_code",
+        "away_coaches_rank",
+        "away_submitted_record",
+        "away_accepted_record",
+        "home",
+        "home_code",
+        "home_coaches_rank",
+        "home_submitted_record",
+        "home_accepted_record",
+        "neutral",
+        "notes",
+        "away_TEAM",
+        "away_OFF",
+        "away_DEF",
+        "home_TEAM",
+        "home_OFF",
+        "home_DEF",
+        "identity_status",
+        "record_status",
+        "timezone_basis"
+      ],
+      "expected_rows": 54,
+      "actual_rows": 54,
+      "accepted_rows": 54,
+      "rejected_rows": 0,
+      "unique_teams": 108,
+      "rating_records": 0,
+      "game_count": 54,
+      "activation_status": "ISOLATED QA CANDIDATE ONLY"
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "Baseline-approved exact canonical names are join keys. Short codes are preserved for display/search only.",
+    "No FCS fallback used.",
+    "Venue name and input lifecycle are not required by the inspected baseline schema.",
+    "Georgia 97/96/99 approved exception preserved."
+  ],
+  "canonical_teams": 121,
+  "rating_values": 363,
+  "scheduled_team_appearances": 108,
+  "scheduled_unique_teams": 108,
+  "scheduled_rating_coverage": 108,
+  "neutral_games": [
+    "G0315"
+  ],
+  "activation": "ISOLATED QA CANDIDATE ONLY",
+  "backendFunction": "gamecast-week7-v4-4-2",
+  "backendVersion": 1,
+  "archive": {
+    "filename": "W7_APPROVED_RATINGS_AND_SLATE_ONLY.zip",
+    "size_bytes": 5346,
+    "sha256": "a00fc60303485c89bd3c29abac1002f6ba58aa8a5715d3c0171614a112fed9e1"
+  }
+}

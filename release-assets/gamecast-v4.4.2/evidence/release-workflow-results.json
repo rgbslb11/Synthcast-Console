@@ -1,0 +1,4137 @@
+{
+  "classification": "TEST RESULT",
+  "workflowRun": 37540806064,
+  "deploymentCommit": "200757b9663fe033adda9190790b5947ae3146fc",
+  "verifyJob": 112533075771,
+  "deployJob": 112533907640,
+  "postdeploymentJob": 112533982752,
+  "allJobs": "SUCCESS",
+  "artifacts": {
+    "pre": {
+      "id": 11448900347,
+      "sha256": "940eb78c9f83beef99750e6d180e20deb3fec3a4e2921c5bcd91706820a86978"
+    },
+    "post": {
+      "id": 11449285151,
+      "sha256": "6cf36e6cb83b16e5e324be519deeca7fa897132ec159578d5f989aec24efcbaa"
+    }
+  },
+  "pre": {
+    "assembled-football-fixes": {
+      "mode": "assembled",
+      "executed": 497,
+      "passed": 497,
+      "failed": 0,
+      "skipped": 0,
+      "groups": {
+        "halftime": {
+          "executed": 16,
+          "passed": 16,
+          "failed": 0,
+          "skipped": 0
+        },
+        "halftime-reload-retry": {
+          "executed": 16,
+          "passed": 16,
+          "failed": 0,
+          "skipped": 0
+        },
+        "halftime-invalid-transition": {
+          "executed": 2,
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0
+        },
+        "kneel-boundary": {
+          "executed": 224,
+          "passed": 224,
+          "failed": 0,
+          "skipped": 0
+        },
+        "forced-fourth-kneel": {
+          "executed": 32,
+          "passed": 32,
+          "failed": 0,
+          "skipped": 0
+        },
+        "kneel-guard": {
+          "executed": 6,
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "restart": {
+          "executed": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "overtime-unchanged": {
+          "executed": 100,
+          "passed": 100,
+          "failed": 0,
+          "skipped": 0
+        },
+        "read-only-polling": {
+          "executed": 100,
+          "passed": 100,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "cases": [
+        {
+          "group": "halftime",
+          "name": "0/0",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "0/0",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "0/1",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "0/1",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "0/2",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "0/2",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "0/3",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "0/3",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "1/0",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "1/0",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "1/1",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "1/1",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "1/2",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "1/2",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "1/3",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "1/3",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "2/0",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "2/0",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "2/1",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "2/1",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "2/2",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "2/2",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "2/3",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "2/3",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "3/0",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "3/0",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "3/1",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "3/1",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "3/2",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "3/2",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime",
+          "name": "3/3",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-reload-retry",
+          "name": "3/3",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-invalid-transition",
+          "name": "Q1 to Q3",
+          "status": "PASS"
+        },
+        {
+          "group": "halftime-invalid-transition",
+          "name": "Q4 to Q3",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=0 pc=1 clock=96",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=0 pc=1 clock=97",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=0 pc=40 clock=96",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=0 pc=40 clock=97",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=1 pc=1 clock=96",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=1 pc=1 clock=97",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=1 pc=40 clock=96",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=1 pc=40 clock=97",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=0 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=0 pc=1 clock=66",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=0 pc=1 clock=67",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=0 pc=40 clock=66",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=0 pc=40 clock=67",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=1 pc=1 clock=66",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=1 pc=1 clock=67",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=1 pc=40 clock=66",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=1 pc=40 clock=67",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=1 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=0 pc=1 clock=36",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=0 pc=1 clock=37",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=0 pc=40 clock=36",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=0 pc=40 clock=37",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=1 pc=1 clock=36",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=1 pc=1 clock=37",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=1 pc=40 clock=36",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=1 pc=40 clock=37",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=2 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=0 pc=1 clock=6",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=0 pc=1 clock=7",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=0 pc=40 clock=6",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=0 pc=40 clock=7",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=1 pc=1 clock=6",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=1 pc=1 clock=7",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=1 pc=40 clock=6",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=1 pc=40 clock=7",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=1 tos=3 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=0 pc=1 clock=64",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=0 pc=1 clock=65",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=0 pc=40 clock=64",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=0 pc=40 clock=65",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=1 pc=1 clock=64",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=1 pc=1 clock=65",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=1 pc=40 clock=64",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=1 pc=40 clock=65",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=0 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=0 pc=1 clock=34",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=0 pc=1 clock=35",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=0 pc=40 clock=34",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=0 pc=40 clock=35",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=1 pc=1 clock=34",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=1 pc=1 clock=35",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=1 pc=40 clock=34",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=1 pc=40 clock=35",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=1 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=0 pc=1 clock=4",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=0 pc=1 clock=5",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=0 pc=40 clock=4",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=0 pc=40 clock=5",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=1 pc=1 clock=4",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=1 pc=1 clock=5",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=1 pc=40 clock=4",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=1 pc=40 clock=5",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=2 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=0 pc=1 clock=4",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=0 pc=1 clock=5",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=0 pc=40 clock=4",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=0 pc=40 clock=5",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=1 pc=1 clock=4",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=1 pc=1 clock=5",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=1 pc=40 clock=4",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=1 pc=40 clock=5",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=2 tos=3 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=0 pc=1 clock=32",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=0 pc=1 clock=33",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=0 pc=40 clock=32",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=0 pc=40 clock=33",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=1 pc=1 clock=32",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=1 pc=1 clock=33",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=1 pc=40 clock=32",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=1 pc=40 clock=33",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=0 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=0 pc=1 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=0 pc=1 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=0 pc=40 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=0 pc=40 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=1 pc=1 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=1 pc=1 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=1 pc=40 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=1 pc=40 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=1 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=0 pc=1 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=0 pc=1 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=0 pc=40 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=0 pc=40 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=1 pc=1 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=1 pc=1 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=1 pc=40 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=1 pc=40 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=2 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=0 pc=1 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=0 pc=1 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=0 pc=40 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=0 pc=40 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=1 pc=1 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=1 pc=1 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=1 pc=40 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=1 pc=40 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=3 tos=3 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=0 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=0 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=0 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=0 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=0 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=0 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=0 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=0 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=1 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=1 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=1 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=1 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=1 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=1 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=1 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=1 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=2 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=2 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=2 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=2 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=2 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=2 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=2 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=2 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=3 side=0 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=3 side=0 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=3 side=0 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=3 side=0 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=3 side=1 pc=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=3 side=1 pc=1 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=3 side=1 pc=40 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-boundary",
+          "name": "down=4 tos=3 side=1 pc=40 clock=160",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=0 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=0 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=0 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=0 clock=60",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=1 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=1 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=1 clock=60",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=2 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=2 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=2 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=2 clock=60",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=3 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=3 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=3 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=0 tos=3 clock=60",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=0 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=0 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=0 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=0 clock=60",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=1 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=1 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=1 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=1 clock=60",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=2 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=2 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=2 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=2 clock=60",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=3 clock=1",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=3 clock=2",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=3 clock=3",
+          "status": "PASS"
+        },
+        {
+          "group": "forced-fourth-kneel",
+          "name": "side=1 tos=3 clock=60",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-guard",
+          "name": "own goal line",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-guard",
+          "name": "not leading 0,0",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-guard",
+          "name": "not leading 0,7",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-guard",
+          "name": "not Q4 1",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-guard",
+          "name": "not Q4 2",
+          "status": "PASS"
+        },
+        {
+          "group": "kneel-guard",
+          "name": "not Q4 3",
+          "status": "PASS"
+        },
+        {
+          "group": "restart",
+          "name": "reset new-half eligibility",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-0",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-1",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-2",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-3",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-4",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-5",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-6",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-7",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-8",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-9",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-10",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-11",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-12",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-13",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-14",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-15",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-16",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-17",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-18",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-19",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-20",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-21",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-22",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-23",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-24",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-25",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-26",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-27",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-28",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-29",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-30",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-31",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-32",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-33",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-34",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-35",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-36",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-37",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-38",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-39",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-40",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-41",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-42",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-43",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-44",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-45",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-46",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-47",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-48",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-49",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-50",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-51",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-52",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-53",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-54",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-55",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-56",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-57",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-58",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-59",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-60",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-61",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-62",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-63",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-64",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-65",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-66",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-67",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-68",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-69",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-70",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-71",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-72",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-73",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-74",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-75",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-76",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-77",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-78",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-79",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-80",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-81",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-82",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-83",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-84",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-85",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-86",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-87",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-88",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-89",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-90",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-91",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-92",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-93",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-94",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-95",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-96",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-97",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-98",
+          "status": "PASS"
+        },
+        {
+          "group": "overtime-unchanged",
+          "name": "OT-99",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-0",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-1",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-2",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-3",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-4",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-5",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-6",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-7",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-8",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-9",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-10",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-11",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-12",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-13",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-14",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-15",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-16",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-17",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-18",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-19",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-20",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-21",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-22",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-23",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-24",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-25",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-26",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-27",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-28",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-29",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-30",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-31",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-32",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-33",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-34",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-35",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-36",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-37",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-38",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-39",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-40",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-41",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-42",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-43",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-44",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-45",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-46",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-47",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-48",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-49",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-50",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-51",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-52",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-53",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-54",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-55",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-56",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-57",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-58",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-59",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-60",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-61",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-62",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-63",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-64",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-65",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-66",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-67",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-68",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-69",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-70",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-71",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-72",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-73",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-74",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-75",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-76",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-77",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-78",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-79",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-80",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-81",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-82",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-83",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-84",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-85",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-86",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-87",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-88",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-89",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-90",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-91",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-92",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-93",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-94",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-95",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-96",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-97",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-98",
+          "status": "PASS"
+        },
+        {
+          "group": "read-only-polling",
+          "name": "POLL-99",
+          "status": "PASS"
+        }
+      ]
+    },
+    "coin-toss": {
+      "classification": "TEST RESULT",
+      "engineIdentity": "GC-W7-V4.4.2-RC1 in isolated transform harness; deployed integration still required",
+      "executed": 10102,
+      "passed": 10102,
+      "failed": 0,
+      "skipped": 0,
+      "seeds": [
+        "GC442-TOSS-00000",
+        "GC442-TOSS-09999"
+      ],
+      "distributionCases": 10000,
+      "predeclaredBands": {
+        "homeAway": [
+          0.48,
+          0.52
+        ],
+        "kick": [
+          0.73,
+          0.77
+        ]
+      },
+      "counts": {
+        "home": 4948,
+        "away": 5052,
+        "KICK": 7493,
+        "RECEIVE": 2507
+      },
+      "rates": {
+        "home": 0.4948,
+        "away": 0.5052,
+        "KICK": 0.7493,
+        "RECEIVE": 0.2507
+      },
+      "invarianceSeeds": 100
+    },
+    "release-local": {
+      "classification": "TEST RESULT",
+      "scope": "Assembled 4.4.2 backend, local QA only",
+      "executed": 870,
+      "passed": 870,
+      "failed": 0,
+      "skipped": 0,
+      "groups": {
+        "data": 1,
+        "HFA": 4,
+        "protected": 1,
+        "full-board": 54,
+        "acceleration": 648,
+        "poll/chunk": 54,
+        "pause/reload": 54,
+        "simultaneous-load": 54
+      },
+      "fullBoardGames": 54,
+      "simultaneousGames": 54,
+      "seedPattern": "GC442-W7-{canonical game ID}",
+      "loadMilliseconds": 154.63452000000007,
+      "rounds": 159,
+      "runtimeMilliseconds": 2750.3136430000004
+    },
+    "api-local": {
+      "classification": "TEST RESULT",
+      "scope": "Actual request handler with in-memory RPC double; not cloud persistence proof",
+      "executed": 14,
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "readOnlyPolls": 100,
+      "cases": [
+        {
+          "name": "create isolated QA W7 state",
+          "status": "PASS"
+        },
+        {
+          "name": "Chairman token enforced",
+          "status": "PASS"
+        },
+        {
+          "name": "earlier release namespace rejected",
+          "status": "PASS"
+        },
+        {
+          "name": "launch persists one toss",
+          "status": "PASS"
+        },
+        {
+          "name": "retry cannot commit a second toss",
+          "status": "PASS"
+        },
+        {
+          "name": "public response excludes private fields",
+          "status": "PASS"
+        },
+        {
+          "name": "20x control accepted in AUTO",
+          "status": "PASS"
+        },
+        {
+          "name": "GET polling never calls commit or changes stored state/events",
+          "status": "PASS"
+        },
+        {
+          "name": "pause and resume preserve pending situation",
+          "status": "PASS"
+        },
+        {
+          "name": "delay/resume and edit/cancel retain toss",
+          "status": "PASS"
+        },
+        {
+          "name": "QA final cannot be accepted",
+          "status": "PASS"
+        },
+        {
+          "name": "same-seed restart reproduces toss",
+          "status": "PASS"
+        },
+        {
+          "name": "scheduler authorization enforced",
+          "status": "PASS"
+        },
+        {
+          "name": "Dead-Man launch commits its toss once",
+          "status": "PASS"
+        }
+      ]
+    },
+    "ui-local": {
+      "classification": "TEST RESULT",
+      "scope": "DOM integration with actual generated scripts and a read-only fixture API; not deployed browser or Safari proof",
+      "executed": 52,
+      "passed": 52,
+      "failed": 0,
+      "skipped": 0,
+      "uiSurfaceCount": 3,
+      "cases": [
+        {
+          "surface": "filters",
+          "name": "FINAL_PENDING",
+          "status": "PASS"
+        },
+        {
+          "surface": "filters",
+          "name": "LOCKED",
+          "status": "PASS"
+        },
+        {
+          "surface": "filters",
+          "name": "READY",
+          "status": "PASS"
+        },
+        {
+          "surface": "filters",
+          "name": "FINAL",
+          "status": "PASS"
+        },
+        {
+          "surface": "filters",
+          "name": "SEUD PUBLISHED",
+          "status": "PASS"
+        },
+        {
+          "surface": "filters",
+          "name": "ACTIVE",
+          "status": "PASS"
+        },
+        {
+          "surface": "filters",
+          "name": "DELAY",
+          "status": "PASS"
+        },
+        {
+          "surface": "filters",
+          "name": "DELAYED",
+          "status": "PASS"
+        },
+        {
+          "surface": "filters",
+          "name": "UNLAUNCHED",
+          "status": "PASS"
+        },
+        {
+          "surface": "filters",
+          "name": "EDIT",
+          "status": "PASS"
+        },
+        {
+          "surface": "search",
+          "name": "away Tex",
+          "status": "PASS"
+        },
+        {
+          "surface": "search",
+          "name": "away tex",
+          "status": "PASS"
+        },
+        {
+          "surface": "search",
+          "name": "away TEX",
+          "status": "PASS"
+        },
+        {
+          "surface": "search",
+          "name": "away  tex ",
+          "status": "PASS"
+        },
+        {
+          "surface": "search",
+          "name": "home Tex",
+          "status": "PASS"
+        },
+        {
+          "surface": "search",
+          "name": "home tex",
+          "status": "PASS"
+        },
+        {
+          "surface": "search",
+          "name": "home TEX",
+          "status": "PASS"
+        },
+        {
+          "surface": "search",
+          "name": "home  tex ",
+          "status": "PASS"
+        },
+        {
+          "surface": "search",
+          "name": "approved abbreviation",
+          "status": "PASS"
+        },
+        {
+          "surface": "routes",
+          "name": "exactly three named surfaces",
+          "status": "PASS"
+        },
+        {
+          "surface": "Chairman UI",
+          "name": "loads full 54-game board and linked assets",
+          "status": "PASS"
+        },
+        {
+          "surface": "Chairman UI",
+          "name": "unlaunched game does not assign a receiver",
+          "status": "PASS"
+        },
+        {
+          "surface": "Chairman UI",
+          "name": "substring search Tex",
+          "status": "PASS"
+        },
+        {
+          "surface": "Chairman UI",
+          "name": "substring search tex",
+          "status": "PASS"
+        },
+        {
+          "surface": "Chairman UI",
+          "name": "substring search TEX",
+          "status": "PASS"
+        },
+        {
+          "surface": "Chairman UI",
+          "name": "substring search  tex ",
+          "status": "PASS"
+        },
+        {
+          "surface": "Chairman UI",
+          "name": "clearing search restores order",
+          "status": "PASS"
+        },
+        {
+          "surface": "Chairman UI",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "surface": "Chairman UI",
+          "name": "pending and locked included; accepted excluded",
+          "status": "PASS"
+        },
+        {
+          "surface": "Chairman UI",
+          "name": "final filter AND team search",
+          "status": "PASS"
+        },
+        {
+          "surface": "Chairman UI",
+          "name": "lifecycle updates while search focused without reload",
+          "status": "PASS"
+        },
+        {
+          "surface": "Chairman UI",
+          "name": "clear filter restores normal board",
+          "status": "PASS"
+        },
+        {
+          "surface": "Chairman UI",
+          "name": "filter/search never writes",
+          "status": "PASS"
+        },
+        {
+          "surface": "Public UI",
+          "name": "loads full 54-game board and linked assets",
+          "status": "PASS"
+        },
+        {
+          "surface": "Public UI",
+          "name": "unlaunched game does not assign a receiver",
+          "status": "PASS"
+        },
+        {
+          "surface": "Public UI",
+          "name": "substring search Tex",
+          "status": "PASS"
+        },
+        {
+          "surface": "Public UI",
+          "name": "substring search tex",
+          "status": "PASS"
+        },
+        {
+          "surface": "Public UI",
+          "name": "substring search TEX",
+          "status": "PASS"
+        },
+        {
+          "surface": "Public UI",
+          "name": "substring search  tex ",
+          "status": "PASS"
+        },
+        {
+          "surface": "Public UI",
+          "name": "clearing search restores order",
+          "status": "PASS"
+        },
+        {
+          "surface": "Public UI",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "surface": "Public UI",
+          "name": "no Chairman controls or token",
+          "status": "PASS"
+        },
+        {
+          "surface": "Public UI",
+          "name": "filter/search never writes",
+          "status": "PASS"
+        },
+        {
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "loads full 54-game board and linked assets",
+          "status": "PASS"
+        },
+        {
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "substring search Tex",
+          "status": "PASS"
+        },
+        {
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "substring search tex",
+          "status": "PASS"
+        },
+        {
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "substring search TEX",
+          "status": "PASS"
+        },
+        {
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "substring search  tex ",
+          "status": "PASS"
+        },
+        {
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "clearing search restores order",
+          "status": "PASS"
+        },
+        {
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "no Chairman controls or token",
+          "status": "PASS"
+        },
+        {
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "filter/search never writes",
+          "status": "PASS"
+        }
+      ]
+    },
+    "browser-local": {
+      "classification": "TEST RESULT",
+      "scope": "Actual browsers against local HTTP routes/assets and fixture read-only API; cloud and physical iOS Safari not tested",
+      "executed": 42,
+      "passed": 42,
+      "failed": 0,
+      "skipped": 0,
+      "surfaces": 3,
+      "browsers": 2,
+      "cases": [
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "direct navigation and 54 cards",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "assets and JavaScript load",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "search variants and substring",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "no operator controls or token sent",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "refresh and viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "read-only API requests",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "direct navigation and 54 cards",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "assets and JavaScript load",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "search variants and substring",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "final action filter and live lifecycle update",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "refresh and viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "read-only API requests",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "direct navigation and 54 cards",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "assets and JavaScript load",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "search variants and substring",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "no operator controls or token sent",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "refresh and viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "read-only API requests",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "direct navigation and 54 cards",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "assets and JavaScript load",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "search variants and substring",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "no operator controls or token sent",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "refresh and viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "read-only API requests",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "direct navigation and 54 cards",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "assets and JavaScript load",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "search variants and substring",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "final action filter and live lifecycle update",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "refresh and viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "read-only API requests",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "direct navigation and 54 cards",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "assets and JavaScript load",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "search variants and substring",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "no operator controls or token sent",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "refresh and viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "read-only API requests",
+          "status": "PASS"
+        }
+      ]
+    },
+    "browser-staged": {
+      "classification": "TEST RESULT",
+      "scope": "staged UI with actual cloud API; mobile Safari engine reviewed through iPhone WebKit emulation, no physical iOS device",
+      "phase": "staged",
+      "publicSlug": "w7v442-eee999d83024764d",
+      "executed": 48,
+      "passed": 48,
+      "failed": 0,
+      "skipped": 0,
+      "surfaces": 3,
+      "cases": [
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "direct navigation and 54 persisted games",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "assets and scripts load",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "isolated endpoint and engine identity",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "Tex variants return same three-game subset",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "safe empty results and clearing restores board",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "public access has no operator control or credential",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "refresh and mobile viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "browser navigation and filters only issue reads",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "direct navigation and 54 persisted games",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "assets and scripts load",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "isolated endpoint and engine identity",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "Tex variants return same three-game subset",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "safe empty results and clearing restores board",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "locked QA final is included and search combines with AND",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "refresh and mobile viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "browser navigation and filters only issue reads",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "direct navigation and 54 persisted games",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "assets and scripts load",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "isolated endpoint and engine identity",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "Tex variants return same three-game subset",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "safe empty results and clearing restores board",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "public access has no operator control or credential",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "refresh and mobile viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "browser navigation and filters only issue reads",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "direct navigation and 54 persisted games",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "assets and scripts load",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "isolated endpoint and engine identity",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "Tex variants return same three-game subset",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "safe empty results and clearing restores board",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "public access has no operator control or credential",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "refresh and mobile viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "browser navigation and filters only issue reads",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "direct navigation and 54 persisted games",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "assets and scripts load",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "isolated endpoint and engine identity",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "Tex variants return same three-game subset",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "safe empty results and clearing restores board",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "locked QA final is included and search combines with AND",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "refresh and mobile viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "browser navigation and filters only issue reads",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "direct navigation and 54 persisted games",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "assets and scripts load",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "isolated endpoint and engine identity",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "Tex variants return same three-game subset",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "safe empty results and clearing restores board",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "public access has no operator control or credential",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "refresh and mobile viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "browser navigation and filters only issue reads",
+          "status": "PASS"
+        }
+      ]
+    },
+    "cloud-api": {
+      "classification": "TEST RESULT",
+      "scope": "Actual isolated Supabase HTTP backend and persistent new-only QA session",
+      "publicSlug": "w7v442-eee999d83024764d",
+      "engine": "GC-W7-V4.4.2-RC1",
+      "executed": 16,
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0,
+      "stateVersion": 15,
+      "gameCount": 54,
+      "acceptedGames": 0,
+      "runtimeMilliseconds": 9609.273183000001,
+      "cases": [
+        {
+          "name": "deployed identity and W7 count",
+          "status": "PASS"
+        },
+        {
+          "name": "create new isolated QA session",
+          "status": "PASS"
+        },
+        {
+          "name": "cloud readback has 54 distinct rated QA games",
+          "status": "PASS"
+        },
+        {
+          "name": "wrong Chairman token rejects a write",
+          "status": "PASS"
+        },
+        {
+          "name": "earlier namespace rejected by candidate endpoint",
+          "status": "PASS"
+        },
+        {
+          "name": "scheduler rejects missing credential",
+          "status": "PASS"
+        },
+        {
+          "name": "launch persists exactly one toss",
+          "status": "PASS"
+        },
+        {
+          "name": "stale launch retry rejected without version advance",
+          "status": "PASS"
+        },
+        {
+          "name": "public response has no private operator or RNG fields",
+          "status": "PASS"
+        },
+        {
+          "name": "AUTO and 20x use the deployed handler",
+          "status": "PASS"
+        },
+        {
+          "name": "pause and reload preserve football situation",
+          "status": "PASS"
+        },
+        {
+          "name": "delay resume and edit cancel preserve toss",
+          "status": "PASS"
+        },
+        {
+          "name": "same-seed restart reproduces the original toss",
+          "status": "PASS"
+        },
+        {
+          "name": "new-seed restart changes seed and commits one new-run toss",
+          "status": "PASS"
+        },
+        {
+          "name": "QA final remains locked and cannot be accepted",
+          "status": "PASS"
+        },
+        {
+          "name": "final and unlaunched state survive independent readback",
+          "status": "PASS"
+        }
+      ]
+    },
+    "pages-preservation-restore": {
+      "classification": "TEST RESULT",
+      "status": "PASS",
+      "preservedFiles": 74,
+      "newRoute": "/v4.4.2/",
+      "newRouteFiles": 12,
+      "mode": "restore",
+      "sourceWorkflow": 37177479066,
+      "testedAt": "2026-10-06T22:30:53.577Z"
+    },
+    "fix-mutations": {
+      "mutations": 5,
+      "killed": 5,
+      "survived": 0,
+      "results": [
+        {
+          "mutation": "automatic-fourth-kneel",
+          "status": "KILLED",
+          "executed": 497,
+          "failedAssertions": 32,
+          "failedGroups": [
+            "kneel-boundary"
+          ]
+        },
+        {
+          "mutation": "forced-kneel-clock",
+          "status": "KILLED",
+          "executed": 497,
+          "failedAssertions": 4,
+          "failedGroups": [
+            "forced-fourth-kneel"
+          ]
+        },
+        {
+          "mutation": "forced-kneel-possession",
+          "status": "KILLED",
+          "executed": 497,
+          "failedAssertions": 32,
+          "failedGroups": [
+            "forced-fourth-kneel"
+          ]
+        },
+        {
+          "mutation": "halftime-carryover",
+          "status": "KILLED",
+          "executed": 497,
+          "failedAssertions": 16,
+          "failedGroups": [
+            "halftime",
+            "restart"
+          ]
+        },
+        {
+          "mutation": "duplicate-half-reset",
+          "status": "KILLED",
+          "executed": 497,
+          "failedAssertions": 16,
+          "failedGroups": [
+            "halftime-reload-retry"
+          ]
+        }
+      ]
+    },
+    "toss-mutations": {
+      "executed": 4,
+      "killed": 4,
+      "survived": 0,
+      "results": [
+        {
+          "mutation": "away-always-receives",
+          "status": "KILLED",
+          "exitCode": 1,
+          "firstFailure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n0 !== 1"
+        },
+        {
+          "mutation": "q3-not-reciprocal",
+          "status": "KILLED",
+          "exitCode": 1,
+          "firstFailure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n0 !== 1"
+        },
+        {
+          "mutation": "retry-rerolls",
+          "status": "KILLED",
+          "exitCode": 1,
+          "firstFailure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ '{\"winnerTeamId\":\"Home\",\"choice\":\"KICK\",\"openingKickingTeamId\":\"Home\",\"openingReceivingTeamId\":\"Away\",\"q3KickingTeamId\":\"Away\",\"q3ReceivingTeamId\":\"Home\",\"seedHex\":\"GC442-TOSS-00000\",\"runId\":\"TEST-R01\",\"engineVersion\":\"GC-W7-V4.4.2-RC1\"}'"
+        },
+        {
+          "mutation": "wrong-kick-probability",
+          "status": "KILLED",
+          "exitCode": 1,
+          "firstFailure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(counts.KICK>=7300&&counts.KICK<=7700)"
+        }
+      ]
+    },
+    "remaining-mutations": {
+      "executed": 4,
+      "killed": 4,
+      "survived": 0,
+      "results": [
+        {
+          "mutation": "locked-hidden",
+          "status": "KILLED",
+          "exitCode": 1
+        },
+        {
+          "mutation": "exact-search",
+          "status": "KILLED",
+          "exitCode": 1
+        },
+        {
+          "mutation": "neutral-hfa",
+          "status": "KILLED",
+          "exitCode": 1
+        },
+        {
+          "mutation": "double-hfa",
+          "status": "KILLED",
+          "exitCode": 1
+        }
+      ]
+    }
+  },
+  "post": {
+    "cloud-api": {
+      "classification": "TEST RESULT",
+      "scope": "Actual isolated Supabase HTTP backend and persistent new-only QA session",
+      "publicSlug": "w7v442-2a1225f2fb28597d",
+      "engine": "GC-W7-V4.4.2-RC1",
+      "executed": 16,
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0,
+      "stateVersion": 15,
+      "gameCount": 54,
+      "acceptedGames": 0,
+      "runtimeMilliseconds": 19731.120501,
+      "cases": [
+        {
+          "name": "deployed identity and W7 count",
+          "status": "PASS"
+        },
+        {
+          "name": "create new isolated QA session",
+          "status": "PASS"
+        },
+        {
+          "name": "cloud readback has 54 distinct rated QA games",
+          "status": "PASS"
+        },
+        {
+          "name": "wrong Chairman token rejects a write",
+          "status": "PASS"
+        },
+        {
+          "name": "earlier namespace rejected by candidate endpoint",
+          "status": "PASS"
+        },
+        {
+          "name": "scheduler rejects missing credential",
+          "status": "PASS"
+        },
+        {
+          "name": "launch persists exactly one toss",
+          "status": "PASS"
+        },
+        {
+          "name": "stale launch retry rejected without version advance",
+          "status": "PASS"
+        },
+        {
+          "name": "public response has no private operator or RNG fields",
+          "status": "PASS"
+        },
+        {
+          "name": "AUTO and 20x use the deployed handler",
+          "status": "PASS"
+        },
+        {
+          "name": "pause and reload preserve football situation",
+          "status": "PASS"
+        },
+        {
+          "name": "delay resume and edit cancel preserve toss",
+          "status": "PASS"
+        },
+        {
+          "name": "same-seed restart reproduces the original toss",
+          "status": "PASS"
+        },
+        {
+          "name": "new-seed restart changes seed and commits one new-run toss",
+          "status": "PASS"
+        },
+        {
+          "name": "QA final remains locked and cannot be accepted",
+          "status": "PASS"
+        },
+        {
+          "name": "final and unlaunched state survive independent readback",
+          "status": "PASS"
+        }
+      ]
+    },
+    "browser-deployed": {
+      "classification": "TEST RESULT",
+      "scope": "deployed UI with actual cloud API; mobile Safari engine reviewed through iPhone WebKit emulation, no physical iOS device",
+      "phase": "deployed",
+      "publicSlug": "w7v442-2a1225f2fb28597d",
+      "executed": 48,
+      "passed": 48,
+      "failed": 0,
+      "skipped": 0,
+      "surfaces": 3,
+      "cases": [
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "direct navigation and 54 persisted games",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "assets and scripts load",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "isolated endpoint and engine identity",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "Tex variants return same three-game subset",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "safe empty results and clearing restores board",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "public access has no operator control or credential",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "refresh and mobile viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Public UI",
+          "name": "browser navigation and filters only issue reads",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "direct navigation and 54 persisted games",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "assets and scripts load",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "isolated endpoint and engine identity",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "Tex variants return same three-game subset",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "safe empty results and clearing restores board",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "locked QA final is included and search combines with AND",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "refresh and mobile viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Chairman UI",
+          "name": "browser navigation and filters only issue reads",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "direct navigation and 54 persisted games",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "assets and scripts load",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "isolated endpoint and engine identity",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "Tex variants return same three-game subset",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "safe empty results and clearing restores board",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "public access has no operator control or credential",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "refresh and mobile viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "browser navigation and filters only issue reads",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "direct navigation and 54 persisted games",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "assets and scripts load",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "isolated endpoint and engine identity",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "Tex variants return same three-game subset",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "safe empty results and clearing restores board",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "public access has no operator control or credential",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "refresh and mobile viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Public UI",
+          "name": "browser navigation and filters only issue reads",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "direct navigation and 54 persisted games",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "assets and scripts load",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "isolated endpoint and engine identity",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "Tex variants return same three-game subset",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "safe empty results and clearing restores board",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "locked QA final is included and search combines with AND",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "refresh and mobile viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Chairman UI",
+          "name": "browser navigation and filters only issue reads",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "direct navigation and 54 persisted games",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "assets and scripts load",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "isolated endpoint and engine identity",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "Tex variants return same three-game subset",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "safe empty results and clearing restores board",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "public access has no operator control or credential",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "refresh and mobile viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "Condensed UI (UI 1.3)",
+          "name": "browser navigation and filters only issue reads",
+          "status": "PASS"
+        }
+      ]
+    },
+    "pages-preservation-verify": {
+      "classification": "TEST RESULT",
+      "status": "PASS",
+      "preservedFiles": 74,
+      "newRoute": "/v4.4.2/",
+      "newRouteFiles": 12,
+      "mode": "verify",
+      "sourceWorkflow": 37177479066,
+      "testedAt": "2026-10-06T22:32:54.885Z"
+    },
+    "deployment-verification": {
+      "classification": "TEST RESULT",
+      "status": "PASS",
+      "sourceFiles": 4,
+      "healthChecks": 2,
+      "backendVersion": 1,
+      "sourceCommit": "5ff805ef7f54d7dbcfebbf23630088cf41bc3af6",
+      "previousReleaseReachable": true
+    }
+  }
+}

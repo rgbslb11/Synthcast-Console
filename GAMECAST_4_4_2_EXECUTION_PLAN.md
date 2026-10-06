@@ -1,6 +1,6 @@
 # GameCast 4.4.2 W7 execution plan
 
-Status: IN PROGRESS — source and browser QA pass; applying the established additive database release process. Not deployed or certified.
+Status: DEPLOYED — isolated QA candidate. Backend v1 and all three versioned UI surfaces verified. No official results accepted or canonical promotion.
 
 ## Foundation and boundaries
 
@@ -79,3 +79,12 @@ Activation: loaded into the isolated QA-only 4.4.2 backend; no accepted or offic
 - TEST RESULT: non-destructive scheduler rollback rehearsal passed; earlier job fingerprints unchanged. A 74-file hosting snapshot and restore passed; only 12 files under the new route are added.
 - BLOCKED locally: direct Chromium cloud requests receive ERR_EMPTY_RESPONSE in this executor. The release workflow runs this integration in GitHub's browser environment before UI publication. Physical iOS hardware is unavailable; mobile coverage uses actual WebKit with iPhone emulation and is labeled accordingly.
 - Pending: staged real-cloud browser checks, isolated Pages publication, deployed browser checks, scheduler execution evidence, final diff/report.
+
+## Final outcome
+
+- OBSERVED FACT: backend v1 source matches generated commit 5ff805ef7f54d7dbcfebbf23630088cf41bc3af6. UI deployment commit 200757b9663fe033adda9190790b5947ae3146fc; workflow 37540806064 passed verification, publication, and post-deployment jobs.
+- TEST RESULT: 11,577 core checks; 48 staged and 48 deployed real-cloud browser checks; 16 cloud API checks in each phase; all pass. Mobile coverage is real WebKit with iPhone emulation, not physical iOS hardware.
+- TEST RESULT: 112 cloud scheduler/load checks pass for 54 simultaneous games and 108 seeded replay comparisons. Two preliminary comparator-only failures (JSON object ordering and wall-time audit stamps) were corrected using the established football-history normalization. No runtime change resulted.
+- TEST RESULT: final assembled HFA paired comparison: 1,000 identical seeds per version, 4,000 full games. Baseline venue effect 18.490; complete candidate 2.826 points (95% interval 1.885–3.767). Approved normalized coefficient remains .006; neutral zero. Approved independent holdout remains 2.929 points across 5,000 pairs.
+- OBSERVED FACT: six QA sessions, zero active games, zero accepted/published results. All 52 earlier sessions, 25 earlier backend versions/hashes, and 74 published-file hashes remain unchanged.
+- Complete matrices, limitations, commands, and changed-file explanations are in GAMECAST_4_4_2_RELEASE_REPORT.md. No pending implementation or deployment action remains for the isolated candidate.

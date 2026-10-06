@@ -1,0 +1,722 @@
+{
+  "classification": "TEST RESULT",
+  "scope": "Actual cloud cron and 54 simultaneous QA games, each replayed from its persisted seed with the verified runtime",
+  "publicSlug": "w7v442-e36e7d566db2fc0d",
+  "executed": 112,
+  "passed": 112,
+  "failed": 0,
+  "skipped": 0,
+  "simultaneousGames": 54,
+  "replayComparisons": 108,
+  "finalPending": 54,
+  "accepted": 0,
+  "runtimeMilliseconds": 83435.618384,
+  "requestTimes": [
+    {
+      "action": "create",
+      "milliseconds": 6095.518118
+    },
+    {
+      "action": "read",
+      "milliseconds": 410.7527879999998
+    },
+    {
+      "action": "deadman_batch",
+      "milliseconds": 493.7341489999999
+    },
+    {
+      "action": "read",
+      "milliseconds": 6012.982447
+    },
+    {
+      "action": "read",
+      "milliseconds": 4983.342240000002
+    },
+    {
+      "action": "read",
+      "milliseconds": 5471.6497919999965
+    },
+    {
+      "action": "read",
+      "milliseconds": 4607.578368000002
+    },
+    {
+      "action": "read",
+      "milliseconds": 4041.2351899999994
+    },
+    {
+      "action": "read",
+      "milliseconds": 349.446554999995
+    },
+    {
+      "action": "command",
+      "milliseconds": 477.59987099999853
+    },
+    {
+      "action": "command",
+      "milliseconds": 497.5490190000055
+    },
+    {
+      "action": "command",
+      "milliseconds": 663.5036210000035
+    },
+    {
+      "action": "command",
+      "milliseconds": 475.91232899999886
+    },
+    {
+      "action": "command",
+      "milliseconds": 457.8710610000053
+    },
+    {
+      "action": "command",
+      "milliseconds": 501.79688700000406
+    },
+    {
+      "action": "command",
+      "milliseconds": 492.5494189999954
+    },
+    {
+      "action": "command",
+      "milliseconds": 468.17930799999885
+    },
+    {
+      "action": "command",
+      "milliseconds": 430.5651030000008
+    },
+    {
+      "action": "command",
+      "milliseconds": 779.6557319999993
+    },
+    {
+      "action": "command",
+      "milliseconds": 510.86855099999957
+    },
+    {
+      "action": "command",
+      "milliseconds": 520.1179590000029
+    },
+    {
+      "action": "command",
+      "milliseconds": 515.8217520000035
+    },
+    {
+      "action": "command",
+      "milliseconds": 439.6442840000018
+    },
+    {
+      "action": "command",
+      "milliseconds": 445.0790729999935
+    },
+    {
+      "action": "command",
+      "milliseconds": 526.501860000004
+    },
+    {
+      "action": "command",
+      "milliseconds": 482.23952400000417
+    },
+    {
+      "action": "command",
+      "milliseconds": 436.96802699999535
+    },
+    {
+      "action": "command",
+      "milliseconds": 417.7055820000096
+    },
+    {
+      "action": "command",
+      "milliseconds": 367.0816540000087
+    },
+    {
+      "action": "command",
+      "milliseconds": 750.6801639999903
+    },
+    {
+      "action": "command",
+      "milliseconds": 466.1725460000016
+    },
+    {
+      "action": "command",
+      "milliseconds": 526.0294500000018
+    },
+    {
+      "action": "command",
+      "milliseconds": 465.6830800000025
+    },
+    {
+      "action": "command",
+      "milliseconds": 448.51109699999506
+    },
+    {
+      "action": "command",
+      "milliseconds": 455.3086509999994
+    },
+    {
+      "action": "command",
+      "milliseconds": 496.4511280000006
+    },
+    {
+      "action": "command",
+      "milliseconds": 476.8064460000023
+    },
+    {
+      "action": "command",
+      "milliseconds": 463.25509500000044
+    },
+    {
+      "action": "command",
+      "milliseconds": 527.5956070000102
+    },
+    {
+      "action": "command",
+      "milliseconds": 504.51582100000815
+    },
+    {
+      "action": "command",
+      "milliseconds": 331.6431200000079
+    },
+    {
+      "action": "command",
+      "milliseconds": 444.1264550000051
+    },
+    {
+      "action": "command",
+      "milliseconds": 493.78111199999694
+    },
+    {
+      "action": "command",
+      "milliseconds": 390.8337679999968
+    },
+    {
+      "action": "command",
+      "milliseconds": 448.2778309999994
+    },
+    {
+      "action": "command",
+      "milliseconds": 471.19354100000055
+    },
+    {
+      "action": "command",
+      "milliseconds": 469.9222399999999
+    },
+    {
+      "action": "command",
+      "milliseconds": 484.563467999993
+    },
+    {
+      "action": "command",
+      "milliseconds": 357.7150709999987
+    },
+    {
+      "action": "command",
+      "milliseconds": 440.59769300000335
+    },
+    {
+      "action": "command",
+      "milliseconds": 427.637309999991
+    },
+    {
+      "action": "command",
+      "milliseconds": 459.7908840000018
+    },
+    {
+      "action": "command",
+      "milliseconds": 461.27522599999793
+    },
+    {
+      "action": "command",
+      "milliseconds": 360.5650739999983
+    },
+    {
+      "action": "command",
+      "milliseconds": 481.28840400000627
+    },
+    {
+      "action": "command",
+      "milliseconds": 464.1330769999913
+    },
+    {
+      "action": "command",
+      "milliseconds": 353.2577270000038
+    },
+    {
+      "action": "command",
+      "milliseconds": 446.72173000000475
+    },
+    {
+      "action": "command",
+      "milliseconds": 388.25011800001084
+    },
+    {
+      "action": "command",
+      "milliseconds": 467.5361009999906
+    },
+    {
+      "action": "command",
+      "milliseconds": 603.9364990000031
+    },
+    {
+      "action": "command",
+      "milliseconds": 444.2710480000096
+    },
+    {
+      "action": "command",
+      "milliseconds": 379.7243240000098
+    },
+    {
+      "action": "read",
+      "milliseconds": 349.7650189999986
+    }
+  ],
+  "cases": [
+    {
+      "name": "54 isolated QA games created and read back",
+      "status": "PASS"
+    },
+    {
+      "name": "54 future QA starts armed through authorized API",
+      "status": "PASS"
+    },
+    {
+      "name": "real 15-second cron launches all 54 games with one toss each",
+      "status": "PASS"
+    },
+    {
+      "name": "G0312 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0331 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0327 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0315 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0295 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0318 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0337 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0296 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0285 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0319 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0316 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0290 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0308 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0334 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0314 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0293 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0294 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0322 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0325 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0328 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0297 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0324 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0291 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0303 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0335 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0320 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0332 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0321 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0336 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0287 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0299 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0309 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0329 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0306 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0311 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0307 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0326 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0302 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0304 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0300 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0305 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0298 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0310 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0286 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0288 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0333 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0301 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0317 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0284 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0323 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0292 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0330 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0289 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0313 deployed seeded replay round 0",
+      "status": "PASS"
+    },
+    {
+      "name": "G0312 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0331 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0327 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0315 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0295 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0318 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0337 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0296 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0285 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0319 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0316 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0290 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0308 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0334 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0314 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0293 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0294 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0322 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0325 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0328 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0297 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0324 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0291 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0303 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0335 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0320 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0332 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0321 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0336 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0287 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0299 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0309 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0329 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0306 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0311 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0307 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0326 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0302 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0304 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0300 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0305 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0298 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0310 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0286 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0288 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0333 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0301 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0317 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0284 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0323 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0292 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0330 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0289 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "G0313 deployed seeded replay round 1",
+      "status": "PASS"
+    },
+    {
+      "name": "QA cleanup stops all runs without accepting or publishing",
+      "status": "PASS"
+    }
+  ]
+}
