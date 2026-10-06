@@ -18,9 +18,9 @@ Status: DEPLOYED — isolated QA candidate. Backend v1 and all three versioned U
 | 1 | Coin toss and reciprocal Q3 possession | Assembled local backend passes 10,102 checks; 4 mutations caught; authoritative manual and Dead-Man launch tested |
 | 2 | FINAL — NEEDS ACTION filter | Implemented; local DOM and Chromium lifecycle/filter checks pass |
 | 3 | Team-name search | Implemented on all three surfaces; local DOM and Chromium checks pass |
-| 4 | Three deployed UI surfaces | Exactly three surfaces built from verified Public/Chairman and UI 1.3 lineage; cloud deployment pending |
+| 4 | Three deployed UI surfaces | Exactly three surfaces built from verified Public/Chairman and UI 1.3 lineage; cloud deployment and post-deployment checks passed |
 | 5 | HFA 2.66 and neutral zero | Implemented approved ±0.006 coefficient; neutral zero; prior ±0.035 remains unchanged in 4.4.1 |
-| 6 | Kneel guard | Local fix, boundary tests, negative tests, and local integrity comparisons pass; deployment pending |
+| 6 | Kneel guard | Local fix, boundary tests, negative tests, and local integrity comparisons pass; deployed and verified |
 | 7 | Conditional halftime timeout reset | Defect confirmed (15/16 baseline combinations fail); local fix passes all 16 plus reload/retry |
 
 Expected requirements: 7. Actual rows: 7.
@@ -34,7 +34,7 @@ Two logical inputs previously validated from W7_APPROVED_RATINGS_AND_SLATE_ONLY.
 
 Activation: loaded into the isolated QA-only 4.4.2 backend; no accepted or official results. No earlier-week dataset will be substituted.
 
-## Tests and decisions
+## Earlier component-stage tests and decisions
 
 - `node scripts/build-gamecast-v441.mjs`: PASS; baseline reconstructed in isolated checkout.
 - `node scripts/test-gamecast-v442-football-fixes.mjs --baseline`: 497 executed, 370 passed, 127 failed, 0 skipped. Expected red regressions retained as evidence.
@@ -63,13 +63,13 @@ Activation: loaded into the isolated QA-only 4.4.2 backend; no accepted or offic
 - Local WebKit installation downloaded successfully through the official mirror, but required system libraries could not be installed because this executor rejects apt privilege changes. GitHub QA run 37537992050 at implementation commit e9de5f4e4f10fa906bade8d50425a1586722c51f passed all steps, including 42/42 Chromium and iPhone WebKit browser checks. The display-only correction shows Kickoff pending until the toss; workflow 37538372748 at b4c54b7d5f030bdd043a1736dd326ce8ec2a0e12 also passed all steps. Physical iOS Safari remains untested.
 - Previously deployed 4.4.1 HTML and six linked assets still match all seven prior hashes, and health remains HTTP 200 / GC-W6-V4.4.1-RC1.
 
-## Remaining work and decisions
+## Completed release steps
 
 1. OBSERVED FACT: the user superseded the separate-project proposal and authorized the established additive database process in the existing project. No project provisioning or cost decision is needed.
 2. Pre-install collision checks found no 4.4.2 backend, RPC, Vault credential, or cron job. Preserve shared tables and create/read RPCs; add only 4.4.2 commit/auth/scheduler functions and its fresh credential.
-3. Apply reviewed `persistence.sql`, check service-only grants and previous-function fingerprints, then validate the isolated backend's cloud persistence and authorization.
-4. Preserve the entire currently published Pages artifact while adding `/v4.4.2/`. Complete deployed route, browser, isolation, scheduler, and rollback checks. No result acceptance or canonical promotion.
-5. Final status depends on all 12 gates and three prerequisites. Local or CI success alone is not certification.
+3. Applied reviewed `persistence.sql`; service-only grants, previous-function fingerprints, and real cloud persistence/authorization checks passed.
+4. Preserved all 74 prior published files while adding `/v4.4.2/`. Deployed route, browser, isolation, scheduler, and rollback checks passed. No result acceptance or canonical promotion.
+5. The final report records all 12 gates and three prerequisites, with physical-device mobile coverage explicitly excluded. Status: DEPLOYED isolated QA candidate.
 
 ## Cloud validation progress
 
@@ -78,7 +78,7 @@ Activation: loaded into the isolated QA-only 4.4.2 backend; no accepted or offic
 - TEST RESULT: real cloud API 16/16; SQL persistence guards 7/7; 100 read polls left the state/version/event fingerprints unchanged, as did all 52 prior-release session rows over the same interval.
 - TEST RESULT: non-destructive scheduler rollback rehearsal passed; earlier job fingerprints unchanged. A 74-file hosting snapshot and restore passed; only 12 files under the new route are added.
 - BLOCKED locally: direct Chromium cloud requests receive ERR_EMPTY_RESPONSE in this executor. The release workflow runs this integration in GitHub's browser environment before UI publication. Physical iOS hardware is unavailable; mobile coverage uses actual WebKit with iPhone emulation and is labeled accordingly.
-- Pending: staged real-cloud browser checks, isolated Pages publication, deployed browser checks, scheduler execution evidence, final diff/report.
+- Completed: staged real-cloud browser checks, isolated Pages publication, deployed browser checks, scheduler execution evidence, final diff and report.
 
 ## Final outcome
 
