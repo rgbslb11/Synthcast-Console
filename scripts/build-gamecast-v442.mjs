@@ -43,6 +43,7 @@ app=once(app,'if(publicView){root.classList.add',"if(publicView){token='';docume
 app=once(app,'function visible(g){',"function visible(g){if(!gc442TeamMatches(g,document.getElementById('teamSearch').value))return false;if(filter==='NEEDS_ACTION')return !publicView&&gc442NeedsAction(g);");
 app=once(app,"return !publicView&&el?.matches(","return !publicView&&el?.id!=='teamSearch'&&el?.matches(");
 app=once(app,'[1,4,10,50].map','[1,4,10,20,50].map');
+app=once(app,'g.possession===0?esc(g.away.name):esc(g.home.name)',"g.possession===0?esc(g.away.name):g.possession===1?esc(g.home.name):'Kickoff pending'");
 app=once(app,'tick();setInterval(tick,1000);load();',"document.getElementById('teamSearch').addEventListener('input',()=>render());tick();setInterval(tick,1000);load();");
 // Reject an accidental cross-release response before adopting data or state version.
 app=once(app,"if(!r.ok)throw Object.assign", "if(r.ok&&x.engine_version&&x.engine_version!=='GC-W7-V4.4.2-RC1')throw new Error('4.4.2 engine identity mismatch');if(!r.ok)throw Object.assign");
@@ -51,7 +52,7 @@ let page=read('public/v4.4.1/index.html').replaceAll('4.4.1','4.4.2').replaceAll
 page=page.replaceAll('../v4.2/app.css','legacy/app.css').replaceAll('../v4.2/patch-rc2.js','legacy/patch-rc2.js').replaceAll('../v4.2.2/patch-422.js','legacy/patch-422.js');
 page=page.replaceAll('121/121 POST-W5 POWER · 4.2.3 UI + 4.2.2 FOOTBALL MECHANICS','121/121 APPROVED W7 POWER');
 page=page.replaceAll('the approved post-Week-5 GameCast TEAM/OFF/DEF v1.3 workbook','the approved W7 TEAM/OFF/DEF dataset').replaceAll('post-Week-5 TEAM/OFF/DEF ratings loaded from GameCast v1.3','approved W7 TEAM/OFF/DEF ratings loaded').replaceAll('post-Week-5 ratings','approved W7 ratings').replaceAll('Football mechanics are unchanged.','Coin toss, venue adjustment, kneel safety, and halftime reset are versioned for 4.4.2.');
-page=once(page,'<div class="filters">','<label class="team-search">SEARCH TEAMS <input id="teamSearch" type="search" placeholder="Team name or abbreviation" autocomplete="off"></label><div class="filters">');
+page=once(page,'<div class="filters">','<label class="team-search">SEARCH TEAMS <input id="teamSearch" type="search" placeholder="e.g., Tex" autocomplete="off"></label><div class="filters">');
 page=once(page,'<button data-f="FINAL">FINAL</button>','<button data-f="FINAL">FINAL</button><button class="operator-only" data-f="NEEDS_ACTION">FINAL — NEEDS ACTION</button>');
 page=once(page,'<script src="app.js">','<script src="release-config.js"></script><script src="list-filters.js"></script><script src="app.js">');
 write(`${ui}/index.html`,page);
@@ -77,7 +78,7 @@ condensed=once(condensed,expectedLine,"      const expected={'2026-10-09':2,'202
 condensed=once(condensed,'  tick();setInterval(tick,1000);',"  document.getElementById('teamSearch').addEventListener('input',reconcile);\n  tick();setInterval(tick,1000);");
 write(`${ui}/ui1.3/scoreboard.js`,condensed);
 let html=read(`${assets}/ui13-parent/index.html`).replaceAll('Week 5','Week 7').replaceAll('WEEK 5','WEEK 7').replaceAll('DUAL ENGINE','GAMECAST 4.4.2').replaceAll('4.3.2.2','4.4.2').replaceAll('4.3.2.1','4.4.2').replaceAll('49 GAMES','52 GAMES').replaceAll('THURSDAY &amp; FRIDAY · 9 GAMES','FRIDAY · 2 GAMES').replaceAll('Connecting to both public Week 7 sessions...','Connecting to the public Week 7 session...');
-html=once(html,'    <nav class="filters"','    <label class="team-search">SEARCH TEAMS <input id="teamSearch" type="search" placeholder="Team name or abbreviation" autocomplete="off"></label>\n    <nav class="filters"');
+html=once(html,'    <nav class="filters"','    <label class="team-search">SEARCH TEAMS <input id="teamSearch" type="search" placeholder="e.g., Tex" autocomplete="off"></label>\n    <nav class="filters"');
 html=once(html,'  <script src="scoreboard.js">','  <script src="../release-config.js"></script><script src="../list-filters.js"></script>\n  <script src="scoreboard.js">');
 write(`${ui}/ui1.3/index.html`,html);fs.copyFileSync(`${assets}/ui13-parent/scoreboard.css`,`${ui}/ui1.3/scoreboard.css`);
 const identity={engine,week:'2026-W07',function:'gamecast-week7-v4-4-2',namespace:'w7v442-',storage:'synthcastGameCast442Operator',data,backendUrl:endpoint,deployment:'NOT DEPLOYED',qaOnly:true,hfa:{targetPoints:2.66,approvedNormalizedEdge:.006,holdoutMeanPoints:2.929},uiSurfaceCount:3,surfaces:[{name:'Public UI',route:'/v4.4.2/?view=public'},{name:'Chairman UI',route:'/v4.4.2/'},{name:'Condensed UI (UI 1.3)',route:'/v4.4.2/ui1.3/'}]};

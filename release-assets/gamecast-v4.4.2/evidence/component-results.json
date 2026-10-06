@@ -775,8 +775,8 @@
   "ui-local": {
     "classification": "TEST RESULT",
     "scope": "DOM integration with actual generated scripts and a read-only fixture API; not deployed browser or Safari proof",
-    "executed": 50,
-    "passed": 50,
+    "executed": 52,
+    "passed": 52,
     "failed": 0,
     "skipped": 0,
     "uiSurfaceCount": 3,
@@ -888,6 +888,11 @@
       },
       {
         "surface": "Chairman UI",
+        "name": "unlaunched game does not assign a receiver",
+        "status": "PASS"
+      },
+      {
+        "surface": "Chairman UI",
         "name": "substring search Tex",
         "status": "PASS"
       },
@@ -944,6 +949,11 @@
       {
         "surface": "Public UI",
         "name": "loads full 54-game board and linked assets",
+        "status": "PASS"
+      },
+      {
+        "surface": "Public UI",
+        "name": "unlaunched game does not assign a receiver",
         "status": "PASS"
       },
       {
@@ -1203,9 +1213,9 @@
     "status": "PASS",
     "files": 16,
     "sha256": {
-      "public/v4.4.2/index.html": "1c234b783f1abbae8d5b27a624fd96d8fe14755d4970f73674e42f57dd4841a2",
+      "public/v4.4.2/index.html": "d0d9e7b0b9e3e66bc05bcfb724c57f8245557fc099cf9f6adf673a705a98a1b5",
       "public/v4.4.2/release-config.js": "133e68ca371ef06c6af3cc5e7814f1586be1b2c035f76dd97f8693e6ab796e58",
-      "public/v4.4.2/app.js": "f3872c2325eeb9d3c0870c73c03c8dc304dba0c401c5c41754556e187d382423",
+      "public/v4.4.2/app.js": "2e277e69fc31825107aeffcc62fc783ccc2cf57c1c29293b410888a616fa3b3d",
       "public/v4.4.2/patch-442.js": "474f47ddb60d3a12e2a18edb7ea7aa05881f5a29088216de219b916bf4e7db4a",
       "public/v4.4.2/list-filters.js": "f552fd3066a4ac822e8f367dfaecf0b83b71d3fee319a91e9035580ecfbb7aa5",
       "public/v4.4.2/deadman.css": "515f94be2951ec5b4bb2f4a27976eb72c9ffda07688d1da93d3a84936817d066",
@@ -1213,7 +1223,7 @@
       "public/v4.4.2/legacy/patch-rc2.js": "c21dc3c688ce27c41e2c4a8e66434dca2a45553b78e95e0459b21f2483794c15",
       "public/v4.4.2/legacy/patch-422.js": "fce66b555276765cc7a16d3478c5960ebd96eb2446cc751af683cf278e46d827",
       "public/v4.4.2/ui1.3/scoreboard.js": "b362b9d8b7b41308cf6e50870264225562ef77d12e5358b927f9fba40fbab752",
-      "public/v4.4.2/ui1.3/index.html": "a1b5a90e521dd253b3b70bf47a58c7f87c8d61b6a4538cd99c39b53296f962b0",
+      "public/v4.4.2/ui1.3/index.html": "3afeac0760dacff4bb9e3ce29bc862de420fa24898863741813049e3800a4609",
       "public/v4.4.2/ui1.3/scoreboard.css": "3a5f8fd314b584e151a2f825ae838437735e8d4ad8eac0e934ea5b1d1aa1b786",
       "supabase/functions/gamecast-week7-v4-4-2/week7.ts": "5b85db3f065179f20a7d371212f042002bb380fdb3f7f338e3f122e5f3a4de93",
       "supabase/functions/gamecast-week7-v4-4-2/index.ts": "1fb183a1a7e1d8000b6b37e7a4cd09ac8790de327eadd6529cdb45c22e72a774",
@@ -1264,5 +1274,274 @@
     "approvedNormalizedEdge": 0.006,
     "targetPoints": 2.66,
     "holdoutObservedPoints": 2.929
+  },
+  "firstCI": {
+    "runId": 37537992050,
+    "commit": "e9de5f4e4f10fa906bade8d50425a1586722c51f",
+    "status": "PASS",
+    "browser": {
+      "classification": "TEST RESULT",
+      "scope": "Actual browsers against local HTTP routes/assets and fixture read-only API; cloud and physical iOS Safari not tested",
+      "executed": 42,
+      "passed": 42,
+      "failed": 0,
+      "skipped": 0,
+      "surfaces": 3,
+      "browsers": 2,
+      "cases": [
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "direct navigation and 54 cards",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "assets and JavaScript load",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "search variants and substring",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "no operator controls or token sent",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "refresh and viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "public",
+          "name": "read-only API requests",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "direct navigation and 54 cards",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "assets and JavaScript load",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "search variants and substring",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "final action filter and live lifecycle update",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "refresh and viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "chairman",
+          "name": "read-only API requests",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "direct navigation and 54 cards",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "assets and JavaScript load",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "search variants and substring",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "no operator controls or token sent",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "refresh and viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "Chromium desktop",
+          "surface": "ui1.3",
+          "name": "read-only API requests",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "direct navigation and 54 cards",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "assets and JavaScript load",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "search variants and substring",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "no operator controls or token sent",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "refresh and viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "public",
+          "name": "read-only API requests",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "direct navigation and 54 cards",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "assets and JavaScript load",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "search variants and substring",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "final action filter and live lifecycle update",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "refresh and viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "chairman",
+          "name": "read-only API requests",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "direct navigation and 54 cards",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "assets and JavaScript load",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "search variants and substring",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "empty result and safe text",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "no operator controls or token sent",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "refresh and viewport usable",
+          "status": "PASS"
+        },
+        {
+          "browser": "WebKit iPhone 13 emulation",
+          "surface": "ui1.3",
+          "name": "read-only API requests",
+          "status": "PASS"
+        }
+      ]
+    }
   }
 }
