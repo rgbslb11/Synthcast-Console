@@ -1,0 +1,21 @@
+{
+  "classification": "TEST RESULT",
+  "publicSlug": "w7v442-2a8270fc23cd9891",
+  "executed": 2,
+  "passed": 2,
+  "failed": 0,
+  "skipped": 0,
+  "polls": 100,
+  "stateVersion": 15,
+  "runtimeMilliseconds": 21614.228981,
+  "cases": [
+    {
+      "name": "deployed identity and W7 count",
+      "status": "PASS"
+    },
+    {
+      "name": "100 concurrent-batched read polls retain state version",
+      "status": "PASS"
+    }
+  ]
+}

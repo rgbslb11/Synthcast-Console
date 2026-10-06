@@ -1,0 +1,16 @@
+{
+  "checks": [
+    "foreign release rejected",
+    "stale version rejected",
+    "invalid actor rejected",
+    "QA promotion rejected",
+    "foreign event namespace rejected atomically",
+    "service-only grants",
+    "candidate state/version unchanged"
+  ],
+  "failed": 0,
+  "passed": 7,
+  "skipped": 0,
+  "executed": 7,
+  "classification": "TEST RESULT"
+}

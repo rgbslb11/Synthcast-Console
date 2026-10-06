@@ -1,0 +1,80 @@
+{
+  "classification": "TEST RESULT",
+  "scope": "Actual isolated Supabase HTTP backend and persistent new-only QA session",
+  "publicSlug": "w7v442-2a8270fc23cd9891",
+  "engine": "GC-W7-V4.4.2-RC1",
+  "executed": 16,
+  "passed": 16,
+  "failed": 0,
+  "skipped": 0,
+  "stateVersion": 15,
+  "gameCount": 54,
+  "acceptedGames": 0,
+  "runtimeMilliseconds": 20121.252055,
+  "cases": [
+    {
+      "name": "deployed identity and W7 count",
+      "status": "PASS"
+    },
+    {
+      "name": "create new isolated QA session",
+      "status": "PASS"
+    },
+    {
+      "name": "cloud readback has 54 distinct rated QA games",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong Chairman token rejects a write",
+      "status": "PASS"
+    },
+    {
+      "name": "earlier namespace rejected by candidate endpoint",
+      "status": "PASS"
+    },
+    {
+      "name": "scheduler rejects missing credential",
+      "status": "PASS"
+    },
+    {
+      "name": "launch persists exactly one toss",
+      "status": "PASS"
+    },
+    {
+      "name": "stale launch retry rejected without version advance",
+      "status": "PASS"
+    },
+    {
+      "name": "public response has no private operator or RNG fields",
+      "status": "PASS"
+    },
+    {
+      "name": "AUTO and 20x use the deployed handler",
+      "status": "PASS"
+    },
+    {
+      "name": "pause and reload preserve football situation",
+      "status": "PASS"
+    },
+    {
+      "name": "delay resume and edit cancel preserve toss",
+      "status": "PASS"
+    },
+    {
+      "name": "same-seed restart reproduces the original toss",
+      "status": "PASS"
+    },
+    {
+      "name": "new-seed restart changes seed and commits one new-run toss",
+      "status": "PASS"
+    },
+    {
+      "name": "QA final remains locked and cannot be accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "final and unlaunched state survive independent readback",
+      "status": "PASS"
+    }
+  ]
+}

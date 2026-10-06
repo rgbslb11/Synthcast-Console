@@ -7,7 +7,7 @@ Status: IN PROGRESS — source and browser QA pass; applying the established add
 - OBSERVED FACT: repository rgbslb11/Synthcast-Console; parent release/gamecast-v4.4.1 at bf1d67a7c174b46ccf9d98cb6dcded5a8fc18616.
 - OBSERVED FACT: reconstructed index.ts SHA-256 04eaca91b7cb8e842ebe2bde828ea3bf5d0872a34cd8ba070378e891626acd80 matches deployed gamecast-week6-v4-4-1 version 1. Direct imports and deployed UI assets also matched.
 - OBSERVED FACT: local release/gamecast-v4.4.2 worktree created from that exact parent. No 4.5.1 source imported.
-- User requires all prior database entries, schemas, designs, assets, sessions, and routes to remain unchanged. No database migration, provisioning, or deployment has been performed.
+- User requires all prior database entries, schemas, designs, assets, sessions, and routes to remain unchanged. Only authorized additive 4.4.2 database objects and its isolated backend have been installed; no existing table or earlier record was modified.
 - Polling must not write authoritative data or affect football outcomes. Existing deterministic projection is tested on a copy; changing display time is not a committed state mutation.
 - User authorized correcting the confirmed halftime and kneel defects. User subsequently approved the HFA holdout: ±0.006 normalized venue edge, neutral zero; nominal target 2.66 points, measured independent holdout mean 2.929 points (95% interval 2.505–3.353).
 
@@ -32,7 +32,7 @@ Two logical inputs previously validated from W7_APPROVED_RATINGS_AND_SLATE_ONLY.
 - Ratings: W7_APPROVED_ENGINE_121.json; SHA-256 17d9e89e108e2528232a6f6ef18cddb8739653b38e87db67ad01165bb13911e0; 121 expected/parsed/accepted records, 0 rejected, 363 values.
 - Games: W7_RECONCILED_SLATE_54.csv; SHA-256 481ed077d734dce9fd9aa25517fb5b5ea073ababdf77f55fdca650034dabbd4a; 54 expected/parsed/accepted games, 0 rejected; 108 participating teams. Texas–Oklahoma G0315 is neutral.
 
-Activation: pending. No earlier-week dataset will be substituted.
+Activation: loaded into the isolated QA-only 4.4.2 backend; no accepted or official results. No earlier-week dataset will be substituted.
 
 ## Tests and decisions
 
@@ -70,3 +70,12 @@ Activation: pending. No earlier-week dataset will be substituted.
 3. Apply reviewed `persistence.sql`, check service-only grants and previous-function fingerprints, then validate the isolated backend's cloud persistence and authorization.
 4. Preserve the entire currently published Pages artifact while adding `/v4.4.2/`. Complete deployed route, browser, isolation, scheduler, and rollback checks. No result acceptance or canonical promotion.
 5. Final status depends on all 12 gates and three prerequisites. Local or CI success alone is not certification.
+
+## Cloud validation progress
+
+- OBSERVED FACT: additive persistence and scheduler migrations succeeded. Three new service-only RPCs and a fresh Vault credential were installed in the established project. Shared create/read functions and all 4.4.1 RPC fingerprints are unchanged; RLS remains enabled.
+- OBSERVED FACT: backend `gamecast-week7-v4-4-2` v1 is active. All four deployed source files exactly match commit 5ff805ef7f54d7dbcfebbf23630088cf41bc3af6's generated output.
+- TEST RESULT: real cloud API 16/16; SQL persistence guards 7/7; 100 read polls left the state/version/event fingerprints unchanged, as did all 52 prior-release session rows over the same interval.
+- TEST RESULT: non-destructive scheduler rollback rehearsal passed; earlier job fingerprints unchanged. A 74-file hosting snapshot and restore passed; only 12 files under the new route are added.
+- BLOCKED locally: direct Chromium cloud requests receive ERR_EMPTY_RESPONSE in this executor. The release workflow runs this integration in GitHub's browser environment before UI publication. Physical iOS hardware is unavailable; mobile coverage uses actual WebKit with iPhone emulation and is labeled accordingly.
+- Pending: staged real-cloud browser checks, isolated Pages publication, deployed browser checks, scheduler execution evidence, final diff/report.

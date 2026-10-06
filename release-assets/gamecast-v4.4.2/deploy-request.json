@@ -1,0 +1,19 @@
+{
+  "classification": "OBSERVED FACT",
+  "backendFunction": "gamecast-week7-v4-4-2",
+  "backendVersion": 1,
+  "backendSourceCommit": "5ff805ef7f54d7dbcfebbf23630088cf41bc3af6",
+  "backendSha256": {
+    "deadman.mjs": "b78624b253214e954a8fe4cd81ee76740c17c47e5ca98b759f6a1b8cfab1d349",
+    "index.ts": "ad222773069b89b3567e5965bd37c31703a8e90227149b948ac4a90052ae7ec4",
+    "power.ts": "3f3ed01dbd6bfc2faf9cdff90b4d312cc44b1a6ce966184695373b5fa4dd4496",
+    "week7.ts": "5b85db3f065179f20a7d371212f042002bb380fdb3f7f338e3f122e5f3a4de93"
+  },
+  "uiRoot": "/v4.4.2/",
+  "uiSurfaces": 3,
+  "qaOnly": true,
+  "baselineCommit": "bf1d67a7c174b46ccf9d98cb6dcded5a8fc18616",
+  "priorPublishedFileCount": 74,
+  "canonicalPromotion": false,
+  "databaseMigration": "gamecast_v442_isolated_persistence"
+}

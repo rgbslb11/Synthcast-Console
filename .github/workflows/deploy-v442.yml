@@ -1,0 +1,102 @@
+name: Publish isolated GameCast 4.4.2 W7 candidate
+on:
+  push:
+    branches: [release/gamecast-v4.4.2]
+    paths:
+      - .github/workflows/deploy-v442.yml
+      - release-assets/gamecast-v4.4.2/deploy-request.json
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: gamecast-v442-isolated-pages
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Guard exact foundation and protected prior-release files
+        run: |
+          test "$GITHUB_REF" = refs/heads/release/gamecast-v4.4.2
+          git merge-base --is-ancestor bf1d67a7c174b46ccf9d98cb6dcded5a8fc18616 HEAD
+          git diff --exit-code bf1d67a7c174b46ccf9d98cb6dcded5a8fc18616 -- public supabase
+      - run: node scripts/build-gamecast-v441.mjs
+      - run: node scripts/verify-gamecast-v441.mjs
+      - run: node scripts/build-gamecast-v442.mjs
+      - name: Match the verified deployed backend bytes
+        run: node scripts/verify-gamecast-v442-deployment.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/gamecast-qa" --ignore-scripts --no-audit --no-fund jsdom@26.1.0 playwright@1.56.1
+      - run: node "$RUNNER_TEMP/gamecast-qa/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Mandatory local and cloud release checks
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gamecast-qa
+          GAMECAST_QA_PRIVATE: ${{ runner.temp }}/gamecast-v442-private.json
+        run: |
+          node scripts/test-gamecast-v442-football-fixes.mjs --assembled
+          node scripts/test-gamecast-v442-coin-toss.mjs --assembled
+          node scripts/test-gamecast-v442-release.mjs
+          node scripts/test-gamecast-v442-api.mjs
+          node scripts/test-gamecast-v442-ui.mjs
+          node scripts/test-gamecast-v442-fix-mutations.mjs
+          node scripts/test-gamecast-v442-toss-mutations.mjs
+          node scripts/test-gamecast-v442-remaining-mutations.mjs
+          node scripts/test-gamecast-v442-browser.mjs
+          node scripts/test-gamecast-v442-cloud.mjs
+          node scripts/test-gamecast-v442-cloud-browser.mjs
+      - name: Preserve every existing published byte and add only 4.4.2
+        run: node scripts/preserve-gamecast-pages-v442.mjs restore out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v442-predeployment-evidence
+          path: outputs/v442/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    environment:
+      name: gamecast-v442-isolated-preview
+      url: ${{ steps.publish.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: publish
+  postdeployment:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/build-gamecast-v441.mjs
+      - run: node scripts/build-gamecast-v442.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/gamecast-qa" --ignore-scripts --no-audit --no-fund playwright@1.56.1
+      - run: node "$RUNNER_TEMP/gamecast-qa/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Verify all three deployed surfaces with actual W7 backend
+        env:
+          GAMECAST_QA_MODULES: ${{ runner.temp }}/gamecast-qa
+          GAMECAST_QA_PRIVATE: ${{ runner.temp }}/gamecast-v442-post-private.json
+          GAMECAST_UI_ORIGIN: https://rgbslb11.github.io/Synthcast-Console
+        run: |
+          node scripts/test-gamecast-v442-cloud.mjs
+          node scripts/test-gamecast-v442-cloud-browser.mjs
+          node scripts/preserve-gamecast-pages-v442.mjs verify outputs/v442/preserved-check
+          node scripts/verify-gamecast-v442-deployment.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v442-postdeployment-evidence
+          path: outputs/v442/

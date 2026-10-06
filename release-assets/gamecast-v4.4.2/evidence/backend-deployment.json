@@ -1,0 +1,23 @@
+{
+  "classification": "OBSERVED FACT",
+  "sourceCommit": "5ff805ef7f54d7dbcfebbf23630088cf41bc3af6",
+  "project": "percrnamjzetzjjuxuuw",
+  "id": "84ebbf3d-d020-45bd-82fa-88a4316ffbec",
+  "slug": "gamecast-week7-v4-4-2",
+  "name": "gamecast-week7-v4-4-2",
+  "status": "ACTIVE",
+  "version": 1,
+  "created_at": 1791325218705,
+  "updated_at": 1791325218705,
+  "verify_jwt": false,
+  "import_map": false,
+  "entrypoint_path": "file:///tmp/user_fn_percrnamjzetzjjuxuuw_84ebbf3d-d020-45bd-82fa-88a4316ffbec_1/source/index.ts",
+  "ezbr_sha256": "43c06a40be09c0af845f6f13e9bfde4c1039925b5433901c894a1ddc0764e458",
+  "sourceFilesCompared": [
+    "deadman.mjs",
+    "index.ts",
+    "power.ts",
+    "week7.ts"
+  ],
+  "byteComparison": "PASS"
+}

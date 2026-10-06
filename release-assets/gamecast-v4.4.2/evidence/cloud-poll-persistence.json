@@ -1,0 +1,38 @@
+{
+  "classification": "TEST RESULT",
+  "executed": 1,
+  "passed": 1,
+  "failed": 0,
+  "skipped": 0,
+  "polls": 100,
+  "before": {
+    "candidate": {
+      "slug": "w7v442-2a8270fc23cd9891",
+      "version": 15,
+      "state_hash": "a9b2897ba868a03eaa6f5022092c31f8",
+      "updated_at": "2026-10-06T22:21:31.184+00:00",
+      "event_count": 14,
+      "events_hash": "2480382753d9e668feaab38690953de9"
+    },
+    "previous_sessions": {
+      "hash": "cc0cccb26e594ab48adc37fa52d31dbb",
+      "count": 52
+    }
+  },
+  "after": {
+    "candidate": {
+      "slug": "w7v442-2a8270fc23cd9891",
+      "version": 15,
+      "state_hash": "a9b2897ba868a03eaa6f5022092c31f8",
+      "updated_at": "2026-10-06T22:21:31.184+00:00",
+      "event_count": 14,
+      "events_hash": "2480382753d9e668feaab38690953de9"
+    },
+    "previous_sessions": {
+      "hash": "cc0cccb26e594ab48adc37fa52d31dbb",
+      "count": 52
+    }
+  },
+  "unchanged": true,
+  "scope": "Direct PostgreSQL stored-state/version/event fingerprints; all 52 prior-release rows also unchanged over this interval"
+}
