@@ -14,6 +14,7 @@ Status: CORRECTION DEPLOYED — replacement W7 slate is active in isolated backe
 - TEST RESULT: before/after function-deployment counts and fingerprints for 7 candidate sessions, 542 candidate events, 52 prior sessions, and 2,580 prior events are identical. No prior database entry was changed.
 - TEST RESULT: deployment workflow 37552264453 passed verify, publication, and postdeployment jobs. The live suite passed 56/56 browser cases across Chromium desktop and WebKit iPhone 13 emulation, plus 16/16 cloud API/persistence cases.
 - TEST RESULT: all three live surfaces render the exact corrected 54-game order. The iPhone Chairman/Public masthead is a single-line title plus one horizontally scrollable seven-clock row. Browser interactions and filters issue reads only.
+- TEST RESULT: evidence-only QA run 37553258898 exposed a timing race in its immediate lifecycle-filter assertion after an asynchronous refresh; deployed behavior had already passed. Commit `e8cbb8c53c9e1d6a723bd2d1dc0197b5fb1905f1` makes the test await the rendered state. Local Chromium passed 50/50 and full follow-up QA run 37553587731 passed.
 - Outcome: corrected public, Chairman, and Condensed UI (UI 1.3) links use fresh QA session `w7v442-4db477ea0085509f`. Previous releases and sessions remain independently reachable.
 
 ## Foundation and boundaries

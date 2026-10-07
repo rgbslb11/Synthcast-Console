@@ -94,7 +94,7 @@ Commands below run from the repository root. `GAMECAST_QA_MODULES=/workspace/scr
 | `node scripts/test-gamecast-v442-release.mjs` | 870/870 pass; all 54 games finish; 648 acceleration comparisons; 54 chunk, 54 pause/reload and 54 simultaneous-game comparisons |
 | `node scripts/test-gamecast-v442-api.mjs` | 14/14 pass; actual handler with an explicitly labeled in-memory RPC double |
 | `GAMECAST_QA_MODULES=/workspace/scratch/79fb451391cf/gamecast-qa node scripts/test-gamecast-v442-ui.mjs` | 55/55 DOM checks pass |
-| `node scripts/test-gamecast-v442-browser.mjs` with the QA dependency environment in GitHub | 42/42 actual Chromium/WebKit fixture-API checks pass |
+| `node scripts/test-gamecast-v442-browser.mjs` with the QA dependency environment in GitHub | 76/76 actual Chromium/WebKit fixture-API checks pass |
 | `node scripts/test-gamecast-v442-fix-integrity.mjs` | Earlier component run: 350/350 pass; 50 simultaneous games and protected neutral histories |
 | `node scripts/test-gamecast-v442-fix-mutations.mjs` | 5/5 killed; 0 survived |
 | `node scripts/test-gamecast-v442-toss-mutations.mjs` | 4/4 killed; 0 survived |
@@ -110,6 +110,8 @@ Commands below run from the repository root. `GAMECAST_QA_MODULES=/workspace/scr
 | `node scripts/preserve-gamecast-pages-v442.mjs restore out` | 74 previous files retained; only 12 new UI files added |
 | `node scripts/preserve-gamecast-pages-v442.mjs verify outputs/v442/preserved-check` | All 74 previous published hashes unchanged after deployment |
 | `node scripts/verify-gamecast-v442-deployment.mjs` | 4 source hashes and 2 backend health checks pass |
+
+TEST RESULT: evidence-only QA run [37553258898](https://github.com/rgbslb11/Synthcast-Console/actions/runs/37553258898) exposed a timing race in the browser test's immediate assertion after an asynchronous lifecycle refresh. It did not fail a deployed route or mutate candidate data. Test-only commit `e8cbb8c53c9e1d6a723bd2d1dc0197b5fb1905f1` waits for the rendered state; local Chromium passed 50/50 and follow-up QA run [37553587731](https://github.com/rgbslb11/Synthcast-Console/actions/runs/37553587731) passed the full suite.
 
 Local full-board/load runtime was 5,596.822 ms with 244.099 ms for the interleaved 54-game phase. The selected GitHub run measured 2,750.314 ms total and 154.635 ms for that phase, across 159 rounds. Actual cloud scheduler/load validation took 83,435.618 ms including the scheduled wait, network requests, and cleanup. It made 64 HTTP requests; eight reads measured 349.447–6,012.982 ms, median 4,324.407 ms. These are end-to-end timings, not isolated CPU measurements.
 
