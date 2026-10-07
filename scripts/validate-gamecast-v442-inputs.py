@@ -16,7 +16,7 @@ def unique(pairs):
 rating_name='W7_APPROVED_ENGINE_121.json'; game_name='W7_RECONCILED_SLATE_54.csv'
 rb=(assets/'inputs'/rating_name).read_bytes(); gb=(assets/'inputs'/game_name).read_bytes()
 assert sha(rb)=='17d9e89e108e2528232a6f6ef18cddb8739653b38e87db67ad01165bb13911e0'
-assert sha(gb)=='481ed077d734dce9fd9aa25517fb5b5ea073ababdf77f55fdca650034dabbd4a'
+assert sha(gb)=='b71caafe6d1b7a49c5a0a6f33c06b68f7555f7d1959366519e17c10e0e3b3399'
 baseline=(root/'supabase/functions/gamecast-week6-v4-4-1/power.ts').read_bytes()
 assert sha(baseline)=='34e4ef1bc881d8a3492bee0c0a01cdce58aa82dd36bb43ad77d54175cd9447e1'
 canonical={s.split('|')[0] for s in baseline.decode().split('const RAW=`\n')[1].split('`.trim()')[0].strip().splitlines()}
@@ -47,9 +47,20 @@ for g in games:
     assert et.tzinfo and utc.tzinfo and ct.tzinfo and et==utc==ct
     assert utc.astimezone(ZoneInfo('America/New_York')).isoformat()==et.isoformat()
     assert utc.astimezone(ZoneInfo('America/Chicago')).isoformat()==ct.isoformat()
-    assert et.strftime('%Y-%m-%d')==g['date_ET'] and et.strftime('%I:%M %p').lstrip('0')==g['time_ET']
+    assert et.strftime('%Y-%m-%d')==g['date_ET']
+    normalized_time=lambda value:re.sub(r'\s+','',value).upper()
+    assert normalized_time(et.strftime('%I:%M %p').lstrip('0'))==normalized_time(g['time_ET'])
+    separator=' vs ' if g['neutral']=='True' else ' at '
+    approved_matchups={away+separator+home for away in [g['away'],g['away_code']] for home in [g['home'],g['home_code']]}
+    if g.get('matchup'):assert g['matchup'] in approved_matchups,(g['game_id'],g['matchup'],sorted(approved_matchups))
     slate.append(dict(id=g['game_id'],date=g['date_ET'],dateLabel=et.strftime('%a ')+str(et.month)+'/'+str(et.day),kickoff=g['time_ET'],network=g['network'],matchup=g['away']+(' vs. ' if g['neutral']=='True' else ' at ')+g['home'],away=g['away'],home=g['home'],awayCode=g['away_code'],homeCode=g['home_code'],awayRecord=g['away_accepted_record'],homeRecord=g['home_accepted_record'],awayRank=rank(g['away_coaches_rank']) if g['away_coaches_rank'] else None,homeRank=rank(g['home_coaches_rank']) if g['home_coaches_rank'] else None,neutral=g['neutral']=='True',kickoffOrder=order,canonicalWeek='W7',kickoffZulu=utc.isoformat().replace('+00:00','Z'),tvStartZulu=None,notes=g['notes']))
 slate.sort(key=lambda g:(g['kickoffOrder'],g['id']))
+assert orders==set(range(1,55))
+assert [g['date'] for g in slate].count('2026-10-06')==2
+assert [g['date'] for g in slate].count('2026-10-07')==2
+assert [g['date'] for g in slate].count('2026-10-08')==2
+assert [g['date'] for g in slate].count('2026-10-09')==6
+assert [g['date'] for g in slate].count('2026-10-10')==42
 assert len(teams)==108 and [g['id'] for g in slate if g['neutral']]==['G0315']
 manifest={'classification':'TEST RESULT','status':'PASS','logicalInputs':2,'inputs':[
  dict(filename=rating_name,archive_member=rating_name,size_bytes=len(rb),sha256=sha(rb),format='JSON',schema=['overall','offense','defense'],expected_rows=121,actual_rows=121,accepted_rows=121,rejected_rows=0,unique_teams=121,rating_records=121,game_count=0,activation_status='NOT ACTIVATED'),

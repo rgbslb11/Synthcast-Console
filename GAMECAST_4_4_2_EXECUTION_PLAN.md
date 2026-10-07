@@ -1,6 +1,15 @@
 # GameCast 4.4.2 W7 execution plan
 
-Status: DEPLOYED — isolated QA candidate. Backend v1 and all three versioned UI surfaces verified. No official results accepted or canonical promotion.
+Status: CORRECTION IN PROGRESS — replacement W7 slate validated locally; backend and three versioned UI surfaces pending controlled update. No official results accepted or canonical promotion.
+
+## 2026-10-06 corrected-slate and iPhone-header update
+
+- OBSERVED FACT: the directly attached replacement `W7_RECONCILED_SLATE_54.csv` has SHA-256 `b71caafe6d1b7a49c5a0a6f33c06b68f7555f7d1959366519e17c10e0e3b3399` and 16,625 bytes. It supersedes the schedule member from the original two-input archive; the approved 121-team ratings input is unchanged.
+- OBSERVED FACT: both slates contain the same 54 unique game IDs, the same pairings and ratings, and the same neutral-site designation. The correction changes 51 slate positions, 17 kickoff instants, and 18 network values. Correct ET date counts are Tuesday 2, Wednesday 2, Thursday 2, Friday 6, and Saturday 42.
+- CODE-DERIVED CONCLUSION: only newly created 4.4.2 sessions receive the corrected embedded operating slate. Existing database rows remain unchanged and readable.
+- TEST RESULT: corrected input validation passes 54/54 with zero rejected; UI DOM checks pass 55/55; local Chromium desktop and iPhone-emulation checks pass 50/50. All three surfaces render the exact supplied 54-ID order. Condensed UI defaults to `FULL WEEK · 54` and retains a `SATURDAY · 42` tab.
+- TEST RESULT: the iPhone Chairman/Public masthead now uses a one-line title and one horizontally scrollable row containing all seven clocks. The local iPhone layout check enforces a masthead height no greater than 130 CSS pixels and a clock-row height no greater than 42 CSS pixels.
+- Pending: branch push and GitHub QA; additive Edge Function version update; isolated Pages publication; actual WebKit/iPhone emulation and post-deployment order/hash/isolation checks; new-session links.
 
 ## Foundation and boundaries
 
@@ -30,7 +39,7 @@ Expected requirements: 7. Actual rows: 7.
 Two logical inputs previously validated from W7_APPROVED_RATINGS_AND_SLATE_ONLY.zip:
 
 - Ratings: W7_APPROVED_ENGINE_121.json; SHA-256 17d9e89e108e2528232a6f6ef18cddb8739653b38e87db67ad01165bb13911e0; 121 expected/parsed/accepted records, 0 rejected, 363 values.
-- Games: W7_RECONCILED_SLATE_54.csv; SHA-256 481ed077d734dce9fd9aa25517fb5b5ea073ababdf77f55fdca650034dabbd4a; 54 expected/parsed/accepted games, 0 rejected; 108 participating teams. Texas–Oklahoma G0315 is neutral.
+- Games: W7_RECONCILED_SLATE_54.csv; SHA-256 b71caafe6d1b7a49c5a0a6f33c06b68f7555f7d1959366519e17c10e0e3b3399; 54 expected/parsed/accepted games, 0 rejected; 108 participating teams. Texas–Oklahoma G0315 is neutral.
 
 Activation: loaded into the isolated QA-only 4.4.2 backend; no accepted or official results. No earlier-week dataset will be substituted.
 

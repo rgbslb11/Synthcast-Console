@@ -1,6 +1,6 @@
 {
   "classification": "OBSERVED FACT and TEST RESULT",
-  "status": "PASS",
+  "status": "PASS \u2014 CORRECTED SLATE VALIDATED; DEPLOYMENT PENDING",
   "logicalInputs": 2,
   "inputs": [
     {
@@ -21,13 +21,13 @@
       "unique_teams": 121,
       "rating_records": 121,
       "game_count": 0,
-      "activation_status": "ISOLATED QA CANDIDATE ONLY"
+      "activation_status": "ISOLATED QA CANDIDATE; UNCHANGED"
     },
     {
       "filename": "W7_RECONCILED_SLATE_54.csv",
-      "archive_member": "W7_RECONCILED_SLATE_54.csv",
-      "size_bytes": 17428,
-      "sha256": "481ed077d734dce9fd9aa25517fb5b5ea073ababdf77f55fdca650034dabbd4a",
+      "archive_member": null,
+      "size_bytes": 16625,
+      "sha256": "b71caafe6d1b7a49c5a0a6f33c06b68f7555f7d1959366519e17c10e0e3b3399",
       "format": "CSV",
       "schema": [
         "slate_order",
@@ -59,7 +59,8 @@
         "home_DEF",
         "identity_status",
         "record_status",
-        "timezone_basis"
+        "timezone_basis",
+        "matchup"
       ],
       "expected_rows": 54,
       "actual_rows": 54,
@@ -68,7 +69,8 @@
       "unique_teams": 108,
       "rating_records": 0,
       "game_count": 54,
-      "activation_status": "ISOLATED QA CANDIDATE ONLY"
+      "activation_status": "VALIDATED \u2014 PENDING CORRECTION DEPLOYMENT",
+      "source": "Direct task attachment supplied 2026-10-06; supersedes the prior archive member."
     }
   ],
   "errors": [],
@@ -86,12 +88,22 @@
   "neutral_games": [
     "G0315"
   ],
-  "activation": "ISOLATED QA CANDIDATE ONLY",
+  "activation": "CORRECTED SLATE VALIDATED \u2014 DEPLOYMENT PENDING",
   "backendFunction": "gamecast-week7-v4-4-2",
   "backendVersion": 1,
   "archive": {
     "filename": "W7_APPROVED_RATINGS_AND_SLATE_ONLY.zip",
     "size_bytes": 5346,
-    "sha256": "a00fc60303485c89bd3c29abac1002f6ba58aa8a5715d3c0171614a112fed9e1"
+    "sha256": "a00fc60303485c89bd3c29abac1002f6ba58aa8a5715d3c0171614a112fed9e1",
+    "scope": "Historical source for unchanged ratings and superseded schedule; corrected games came from a direct attachment."
+  },
+  "currentDeployedSlateSha256": "481ed077d734dce9fd9aa25517fb5b5ea073ababdf77f55fdca650034dabbd4a",
+  "candidateSlateSha256": "b71caafe6d1b7a49c5a0a6f33c06b68f7555f7d1959366519e17c10e0e3b3399",
+  "date_distribution_ET": {
+    "2026-10-06": 2,
+    "2026-10-07": 2,
+    "2026-10-08": 2,
+    "2026-10-09": 6,
+    "2026-10-10": 42
   }
 }

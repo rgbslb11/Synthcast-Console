@@ -14,7 +14,7 @@ const original=baselineSource();
 execFileSync('python',['scripts/validate-gamecast-v442-inputs.py'],{stdio:'inherit'});
 const ratings=JSON.parse(read(`${assets}/inputs/W7_APPROVED_ENGINE_121.json`)).ratings;
 const slate=JSON.parse(read(`${evidence}/w7-slate.json`));
-const engine='GC-W7-V4.4.2-RC1',data='W7-54+RATINGS_17d9e89e108e+SLATE_481ed077d734+CANONICAL121_FCS0+V442';
+const engine='GC-W7-V4.4.2-RC1',data='W7-54+RATINGS_17d9e89e108e+SLATE_b71caafe6d1b+CANONICAL121_FCS0+V442';
 const endpoint=process.env.GAMECAST_442_BACKEND_URL || 'https://percrnamjzetzjjuxuuw.supabase.co/functions/v1/gamecast-week7-v4-4-2';
 assert.equal(endpoint,'https://percrnamjzetzjjuxuuw.supabase.co/functions/v1/gamecast-week7-v4-4-2','Use the authorized project and isolated 4.4.2 function');
 for(const dir of [fn,ui,`${ui}/legacy`,`${ui}/ui1.3`])fs.mkdirSync(dir,{recursive:true});
@@ -60,6 +60,14 @@ write(`${ui}/patch-442.js`,"'use strict';\nengine='"+engine+"';\n");
 write(`${ui}/release-config.js`,'globalThis.GAMECAST_V442_API = '+JSON.stringify(endpoint)+';\n');
 fs.copyFileSync(`${assets}/list-filters.js`,`${ui}/list-filters.js`);
 for(const [from,to] of [['public/v4.2/app.css',`${ui}/legacy/app.css`],['public/v4.2/patch-rc2.js',`${ui}/legacy/patch-rc2.js`],['public/v4.2.2/patch-422.js',`${ui}/legacy/patch-422.js`],['public/v4.4.1/deadman.css',`${ui}/deadman.css`]])fs.copyFileSync(from,to);
+// Keep the complete clock inventory while reducing the sticky masthead to one
+// horizontally scrollable clock row on iPhone-sized viewports.
+write(`${ui}/legacy/app.css`,read(`${ui}/legacy/app.css`)+`\n@media(max-width:650px){
+header{padding:calc(5px + env(safe-area-inset-top)) 8px 5px}
+.top{align-items:flex-start;gap:6px}.brand{font-size:14px;line-height:1;letter-spacing:.025em;white-space:nowrap}.top .sub{font-size:8px;line-height:1.15}#modeLabel{max-width:92px;text-align:right}
+.timebar{display:flex;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-top:5px}.timebar::-webkit-scrollbar{display:none}
+.timebar>div{flex:0 0 108px;padding:4px 6px}.timebar b{font-size:7px}.timebar span{margin-top:1px;font-size:10px}
+}\n`);
 
 // UI 1.3 is the existing Condensed surface, rebound to the same W7 session.
 for(const [name,hash] of Object.entries(JSON.parse(read(`${assets}/ui13-parent-hashes.json`)).sha256))assert.equal(sha(read(`${assets}/ui13-parent/${name}`)),hash,'UI 1.3 source drift: '+name);
@@ -70,14 +78,60 @@ condensed=condensed.slice(0,sourceStart)+`  const sources={
     saturday:{api:globalThis.GAMECAST_V442_API,engine:'${engine}',slug:params.get('session')||'',expected:54},
     full:{api:globalThis.GAMECAST_V442_API,engine:'${engine}',slug:params.get('session')||'',expected:54},
   };\n`+condensed.slice(sourceEnd);
-condensed=condensed.replaceAll('2026-09-26','2026-10-10').replaceAll('2026-09-24','2026-10-09').replaceAll('2026-09-25','2026-10-09').replaceAll('2026-W05','2026-W07').replaceAll('WEEK 5','WEEK 7').replaceAll('GAMECAST 4.3.2.2','GAMECAST 4.4.2').replaceAll('GAMECAST 4.3.2.1','GAMECAST 4.4.2');
+condensed=condensed.replaceAll('2026-09-26','2026-10-10').replaceAll('2026-W05','2026-W07').replaceAll('WEEK 5','WEEK 7').replaceAll('GAMECAST 4.3.2.2','GAMECAST 4.4.2').replaceAll('GAMECAST 4.3.2.1','GAMECAST 4.4.2');
+condensed=once(condensed,"  let selected='saturday';","  let selected='full';");
+const comparisonBlock=`  const compareGames=(a,b)=>{
+    const ra=sortRank(a),rb=sortRank(b);
+    if(ra!==rb)return ra-rb;
+    if(isFinal(a)&&isFinal(b))return completedStamp(b)-completedStamp(a)||(a.kickoffOrder||0)-(b.kickoffOrder||0);
+    return (a.kickoffOrder||0)-(b.kickoffOrder||0);
+  };`;
+condensed=once(condensed,comparisonBlock,"  const compareGames=(a,b)=>(a.kickoffOrder||0)-(b.kickoffOrder||0);");
 condensed=once(condensed,'  const matches=g=>{',"  const matches=g=>{\n    if(!gc442TeamMatches(g,document.getElementById('teamSearch').value))return false;");
 condensed=once(condensed,"    try{\n      const r=await fetch", "    try{\n      if(!source.api||!source.slug)throw new Error('Open this scoreboard with a 4.4.2 session');\n      const r=await fetch");
+const boardFunctions=`  const saturdayGames=()=>snapshots[selected].filter(g=>g.date==='2026-10-10');
+  const earlierGames=()=>snapshots.full.filter(g=>g.date==='2026-09-24'||g.date==='2026-09-25');
+  function reconcile(){
+    reconcileGrid(board,saturdayGames().filter(matches).sort(compareGames),selected);
+    reconcileGrid(earlierBoard,earlierGames().filter(matches).sort((a,b)=>a.date.localeCompare(b.date)||(a.kickoffOrder||0)-(b.kickoffOrder||0)),'full');
+  }
+
+  function updateSummary(){
+    const c=statusCounts([...saturdayGames(),...earlierGames()]);
+    document.getElementById('liveCount').textContent=c.live;
+    document.getElementById('finalCount').textContent=c.final;
+    document.getElementById('upcomingCount').textContent=c.upcoming;
+    document.getElementById('delayCount').textContent=c.delay;
+    document.getElementById('weekLabel').textContent='WEEK 7';
+    document.getElementById('satHeading').lastElementChild.textContent=selected==='saturday'?'GAMECAST 4.4.2':'GAMECAST 4.4.2';
+  }`;
+const correctedBoardFunctions=`  const visibleGames=()=>selected==='saturday'?snapshots.saturday.filter(g=>g.date==='2026-10-10'):snapshots.full;
+  function reconcile(){
+    reconcileGrid(board,visibleGames().filter(matches).sort(compareGames),selected);
+    reconcileGrid(earlierBoard,[],'full');
+  }
+
+  function updateSummary(){
+    const games=visibleGames(),c=statusCounts(games);
+    document.getElementById('liveCount').textContent=c.live;
+    document.getElementById('finalCount').textContent=c.final;
+    document.getElementById('upcomingCount').textContent=c.upcoming;
+    document.getElementById('delayCount').textContent=c.delay;
+    document.getElementById('weekLabel').textContent='WEEK 7';
+    document.getElementById('boardHeadingText').textContent=selected==='saturday'?'SATURDAY · 42 GAMES':'FULL WEEK · 54 GAMES';
+  }`;
+condensed=once(condensed,boardFunctions,correctedBoardFunctions);
 const expectedLine=condensed.split('\n').find(x=>x.includes('const expected=key==='));assert.ok(expectedLine);
-condensed=once(condensed,expectedLine,"      const expected={'2026-10-09':2,'2026-10-10':52};");
+condensed=once(condensed,expectedLine,"      const expected={'2026-10-06':2,'2026-10-07':2,'2026-10-08':2,'2026-10-09':6,'2026-10-10':42};");
 condensed=once(condensed,'  tick();setInterval(tick,1000);',"  document.getElementById('teamSearch').addEventListener('input',reconcile);\n  tick();setInterval(tick,1000);");
 write(`${ui}/ui1.3/scoreboard.js`,condensed);
-let html=read(`${assets}/ui13-parent/index.html`).replaceAll('Week 5','Week 7').replaceAll('WEEK 5','WEEK 7').replaceAll('DUAL ENGINE','GAMECAST 4.4.2').replaceAll('4.3.2.2','4.4.2').replaceAll('4.3.2.1','4.4.2').replaceAll('49 GAMES','52 GAMES').replaceAll('THURSDAY &amp; FRIDAY · 9 GAMES','FRIDAY · 2 GAMES').replaceAll('Connecting to both public Week 7 sessions...','Connecting to the public Week 7 session...');
+let html=read(`${assets}/ui13-parent/index.html`).replaceAll('Week 5','Week 7').replaceAll('WEEK 5','WEEK 7').replaceAll('DUAL ENGINE','GAMECAST 4.4.2').replaceAll('4.3.2.2','4.4.2').replaceAll('4.3.2.1','4.4.2').replaceAll('Connecting to both public Week 7 sessions...','Connecting to the public Week 7 session...');
+html=once(html,'aria-selected="true" aria-controls="boardContent" data-engine="saturday" class="active">SATURDAY ENGINE','aria-selected="false" aria-controls="boardContent" data-engine="saturday">SATURDAY · 42');
+html=once(html,'aria-selected="false" aria-controls="boardContent" data-engine="full">FULL WEEK ENGINE','aria-selected="true" aria-controls="boardContent" data-engine="full" class="active">FULL WEEK · 54');
+html=once(html,'aria-labelledby="satEngineTab"','aria-labelledby="weekEngineTab"');
+html=once(html,'<h2 id="satHeading" class="section-heading">SATURDAY · 49 GAMES <span>GAMECAST 4.4.2</span></h2>','<h2 id="satHeading" class="section-heading"><span id="boardHeadingText">FULL WEEK · 54 GAMES</span><span>GAMECAST 4.4.2</span></h2>');
+html=once(html,'<h2 class="section-heading earlier-heading">THURSDAY &amp; FRIDAY · 9 GAMES <span>GAMECAST 4.4.2</span></h2>','');
+html=once(html,'<section id="earlierBoard" class="scoreboard earlier-board" aria-live="polite"></section>','<section id="earlierBoard" class="scoreboard earlier-board" aria-live="polite" hidden></section>');
 html=once(html,'    <nav class="filters"','    <label class="team-search">SEARCH TEAMS <input id="teamSearch" type="search" placeholder="e.g., Tex" autocomplete="off"></label>\n    <nav class="filters"');
 html=once(html,'  <script src="scoreboard.js">','  <script src="../release-config.js"></script><script src="../list-filters.js"></script>\n  <script src="scoreboard.js">');
 write(`${ui}/ui1.3/index.html`,html);fs.copyFileSync(`${assets}/ui13-parent/scoreboard.css`,`${ui}/ui1.3/scoreboard.css`);

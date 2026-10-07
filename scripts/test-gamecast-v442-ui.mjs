@@ -18,6 +18,7 @@ for(const side of ['away','home'])for(const query of ['Tex','tex','TEX',' tex ']
 check('search','approved abbreviation',()=>assert.equal(context.match({away:{name:'Example'},homeCode:'TEX'},'tex'),true));
 const gc=runtime(fs.readFileSync('supabase/functions/gamecast-week7-v4-4-2/index.ts','utf8'),'',{TEAM_POWER});
 const identity=JSON.parse(fs.readFileSync('outputs/v442/identity.json','utf8'));
+const expectedOrder=OPERATING_SLATE.map(g=>g.id);
 check('routes','exactly three named surfaces',()=>{assert.equal(identity.uiSurfaceCount,3);assert.equal(identity.surfaces.length,3);assert.equal(new Set(identity.surfaces.map(x=>x.name)).size,3);});
 const root=path.resolve('public/v4.4.2');
 for(const surface of ['Chairman UI','Public UI','Condensed UI (UI 1.3)']){
@@ -39,6 +40,7 @@ for(const surface of ['Chairman UI','Public UI','Condensed UI (UI 1.3)']){
   const ids=()=>[...d.querySelectorAll(condensed?'.game-card':'article.card')].map(x=>x.dataset.game);
   const search=q=>{d.getElementById('teamSearch').value=q;d.getElementById('teamSearch').dispatchEvent(new w.Event('input',{bubbles:true}));};
   check(surface,'loads full 54-game board and linked assets',()=>assert.equal(ids().length,54));
+  check(surface,'renders the corrected authoritative slate order',()=>assert.deepEqual(ids(),expectedOrder));
   if(!condensed)check(surface,'unlaunched game does not assign a receiver',()=>assert.ok(d.querySelector('article.card .field').textContent.includes('Kickoff pending')));
   const expected=ids().filter(id=>['G0315','G0299','G0301'].includes(id));
   for(const q of ['Tex','tex','TEX',' tex '])check(surface,'substring search '+q,()=>{search(q);assert.deepEqual(ids(),expected);});

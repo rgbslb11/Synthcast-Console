@@ -1,0 +1,84 @@
+{
+  "classification": "OBSERVED FACT and TEST RESULT",
+  "status": "LOCAL PASS \u2014 DEPLOYMENT PENDING",
+  "suppliedAt": "2026-10-06",
+  "logicalInput": "W7_RECONCILED_SLATE_54.csv",
+  "previous": {
+    "sha256": "481ed077d734dce9fd9aa25517fb5b5ea073ababdf77f55fdca650034dabbd4a",
+    "sizeBytes": 17428,
+    "dateCountsET": {
+      "2026-10-09": 2,
+      "2026-10-10": 52
+    }
+  },
+  "corrected": {
+    "sha256": "b71caafe6d1b7a49c5a0a6f33c06b68f7555f7d1959366519e17c10e0e3b3399",
+    "sizeBytes": 16625,
+    "games": 54,
+    "accepted": 54,
+    "rejected": 0,
+    "uniqueGameIds": 54,
+    "participatingTeams": 108,
+    "dateCountsET": {
+      "2026-10-06": 2,
+      "2026-10-07": 2,
+      "2026-10-08": 2,
+      "2026-10-09": 6,
+      "2026-10-10": 42
+    },
+    "firstGameId": "G0324",
+    "lastGameId": "G0327"
+  },
+  "comparison": {
+    "gameIdSetsEqual": true,
+    "pairingsEqual": true,
+    "ratingsEqual": true,
+    "neutralDesignationsEqual": true,
+    "slatePositionsChanged": 51,
+    "kickoffInstantsChanged": 17,
+    "networksChanged": 18
+  },
+  "ui": {
+    "surfaces": 3,
+    "condensedDefault": "FULL WEEK \u00b7 54",
+    "saturdaySubset": 42,
+    "iPhoneMasthead": "single-line title and one horizontally scrollable seven-clock row"
+  },
+  "localTests": {
+    "inputValidation": "PASS",
+    "uiDom": {
+      "passed": 55,
+      "failed": 0
+    },
+    "chromiumDesktopAndIPhone": {
+      "passed": 50,
+      "failed": 0
+    },
+    "footballFixes": {
+      "passed": 497,
+      "failed": 0
+    },
+    "coinToss": {
+      "passed": 10102,
+      "failed": 0
+    },
+    "releaseIntegrity": {
+      "passed": 870,
+      "failed": 0
+    },
+    "api": {
+      "passed": 14,
+      "failed": 0
+    },
+    "mutations": {
+      "killed": 13,
+      "survived": 0
+    },
+    "hfaPaired": {
+      "passed": 2000,
+      "failed": 0
+    }
+  },
+  "databasePolicy": "Existing rows are retained unchanged; only sessions created after backend update receive the corrected schedule.",
+  "deployment": null
+}

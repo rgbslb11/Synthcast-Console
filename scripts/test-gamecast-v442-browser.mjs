@@ -9,6 +9,7 @@ import {TEAM_POWER} from '../supabase/functions/gamecast-week7-v4-4-2/power.ts';
 const require=createRequire((process.env.GAMECAST_QA_MODULES||process.cwd())+'/package.json');
 const {chromium,webkit,devices}=require('playwright'),root=path.resolve('public');
 const gc=runtime(fs.readFileSync('supabase/functions/gamecast-week7-v4-4-2/index.ts','utf8'),'',{TEAM_POWER});
+const expectedOrder=OPERATING_SLATE.map(g=>g.id);
 let board=[],apiRequests=[],origin;
 const server=http.createServer((req,res)=>{
  const url=new URL(req.url,'http://localhost');
@@ -24,7 +25,7 @@ const server=http.createServer((req,res)=>{
 });
 await new Promise(r=>server.listen(0,'127.0.0.1',r));origin='http://127.0.0.1:'+server.address().port;
 const cases=[];fs.mkdirSync('outputs/v442/browser',{recursive:true});
-const browsers=[['Chromium desktop',chromium,{viewport:{width:1280,height:900}}],['WebKit iPhone 13 emulation',webkit,devices['iPhone 13']]].filter(([name])=>!process.argv.includes('--chromium-only')||name.startsWith('Chromium'));
+const browsers=[['Chromium desktop',chromium,{viewport:{width:1280,height:900}}],['Chromium iPhone 13 emulation',chromium,devices['iPhone 13']],['WebKit iPhone 13 emulation',webkit,devices['iPhone 13']]].filter(([name])=>!process.argv.includes('--chromium-only')||name.startsWith('Chromium'));
 async function check(browser,surface,name,fn){await fn();cases.push({browser,surface,name,status:'PASS'});}
 try{
  for(const [name,type,options] of browsers){
@@ -37,6 +38,7 @@ try{
    const cards=surface==='ui1.3'?'.game-card':'article.card';
    try{
     await check(name,surface,'direct navigation and 54 cards',async()=>{assert.equal((await page.goto(origin+route)).status(),200);await page.waitForFunction(sel=>document.querySelectorAll(sel).length===54,cards);});
+    await check(name,surface,'corrected authoritative slate order',async()=>assert.deepEqual(await page.locator(cards).evaluateAll(nodes=>nodes.map(node=>node.dataset.game)),expectedOrder));
     await check(name,surface,'assets and JavaScript load',async()=>{assert.deepEqual(errors,[]);assert.deepEqual(badAssets,[]);});
     await check(name,surface,'search variants and substring',async()=>{for(const q of ['Tex','tex','TEX',' tex ']){await page.locator('#teamSearch').fill(q);assert.equal(await page.locator(cards).count(),3);}await page.locator('#teamSearch').fill('North Tex');assert.equal(await page.locator(cards).count(),1);});
     await check(name,surface,'empty result and safe text',async()=>{await page.locator('#teamSearch').fill('<img src=x onerror="window.injected=1">');assert.equal(await page.locator(cards).count(),0);assert.equal(await page.evaluate(()=>window.injected),undefined);await page.locator('#teamSearch').fill('');assert.equal(await page.locator(cards).count(),54);});
@@ -46,8 +48,10 @@ try{
     });
     else await check(name,surface,'no operator controls or token sent',async()=>{assert.equal(await page.locator('.controls,.edit-panel,[data-f="NEEDS_ACTION"],#copyOperator').count(),0);assert.ok(apiRequests.every(x=>!x.operator));});
     await check(name,surface,'refresh and viewport usable',async()=>{assert.equal((await page.reload()).status(),200);await page.waitForFunction(sel=>document.querySelectorAll(sel).length===54,cards);assert.ok(await page.locator('#teamSearch').isVisible());const size=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));assert.ok(size.scroll<=size.width+1,JSON.stringify(size));});
+    if(name.includes('iPhone')&&surface!=='ui1.3')await check(name,surface,'compact single-row iPhone masthead',async()=>{const size=await page.locator('header').evaluate(header=>{const clocks=header.querySelector('.timebar'),hs=getComputedStyle(header),cs=getComputedStyle(clocks);return{headerHeight:header.getBoundingClientRect().height,clockHeight:clocks.getBoundingClientRect().height,display:cs.display,overflowX:cs.overflowX,headerPaddingTop:hs.paddingTop,clockScrollWidth:clocks.scrollWidth,clockClientWidth:clocks.clientWidth}});assert.ok(size.headerHeight<=130,JSON.stringify(size));assert.ok(size.clockHeight<=42,JSON.stringify(size));assert.equal(size.display,'flex');assert.ok(['auto','scroll'].includes(size.overflowX),JSON.stringify(size));assert.ok(size.clockScrollWidth>size.clockClientWidth,JSON.stringify(size));});
     await check(name,surface,'read-only API requests',async()=>assert.ok(apiRequests.length>0&&apiRequests.every(x=>x.method==='GET')));
-    await page.screenshot({path:`outputs/v442/browser/${name.startsWith('WebKit')?'mobile-webkit':'chromium'}-${surface.replace('.','-')}.png`});
+    const browserSlug=name.startsWith('WebKit')?'mobile-webkit':name.includes('iPhone')?'mobile-chromium':'chromium';
+    await page.screenshot({path:`outputs/v442/browser/${browserSlug}-${surface.replace('.','-')}.png`});
    }finally{await context.close();}
   }}finally{await browser.close();}
  }
