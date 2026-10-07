@@ -16,7 +16,7 @@
   "priorPublishedFileCount": 74,
   "canonicalPromotion": false,
   "databaseMigration": "gamecast_v442_isolated_persistence",
-  "uiFix": "UI 1.3 carriage, live polling, and same-session surface navigation",
-  "uiFixCommit": "086c867df364dbbc85eafc86d5441a289e4209b5",
-  "uiFixRequestedAt": "2026-10-07T02:19:30Z"
+  "uiFix": "UI 1.3 carriage, live polling, same-session navigation, synchronous DOM-safe linkage",
+  "uiFixCommit": "fb78b8900a756ae97d27c028fd0fe400906485f2",
+  "uiFixRequestedAt": "2026-10-07T02:35:30Z"
 }
