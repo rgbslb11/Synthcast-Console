@@ -21,7 +21,7 @@
     {
       "path": "v4.4.2/legacy/app.css",
       "status": 200,
-      "sha256": "ebbd83345ccdb0aec2963ee17cd4e21da96988348d840b52060f559633d3ba3f"
+      "sha256": "ccb870ff7632ec8d717397dc4299e20065a5bf89bdaf8e8d4053da52a1f87098"
     },
     {
       "path": "v4.4.2/legacy/patch-422.js",
@@ -51,7 +51,7 @@
     {
       "path": "v4.4.2/ui1.3/index.html",
       "status": 200,
-      "sha256": "3afeac0760dacff4bb9e3ce29bc862de420fa24898863741813049e3800a4609"
+      "sha256": "2b93a01e6f4458cf5d030c3deb73a17c2181075d648ca56a28b399febbf7f6bd"
     },
     {
       "path": "v4.4.2/ui1.3/scoreboard.css",
@@ -61,7 +61,7 @@
     {
       "path": "v4.4.2/ui1.3/scoreboard.js",
       "status": 200,
-      "sha256": "b362b9d8b7b41308cf6e50870264225562ef77d12e5358b927f9fba40fbab752"
+      "sha256": "f1075526f4fc1ae95e058376dfb9502a2a9e09e0e652362b9b52d5b166d973dd"
     }
   ]
 }

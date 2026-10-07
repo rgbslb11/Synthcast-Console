@@ -28,7 +28,7 @@
       "number": 4,
       "gate": "Full-board checks",
       "status": "PASS",
-      "evidence": "54 games, 108 participating teams, 121 rating records; all ready",
+      "evidence": "Corrected authoritative order: 54 games, 108 participating teams, 121 rating records; all ready",
       "blocker": "None for the documented automated coverage"
     },
     {
@@ -56,21 +56,21 @@
       "number": 8,
       "gate": "Chairman console integration",
       "status": "PASS",
-      "evidence": "16 deployed browser checks across Chromium and mobile WebKit",
+      "evidence": "19/19 deployed Chairman checks across Chromium and mobile WebKit",
       "blocker": "None for the documented automated coverage"
     },
     {
       "number": 9,
       "gate": "Public scoreboard and Condensed UI (UI 1.3) integration",
       "status": "PASS",
-      "evidence": "Public: 16/16; Condensed UI 1.3: 16/16 deployed browser checks",
+      "evidence": "Public: 19/19; Condensed UI 1.3: 18/18 deployed browser checks",
       "blocker": "None for the documented automated coverage"
     },
     {
       "number": 10,
       "gate": "Mobile Safari",
       "status": "PASS",
-      "evidence": "24/24 deployed checks using WebKit 26 and iPhone 13 emulation; screenshots reviewed. Physical iOS hardware NOT TESTED.",
+      "evidence": "29/29 deployed checks using WebKit and iPhone 13 emulation; compact masthead checks and screenshots reviewed. Physical iOS hardware NOT TESTED.",
       "blocker": "None for the documented automated coverage"
     },
     {

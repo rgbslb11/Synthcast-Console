@@ -1,6 +1,6 @@
 {
   "classification": "OBSERVED FACT and TEST RESULT",
-  "status": "BACKEND ACTIVE \u2014 UI DEPLOYMENT PENDING",
+  "status": "DEPLOYED \u2014 PASS",
   "suppliedAt": "2026-10-06",
   "logicalInput": "W7_RECONCILED_SLATE_54.csv",
   "previous": {
@@ -88,6 +88,34 @@
     "backendBundleSha256": "03caa9349506fde9ede45837234d4505feea3796277e0e38a914a63ceeacd8eb",
     "backendSourceComparison": "PASS",
     "existingRowsUnchanged": true,
-    "uiStatus": "PENDING"
+    "uiCommit": "ad28d6252c9f07484dea29c8c6724d7f0f833e5c",
+    "uiStatus": "PASS",
+    "workflowRun": 37552264453,
+    "qaWorkflowRun": 37552264475,
+    "predeploymentArtifact": 11453610213,
+    "postdeploymentArtifact": 11452959555,
+    "publicSlug": "w7v442-4db477ea0085509f",
+    "browserChecks": {
+      "executed": 56,
+      "passed": 56,
+      "failed": 0,
+      "skipped": 0,
+      "browsers": [
+        "Chromium desktop",
+        "WebKit iPhone 13 emulation"
+      ],
+      "surfaces": 3
+    },
+    "cloudApiChecks": {
+      "executed": 16,
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0
+    },
+    "urls": {
+      "public": "https://rgbslb11.github.io/Synthcast-Console/v4.4.2/?session=w7v442-4db477ea0085509f&view=public",
+      "chairman": "https://rgbslb11.github.io/Synthcast-Console/v4.4.2/?session=w7v442-4db477ea0085509f",
+      "condensed": "https://rgbslb11.github.io/Synthcast-Console/v4.4.2/ui1.3/?session=w7v442-4db477ea0085509f"
+    }
   }
 }

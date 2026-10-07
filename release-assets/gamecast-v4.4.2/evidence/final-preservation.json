@@ -1,10 +1,11 @@
 {
   "classification": "OBSERVED FACT",
-  "candidate": {
-    "sessions": 6,
-    "active_games": 0,
+  "linkedCorrectionSession": {
+    "public_slug": "w7v442-4db477ea0085509f",
+    "games": 54,
     "accepted_games": 0,
-    "all_game_rows_qa": true
+    "all_game_rows_qa": true,
+    "state_version": 15
   },
   "load_test": {
     "games": 54,
@@ -22,7 +23,8 @@
   "previousBackendVersionsAndHashesUnchanged": true,
   "previousPublishedFiles": 74,
   "previousPublishedHashesUnchanged": true,
-  "uiPublicationCommit": "200757b9663fe033adda9190790b5947ae3146fc",
-  "workflowRun": 37540806064,
-  "deploymentId": 6896822191
+  "uiPublicationCommit": "ad28d6252c9f07484dea29c8c6724d7f0f833e5c",
+  "workflowRun": 37552264453,
+  "deploymentJob": 112570704561,
+  "postdeploymentJob": 112570776230
 }

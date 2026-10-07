@@ -1,6 +1,6 @@
 {
   "classification": "OBSERVED FACT and TEST RESULT",
-  "status": "PASS \u2014 CORRECTED SLATE ACTIVE IN BACKEND; UI DEPLOYMENT PENDING",
+  "status": "PASS \u2014 CORRECTED SLATE ACTIVE IN BACKEND AND THREE UI SURFACES",
   "logicalInputs": 2,
   "inputs": [
     {
@@ -69,7 +69,7 @@
       "unique_teams": 108,
       "rating_records": 0,
       "game_count": 54,
-      "activation_status": "ACTIVE IN ISOLATED BACKEND VERSION 3 \u2014 UI DEPLOYMENT PENDING",
+      "activation_status": "ACTIVE IN ISOLATED BACKEND VERSION 3 AND THREE VERSIONED UI SURFACES",
       "source": "Direct task attachment supplied 2026-10-06; supersedes the prior archive member."
     }
   ],
@@ -88,7 +88,7 @@
   "neutral_games": [
     "G0315"
   ],
-  "activation": "CORRECTED SLATE ACTIVE IN ISOLATED BACKEND VERSION 3 \u2014 UI DEPLOYMENT PENDING",
+  "activation": "CORRECTED SLATE ACTIVE IN ISOLATED BACKEND VERSION 3 AND THREE VERSIONED UI SURFACES",
   "backendFunction": "gamecast-week7-v4-4-2",
   "backendVersion": 3,
   "archive": {

@@ -16,7 +16,7 @@ OBSERVED FACT:
 - Persistence: existing project `percrnamjzetzjjuxuuw`, tables `gamecast_v12.sessions` and `gamecast_v12.events`. Existing generic create/read RPCs are reused unchanged; new commit/auth/scheduler RPCs are release-specific.
 - Prior Chairman route: `https://rgbslb11.github.io/Synthcast-Console/v4.4.1/`; Public selector: `?view=public` with the existing session. All prior assets remain reachable and unchanged.
 - Condensed UI 1.3 source: branch `release/scoreboard-ui-v1.3-w5-light`, commit `01613cf661a9b438affeb5e5fd923d1d0cc69e59`. Its original light design and CSS are preserved.
-- New branch: `release/gamecast-v4.4.2`, created from the exact foundation and pushed without force. Backend-source commit: `5ff805ef7f54d7dbcfebbf23630088cf41bc3af6`. Published UI/workflow commit: `200757b9663fe033adda9190790b5947ae3146fc`. Later report/test-only commits do not change these deployed bytes.
+- New branch: `release/gamecast-v4.4.2`, created from the exact foundation and pushed without force. Corrected backend-source commit: `67cb3ecc62058a5193b5d87afe0aa2e12e598551`. Corrected UI/workflow commit: `ad28d6252c9f07484dea29c8c6724d7f0f833e5c`.
 
 | Capability | Verified result |
 |---|---|
@@ -37,8 +37,8 @@ TEST RESULT: 4.4.1 rebuilt in the isolated checkout and matched deployed source 
 
 | Artifact | Verified 4.4.1 SHA-256 | Deployed 4.4.2 SHA-256 |
 |---|---|---|
-| Runtime index.ts | `04eaca91b7cb8e842ebe2bde828ea3bf5d0872a34cd8ba070378e891626acd80` | `ad222773069b89b3567e5965bd37c31703a8e90227149b948ac4a90052ae7ec4` |
-| Schedule week6.ts / week7.ts | `319719b6094f77d5643833243ebc523ed59ea3ebbf2f0d908c1d79e7908e1d29` | `5b85db3f065179f20a7d371212f042002bb380fdb3f7f338e3f122e5f3a4de93` |
+| Runtime index.ts | `04eaca91b7cb8e842ebe2bde828ea3bf5d0872a34cd8ba070378e891626acd80` | `3ab83ba94c52baa7ce48c97a2238c6625caaec538d962980840004b70314707f` |
+| Schedule week6.ts / week7.ts | `319719b6094f77d5643833243ebc523ed59ea3ebbf2f0d908c1d79e7908e1d29` | `271351a4dbef8edd4f3c28a4c0b7fc3b915e9bbfde3ce60b609603ce716ca2f1` |
 | Ratings power.ts | `34e4ef1bc881d8a3492bee0c0a01cdce58aa82dd36bb43ad77d54175cd9447e1` | `3f3ed01dbd6bfc2faf9cdff90b4d312cc44b1a6ce966184695373b5fa4dd4496` |
 | Dead-Man module | `b78624b253214e954a8fe4cd81ee76740c17c47e5ca98b759f6a1b8cfab1d349` | Same hash |
 
@@ -46,20 +46,20 @@ UI hashes and every preserved publication path are recorded in `evidence/ui-live
 
 ## C. W7 data manifest
 
-OBSERVED FACT and TEST RESULT: exactly two logical inputs, both inside `W7_APPROVED_RATINGS_AND_SLATE_ONLY.zip` (5,346 bytes; SHA-256 `a00fc60303485c89bd3c29abac1002f6ba58aa8a5715d3c0171614a112fed9e1`). There are no rejected rows.
+OBSERVED FACT and TEST RESULT: exactly two logical inputs. Ratings remain the approved archive member from `W7_APPROVED_RATINGS_AND_SLATE_ONLY.zip` (5,346 bytes; SHA-256 `a00fc60303485c89bd3c29abac1002f6ba58aa8a5715d3c0171614a112fed9e1`). The directly attached corrected games file supersedes the archive's schedule member. There are no rejected rows.
 
 | Dataset / archive member | Format / bytes | Expected rows | Parsed | Accepted | Rejected | Exact teams | Rating records | Games | Activation |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|
 | W7_APPROVED_ENGINE_121.json | JSON / 11,531 | 121 | 121 | 121 | 0 | 121 | 121 | 0 | Isolated QA candidate only |
-| W7_RECONCILED_SLATE_54.csv | CSV / 17,428 | 54 | 54 | 54 | 0 | 108 | 0 | 54 | Isolated QA candidate only |
+| W7_RECONCILED_SLATE_54.csv | CSV / 16,625 | 54 | 54 | 54 | 0 | 108 | 0 | 54 | Active in isolated backend v3 and three versioned UI surfaces |
 
 Ratings SHA-256: `17d9e89e108e2528232a6f6ef18cddb8739653b38e87db67ad01165bb13911e0`.
 
-Games SHA-256: `481ed077d734dce9fd9aa25517fb5b5ea073ababdf77f55fdca650034dabbd4a`.
+Games SHA-256: `b71caafe6d1b7a49c5a0a6f33c06b68f7555f7d1959366519e17c10e0e3b3399`.
 
 CODE-DERIVED CONCLUSION: schema mapping uses the baseline-approved exact canonical team names; abbreviations are display/search values. All 363 TEAM/OFF/DEF values are finite, numeric and within the existing 60–99 range. All 108 scheduled teams resolve to one of the 121 authorized rating records. Duplicate/unknown/missing teams, duplicate games/IDs, and invalid date/time/numeric values are rejected. Ordering does not define game or seed identity.
 
-OBSERVED FACT: 2 games are Friday October 9 and 52 Saturday October 10, using the supplied ET/UTC/CT fields. The sole neutral designation is G0315 Texas–Oklahoma. No FCS fallback was used. The approved Georgia 97/96/99 exception is preserved. Venue name and input lifecycle are not required by the inspected baseline schema. Full schemas, sizes, hashes and warnings are in `evidence/activated-input-manifest.json`; the build emits the human-readable `outputs/v442/W7_ACTIVATION_PREVIEW.md`.
+OBSERVED FACT: the corrected ET distribution is Tuesday October 6: 2; Wednesday October 7: 2; Thursday October 8: 2; Friday October 9: 6; Saturday October 10: 42. The sole neutral designation is G0315 Texas–Oklahoma. No FCS fallback was used. The approved Georgia 97/96/99 exception is preserved. Venue name and input lifecycle are not required by the inspected baseline schema. Full schemas, sizes, hashes and warnings are in `evidence/activated-input-manifest.json`; the build emits the human-readable `outputs/v442/W7_ACTIVATION_PREVIEW.md`.
 
 ## D. Seven-requirement matrix
 
@@ -68,9 +68,9 @@ Classifications: baseline/change columns are CODE-DERIVED CONCLUSION; verificati
 | # | Requirement | Status | Observed baseline | Change / files | Tests and evidence | Remaining blocker |
 |---|---|---|---|---|---|---|
 | 1 | Coin toss and reciprocal Q3 possession | PASS | Away opened; Q3 possession hardcoded | `coin-toss.mjs` and builder add persisted domain-separated seeded toss and reciprocal Q3; launch/retry authoritative | 10,102 toss checks; 10,000-seed distribution; 4 mutations; manual and real scheduler launch/readback | None |
-| 2 | FINAL — NEEDS ACTION filter | PASS | Existing FINAL filter includes accepted games | `list-filters.js` and builder add Chairman control using existing lifecycle; UI 1.3 has no operator-management list | FINAL_PENDING and LOCKED included; READY/FINAL/published/nonfinal excluded; AND search; live updates; 52 DOM checks plus deployed browser tests | None |
+| 2 | FINAL — NEEDS ACTION filter | PASS | Existing FINAL filter includes accepted games | `list-filters.js` and builder add Chairman control using existing lifecycle; UI 1.3 has no operator-management list | FINAL_PENDING and LOCKED included; READY/FINAL/published/nonfinal excluded; AND search; live updates; 55 DOM checks plus deployed browser tests | None |
 | 3 | Team-name search | PASS | No requested substring control on these release surfaces | Shared display-only safe substring predicate and generated inputs on all three surfaces | Tex/tex/TEX, either team, approved abbreviation, clearing/order, AND, empty and hostile text; exact-match mutation caught | None |
-| 4 | Three deployed UI surfaces | PASS | Public/Chairman from 4.4.1; independent existing light UI 1.3 | Builder preserves designs, copies UI 1.3 source, isolates assets/endpoint; new Pages workflow preserves 74 old files | 48 staged and 48 deployed real-cloud browser checks; 12 new asset hashes; exactly 3 named surfaces | No physical-device claim; see gate 10 coverage |
+| 4 | Three deployed UI surfaces | PASS | Public/Chairman from 4.4.1; independent existing light UI 1.3 | Builder preserves designs, copies UI 1.3 source, isolates assets/endpoint; new Pages workflow preserves 74 old files | 56 staged and 56 deployed real-cloud browser checks; 12 new asset hashes; exactly 3 named surfaces | No physical-device claim; see gate 10 coverage |
 | 5 | HFA 2.66 and neutral zero | PASS — approved normalization | Raw venue term ±.035; reproduced point effect was not 2.66 | Builder uses approved ±.006 normalized venue edge; target metadata 2.66; neutral contribution zero | Symmetric/paired tests, 5,000-pair approved holdout, final 1,000-seed paired comparison; neutral/double-HFA mutations caught | None under the user's approved holdout; no exact per-game point guarantee |
 | 6 | Kneel guard | PASS | Automatic unsafe/fourth-down kneels possible; forced fourth kneel retained runoff | `football-fixes.mjs` checks actual remaining snaps/runoff/opponent timeouts; forced fourth stops clock and flips possession atomically | 224 down/timeout boundaries; 32 forced-fourth cases; 6 guards; 3 required mutations | None |
 | 7 | Conditional halftime timeout reset | PASS — defect confirmed and fixed | 15 of 16 first-half balances carried incorrectly into Q3 | `football-fixes.mjs` resets both to configured 3 once at valid Q2→Q3 transition; persisted marker | All 16 balances, all 16 retry/reload cases, invalid transition guards; carryover and duplicate-reset mutations caught; OT comparisons unchanged | None |
@@ -79,7 +79,7 @@ Expected rows: **7**. Actual rows: **7**.
 
 ## E. Test evidence
 
-TEST RESULT: the principal predeployment workflow ran **11,577 core cases**, all passed, zero failed/skipped (497 + 10,102 + 870 + 14 + 52 + 42). Additional cloud, mutation, HFA and preservation checks are listed separately to avoid double-counting repeated runs.
+TEST RESULT: the corrected predeployment workflow ran **11,614 core cases**, all passed, zero failed/skipped (497 + 10,102 + 870 + 14 + 55 + 76). Additional cloud, mutation, HFA and preservation checks are listed separately to avoid double-counting repeated runs.
 
 Commands below run from the repository root. `GAMECAST_QA_MODULES=/workspace/scratch/79fb451391cf/gamecast-qa` locally; GitHub uses its installed `$RUNNER_TEMP/gamecast-qa`. Private credential files live outside artifacts and are never included in reports.
 
@@ -93,7 +93,7 @@ Commands below run from the repository root. `GAMECAST_QA_MODULES=/workspace/scr
 | `node scripts/test-gamecast-v442-coin-toss.mjs --assembled` | 10,102/10,102 pass, 0 fail/skip |
 | `node scripts/test-gamecast-v442-release.mjs` | 870/870 pass; all 54 games finish; 648 acceleration comparisons; 54 chunk, 54 pause/reload and 54 simultaneous-game comparisons |
 | `node scripts/test-gamecast-v442-api.mjs` | 14/14 pass; actual handler with an explicitly labeled in-memory RPC double |
-| `GAMECAST_QA_MODULES=/workspace/scratch/79fb451391cf/gamecast-qa node scripts/test-gamecast-v442-ui.mjs` | 52/52 DOM checks pass |
+| `GAMECAST_QA_MODULES=/workspace/scratch/79fb451391cf/gamecast-qa node scripts/test-gamecast-v442-ui.mjs` | 55/55 DOM checks pass |
 | `node scripts/test-gamecast-v442-browser.mjs` with the QA dependency environment in GitHub | 42/42 actual Chromium/WebKit fixture-API checks pass |
 | `node scripts/test-gamecast-v442-fix-integrity.mjs` | Earlier component run: 350/350 pass; 50 simultaneous games and protected neutral histories |
 | `node scripts/test-gamecast-v442-fix-mutations.mjs` | 5/5 killed; 0 survived |
@@ -102,7 +102,7 @@ Commands below run from the repository root. `GAMECAST_QA_MODULES=/workspace/scr
 | `GAMECAST_QA_PRIVATE=/workspace/scratch/79fb451391cf/gamecast-v442-private.json node scripts/test-gamecast-v442-cloud.mjs` | 16/16 actual cloud API checks pass; also 16/16 before and 16/16 after publication in the release workflow |
 | Same cloud command with `--poll-only` | 2/2 checks; 100 read polls; direct SQL state/version/event fingerprints identical |
 | Execute `release-assets/gamecast-v4.4.2/test-persistence-guards.sql` through the configured project SQL tool | 7/7 pass; foreign release, stale version, actor, QA acceptance, event namespace, grants and atomicity |
-| `node scripts/test-gamecast-v442-cloud-browser.mjs` in the release workflow with its temporary private QA file | 48/48 staged real-cloud checks; 48/48 deployed checks; 0 fail/skip |
+| `node scripts/test-gamecast-v442-cloud-browser.mjs` in the release workflow with its temporary private QA file | 56/56 staged real-cloud checks; 56/56 deployed checks; 0 fail/skip |
 | `GAMECAST_QA_PRIVATE=/workspace/scratch/79fb451391cf/gamecast-v442-scheduler-canonical-private.json node scripts/test-gamecast-v442-cloud-scheduler.mjs` | Final run: 112/112 pass; 54 simultaneous games; 108 replay comparisons; all stopped as unaccepted QA finals |
 | `node scripts/measure-gamecast-v442-hfa.mjs` | 5 coefficients × 1,000 pairs = 10,000 full games; exploratory measurement only |
 | `HFA_PAIRS=5000 HFA_EDGES=0.006 HFA_SEED_PREFIX=HFA442-HOLDOUT node scripts/measure-gamecast-v442-hfa.mjs` | 5,000 pairs / 10,000 full games; user-approved independent holdout |
@@ -163,13 +163,13 @@ TEST RESULT. PASS describes the stated test coverage, including the explicit mob
 | 1 | Engine/state integrity | PASS | 497 assembled checks and protected-code comparison | None within stated coverage |
 | 2 | Fixed-seed regression | PASS | 54 full games, 108 actual-cloud replay comparisons; same-seed restart | None within stated coverage |
 | 3 | Multi-seed distribution checks | PASS | 10,000 fixed toss seeds; paired HFA studies | None within stated coverage |
-| 4 | Full-board checks | PASS | 54 games, 108 participating teams, 121 rating records; all ready | None within stated coverage |
+| 4 | Full-board checks | PASS | Corrected authoritative order: 54 games, 108 participating teams, 121 rating records; all ready | None within stated coverage |
 | 5 | Poll/chunk invariance | PASS | 54 chunk comparisons and 100 cloud polls with identical database fingerprints | None within stated coverage |
 | 6 | 1x versus 50x invariance | PASS | 648 comparisons also cover 4x and 20x | None within stated coverage |
 | 7 | Backend persistence and versioning | PASS | 16 cloud API checks; 7 SQL guard checks; deployed source readback | None within stated coverage |
-| 8 | Chairman console integration | PASS | 16 deployed browser checks across Chromium and mobile WebKit | None within stated coverage |
-| 9 | Public scoreboard and Condensed UI (UI 1.3) integration | PASS | Public: 16/16; Condensed UI 1.3: 16/16 deployed browser checks | None within stated coverage |
-| 10 | Mobile Safari | PASS | 24/24 deployed checks using WebKit 26 and iPhone 13 emulation; screenshots reviewed. Physical iOS hardware NOT TESTED. | None within stated coverage |
+| 8 | Chairman console integration | PASS | 19/19 deployed Chairman checks across Chromium and mobile WebKit | None within stated coverage |
+| 9 | Public scoreboard and Condensed UI (UI 1.3) integration | PASS | Public: 19/19; Condensed UI 1.3: 18/18 deployed browser checks | None within stated coverage |
+| 10 | Mobile Safari | PASS | 29/29 deployed checks using WebKit and iPhone 13 emulation; compact masthead checks and screenshots reviewed. Physical iOS hardware NOT TESTED. | None within stated coverage |
 | 11 | Existing-session compatibility and release isolation | PASS | 52 previous rows, 25 previous backend versions/hashes, 74 prior UI files unchanged | None within stated coverage |
 | 12 | Chairman authorization | PASS | Unauthorized writes rejected; QA acceptance rejected by API and database; service-only RPC grants | None within stated coverage |
 
@@ -181,25 +181,25 @@ All three additional prerequisites pass: exact reproduced 4.4.1 identity; valida
 
 OBSERVED FACT:
 
-- Backend: `gamecast-week7-v4-4-2`, ACTIVE version **1**, project `percrnamjzetzjjuxuuw`, function ID `84ebbf3d-d020-45bd-82fa-88a4316ffbec`.
-- Deployment bundle SHA-256: `43c06a40be09c0af845f6f13e9bfde4c1039925b5433901c894a1ddc0764e458`.
+- Backend: `gamecast-week7-v4-4-2`, ACTIVE version **3**, project `percrnamjzetzjjuxuuw`, function ID `84ebbf3d-d020-45bd-82fa-88a4316ffbec`.
+- Deployment bundle SHA-256: `03caa9349506fde9ede45837234d4505feea3796277e0e38a914a63ceeacd8eb`.
 - Engine `GC-W7-V4.4.2-RC1`; week `2026-W07`; sessions `w7v442-`; browser storage `synthcastGameCast442Operator`.
 - Database installations: `gamecast_v442_isolated_persistence` and `gamecast_v442_isolated_scheduler`. Three new service-only RPCs, one new Vault credential, one new 15-second cron job. No existing table alteration or previous-release credential replacement.
-- [Release workflow 37540806064](https://github.com/rgbslb11/Synthcast-Console/actions/runs/37540806064): verify job `112533075771`, deployment job `112533907640`, postdeployment job `112533982752` all SUCCESS.
-- Pages deployment `6896822191`, environment `gamecast-v442-isolated-preview`, commit `200757b9663fe033adda9190790b5947ae3146fc`.
-- Evidence artifacts: predeployment `11448900347` (SHA-256 `940eb78c9f83beef99750e6d180e20deb3fec3a4e2921c5bcd91706820a86978`); postdeployment `11449285151` (SHA-256 `6cf36e6cb83b16e5e324be519deeca7fa897132ec159578d5f989aec24efcbaa`). Downloaded and checked locally.
+- [Corrected release workflow 37552264453](https://github.com/rgbslb11/Synthcast-Console/actions/runs/37552264453): verify job `112570276110`, deployment job `112570704561`, postdeployment job `112570776230` all SUCCESS.
+- Versioned Pages publication used commit `ad28d6252c9f07484dea29c8c6724d7f0f833e5c`; no canonical URL was redirected.
+- Evidence artifacts: predeployment `11453610213` (SHA-256 `c2c202ad0ed3ef250b4f5888ac7fa4e818c24e3289f418593087812e842e5959`); postdeployment `11452959555` (SHA-256 `58c733c23329b7b16e9d69a7a5dc2bd0d11eec298cde4bc089eb2cb8b13fe90f`). Downloaded and checked locally.
 
 | Required surface | Verified URL, with credentials omitted | Deployed browser result |
 |---|---|---|
-| Public UI | [Public QA board](https://rgbslb11.github.io/Synthcast-Console/v4.4.2/?session=w7v442-2a1225f2fb28597d&view=public) | 16/16; no operator controls/token |
-| Chairman UI | [Chairman candidate](https://rgbslb11.github.io/Synthcast-Console/v4.4.2/?session=w7v442-2a1225f2fb28597d) | 16/16 with private credential supplied during testing; credential omitted here |
-| Condensed UI (UI 1.3) | [Condensed QA board](https://rgbslb11.github.io/Synthcast-Console/v4.4.2/ui1.3/?session=w7v442-2a1225f2fb28597d) | 16/16; original condensed design/access retained |
+| Public UI | [Public QA board](https://rgbslb11.github.io/Synthcast-Console/v4.4.2/?session=w7v442-4db477ea0085509f&view=public) | 19/19; no operator controls/token |
+| Chairman UI | [Chairman candidate](https://rgbslb11.github.io/Synthcast-Console/v4.4.2/?session=w7v442-4db477ea0085509f) | 19/19 with private credential supplied during testing; credential omitted here |
+| Condensed UI (UI 1.3) | [Condensed QA board](https://rgbslb11.github.io/Synthcast-Console/v4.4.2/ui1.3/?session=w7v442-4db477ea0085509f) | 18/18; original condensed design/access retained |
 
 Confirmed UI surface count: **3**. The linked board contains QA demonstrations, including an intentionally ended/locked test game; it is not an official scoreboard. The Chairman root `/v4.4.2/` can create a fresh candidate session and private operator link.
 
-TEST RESULT: direct navigation, refresh, assets, endpoint/engine identity, search, filters, access behavior and viewport checks passed on each surface. All six deployed desktop/mobile screenshots were reviewed. All 12 new UI asset hashes matched the generated candidate. 4.4.1 remains reachable; all 74 previously published files, all 25 earlier backend versions/hashes, and all 52 earlier session rows are unchanged.
+TEST RESULT: direct navigation, refresh, assets, exact corrected slate order, endpoint/engine identity, search, filters, access behavior, read-only browser behavior and viewport checks passed on each surface. The iPhone Chairman/Public masthead is reduced to a single-line title and one horizontally scrollable seven-clock row. All six deployed desktop/mobile screenshots were reviewed. All 12 new UI asset hashes matched the generated candidate. 4.4.1 remains reachable; all 74 previously published files and earlier-release backend/session data remain unchanged.
 
-OBSERVED FACT: six candidate QA sessions remain for audit, containing zero active games and zero accepted/published games. The final 54-game scheduler test has exactly 54 committed launch events for 54 distinct IDs; session version 57. No candidate session is currently eligible for scheduler work.
+OBSERVED FACT: the newly linked correction QA session contains 54 games and zero accepted games. Its deliberately locked QA final is not official and cannot be accepted through the candidate. No SEUD or canonical-result publication occurred.
 
 ## H. Scope and complete diff review
 
@@ -243,6 +243,7 @@ Complete changed-file list and purpose follows. Paths are repository-relative; e
 | `release-assets/gamecast-v4.4.2/evidence/previous-release-preservation.json` | Preserves measured/observed evidence: previous release preservation. |
 | `release-assets/gamecast-v4.4.2/evidence/release-workflow-results.json` | Preserves measured/observed evidence: release workflow results. |
 | `release-assets/gamecast-v4.4.2/evidence/reproducible-build.json` | Preserves measured/observed evidence: reproducible build. |
+| `release-assets/gamecast-v4.4.2/evidence/slate-correction.json` | Records the corrected attachment comparison, deployment, fresh links and postdeployment checks. |
 | `release-assets/gamecast-v4.4.2/evidence/ui-live-hashes.json` | Preserves measured/observed evidence: ui live hashes. |
 | `release-assets/gamecast-v4.4.2/evidence/w7-validation.json` | Preserves measured/observed evidence: w7 validation. |
 | `release-assets/gamecast-v4.4.2/football-fixes.mjs` | Minimal safe-kneel and confirmed halftime-reset transforms. |
@@ -278,7 +279,7 @@ Complete changed-file list and purpose follows. Paths are repository-relative; e
 | `scripts/validate-gamecast-v442-inputs.py` | Strict two-input schema/cardinality validation and activation preview. |
 | `scripts/verify-gamecast-v442-deployment.mjs` | Checks pinned source hashes and candidate/prior health endpoints. |
 
-Changed-file count in this report: **59** (all additions). No previous-release tracked file was modified.
+Changed-file count in this report: **60** (all additions relative to the 4.4.1 foundation). No previous-release tracked file was modified.
 
 The 16 generated artifacts are: backend `index.ts`, `week7.ts`, `power.ts`, `deadman.mjs` under `supabase/functions/gamecast-week7-v4-4-2/`; UI `index.html`, `app.js`, `patch-442.js`, `release-config.js`, `list-filters.js`, `deadman.css`, `legacy/app.css`, `legacy/patch-rc2.js`, `legacy/patch-422.js`, `ui1.3/index.html`, `ui1.3/scoreboard.js`, `ui1.3/scoreboard.css` under `public/v4.4.2/`. They are generated/deployed output, not modifications to old output directories.
 

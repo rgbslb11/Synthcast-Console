@@ -1,6 +1,6 @@
 # GameCast 4.4.2 W7 execution plan
 
-Status: CORRECTION DEPLOYMENT IN PROGRESS — replacement W7 slate is active in isolated backend version 3; three versioned UI surfaces await controlled publication. No official results accepted or canonical promotion.
+Status: CORRECTION DEPLOYED — replacement W7 slate is active in isolated backend version 3 and exactly three versioned UI surfaces. No official results accepted or canonical promotion.
 
 ## 2026-10-06 corrected-slate and iPhone-header update
 
@@ -12,7 +12,9 @@ Status: CORRECTION DEPLOYMENT IN PROGRESS — replacement W7 slate is active in 
 - OBSERVED FACT: implementation commit `67cb3ecc62058a5193b5d87afe0aa2e12e598551` is pushed. GitHub QA run 37550630451 passed, including Chromium and WebKit browser checks.
 - OBSERVED FACT: corrected Edge Function `gamecast-week7-v4-4-2` version 3 is ACTIVE. Its downloaded four-file source matches the generated correction and its bundle SHA-256 is `03caa9349506fde9ede45837234d4505feea3796277e0e38a914a63ceeacd8eb`.
 - TEST RESULT: before/after function-deployment counts and fingerprints for 7 candidate sessions, 542 candidate events, 52 prior sessions, and 2,580 prior events are identical. No prior database entry was changed.
-- Pending: isolated Pages publication; post-deployment order/hash/isolation checks; new-session links.
+- TEST RESULT: deployment workflow 37552264453 passed verify, publication, and postdeployment jobs. The live suite passed 56/56 browser cases across Chromium desktop and WebKit iPhone 13 emulation, plus 16/16 cloud API/persistence cases.
+- TEST RESULT: all three live surfaces render the exact corrected 54-game order. The iPhone Chairman/Public masthead is a single-line title plus one horizontally scrollable seven-clock row. Browser interactions and filters issue reads only.
+- Outcome: corrected public, Chairman, and Condensed UI (UI 1.3) links use fresh QA session `w7v442-4db477ea0085509f`. Previous releases and sessions remain independently reachable.
 
 ## Foundation and boundaries
 
@@ -69,7 +71,7 @@ Activation: loaded into the isolated QA-only 4.4.2 backend; no accepted or offic
 - `node scripts/test-gamecast-v442-coin-toss.mjs --assembled`: 10,102/10,102 pass; same 10,000-seed distribution counts recorded above.
 - `node scripts/test-gamecast-v442-release.mjs`: 870/870 pass; all 54 W7 games; 648 acceleration comparisons at 1/4/20/50x; 54 simultaneous games match isolated histories.
 - `node scripts/test-gamecast-v442-api.mjs`: 14/14 pass using the actual handler with an in-memory RPC double, including 100 GET polls with no commits or stored-state changes. Not cloud persistence evidence.
-- `GAMECAST_QA_MODULES=<installed QA dependencies> node scripts/test-gamecast-v442-ui.mjs`: 52/52 DOM integration checks pass across exactly three surfaces.
+- `GAMECAST_QA_MODULES=<installed QA dependencies> node scripts/test-gamecast-v442-ui.mjs`: 55/55 corrected DOM integration checks pass across exactly three surfaces.
 - `GAMECAST_QA_MODULES=<installed QA dependencies> node scripts/test-gamecast-v442-browser.mjs --chromium-only`: 21/21 actual local Chromium route/asset/refresh/search/filter checks pass.
 - All 12 required mutations are caught; one additional repeated-timeout-reset mutation is also caught (13/13).
 - Local WebKit installation downloaded successfully through the official mirror, but required system libraries could not be installed because this executor rejects apt privilege changes. GitHub QA run 37537992050 at implementation commit e9de5f4e4f10fa906bade8d50425a1586722c51f passed all steps, including 42/42 Chromium and iPhone WebKit browser checks. The display-only correction shows Kickoff pending until the toss; workflow 37538372748 at b4c54b7d5f030bdd043a1736dd326ce8ec2a0e12 also passed all steps. Physical iOS Safari remains untested.
@@ -86,7 +88,7 @@ Activation: loaded into the isolated QA-only 4.4.2 backend; no accepted or offic
 ## Cloud validation progress
 
 - OBSERVED FACT: additive persistence and scheduler migrations succeeded. Three new service-only RPCs and a fresh Vault credential were installed in the established project. Shared create/read functions and all 4.4.1 RPC fingerprints are unchanged; RLS remains enabled.
-- OBSERVED FACT: backend `gamecast-week7-v4-4-2` v1 is active. All four deployed source files exactly match commit 5ff805ef7f54d7dbcfebbf23630088cf41bc3af6's generated output.
+- OBSERVED FACT: backend `gamecast-week7-v4-4-2` v3 is active. All four deployed source files exactly match corrected source commit 67cb3ecc62058a5193b5d87afe0aa2e12e598551's generated output.
 - TEST RESULT: real cloud API 16/16; SQL persistence guards 7/7; 100 read polls left the state/version/event fingerprints unchanged, as did all 52 prior-release session rows over the same interval.
 - TEST RESULT: non-destructive scheduler rollback rehearsal passed; earlier job fingerprints unchanged. A 74-file hosting snapshot and restore passed; only 12 files under the new route are added.
 - BLOCKED locally: direct Chromium cloud requests receive ERR_EMPTY_RESPONSE in this executor. The release workflow runs this integration in GitHub's browser environment before UI publication. Physical iOS hardware is unavailable; mobile coverage uses actual WebKit with iPhone emulation and is labeled accordingly.
@@ -94,9 +96,9 @@ Activation: loaded into the isolated QA-only 4.4.2 backend; no accepted or offic
 
 ## Final outcome
 
-- OBSERVED FACT: backend v1 source matches generated commit 5ff805ef7f54d7dbcfebbf23630088cf41bc3af6. UI deployment commit 200757b9663fe033adda9190790b5947ae3146fc; workflow 37540806064 passed verification, publication, and post-deployment jobs.
-- TEST RESULT: 11,577 core checks; 48 staged and 48 deployed real-cloud browser checks; 16 cloud API checks in each phase; all pass. Mobile coverage is real WebKit with iPhone emulation, not physical iOS hardware.
+- OBSERVED FACT: backend v3 source matches generated commit 67cb3ecc62058a5193b5d87afe0aa2e12e598551. Corrected UI deployment commit ad28d6252c9f07484dea29c8c6724d7f0f833e5c; workflow 37552264453 passed verification, publication, and post-deployment jobs.
+- TEST RESULT: 11,614 corrected core checks; 56 staged and 56 deployed real-cloud browser checks; 16 cloud API checks in each phase; all pass. Mobile coverage is real WebKit with iPhone emulation, not physical iOS hardware.
 - TEST RESULT: 112 cloud scheduler/load checks pass for 54 simultaneous games and 108 seeded replay comparisons. Two preliminary comparator-only failures (JSON object ordering and wall-time audit stamps) were corrected using the established football-history normalization. No runtime change resulted.
 - TEST RESULT: final assembled HFA paired comparison: 1,000 identical seeds per version, 4,000 full games. Baseline venue effect 18.490; complete candidate 2.826 points (95% interval 1.885–3.767). Approved normalized coefficient remains .006; neutral zero. Approved independent holdout remains 2.929 points across 5,000 pairs.
-- OBSERVED FACT: six QA sessions, zero active games, zero accepted/published results. All 52 earlier sessions, 25 earlier backend versions/hashes, and 74 published-file hashes remain unchanged.
+- OBSERVED FACT: the freshly linked correction session has 54 games and zero accepted/published results. Before/after function-deployment fingerprints for all 52 earlier sessions and 2,580 earlier events were identical; the workflow also preserved all 74 previously published files.
 - Complete matrices, limitations, commands, and changed-file explanations are in GAMECAST_4_4_2_RELEASE_REPORT.md. No pending implementation or deployment action remains for the isolated candidate.
