@@ -45,6 +45,9 @@ app=once(app,"return !publicView&&el?.matches(","return !publicView&&el?.id!=='t
 app=once(app,'[1,4,10,50].map','[1,4,10,20,50].map');
 app=once(app,'g.possession===0?esc(g.away.name):esc(g.home.name)',"g.possession===0?esc(g.away.name):g.possession===1?esc(g.home.name):'Kickoff pending'");
 app=once(app,'tick();setInterval(tick,1000);load();',"document.getElementById('teamSearch').addEventListener('input',()=>render());tick();setInterval(tick,1000);load();");
+app=once(app,"function saveSession(){","function gc442SurfaceLinks(){const el=document.getElementById('links');if(!el||!slug)return;const s=encodeURIComponent(slug),base=location.origin+location.pathname,parts=[];if(publicView)parts.push('<a data-surface-nav=\"chairman\" href=\"'+base+'?session='+s+'\">CHAIRMAN CONSOLE</a>');parts.push('<a data-surface-nav=\"ui13\" href=\"'+base+'ui1.3/?session='+s+'\">UI 1.3 CONDENSED</a>');if(parts.length&&!el.querySelector('[data-surface-nav-wrap]'))el.insertAdjacentHTML('beforeend','<br><span data-surface-nav-wrap>'+parts.join(' · ')+'</span>')}function saveSession(){");
+app=once(app,"syncGrid(gridHTML,releaseId)}","syncGrid(gridHTML,releaseId);queueMicrotask(gc442SurfaceLinks)}");
+app=once(app,"if(!publicView&&!slug){const s=JSON.parse(localStorage.getItem(STORE)||'null');if(s?.slug&&s?.token){slug=s.slug;token=s.token;history.replaceState(null,'',location.pathname+'?session='+slug+'#operator='+token)}}","if(!publicView){const s=JSON.parse(localStorage.getItem(STORE)||'null');if(!slug&&s?.slug&&s?.token){slug=s.slug;token=s.token;history.replaceState(null,'',location.pathname+'?session='+slug+'#operator='+token)}else if(slug&&!token&&s?.slug===slug&&s?.token){token=s.token}}");
 // Reject an accidental cross-release response before adopting data or state version.
 app=once(app,"if(!r.ok)throw Object.assign", "if(r.ok&&x.engine_version&&x.engine_version!=='GC-W7-V4.4.2-RC1')throw new Error('4.4.2 engine identity mismatch');if(!r.ok)throw Object.assign");
 write(`${ui}/app.js`,app);
@@ -124,7 +127,7 @@ const correctedBoardFunctions=`  const visibleGames=()=>selected==='saturday'?sn
 condensed=once(condensed,boardFunctions,correctedBoardFunctions);
 const expectedLine=condensed.split('\n').find(x=>x.includes('const expected=key==='));assert.ok(expectedLine);
 condensed=once(condensed,expectedLine,"      const expected={'2026-10-06':2,'2026-10-07':2,'2026-10-08':2,'2026-10-09':6,'2026-10-10':42};");
-condensed=once(condensed,'  tick();setInterval(tick,1000);',"  document.getElementById('teamSearch').addEventListener('input',reconcile);\n  tick();setInterval(tick,1000);");
+condensed=once(condensed,'  tick();setInterval(tick,1000);',"  document.getElementById('teamSearch').addEventListener('input',reconcile);\n  const nav=document.getElementById('surfaceNav'),same=encodeURIComponent(sources.full.slug||'');if(nav&&same)nav.innerHTML='<a href=\"../?session='+same+'\">CHAIRMAN</a> · <a href=\"../?session='+same+'&view=public\">PUBLIC</a>';\n  tick();setInterval(tick,1000);");
 write(`${ui}/ui1.3/scoreboard.js`,condensed);
 let html=read(`${assets}/ui13-parent/index.html`).replaceAll('Week 5','Week 7').replaceAll('WEEK 5','WEEK 7').replaceAll('DUAL ENGINE','GAMECAST 4.4.2').replaceAll('4.3.2.2','4.4.2').replaceAll('4.3.2.1','4.4.2').replaceAll('Connecting to both public Week 7 sessions...','Connecting to the public Week 7 session...');
 html=once(html,'aria-selected="true" aria-controls="boardContent" data-engine="saturday" class="active">SATURDAY ENGINE','aria-selected="false" aria-controls="boardContent" data-engine="saturday">SATURDAY · 42');
@@ -133,6 +136,7 @@ html=once(html,'aria-labelledby="satEngineTab"','aria-labelledby="weekEngineTab"
 html=once(html,'<h2 id="satHeading" class="section-heading">SATURDAY · 49 GAMES <span>GAMECAST 4.4.2</span></h2>','<h2 id="satHeading" class="section-heading"><span id="boardHeadingText">FULL WEEK · 54 GAMES</span><span>GAMECAST 4.4.2</span></h2>');
 html=once(html,'<h2 class="section-heading earlier-heading">THURSDAY &amp; FRIDAY · 9 GAMES <span>GAMECAST 4.4.2</span></h2>','');
 html=once(html,'<section id="earlierBoard" class="scoreboard earlier-board" aria-live="polite"></section>','<section id="earlierBoard" class="scoreboard earlier-board" aria-live="polite" hidden></section>');
+html=once(html,'  <main>','  <main><nav id="surfaceNav" class="surface-nav" aria-label="GameCast surfaces" style="padding:8px 12px 0;font-size:11px"></nav>');
 html=once(html,'    <nav class="filters"','    <label class="team-search">SEARCH TEAMS <input id="teamSearch" type="search" placeholder="e.g., Tex" autocomplete="off"></label>\n    <nav class="filters"');
 html=once(html,'>SEN / EBC</button>','>SEN / EBC / EBCOTT</button>');
 html=once(html,'  <script src="scoreboard.js">','  <script src="../release-config.js"></script><script src="../list-filters.js"></script>\n  <script src="scoreboard.js">');
