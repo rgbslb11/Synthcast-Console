@@ -1,6 +1,6 @@
 # GameCast 4.4.2 W7 execution plan
 
-Status: CORRECTION IN PROGRESS — replacement W7 slate validated locally; backend and three versioned UI surfaces pending controlled update. No official results accepted or canonical promotion.
+Status: CORRECTION DEPLOYMENT IN PROGRESS — replacement W7 slate is active in isolated backend version 3; three versioned UI surfaces await controlled publication. No official results accepted or canonical promotion.
 
 ## 2026-10-06 corrected-slate and iPhone-header update
 
@@ -9,7 +9,10 @@ Status: CORRECTION IN PROGRESS — replacement W7 slate validated locally; backe
 - CODE-DERIVED CONCLUSION: only newly created 4.4.2 sessions receive the corrected embedded operating slate. Existing database rows remain unchanged and readable.
 - TEST RESULT: corrected input validation passes 54/54 with zero rejected; UI DOM checks pass 55/55; local Chromium desktop and iPhone-emulation checks pass 50/50. All three surfaces render the exact supplied 54-ID order. Condensed UI defaults to `FULL WEEK · 54` and retains a `SATURDAY · 42` tab.
 - TEST RESULT: the iPhone Chairman/Public masthead now uses a one-line title and one horizontally scrollable row containing all seven clocks. The local iPhone layout check enforces a masthead height no greater than 130 CSS pixels and a clock-row height no greater than 42 CSS pixels.
-- Pending: branch push and GitHub QA; additive Edge Function version update; isolated Pages publication; actual WebKit/iPhone emulation and post-deployment order/hash/isolation checks; new-session links.
+- OBSERVED FACT: implementation commit `67cb3ecc62058a5193b5d87afe0aa2e12e598551` is pushed. GitHub QA run 37550630451 passed, including Chromium and WebKit browser checks.
+- OBSERVED FACT: corrected Edge Function `gamecast-week7-v4-4-2` version 3 is ACTIVE. Its downloaded four-file source matches the generated correction and its bundle SHA-256 is `03caa9349506fde9ede45837234d4505feea3796277e0e38a914a63ceeacd8eb`.
+- TEST RESULT: before/after function-deployment counts and fingerprints for 7 candidate sessions, 542 candidate events, 52 prior sessions, and 2,580 prior events are identical. No prior database entry was changed.
+- Pending: isolated Pages publication; post-deployment order/hash/isolation checks; new-session links.
 
 ## Foundation and boundaries
 

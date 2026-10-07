@@ -1,6 +1,6 @@
 {
   "classification": "OBSERVED FACT and TEST RESULT",
-  "status": "LOCAL PASS \u2014 DEPLOYMENT PENDING",
+  "status": "BACKEND ACTIVE \u2014 UI DEPLOYMENT PENDING",
   "suppliedAt": "2026-10-06",
   "logicalInput": "W7_RECONCILED_SLATE_54.csv",
   "previous": {
@@ -80,5 +80,14 @@
     }
   },
   "databasePolicy": "Existing rows are retained unchanged; only sessions created after backend update receive the corrected schedule.",
-  "deployment": null
+  "deployment": {
+    "sourceCommit": "67cb3ecc62058a5193b5d87afe0aa2e12e598551",
+    "backendFunction": "gamecast-week7-v4-4-2",
+    "backendVersion": 3,
+    "backendStatus": "ACTIVE",
+    "backendBundleSha256": "03caa9349506fde9ede45837234d4505feea3796277e0e38a914a63ceeacd8eb",
+    "backendSourceComparison": "PASS",
+    "existingRowsUnchanged": true,
+    "uiStatus": "PENDING"
+  }
 }

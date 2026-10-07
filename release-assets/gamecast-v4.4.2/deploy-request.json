@@ -1,13 +1,13 @@
 {
   "classification": "OBSERVED FACT",
   "backendFunction": "gamecast-week7-v4-4-2",
-  "backendVersion": 1,
-  "backendSourceCommit": "5ff805ef7f54d7dbcfebbf23630088cf41bc3af6",
+  "backendVersion": 3,
+  "backendSourceCommit": "67cb3ecc62058a5193b5d87afe0aa2e12e598551",
   "backendSha256": {
     "deadman.mjs": "b78624b253214e954a8fe4cd81ee76740c17c47e5ca98b759f6a1b8cfab1d349",
-    "index.ts": "ad222773069b89b3567e5965bd37c31703a8e90227149b948ac4a90052ae7ec4",
+    "index.ts": "3ab83ba94c52baa7ce48c97a2238c6625caaec538d962980840004b70314707f",
     "power.ts": "3f3ed01dbd6bfc2faf9cdff90b4d312cc44b1a6ce966184695373b5fa4dd4496",
-    "week7.ts": "5b85db3f065179f20a7d371212f042002bb380fdb3f7f338e3f122e5f3a4de93"
+    "week7.ts": "271351a4dbef8edd4f3c28a4c0b7fc3b915e9bbfde3ce60b609603ce716ca2f1"
   },
   "uiRoot": "/v4.4.2/",
   "uiSurfaces": 3,

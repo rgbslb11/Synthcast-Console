@@ -1,23 +1,35 @@
 {
   "classification": "OBSERVED FACT",
-  "sourceCommit": "5ff805ef7f54d7dbcfebbf23630088cf41bc3af6",
+  "sourceCommit": "67cb3ecc62058a5193b5d87afe0aa2e12e598551",
   "project": "percrnamjzetzjjuxuuw",
   "id": "84ebbf3d-d020-45bd-82fa-88a4316ffbec",
   "slug": "gamecast-week7-v4-4-2",
   "name": "gamecast-week7-v4-4-2",
   "status": "ACTIVE",
-  "version": 1,
+  "version": 3,
   "created_at": 1791325218705,
-  "updated_at": 1791325218705,
+  "updated_at": 1791332752869,
   "verify_jwt": false,
   "import_map": false,
-  "entrypoint_path": "file:///tmp/user_fn_percrnamjzetzjjuxuuw_84ebbf3d-d020-45bd-82fa-88a4316ffbec_1/source/index.ts",
-  "ezbr_sha256": "43c06a40be09c0af845f6f13e9bfde4c1039925b5433901c894a1ddc0764e458",
+  "entrypoint_path": "/tmp/user_fn_percrnamjzetzjjuxuuw_84ebbf3d-d020-45bd-82fa-88a4316ffbec_3/source/index.ts",
+  "ezbr_sha256": "03caa9349506fde9ede45837234d4505feea3796277e0e38a914a63ceeacd8eb",
   "sourceFilesCompared": [
     "deadman.mjs",
     "index.ts",
     "power.ts",
     "week7.ts"
   ],
-  "byteComparison": "PASS"
+  "byteComparison": "PASS",
+  "databasePreservation": {
+    "candidateSessions": 7,
+    "candidateSessionFingerprint": "0767ba0530c8bd7535bd42fcf25ea11a",
+    "candidateEvents": 542,
+    "candidateEventFingerprint": "ff88f04fb87e4359c88513588cc09851",
+    "priorSessions": 52,
+    "priorSessionFingerprint": "c22e0b8d5ab2cce286f9715209e19c0d",
+    "priorEvents": 2580,
+    "priorEventFingerprint": "f35f8117a86a143b3abf3febc5fc3f20",
+    "eligibleSchedulerSessions": 0,
+    "beforeAfterComparison": "PASS — counts and fingerprints unchanged by function deployment"
+  }
 }
