@@ -80,6 +80,7 @@ condensed=condensed.slice(0,sourceStart)+`  const sources={
   };\n`+condensed.slice(sourceEnd);
 condensed=condensed.replaceAll('2026-09-26','2026-10-10').replaceAll('2026-W05','2026-W07').replaceAll('WEEK 5','WEEK 7').replaceAll('GAMECAST 4.3.2.2','GAMECAST 4.4.2').replaceAll('GAMECAST 4.3.2.1','GAMECAST 4.4.2');
 condensed=once(condensed,"  let selected='saturday';","  let selected='full';");
+condensed=once(condensed,"  const isBroadcast=g=>/^SEN(?:\\+)?$/i.test(g.network||'')||/^EBC$/i.test(g.network||'');","  const isBroadcast=g=>/^(?:SEN(?:\\+)?|EBC|EBCOTT|EBC\\+EBCOTT)$/i.test(g.network||'');");
 const comparisonBlock=`  const compareGames=(a,b)=>{
     const ra=sortRank(a),rb=sortRank(b);
     if(ra!==rb)return ra-rb;
@@ -133,6 +134,7 @@ html=once(html,'<h2 id="satHeading" class="section-heading">SATURDAY · 49 GAMES
 html=once(html,'<h2 class="section-heading earlier-heading">THURSDAY &amp; FRIDAY · 9 GAMES <span>GAMECAST 4.4.2</span></h2>','');
 html=once(html,'<section id="earlierBoard" class="scoreboard earlier-board" aria-live="polite"></section>','<section id="earlierBoard" class="scoreboard earlier-board" aria-live="polite" hidden></section>');
 html=once(html,'    <nav class="filters"','    <label class="team-search">SEARCH TEAMS <input id="teamSearch" type="search" placeholder="e.g., Tex" autocomplete="off"></label>\n    <nav class="filters"');
+html=once(html,'>SEN / EBC</button>','>SEN / EBC / EBCOTT</button>');
 html=once(html,'  <script src="scoreboard.js">','  <script src="../release-config.js"></script><script src="../list-filters.js"></script>\n  <script src="scoreboard.js">');
 write(`${ui}/ui1.3/index.html`,html);fs.copyFileSync(`${assets}/ui13-parent/scoreboard.css`,`${ui}/ui1.3/scoreboard.css`);
 const identity={engine,week:'2026-W07',function:'gamecast-week7-v4-4-2',namespace:'w7v442-',storage:'synthcastGameCast442Operator',data,backendUrl:endpoint,deployment:'NOT DEPLOYED',qaOnly:true,hfa:{targetPoints:2.66,approvedNormalizedEdge:.006,holdoutMeanPoints:2.929},uiSurfaceCount:3,surfaces:[{name:'Public UI',route:'/v4.4.2/?view=public'},{name:'Chairman UI',route:'/v4.4.2/'},{name:'Condensed UI (UI 1.3)',route:'/v4.4.2/ui1.3/'}]};

@@ -48,6 +48,17 @@ try{
     });
     else await check(name,surface,'no operator controls or token sent',async()=>{assert.equal(await page.locator('.controls,.edit-panel,[data-f="NEEDS_ACTION"],#copyOperator').count(),0);assert.ok(apiRequests.every(x=>!x.operator));});
     await check(name,surface,'refresh and viewport usable',async()=>{assert.equal((await page.reload()).status(),200);await page.waitForFunction(sel=>document.querySelectorAll(sel).length===54,cards);assert.ok(await page.locator('#teamSearch').isVisible());const size=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));assert.ok(size.scroll<=size.width+1,JSON.stringify(size));});
+    if(surface==='ui1.3')await check(name,surface,'correct carriage filter and live polling',async()=>{
+      await page.locator('#networkToggle').click();
+      const broadcast=/^(?:SEN(?:\+)?|EBC|EBCOTT|EBC\+EBCOTT)$/i;
+      assert.deepEqual(await page.locator(cards).evaluateAll(nodes=>nodes.map(node=>node.dataset.game)),OPERATING_SLATE.filter(g=>broadcast.test(g.network||'')).map(g=>g.id));
+      assert.equal(await page.locator('.game-card[data-game="G0296"] .network').textContent(),'EBC+EBCOTT');
+      assert.equal(await page.locator('.game-card[data-game="G0287"] .network').textContent(),'EBCOTT');
+      await page.locator('#networkToggle').click();
+      const live=board.find(g=>g.id==='G0324');live.lifecycle='ACTIVE';live.activity='LIVE';live.scoreboardSeconds=555;live.scores['1']=[7,0];
+      await page.waitForFunction(()=>document.querySelector('.game-card[data-game="G0324"]')?.classList.contains('live'),null,{timeout:7000});
+      assert.equal(await page.locator('.game-card[data-game="G0324"] .scores span').first().textContent(),'7');
+    });
     if(name.includes('iPhone')&&surface!=='ui1.3')await check(name,surface,'compact single-row iPhone masthead',async()=>{const size=await page.locator('header').evaluate(header=>{const clocks=header.querySelector('.timebar'),hs=getComputedStyle(header),cs=getComputedStyle(clocks);return{headerHeight:header.getBoundingClientRect().height,clockHeight:clocks.getBoundingClientRect().height,display:cs.display,overflowX:cs.overflowX,headerPaddingTop:hs.paddingTop,clockScrollWidth:clocks.scrollWidth,clockClientWidth:clocks.clientWidth}});assert.ok(size.headerHeight<=130,JSON.stringify(size));assert.ok(size.clockHeight<=42,JSON.stringify(size));assert.equal(size.display,'flex');assert.ok(['auto','scroll'].includes(size.overflowX),JSON.stringify(size));assert.ok(size.clockScrollWidth>size.clockClientWidth,JSON.stringify(size));});
     await check(name,surface,'read-only API requests',async()=>assert.ok(apiRequests.length>0&&apiRequests.every(x=>x.method==='GET')));
     const browserSlug=name.startsWith('WebKit')?'mobile-webkit':name.includes('iPhone')?'mobile-chromium':'chromium';

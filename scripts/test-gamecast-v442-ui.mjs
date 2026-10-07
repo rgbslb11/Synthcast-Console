@@ -40,6 +40,7 @@ for(const surface of ['Chairman UI','Public UI','Condensed UI (UI 1.3)']){
   const ids=()=>[...d.querySelectorAll(condensed?'.game-card':'article.card')].map(x=>x.dataset.game);
   const search=q=>{d.getElementById('teamSearch').value=q;d.getElementById('teamSearch').dispatchEvent(new w.Event('input',{bubbles:true}));};
   check(surface,'loads full 54-game board and linked assets',()=>assert.equal(ids().length,54));
+  if(condensed)check(surface,'correct carriage control includes EBCOTT variants',()=>{assert.match(d.getElementById('networkToggle').textContent,/EBCOTT/);assert.match(fs.readFileSync(path.join(root,'ui1.3/scoreboard.js'),'utf8'),/EBCOTT/);});
   check(surface,'renders the corrected authoritative slate order',()=>assert.deepEqual(ids(),expectedOrder));
   if(!condensed)check(surface,'unlaunched game does not assign a receiver',()=>assert.ok(d.querySelector('article.card .field').textContent.includes('Kickoff pending')));
   const expected=ids().filter(id=>['G0315','G0299','G0301'].includes(id));
