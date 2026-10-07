@@ -15,5 +15,8 @@
   "baselineCommit": "bf1d67a7c174b46ccf9d98cb6dcded5a8fc18616",
   "priorPublishedFileCount": 74,
   "canonicalPromotion": false,
-  "databaseMigration": "gamecast_v442_isolated_persistence"
+  "databaseMigration": "gamecast_v442_isolated_persistence",
+  "uiFix": "UI1.3 carriage/live-link correction",
+  "uiFixCommit": "feaadbe25224ceb3bbd6e662e9bb24df902e4ac2",
+  "uiFixRequestedAt": "2026-10-07T02:13:00Z"
 }
