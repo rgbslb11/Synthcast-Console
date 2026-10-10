@@ -95,6 +95,14 @@ check('Dead-Man controls remain Chairman only',()=>{
   assert.match(app,/dm-box operator-only/);
   assert.match(app,/Only selected games are changed/);
 });
+check('Dead-Man writes refresh versions and retry only unchanged targets',()=>{
+  const dm=app.slice(app.indexOf('async function dmWrite('),app.indexOf('function dmArmOne('));
+  assert.match(dm,/checkpoint=await api\('read'\)/);
+  assert.match(dm,/expected_version:checkpoint\.state_version/);
+  assert.match(dm,/dmCheckpoint\(checkpoint\.state\|\|\[\],ids\)!==baseline/);
+  assert.match(dm,/attempt<2/);
+  assert.doesNotMatch(dm,/writeConflict=true/);
+});
 check('Live card and Dead-Man status update separately from protected settings',()=>{
   assert.match(app,/function syncProtectedCard\(oldCard,fresh\)/);
   assert.match(app,/render\('',b\.state\|\|state\)/);
