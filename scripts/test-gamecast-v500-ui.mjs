@@ -49,6 +49,17 @@ check('direct Supabase email and password authentication',()=>{
   assert.match(auth,/Bearer /);
   assert.doesNotMatch(auth,/Apple|ChatGPT/);
 });
+check('password recovery returns to the hosted Chairman surface',()=>{
+  assert.match(page,/id="requestPasswordReset"/);
+  assert.match(page,/id="passwordRecovery" hidden/);
+  assert.match(page,/autocomplete="new-password"/);
+  assert.match(auth,/recover\?redirect_to=/);
+  assert.match(auth,/hash\.get\('type'\)!=='recovery'/);
+  assert.match(auth,/history\.replaceState/);
+  assert.match(auth,/method:'PUT'/);
+  assert.match(auth,/\/auth\/v1\/user/);
+  assert.doesNotMatch(auth,/localStorage|sessionStorage/);
+});
 check('Weather Dynamics controls precede Dead-Man controls',()=>{
   assert.match(app,/MODEL<select[^]*OFF[^]*ON/);
   assert.match(app,/WIND<select[^]*NONE[^]*LIGHT[^]*BREEZY[^]*STRONG/);
