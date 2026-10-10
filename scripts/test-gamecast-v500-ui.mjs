@@ -95,6 +95,15 @@ check('Dead-Man controls remain Chairman only',()=>{
   assert.match(app,/dm-box operator-only/);
   assert.match(app,/Only selected games are changed/);
 });
+check('Chairman Edit distinguishes scheduler races from changed game state',()=>{
+  assert.match(app,/maxAttempts=editCommand\?4:2/);
+  assert.match(app,/Error\('EDIT_STATE_CHANGED'\)/);
+  assert.match(app,/if\(e\.message==='EDIT_STATE_CHANGED'\)\{writeConflict=true/);
+  const busy=app.split("else if(editCommand&&e.status===409")[1]?.split("else if")[0];
+  assert.ok(busy);
+  assert.match(busy,/CHAIRMAN EDIT BUSY/);
+  assert.doesNotMatch(busy,/writeConflict=true/);
+});
 check('Dead-Man writes refresh versions and retry only unchanged targets',()=>{
   const dm=app.slice(app.indexOf('async function dmWrite('),app.indexOf('function dmArmOne('));
   assert.match(dm,/checkpoint=await api\('read'\)/);
