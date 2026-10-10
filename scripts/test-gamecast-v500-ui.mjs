@@ -30,6 +30,7 @@ const auth=read('auth-api.js');
 const config=read('release-config.js');
 const condensedPage=read('ui1.3/index.html');
 const condensed=read('ui1.3/scoreboard.js');
+const condensedCss=read('ui1.3/scoreboard.css');
 
 check('GameCast 5.0.0 Chairman identity',()=>{
   assert.match(page,/Synthcast GameCast 5\.0\.0/);
@@ -80,6 +81,10 @@ check('condensed surface keeps accepted population and polling',()=>{
 check('condensed navigation carries session without credentials',()=>{
   assert.match(condensed,/CHAIRMAN<\/a> · <a href=.*PUBLIC/);
   assert.doesNotMatch(condensed,/operator|authorization/i);
+});
+check('condensed hidden secondary board stays hidden without a session',()=>{
+  assert.match(condensedPage,/id="earlierBoard"[^>]*hidden/);
+  assert.match(condensedCss,/#earlierBoard\[hidden\]\{display:none!important\}/);
 });
 check('no scheduler secret or service key ships to the browser',()=>{
   for(const file of expectedFiles){

@@ -20,8 +20,8 @@
     },
     {
       "path": "public/v5.0.0/index.html",
-      "sha256": "0bd3144fcb018602d1e4c2901267211ae118f368b8de3b765b817e5f5a84bb5a",
-      "bytes": 4210
+      "sha256": "45942fef07f1260e461611bf58c0cfc8e5a876ae387ce50ecc93f32ea00996b8",
+      "bytes": 4206
     },
     {
       "path": "public/v5.0.0/legacy/app.css",
@@ -60,8 +60,8 @@
     },
     {
       "path": "public/v5.0.0/ui1.3/scoreboard.css",
-      "sha256": "e79783d8bb9f5bf5605fc8392f473cdba8a424751e8c8fa63897f2da73bce9b7",
-      "bytes": 6584
+      "sha256": "bb5aff4ac585b6ef59532ea8f048520c945dcf5b8abded1fbd22458d9db18e4f",
+      "bytes": 6630
     },
     {
       "path": "public/v5.0.0/ui1.3/scoreboard.js",

@@ -42,3 +42,4 @@ main{max-width:1480px;margin:0 auto;padding:8px}
 @media(min-width:1250px){.scoreboard{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:390px){.game-main{padding:5px 7px}.team-row{min-height:20px}.team-name{font-size:13px}.scores{font-size:23px}.summary>div{padding:4px}.filters button{padding:5px 8px;min-height:27px}}
 .weather-label{color:#8fcde8;font-weight:800}
+#earlierBoard[hidden]{display:none!important}

@@ -2,8 +2,8 @@
   "classification": "TEST RESULT",
   "scope": "Static release gates for the GitHub Pages GameCast 5.0.0 Chairman, public and condensed surfaces",
   "status": "PASS",
-  "executed": 11,
-  "passed": 11,
+  "executed": 12,
+  "passed": 12,
   "files": [
     {
       "path": "v5.0.0/app.js",
@@ -19,7 +19,7 @@
     },
     {
       "path": "v5.0.0/index.html",
-      "sha256": "0bd3144fcb018602d1e4c2901267211ae118f368b8de3b765b817e5f5a84bb5a"
+      "sha256": "45942fef07f1260e461611bf58c0cfc8e5a876ae387ce50ecc93f32ea00996b8"
     },
     {
       "path": "v5.0.0/legacy/app.css",
@@ -51,7 +51,7 @@
     },
     {
       "path": "v5.0.0/ui1.3/scoreboard.css",
-      "sha256": "e79783d8bb9f5bf5605fc8392f473cdba8a424751e8c8fa63897f2da73bce9b7"
+      "sha256": "bb5aff4ac585b6ef59532ea8f048520c945dcf5b8abded1fbd22458d9db18e4f"
     },
     {
       "path": "v5.0.0/ui1.3/scoreboard.js",
@@ -97,6 +97,10 @@
     },
     {
       "name": "condensed navigation carries session without credentials",
+      "status": "PASS"
+    },
+    {
+      "name": "condensed hidden secondary board stays hidden without a session",
       "status": "PASS"
     },
     {
