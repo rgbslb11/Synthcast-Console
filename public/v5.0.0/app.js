@@ -86,17 +86,40 @@ function dmPreview(ids,config){
     return id+' '+g.away.name+' at '+g.home.name+' -> '+due;
   }).join('\n');
 }
+function dmCheckpoint(board,ids){
+  return JSON.stringify(ids.map(id=>{
+    const g=board.find(x=>x.id===id),d=g?.deadman||{};
+    return [id,g?.runId,g?.lifecycle,g?.kickoffZulu,g?.auto,g?.onAir,g?.operatorPaused,
+      ...['status','revision','basis','offsetMinutes','tvStartZulu','dueZulu','armRunId','controlOwner','triggeredAtZulu','resolvedAtZulu','reason'].map(k=>d[k])];
+  }));
+}
 async function dmWrite(ids,operation,config){
   if(publicView||writing)return;
   if(writeConflict){status('VERSION CONFLICT - REFRESH before changing Dead-Man',true);return;}
+  const baseline=dmCheckpoint(state,ids);
   writing=true;readEpoch++;
   try{
     status('SAVING DEAD-MAN');
-    const b=await api('deadman_batch',{ids,operation,config,expected_version:version});
+    let b;
+    for(let attempt=0;attempt<2;attempt++){
+      const checkpoint=await api('read');
+      // Rebase only scheduler/version churn, never a changed arm or started game.
+      if(dmCheckpoint(checkpoint.state||[],ids)!==baseline)throw Error('DEADMAN_CHANGED_REVIEW');
+      try{
+        b=await api('deadman_batch',{ids,operation,config,expected_version:checkpoint.state_version});
+        break;
+      }catch(e){
+        if(!(attempt===0&&e.status===409&&['VERSION_CONFLICT','version conflict'].includes(e.message)))throw e;
+      }
+    }
     adopt(b);render();dmCount();status('DEAD-MAN '+operation.toUpperCase()+' SAVED - '+ids.length+' GAME(S)');
   }catch(e){
-    if(e.status===409){writeConflict=true;status('VERSION CONFLICT - REFRESH and review the latest arm',true);}
-    else {status('DEAD-MAN '+e.message+' · RETRY LAST REQUEST',true);document.getElementById('retryRequest').hidden=!gamecastPendingRequest();}
+    const retry=gamecastPendingRequest();
+    if(!retry)try{const latest=await api('read');adopt(latest);render();}catch{}
+    if(e.message==='DEADMAN_CHANGED_REVIEW')status('DEAD-MAN CHANGED · Review current status and submit again',true);
+    else if(e.status===409&&['VERSION_CONFLICT','version conflict'].includes(e.message))status('DEAD-MAN BUSY · Nothing saved · Try ARM / DISARM again',true);
+    else status('DEAD-MAN '+e.message+(retry?' · RETRY LAST REQUEST':''),true);
+    document.getElementById('retryRequest').hidden=!retry;
   }finally{writing=false;}
 }
 function dmArmOne(id){
