@@ -1,0 +1,24 @@
+{
+  "classification": "AUTHORIZED ISOLATED QA UI DEPLOYMENT",
+  "release": "GameCast 5.0.0",
+  "engineIdentity": "GC-W7-V5.0.0-RC1",
+  "branch": "release/gamecast-v5.0.0",
+  "uiRoot": "/v5.0.0/",
+  "surfaces": [
+    "Chairman UI",
+    "Public UI",
+    "Condensed UI 1.3"
+  ],
+  "addition": "Weather Dynamics control directly above Dead-Man",
+  "backendProject": "xsvdmcipviejxynkdbhq",
+  "backendEnvironment": "GameCast-5.0-QA",
+  "writesEnabled": false,
+  "productionPromotion": false,
+  "preserveGameCast442": true,
+  "localBrowserTests": {
+    "executed": 28,
+    "passed": 28,
+    "browser": "Chromium",
+    "mobileViewport": "390x844"
+  }
+}

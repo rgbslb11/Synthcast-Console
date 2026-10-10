@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#ECECEC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Synthcast Scoreboard 1.3 | Week 7</title>
+  <link rel="stylesheet" href="scoreboard.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brandline">
+      <div class="brand">SYNTHCAST <b>SCOREBOARD</b></div>
+      <div class="version">UI 1.3 · GAMECAST 5.0.0</div>
+    </div>
+    <div class="statusline">
+      <span id="weekLabel">WEEK 7</span>
+      <span id="localTime">--:--</span>
+      <span id="syncDot" class="sync-dot" aria-hidden="true"></span>
+      <span id="syncText">NO SESSION</span>
+    </div>
+  </header>
+
+  <main><nav id="surfaceNav" class="surface-nav" aria-label="GameCast surfaces" style="padding:8px 12px 0;font-size:11px"></nav>
+    <nav class="engine-tabs" role="tablist" aria-label="GameCast engine">
+      <button type="button" role="tab" id="satEngineTab" aria-selected="false" aria-controls="boardContent" data-engine="saturday">SATURDAY · 41 <small>5.0.0</small></button>
+      <button type="button" role="tab" id="weekEngineTab" aria-selected="true" aria-controls="boardContent" data-engine="full" class="active">FULL WEEK · 54 <small>5.0.0</small></button>
+    </nav>
+
+    <div id="boardContent" role="tabpanel" aria-labelledby="weekEngineTab">
+    <section class="summary" aria-label="Scoreboard summary">
+      <div><b id="liveCount">0</b><span>LIVE</span></div>
+      <div><b id="finalCount">0</b><span>FINAL</span></div>
+      <div><b id="upcomingCount">0</b><span>UPCOMING</span></div>
+      <div><b id="delayCount">0</b><span>DELAY</span></div>
+    </section>
+
+    <label class="team-search">SEARCH TEAMS <input id="teamSearch" type="search" placeholder="e.g., Tex" autocomplete="off"></label>
+    <nav class="filters" aria-label="Scoreboard filters">
+      <button type="button" data-filter="ALL" class="active">ALL</button>
+      <button type="button" data-filter="LIVE">LIVE</button>
+      <button type="button" data-filter="FINAL">FINAL</button>
+      <button type="button" data-filter="UPCOMING">UPCOMING</button>
+      <button type="button" id="networkToggle" aria-pressed="false">SEN / EBC / EBCOTT</button>
+    </nav>
+
+    <section id="sessionNotice" class="session-notice">
+      Connecting to the public Week 7 session...
+    </section>
+
+    <h2 id="satHeading" class="section-heading"><span id="boardHeadingText">FULL WEEK · 54 GAMES</span><span>GAMECAST 5.0.0</span></h2>
+    <section id="scoreboard" class="scoreboard" aria-live="polite"></section>
+    
+    <section id="earlierBoard" class="scoreboard earlier-board" aria-live="polite" hidden></section>
+    </div>
+  </main>
+
+  <template id="emptyTemplate">
+    <div class="empty-state">No games match this view.</div>
+  </template>
+
+  <script src="../release-config.js"></script><script src="../list-filters.js"></script>
+  <script src="scoreboard.js"></script>
+</body>
+</html>

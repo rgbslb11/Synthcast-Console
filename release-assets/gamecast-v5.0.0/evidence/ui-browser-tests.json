@@ -1,0 +1,156 @@
+{
+  "classification": "REAL LOCAL CHROMIUM UI — NOT HOSTED/MOBILE SAFARI",
+  "browserVersion": "138.0.7204.0",
+  "cases": [
+    {
+      "surface": "Public",
+      "name": "54 canonical slots render in exact order",
+      "status": "PASS"
+    },
+    {
+      "surface": "Public",
+      "name": "No sign-in form or game commands appear",
+      "status": "PASS"
+    },
+    {
+      "surface": "Public",
+      "name": "Team substring search matches both teams",
+      "status": "PASS"
+    },
+    {
+      "surface": "Public",
+      "name": "Refresh is a pure read with no football mutation",
+      "status": "PASS"
+    },
+    {
+      "surface": "Public",
+      "name": "Public requests carry no Chairman credentials",
+      "status": "PASS"
+    },
+    {
+      "surface": "Chairman",
+      "name": "Authentication required before private reads",
+      "status": "PASS"
+    },
+    {
+      "surface": "Chairman",
+      "name": "Sign-in loads 54 slots without token links or stored credentials",
+      "status": "PASS"
+    },
+    {
+      "surface": "Chairman",
+      "name": "Thirteen immutable finals expose no editing controls",
+      "status": "PASS"
+    },
+    {
+      "surface": "Chairman",
+      "name": "Weather controls precede Dead-Man controls",
+      "status": "PASS"
+    },
+    {
+      "surface": "Chairman",
+      "name": "Weather save uses canonical command and an idempotency key",
+      "status": "PASS"
+    },
+    {
+      "surface": "Chairman",
+      "name": "Launch locks Weather and removes editable Weather settings",
+      "status": "PASS"
+    },
+    {
+      "surface": "Chairman",
+      "name": "AUTO state is checkpointed through canonical API",
+      "status": "PASS"
+    },
+    {
+      "surface": "Chairman",
+      "name": "Lost response retries exact committed command without a second mutation",
+      "status": "PASS"
+    },
+    {
+      "surface": "Chairman",
+      "name": "Focused edit draft survives background read",
+      "status": "PASS"
+    },
+    {
+      "surface": "Chairman",
+      "name": "Stale correction preserves draft and requests refresh",
+      "status": "PASS"
+    },
+    {
+      "surface": "Chairman",
+      "name": "Explicit refresh and cancel recover from stale edit",
+      "status": "PASS"
+    },
+    {
+      "surface": "Condensed",
+      "name": "Full week displays exactly 54 canonical slots",
+      "status": "PASS"
+    },
+    {
+      "surface": "Condensed",
+      "name": "Saturday view displays exactly 41 games",
+      "status": "PASS"
+    },
+    {
+      "surface": "Condensed",
+      "name": "Saturday tab label matches the 41-game population",
+      "status": "PASS"
+    },
+    {
+      "surface": "Condensed",
+      "name": "Detail expansion shows line score without control buttons",
+      "status": "PASS"
+    },
+    {
+      "surface": "Condensed",
+      "name": "Navigation links retain session and omit credentials",
+      "status": "PASS"
+    },
+    {
+      "surface": "Public",
+      "name": "390px viewport has no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "surface": "Public",
+      "name": "Final cards contain no fabricated undefined or NaN situation",
+      "status": "PASS"
+    },
+    {
+      "surface": "Chairman",
+      "name": "390px viewport has no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "surface": "Chairman",
+      "name": "Final cards contain no fabricated undefined or NaN situation",
+      "status": "PASS"
+    },
+    {
+      "surface": "Condensed",
+      "name": "390px viewport has no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "surface": "Condensed",
+      "name": "Final cards contain no fabricated undefined or NaN situation",
+      "status": "PASS"
+    },
+    {
+      "surface": "All",
+      "name": "No browser script or local HTTP errors",
+      "status": "PASS"
+    }
+  ],
+  "actual": 28,
+  "passed": 28,
+  "surfaces": [
+    "Chairman",
+    "Public",
+    "Condensed"
+  ],
+  "fixtureScope": "13 synthetic QA finals plus 41 genuine engine QA objects",
+  "cloudWrites": 0,
+  "deployments": 0
+}

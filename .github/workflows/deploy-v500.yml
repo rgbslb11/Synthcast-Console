@@ -1,0 +1,74 @@
+name: Publish isolated GameCast 5.0.0 UI
+on:
+  push:
+    branches: [release/gamecast-v5.0.0]
+    paths:
+      - .github/workflows/deploy-v500.yml
+      - public/v5.0.0/**
+      - scripts/test-gamecast-v500-ui.mjs
+      - scripts/preserve-gamecast-pages-v500.mjs
+      - release-assets/gamecast-v5.0.0/**
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: gamecast-v500-isolated-pages
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Guard branch and every prior release source
+        run: |
+          test "$GITHUB_REF" = refs/heads/release/gamecast-v5.0.0
+          git merge-base --is-ancestor 8a2828be3ceb10568bfd3b85cf6c6536c8ee4263 HEAD
+          unexpected="$(git diff --name-only 8a2828be3ceb10568bfd3b85cf6c6536c8ee4263 -- public supabase | sed '\|^public/v5.0.0/|d')"
+          test -z "$unexpected"
+      - name: Verify Chairman, public and condensed UI contract
+        run: node scripts/test-gamecast-v500-ui.mjs
+      - name: Preserve published bytes and add only 5.0.0
+        run: node scripts/preserve-gamecast-pages-v500.mjs restore out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v500-ui-predeployment-evidence
+          path: outputs/v500/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    environment:
+      name: gamecast-v500-isolated-qa
+      url: ${{ steps.publish.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: publish
+  postdeployment:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/test-gamecast-v500-ui.mjs
+      - name: Verify prior routes and the deployed 5.0.0 bytes
+        run: node scripts/preserve-gamecast-pages-v500.mjs verify out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v500-ui-postdeployment-evidence
+          path: outputs/v500/

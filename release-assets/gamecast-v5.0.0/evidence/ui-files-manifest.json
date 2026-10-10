@@ -1,0 +1,72 @@
+{
+  "classification": "OBSERVED FACT",
+  "release": "GameCast 5.0.0",
+  "environment": "isolated QA UI",
+  "files": [
+    {
+      "path": "public/v5.0.0/app.js",
+      "sha256": "63739f9fb9f382f393b125f4b46d61f3aeaaa7c7e4e8b21373fd38ec82fdf288",
+      "bytes": 32130
+    },
+    {
+      "path": "public/v5.0.0/auth-api.js",
+      "sha256": "f299fd9fa529ca1591119c93119ff08fddf90bffcdefff0df82ec09ff13ef1aa",
+      "bytes": 3960
+    },
+    {
+      "path": "public/v5.0.0/deadman.css",
+      "sha256": "515f94be2951ec5b4bb2f4a27976eb72c9ffda07688d1da93d3a84936817d066",
+      "bytes": 887
+    },
+    {
+      "path": "public/v5.0.0/index.html",
+      "sha256": "0bd3144fcb018602d1e4c2901267211ae118f368b8de3b765b817e5f5a84bb5a",
+      "bytes": 4210
+    },
+    {
+      "path": "public/v5.0.0/legacy/app.css",
+      "sha256": "8295a4995634a2852f1fb9a91a3dd3f360aa05bf96010e2f42227fba17e98d99",
+      "bytes": 6578
+    },
+    {
+      "path": "public/v5.0.0/legacy/patch-422.js",
+      "sha256": "fce66b555276765cc7a16d3478c5960ebd96eb2446cc751af683cf278e46d827",
+      "bytes": 398
+    },
+    {
+      "path": "public/v5.0.0/legacy/patch-rc2.js",
+      "sha256": "c21dc3c688ce27c41e2c4a8e66434dca2a45553b78e95e0459b21f2483794c15",
+      "bytes": 3558
+    },
+    {
+      "path": "public/v5.0.0/list-filters.js",
+      "sha256": "32af53c9fdcc2b80fe316f2a9cab9c122ef916f599a52f854fa1e59adf81c81b",
+      "bytes": 488
+    },
+    {
+      "path": "public/v5.0.0/patch-500-weather.js",
+      "sha256": "a533272a749718a2d7a921d43aa0c78d07c0fe81d6feb5cf5066a7385879e119",
+      "bytes": 41
+    },
+    {
+      "path": "public/v5.0.0/release-config.js",
+      "sha256": "83b15fc3b277da123b330cb43e9b6450d257b8fc56bf93a650288906489cd037",
+      "bytes": 354
+    },
+    {
+      "path": "public/v5.0.0/ui1.3/index.html",
+      "sha256": "2d575ee65ac668a7ab626521bebf7911cf06f5c28b59e81e5ee8afe669e065ac",
+      "bytes": 3134
+    },
+    {
+      "path": "public/v5.0.0/ui1.3/scoreboard.css",
+      "sha256": "e79783d8bb9f5bf5605fc8392f473cdba8a424751e8c8fa63897f2da73bce9b7",
+      "bytes": 6584
+    },
+    {
+      "path": "public/v5.0.0/ui1.3/scoreboard.js",
+      "sha256": "43c6eae92dc57b997975c7f1f6bde7c9306ff5b2f27c116a9f1e8df880c92f54",
+      "bytes": 12102
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "classification": "TEST RESULT",
+  "status": "PASS",
+  "mode": "restore",
+  "priorFiles": 86,
+  "newFiles": 13,
+  "newRoute": "/v5.0.0/",
+  "testedAt": "2026-10-10T05:18:59.135Z"
+}
