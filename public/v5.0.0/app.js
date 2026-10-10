@@ -275,25 +275,31 @@ async function cmd(id,command,payload={}){
   if(writeConflict){status('VERSION CONFLICT · Draft preserved · REFRESH to reload',true);return}
   writing=true;readEpoch++;
   let readback=false,stateRefresh=false;
+  const editCommand=['edit_begin','edit_commit','edit_cancel'].includes(command),maxAttempts=editCommand?4:2;
   const editBase=command==='edit_commit'?editCheckpoint(state.find(g=>g.id===id)):'';
   try{
     status('WRITING');
     let b;
     // The server scheduler advances the shared board every five seconds. Read
-    // the current checkpoint immediately before a control write, then retry a
-    // single clean version race. Failed version checks never mutate state.
-    for(let attempt=0;attempt<2;attempt++){
+    // the current checkpoint before each write. Edit operations get bounded,
+    // staggered retries; each save still rechecks the original game checkpoint.
+    for(let attempt=0;attempt<maxAttempts;attempt++){
       const checkpoint=await api('read'),expected=checkpoint.state_version??version;
-      if(editBase&&editCheckpoint((checkpoint.state||[]).find(g=>g.id===id))!==editBase)throw Object.assign(Error('VERSION_CONFLICT'),{status:409});
+      if(editBase&&editCheckpoint((checkpoint.state||[]).find(g=>g.id===id))!==editBase)throw Object.assign(Error('EDIT_STATE_CHANGED'),{status:409});
       try{b=await api('command',{id,command,payload,expected_version:expected});break}
-      catch(e){if(!(attempt===0&&e.status===409&&['VERSION_CONFLICT','version conflict'].includes(e.message)))throw e}
+      catch(e){
+        if(!(attempt+1<maxAttempts&&e.status===409&&['VERSION_CONFLICT','version conflict'].includes(e.message)))throw e;
+        if(editCommand)await new Promise(resolve=>setTimeout(resolve,150*(attempt+1)));
+      }
     }
     adopt(b);status('CHECKPOINTED V'+version);
     const closing=command==='edit_commit'||command==='edit_cancel';
     render(id);
     readback=closing;
   }catch(e){
-    if(e.status===409&&['VERSION_CONFLICT','version conflict'].includes(e.message)){writeConflict=true;status('VERSION CONFLICT · Draft preserved · REFRESH to discard drafts and reload',true)}
+    if(e.message==='EDIT_STATE_CHANGED'){writeConflict=true;status('VERSION CONFLICT · This game changed · Draft preserved · REFRESH to review',true)}
+    else if(editCommand&&e.status===409&&['VERSION_CONFLICT','version conflict'].includes(e.message)){status('CHAIRMAN EDIT BUSY · Nothing saved · Draft preserved · Try the same action again',true)}
+    else if(e.status===409&&['VERSION_CONFLICT','version conflict'].includes(e.message)){writeConflict=true;status('VERSION CONFLICT · Draft preserved · REFRESH to discard drafts and reload',true)}
     else if(e.status===409&&e.message==='COMMAND_UNAVAILABLE'){status('CONTROL NO LONGER AVAILABLE · REFRESHING CLOUD STATE',true);stateRefresh=true}
     else {const retry=gamecastPendingRequest();status('WRITE ERROR · '+e.message+(retry?' · RETRY LAST REQUEST':''),true);document.getElementById('retryRequest').hidden=!retry;}
   }finally{writing=false}
