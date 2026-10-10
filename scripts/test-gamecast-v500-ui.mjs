@@ -80,7 +80,9 @@ check('Weather Dynamics controls precede Dead-Man controls',()=>{
 });
 check('Weather Dynamics uses the approved command and launch lock',()=>{
   assert.match(app,/weather_set/);
-  assert.match(app,/Weather locks at Launch/);
+  assert.match(app,/Launch saves these visible values and locks Weather/);
+  assert.match(app,/launchGame\(id\).*weather:weatherValues\(id\)/);
+  assert.match(app,/weatherDrafts=new Map/);
   assert.match(app,/Temperature is visible but inactive/);
 });
 check('Dead-Man controls remain Chairman only',()=>{
