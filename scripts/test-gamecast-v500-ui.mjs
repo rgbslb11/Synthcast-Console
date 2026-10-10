@@ -95,6 +95,12 @@ check('Dead-Man controls remain Chairman only',()=>{
   assert.match(app,/dm-box operator-only/);
   assert.match(app,/Only selected games are changed/);
 });
+check('Dead-Man status updates separately from protected open settings',()=>{
+  assert.match(app,/function dmSyncStatus\(oldCard,newCard\)/);
+  assert.match(app,/if\(protectedCards\.has\(old\)\)dmSyncStatus\(old,fresh\)/);
+  assert.match(app,/oldTitle\.textContent=newTitle\.textContent/);
+  assert.match(app,/el\.tagName!=='DETAILS'/);
+});
 check('five-second Chairman polling preserves open controls',()=>{
   assert.match(app,/const CHAIRMAN_POLL_MS=5000,PUBLIC_POLL_MS=4000/);
   assert.match(app,/publicView\?PUBLIC_POLL_MS:CHAIRMAN_POLL_MS/);
