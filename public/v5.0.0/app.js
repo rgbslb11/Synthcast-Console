@@ -43,6 +43,26 @@ function dmCard(g){
   if(armed)html+='<button class="warn" onclick="dmDisarm([\''+g.id+'\'])">DISARM FALLBACK</button>';
   return html+'</section>';
 }
+function dmSyncStatus(oldCard,newCard){
+  const old=oldCard.querySelector('.dm-box'),fresh=newCard.querySelector('.dm-box');
+  if(!old||!fresh)return;
+  // Update server-owned status only; keep the actual open editor and its inputs.
+  const oldTitle=old.querySelector('.dm-title b'),newTitle=fresh.querySelector('.dm-title b');
+  if(oldTitle&&newTitle&&oldTitle.textContent!==newTitle.textContent)oldTitle.textContent=newTitle.textContent;
+  const oldDetails=old.querySelector('details'),newDetails=fresh.querySelector('details');
+  if(oldDetails&&newDetails)oldDetails.querySelector('summary').textContent=newDetails.querySelector('summary').textContent;
+  const statusNodes=box=>[...box.children].filter(el=>el.tagName!=='DETAILS'&&!el.classList.contains('dm-title'));
+  const prior=statusNodes(old),next=statusNodes(fresh);
+  if(prior.map(el=>el.outerHTML).join('')!==next.map(el=>el.outerHTML).join('')){
+    prior.forEach(el=>el.remove());
+    for(const el of next){
+      const beforeEditor=newDetails&&!!(el.compareDocumentPosition(newDetails)&Node.DOCUMENT_POSITION_FOLLOWING);
+      old.insertBefore(el.cloneNode(true),beforeEditor?oldDetails:null);
+    }
+  }
+  if(oldDetails&&!newDetails)oldDetails.remove();
+  dmClock();
+}
 function dmSelect(id,on){if(on)dmSelected.add(id);else dmSelected.delete(id);dmCount();}
 function dmCount(){const x=document.getElementById('dm-count');if(x)x.textContent=dmSelected.size+' selected';}
 function dmSelectVisible(){for(const g of state.filter(visible))if(g.lifecycle==='UNLAUNCHED'&&!g.immutableFinal)dmSelected.add(g.id);render();dmCount();}
@@ -139,7 +159,7 @@ function syncGrid(html,releaseId=''){
     if(!id)continue;
     wanted.add(id);
     const old=[...grid.children].find(card=>card.dataset.game===id);
-    if(old){if(!protectedCards.has(old)&&old.outerHTML!==fresh.outerHTML)old.replaceWith(fresh)}else grid.append(fresh);
+    if(old){if(protectedCards.has(old))dmSyncStatus(old,fresh);else if(old.outerHTML!==fresh.outerHTML)old.replaceWith(fresh)}else grid.append(fresh);
   }
   for(const old of [...grid.children])if(!wanted.has(old.dataset.game)&&!protectedCards.has(old))old.remove();
 }
