@@ -31,6 +31,7 @@ const config=read('release-config.js');
 const condensedPage=read('ui1.3/index.html');
 const condensed=read('ui1.3/scoreboard.js');
 const condensedCss=read('ui1.3/scoreboard.css');
+const chairmanCss=read('legacy/app.css');
 
 check('GameCast 5.0.0 Chairman identity',()=>{
   assert.match(page,/Synthcast GameCast 5\.0\.0/);
@@ -59,6 +60,7 @@ check('password recovery returns to the hosted Chairman surface',()=>{
   assert.match(auth,/method:'PUT'/);
   assert.match(auth,/\/auth\/v1\/user/);
   assert.doesNotMatch(auth,/localStorage|sessionStorage/);
+  assert.match(chairmanCss,/\.toolbar\[hidden\]\{display:none!important\}/);
 });
 check('Weather Dynamics controls precede Dead-Man controls',()=>{
   assert.match(app,/MODEL<select[^]*OFF[^]*ON/);
