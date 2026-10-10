@@ -1,13 +1,25 @@
 'use strict';
-// Browser-only Auth state. Tokens remain in memory and never enter links/storage.
+// Browser-only Auth state. Tokens remain in memory. Recovery fragments are removed immediately.
 (() => {
   let auth=null,pending=null;
   const config=()=>globalThis.GAMECAST_V500_CONFIG;
   const status=text=>{const el=document.getElementById('authStatus');if(el)el.textContent=text;};
+  const recoveryStatus=text=>{const el=document.getElementById('recoveryStatus');if(el)el.textContent=text;};
+  const redirectUrl=()=>location.origin+location.pathname+location.search;
+
   async function authRequest(path,body){
     const c=config();if(!c.publishableKey)throw Error('Sign-in is not configured');
     const r=await fetch(c.projectUrl+'/auth/v1/'+path,{method:'POST',headers:{apikey:c.publishableKey,'content-type':'application/json'},body:JSON.stringify(body),redirect:'error'});
-    const b=await r.json();if(!r.ok)throw Error('Sign-in failed');return b;
+    const b=await r.json();if(!r.ok)throw Error('Authentication failed');return b;
+  }
+  async function requestPasswordReset(email){
+    const path='recover?redirect_to='+encodeURIComponent(redirectUrl());
+    await authRequest(path,{email});
+  }
+  async function updatePassword(password){
+    const c=config(),token=await bearer();
+    const r=await fetch(c.projectUrl+'/auth/v1/user',{method:'PUT',headers:{apikey:c.publishableKey,authorization:'Bearer '+token,'content-type':'application/json'},body:JSON.stringify({password}),redirect:'error'});
+    if(!r.ok)throw Error('Password update failed');
   }
   async function bearer(){
     if(!auth)throw Error('Sign in to control games');
@@ -16,6 +28,22 @@
     }
     return auth.access_token;
   }
+  function showRecoveryForm(show){
+    const form=document.getElementById('authForm'),panel=document.getElementById('passwordRecovery');
+    if(form)form.hidden=show;if(panel)panel.hidden=!show;
+  }
+  function acceptRecoverySession(){
+    const hash=new URLSearchParams(location.hash.replace(/^#/,''));
+    if(hash.get('type')!=='recovery'&&!hash.get('error'))return false;
+    history.replaceState(null,'',location.pathname+location.search);
+    if(hash.get('error')||!hash.get('access_token')){
+      auth=null;status('RESET LINK INVALID OR EXPIRED');return false;
+    }
+    const expiresIn=Number(hash.get('expires_in'))||3600;
+    auth={access_token:hash.get('access_token'),refresh_token:hash.get('refresh_token')||'',expiresAt:Date.now()+expiresIn*1000};
+    pending=null;showRecoveryForm(true);recoveryStatus('CHOOSE A NEW PASSWORD');return true;
+  }
+
   globalThis.gamecastSignedIn=()=>!!auth;
   globalThis.gamecastApi=async(action,body,{slug,operator})=>{
     const c=config(),mutating=body!==undefined,method=operator?'POST':'GET';
@@ -40,9 +68,24 @@
   globalThis.gamecastPendingGameId=()=>pending?.body?.id??'';
   window.addEventListener('DOMContentLoaded',()=>{
     if(new URLSearchParams(location.search).get('view')==='public')return;
+    acceptRecoverySession();
     document.getElementById('authForm')?.addEventListener('submit',async e=>{
       e.preventDefault();const password=document.getElementById('authPassword'),email=document.getElementById('authEmail');
       try{const b=await authRequest('token?grant_type=password',{email:email.value,password:password.value});auth={...b,expiresAt:Date.now()+b.expires_in*1000};pending=null;status('SIGNED IN');window.dispatchEvent(new Event('gamecast-auth'));}catch{auth=null;status('SIGN-IN FAILED');}finally{password.value='';}
+    });
+    document.getElementById('requestPasswordReset')?.addEventListener('click',async()=>{
+      const email=document.getElementById('authEmail');
+      if(!email.reportValidity())return;
+      status('SENDING RESET EMAIL');
+      try{await requestPasswordReset(email.value);status('RESET EMAIL SENT · CHECK INBOX');}catch{status('RESET EMAIL FAILED · TRY AGAIN');}
+    });
+    document.getElementById('passwordRecovery')?.addEventListener('submit',async e=>{
+      e.preventDefault();const password=document.getElementById('newPassword'),confirm=document.getElementById('confirmPassword');
+      if(password.value!==confirm.value){recoveryStatus('PASSWORDS DO NOT MATCH');return;}
+      recoveryStatus('UPDATING PASSWORD');
+      try{await updatePassword(password.value);auth=null;pending=null;showRecoveryForm(false);status('PASSWORD UPDATED · SIGN IN');}
+      catch{recoveryStatus('PASSWORD UPDATE FAILED · TRY AGAIN');}
+      finally{password.value='';confirm.value='';}
     });
     document.getElementById('signOut')?.addEventListener('click',async()=>{
       const token=auth?.access_token;auth=null;pending=null;status('SIGNED OUT');
