@@ -179,23 +179,39 @@ async function refresh(){
   }
   await load({force:true});
 }
+function editCheckpoint(g){
+  if(!g)return'';
+  const copy=structuredClone(g);delete copy.glSeconds;
+  return JSON.stringify(copy);
+}
 async function cmd(id,command,payload={}){
   if(writing)return;
   if(writeConflict){status('VERSION CONFLICT · Draft preserved · REFRESH to reload',true);return}
   writing=true;readEpoch++;
-  let readback=false;
+  let readback=false,stateRefresh=false;
+  const editBase=command==='edit_commit'?editCheckpoint(state.find(g=>g.id===id)):'';
   try{
     status('WRITING');
-    const b=await api('command',{id,command,payload,expected_version:version});
+    let b;
+    // The server scheduler advances the shared board every five seconds. Read
+    // the current checkpoint immediately before a control write, then retry a
+    // single clean version race. Failed version checks never mutate state.
+    for(let attempt=0;attempt<2;attempt++){
+      const checkpoint=await api('read'),expected=checkpoint.state_version??version;
+      if(editBase&&editCheckpoint((checkpoint.state||[]).find(g=>g.id===id))!==editBase)throw Object.assign(Error('VERSION_CONFLICT'),{status:409});
+      try{b=await api('command',{id,command,payload,expected_version:expected});break}
+      catch(e){if(!(attempt===0&&e.status===409&&['VERSION_CONFLICT','version conflict'].includes(e.message)))throw e}
+    }
     adopt(b);status('CHECKPOINTED V'+version);
     const closing=command==='edit_commit'||command==='edit_cancel';
     render(id);
     readback=closing;
   }catch(e){
     if(e.status===409&&['VERSION_CONFLICT','version conflict'].includes(e.message)){writeConflict=true;status('VERSION CONFLICT · Draft preserved · REFRESH to discard drafts and reload',true)}
-    else {status('WRITE ERROR · '+e.message+' · RETRY LAST REQUEST',true);document.getElementById('retryRequest').hidden=!gamecastPendingRequest();}
+    else if(e.status===409&&e.message==='COMMAND_UNAVAILABLE'){status('CONTROL NO LONGER AVAILABLE · REFRESHING CLOUD STATE',true);stateRefresh=true}
+    else {const retry=gamecastPendingRequest();status('WRITE ERROR · '+e.message+(retry?' · RETRY LAST REQUEST':''),true);document.getElementById('retryRequest').hidden=!retry;}
   }finally{writing=false}
-  if(readback)await load({force:true});
+  if(readback||stateRefresh)await load({force:true});
 }
 function confirmCmd(id,c,m,p={}){if(confirm(m))cmd(id,c,{...p,confirmed:true})}function beginEdit(id,strong=false){if(strong&&!confirm('Supersede this locked/accepted result for correction?'))return;cmd(id,'edit_begin',strong?{confirmed:true}:{})}function reopen(id){confirmCmd(id,'reopen_live','Reopen this Final to live simulation? A continuation seed will be created.',{resumeAuto:false})}function parseClock(v){const m=String(v).match(/^(\d{1,2}):(\d{2})$/);return m?+m[1]*60+ +m[2]:NaN}function setClock(id){const g=state.find(x=>x.id===id),v=prompt('Set clock M:SS',clk(g.scoreboardSeconds));if(v==null)return;const s=parseClock(v);if(!Number.isFinite(s)||s<0||s>g.quarterLengthSeconds)return alert('Invalid clock');cmd(id,'clock_set',{seconds:s})}function saveEdit(id,resumeAuto){const scores={};for(const p of ['1','2','3','4'])scores[p]=[+document.getElementById('e-'+id+'-a'+p).value,+document.getElementById('e-'+id+'-h'+p).value];const c=parseClock(document.getElementById('e-'+id+'-c').value);if(!Number.isFinite(c))return alert('Clock must be M:SS');cmd(id,'edit_commit',{scores,quarter:+document.getElementById('e-'+id+'-q').value,clockSeconds:c,possession:+document.getElementById('e-'+id+'-p').value,ballSide:document.getElementById('e-'+id+'-s').value,yardline:+document.getElementById('e-'+id+'-y').value,down:+document.getElementById('e-'+id+'-d').value,distance:+document.getElementById('e-'+id+'-x').value,awayTimeouts:+document.getElementById('e-'+id+'-at').value,homeTimeouts:+document.getElementById('e-'+id+'-ht').value,resumeAuto,hold:!resumeAuto})}function openGame(id){location.href=location.origin+location.pathname+'?session='+encodeURIComponent(slug)+'&game='+id+(publicView?'&view=public':'')}function copy(u){navigator.clipboard?.writeText(u).catch(()=>prompt('Copy link',u))}async function loadPower(){
   if(writing)return;
