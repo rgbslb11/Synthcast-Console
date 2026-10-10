@@ -88,6 +88,15 @@ check('Dead-Man controls remain Chairman only',()=>{
   assert.match(app,/dm-box operator-only/);
   assert.match(app,/Only selected games are changed/);
 });
+check('five-second Chairman polling preserves open controls',()=>{
+  assert.match(app,/const CHAIRMAN_POLL_MS=5000,PUBLIC_POLL_MS=4000/);
+  assert.match(app,/publicView\?PUBLIC_POLL_MS:CHAIRMAN_POLL_MS/);
+  assert.match(app,/card\.querySelector\('\.edit-panel'\)/);
+  assert.match(app,/\.dm-box details\[open\],\.wx-box details\[open\]/);
+  assert.match(app,/old\.outerHTML!==fresh\.outerHTML/);
+  assert.doesNotMatch(app,/grid\.replaceChildren\(template\.content\)/);
+  assert.match(app,/if\(editDraftLocked\(\)\|\|writeConflict/);
+});
 check('public surface remains read only',()=>{
   assert.match(app,/publicView\|\|g\.immutableFinal/);
   assert.match(page,/PUBLIC LIVE SCOREBOARD/);
