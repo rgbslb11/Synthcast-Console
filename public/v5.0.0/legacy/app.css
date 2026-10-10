@@ -7,3 +7,4 @@ header{padding:calc(5px + env(safe-area-inset-top)) 8px 5px}
 }
 .wx-box{border-top:1px solid #365063;background:#0d151b;padding:9px 11px;font:10px ui-monospace,SFMono-Regular,Menlo,monospace}.wx-title{display:flex;justify-content:space-between;gap:8px;color:#bfe7ff}.wx-title span{color:#8ca8b8}.wx-box summary{cursor:pointer;margin-top:8px;font-weight:900;color:#d5eaf5}.wx-settings{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;padding-top:8px}.wx-settings label{display:flex;flex-direction:column;gap:4px;color:#9fb4c0}.wx-info{padding-top:7px;color:#8ca8b8;line-height:1.35}.wx-box.readonly{padding-top:7px;padding-bottom:7px}
 @media(max-width:650px){.wx-settings label,.wx-settings button{flex:1 1 44%}.wx-settings select{width:100%}}
+.toolbar[hidden]{display:none!important}
