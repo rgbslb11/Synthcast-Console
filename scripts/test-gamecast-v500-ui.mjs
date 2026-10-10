@@ -50,6 +50,15 @@ check('direct Supabase email and password authentication',()=>{
   assert.match(auth,/Bearer /);
   assert.doesNotMatch(auth,/Apple|ChatGPT/);
 });
+check('Chairman session survives a tab refresh',()=>{
+  assert.match(auth,/const AUTH_KEY='synthcastGameCast500Auth'/);
+  assert.match(auth,/sessionStorage\.setItem\(AUTH_KEY/);
+  assert.match(auth,/sessionStorage\.getItem\(AUTH_KEY/);
+  assert.match(auth,/sessionStorage\.removeItem\(AUTH_KEY/);
+  assert.match(auth,/RESTORING SESSION/);
+  assert.match(auth,/token\?grant_type=refresh_token/);
+  assert.doesNotMatch(auth,/localStorage/);
+});
 check('password recovery returns to the hosted Chairman surface',()=>{
   assert.match(page,/id="requestPasswordReset"/);
   assert.match(page,/id="passwordRecovery" hidden/);
@@ -59,7 +68,7 @@ check('password recovery returns to the hosted Chairman surface',()=>{
   assert.match(auth,/history\.replaceState/);
   assert.match(auth,/method:'PUT'/);
   assert.match(auth,/\/auth\/v1\/user/);
-  assert.doesNotMatch(auth,/localStorage|sessionStorage/);
+  assert.doesNotMatch(auth,/localStorage/);
   assert.match(chairmanCss,/\.toolbar\[hidden\]\{display:none!important\}/);
 });
 check('Weather Dynamics controls precede Dead-Man controls',()=>{
