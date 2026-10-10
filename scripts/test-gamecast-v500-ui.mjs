@@ -39,6 +39,11 @@ check('GameCast 5.0.0 Chairman identity',()=>{
   assert.match(page,/EMAIL/);
   assert.match(page,/PASSWORD/);
 });
+check('Upcoming filter is Chairman only and selects unlaunched games',()=>{
+  assert.match(page,/class="operator-only" data-f="UPCOMING">UPCOMING<\/button>/);
+  assert.match(app,/filter==='UPCOMING'\)return !publicView&&g\.lifecycle==='UNLAUNCHED'/);
+  assert.match(app,/querySelectorAll\('\.operator-only'\)\.forEach\(el=>el\.remove\(\)\)/);
+});
 check('isolated QA backend binding',()=>{
   assert.equal((config.match(/xsvdmcipviejxynkdbhq/g)||[]).length,3);
   assert.match(config,/gamecast-week7-v5-public/);
