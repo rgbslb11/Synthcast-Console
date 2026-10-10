@@ -92,6 +92,7 @@ setTimeout(()=>{
 },0);
 
 'use strict';
+const CHAIRMAN_POLL_MS=5000,PUBLIC_POLL_MS=4000;
 const API=globalThis.GAMECAST_V500_CONFIG,STORE='synthcastGameCast500Session',qs=new URLSearchParams(location.search);let slug=qs.get('session')||'',game=qs.get('game')||'',token='',publicView=qs.get('view')==='public',state=[],version=0,filter='ALL',loading=false,engine='GC-W7-V5.0.0-RC1',masterEpoch=Date.now(),masterAnchor=Date.now();const root=document.getElementById('root');if(publicView){token='';document.querySelectorAll('.operator-only').forEach(el=>el.remove());root.classList.add('public');document.body.classList.add('public');document.getElementById('modeLabel').textContent='PUBLIC LIVE SCOREBOARD';document.querySelector('.public-only').hidden=false}
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const validPeriod=k=>['1','2','3','4','OT'].includes(k)||/^(?:[2-9]|[1-9][0-9]+)OT$/.test(k),total=(g,t)=>Object.entries(g.scores||{}).reduce((s,[k,q])=>validPeriod(k)?s+Number((q||[])[t]||0):s,0),clk=s=>String(Math.floor(Math.max(0,s||0)/60)).padStart(2,'0')+':'+String(Math.floor(Math.max(0,s||0)%60)).padStart(2,'0'),gl=s=>Math.floor((s||0)/3600)+':'+String(Math.floor(((s||0)%3600)/60)).padStart(2,'0')+':'+String(Math.floor((s||0)%60)).padStart(2,'0');function anchorMaster(x){dmLastSync=Date.now();const n=Date.parse(x||'');if(Number.isFinite(n)){masterEpoch=n;masterAnchor=Date.now()}}function z(ms,zone,force=''){const p=new Intl.DateTimeFormat('en-US',{timeZone:zone,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,timeZoneName:'short'}).formatToParts(new Date(ms)),v=t=>p.find(x=>x.type===t)?.value||'';return v('hour')+':'+v('minute')+':'+v('second')+' '+(force||v('timeZoneName'))}function tick(){const ms=masterEpoch+Date.now()-masterAnchor,d=new Date(ms);document.getElementById('tz-z').textContent=d.toISOString().slice(11,19)+'Z';document.getElementById('tz-c').textContent=z(ms,'America/Chicago');document.getElementById('tz-e').textContent=z(ms,'America/New_York');document.getElementById('tz-m').textContent=z(ms,'America/Denver');document.getElementById('tz-ms').textContent=z(ms,'America/Phoenix','MST');document.getElementById('tz-p').textContent=z(ms,'America/Los_Angeles');document.getElementById('tz-h').textContent=z(ms,'Pacific/Honolulu','HST')}
 async function api(a,b){
@@ -110,6 +111,9 @@ function focusedControl(){
 function interactionLocked(){
   return !publicView&&(!!document.querySelector('#grid .edit-panel')||!!focusedControl()||!!document.querySelector('#grid .dm-box details[open],#grid .wx-box details[open]'));
 }
+function editDraftLocked(){
+  return !publicView&&!!document.querySelector('#grid .edit-panel');
+}
 function syncGrid(html,releaseId=''){
   const grid=document.getElementById('grid'),template=document.createElement('template');
   template.innerHTML=html;
@@ -117,15 +121,14 @@ function syncGrid(html,releaseId=''){
   if(!publicView)for(const card of grid.querySelectorAll('[data-game]')){
     if(card.dataset.game!==releaseId&&(card.querySelector('.edit-panel')||card.contains(focus)||card.querySelector('.dm-box details[open],.wx-box details[open]')))protectedCards.add(card);
   }
-  if(!protectedCards.size){grid.replaceChildren(template.content);return}
-  // Keep protected nodes attached: detaching/reinserting would still lose focus.
+  // Patch cards in place. Open controls remain attached and unchanged cards do not flicker.
   const wanted=new Set();
   for(const fresh of [...template.content.children]){
     const id=fresh.dataset.game;
     if(!id)continue;
     wanted.add(id);
     const old=[...grid.children].find(card=>card.dataset.game===id);
-    if(old){if(!protectedCards.has(old))old.replaceWith(fresh)}else grid.append(fresh);
+    if(old){if(!protectedCards.has(old)&&old.outerHTML!==fresh.outerHTML)old.replaceWith(fresh)}else grid.append(fresh);
   }
   for(const old of [...grid.children])if(!wanted.has(old.dataset.game)&&!protectedCards.has(old))old.remove();
 }
@@ -153,7 +156,7 @@ async function load({background=false,force=false}={}){
       const b=await api('read');
       if(epoch!==readEpoch||session!==slug)return;
       updateReadClocks(b);
-      if(interactionLocked()||writeConflict||(!publicView&&gamecastPendingRequest())){
+      if(editDraftLocked()||writeConflict||(!publicView&&gamecastPendingRequest())){
         if(!background)status(writeConflict?'VERSION CONFLICT · Draft preserved · REFRESH to reload':'EDIT / INPUT PROTECTED · Cloud clocks updated',writeConflict);
         return;
       }
@@ -230,7 +233,7 @@ async function purgeUiNewSession(){
   }finally{writing=false}
 }
 
-if(!publicView){document.getElementById('create').onclick=async()=>{try{const b=await api('create',{});slug=b.public_slug;token='';version=b.state_version||0;anchorMaster(b.master_zulu);history.replaceState(null,'',location.pathname+'?session='+slug);saveSession();await load()}catch(e){status('CREATE ERROR · '+e.message,true)}};document.getElementById('resume').onclick=()=>{const s=JSON.parse(localStorage.getItem(STORE)||'null');if(s?.slug){slug=s.slug;token='';history.replaceState(null,'',location.pathname+'?session='+slug);load()}};document.getElementById('purgeUi').onclick=purgeUiNewSession;document.getElementById('refresh').onclick=refresh;document.getElementById('copyPublic').onclick=()=>copy(location.origin+location.pathname+'?session='+slug+'&view=public');document.getElementById('copyOperator').onclick=()=>copy(location.origin+location.pathname+'?session='+slug);document.getElementById('loadPower').onclick=loadPower}else document.getElementById('refreshPublic').onclick=refresh;document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{filter=b.dataset.f;game='';document.querySelectorAll('[data-f]').forEach(x=>x.classList.toggle('active',x===b));render()});if(!publicView){const s=JSON.parse(localStorage.getItem(STORE)||'null');if(!slug&&s?.slug){slug=s.slug;token='';history.replaceState(null,'',location.pathname+'?session='+slug)}else if(slug&&s?.slug===slug){token=''}}document.getElementById('teamSearch').addEventListener('input',()=>render());tick();setInterval(tick,1000);if(publicView)load();setInterval(()=>{if(slug&&!loading&&!writing&&(publicView||gamecastSignedIn()))load({background:true})},publicView?4000:7000);
+if(!publicView){document.getElementById('create').onclick=async()=>{try{const b=await api('create',{});slug=b.public_slug;token='';version=b.state_version||0;anchorMaster(b.master_zulu);history.replaceState(null,'',location.pathname+'?session='+slug);saveSession();await load()}catch(e){status('CREATE ERROR · '+e.message,true)}};document.getElementById('resume').onclick=()=>{const s=JSON.parse(localStorage.getItem(STORE)||'null');if(s?.slug){slug=s.slug;token='';history.replaceState(null,'',location.pathname+'?session='+slug);load()}};document.getElementById('purgeUi').onclick=purgeUiNewSession;document.getElementById('refresh').onclick=refresh;document.getElementById('copyPublic').onclick=()=>copy(location.origin+location.pathname+'?session='+slug+'&view=public');document.getElementById('copyOperator').onclick=()=>copy(location.origin+location.pathname+'?session='+slug);document.getElementById('loadPower').onclick=loadPower}else document.getElementById('refreshPublic').onclick=refresh;document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{filter=b.dataset.f;game='';document.querySelectorAll('[data-f]').forEach(x=>x.classList.toggle('active',x===b));render()});if(!publicView){const s=JSON.parse(localStorage.getItem(STORE)||'null');if(!slug&&s?.slug){slug=s.slug;token='';history.replaceState(null,'',location.pathname+'?session='+slug)}else if(slug&&s?.slug===slug){token=''}}document.getElementById('teamSearch').addEventListener('input',()=>render());tick();setInterval(tick,1000);if(publicView)load();setInterval(()=>{if(slug&&!loading&&!writing&&(publicView||gamecastSignedIn()))load({background:true})},publicView?PUBLIC_POLL_MS:CHAIRMAN_POLL_MS);
 // Wait until focus has settled; a select change/click must dispatch before refresh.
 document.addEventListener('focusout',()=>setTimeout(()=>{
   if(slug&&!interactionLocked()&&!writing&&!writeConflict)load({background:true});
