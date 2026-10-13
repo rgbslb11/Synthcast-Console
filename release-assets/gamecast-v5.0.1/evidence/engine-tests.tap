@@ -1,0 +1,19 @@
+✔ baseline witnesses fail both required behaviors (16.822837ms)
+✔ tie deep-own-territory fourth-and-long punts across boundary times, distances and orientations (30.781523ms)
+✔ trailing desperation and ordinary short fourth downs preserve baseline decisions (39.92182ms)
+✔ safety exact goal line and beyond: two points, reciprocal possession, stopped clock, log and free-kick evidence (1.978208ms)
+✔ loss ending at OWN 1 and incompletions are not safeties (0.252021ms)
+✔ kneel is pure and matches exact clock capacity for all timeout/down combinations (16.397825ms)
+✔ Miami 57 seconds/two opponent timeouts is not a safe kneel; 36 is (0.194584ms)
+✔ automatic fourth-down kneel prohibited; forced fourth kneel transfers possession and stops clock (0.212721ms)
+✔ all 16 halftime timeout pairs reset once with reciprocal receiving team (1.132921ms)
+✔ Deadman arms, launches once, preserves RNG until toss, and recognizes Chairman stop (1.082535ms)
+✔ fixed seed/chunk/speed invariance and full board football state, 41 games (164.078774ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 368.870955

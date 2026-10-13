@@ -1,0 +1,16 @@
+✔ unrelated scheduler version churn retries with current CAS; no blind board overwrite (25.26801ms)
+✔ concurrent target control change rejects safely (6.500952ms)
+✔ same key returns original receipt once, even after newer versions; changed body conflicts (16.886775ms)
+✔ edit token ignores only elapsed GL, detects real field changes (2.514215ms)
+✔ missing token never bypasses strict session-version protection (2.290527ms)
+✔ scheduler compact receipt replays exact committed version without full-board state (6.851811ms)
+✔ 500 namespace denied and public read exposes no private/control witnesses (7.594552ms)
+✔ operator render receives tokens without RNG/history disclosure (7.544897ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 191.047972

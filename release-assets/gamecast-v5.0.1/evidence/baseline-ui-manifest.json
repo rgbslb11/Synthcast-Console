@@ -1,0 +1,32 @@
+[
+  {
+    "name": "index.html",
+    "bytes": 4802,
+    "sha256": "ca87c1d622455bd209af0dddcec924d42d3c01b3b9f151377edb5b6053f3016e",
+    "matches": true
+  },
+  {
+    "name": "app.js",
+    "bytes": 39287,
+    "sha256": "68106953a13f059095766ef58cca490dd818071aef0a2dd784be4a42522dd4a6",
+    "matches": true
+  },
+  {
+    "name": "auth-api.js",
+    "bytes": 8004,
+    "sha256": "921884af09c1b8a155f0e8111919676c37e4a391be9e488ca2e0ccc9f24d152a",
+    "matches": true
+  },
+  {
+    "name": "release-config.js",
+    "bytes": 354,
+    "sha256": "83b15fc3b277da123b330cb43e9b6450d257b8fc56bf93a650288906489cd037",
+    "matches": true
+  },
+  {
+    "name": "ui1.3/scoreboard.js",
+    "bytes": 12102,
+    "sha256": "43c6eae92dc57b997975c7f1f6bde7c9306ff5b2f27c116a9f1e8df880c92f54",
+    "matches": true
+  }
+]
