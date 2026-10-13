@@ -1,0 +1,31 @@
+✔ baseline witnesses fail both required behaviors (3.455806ms)
+✔ tie deep-own-territory fourth-and-long punts across boundary times, distances and orientations (8.670639ms)
+✔ trailing desperation and ordinary short fourth downs preserve baseline decisions (44.843706ms)
+✔ safety exact goal line and beyond: two points, reciprocal possession, stopped clock, log and free-kick evidence (2.100601ms)
+✔ loss ending at OWN 1 and incompletions are not safeties (0.328967ms)
+✔ kneel is pure and matches exact clock capacity for all timeout/down combinations (20.281487ms)
+✔ Miami 57 seconds/two opponent timeouts is not a safe kneel; 36 is (0.195325ms)
+✔ automatic fourth-down kneel prohibited; forced fourth kneel transfers possession and stops clock (0.532023ms)
+✔ all 16 halftime timeout pairs reset once with reciprocal receiving team (1.12636ms)
+✔ Deadman arms, launches once, preserves RNG until toss, and recognizes Chairman stop (0.862442ms)
+✔ fixed seed/chunk/speed invariance and full board football state, 41 games (151.480997ms)
+✔ intermediate football state invariants through 41 complete games (62.021812ms)
+✔ final, locked and accepted states are frozen during projection (2.055363ms)
+✔ existing Final -> Lock -> Accept transition preserved; QA cannot become accepted (1.09276ms)
+✔ unrelated scheduler version churn retries with current CAS; no blind board overwrite (28.851818ms)
+✔ three unrelated CAS collisions return busy without changing the game (9.935288ms)
+✔ concurrent target control change rejects safely (13.087402ms)
+✔ same key returns original receipt once, even after newer versions; changed body conflicts (17.686229ms)
+✔ edit token ignores only elapsed GL, detects real field changes (2.140501ms)
+✔ missing token never bypasses strict session-version protection (1.779005ms)
+✔ scheduler compact receipt replays exact committed version without full-board state (6.605532ms)
+✔ 500 namespace denied and public read exposes no private/control witnesses (6.311458ms)
+✔ operator render receives tokens without RNG/history disclosure (7.270104ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 327.188956

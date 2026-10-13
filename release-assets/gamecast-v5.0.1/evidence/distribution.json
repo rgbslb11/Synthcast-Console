@@ -4,12 +4,18 @@
   "games": 41,
   "runsPerVersion": 4100,
   "changedHistories": 431,
+  "firstDivergence": {
+    "safety": 430,
+    "fourthDown": 1,
+    "unclassified": 0
+  },
+  "unclassifiedExamples": [],
   "unchangedHistories": 3669,
   "unchangedLowScoreFixtures": 87,
   "pairedExecutionMs": {
-    "mean": 1.2631907426829343,
-    "p50": 1.1794499999996333,
-    "p90": 1.5423869999999624
+    "mean": 1.2248476529268246,
+    "p50": 1.1475020000002587,
+    "p90": 1.4655129999991914
   },
   "observedConference35": 7,
   "syntheticBaselineBoardsAtLeastObserved": 69,

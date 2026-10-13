@@ -1,0 +1,5 @@
+{
+  "purpose": "Retry additive QA route publication after transient 503; all byte checks retained",
+  "baseline": "762da633e38ddf8acb0a9e7798ee4502deb1e81f",
+  "requestedAt": "2026-10-13T23:47:00Z"
+}

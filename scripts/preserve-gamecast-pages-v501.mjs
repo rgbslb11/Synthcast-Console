@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
+import {setTimeout as delay} from 'node:timers/promises';
 
 const base='https://rgbslb11.github.io/Synthcast-Console/';
 const mode=process.argv[2];
@@ -12,9 +13,12 @@ const evidence='outputs/v501';
 const sha=body=>createHash('sha256').update(body).digest('hex');
 const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>entry.isDirectory()?walk(path.join(dir,entry.name)):[path.join(dir,entry.name)]);
 async function get(relative){
-  const response=await fetch(relative==='index.html'?base:base+relative,{cache:'no-store'});
-  assert.equal(response.status,200,relative);
-  return Buffer.from(await response.arrayBuffer());
+  for(let attempt=0;attempt<4;attempt++){
+    const response=await fetch(relative==='index.html'?base:base+relative,{cache:'no-store',signal:AbortSignal.timeout(15000)});
+    if((response.status===429||response.status>=500)&&attempt<3){await response.arrayBuffer();await delay(1000*(attempt+1));continue;}
+    assert.equal(response.status,200,relative);
+    return Buffer.from(await response.arrayBuffer());
+  }
 }
 function write(relative,body){
   assert.ok(!relative.startsWith('/')&&!relative.split('/').includes('..'));
@@ -23,8 +27,8 @@ function write(relative,body){
   fs.writeFileSync(target,body);
 }
 async function verifyPrior(copy){
-  for(let i=0;i<prior.files.length;i+=8){
-    await Promise.all(prior.files.slice(i,i+8).map(async file=>{
+  for(let i=0;i<prior.files.length;i+=4){
+    await Promise.all(prior.files.slice(i,i+4).map(async file=>{
       const body=await get(file.path);
       assert.equal(sha(body),file.sha256,'Existing GitHub Pages byte changed: '+file.path);
       if(copy)write(file.path,body);
