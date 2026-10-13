@@ -2,7 +2,8 @@ import fs from 'node:fs';import path from 'node:path';import http from 'node:htt
 import {createReleaseRuntime} from '../../release-assets/v5.0.1/backend/src/release-runtime.mjs';
 import {OPERATING_SLATE} from '../../release-assets/v5.0.1/backend/runtime/week7.mjs';
 import {CANONICAL_GAME_IDS,FINAL_GAME_IDS,SecurityError} from '../../release-assets/v5.0.1/backend/security/security-core.mjs';
-const {chromium}=await import(process.env.PLAYWRIGHT_MODULE?pathToFileURL(process.env.PLAYWRIGHT_MODULE).href:'playwright');
+const browserType=process.env.GAMECAST_BROWSER||'chromium';
+const engines=await import(process.env.PLAYWRIGHT_MODULE?pathToFileURL(process.env.PLAYWRIGHT_MODULE).href:'playwright');
 const receipts=new Map(),slug='w7v501-0000000000000001',owner='test-owner';let row,finals,origin,requestReads=0,commands=0,collisions=0;
 const rpc=async(name,p)=>{
  if(name==='read_session'){requestReads++;return [structuredClone(row)];}
@@ -38,8 +39,8 @@ const server=http.createServer(async(req,res)=>{
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));origin='http://127.0.0.1:'+server.address().port;
 runtime=createReleaseRuntime({allowedOrigins:[origin],schedulerSecret:'browser-test-only',transport:{rpc,authenticate:async()=>({id:owner}),authorize:async()=>({userId:owner,role:'CHAIRMAN',active:true})}});
 row={session_id:'qa',public_slug:slug,owner_user_id:owner,week_key:'2026-W07',engine_version:runtime.engine.ENGINE_VERSION,data_version:runtime.engine.DATA_VERSION,state_version:1,last_advanced_at:new Date().toISOString(),state:OPERATING_SLATE.map(s=>({...runtime.engine.initialGame(s),qaOnly:true}))};
-finals=FINAL_GAME_IDS.map(id=>({...runtime.engine.initialGame({...OPERATING_SLATE[0],id,away:'Historical Away',home:'Historical Home',kickoffOrder:CANONICAL_GAME_IDS.indexOf(id)+1}),lifecycle:'READY',activity:'FINAL',immutableFinal:true,qaOnly:false}));
-const browser=await chromium.launch({headless:true}),page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[],cases=[],latencies=[];
+finals=JSON.parse(fs.readFileSync('tests/v501/fixtures/imported-finals.json'));
+const browser=await engines[browserType].launch({headless:true}),page=await browser.newPage({viewport:browserType==='webkit'?{width:390,height:844}:{width:1440,height:1000}}),errors=[],cases=[],latencies=[];
 page.on('pageerror',e=>errors.push(e.message));
 await page.addInitScript(()=>sessionStorage.setItem('synthcastGameCast501Auth',JSON.stringify({access_token:'test-token-not-real',refresh_token:'test',expiresAt:Date.now()+3600000,recovery:false})));
 const card=id=>page.locator('[data-game="'+id+'"]');
@@ -50,7 +51,7 @@ try{
  await check('unrelated server updates render without refresh',async()=>{row.state[1].scores['1']=[3,0];row.state_version++;await page.waitForFunction(()=>document.querySelector('[data-game="G0290"] .score')?.textContent==='3')});
  await check('Upcoming/search intersection',async()=>{await page.locator('[data-f=UPCOMING]').click();assert.equal(await page.locator('[data-game]').count(),41);await page.locator('#teamSearch').fill('arkansas');assert.equal(await page.locator('[data-game]').count(),1);await page.locator('#teamSearch').fill('');await page.locator('[data-f=ALL]').click()});
  async function act(id,command,payload={}){const start=performance.now();await page.evaluate(async({id,command,payload})=>await cmd(id,command,payload),{id,command,payload});latencies.push({command,ms:performance.now()-start});assert.ok(!(await page.locator('#status').innerText()).includes('ERROR'),command)}
- await check('Launch/Start Auto/Stop update control state',async()=>{await act('G0285','launch');await act('G0285','auto');assert.equal(row.state[0].auto,true);await act('G0285','auto');assert.equal(row.state[0].auto,false)});
+ await check('Launch/Start Auto/Stop update control state',async()=>{await card('G0285').getByRole('button',{name:'LAUNCH',exact:true}).click();await card('G0285').getByRole('button',{name:'START AUTO',exact:true}).click();await card('G0285').getByRole('button',{name:'STOP AUTO',exact:true}).waitFor();assert.equal(row.state[0].auto,true);await card('G0285').getByRole('button',{name:'STOP AUTO',exact:true}).click();await card('G0285').getByRole('button',{name:'START AUTO',exact:true}).waitFor();assert.equal(row.state[0].auto,false)});
  await check('busy scheduler does not force refresh and retry succeeds',async()=>{collisions=3;await page.evaluate(()=>cmd('G0285','auto'));assert.match(await page.locator('#status').innerText(),/CONTROL BUSY/);assert.equal(row.state[0].auto,false);await act('G0285','auto');assert.equal(row.state[0].auto,true);await act('G0285','auto')});
  await check('edit draft survives polling and other-game version advances; save succeeds',async()=>{await act('G0285','edit_begin');await page.locator('#e-G0285-y').fill('33');row.state[1].glSeconds+=10;row.state_version++;await page.evaluate(()=>load({background:true}));assert.equal(await page.locator('#e-G0285-y').inputValue(),'33');await act('G0285','edit_commit',{yardline:33,ballSide:'OWN',hold:true});assert.equal(row.state[0].fieldPos,33);assert.equal(row.state[0].lifecycle,'ACTIVE')});
  await check('Final/Lock persist and QA Accept is blocked',async()=>{await act('G0285','end',{confirmed:true});await act('G0285','lock');assert.equal(row.state[0].lifecycle,'LOCKED');await page.evaluate(()=>cmd('G0285','accept',{confirmed:true}));assert.match(await page.locator('#status').innerText(),/QA_ACCEPT_FORBIDDEN/);assert.equal(row.state[0].lifecycle,'LOCKED')});
@@ -59,5 +60,5 @@ try{
  await check('public view renders automatically and has no operator controls',async()=>{const pub=await browser.newPage();await pub.goto(origin+'/v5.0.1/?session='+slug+'&view=public');await pub.locator('[data-game=G0290]').waitFor();assert.equal(await pub.locator('.operator-only:visible').count(),0);row.state[1].scores['1']=[6,0];row.state_version++;await pub.waitForFunction(()=>document.querySelector('[data-game="G0290"] .score')?.textContent==='6');await pub.close()});
  await check('Condensed view updates without refresh and preserves expanded detail',async()=>{const p=await browser.newPage();await p.goto(origin+'/v5.0.1/ui1.3/?session='+slug);const c=p.locator('.game-card[data-game=G0290]').first();await c.waitFor();await c.locator('.game-button').click();row.state[1].scores['1']=[9,0];row.state_version++;await p.waitForFunction(()=>document.querySelector('.game-card[data-game=G0290] .scores span')?.textContent==='9');assert.equal(await c.locator('.game-button').getAttribute('aria-expanded'),'true');await p.close()});
  assert.deepEqual(errors,[]);
- fs.writeFileSync('release-assets/gamecast-v5.0.1/evidence/browser-tests.json',JSON.stringify({passed:cases.length,cases,latencies,errors,scope:'Chromium; actual frontend and handlers; in-memory Postgres boundary; not hosted/mobile Safari'},null,2));
+ fs.writeFileSync('release-assets/gamecast-v5.0.1/evidence/browser-'+browserType+'.json',JSON.stringify({passed:cases.length,cases,latencies,errors,browserType,scope:'Actual frontend and handlers; in-memory Postgres and test Auth boundary; WebKit is an emulator, not physical Safari'},null,2));
 }finally{console.log(JSON.stringify({passed:cases.length,cases,latencies,errors}));await browser.close();server.close()}

@@ -1,0 +1,29 @@
+[
+  {
+    "role": "public",
+    "status": 200,
+    "ms": 5098,
+    "engine": "GC-W7-V5.0.1-RC1",
+    "version": 101,
+    "games": 54,
+    "error": null
+  },
+  {
+    "role": "chairman",
+    "status": 401,
+    "ms": 2865,
+    "engine": null,
+    "version": null,
+    "games": 0,
+    "error": "AUTHENTICATION_REQUIRED"
+  },
+  {
+    "role": "scheduler",
+    "status": 403,
+    "ms": 3892,
+    "engine": null,
+    "version": null,
+    "games": 0,
+    "error": "SCHEDULER_TIMESTAMP_INVALID"
+  }
+]

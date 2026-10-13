@@ -18,8 +18,9 @@ jobs:
           node-version: '24'
       - run: node --test tests/v501/*.test.mjs
       - run: npm install --prefix "$RUNNER_TEMP/gamecast-browser" --save-exact playwright@1.62.1
-      - run: node "$RUNNER_TEMP/gamecast-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - run: node "$RUNNER_TEMP/gamecast-browser/node_modules/playwright/cli.js" install --with-deps chromium webkit
       - run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/gamecast-browser/node_modules/playwright/index.mjs" node tests/v501/browser.mjs
+      - run: GAMECAST_BROWSER=webkit PLAYWRIGHT_MODULE="$RUNNER_TEMP/gamecast-browser/node_modules/playwright/index.mjs" node tests/v501/browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

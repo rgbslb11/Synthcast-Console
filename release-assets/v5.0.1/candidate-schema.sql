@@ -183,7 +183,7 @@ alter table gamecast_v501.requests add constraint requests_session_id_fkey FOREI
 
 alter table gamecast_v501.sessions add constraint sessions_owner_user_id_fkey FOREIGN KEY (owner_user_id) REFERENCES gamecast_v501.operators(user_id) ON DELETE RESTRICT;
 
-alter table gamecast_v501.sessions add constraint qa_only_state check (not jsonb_path_exists(state, '$[*] ? (@.qaOnly != true)'));
+alter table gamecast_v501.sessions add constraint qa_only_state check (jsonb_path_query_array(state, '$[*].qaOnly') = to_jsonb(array_fill(true, ARRAY[jsonb_array_length(state)])));
 
 insert into gamecast_v501.release_control(singleton,writes_enabled) values (true,true);
 

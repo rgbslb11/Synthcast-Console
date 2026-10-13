@@ -1,0 +1,1572 @@
+[
+  {
+    "id": "G0324",
+    "auto": false,
+    "away": {
+      "name": "Old Dominion",
+      "record": ""
+    },
+    "date": "2026-10-06",
+    "down": 2,
+    "home": {
+      "name": "Troy",
+      "record": ""
+    },
+    "notes": "",
+    "onAir": false,
+    "runId": "G0324-R01",
+    "speed": 1,
+    "locked": true,
+    "period": "4th",
+    "qaOnly": false,
+    "scores": {
+      "1": [
+        3,
+        3
+      ],
+      "2": [
+        11,
+        0
+      ],
+      "3": [
+        7,
+        13
+      ],
+      "4": [
+        3,
+        6
+      ]
+    },
+    "delayed": false,
+    "editing": false,
+    "kickoff": "7:00pm",
+    "matchup": "Old Dominion at Troy",
+    "network": "SEN",
+    "neutral": false,
+    "quarter": 4,
+    "activity": "FINAL",
+    "awayCode": "ODU",
+    "awayRank": null,
+    "coinToss": {
+      "runId": "G0324-R01",
+      "choice": "KICK",
+      "winnerTeamId": "Troy",
+      "engineVersion": "GC-W7-V4.4.2-RC1",
+      "q3KickingTeamId": "Old Dominion",
+      "q3ReceivingTeamId": "Troy",
+      "openingKickingTeamId": "Troy",
+      "openingReceivingTeamId": "Old Dominion"
+    },
+    "distance": 11,
+    "fieldPos": 58,
+    "homeCode": "TROY",
+    "homeRank": null,
+    "lastPlay": "Final corrected \u00b7 24-22 \u00b7 requires re-lock",
+    "dateLabel": "Tue 10/6",
+    "glSeconds": 8012,
+    "lifecycle": "READY",
+    "runNumber": 1,
+    "awayRecord": "1-4",
+    "breakLabel": "",
+    "homeRecord": "1-3",
+    "launchedAt": "2026-10-07T01:22:50.547Z",
+    "possession": 1,
+    "powerReady": true,
+    "seedLocked": true,
+    "completedAt": "2026-10-07T23:00:06.606Z",
+    "delayResume": null,
+    "kickoffZulu": "2026-10-06T23:00:00Z",
+    "tvStartZulu": null,
+    "activePeriod": "4",
+    "awayTimeouts": 0,
+    "breakSeconds": 0,
+    "createdRunAt": "2026-10-07T01:22:40.624Z",
+    "homeTimeouts": 3,
+    "kickoffOrder": 1,
+    "strategyMode": "KNEEL",
+    "canonicalWeek": "W7",
+    "pendingPeriod": 0,
+    "teamPlayCount": [
+      64,
+      66
+    ],
+    "tvBreaksTaken": [
+      "Q1-450",
+      "Q1-285",
+      "Q1-150",
+      "Q1-120",
+      "Q2-450",
+      "Q2-300",
+      "Q2-120",
+      "Q3-450",
+      "Q3-285",
+      "Q3-150",
+      "Q3-120",
+      "Q4-450",
+      "Q4-300",
+      "Q4-120"
+    ],
+    "continuationOf": null,
+    "immutableFinal": true,
+    "operatorPaused": false,
+    "teamTopSeconds": [
+      1189,
+      1211
+    ],
+    "gameClockStatus": "STOPPED",
+    "playClockSeconds": 40,
+    "scoreboardSeconds": 0,
+    "powerSourceVersion": null,
+    "quarterLengthSeconds": 600,
+    "secondHalfTimeoutsReset": true
+  },
+  {
+    "id": "G0329",
+    "auto": false,
+    "away": {
+      "name": "East Carolina",
+      "record": ""
+    },
+    "date": "2026-10-06",
+    "down": 4,
+    "home": {
+      "name": "Southern Miss",
+      "record": ""
+    },
+    "notes": "",
+    "onAir": false,
+    "runId": "G0329-R01",
+    "speed": 1,
+    "locked": true,
+    "period": "4th",
+    "qaOnly": false,
+    "scores": {
+      "1": [
+        3,
+        3
+      ],
+      "2": [
+        10,
+        3
+      ],
+      "3": [
+        0,
+        3
+      ],
+      "4": [
+        7,
+        7
+      ]
+    },
+    "delayed": false,
+    "editing": false,
+    "kickoff": "7:00pm",
+    "matchup": "East Carolina at Southern Miss",
+    "network": "ESPN",
+    "neutral": false,
+    "quarter": 4,
+    "activity": "FINAL",
+    "awayCode": "ECU",
+    "awayRank": null,
+    "coinToss": {
+      "runId": "G0329-R01",
+      "choice": "RECEIVE",
+      "winnerTeamId": "Southern Miss",
+      "engineVersion": "GC-W7-V4.4.2-RC1",
+      "q3KickingTeamId": "Southern Miss",
+      "q3ReceivingTeamId": "East Carolina",
+      "openingKickingTeamId": "East Carolina",
+      "openingReceivingTeamId": "Southern Miss"
+    },
+    "distance": 13,
+    "fieldPos": 46,
+    "homeCode": "USM",
+    "homeRank": null,
+    "lastPlay": "Final corrected \u00b7 20-16 \u00b7 requires re-lock",
+    "dateLabel": "Tue 10/6",
+    "glSeconds": 8383,
+    "lifecycle": "READY",
+    "runNumber": 1,
+    "awayRecord": "1-4",
+    "breakLabel": "",
+    "homeRecord": "1-4",
+    "launchedAt": "2026-10-07T01:22:53.335Z",
+    "possession": 0,
+    "powerReady": true,
+    "seedLocked": true,
+    "completedAt": "2026-10-07T23:00:06.607Z",
+    "delayResume": null,
+    "kickoffZulu": "2026-10-06T23:00:00Z",
+    "tvStartZulu": null,
+    "activePeriod": "4",
+    "awayTimeouts": 3,
+    "breakSeconds": 0,
+    "createdRunAt": "2026-10-07T01:22:40.624Z",
+    "homeTimeouts": 0,
+    "kickoffOrder": 2,
+    "strategyMode": "KNEEL",
+    "canonicalWeek": "W7",
+    "pendingPeriod": 0,
+    "teamPlayCount": [
+      68,
+      51
+    ],
+    "tvBreaksTaken": [
+      "Q1-450",
+      "Q1-285",
+      "Q1-150",
+      "Q1-120",
+      "Q2-450",
+      "Q2-300",
+      "Q2-120",
+      "Q3-450",
+      "Q3-285",
+      "Q3-150",
+      "Q3-120",
+      "Q4-450",
+      "Q4-300",
+      "Q4-120"
+    ],
+    "continuationOf": null,
+    "immutableFinal": true,
+    "operatorPaused": false,
+    "teamTopSeconds": [
+      1418,
+      982
+    ],
+    "gameClockStatus": "STOPPED",
+    "playClockSeconds": 40,
+    "scoreboardSeconds": 0,
+    "powerSourceVersion": null,
+    "quarterLengthSeconds": 600,
+    "secondHalfTimeoutsReset": true
+  },
+  {
+    "id": "G0293",
+    "auto": false,
+    "away": {
+      "name": "Florida International",
+      "record": ""
+    },
+    "date": "2026-10-07",
+    "down": 4,
+    "home": {
+      "name": "Georgia Southern",
+      "record": ""
+    },
+    "notes": "",
+    "onAir": false,
+    "runId": "G0293-R01",
+    "speed": 1,
+    "locked": true,
+    "period": "4th",
+    "qaOnly": false,
+    "scores": {
+      "1": [
+        7,
+        0
+      ],
+      "2": [
+        7,
+        7
+      ],
+      "3": [
+        0,
+        0
+      ],
+      "4": [
+        7,
+        0
+      ]
+    },
+    "delayed": false,
+    "editing": false,
+    "kickoff": "7:00pm",
+    "matchup": "Florida International at Georgia Southern",
+    "network": "SEN",
+    "neutral": false,
+    "quarter": 4,
+    "activity": "FINAL",
+    "awayCode": "FIU",
+    "awayRank": null,
+    "coinToss": {
+      "runId": "G0293-R01",
+      "choice": "KICK",
+      "winnerTeamId": "Florida International",
+      "engineVersion": "GC-W7-V4.4.2-RC1",
+      "q3KickingTeamId": "Georgia Southern",
+      "q3ReceivingTeamId": "Florida International",
+      "openingKickingTeamId": "Florida International",
+      "openingReceivingTeamId": "Georgia Southern"
+    },
+    "distance": 13,
+    "fieldPos": 29,
+    "homeCode": "GASO",
+    "homeRank": null,
+    "lastPlay": "Regulation complete \u00b7 21-7 \u00b7 awaiting lock",
+    "dateLabel": "Wed 10/7",
+    "glSeconds": 7715,
+    "lifecycle": "READY",
+    "runNumber": 1,
+    "awayRecord": "1-3",
+    "breakLabel": "",
+    "homeRecord": "1-3",
+    "launchedAt": "2026-10-07T23:00:06.599Z",
+    "possession": 0,
+    "powerReady": true,
+    "seedLocked": true,
+    "completedAt": "2026-10-08T01:08:57.847Z",
+    "delayResume": null,
+    "kickoffZulu": "2026-10-07T23:00:00Z",
+    "tvStartZulu": null,
+    "activePeriod": "4",
+    "awayTimeouts": 3,
+    "breakSeconds": 0,
+    "createdRunAt": "2026-10-07T01:22:40.624Z",
+    "homeTimeouts": 0,
+    "kickoffOrder": 3,
+    "strategyMode": "KNEEL",
+    "canonicalWeek": "W7",
+    "pendingPeriod": 0,
+    "teamPlayCount": [
+      66,
+      60
+    ],
+    "tvBreaksTaken": [
+      "Q1-450",
+      "Q1-285",
+      "Q1-150",
+      "Q1-120",
+      "Q2-450",
+      "Q2-300",
+      "Q2-120",
+      "Q3-450",
+      "Q3-285",
+      "Q3-150",
+      "Q3-120",
+      "Q4-450",
+      "Q4-300",
+      "Q4-120"
+    ],
+    "continuationOf": null,
+    "immutableFinal": true,
+    "operatorPaused": false,
+    "teamTopSeconds": [
+      1388,
+      1012
+    ],
+    "gameClockStatus": "STOPPED",
+    "playClockSeconds": 40,
+    "scoreboardSeconds": 0,
+    "powerSourceVersion": null,
+    "quarterLengthSeconds": 600,
+    "secondHalfTimeoutsReset": true
+  },
+  {
+    "id": "G0299",
+    "auto": false,
+    "away": {
+      "name": "North Texas",
+      "record": ""
+    },
+    "date": "2026-10-07",
+    "down": 4,
+    "home": {
+      "name": "Louisiana Tech",
+      "record": ""
+    },
+    "notes": "",
+    "onAir": false,
+    "runId": "G0299-R01",
+    "speed": 1,
+    "locked": true,
+    "period": "4th",
+    "qaOnly": false,
+    "scores": {
+      "1": [
+        7,
+        3
+      ],
+      "2": [
+        7,
+        0
+      ],
+      "3": [
+        3,
+        13
+      ],
+      "4": [
+        10,
+        0
+      ]
+    },
+    "delayed": false,
+    "editing": false,
+    "kickoff": "7:00pm",
+    "matchup": "North Texas at Louisiana Tech",
+    "network": "ESPN",
+    "neutral": false,
+    "quarter": 4,
+    "activity": "FINAL",
+    "awayCode": "UNT",
+    "awayRank": null,
+    "coinToss": {
+      "runId": "G0299-R01",
+      "choice": "RECEIVE",
+      "winnerTeamId": "North Texas",
+      "engineVersion": "GC-W7-V4.4.2-RC1",
+      "q3KickingTeamId": "North Texas",
+      "q3ReceivingTeamId": "Louisiana Tech",
+      "openingKickingTeamId": "Louisiana Tech",
+      "openingReceivingTeamId": "North Texas"
+    },
+    "distance": 13,
+    "fieldPos": 84,
+    "homeCode": "LT",
+    "homeRank": null,
+    "lastPlay": "Regulation complete \u00b7 27-16 \u00b7 awaiting lock",
+    "dateLabel": "Wed 10/7",
+    "glSeconds": 12043,
+    "lifecycle": "READY",
+    "runNumber": 1,
+    "awayRecord": "2-3",
+    "breakLabel": "",
+    "homeRecord": "2-3",
+    "launchedAt": "2026-10-07T23:00:06.599Z",
+    "possession": 0,
+    "powerReady": true,
+    "seedLocked": true,
+    "completedAt": "2026-10-08T02:21:01.634Z",
+    "delayResume": null,
+    "kickoffZulu": "2026-10-07T23:00:00Z",
+    "tvStartZulu": null,
+    "activePeriod": "4",
+    "awayTimeouts": 3,
+    "breakSeconds": 0,
+    "createdRunAt": "2026-10-07T01:22:40.624Z",
+    "homeTimeouts": 0,
+    "kickoffOrder": 4,
+    "strategyMode": "KNEEL",
+    "canonicalWeek": "W7",
+    "pendingPeriod": 0,
+    "teamPlayCount": [
+      71,
+      53
+    ],
+    "tvBreaksTaken": [
+      "Q1-450",
+      "Q1-285",
+      "Q1-150",
+      "Q1-120",
+      "Q2-450",
+      "Q2-300",
+      "Q2-120",
+      "Q3-450",
+      "Q3-285",
+      "Q3-150",
+      "Q3-120",
+      "Q4-450",
+      "Q4-300",
+      "Q4-120"
+    ],
+    "continuationOf": null,
+    "immutableFinal": true,
+    "operatorPaused": false,
+    "teamTopSeconds": [
+      1378,
+      1022
+    ],
+    "gameClockStatus": "STOPPED",
+    "playClockSeconds": 40,
+    "scoreboardSeconds": 0,
+    "powerSourceVersion": null,
+    "quarterLengthSeconds": 600,
+    "secondHalfTimeoutsReset": true
+  },
+  {
+    "id": "G0300",
+    "auto": false,
+    "away": {
+      "name": "UTSA",
+      "record": ""
+    },
+    "date": "2026-10-08",
+    "down": 2,
+    "home": {
+      "name": "Memphis",
+      "record": ""
+    },
+    "notes": "",
+    "onAir": false,
+    "runId": "G0300-R01",
+    "speed": 1,
+    "locked": true,
+    "period": "4th",
+    "qaOnly": false,
+    "scores": {
+      "1": [
+        0,
+        21
+      ],
+      "2": [
+        7,
+        14
+      ],
+      "3": [
+        0,
+        14
+      ],
+      "4": [
+        3,
+        10
+      ]
+    },
+    "delayed": false,
+    "editing": false,
+    "kickoff": "7:30pm",
+    "matchup": "UTSA at Memphis",
+    "network": "SEN",
+    "neutral": false,
+    "quarter": 4,
+    "activity": "FINAL",
+    "awayCode": "UTSA",
+    "awayRank": null,
+    "coinToss": {
+      "runId": "G0300-R01",
+      "choice": "RECEIVE",
+      "winnerTeamId": "Memphis",
+      "engineVersion": "GC-W7-V4.4.2-RC1",
+      "q3KickingTeamId": "Memphis",
+      "q3ReceivingTeamId": "UTSA",
+      "openingKickingTeamId": "UTSA",
+      "openingReceivingTeamId": "Memphis"
+    },
+    "distance": 7,
+    "fieldPos": 66,
+    "homeCode": "MEM",
+    "homeRank": 24,
+    "lastPlay": "Regulation complete \u00b7 10-59 \u00b7 awaiting lock",
+    "dateLabel": "Thu 10/8",
+    "glSeconds": 7705,
+    "lifecycle": "READY",
+    "runNumber": 1,
+    "awayRecord": "2-2",
+    "breakLabel": "",
+    "homeRecord": "5-1",
+    "launchedAt": "2026-10-08T23:30:08.558Z",
+    "possession": 0,
+    "powerReady": true,
+    "seedLocked": true,
+    "completedAt": "2026-10-09T01:38:44.931Z",
+    "delayResume": null,
+    "kickoffZulu": "2026-10-08T23:30:00Z",
+    "tvStartZulu": null,
+    "activePeriod": "4",
+    "awayTimeouts": 0,
+    "breakSeconds": 0,
+    "createdRunAt": "2026-10-07T01:22:40.624Z",
+    "homeTimeouts": 3,
+    "kickoffOrder": 5,
+    "strategyMode": "DESPERATION",
+    "canonicalWeek": "W7",
+    "pendingPeriod": 0,
+    "teamPlayCount": [
+      58,
+      75
+    ],
+    "tvBreaksTaken": [
+      "Q1-450",
+      "Q1-285",
+      "Q1-150",
+      "Q1-120",
+      "Q2-450",
+      "Q2-300",
+      "Q2-120",
+      "Q3-450",
+      "Q3-285",
+      "Q3-150",
+      "Q3-120",
+      "Q4-450",
+      "Q4-300",
+      "Q4-120"
+    ],
+    "continuationOf": null,
+    "immutableFinal": true,
+    "operatorPaused": false,
+    "teamTopSeconds": [
+      1073,
+      1327
+    ],
+    "gameClockStatus": "STOPPED",
+    "playClockSeconds": 40,
+    "scoreboardSeconds": 0,
+    "powerSourceVersion": null,
+    "quarterLengthSeconds": 600,
+    "secondHalfTimeoutsReset": true
+  },
+  {
+    "id": "G0328",
+    "auto": false,
+    "away": {
+      "name": "Florida Atlantic",
+      "record": ""
+    },
+    "date": "2026-10-08",
+    "down": 4,
+    "home": {
+      "name": "South Florida",
+      "record": ""
+    },
+    "notes": "",
+    "onAir": false,
+    "runId": "G0328-R04",
+    "speed": 1,
+    "locked": true,
+    "period": "4th",
+    "qaOnly": false,
+    "scores": {
+      "1": [
+        7,
+        7
+      ],
+      "2": [
+        0,
+        14
+      ],
+      "3": [
+        7,
+        0
+      ],
+      "4": [
+        17,
+        14
+      ]
+    },
+    "delayed": false,
+    "editing": false,
+    "kickoff": "7:30pm",
+    "matchup": "Florida Atlantic at South Florida",
+    "network": "ESPN",
+    "neutral": false,
+    "quarter": 4,
+    "activity": "FINAL",
+    "awayCode": "FAU",
+    "awayRank": null,
+    "coinToss": {
+      "runId": "G0328-R01",
+      "choice": "KICK",
+      "winnerTeamId": "South Florida",
+      "engineVersion": "GC-W7-V4.4.2-RC1",
+      "q3KickingTeamId": "Florida Atlantic",
+      "q3ReceivingTeamId": "South Florida",
+      "openingKickingTeamId": "South Florida",
+      "openingReceivingTeamId": "Florida Atlantic"
+    },
+    "distance": 13,
+    "fieldPos": 52,
+    "homeCode": "USF",
+    "homeRank": null,
+    "lastPlay": "Regulation complete \u00b7 31-35 \u00b7 awaiting lock",
+    "dateLabel": "Thu 10/8",
+    "glSeconds": 7417,
+    "lifecycle": "READY",
+    "runNumber": 4,
+    "awayRecord": "3-2",
+    "breakLabel": "",
+    "homeRecord": "4-1",
+    "launchedAt": "2026-10-08T23:30:08.558Z",
+    "possession": 1,
+    "powerReady": true,
+    "seedLocked": true,
+    "completedAt": "2026-10-09T01:33:59.644Z",
+    "delayResume": null,
+    "kickoffZulu": "2026-10-08T23:30:00Z",
+    "tvStartZulu": null,
+    "activePeriod": "4",
+    "awayTimeouts": 0,
+    "breakSeconds": 0,
+    "createdRunAt": "2026-10-07T01:22:40.624Z",
+    "homeTimeouts": 3,
+    "kickoffOrder": 6,
+    "strategyMode": "KNEEL",
+    "canonicalWeek": "W7",
+    "pendingPeriod": 0,
+    "teamPlayCount": [
+      60,
+      67
+    ],
+    "tvBreaksTaken": [
+      "Q1-450",
+      "Q1-285",
+      "Q1-150",
+      "Q1-120",
+      "Q2-450",
+      "Q2-300",
+      "Q2-120",
+      "Q3-450",
+      "Q3-285",
+      "Q3-150",
+      "Q3-120",
+      "Q4-450",
+      "Q4-300",
+      "Q4-120"
+    ],
+    "continuationOf": "G0328-R03",
+    "immutableFinal": true,
+    "operatorPaused": false,
+    "teamTopSeconds": [
+      1199,
+      1201
+    ],
+    "gameClockStatus": "STOPPED",
+    "playClockSeconds": 40,
+    "scoreboardSeconds": 0,
+    "powerSourceVersion": null,
+    "quarterLengthSeconds": 600,
+    "secondHalfTimeoutsReset": true
+  },
+  {
+    "id": "G0298",
+    "auto": false,
+    "away": {
+      "name": "Florida State",
+      "record": ""
+    },
+    "date": "2026-10-09",
+    "down": 4,
+    "home": {
+      "name": "Louisville",
+      "record": ""
+    },
+    "notes": "",
+    "onAir": false,
+    "runId": "G0298-R02",
+    "speed": 1,
+    "locked": true,
+    "period": "4th",
+    "qaOnly": false,
+    "scores": {
+      "1": [
+        14,
+        7
+      ],
+      "2": [
+        0,
+        14
+      ],
+      "3": [
+        0,
+        7
+      ],
+      "4": [
+        7,
+        17
+      ]
+    },
+    "delayed": false,
+    "editing": false,
+    "kickoff": "8:00pm",
+    "matchup": "Florida State at Louisville",
+    "network": "EBC",
+    "neutral": false,
+    "quarter": 4,
+    "activity": "FINAL",
+    "awayCode": "FSU",
+    "awayRank": null,
+    "coinToss": {
+      "runId": "G0298-R01",
+      "choice": "KICK",
+      "winnerTeamId": "Louisville",
+      "engineVersion": "GC-W7-V4.4.2-RC1",
+      "q3KickingTeamId": "Florida State",
+      "q3ReceivingTeamId": "Louisville",
+      "openingKickingTeamId": "Louisville",
+      "openingReceivingTeamId": "Florida State"
+    },
+    "distance": 13,
+    "fieldPos": 65,
+    "homeCode": "LOU",
+    "homeRank": null,
+    "lastPlay": "Final corrected \u00b7 21-45 \u00b7 requires re-lock",
+    "dateLabel": "Fri 10/9",
+    "glSeconds": 7286,
+    "lifecycle": "READY",
+    "runNumber": 2,
+    "awayRecord": "3-2",
+    "breakLabel": "",
+    "homeRecord": "1-3",
+    "launchedAt": "2026-10-10T00:08:10.482Z",
+    "possession": 1,
+    "powerReady": true,
+    "seedLocked": true,
+    "completedAt": "2026-10-10T02:09:46.828Z",
+    "delayResume": null,
+    "kickoffZulu": "2026-10-10T00:00:00Z",
+    "tvStartZulu": null,
+    "activePeriod": "4",
+    "awayTimeouts": 0,
+    "breakSeconds": 0,
+    "createdRunAt": "2026-10-07T01:22:40.624Z",
+    "homeTimeouts": 3,
+    "kickoffOrder": 7,
+    "strategyMode": "KNEEL",
+    "canonicalWeek": "W7",
+    "pendingPeriod": 0,
+    "teamPlayCount": [
+      57,
+      60
+    ],
+    "tvBreaksTaken": [
+      "Q1-450",
+      "Q1-285",
+      "Q1-150",
+      "Q1-120",
+      "Q2-450",
+      "Q2-300",
+      "Q2-120",
+      "Q3-450",
+      "Q3-285",
+      "Q3-150",
+      "Q3-120",
+      "Q4-450",
+      "Q4-300",
+      "Q4-120"
+    ],
+    "continuationOf": "G0298-R01",
+    "immutableFinal": true,
+    "operatorPaused": false,
+    "teamTopSeconds": [
+      1148,
+      1252
+    ],
+    "gameClockStatus": "STOPPED",
+    "playClockSeconds": 40,
+    "scoreboardSeconds": 0,
+    "powerSourceVersion": null,
+    "quarterLengthSeconds": 600,
+    "secondHalfTimeoutsReset": true
+  },
+  {
+    "id": "G0335",
+    "auto": false,
+    "away": {
+      "name": "Iowa",
+      "record": ""
+    },
+    "date": "2026-10-09",
+    "down": 2,
+    "home": {
+      "name": "Washington",
+      "record": ""
+    },
+    "notes": "",
+    "onAir": false,
+    "runId": "G0335-R03",
+    "speed": 1,
+    "locked": true,
+    "period": "4th",
+    "qaOnly": false,
+    "scores": {
+      "1": [
+        3,
+        0
+      ],
+      "2": [
+        0,
+        10
+      ],
+      "3": [
+        16,
+        0
+      ],
+      "4": [
+        21,
+        15
+      ]
+    },
+    "delayed": false,
+    "editing": false,
+    "kickoff": "8:00pm",
+    "matchup": "Iowa at Washington",
+    "network": "Fox",
+    "neutral": false,
+    "quarter": 4,
+    "activity": "FINAL",
+    "awayCode": "IOWA",
+    "awayRank": 23,
+    "coinToss": {
+      "runId": "G0335-R01",
+      "choice": "KICK",
+      "winnerTeamId": "Iowa",
+      "engineVersion": "GC-W7-V4.4.2-RC1",
+      "q3KickingTeamId": "Washington",
+      "q3ReceivingTeamId": "Iowa",
+      "openingKickingTeamId": "Iowa",
+      "openingReceivingTeamId": "Washington"
+    },
+    "distance": 11,
+    "fieldPos": 36,
+    "homeCode": "WASH",
+    "homeRank": null,
+    "lastPlay": "Final corrected \u00b7 40-25 \u00b7 requires re-lock",
+    "dateLabel": "Fri 10/9",
+    "glSeconds": 7785,
+    "lifecycle": "READY",
+    "runNumber": 3,
+    "awayRecord": "3-1",
+    "breakLabel": "",
+    "homeRecord": "2-2",
+    "launchedAt": "2026-10-10T00:04:10.308Z",
+    "possession": 0,
+    "powerReady": true,
+    "seedLocked": true,
+    "completedAt": "2026-10-10T02:13:32.263Z",
+    "delayResume": null,
+    "kickoffZulu": "2026-10-10T00:00:00Z",
+    "tvStartZulu": null,
+    "activePeriod": "4",
+    "awayTimeouts": 3,
+    "breakSeconds": 0,
+    "createdRunAt": "2026-10-07T01:22:40.624Z",
+    "homeTimeouts": 0,
+    "kickoffOrder": 8,
+    "strategyMode": "KNEEL",
+    "canonicalWeek": "W7",
+    "pendingPeriod": 0,
+    "teamPlayCount": [
+      70,
+      65
+    ],
+    "tvBreaksTaken": [
+      "Q1-450",
+      "Q1-285",
+      "Q1-150",
+      "Q1-120",
+      "Q2-450",
+      "Q2-300",
+      "Q2-120",
+      "Q3-450",
+      "Q3-285",
+      "Q3-150",
+      "Q3-120",
+      "Q4-450",
+      "Q4-300",
+      "Q4-120"
+    ],
+    "continuationOf": "G0335-R02",
+    "immutableFinal": true,
+    "operatorPaused": false,
+    "teamTopSeconds": [
+      1253,
+      1147
+    ],
+    "gameClockStatus": "STOPPED",
+    "playClockSeconds": 40,
+    "scoreboardSeconds": 0,
+    "powerSourceVersion": null,
+    "quarterLengthSeconds": 600,
+    "secondHalfTimeoutsReset": true
+  },
+  {
+    "id": "G0288",
+    "auto": false,
+    "away": {
+      "name": "Iowa State",
+      "record": ""
+    },
+    "date": "2026-10-09",
+    "down": 2,
+    "home": {
+      "name": "BYU",
+      "record": ""
+    },
+    "notes": "",
+    "onAir": false,
+    "runId": "G0288-R03",
+    "speed": 1,
+    "locked": true,
+    "period": "4th",
+    "qaOnly": false,
+    "scores": {
+      "1": [
+        0,
+        7
+      ],
+      "2": [
+        0,
+        0
+      ],
+      "3": [
+        0,
+        7
+      ],
+      "4": [
+        10,
+        10
+      ]
+    },
+    "delayed": false,
+    "editing": false,
+    "kickoff": "9:00pm",
+    "matchup": "Iowa State at BYU",
+    "network": "ESPN",
+    "neutral": false,
+    "quarter": 4,
+    "activity": "FINAL",
+    "awayCode": "ISU",
+    "awayRank": null,
+    "coinToss": {
+      "runId": "G0288-R01",
+      "choice": "KICK",
+      "winnerTeamId": "Iowa State",
+      "engineVersion": "GC-W7-V4.4.2-RC1",
+      "q3KickingTeamId": "BYU",
+      "q3ReceivingTeamId": "Iowa State",
+      "openingKickingTeamId": "Iowa State",
+      "openingReceivingTeamId": "BYU"
+    },
+    "distance": 11,
+    "fieldPos": 58,
+    "homeCode": "BYU",
+    "homeRank": 9,
+    "lastPlay": "Final corrected \u00b7 10-24 \u00b7 requires re-lock",
+    "dateLabel": "Fri 10/9",
+    "glSeconds": 11500,
+    "lifecycle": "READY",
+    "runNumber": 3,
+    "awayRecord": "2-2",
+    "breakLabel": "",
+    "homeRecord": "4-0",
+    "launchedAt": "2026-10-10T01:04:13.274Z",
+    "possession": 1,
+    "powerReady": true,
+    "seedLocked": true,
+    "completedAt": "2026-10-10T04:16:23.821Z",
+    "delayResume": null,
+    "kickoffZulu": "2026-10-10T01:00:00Z",
+    "tvStartZulu": null,
+    "activePeriod": "4",
+    "awayTimeouts": 0,
+    "breakSeconds": 0,
+    "createdRunAt": "2026-10-07T01:22:40.624Z",
+    "homeTimeouts": 3,
+    "kickoffOrder": 9,
+    "strategyMode": "KNEEL",
+    "canonicalWeek": "W7",
+    "pendingPeriod": 0,
+    "teamPlayCount": [
+      50,
+      71
+    ],
+    "tvBreaksTaken": [
+      "Q1-450",
+      "Q1-285",
+      "Q1-150",
+      "Q1-120",
+      "Q2-450",
+      "Q2-300",
+      "Q2-120",
+      "Q3-450",
+      "Q3-285",
+      "Q3-150",
+      "Q3-120",
+      "Q4-450",
+      "Q4-300",
+      "Q4-120"
+    ],
+    "continuationOf": "G0288-R02",
+    "immutableFinal": true,
+    "operatorPaused": false,
+    "teamTopSeconds": [
+      827,
+      1465
+    ],
+    "gameClockStatus": "STOPPED",
+    "playClockSeconds": 40,
+    "scoreboardSeconds": 0,
+    "powerSourceVersion": null,
+    "quarterLengthSeconds": 600,
+    "secondHalfTimeoutsReset": true
+  },
+  {
+    "id": "G0331",
+    "auto": false,
+    "away": {
+      "name": "Kansas",
+      "record": ""
+    },
+    "date": "2026-10-09",
+    "down": 4,
+    "home": {
+      "name": "Utah",
+      "record": ""
+    },
+    "notes": "",
+    "onAir": false,
+    "runId": "G0331-R01",
+    "speed": 1,
+    "locked": true,
+    "period": "4th",
+    "qaOnly": false,
+    "scores": {
+      "1": [
+        0,
+        21
+      ],
+      "2": [
+        7,
+        14
+      ],
+      "3": [
+        0,
+        14
+      ],
+      "4": [
+        0,
+        21
+      ]
+    },
+    "delayed": false,
+    "editing": false,
+    "kickoff": "9:00pm",
+    "matchup": "Kansas at Utah",
+    "network": "SEN",
+    "neutral": false,
+    "quarter": 4,
+    "activity": "FINAL",
+    "awayCode": "KU",
+    "awayRank": null,
+    "coinToss": {
+      "runId": "G0331-R01",
+      "choice": "KICK",
+      "winnerTeamId": "Kansas",
+      "engineVersion": "GC-W7-V4.4.2-RC1",
+      "q3KickingTeamId": "Utah",
+      "q3ReceivingTeamId": "Kansas",
+      "openingKickingTeamId": "Kansas",
+      "openingReceivingTeamId": "Utah"
+    },
+    "distance": 13,
+    "fieldPos": 87,
+    "homeCode": "UTAH",
+    "homeRank": 14,
+    "lastPlay": "Regulation complete \u00b7 7-70 \u00b7 awaiting lock",
+    "dateLabel": "Fri 10/9",
+    "glSeconds": 7901,
+    "lifecycle": "READY",
+    "runNumber": 1,
+    "awayRecord": "0-4",
+    "breakLabel": "",
+    "homeRecord": "4-0",
+    "launchedAt": "2026-10-10T01:04:13.274Z",
+    "possession": 1,
+    "powerReady": true,
+    "seedLocked": true,
+    "completedAt": "2026-10-10T03:16:20.868Z",
+    "delayResume": null,
+    "kickoffZulu": "2026-10-10T01:00:00Z",
+    "tvStartZulu": null,
+    "activePeriod": "4",
+    "awayTimeouts": 0,
+    "breakSeconds": 0,
+    "createdRunAt": "2026-10-07T01:22:40.624Z",
+    "homeTimeouts": 3,
+    "kickoffOrder": 10,
+    "strategyMode": "KNEEL",
+    "canonicalWeek": "W7",
+    "pendingPeriod": 0,
+    "teamPlayCount": [
+      52,
+      82
+    ],
+    "tvBreaksTaken": [
+      "Q1-450",
+      "Q1-285",
+      "Q1-150",
+      "Q1-120",
+      "Q2-450",
+      "Q2-300",
+      "Q2-120",
+      "Q3-450",
+      "Q3-285",
+      "Q3-150",
+      "Q3-120",
+      "Q4-450",
+      "Q4-300",
+      "Q4-120"
+    ],
+    "continuationOf": null,
+    "immutableFinal": true,
+    "operatorPaused": false,
+    "teamTopSeconds": [
+      906,
+      1494
+    ],
+    "gameClockStatus": "STOPPED",
+    "playClockSeconds": 40,
+    "scoreboardSeconds": 0,
+    "powerSourceVersion": null,
+    "quarterLengthSeconds": 600,
+    "secondHalfTimeoutsReset": true
+  },
+  {
+    "id": "G0320",
+    "auto": false,
+    "away": {
+      "name": "Wyoming",
+      "record": ""
+    },
+    "date": "2026-10-09",
+    "down": 1,
+    "home": {
+      "name": "San Jose State",
+      "record": ""
+    },
+    "notes": "",
+    "onAir": false,
+    "runId": "G0320-R09",
+    "speed": 1,
+    "locked": true,
+    "period": "4th",
+    "qaOnly": false,
+    "scores": {
+      "1": [
+        0,
+        2
+      ],
+      "2": [
+        6,
+        0
+      ],
+      "3": [
+        0,
+        7
+      ],
+      "4": [
+        10,
+        7
+      ],
+      "OT": [
+        3,
+        0
+      ]
+    },
+    "delayed": false,
+    "editing": false,
+    "kickoff": "10:00pm",
+    "matchup": "Wyoming at San Jose State",
+    "network": "CBSSN",
+    "neutral": false,
+    "quarter": 4,
+    "activity": "FINAL",
+    "awayCode": "WYO",
+    "awayRank": null,
+    "coinToss": {
+      "runId": "G0320-R01",
+      "choice": "KICK",
+      "winnerTeamId": "San Jose State",
+      "engineVersion": "GC-W7-V4.4.2-RC1",
+      "q3KickingTeamId": "Wyoming",
+      "q3ReceivingTeamId": "San Jose State",
+      "openingKickingTeamId": "San Jose State",
+      "openingReceivingTeamId": "Wyoming"
+    },
+    "distance": 10,
+    "fieldPos": 36,
+    "homeCode": "SJSU",
+    "homeRank": null,
+    "lastPlay": "Regulation complete \u00b7 19-16 \u00b7 awaiting lock",
+    "dateLabel": "Fri 10/9",
+    "glSeconds": 8412,
+    "lifecycle": "READY",
+    "runNumber": 9,
+    "awayRecord": "1-3",
+    "breakLabel": "",
+    "homeRecord": "3-2",
+    "launchedAt": "2026-10-10T02:04:01.510Z",
+    "possession": 0,
+    "powerReady": true,
+    "seedLocked": true,
+    "completedAt": "2026-10-10T04:24:39.173Z",
+    "delayResume": null,
+    "kickoffZulu": "2026-10-10T02:00:00Z",
+    "tvStartZulu": null,
+    "activePeriod": "4",
+    "awayTimeouts": 1,
+    "breakSeconds": 0,
+    "createdRunAt": "2026-10-07T01:22:40.625Z",
+    "homeTimeouts": 1,
+    "kickoffOrder": 11,
+    "strategyMode": "FOUR_MINUTE",
+    "canonicalWeek": "W7",
+    "pendingPeriod": 0,
+    "teamPlayCount": [
+      52,
+      68
+    ],
+    "tvBreaksTaken": [
+      "Q1-450",
+      "Q1-285",
+      "Q1-150",
+      "Q1-120",
+      "Q2-450",
+      "Q2-300",
+      "Q2-120",
+      "Q3-450",
+      "Q3-285",
+      "Q3-150",
+      "Q3-120",
+      "Q4-450",
+      "Q4-300"
+    ],
+    "continuationOf": "G0320-R08",
+    "immutableFinal": true,
+    "operatorPaused": false,
+    "teamTopSeconds": [
+      957,
+      1335
+    ],
+    "gameClockStatus": "STOPPED",
+    "playClockSeconds": 40,
+    "scoreboardSeconds": 0,
+    "powerSourceVersion": null,
+    "quarterLengthSeconds": 600,
+    "secondHalfTimeoutsReset": true
+  },
+  {
+    "id": "G0330",
+    "auto": false,
+    "away": {
+      "name": "Washington State",
+      "record": ""
+    },
+    "date": "2026-10-09",
+    "down": 1,
+    "home": {
+      "name": "Utah State",
+      "record": ""
+    },
+    "notes": "",
+    "onAir": false,
+    "runId": "G0330-R04",
+    "speed": 1,
+    "locked": true,
+    "period": "3rd",
+    "qaOnly": false,
+    "scores": {
+      "1": [
+        6,
+        10
+      ],
+      "2": [
+        10,
+        7
+      ],
+      "3": [
+        0,
+        0
+      ],
+      "4": [
+        0,
+        0
+      ]
+    },
+    "delayed": false,
+    "editing": false,
+    "kickoff": "11:59pm",
+    "matchup": "Washington State at Utah State",
+    "network": "SEN",
+    "neutral": false,
+    "quarter": 3,
+    "activity": "FINAL",
+    "awayCode": "WSU",
+    "awayRank": null,
+    "coinToss": {
+      "runId": "G0330-R01",
+      "choice": "KICK",
+      "winnerTeamId": "Washington State",
+      "engineVersion": "GC-W7-V4.4.2-RC1",
+      "q3KickingTeamId": "Utah State",
+      "q3ReceivingTeamId": "Washington State",
+      "openingKickingTeamId": "Washington State",
+      "openingReceivingTeamId": "Utah State"
+    },
+    "distance": 10,
+    "fieldPos": 25,
+    "homeCode": "USU",
+    "homeRank": null,
+    "lastPlay": "Final corrected \u00b7 16-17 \u00b7 requires re-lock",
+    "dateLabel": "Fri 10/9",
+    "glSeconds": 5638,
+    "lifecycle": "READY",
+    "runNumber": 4,
+    "awayRecord": "1-4",
+    "breakLabel": "",
+    "homeRecord": "2-3",
+    "launchedAt": "2026-10-10T03:24:55.823Z",
+    "possession": 0,
+    "powerReady": true,
+    "seedLocked": true,
+    "completedAt": "2026-10-10T04:59:09.398Z",
+    "delayResume": null,
+    "kickoffZulu": "2026-10-10T03:59:00Z",
+    "tvStartZulu": null,
+    "activePeriod": "3",
+    "awayTimeouts": 3,
+    "breakSeconds": 0,
+    "createdRunAt": "2026-10-07T01:22:40.625Z",
+    "homeTimeouts": 3,
+    "kickoffOrder": 12,
+    "strategyMode": "NORMAL",
+    "canonicalWeek": "W7",
+    "pendingPeriod": 0,
+    "teamPlayCount": [
+      26,
+      47
+    ],
+    "tvBreaksTaken": [
+      "Q1-450",
+      "Q1-285",
+      "Q1-150",
+      "Q1-120",
+      "Q2-450",
+      "Q2-300",
+      "Q2-120",
+      "Q3-450"
+    ],
+    "continuationOf": "G0330-R03",
+    "immutableFinal": true,
+    "operatorPaused": false,
+    "teamTopSeconds": [
+      476,
+      945
+    ],
+    "gameClockStatus": "STOPPED",
+    "playClockSeconds": 40,
+    "scoreboardSeconds": 379,
+    "powerSourceVersion": null,
+    "quarterLengthSeconds": 600,
+    "secondHalfTimeoutsReset": true
+  },
+  {
+    "id": "G0294",
+    "auto": false,
+    "away": {
+      "name": "Buffalo",
+      "record": ""
+    },
+    "date": "2026-10-09",
+    "down": 3,
+    "home": {
+      "name": "Georgia State",
+      "record": ""
+    },
+    "notes": "Owner-approved move from Sat 10/10 2:10pm ET to Fri 10/9 7:00pm ET",
+    "onAir": false,
+    "runId": "G0294-R01",
+    "speed": 1,
+    "locked": true,
+    "period": "4th",
+    "qaOnly": false,
+    "scores": {
+      "1": [
+        7,
+        14
+      ],
+      "2": [
+        0,
+        14
+      ],
+      "3": [
+        14,
+        14
+      ],
+      "4": [
+        0,
+        14
+      ]
+    },
+    "delayed": false,
+    "editing": false,
+    "kickoff": "7:00pm",
+    "matchup": "Buffalo at Georgia State",
+    "network": "SEN",
+    "neutral": false,
+    "quarter": 4,
+    "activity": "FINAL",
+    "awayCode": "BUFF",
+    "awayRank": null,
+    "coinToss": {
+      "runId": "G0294-R01",
+      "choice": "KICK",
+      "winnerTeamId": "Buffalo",
+      "engineVersion": "GC-W7-V4.4.2-RC1",
+      "q3KickingTeamId": "Georgia State",
+      "q3ReceivingTeamId": "Buffalo",
+      "openingKickingTeamId": "Buffalo",
+      "openingReceivingTeamId": "Georgia State"
+    },
+    "distance": 12,
+    "fieldPos": 26,
+    "homeCode": "GAST",
+    "homeRank": null,
+    "lastPlay": "Regulation complete \u00b7 21-56 \u00b7 awaiting lock",
+    "dateLabel": "Fri 10/9",
+    "glSeconds": 7669,
+    "lifecycle": "READY",
+    "runNumber": 1,
+    "awayRecord": "2-3",
+    "breakLabel": "",
+    "homeRecord": "4-1",
+    "launchedAt": "2026-10-09T22:41:33.305Z",
+    "possession": 1,
+    "powerReady": true,
+    "seedLocked": true,
+    "completedAt": "2026-10-10T00:52:40.665Z",
+    "delayResume": null,
+    "kickoffZulu": "2026-10-09T23:00:00Z",
+    "tvStartZulu": null,
+    "activePeriod": "4",
+    "awayTimeouts": 0,
+    "breakSeconds": 0,
+    "createdRunAt": "2026-10-07T01:22:40.625Z",
+    "homeTimeouts": 3,
+    "kickoffOrder": 28,
+    "strategyMode": "KNEEL",
+    "canonicalWeek": "W7",
+    "pendingPeriod": 0,
+    "teamPlayCount": [
+      56,
+      73
+    ],
+    "tvBreaksTaken": [
+      "Q1-450",
+      "Q1-285",
+      "Q1-150",
+      "Q1-120",
+      "Q2-450",
+      "Q2-300",
+      "Q2-120",
+      "Q3-450",
+      "Q3-285",
+      "Q3-150",
+      "Q3-120",
+      "Q4-450",
+      "Q4-300",
+      "Q4-120"
+    ],
+    "continuationOf": null,
+    "immutableFinal": true,
+    "operatorPaused": false,
+    "teamTopSeconds": [
+      1026,
+      1374
+    ],
+    "gameClockStatus": "STOPPED",
+    "playClockSeconds": 40,
+    "scoreboardSeconds": 0,
+    "powerSourceVersion": null,
+    "quarterLengthSeconds": 600,
+    "secondHalfTimeoutsReset": true
+  }
+]
