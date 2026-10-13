@@ -1,0 +1,2594 @@
+{
+  "classification": "TEST RESULT",
+  "seedsPerGame": 100,
+  "games": 41,
+  "runsPerVersion": 4100,
+  "changedHistories": 431,
+  "unchangedHistories": 3669,
+  "unchangedLowScoreFixtures": 87,
+  "pairedExecutionMs": {
+    "mean": 1.2631907426829343,
+    "p50": 1.1794499999996333,
+    "p90": 1.5423869999999624
+  },
+  "observedConference35": 7,
+  "syntheticBaselineBoardsAtLeastObserved": 69,
+  "baselineBoardCounts": [
+    {
+      "conference35": 10,
+      "conference28": 13
+    },
+    {
+      "conference35": 3,
+      "conference28": 9
+    },
+    {
+      "conference35": 9,
+      "conference28": 14
+    },
+    {
+      "conference35": 10,
+      "conference28": 15
+    },
+    {
+      "conference35": 7,
+      "conference28": 13
+    },
+    {
+      "conference35": 4,
+      "conference28": 11
+    },
+    {
+      "conference35": 8,
+      "conference28": 12
+    },
+    {
+      "conference35": 8,
+      "conference28": 14
+    },
+    {
+      "conference35": 9,
+      "conference28": 11
+    },
+    {
+      "conference35": 12,
+      "conference28": 15
+    },
+    {
+      "conference35": 5,
+      "conference28": 10
+    },
+    {
+      "conference35": 7,
+      "conference28": 14
+    },
+    {
+      "conference35": 6,
+      "conference28": 10
+    },
+    {
+      "conference35": 8,
+      "conference28": 10
+    },
+    {
+      "conference35": 9,
+      "conference28": 13
+    },
+    {
+      "conference35": 5,
+      "conference28": 11
+    },
+    {
+      "conference35": 8,
+      "conference28": 16
+    },
+    {
+      "conference35": 6,
+      "conference28": 11
+    },
+    {
+      "conference35": 7,
+      "conference28": 13
+    },
+    {
+      "conference35": 8,
+      "conference28": 14
+    },
+    {
+      "conference35": 9,
+      "conference28": 14
+    },
+    {
+      "conference35": 10,
+      "conference28": 13
+    },
+    {
+      "conference35": 9,
+      "conference28": 15
+    },
+    {
+      "conference35": 10,
+      "conference28": 16
+    },
+    {
+      "conference35": 7,
+      "conference28": 13
+    },
+    {
+      "conference35": 8,
+      "conference28": 13
+    },
+    {
+      "conference35": 11,
+      "conference28": 13
+    },
+    {
+      "conference35": 7,
+      "conference28": 12
+    },
+    {
+      "conference35": 12,
+      "conference28": 15
+    },
+    {
+      "conference35": 10,
+      "conference28": 13
+    },
+    {
+      "conference35": 9,
+      "conference28": 14
+    },
+    {
+      "conference35": 6,
+      "conference28": 9
+    },
+    {
+      "conference35": 4,
+      "conference28": 11
+    },
+    {
+      "conference35": 6,
+      "conference28": 9
+    },
+    {
+      "conference35": 6,
+      "conference28": 16
+    },
+    {
+      "conference35": 11,
+      "conference28": 13
+    },
+    {
+      "conference35": 9,
+      "conference28": 15
+    },
+    {
+      "conference35": 8,
+      "conference28": 13
+    },
+    {
+      "conference35": 6,
+      "conference28": 8
+    },
+    {
+      "conference35": 9,
+      "conference28": 14
+    },
+    {
+      "conference35": 10,
+      "conference28": 14
+    },
+    {
+      "conference35": 5,
+      "conference28": 7
+    },
+    {
+      "conference35": 7,
+      "conference28": 10
+    },
+    {
+      "conference35": 13,
+      "conference28": 15
+    },
+    {
+      "conference35": 10,
+      "conference28": 13
+    },
+    {
+      "conference35": 4,
+      "conference28": 8
+    },
+    {
+      "conference35": 11,
+      "conference28": 13
+    },
+    {
+      "conference35": 6,
+      "conference28": 11
+    },
+    {
+      "conference35": 5,
+      "conference28": 11
+    },
+    {
+      "conference35": 6,
+      "conference28": 15
+    },
+    {
+      "conference35": 5,
+      "conference28": 8
+    },
+    {
+      "conference35": 8,
+      "conference28": 17
+    },
+    {
+      "conference35": 10,
+      "conference28": 12
+    },
+    {
+      "conference35": 9,
+      "conference28": 13
+    },
+    {
+      "conference35": 10,
+      "conference28": 12
+    },
+    {
+      "conference35": 8,
+      "conference28": 11
+    },
+    {
+      "conference35": 10,
+      "conference28": 16
+    },
+    {
+      "conference35": 10,
+      "conference28": 15
+    },
+    {
+      "conference35": 7,
+      "conference28": 15
+    },
+    {
+      "conference35": 9,
+      "conference28": 12
+    },
+    {
+      "conference35": 9,
+      "conference28": 16
+    },
+    {
+      "conference35": 6,
+      "conference28": 9
+    },
+    {
+      "conference35": 11,
+      "conference28": 14
+    },
+    {
+      "conference35": 9,
+      "conference28": 16
+    },
+    {
+      "conference35": 6,
+      "conference28": 8
+    },
+    {
+      "conference35": 6,
+      "conference28": 9
+    },
+    {
+      "conference35": 9,
+      "conference28": 18
+    },
+    {
+      "conference35": 10,
+      "conference28": 14
+    },
+    {
+      "conference35": 7,
+      "conference28": 14
+    },
+    {
+      "conference35": 10,
+      "conference28": 17
+    },
+    {
+      "conference35": 6,
+      "conference28": 12
+    },
+    {
+      "conference35": 10,
+      "conference28": 14
+    },
+    {
+      "conference35": 6,
+      "conference28": 13
+    },
+    {
+      "conference35": 5,
+      "conference28": 14
+    },
+    {
+      "conference35": 8,
+      "conference28": 14
+    },
+    {
+      "conference35": 7,
+      "conference28": 16
+    },
+    {
+      "conference35": 6,
+      "conference28": 12
+    },
+    {
+      "conference35": 10,
+      "conference28": 14
+    },
+    {
+      "conference35": 6,
+      "conference28": 14
+    },
+    {
+      "conference35": 6,
+      "conference28": 9
+    },
+    {
+      "conference35": 4,
+      "conference28": 7
+    },
+    {
+      "conference35": 9,
+      "conference28": 13
+    },
+    {
+      "conference35": 9,
+      "conference28": 11
+    },
+    {
+      "conference35": 10,
+      "conference28": 13
+    },
+    {
+      "conference35": 7,
+      "conference28": 10
+    },
+    {
+      "conference35": 11,
+      "conference28": 14
+    },
+    {
+      "conference35": 4,
+      "conference28": 6
+    },
+    {
+      "conference35": 3,
+      "conference28": 10
+    },
+    {
+      "conference35": 5,
+      "conference28": 13
+    },
+    {
+      "conference35": 8,
+      "conference28": 13
+    },
+    {
+      "conference35": 8,
+      "conference28": 12
+    },
+    {
+      "conference35": 7,
+      "conference28": 15
+    },
+    {
+      "conference35": 8,
+      "conference28": 10
+    },
+    {
+      "conference35": 9,
+      "conference28": 15
+    },
+    {
+      "conference35": 11,
+      "conference28": 14
+    },
+    {
+      "conference35": 12,
+      "conference28": 16
+    },
+    {
+      "conference35": 8,
+      "conference28": 15
+    },
+    {
+      "conference35": 7,
+      "conference28": 14
+    },
+    {
+      "conference35": 4,
+      "conference28": 10
+    },
+    {
+      "conference35": 8,
+      "conference28": 14
+    }
+  ],
+  "gamesIndividually": [
+    {
+      "id": "G0285",
+      "away": "Tennessee",
+      "home": "Arkansas",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 90,
+          "offense": 90,
+          "defense": 90,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 76,
+          "offense": 74,
+          "defense": 78,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        63,
+        0
+      ],
+      "archive": [
+        24,
+        17
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 35.76,
+        "p50": 38,
+        "p90": 53
+      },
+      "baselineTotal": {
+        "mean": 52.1,
+        "p50": 52,
+        "p90": 69
+      },
+      "candidateMargin": {
+        "mean": 35.37,
+        "p50": 36,
+        "p90": 53
+      },
+      "baseline35": 57
+    },
+    {
+      "id": "G0290",
+      "away": "Colorado State",
+      "home": "Colorado",
+      "conference": false,
+      "ratings": {
+        "away": {
+          "overall": 73,
+          "offense": 79,
+          "defense": 67,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 74,
+          "offense": 70,
+          "defense": 78,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        24,
+        28
+      ],
+      "archive": [
+        21,
+        29
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 18.16,
+        "p50": 18,
+        "p90": 32
+      },
+      "baselineTotal": {
+        "mean": 46.92,
+        "p50": 48,
+        "p90": 62
+      },
+      "candidateMargin": {
+        "mean": 18.54,
+        "p50": 18,
+        "p90": 32
+      },
+      "baseline35": 8
+    },
+    {
+      "id": "G0295",
+      "away": "Duke",
+      "home": "Georgia Tech",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 87,
+          "offense": 85,
+          "defense": 89,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 78,
+          "offense": 77,
+          "defense": 79,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        21,
+        10
+      ],
+      "archive": [
+        14,
+        17
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 32.7,
+        "p50": 32,
+        "p90": 49
+      },
+      "baselineTotal": {
+        "mean": 45.64,
+        "p50": 48,
+        "p90": 56
+      },
+      "candidateMargin": {
+        "mean": 31.96,
+        "p50": 32,
+        "p90": 49
+      },
+      "baseline35": 46
+    },
+    {
+      "id": "G0296",
+      "away": "Miami",
+      "home": "Holy Cross",
+      "conference": false,
+      "ratings": {
+        "away": {
+          "overall": 97,
+          "offense": 99,
+          "defense": 95,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 80,
+          "offense": 81,
+          "defense": 79,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        38,
+        20
+      ],
+      "archive": [
+        28,
+        3
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 37.71,
+        "p50": 38,
+        "p90": 53
+      },
+      "baselineTotal": {
+        "mean": 52.37,
+        "p50": 52,
+        "p90": 63
+      },
+      "candidateMargin": {
+        "mean": 38.65,
+        "p50": 39,
+        "p90": 55
+      },
+      "baseline35": 64
+    },
+    {
+      "id": "G0297",
+      "away": "Houston",
+      "home": "Kansas State",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 90,
+          "offense": 92,
+          "defense": 88,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 82,
+          "offense": 82,
+          "defense": 82,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        34,
+        7
+      ],
+      "archive": [
+        38,
+        16
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 29.35,
+        "p50": 28,
+        "p90": 45
+      },
+      "baselineTotal": {
+        "mean": 48.65,
+        "p50": 48,
+        "p90": 59
+      },
+      "candidateMargin": {
+        "mean": 29.82,
+        "p50": 29,
+        "p90": 45
+      },
+      "baseline35": 39
+    },
+    {
+      "id": "G0308",
+      "away": "Indiana",
+      "home": "Nebraska",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 93,
+          "offense": 92,
+          "defense": 94,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 87,
+          "offense": 90,
+          "defense": 84,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        20,
+        17
+      ],
+      "archive": [
+        20,
+        17
+      ],
+      "matchesArchive": true,
+      "baselineMargin": {
+        "mean": 29.21,
+        "p50": 28,
+        "p90": 49
+      },
+      "baselineTotal": {
+        "mean": 49.33,
+        "p50": 48,
+        "p90": 63
+      },
+      "candidateMargin": {
+        "mean": 28.89,
+        "p50": 28,
+        "p90": 49
+      },
+      "baseline35": 33
+    },
+    {
+      "id": "G0314",
+      "away": "Maryland",
+      "home": "Ohio State",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 79,
+          "offense": 80,
+          "defense": 78,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 94,
+          "offense": 96,
+          "defense": 92,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        7,
+        59
+      ],
+      "archive": [
+        20,
+        45
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 38.57,
+        "p50": 38,
+        "p90": 55
+      },
+      "baselineTotal": {
+        "mean": 50.65,
+        "p50": 52,
+        "p90": 63
+      },
+      "candidateMargin": {
+        "mean": 38.59,
+        "p50": 38,
+        "p90": 55
+      },
+      "baseline35": 62
+    },
+    {
+      "id": "G0315",
+      "away": "Texas",
+      "home": "Oklahoma",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 93,
+          "offense": 91,
+          "defense": 95,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 86,
+          "offense": 81,
+          "defense": 91,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        49,
+        3
+      ],
+      "archive": [
+        28,
+        34
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 21.06,
+        "p50": 21,
+        "p90": 35
+      },
+      "baselineTotal": {
+        "mean": 41.68,
+        "p50": 42,
+        "p90": 55
+      },
+      "candidateMargin": {
+        "mean": 20.91,
+        "p50": 21,
+        "p90": 35
+      },
+      "baseline35": 11
+    },
+    {
+      "id": "G0316",
+      "away": "North Carolina",
+      "home": "Pittsburgh",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 82,
+          "offense": 80,
+          "defense": 84,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 85,
+          "offense": 84,
+          "defense": 86,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        17,
+        31
+      ],
+      "archive": [
+        23,
+        21
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 15.56,
+        "p50": 14,
+        "p90": 31
+      },
+      "baselineTotal": {
+        "mean": 37.5,
+        "p50": 37,
+        "p90": 55
+      },
+      "candidateMargin": {
+        "mean": 14.96,
+        "p50": 14,
+        "p90": 29
+      },
+      "baseline35": 5
+    },
+    {
+      "id": "G0318",
+      "away": "Minnesota",
+      "home": "Purdue",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 78,
+          "offense": 77,
+          "defense": 79,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 75,
+          "offense": 76,
+          "defense": 74,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        24,
+        14
+      ],
+      "archive": [
+        13,
+        41
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 20.11,
+        "p50": 20,
+        "p90": 36
+      },
+      "baselineTotal": {
+        "mean": 45.49,
+        "p50": 45,
+        "p90": 62
+      },
+      "candidateMargin": {
+        "mean": 19.9,
+        "p50": 20,
+        "p90": 35
+      },
+      "baseline35": 14
+    },
+    {
+      "id": "G0319",
+      "away": "Tulane",
+      "home": "Rice",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 77,
+          "offense": 74,
+          "defense": 80,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 63,
+          "offense": 63,
+          "defense": 63,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        59,
+        3
+      ],
+      "archive": [
+        56,
+        3
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 38.72,
+        "p50": 38,
+        "p90": 56
+      },
+      "baselineTotal": {
+        "mean": 52.4,
+        "p50": 52,
+        "p90": 69
+      },
+      "candidateMargin": {
+        "mean": 38.98,
+        "p50": 39,
+        "p90": 56
+      },
+      "baseline35": 67
+    },
+    {
+      "id": "G0322",
+      "away": "UConn",
+      "home": "Temple",
+      "conference": false,
+      "ratings": {
+        "away": {
+          "overall": 79,
+          "offense": 82,
+          "defense": 76,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 76,
+          "offense": 74,
+          "defense": 78,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        28,
+        13
+      ],
+      "archive": [
+        34,
+        20
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 21.37,
+        "p50": 22,
+        "p90": 35
+      },
+      "baselineTotal": {
+        "mean": 48.53,
+        "p50": 48,
+        "p90": 66
+      },
+      "candidateMargin": {
+        "mean": 20.89,
+        "p50": 21,
+        "p90": 34
+      },
+      "baseline35": 10
+    },
+    {
+      "id": "G0325",
+      "away": "New Mexico State",
+      "home": "UAB",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 68,
+          "offense": 68,
+          "defense": 68,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 70,
+          "offense": 68,
+          "defense": 72,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        9,
+        17
+      ],
+      "archive": [
+        7,
+        10
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 11.71,
+        "p50": 10,
+        "p90": 24
+      },
+      "baselineTotal": {
+        "mean": 32.57,
+        "p50": 31,
+        "p90": 47
+      },
+      "candidateMargin": {
+        "mean": 12.21,
+        "p50": 10,
+        "p90": 24
+      },
+      "baseline35": 0
+    },
+    {
+      "id": "G0334",
+      "away": "Ole Miss",
+      "home": "Vanderbilt",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 86,
+          "offense": 89,
+          "defense": 83,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 84,
+          "offense": 83,
+          "defense": 85,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        31,
+        14
+      ],
+      "archive": [
+        51,
+        21
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 17.87,
+        "p50": 18,
+        "p90": 34
+      },
+      "baselineTotal": {
+        "mean": 42.71,
+        "p50": 41,
+        "p90": 59
+      },
+      "candidateMargin": {
+        "mean": 17.69,
+        "p50": 18,
+        "p90": 34
+      },
+      "baseline35": 8
+    },
+    {
+      "id": "G0337",
+      "away": "Colgate",
+      "home": "Yale",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 78,
+          "offense": 76,
+          "defense": 80,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 70,
+          "offense": 71,
+          "defense": 69,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        31,
+        17
+      ],
+      "archive": [
+        20,
+        10
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 29,
+        "p50": 29,
+        "p90": 42
+      },
+      "baselineTotal": {
+        "mean": 48.5,
+        "p50": 51,
+        "p90": 63
+      },
+      "candidateMargin": {
+        "mean": 29.66,
+        "p50": 31,
+        "p90": 44
+      },
+      "baseline35": 32
+    },
+    {
+      "id": "G0287",
+      "away": "Clemson",
+      "home": "Baylor",
+      "conference": false,
+      "ratings": {
+        "away": {
+          "overall": 81,
+          "offense": 79,
+          "defense": 83,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 81,
+          "offense": 79,
+          "defense": 83,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        14,
+        7
+      ],
+      "archive": [
+        21,
+        13
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 9.53,
+        "p50": 7,
+        "p90": 18
+      },
+      "baselineTotal": {
+        "mean": 30.13,
+        "p50": 30,
+        "p90": 48
+      },
+      "candidateMargin": {
+        "mean": 9.99,
+        "p50": 8,
+        "p90": 19
+      },
+      "baseline35": 0
+    },
+    {
+      "id": "G0291",
+      "away": "South Carolina",
+      "home": "Florida",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 77,
+          "offense": 79,
+          "defense": 75,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 87,
+          "offense": 93,
+          "defense": 81,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        10,
+        56
+      ],
+      "archive": [
+        38,
+        17
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 31.31,
+        "p50": 32,
+        "p90": 48
+      },
+      "baselineTotal": {
+        "mean": 53.47,
+        "p50": 55,
+        "p90": 63
+      },
+      "candidateMargin": {
+        "mean": 31.75,
+        "p50": 32,
+        "p90": 49
+      },
+      "baseline35": 43
+    },
+    {
+      "id": "G0302",
+      "away": "Coastal Carolina",
+      "home": "Marshall",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 70,
+          "offense": 68,
+          "defense": 72,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 71,
+          "offense": 72,
+          "defense": 70,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        14,
+        31
+      ],
+      "archive": [
+        23,
+        21
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 9.8,
+        "p50": 7,
+        "p90": 20
+      },
+      "baselineTotal": {
+        "mean": 36.18,
+        "p50": 36,
+        "p90": 51
+      },
+      "candidateMargin": {
+        "mean": 9.88,
+        "p50": 8,
+        "p90": 21
+      },
+      "baseline35": 0
+    },
+    {
+      "id": "G0303",
+      "away": "Illinois",
+      "home": "Michigan State",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 83,
+          "offense": 84,
+          "defense": 82,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 79,
+          "offense": 75,
+          "defense": 83,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        20,
+        14
+      ],
+      "archive": [
+        24,
+        21
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 15.11,
+        "p50": 14,
+        "p90": 31
+      },
+      "baselineTotal": {
+        "mean": 39.03,
+        "p50": 38,
+        "p90": 55
+      },
+      "candidateMargin": {
+        "mean": 14.89,
+        "p50": 13,
+        "p90": 31
+      },
+      "baseline35": 3
+    },
+    {
+      "id": "G0304",
+      "away": "Penn",
+      "home": "Middle Tennessee",
+      "conference": false,
+      "ratings": {
+        "away": {
+          "overall": 74,
+          "offense": 76,
+          "defense": 72,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 67,
+          "offense": 66,
+          "defense": 68,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        42,
+        17
+      ],
+      "archive": [
+        38,
+        3
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 30.03,
+        "p50": 28,
+        "p90": 43
+      },
+      "baselineTotal": {
+        "mean": 51.41,
+        "p50": 52,
+        "p90": 66
+      },
+      "candidateMargin": {
+        "mean": 29.5,
+        "p50": 28,
+        "p90": 45
+      },
+      "baseline35": 36
+    },
+    {
+      "id": "G0306",
+      "away": "Wake Forest",
+      "home": "NC State",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 85,
+          "offense": 85,
+          "defense": 85,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 81,
+          "offense": 83,
+          "defense": 79,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        38,
+        17
+      ],
+      "archive": [
+        42,
+        21
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 21.87,
+        "p50": 21,
+        "p90": 38
+      },
+      "baselineTotal": {
+        "mean": 46.99,
+        "p50": 48,
+        "p90": 59
+      },
+      "candidateMargin": {
+        "mean": 22.18,
+        "p50": 21,
+        "p90": 38
+      },
+      "baseline35": 19
+    },
+    {
+      "id": "G0307",
+      "away": "Stanford",
+      "home": "Notre Dame",
+      "conference": false,
+      "ratings": {
+        "away": {
+          "overall": 68,
+          "offense": 70,
+          "defense": 66,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 95,
+          "offense": 96,
+          "defense": 94,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        7,
+        42
+      ],
+      "archive": [
+        10,
+        55
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 37.11,
+        "p50": 38,
+        "p90": 52
+      },
+      "baselineTotal": {
+        "mean": 51.55,
+        "p50": 52,
+        "p90": 66
+      },
+      "candidateMargin": {
+        "mean": 37.44,
+        "p50": 38,
+        "p90": 52
+      },
+      "baseline35": 61
+    },
+    {
+      "id": "G0309",
+      "away": "Air Force",
+      "home": "Northern Illinois",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 73,
+          "offense": 72,
+          "defense": 74,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 68,
+          "offense": 67,
+          "defense": 69,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        34,
+        0
+      ],
+      "archive": [
+        31,
+        14
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 25.83,
+        "p50": 25,
+        "p90": 45
+      },
+      "baselineTotal": {
+        "mean": 46.95,
+        "p50": 45,
+        "p90": 63
+      },
+      "candidateMargin": {
+        "mean": 25.9,
+        "p50": 25,
+        "p90": 45
+      },
+      "baseline35": 29
+    },
+    {
+      "id": "G0311",
+      "away": "UCF",
+      "home": "Oklahoma State",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 86,
+          "offense": 84,
+          "defense": 88,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 87,
+          "offense": 88,
+          "defense": 86,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        7,
+        14
+      ],
+      "archive": [
+        7,
+        10
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 11.06,
+        "p50": 9,
+        "p90": 22
+      },
+      "baselineTotal": {
+        "mean": 34.22,
+        "p50": 34,
+        "p90": 51
+      },
+      "candidateMargin": {
+        "mean": 10.91,
+        "p50": 8,
+        "p90": 22
+      },
+      "baseline35": 0
+    },
+    {
+      "id": "G0312",
+      "away": "UCLA",
+      "home": "Oregon",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 90,
+          "offense": 93,
+          "defense": 87,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 92,
+          "offense": 96,
+          "defense": 88,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        28,
+        24
+      ],
+      "archive": [
+        17,
+        15
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 15.64,
+        "p50": 14,
+        "p90": 32
+      },
+      "baselineTotal": {
+        "mean": 56.14,
+        "p50": 56,
+        "p90": 73
+      },
+      "candidateMargin": {
+        "mean": 15.89,
+        "p50": 14,
+        "p90": 32
+      },
+      "baseline35": 8
+    },
+    {
+      "id": "G0321",
+      "away": "Northwestern",
+      "home": "SMU",
+      "conference": false,
+      "ratings": {
+        "away": {
+          "overall": 83,
+          "offense": 82,
+          "defense": 84,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 87,
+          "offense": 87,
+          "defense": 87,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        10,
+        38
+      ],
+      "archive": [
+        37,
+        35
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 24.17,
+        "p50": 24,
+        "p90": 41
+      },
+      "baselineTotal": {
+        "mean": 46.53,
+        "p50": 48,
+        "p90": 63
+      },
+      "candidateMargin": {
+        "mean": 23.42,
+        "p50": 24,
+        "p90": 40
+      },
+      "baseline35": 24
+    },
+    {
+      "id": "G0326",
+      "away": "LSU",
+      "home": "Kentucky",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 91,
+          "offense": 92,
+          "defense": 90,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 84,
+          "offense": 85,
+          "defense": 83,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        42,
+        31
+      ],
+      "archive": [
+        30,
+        31
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 27.41,
+        "p50": 28,
+        "p90": 42
+      },
+      "baselineTotal": {
+        "mean": 50.05,
+        "p50": 51,
+        "p90": 63
+      },
+      "candidateMargin": {
+        "mean": 27.45,
+        "p50": 28,
+        "p90": 43
+      },
+      "baseline35": 33
+    },
+    {
+      "id": "G0332",
+      "away": "Nevada",
+      "home": "UTEP",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 68,
+          "offense": 67,
+          "defense": 69,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 63,
+          "offense": 65,
+          "defense": 61,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        20,
+        19
+      ],
+      "archive": [
+        31,
+        14
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 26.83,
+        "p50": 28,
+        "p90": 42
+      },
+      "baselineTotal": {
+        "mean": 50.09,
+        "p50": 48,
+        "p90": 66
+      },
+      "candidateMargin": {
+        "mean": 27.11,
+        "p50": 28,
+        "p90": 42
+      },
+      "baseline35": 30
+    },
+    {
+      "id": "G0336",
+      "away": "Arizona",
+      "home": "West Virginia",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 88,
+          "offense": 87,
+          "defense": 89,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 78,
+          "offense": 82,
+          "defense": 74,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        45,
+        24
+      ],
+      "archive": [
+        61,
+        31
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 33.9,
+        "p50": 35,
+        "p90": 52
+      },
+      "baselineTotal": {
+        "mean": 51.1,
+        "p50": 52,
+        "p90": 62
+      },
+      "candidateMargin": {
+        "mean": 33.92,
+        "p50": 34,
+        "p90": 52
+      },
+      "baseline35": 51
+    },
+    {
+      "id": "G0305",
+      "away": "Mississippi State",
+      "home": "Navy",
+      "conference": false,
+      "ratings": {
+        "away": {
+          "overall": 86,
+          "offense": 89,
+          "defense": 83,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 79,
+          "offense": 77,
+          "defense": 81,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        55,
+        0
+      ],
+      "archive": [
+        28,
+        3
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 25.85,
+        "p50": 25,
+        "p90": 42
+      },
+      "baselineTotal": {
+        "mean": 48.71,
+        "p50": 49,
+        "p90": 63
+      },
+      "candidateMargin": {
+        "mean": 26.46,
+        "p50": 25,
+        "p90": 42
+      },
+      "baseline35": 27
+    },
+    {
+      "id": "G0286",
+      "away": "Hawaii",
+      "home": "Arizona State",
+      "conference": false,
+      "ratings": {
+        "away": {
+          "overall": 65,
+          "offense": 63,
+          "defense": 67,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 77,
+          "offense": 81,
+          "defense": 73,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        10,
+        44
+      ],
+      "archive": [
+        19,
+        31
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 37.5,
+        "p50": 38,
+        "p90": 52
+      },
+      "baselineTotal": {
+        "mean": 53.38,
+        "p50": 52,
+        "p90": 66
+      },
+      "candidateMargin": {
+        "mean": 37.62,
+        "p50": 38,
+        "p90": 52
+      },
+      "baseline35": 63
+    },
+    {
+      "id": "G0289",
+      "away": "Virginia Tech",
+      "home": "California",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 85,
+          "offense": 87,
+          "defense": 83,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 78,
+          "offense": 78,
+          "defense": 78,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        35,
+        17
+      ],
+      "archive": [
+        23,
+        30
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 27.79,
+        "p50": 28,
+        "p90": 43
+      },
+      "baselineTotal": {
+        "mean": 49.95,
+        "p50": 52,
+        "p90": 66
+      },
+      "candidateMargin": {
+        "mean": 27.74,
+        "p50": 28,
+        "p90": 43
+      },
+      "baseline35": 31
+    },
+    {
+      "id": "G0310",
+      "away": "Wisconsin",
+      "home": "New Mexico",
+      "conference": false,
+      "ratings": {
+        "away": {
+          "overall": 82,
+          "offense": 81,
+          "defense": 83,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 82,
+          "offense": 82,
+          "defense": 82,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        24,
+        0
+      ],
+      "archive": [
+        6,
+        14
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 8.25,
+        "p50": 7,
+        "p90": 18
+      },
+      "baselineTotal": {
+        "mean": 32.03,
+        "p50": 31,
+        "p90": 48
+      },
+      "candidateMargin": {
+        "mean": 8.69,
+        "p50": 7,
+        "p90": 20
+      },
+      "baseline35": 0
+    },
+    {
+      "id": "G0333",
+      "away": "Syracuse",
+      "home": "Virginia",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 77,
+          "offense": 78,
+          "defense": 76,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 86,
+          "offense": 86,
+          "defense": 86,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        14,
+        52
+      ],
+      "archive": [
+        17,
+        28
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 33.31,
+        "p50": 32,
+        "p90": 49
+      },
+      "baselineTotal": {
+        "mean": 48.93,
+        "p50": 49,
+        "p90": 66
+      },
+      "candidateMargin": {
+        "mean": 32.91,
+        "p50": 32,
+        "p90": 49
+      },
+      "baseline35": 46
+    },
+    {
+      "id": "G0301",
+      "away": "Texas A&M",
+      "home": "Missouri",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 86,
+          "offense": 85,
+          "defense": 87,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 86,
+          "offense": 86,
+          "defense": 86,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        3,
+        14
+      ],
+      "archive": [
+        6,
+        27
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 10.18,
+        "p50": 10,
+        "p90": 21
+      },
+      "baselineTotal": {
+        "mean": 31.96,
+        "p50": 31,
+        "p90": 47
+      },
+      "candidateMargin": {
+        "mean": 9.83,
+        "p50": 9,
+        "p90": 20
+      },
+      "baseline35": 0
+    },
+    {
+      "id": "G0317",
+      "away": "USC",
+      "home": "Penn State",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 87,
+          "offense": 91,
+          "defense": 83,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 86,
+          "offense": 85,
+          "defense": 87,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        41,
+        38
+      ],
+      "archive": [
+        31,
+        27
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 10.49,
+        "p50": 7,
+        "p90": 21
+      },
+      "baselineTotal": {
+        "mean": 47.33,
+        "p50": 48,
+        "p90": 63
+      },
+      "candidateMargin": {
+        "mean": 10.26,
+        "p50": 7,
+        "p90": 21
+      },
+      "baseline35": 3
+    },
+    {
+      "id": "G0284",
+      "away": "Georgia",
+      "home": "Alabama",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 97,
+          "offense": 96,
+          "defense": 99,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 94,
+          "offense": 99,
+          "defense": 89,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        52,
+        28
+      ],
+      "archive": [
+        20,
+        17
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 23.06,
+        "p50": 22,
+        "p90": 42
+      },
+      "baselineTotal": {
+        "mean": 51.7,
+        "p50": 52,
+        "p90": 69
+      },
+      "candidateMargin": {
+        "mean": 22.96,
+        "p50": 22,
+        "p90": 42
+      },
+      "baseline35": 21
+    },
+    {
+      "id": "G0292",
+      "away": "Boise State",
+      "home": "Fresno State",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 86,
+          "offense": 86,
+          "defense": 86,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 78,
+          "offense": 75,
+          "defense": 81,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        48,
+        10
+      ],
+      "archive": [
+        38,
+        29
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 27.88,
+        "p50": 28,
+        "p90": 42
+      },
+      "baselineTotal": {
+        "mean": 46.38,
+        "p50": 45,
+        "p90": 59
+      },
+      "candidateMargin": {
+        "mean": 27.76,
+        "p50": 28,
+        "p90": 42
+      },
+      "baseline35": 30
+    },
+    {
+      "id": "G0323",
+      "away": "Princeton",
+      "home": "Tulsa",
+      "conference": false,
+      "ratings": {
+        "away": {
+          "overall": 70,
+          "offense": 71,
+          "defense": 69,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 79,
+          "offense": 76,
+          "defense": 82,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        14,
+        42
+      ],
+      "archive": [
+        33,
+        27
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 33.22,
+        "p50": 32,
+        "p90": 49
+      },
+      "baselineTotal": {
+        "mean": 48.72,
+        "p50": 49,
+        "p90": 63
+      },
+      "candidateMargin": {
+        "mean": 33.32,
+        "p50": 34,
+        "p90": 49
+      },
+      "baseline35": 45
+    },
+    {
+      "id": "G0313",
+      "away": "San Diego State",
+      "home": "Oregon State",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 75,
+          "offense": 73,
+          "defense": 77,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 82,
+          "offense": 82,
+          "defense": 82,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        7,
+        35
+      ],
+      "archive": [
+        17,
+        68
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 28.84,
+        "p50": 28,
+        "p90": 46
+      },
+      "baselineTotal": {
+        "mean": 47.96,
+        "p50": 48,
+        "p90": 63
+      },
+      "candidateMargin": {
+        "mean": 28.25,
+        "p50": 28,
+        "p90": 46
+      },
+      "baseline35": 40
+    },
+    {
+      "id": "G0327",
+      "away": "North Dakota State",
+      "home": "UNLV",
+      "conference": true,
+      "ratings": {
+        "away": {
+          "overall": 81,
+          "offense": 81,
+          "defense": 81,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        },
+        "home": {
+          "overall": 76,
+          "offense": 74,
+          "defense": 78,
+          "specialTeams": null,
+          "tempo": null,
+          "sourceVersion": "W7-17d9e89e108e",
+          "flag": null,
+          "opponentBasis": null
+        }
+      },
+      "observedEngine": [
+        31,
+        10
+      ],
+      "archive": [
+        7,
+        13
+      ],
+      "matchesArchive": false,
+      "baselineMargin": {
+        "mean": 25.39,
+        "p50": 24,
+        "p90": 42
+      },
+      "baselineTotal": {
+        "mean": 47.83,
+        "p50": 48,
+        "p90": 62
+      },
+      "candidateMargin": {
+        "mean": 24.72,
+        "p50": 24,
+        "p90": 42
+      },
+      "baseline35": 23
+    }
+  ],
+  "limits": "Conditional model plausibility only. No independent calibrated target distribution; current weather used; 13 imported games excluded; canonical archive and engine state are separate sources. Histories may differ because of the two authorized fixes."
+}

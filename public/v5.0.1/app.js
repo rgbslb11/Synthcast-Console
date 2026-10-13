@@ -284,7 +284,7 @@ async function cmd(id,command,payload={}){
   }catch(e){
     if(['EDIT_STATE_CHANGED','GAME_STATE_CHANGED'].includes(e.message)){writeConflict=true;status('VERSION CONFLICT · This game changed · Draft preserved · REFRESH to review',true)}
     else if(editCommand&&e.status===409&&['VERSION_CONFLICT','version conflict'].includes(e.message)){status('CHAIRMAN EDIT BUSY · Nothing saved · Draft preserved · Try the same action again',true)}
-    else if(e.status===409&&['VERSION_CONFLICT','version conflict'].includes(e.message)){writeConflict=true;status('VERSION CONFLICT · Draft preserved · REFRESH to discard drafts and reload',true)}
+    else if(e.status===409&&['VERSION_CONFLICT','version conflict'].includes(e.message)){status('CONTROL BUSY · Nothing saved · Try the same action again',true)}
     else if(e.status===409&&e.message==='COMMAND_UNAVAILABLE'){status('CONTROL NO LONGER AVAILABLE · REFRESHING CLOUD STATE',true);stateRefresh=true}
     else {const retry=gamecastPendingRequest();status('WRITE ERROR · '+e.message+(retry?' · RETRY LAST REQUEST':''),true);document.getElementById('retryRequest').hidden=!retry;}
   }finally{writing=false}
