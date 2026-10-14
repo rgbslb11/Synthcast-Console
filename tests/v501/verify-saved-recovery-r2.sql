@@ -35,6 +35,8 @@ END;
 IF NOT rejected THEN RAISE EXCEPTION 'conflict rejection missing'; END IF;
 IF EXISTS(SELECT 1 FROM gc501_restore_20261014_r2.events e LEFT JOIN gc501_restore_20261014_r2.sessions parent_session USING(session_id) WHERE parent_session.session_id IS NULL) THEN RAISE EXCEPTION 'orphan event'; END IF;
 INSERT INTO gc501_restore_20261014_r2.verification_receipt(details) VALUES(jsonb_build_object('counts',counts,'exact_rows',true,'sessions_reopened',reopened,'receipt_replay',true,'conflict_rejected',rejected,'archive_transport_md5','53202624e86e6739429e578efbe43b22','scope','Saved runtime records restored into private schema in existing project; no separate deployed application tested'));
+-- Restored explicit identity values do not advance the identity sequence.
+PERFORM setval('gc501_restore_20261014_r2.events_event_id_seq'::regclass,(SELECT max(event_id) FROM gc501_restore_20261014_r2.events),true);
 END $verify$;
 REVOKE ALL ON ALL FUNCTIONS IN SCHEMA gc501_restore_20261014_r2 FROM PUBLIC,anon,authenticated,service_role;
 REVOKE ALL ON ALL TABLES IN SCHEMA gc501_restore_20261014_r2 FROM PUBLIC,anon,authenticated,service_role;
