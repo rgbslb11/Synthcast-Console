@@ -1,3 +1,11 @@
+# Current Week 8 deployment — 2026-10-14
+
+See [Week 8 deployment verification](GAMECAST_5_0_1_WEEK8_DEPLOYMENT.md) for the published Chairman, Public and Condensed links, exact inputs, source identity, hosted control/Deadman completion, live measurements and saved recovery rehearsal. The operating session is enabled but all 56 games remain unlaunched. SEUD remains held. Broad performance gate 13 is not claimed fully closed; no independent production certification is asserted.
+
+The following 21:30 report is retained as dated history and is superseded for current deployment/control/data state.
+
+---
+
 # GameCast 5.0.1 current release status — 2026-10-14 21:30 UTC
 
 Production activation remains BLOCKED. This status supersedes the earlier four-blocker reports.
@@ -59,3 +67,4 @@ The current cloud browser's native confirmation interface remains restricted aft
 A narrow in-page confirmation proposal is recorded in GAMECAST_5_0_1_CONFIRMATION_UI_PROPOSAL.md. It preserves explicit confirmation and server authorization, and requires owner approval under the project's instruction to ask before material UI behavior changes. Gary explicitly approved the proposal. Commit fdea1b8 implements the six action families, with Chromium and WebKit regression success in run 38640485893. Deployment run 38640485836 stopped on a timing race in the new stale-target test before publication. The test now requests a fresh read after any in-flight read; a new deployment run is required. Hosted controls, Deadman and full performance remain incomplete. Candidate writes/scheduler/cron remain disabled; main QA version 551.
 
 Week 8 remains separately staged (56 games; 112 scheduled-team ratings); no operating import or SEUD publication occurred.
+

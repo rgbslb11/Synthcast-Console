@@ -1,6 +1,6 @@
 # GameCast 5.0.1 — release candidate
 
-Current disposition: [release status](GAMECAST_5_0_1_RELEASE_STATUS.md) — 12 PASS, 3 BLOCKED; candidate runtime recovery completed. Earlier dated statements below are retained as history.
+Current disposition: [Week 8 deployment verification](GAMECAST_5_0_1_WEEK8_DEPLOYMENT.md). The user-authorized Week 8 Chairman, Public and Condensed UIs are published and synchronized to a 56-game prelaunch operating session. Hosted control/Deadman blockers are resolved; saved Week 8 runtime recovery is verified. Broad endurance/per-stage performance assurance remains unverified. Earlier dated statements below describe the Week 7 QA release history, not the current Week 8 operating state.
 
 Status: isolated QA deployed; **DO NOT APPROVE 5.0.1 FOR PRODUCTION**.
 
@@ -40,3 +40,4 @@ Kneel logic already accounts for downs, opponent timeouts, actual runoff and own
 ## 2026-10-14 deployment verification and saved recovery receipt
 
 See [deployment verification](GAMECAST_5_0_1_DEPLOYMENT_VERIFICATION_20261014.md) for deployed-source equality, stopped operating state, saved private runtime recovery export, and the exact four unresolved acceptance gates. Isolated deployment is present; production acceptance remains incomplete.
+
