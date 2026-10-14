@@ -240,7 +240,7 @@ async function load({background=false,force=false}={}){
         return;
       }
       adopt(b);render();
-      if(!background||se().classList.contains('error'))status('CLOUD V'+version+' · POWER '+(b.governance?.power_ready??state.filter(g=>!g.immutableFinal&&g.powerReady).length)+'/'+(b.governance?.active_games??41));
+      if(publicView||!background||se().classList.contains('error'))status('CLOUD V'+version+' · POWER '+(b.governance?.power_ready??state.filter(g=>!g.immutableFinal&&g.powerReady).length)+'/'+(b.governance?.active_games??41));
     }catch(e){if(epoch===readEpoch&&session===slug)status('ERROR · '+e.message,true)}
   })();
   try{await readPromise}finally{readPromise=null;loading=false}

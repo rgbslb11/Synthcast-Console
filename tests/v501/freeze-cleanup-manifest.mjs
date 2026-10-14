@@ -1,0 +1,10 @@
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+const root=process.argv[2];if(!path.isAbsolute(root||''))throw Error('Private archive directory required');
+const all=fs.readdirSync(root).filter(x=>/^requests-\d+-\d+\.json$/.test(x)).sort().flatMap(f=>JSON.parse(fs.readFileSync(path.join(root,f))));
+assert.equal(all.length,11211);assert.equal(new Set(all.map(x=>x.row.actor_id+'|'+x.row.idempotency_key)).size,11211);
+const selected=all.filter(x=>x.row.actor_id==='SCHEDULER'&&Date.parse(x.row.created_at)<Date.parse('2026-10-12T00:00:00Z'));
+assert.equal(selected.length,10997);
+const manifest={format:'gamecast-w7-v500-cleanup-v1',sourceSlug:'w7v500-17e1dde75f5b1cba',sourceStateVersion:11213,sourceStateSha256:'8a253336c96bfc5fb9d15c77ab76c0486913bfddbc8fa7b19b74d2f8d4b30c06',scope:'scheduler receipts only; no operational deletion authorized',rows:selected.map(({row,response_sha256,row_sha256})=>({...row,response_sha256,row_sha256}))};
+const body=JSON.stringify(manifest,null,2)+'\n',sha=createHash('sha256').update(body).digest('hex');
+fs.writeFileSync(path.join(root,'FROZEN_DELETION_MANIFEST.json'),body);fs.writeFileSync(path.join(root,'FROZEN_DELETION_MANIFEST.sha256'),sha+'  FROZEN_DELETION_MANIFEST.json\n');
+console.log(JSON.stringify({rows:selected.length,preservedOperatorReceipts:all.length-selected.length,sha256:sha}));
