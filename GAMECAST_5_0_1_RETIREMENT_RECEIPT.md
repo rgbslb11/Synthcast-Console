@@ -43,5 +43,5 @@ Candidate preservation before correction: 6 sessions, 13615 events, 1171 request
 | 15 Release evidence | Sanitized follow-up report, rollback replacement and exact SQL published on candidate branch; complete-release evidence remains incomplete |
 
 ## Exact limitation
-The secure cloud browser currently presents a sign-in form; no authenticated Chairman session is available to this follow-up. Public inspection cannot substitute for authenticated control tests. Database cleanup success does not certify control behavior.
+The public scoreboard was inspected after the correction and showed Kansas 24 / Utah 56 with matching quarter totals and CLOUD V536. Secure sign-in subsequently succeeded; at approximately 19:31 UTC the actual Chairman console showed SIGNED IN and the QA board. The owner's ten-minute execution limit was reached before new hosted control/Deadman tests were started. Authentication is resolved for the retained browser tab; those test gates remain incomplete. No credentials were extracted or published. Database cleanup success does not certify control behavior.
 DO NOT APPROVE 5.0.1 FOR PRODUCTION while these engineering acceptance gaps remain.
