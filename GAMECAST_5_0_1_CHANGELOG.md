@@ -1,5 +1,7 @@
 # GameCast 5.0.1 — release candidate
 
+Current disposition: [release status](GAMECAST_5_0_1_RELEASE_STATUS.md) — 12 PASS, 3 BLOCKED; candidate runtime recovery completed. Earlier dated statements below are retained as history.
+
 Status: isolated QA deployed; **DO NOT APPROVE 5.0.1 FOR PRODUCTION**.
 
 Baseline: `release/gamecast-v5.0.0` at `762da633e38ddf8acb0a9e7798ee4502deb1e81f`.
