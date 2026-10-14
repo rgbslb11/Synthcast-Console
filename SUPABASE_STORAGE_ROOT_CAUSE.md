@@ -37,7 +37,7 @@ gamecast_v501.commit_state retains compact scheduler receipts with session, engi
 
 Current state, full per-game deterministic history and incremental event rows are retained. No new snapshot table or event-only reconstruction architecture was introduced. This removes the demonstrated scheduler multiplier, not every possible source of storage growth.
 
-Actual isolated database: 100 controlled writes used 17,600 stored response bytes; maximum 176 bytes. Hosted 41+9 simultaneous QA games likewise retained 176-byte receipts, zero full-board scheduler responses. Final observation: 171 candidate scheduler receipts, four QA sessions, zero active sessions after stopping the bounded tests. Exact load samples are in evidence/load1result.json and load50final.json.
+Actual isolated database: 100 controlled writes used 17,600 stored response bytes; maximum 176 bytes. Hosted 41+9 simultaneous QA games likewise retained 176-byte receipts, zero full-board scheduler responses. Final observation: 257 candidate scheduler receipts, four QA sessions, zero active sessions after stopping the bounded tests. Exact load samples are in evidence/load1result.json and load50final.json.
 
 ## Historical releases — read only
 
@@ -52,6 +52,6 @@ Shared historical relations total 4,751,360 bytes for sessions and 2,400,256 for
 
 ## After measurement
 
-Source requests remain 11,211 rows and 2,350,628,864 relation bytes. Source session remains v11213 with MD5(state::text) 43212ea3ddf3f1181bbcf9b5ab33f2ca. Whole project database after QA setup/tests was 2,396,739,251 bytes. That includes new isolated QA tables and background activity.
+Source requests remain 11,211 rows and 2,350,628,864 relation bytes. Source session remains v11213 with MD5(state::text) 43212ea3ddf3f1181bbcf9b5ab33f2ca. Whole project database after QA setup/tests was 2,397,689,523 bytes. That includes new isolated QA tables and background activity.
 
 **Removed: zero rows. Claimed reclaimed disk: zero.** No DELETE, VACUUM FULL, retention purge or compaction was executed.

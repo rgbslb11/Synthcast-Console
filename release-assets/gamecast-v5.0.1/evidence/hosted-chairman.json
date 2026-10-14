@@ -1,0 +1,24 @@
+{
+  "observed_at_utc": "2026-10-14T00:27:00Z",
+  "session": "w7v501-0000000000000001",
+  "signed_in": true,
+  "scope": "Real hosted Chairman, Auth, backend, database and DOM acknowledgement; times include browser automation overhead",
+  "checks": [
+    {
+      "action": "Launch",
+      "click_to_visible_ms": 1382,
+      "ack": "CHECKPOINTED V102"
+    },
+    {
+      "action": "Start Auto",
+      "click_to_visible_ms": 2005,
+      "ack": "CHECKPOINTED V104"
+    }
+  ],
+  "recovery_observation": {
+    "signed_in": true,
+    "clock": "1st 09:14"
+  },
+  "blocked": "Browser credential-protection system repeatedly restricted subsequent observations after one permitted explicit-navigation recovery. No further credentials inspected; no attempt to bypass. Stop/Edit/Final/Lock/Accept/Deadman hosted chain not claimed passed.",
+  "teardown": "Only named QA G0285 fixture stopped through database; generated history retained. This teardown does not count as a Chairman Stop acceptance test."
+}

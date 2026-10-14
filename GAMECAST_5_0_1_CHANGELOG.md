@@ -30,6 +30,6 @@ Kneel logic already accounts for downs, opponent timeouts, actual runoff and own
 
 ## Evidence and remaining work
 
-23 automated regression groups; 11 browser cases each in Chromium and mobile-sized WebKit; 8,200 paired simulations; 100 database receipt writes; bounded hosted 1-game and 50-game tests. These are author checks, not independent certification. Hosted authenticated Chairman action timing and full restoration are still BLOCKED.
+23 automated regression groups; 11 browser cases each in Chromium and mobile-sized WebKit; 8,200 paired simulations; 100 database receipt writes; bounded hosted 1-game and 50-game tests. These are author checks, not independent certification. Hosted Launch/Start Auto acknowledged in approximately 1.4/2.0 seconds. Further hosted inspection was blocked by browser credential protection; remaining controls and full restoration remain BLOCKED.
 
 [Baseline](GAMECAST_5_0_0_BASELINE_AUDIT.md) · [Defects](GAMECAST_5_0_1_DEFECT_REGISTER.md) · [Storage](SUPABASE_STORAGE_ROOT_CAUSE.md) · [Cleanup](W7_5_0_0_CLEANUP_PLAN.md) · [Tests and gates](GAMECAST_5_0_1_TEST_RESULTS.md) · [Deployment](GAMECAST_5_0_1_DEPLOYMENT_RECORD.md) · [Rollback](GAMECAST_5_0_1_ROLLBACK_PLAN.md) · [Deferred](DEFERRED_5_0_2.md).

@@ -26,8 +26,8 @@ PASS means the stated test scope passed. BLOCKED means the full required accepta
 |---|---|---|
 | 1 — Baseline protection | PASS | Original branch/SHA, route bytes and session checksum preserved; no baseline migration |
 | 2 — Isolated branch | PASS | All candidate work on release/gamecast-v5.0.1; no main merge |
-| 3 — Live UI | BLOCKED | Three surfaces pass browser propagation; authenticated hosted Chairman session still untested |
-| 4 — Chairman controls | BLOCKED | Browser controls and engine acceptance pass; hosted authenticated control chain and real-user timing untested |
+| 3 — Live UI | BLOCKED | Three surfaces pass browser propagation; hosted sign-in/Launch/Auto passed; further inspection blocked by browser credential protection |
+| 4 — Chairman controls | BLOCKED | Browser controls and engine acceptance pass; hosted Launch/Auto passed; remaining control chain blocked by browser credential protection |
 | 5 — Deadman | BLOCKED | Engine launch-once and browser feedback pass; full hosted arm/lock/trigger/visible-feedback sequence still untested |
 | 6 — Version concurrency | PASS | Unrelated churn retry, true target conflict, strict edit witness and exact replay tests; CAS retained |
 | 7 — Storage architecture | PASS | Proven scheduler duplication removed; 100 SQL commits and hosted 50-game receipt checks |
@@ -42,7 +42,7 @@ PASS means the stated test scope passed. BLOCKED means the full required accepta
 
 ## Timing — do not confuse test layers
 
-Browser command-to-render durations in the retained run were approximately 34–91 ms in Chromium and 35–77 ms in WebKit, **using test Auth and an in-memory database**. These are not production network timings. Initial external smoke calls took 2.9–5.1 seconds including network/proxy/cold-start effects. They do not isolate backend execution or persistence latency.
+Browser command-to-render durations in the retained run were approximately 34–91 ms in Chromium and 35–77 ms in WebKit, **using test Auth and an in-memory database**. These are not production network timings. Two actual hosted Chairman actions acknowledged in 1.382 and 2.005 seconds, including browser automation overhead; later inspection was blocked. Initial external smoke calls took 2.9–5.1 seconds including network/proxy/cold-start effects. They do not isolate backend execution or persistence latency.
 
 Chairman polling remains five seconds; Public/Condensed approximately 4.5 seconds. No WebSocket/Realtime subsystem existed to repair. Propagation is automatic but bounded by polling and actual request duration. Neither memory profiling nor per-stage hosted click -> request -> persistence -> acknowledgement -> render timing has been established.
 
@@ -59,10 +59,14 @@ Deployment verification: https://github.com/rgbslb11/Synthcast-Console/actions/r
 
 Commands: `node --test tests/v501/*.test.mjs`; `node tests/v501/distribution.mjs`. Browser setup and exact Playwright version are in qa-v501.yml. Database fixture instructions are in tests/v501/persistence.sql; it intentionally requires a fresh candidate session and must not be blindly rerun against an advanced one.
 
-Remaining release blockers require an authenticated hosted Chairman test session, measured operational control timing, the full hosted Deadman sequence, a verified request archive and rehearsed restoration, then explicit deletion approval and Gary's final visual/behavior acceptance. These are not engineering tasks delegated to Gary.
+Remaining release blockers require resumed hosted Chairman testing after the browser credential-protection restriction, complete operational control timing, the full hosted Deadman sequence, a verified request archive and rehearsed restoration, then explicit deletion approval and Gary's final visual/behavior acceptance. These are not engineering tasks delegated to Gary.
 
 ## Live browser observation
 
 On 2026-10-14 at approximately 00:01 UTC (October 13, 7:01 PM Central), the actual hosted Chairman route rendered the correct GameCast 5.0.1 ISOLATED QA heading and sign-in form. It displayed SIGN IN TO CONTROL GAMES; no authenticated Chairman session was available in the test browser. This is the concrete access blocker for hosted control acceptance, not a presumed deployment failure.
 
 Live cloud-browser observation at approximately 2026-10-14T00:02Z: hosted Public showed CLOUD V101 / POWER 41/41 with 54 cards; hosted Condensed showed SAT V101 / WK V101 with 54 cards. Chairman displayed the correct 5.0.1 QA identity and required sign-in. No credentials were inspected or entered.
+
+## Authenticated hosted follow-up — 2026-10-14, about 00:27 UTC
+
+Secure sign-in succeeded. Actual Chairman Launch acknowledged V102 in 1,382 ms; Start Auto acknowledged V104 in 2,005 ms, including browser-automation overhead. After an explicit navigation permitted by the browser credential-protection recovery guidance, the signed-in page showed the persisted running clock at 1st 09:14. Subsequent inspection was again denied by browser credential protection. No further automated authentication recovery was attempted. This is a testing-tool restriction, not evidence of a GameCast defect. Remaining hosted control/Deadman tests remain BLOCKED; initial sign-in access itself is resolved. The named QA G0285 run was stopped through a guarded database teardown and its history retained; this does not count as a Chairman Stop test.

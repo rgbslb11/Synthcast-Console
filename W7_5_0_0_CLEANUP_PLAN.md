@@ -73,7 +73,7 @@ Expected logical removal: at most the stated 10,997 receipt rows. Expected physi
 
 | Item | Before | Removed | After |
 |---|---:|---:|---:|
-| Whole project database bytes | 2,389,997,235 | 0 claimed | 2,396,739,251 |
+| Whole project database bytes | 2,389,997,235 | 0 claimed | 2,397,689,523 |
 | 5.0.0 requests relation bytes | 2,350,628,864 | 0 | 2,350,628,864 |
 | Relevant/W7 5.0.0 request rows | 11,211 | 0 | 11,211 |
 | Source sessions | 1 | 0 | 1 |

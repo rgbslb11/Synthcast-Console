@@ -41,6 +41,10 @@ Workflow 38486420332: regression success.
 Source 5.0.0 functions remain public v3, Chairman v8, scheduler v5.
 Source session v11213 and checksum unchanged. Main and source release branch remain separate.
 
-Hosted authenticated Chairman and complete Deadman acceptance remain BLOCKED. Deployment success does not mean release approval.
+Hosted Chairman Launch/Start Auto pass; remaining controls and complete Deadman acceptance remain BLOCKED by browser credential protection. Deployment success does not mean release approval.
 
 Live cloud-browser observation at approximately 2026-10-14T00:02Z: hosted Public showed CLOUD V101 / POWER 41/41 with 54 cards; hosted Condensed showed SAT V101 / WK V101 with 54 cards. Chairman displayed the correct 5.0.1 QA identity and required sign-in. No credentials were inspected or entered.
+
+## Authenticated hosted follow-up — 2026-10-14, about 00:27 UTC
+
+Secure sign-in succeeded. Actual Chairman Launch acknowledged V102 in 1,382 ms; Start Auto acknowledged V104 in 2,005 ms, including browser-automation overhead. After an explicit navigation permitted by the browser credential-protection recovery guidance, the signed-in page showed the persisted running clock at 1st 09:14. Subsequent inspection was again denied by browser credential protection. No further automated authentication recovery was attempted. This is a testing-tool restriction, not evidence of a GameCast defect. Remaining hosted control/Deadman tests remain BLOCKED; initial sign-in access itself is resolved. The named QA G0285 run was stopped through a guarded database teardown and its history retained; this does not count as a Chairman Stop test.

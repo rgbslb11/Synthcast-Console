@@ -12,7 +12,7 @@ Reproduced PASS means a fault or targeted condition was demonstrated. FAIL means
 | Root cause | The source uses polling, not Realtime/WebSockets. Protected drafts retain their write basis; shared session versions advance for other games. Indefinite network waits and older responses were additional code-level risks. The entire reported hosted failure has not been reproduced with Gary’s authenticated session. |
 | Files/functions affected | public/v5.0.1/app.js: load, adopt, cmd; auth-api.js |
 | Fix | Candidate rejects stale reads, adds request deadline and per-game concurrency; no fabricated UI transition. |
-| Regression test | 11-case browser suite proves automatic rendering in all three surfaces. Hosted Chairman validation remains absent. |
+| Regression test | 11-case browser suite proves automatic rendering in all three surfaces. Hosted sign-in, Launch and Auto acknowledged; further hosted inspection was blocked by browser credential protection. |
 | Status | BLOCKED |
 | Risk | High |
 
@@ -26,7 +26,7 @@ Reproduced PASS means a fault or targeted condition was demonstrated. FAIL means
 | Root cause | Redundant pre-write reads and whole-board persistence are proven work amplification. Their exact contribution to Gary’s observed latency is not measured; cloud/Auth/network costs remain unseparated. |
 | Files/functions affected | app.js: cmd; database-store.mjs: commit; commit_state |
 | Fix | Removed command pre-read, bounded safe retry and compact scheduler receipts. No claim that hosted latency is fixed. |
-| Regression test | Mock-boundary command render timing; real scheduler load. Full authenticated click-to-render measurement remains required. |
+| Regression test | Mock-boundary timing, real scheduler load, and hosted Launch/Auto acknowledgements in 1.382/2.005 seconds. Full authenticated click-to-render measurement remains required. |
 | Status | BLOCKED |
 | Risk | High |
 
