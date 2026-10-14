@@ -1,0 +1,1010 @@
+{
+  "Air Force": {
+    "code": "AF",
+    "overall": 71,
+    "offense": 71,
+    "defense": 71,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Alabama": {
+    "code": "ALA",
+    "overall": 98,
+    "offense": 99,
+    "defense": 97,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Arizona State": {
+    "code": "ASU",
+    "overall": 69,
+    "offense": 71,
+    "defense": 67,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Arkansas": {
+    "code": "ARK",
+    "overall": 78,
+    "offense": 77,
+    "defense": 79,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Army": {
+    "code": "ARMY",
+    "overall": 79,
+    "offense": 78,
+    "defense": 80,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Auburn": {
+    "code": "AUB",
+    "overall": 82,
+    "offense": 81,
+    "defense": 83,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "BYU": {
+    "code": "BYU",
+    "overall": 96,
+    "offense": 95,
+    "defense": 97,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Baylor": {
+    "code": "BAY",
+    "overall": 82,
+    "offense": 82,
+    "defense": 82,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Boston College": {
+    "code": "BC",
+    "overall": 68,
+    "offense": 66,
+    "defense": 70,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "California": {
+    "code": "CAL",
+    "overall": 80,
+    "offense": 80,
+    "defense": 80,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Cincinnati": {
+    "code": "CIN",
+    "overall": 82,
+    "offense": 82,
+    "defense": 82,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Coastal Carolina": {
+    "code": "CCU",
+    "overall": 63,
+    "offense": 62,
+    "defense": 64,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Colgate": {
+    "code": "COLG",
+    "overall": 79,
+    "offense": 79,
+    "defense": 79,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Colorado": {
+    "code": "COLO",
+    "overall": 75,
+    "offense": 73,
+    "defense": 77,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Colorado State": {
+    "code": "CSU",
+    "overall": 67,
+    "offense": 68,
+    "defense": 66,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Cornell": {
+    "code": "COR",
+    "overall": 64,
+    "offense": 65,
+    "defense": 63,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Delaware": {
+    "code": "DEL",
+    "overall": 67,
+    "offense": 66,
+    "defense": 68,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Duke": {
+    "code": "DUKE",
+    "overall": 89,
+    "offense": 87,
+    "defense": 91,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "East Carolina": {
+    "code": "ECU",
+    "overall": 70,
+    "offense": 69,
+    "defense": 71,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Florida": {
+    "code": "FLA",
+    "overall": 87,
+    "offense": 89,
+    "defense": 85,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Florida Atlantic": {
+    "code": "FAU",
+    "overall": 70,
+    "offense": 70,
+    "defense": 70,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Florida International": {
+    "code": "FIU",
+    "overall": 66,
+    "offense": 65,
+    "defense": 67,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Florida State": {
+    "code": "FSU",
+    "overall": 86,
+    "offense": 87,
+    "defense": 85,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Fresno State": {
+    "code": "FRES",
+    "overall": 74,
+    "offense": 73,
+    "defense": 75,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Georgia": {
+    "code": "UGA",
+    "overall": 99,
+    "offense": 99,
+    "defense": 99,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Georgia Southern": {
+    "code": "GASO",
+    "overall": 64,
+    "offense": 64,
+    "defense": 64,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Georgia State": {
+    "code": "GAST",
+    "overall": 76,
+    "offense": 77,
+    "defense": 75,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Georgia Tech": {
+    "code": "GT",
+    "overall": 81,
+    "offense": 80,
+    "defense": 82,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Harvard": {
+    "code": "HARV",
+    "overall": 64,
+    "offense": 65,
+    "defense": 63,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Hawaii": {
+    "code": "HAW",
+    "overall": 61,
+    "offense": 60,
+    "defense": 62,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Holy Cross": {
+    "code": "HC",
+    "overall": 80,
+    "offense": 80,
+    "defense": 80,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Houston": {
+    "code": "HOU",
+    "overall": 93,
+    "offense": 93,
+    "defense": 93,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Indiana": {
+    "code": "IU",
+    "overall": 97,
+    "offense": 96,
+    "defense": 98,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Iowa": {
+    "code": "IOWA",
+    "overall": 92,
+    "offense": 91,
+    "defense": 93,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Iowa State": {
+    "code": "ISU",
+    "overall": 79,
+    "offense": 79,
+    "defense": 79,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Kansas": {
+    "code": "KU",
+    "overall": 72,
+    "offense": 71,
+    "defense": 73,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Kansas State": {
+    "code": "KSU",
+    "overall": 80,
+    "offense": 80,
+    "defense": 80,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Kentucky": {
+    "code": "UK",
+    "overall": 90,
+    "offense": 91,
+    "defense": 89,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "LSU": {
+    "code": "LSU",
+    "overall": 95,
+    "offense": 96,
+    "defense": 94,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Lehigh": {
+    "code": "LEH",
+    "overall": 89,
+    "offense": 89,
+    "defense": 89,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Louisiana Tech": {
+    "code": "LT",
+    "overall": 65,
+    "offense": 65,
+    "defense": 65,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Louisville": {
+    "code": "LOU",
+    "overall": 91,
+    "offense": 91,
+    "defense": 91,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Marshall": {
+    "code": "MRSH",
+    "overall": 68,
+    "offense": 68,
+    "defense": 68,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Maryland": {
+    "code": "MD",
+    "overall": 81,
+    "offense": 82,
+    "defense": 80,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Memphis": {
+    "code": "MEM",
+    "overall": 87,
+    "offense": 88,
+    "defense": 86,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Miami": {
+    "code": "MIA",
+    "overall": 98,
+    "offense": 98,
+    "defense": 98,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Michigan": {
+    "code": "MICH",
+    "overall": 92,
+    "offense": 90,
+    "defense": 94,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Michigan State": {
+    "code": "MSU",
+    "overall": 78,
+    "offense": 78,
+    "defense": 78,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Middle Tennessee": {
+    "code": "MTSU",
+    "overall": 60,
+    "offense": 60,
+    "defense": 60,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Minnesota": {
+    "code": "MINN",
+    "overall": 78,
+    "offense": 78,
+    "defense": 78,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Mississippi State": {
+    "code": "MSST",
+    "overall": 88,
+    "offense": 89,
+    "defense": 87,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Missouri": {
+    "code": "MIZ",
+    "overall": 93,
+    "offense": 92,
+    "defense": 94,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "NC State": {
+    "code": "NCSU",
+    "overall": 74,
+    "offense": 74,
+    "defense": 74,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Navy": {
+    "code": "NAVY",
+    "overall": 77,
+    "offense": 75,
+    "defense": 79,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Nebraska": {
+    "code": "NEB",
+    "overall": 92,
+    "offense": 93,
+    "defense": 91,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Nevada": {
+    "code": "NEV",
+    "overall": 63,
+    "offense": 63,
+    "defense": 63,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "New Mexico": {
+    "code": "NM",
+    "overall": 77,
+    "offense": 76,
+    "defense": 78,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "New Mexico State": {
+    "code": "NMSU",
+    "overall": 61,
+    "offense": 60,
+    "defense": 62,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "North Carolina": {
+    "code": "UNC",
+    "overall": 89,
+    "offense": 88,
+    "defense": 90,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "North Dakota State": {
+    "code": "NDSU",
+    "overall": 80,
+    "offense": 81,
+    "defense": 79,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "North Texas": {
+    "code": "UNT",
+    "overall": 73,
+    "offense": 74,
+    "defense": 72,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Northern Illinois": {
+    "code": "NIU",
+    "overall": 62,
+    "offense": 61,
+    "defense": 63,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Northwestern": {
+    "code": "NU",
+    "overall": 85,
+    "offense": 85,
+    "defense": 85,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Notre Dame": {
+    "code": "ND",
+    "overall": 98,
+    "offense": 99,
+    "defense": 97,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Ohio State": {
+    "code": "OSU",
+    "overall": 99,
+    "offense": 99,
+    "defense": 99,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Oklahoma": {
+    "code": "OU",
+    "overall": 93,
+    "offense": 92,
+    "defense": 94,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Oklahoma State": {
+    "code": "OKST",
+    "overall": 86,
+    "offense": 86,
+    "defense": 86,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Old Dominion": {
+    "code": "ODU",
+    "overall": 67,
+    "offense": 65,
+    "defense": 69,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Ole Miss": {
+    "code": "MISS",
+    "overall": 95,
+    "offense": 96,
+    "defense": 94,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Oregon": {
+    "code": "ORE",
+    "overall": 96,
+    "offense": 96,
+    "defense": 96,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Oregon State": {
+    "code": "ORST",
+    "overall": 75,
+    "offense": 76,
+    "defense": 74,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Penn": {
+    "code": "PENN",
+    "overall": 73,
+    "offense": 74,
+    "defense": 72,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Penn State": {
+    "code": "PSU",
+    "overall": 84,
+    "offense": 84,
+    "defense": 84,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Pittsburgh": {
+    "code": "PITT",
+    "overall": 84,
+    "offense": 84,
+    "defense": 84,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Princeton": {
+    "code": "PRIN",
+    "overall": 71,
+    "offense": 72,
+    "defense": 70,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Purdue": {
+    "code": "PUR",
+    "overall": 86,
+    "offense": 86,
+    "defense": 86,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Rice": {
+    "code": "RICE",
+    "overall": 63,
+    "offense": 62,
+    "defense": 64,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Rutgers": {
+    "code": "RUTG",
+    "overall": 67,
+    "offense": 68,
+    "defense": 66,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "SMU": {
+    "code": "SMU",
+    "overall": 91,
+    "offense": 90,
+    "defense": 92,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "San Diego State": {
+    "code": "SDSU",
+    "overall": 69,
+    "offense": 69,
+    "defense": 69,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "San Jose State": {
+    "code": "SJSU",
+    "overall": 65,
+    "offense": 64,
+    "defense": 66,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "South Florida": {
+    "code": "USF",
+    "overall": 83,
+    "offense": 83,
+    "defense": 83,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Southern Miss": {
+    "code": "USM",
+    "overall": 62,
+    "offense": 63,
+    "defense": 61,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Stanford": {
+    "code": "STAN",
+    "overall": 71,
+    "offense": 73,
+    "defense": 69,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Syracuse": {
+    "code": "SYR",
+    "overall": 73,
+    "offense": 74,
+    "defense": 72,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "TCU": {
+    "code": "TCU",
+    "overall": 83,
+    "offense": 81,
+    "defense": 85,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Temple": {
+    "code": "TEM",
+    "overall": 68,
+    "offense": 67,
+    "defense": 69,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Tennessee": {
+    "code": "TENN",
+    "overall": 95,
+    "offense": 94,
+    "defense": 96,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Texas": {
+    "code": "TEX",
+    "overall": 97,
+    "offense": 97,
+    "defense": 97,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Texas A&M": {
+    "code": "TA&M",
+    "overall": 94,
+    "offense": 94,
+    "defense": 94,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Texas State": {
+    "code": "TXST",
+    "overall": 69,
+    "offense": 71,
+    "defense": 67,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Texas Tech": {
+    "code": "TTU",
+    "overall": 97,
+    "offense": 97,
+    "defense": 97,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Troy": {
+    "code": "TROY",
+    "overall": 70,
+    "offense": 68,
+    "defense": 72,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Tulane": {
+    "code": "TLN",
+    "overall": 77,
+    "offense": 78,
+    "defense": 76,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Tulsa": {
+    "code": "TLSA",
+    "overall": 72,
+    "offense": 70,
+    "defense": 74,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "UAB": {
+    "code": "UAB",
+    "overall": 62,
+    "offense": 62,
+    "defense": 62,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "UCLA": {
+    "code": "UCLA",
+    "overall": 90,
+    "offense": 91,
+    "defense": 89,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "UConn": {
+    "code": "UConn",
+    "overall": 76,
+    "offense": 78,
+    "defense": 74,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "UNLV": {
+    "code": "UNLV",
+    "overall": 74,
+    "offense": 74,
+    "defense": 74,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "UTEP": {
+    "code": "UTEP",
+    "overall": 60,
+    "offense": 60,
+    "defense": 60,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "UTSA": {
+    "code": "UTSA",
+    "overall": 75,
+    "offense": 77,
+    "defense": 73,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Utah": {
+    "code": "UTAH",
+    "overall": 96,
+    "offense": 97,
+    "defense": 95,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Vanderbilt": {
+    "code": "VAN",
+    "overall": 88,
+    "offense": 89,
+    "defense": 87,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Virginia": {
+    "code": "UVA",
+    "overall": 90,
+    "offense": 90,
+    "defense": 90,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Virginia Tech": {
+    "code": "VT",
+    "overall": 83,
+    "offense": 84,
+    "defense": 82,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Wake Forest": {
+    "code": "WAKE",
+    "overall": 93,
+    "offense": 94,
+    "defense": 92,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Washington": {
+    "code": "WASH",
+    "overall": 88,
+    "offense": 88,
+    "defense": 88,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Washington State": {
+    "code": "WSU",
+    "overall": 66,
+    "offense": 65,
+    "defense": 67,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "West Virginia": {
+    "code": "WVU",
+    "overall": 76,
+    "offense": 78,
+    "defense": 74,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Wisconsin": {
+    "code": "WIS",
+    "overall": 81,
+    "offense": 79,
+    "defense": 83,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Wyoming": {
+    "code": "WYO",
+    "overall": 61,
+    "offense": 60,
+    "defense": 62,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  },
+  "Yale": {
+    "code": "YALE",
+    "overall": 65,
+    "offense": 65,
+    "defense": 65,
+    "sourceVersion": "W08-R1-364135ac15a3",
+    "specialTeams": null,
+    "tempo": null
+  }
+}
