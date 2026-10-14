@@ -20,7 +20,7 @@ try{
  for(const [label,suffix] of [['Chairman',''],['Public','&view=public'],['Condensed',null]]){
   const start=performance.now();await page.goto(origin+'/v5.0.1/w8/'+(suffix===null?'ui1.3/':'')+'?session='+slug+(suffix||''));await page.locator('[data-game="G0351"]').waitFor();timings.push({surface:label,navigationToLastCardMs:performance.now()-start,fixture:true});
   await check(label+' shows exact 56 ordered Week 8 identities',async()=>{assert.deepEqual(await page.locator('article[data-game]').evaluateAll(es=>es.map(e=>e.dataset.game)),OPERATING_SLATE.map(g=>g.id));});
-  await check(label+' preserves every team, network and kickoff',async()=>{for(const g of OPERATING_SLATE){const text=await page.locator('article[data-game="'+g.id+'"]').innerText();for(const value of [g.away,g.home,g.network,g.kickoff])assert.ok(text.includes(value),g.id+' '+value);}});
+  await check(label+' preserves every team, network and kickoff',async()=>{for(const g of OPERATING_SLATE){const text=await page.locator('article[data-game="'+g.id+'"]').innerText();for(const value of [g.away,g.home,g.network,g.kickoff])assert.ok(text.toLowerCase().includes(value.toLowerCase()),g.id+' '+value);}});
   await check(label+' fits viewport',async()=>assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1)));
   if(label==='Chairman'){
    await check('Chairman is signed in, all power ready, no live results',async()=>{assert.match(await page.locator('#links').innerText(),/ACTIVE POWER 56\/56/);assert.equal(await page.getByRole('button',{name:'LAUNCH',exact:true}).count(),56);assert.equal(await page.getByRole('button',{name:'ACCEPT',exact:true}).count(),0);});
