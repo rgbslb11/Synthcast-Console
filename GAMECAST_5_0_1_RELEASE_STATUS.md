@@ -1,11 +1,11 @@
-# GameCast 5.0.1 current release status — 2026-10-14 21:19 UTC
+# GameCast 5.0.1 current release status — 2026-10-14 21:30 UTC
 
 Production activation remains BLOCKED. This status supersedes the earlier four-blocker reports.
 15 gates: **12 PASS; 3 BLOCKED**. Engineering checks, not independent certification.
 
 Candidate branch inspected: release/gamecast-v5.0.1 at 34029a28936ddf470fb342b537a6d8e9d9f747e7.
 Latest regression CI: run 38637545955, SUCCESS on that commit.
-Operating application source remains 6fcaac2ca0214ba4283d7f9d2c876eeb0f68271f. No operating UI or engine source changed in this follow-up.
+Operating application source remains 6fcaac2ca0214ba4283d7f9d2c876eeb0f68271f. The approved confirmation UI change is committed but not yet deployed; engine source is unchanged.
 
 ## Gates
 | # | Gate | Status | Evidence and scope |
@@ -56,6 +56,6 @@ The advisor reported 21 informational RLS-enabled/no-policy notices for intentio
 ## Remaining decision
 The current cloud browser's native confirmation interface remains restricted after secure authentication. Supported recovery was exhausted in earlier runs; this run did not retry the blocked operation. No additional browser-control integration was found in the available plugin search.
 
-A narrow in-page confirmation proposal is recorded in GAMECAST_5_0_1_CONFIRMATION_UI_PROPOSAL.md. It preserves explicit confirmation and server authorization, and requires owner approval under the project's instruction to ask before material UI behavior changes. No proposed UI change has been implemented.
+A narrow in-page confirmation proposal is recorded in GAMECAST_5_0_1_CONFIRMATION_UI_PROPOSAL.md. It preserves explicit confirmation and server authorization, and requires owner approval under the project's instruction to ask before material UI behavior changes. Gary explicitly approved the proposal. Commit fdea1b8 implements the six action families, with Chromium and WebKit regression success in run 38640485893. Deployment run 38640485836 stopped on a timing race in the new stale-target test before publication. The test now requests a fresh read after any in-flight read; a new deployment run is required. Hosted controls, Deadman and full performance remain incomplete. Candidate writes/scheduler/cron remain disabled; main QA version 551.
 
 Week 8 remains separately staged (56 games; 112 scheduled-team ratings); no operating import or SEUD publication occurred.

@@ -1,7 +1,7 @@
 # Proposed GameCast 5.0.1 confirmation UI change
 
-Status: PROPOSED — owner approval required before implementation.
-Reason for approval: GAMECAST_PROJECT_INSTRUCTIONS.md requires asking before an ambiguous design choice materially changes UI behavior. The present maintenance authorization does not explicitly select a replacement confirmation interface.
+Status: APPROVED by Gary in the conversation on 2026-10-14; implemented in fdea1b8e7074bdf219bb92036d599f65bbb021cd.
+Reason for approval: GAMECAST_PROJECT_INSTRUCTIONS.md requires asking before an ambiguous design choice materially changes UI behavior. The owner subsequently explicitly approved this concrete replacement interface.
 
 ## Concrete change
 Replace native browser confirm popups with an accessible in-page modal for these six action families only:

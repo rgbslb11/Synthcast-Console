@@ -59,7 +59,7 @@ try{
   let before=commands;await final().click();await dialog.getByRole('button',{name:'Cancel',exact:true}).click();assert.equal(commands,before);assert.equal(row.state[0].lifecycle,'ACTIVE');
   assert.equal(await final().evaluate(el=>document.activeElement===el),true);
   await final().click();await page.keyboard.press('Escape');await dialog.waitFor({state:'hidden'});assert.equal(commands,before);
-  await final().click();row.state[0].fieldPos=34;row.state_version++;await page.evaluate(()=>load({background:true}));await dialog.getByRole('button',{name:'Confirm Final',exact:true}).click();assert.match(await dialog.innerText(),/This game changed/);assert.equal(commands,before);await dialog.getByRole('button',{name:'Cancel',exact:true}).click();
+  await final().click();row.state[0].fieldPos=34;row.state_version++;await page.evaluate(()=>load({background:true,force:true}));await dialog.getByRole('button',{name:'Confirm Final',exact:true}).click();assert.match(await dialog.innerText(),/This game changed/);assert.equal(commands,before);await dialog.getByRole('button',{name:'Cancel',exact:true}).click();
   await final().click();await dialog.getByRole('button',{name:'Confirm Final',exact:true}).click();await card('G0285').getByRole('button',{name:'LOCK RESULT',exact:true}).waitFor();assert.equal(commands,before+1);
   await card('G0285').getByRole('button',{name:'LOCK RESULT',exact:true}).click();await card('G0285').getByRole('button',{name:'UNLOCK',exact:true}).waitFor();
   before=commands;await card('G0285').getByRole('button',{name:'UNLOCK',exact:true}).click();await dialog.getByRole('button',{name:'Cancel',exact:true}).click();assert.equal(commands,before);
