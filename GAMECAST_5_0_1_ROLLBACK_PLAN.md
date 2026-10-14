@@ -1,21 +1,14 @@
-# GameCast 5.0.1 rollback plan
+# GameCast 5.0.1 rollback and recovery after authorized 5.0.0 retirement
 
-5.0.0 was never replaced. The normal rollback is to stop using the candidate and reopen the unchanged 5.0.0 session:
+Updated 2026-10-14 UTC. This document supersedes the former instruction to reopen the 5.0.0 operating session.
 
-https://rgbslb11.github.io/Synthcast-Console/v5.0.0/?session=w7v500-17e1dde75f5b1cba
+## Retirement boundary
+The owner authorized removal of 5.0.0 runtime records. Its sessions, events, requests, creation receipts and imported final tables are empty. The source branch and baseline commit 762da633e38ddf8acb0a9e7798ee4502deb1e81f remain retained. Reopening the retired 5.0.0 session is not a supported rollback.
 
-Public adds &view=public. Condensed:
-https://rgbslb11.github.io/Synthcast-Console/v5.0.0/ui1.3/?session=w7v500-17e1dde75f5b1cba
+Older GameCast 4.4.2 and its approved 54-game Week 7 results are unaffected. SEUD import remains on hold.
 
-Preserved source branch: release/gamecast-v5.0.0.
-Exact baseline commit: 762da633e38ddf8acb0a9e7798ee4502deb1e81f.
-Preserved source functions: gamecast-week7-v5-public v3, gamecast-week7-v5-chairman v8 and gamecast-week7-v5-scheduler v5.
-Source schema: gamecast_v500; session v11213; MD5(state::text) 43212ea3ddf3f1181bbcf9b5ab33f2ca at release audit.
-
-## Engineer-operated candidate shutdown
-
-Run only on project xsvdmcipviejxynkdbhq:
-
+## Candidate emergency shutdown
+Use only the candidate's own release controls:
 ```sql
 BEGIN;
 UPDATE gamecast_v501.release_control SET writes_enabled=false WHERE singleton;
@@ -24,11 +17,18 @@ SELECT cron.alter_job(job_id := jobid, active := false)
 FROM cron.job WHERE jobname='gamecast_v501_isolated_qa';
 COMMIT;
 ```
+Verify candidate write rejection and zero scheduler advances. Preserve candidate state, audit events, receipts, final references and source. Do not rotate shared keys or change project-wide Auth or write settings.
 
-Then verify candidate writes fail, scheduler discovery no longer causes writes, and the unchanged 5.0.0 public read still returns its original session identity and version. Keep candidate tables, receipts, history and branch for investigation. Do not drop schemas, delete QA sessions, rotate the shared scheduler environment key, disable the shared project writes environment setting, or restore QA state into 5.0.0.
+## Application rollback
+If a later candidate code change fails, redeploy the exact previously verified 5.0.1 application commit using the preserved candidate deployment workflow. Keep candidate switches disabled until compatibility and source identity are checked. A deployment rollback does not revert database corrections or restore deleted 5.0.0 data.
 
-No frontend re-publication is required to operate 5.0.0. If candidate-route removal is later requested, produce a new Pages artifact that omits only v5.0.1 and independently verifies every prior manifest byte before publication. Do not blindly rerun an old multi-route publisher.
+The last application commit verified as the starting point for this follow-up is 6fcaac2ca0214ba4283d7f9d2c876eeb0f68271f. Follow-up report and SQL commits do not themselves redeploy frontend/backend application files.
 
-## Recovery limitations
+## Candidate data recovery
+Retain the existing private candidate recovery package and its rehearsal evidence. That evidence is an author check, not independent certification. Rehearse restoration into an isolated destination, never into an operating session.
+If restoring a checkpoint predating the owner-approved G0331 correction, replay the retained correction migration against the isolated destination after restoring the checkpoint. Verify Kansas 24 / Utah 56, quarter sums, the correction audit event and restored immutable trigger. Do not silently replace other results.
 
-No source database data was deleted, so source operation requires no database restore. The private current-state export protects session/finals/events but omits historic requests and infrastructure credentials; it is not a complete database backup. A full destructive-cleanup restoration procedure remains BLOCKED and must be rehearsed before any future deletion.
+Full replay of retired 5.0.0 requests is not a candidate-release prerequisite following the owner's retirement direction. Candidate recovery, idempotency, deterministic continuation and appropriate rollback remain required.
+
+## Current operating posture
+Both 5.0.0 and 5.0.1 remain stopped. No main merge, production promotion or SEUD import is authorized by this document. Hosted Final/Unlock/QA Accept rejection, full Deadman acceptance and outstanding performance evidence remain open.
