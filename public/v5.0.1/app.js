@@ -1,3 +1,11 @@
+async function confirmAction(ids,message,label,send){
+ if(publicView||writing)return;
+ const selected=[...ids],snapshot={version,tokens:Object.fromEntries(selected.map(id=>[id,state.find(g=>g.id===id)?.control_token]))};
+ const current=()=>JSON.stringify([slug,...selected.map(id=>{const g=state.find(x=>x.id===id);return [id,g?.control_token,g?.edit_token];})]);
+ const witness=current(),targets=selected.map(id=>{const g=state.find(x=>x.id===id);return id+' '+(g?.away?.name||'')+' at '+(g?.home?.name||'');}).join('\n');
+ const approved=await gamecastConfirm({title:label,message:message+'\n\n'+targets,witness,current});
+ if(approved&&current()===witness&&!writing)return send(snapshot);
+}
 const weatherDrafts=new Map();
 const sameWeather=(a,b)=>!!a&&!!b&&a.enabled===b.enabled&&a.wind===b.wind&&a.rain===b.rain&&a.temperature===b.temperature;
 function weatherValues(id){
@@ -93,7 +101,7 @@ function dmCheckpoint(board,ids){
       ...['status','revision','basis','offsetMinutes','tvStartZulu','dueZulu','armRunId','controlOwner','triggeredAtZulu','resolvedAtZulu','reason'].map(k=>d[k])];
   }));
 }
-async function dmWrite(ids,operation,config){
+async function dmWrite(ids,operation,config,witness=null){
   if(publicView||writing)return;
   if(writeConflict){status('VERSION CONFLICT - REFRESH before changing Dead-Man',true);return;}
   const baseline=dmCheckpoint(state,ids);
@@ -101,8 +109,8 @@ async function dmWrite(ids,operation,config){
   try{
     status('SAVING DEAD-MAN');
     let b;
-    const game_tokens=Object.fromEntries(ids.map(id=>[id,state.find(g=>g.id===id)?.control_token]));
-    b=await api('deadman_batch',{ids,operation,config,expected_version:version,game_tokens});
+    const game_tokens=witness?.tokens??Object.fromEntries(ids.map(id=>[id,state.find(g=>g.id===id)?.control_token]));
+    b=await api('deadman_batch',{ids,operation,config,expected_version:witness?.version??version,game_tokens});
     adopt(b);render();dmCount();status('DEAD-MAN '+operation.toUpperCase()+' SAVED - '+ids.length+' GAME(S)');
   }catch(e){
     const retry=gamecastPendingRequest();
@@ -114,14 +122,14 @@ async function dmWrite(ids,operation,config){
   }finally{writing=false;}
 }
 function dmArmOne(id){
-  try{const config=dmGetConfig('dm-'+id);if(confirm('Authorize Dead-Man AUTO at 1x?\n'+dmPreview([id],config)))dmWrite([id],'arm',config);}
+  try{const config=dmGetConfig('dm-'+id);return confirmAction([id],'Authorize Dead-Man AUTO at 1x?\n'+dmPreview([id],config),'Confirm Arm / Re-arm',w=>dmWrite([id],'arm',config,w));}
   catch(e){status(e.message,true);}
 }
 function dmArmSelected(){
-  try{const ids=[...dmSelected],config=dmGetConfig('dm-bulk');if(confirm('ARM '+ids.length+' SELECTED GAMES?\nUnselected games remain unchanged.\n'+dmPreview(ids,config)))dmWrite(ids,'arm',config);}
+  try{const ids=[...dmSelected],config=dmGetConfig('dm-bulk');return confirmAction(ids,'ARM '+ids.length+' SELECTED GAMES?\nUnselected games remain unchanged.\n'+dmPreview(ids,config),'Confirm Arm Selected',w=>dmWrite(ids,'arm',config,w));}
   catch(e){status(e.message,true);}
 }
-function dmDisarm(ids){if(ids.length&&confirm('Disarm Dead-Man for '+ids.length+' selected game(s)?'))dmWrite(ids,'disarm',null);}
+function dmDisarm(ids){if(ids.length)return confirmAction(ids,'Disarm Dead-Man for '+ids.length+' selected game(s)?','Confirm Disarm',w=>dmWrite([...ids],'disarm',null,w));}
 function dmClock(){
   const stale=!dmLastSync||Date.now()-dmLastSync>30000,ms=masterEpoch+Date.now()-masterAnchor;
   for(const x of document.querySelectorAll('[data-dm-due]')){
@@ -263,7 +271,7 @@ function editCheckpoint(g){
   const copy=structuredClone(g);delete copy.glSeconds;
   return JSON.stringify(copy);
 }
-async function cmd(id,command,payload={}){
+async function cmd(id,command,payload={},witness=null){
   if(writing){status('COMMAND IN PROGRESS · Please wait');return;}
   if(writeConflict){status('VERSION CONFLICT · Draft preserved · REFRESH to reload',true);return}
   writing=true;readEpoch++;
@@ -275,8 +283,8 @@ async function cmd(id,command,payload={}){
     let b;
     const target=state.find(g=>g.id===id);
     const strict=['edit_commit','edit_cancel','clock_set','score'].includes(command);
-    b=await api('command',{id,command,payload,expected_version:version,
-      game_tokens:{[id]:strict?target?.edit_token:target?.control_token}});
+    b=await api('command',{id,command,payload,expected_version:witness?.version??version,
+      game_tokens:witness?.tokens??{[id]:strict?target?.edit_token:target?.control_token}});
     adopt(b);status('CHECKPOINTED V'+version);
     const closing=command==='edit_commit'||command==='edit_cancel';
     render(id);
@@ -290,7 +298,7 @@ async function cmd(id,command,payload={}){
   }finally{writing=false}
   if(readback||stateRefresh)await load({force:true});
 }
-function confirmCmd(id,c,m,p={}){if(confirm(m))cmd(id,c,{...p,confirmed:true})}function beginEdit(id,strong=false){if(strong&&!confirm('Supersede this locked/accepted result for correction?'))return;cmd(id,'edit_begin',strong?{confirmed:true}:{})}function reopen(id){confirmCmd(id,'reopen_live','Reopen this Final to live simulation? A continuation seed will be created.',{resumeAuto:false})}function parseClock(v){const m=String(v).match(/^(\d{1,2}):(\d{2})$/);return m?+m[1]*60+ +m[2]:NaN}function setClock(id){const g=state.find(x=>x.id===id),v=prompt('Set clock M:SS',clk(g.scoreboardSeconds));if(v==null)return;const s=parseClock(v);if(!Number.isFinite(s)||s<0||s>g.quarterLengthSeconds)return alert('Invalid clock');cmd(id,'clock_set',{seconds:s})}function saveEdit(id,resumeAuto){const scores={};for(const p of ['1','2','3','4'])scores[p]=[+document.getElementById('e-'+id+'-a'+p).value,+document.getElementById('e-'+id+'-h'+p).value];const c=parseClock(document.getElementById('e-'+id+'-c').value);if(!Number.isFinite(c))return alert('Clock must be M:SS');cmd(id,'edit_commit',{scores,quarter:+document.getElementById('e-'+id+'-q').value,clockSeconds:c,possession:+document.getElementById('e-'+id+'-p').value,ballSide:document.getElementById('e-'+id+'-s').value,yardline:+document.getElementById('e-'+id+'-y').value,down:+document.getElementById('e-'+id+'-d').value,distance:+document.getElementById('e-'+id+'-x').value,awayTimeouts:+document.getElementById('e-'+id+'-at').value,homeTimeouts:+document.getElementById('e-'+id+'-ht').value,resumeAuto,hold:!resumeAuto})}function openGame(id){location.href=location.origin+location.pathname+'?session='+encodeURIComponent(slug)+'&game='+id+(publicView?'&view=public':'')}function copy(u){navigator.clipboard?.writeText(u).catch(()=>prompt('Copy link',u))}async function loadPower(){
+function confirmCmd(id,c,m,p={}){const label={end:'Confirm Final',unlock:'Confirm Unlock',accept:'Confirm Accept'}[c];if(label)return confirmAction([id],m,label,w=>cmd(id,c,{...p,confirmed:true},w));if(confirm(m))return cmd(id,c,{...p,confirmed:true})}function beginEdit(id,strong=false){if(strong&&!confirm('Supersede this locked/accepted result for correction?'))return;cmd(id,'edit_begin',strong?{confirmed:true}:{})}function reopen(id){confirmCmd(id,'reopen_live','Reopen this Final to live simulation? A continuation seed will be created.',{resumeAuto:false})}function parseClock(v){const m=String(v).match(/^(\d{1,2}):(\d{2})$/);return m?+m[1]*60+ +m[2]:NaN}function setClock(id){const g=state.find(x=>x.id===id),v=prompt('Set clock M:SS',clk(g.scoreboardSeconds));if(v==null)return;const s=parseClock(v);if(!Number.isFinite(s)||s<0||s>g.quarterLengthSeconds)return alert('Invalid clock');cmd(id,'clock_set',{seconds:s})}function saveEdit(id,resumeAuto){const scores={};for(const p of ['1','2','3','4'])scores[p]=[+document.getElementById('e-'+id+'-a'+p).value,+document.getElementById('e-'+id+'-h'+p).value];const c=parseClock(document.getElementById('e-'+id+'-c').value);if(!Number.isFinite(c))return alert('Clock must be M:SS');cmd(id,'edit_commit',{scores,quarter:+document.getElementById('e-'+id+'-q').value,clockSeconds:c,possession:+document.getElementById('e-'+id+'-p').value,ballSide:document.getElementById('e-'+id+'-s').value,yardline:+document.getElementById('e-'+id+'-y').value,down:+document.getElementById('e-'+id+'-d').value,distance:+document.getElementById('e-'+id+'-x').value,awayTimeouts:+document.getElementById('e-'+id+'-at').value,homeTimeouts:+document.getElementById('e-'+id+'-ht').value,resumeAuto,hold:!resumeAuto})}function openGame(id){location.href=location.origin+location.pathname+'?session='+encodeURIComponent(slug)+'&game='+id+(publicView?'&view=public':'')}function copy(u){navigator.clipboard?.writeText(u).catch(()=>prompt('Copy link',u))}async function loadPower(){
   if(writing)return;
   if(writeConflict){status('VERSION CONFLICT · Draft preserved · REFRESH to reload',true);return}
   writing=true;readEpoch++;

@@ -1,5 +1,5 @@
 {
-  "purpose": "Publish proven Public version-badge repair to isolated 5.0.1 route; preserve all prior release bytes",
+  "purpose": "Publish user-approved in-page confirmations for Final, Unlock, Accept, Deadman arm/re-arm, selected arm and disarm; preserve prior release bytes",
   "baseline": "762da633e38ddf8acb0a9e7798ee4502deb1e81f",
-  "requestedAt": "2026-10-14T02:59:53.722783+00:00"
+  "requestedAt": "2026-10-14T21:27:00Z"
 }
