@@ -1,0 +1,22 @@
+[
+  {
+    "path": "runtime/power.mjs",
+    "sha256": "3a55ae714473ee736cdca8d43f1072b071f9fd6c12a4bbfc8f0efc2154acf339",
+    "unchanged": true
+  },
+  {
+    "path": "runtime/week7.mjs",
+    "sha256": "3d253a20f852d0534f3d1dd995e734ffa28ca9db07cebe8bd0d1236aa6f25631",
+    "unchanged": true
+  },
+  {
+    "path": "src/weather.mjs",
+    "sha256": "b0faa579d9caa3df6197c52eab13abf1d25eda3eace40d270c97681a9bfed8f3",
+    "unchanged": true
+  },
+  {
+    "path": "src/deadman.mjs",
+    "sha256": "7473d381e56cdeb20eb79ba78c9cc2d39067848c12fb00cb1b9246bb87f38be9",
+    "unchanged": true
+  }
+]

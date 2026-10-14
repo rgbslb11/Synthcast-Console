@@ -1,0 +1,55 @@
+{
+  "passed": 11,
+  "cases": [
+    "54 cards load",
+    "unrelated server updates render without refresh",
+    "Upcoming/search intersection",
+    "Launch/Start Auto/Stop update control state",
+    "busy scheduler does not force refresh and retry succeeds",
+    "edit draft survives polling and other-game version advances; save succeeds",
+    "Final/Lock persist and QA Accept is blocked",
+    "Deadman remains visible and updates in open panel",
+    "real concurrent target change rejects; draft remains",
+    "public view renders automatically and has no operator controls",
+    "Condensed view updates without refresh and preserves expanded detail"
+  ],
+  "latencies": [
+    {
+      "command": "auto",
+      "ms": 40.52462199999991
+    },
+    {
+      "command": "auto",
+      "ms": 36.413268000000244
+    },
+    {
+      "command": "edit_begin",
+      "ms": 36.39819499999976
+    },
+    {
+      "command": "edit_commit",
+      "ms": 90.73871700000018
+    },
+    {
+      "command": "end",
+      "ms": 43.839208999999755
+    },
+    {
+      "command": "lock",
+      "ms": 34.294722999999976
+    },
+    {
+      "command": "deadman_arm",
+      "ms": 43.25211500000023
+    },
+    {
+      "command": "edit_begin",
+      "ms": 36.92777699999988
+    }
+  ],
+  "errors": [],
+  "browser": "chromium",
+  "scope": "Actual frontend and handlers; in-memory database and test authentication. Hosted Chairman authentication not exercised.",
+  "run": 38485831028,
+  "commit": "deb313e56d1bb6ba92c2aab52f1ab461a57cbcb5"
+}

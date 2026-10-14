@@ -1,0 +1,14 @@
+[
+  {
+    "engine_version": "GC-W3-V4.2.2-RC1",
+    "sessions": 7,
+    "stored_state_bytes": 335432,
+    "event_count": 416
+  },
+  {
+    "engine_version": "GC-W7-V4.4.2-RC1",
+    "sessions": 14,
+    "stored_state_bytes": 505588,
+    "event_count": 1161
+  }
+]

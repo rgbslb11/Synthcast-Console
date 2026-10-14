@@ -1,0 +1,16 @@
+[
+  {
+    "engine_version": "GC-W3-V4.2.2-RC1",
+    "event_rows": 416,
+    "payload_bytes": 114765,
+    "largest_payload_bytes": 626,
+    "top_level_board_payloads": 0
+  },
+  {
+    "engine_version": "GC-W7-V4.4.2-RC1",
+    "event_rows": 1161,
+    "payload_bytes": 736501,
+    "largest_payload_bytes": 1018,
+    "top_level_board_payloads": 0
+  }
+]

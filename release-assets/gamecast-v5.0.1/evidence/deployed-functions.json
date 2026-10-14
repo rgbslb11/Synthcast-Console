@@ -1,0 +1,30 @@
+[
+  {
+    "name": "gamecast-week7-v5-0-1-public",
+    "version": 1,
+    "status": "ACTIVE",
+    "filesCompared": 14,
+    "byteExact": true,
+    "ezbr_sha256": "7969ce6c67ab53fb82e967e34c0849a83911fe36f620401c3d8a453a9d29788e",
+    "sourceCommit": "d2b8b8c7e436dd7d50a1cb84e683dbe30041baa7"
+  },
+  {
+    "name": "gamecast-week7-v5-0-1-chairman",
+    "version": 2,
+    "status": "ACTIVE",
+    "filesCompared": 14,
+    "byteExact": true,
+    "ezbr_sha256": "fae2eb03aa01e9bc934a49f95f26e37e16dbc0680197a07427c4b88ddfc7fec1",
+    "sourceCommit": "d2b8b8c7e436dd7d50a1cb84e683dbe30041baa7",
+    "verify_jwt": true
+  },
+  {
+    "name": "gamecast-week7-v5-0-1-scheduler",
+    "version": 1,
+    "status": "ACTIVE",
+    "filesCompared": 16,
+    "byteExact": true,
+    "ezbr_sha256": "8551bf80ed6fdfd8c686c8d3c05d99d01918678f90b9f3f215c91e4e1d3e50c7",
+    "sourceCommit": "d2b8b8c7e436dd7d50a1cb84e683dbe30041baa7"
+  }
+]

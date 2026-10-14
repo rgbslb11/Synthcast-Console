@@ -1,0 +1,24 @@
+[
+  {
+    "public_slug": "w7v501-304bbfaa424080e2",
+    "state_version": 19,
+    "age_seconds": "94.755163",
+    "advance_age_seconds": "4.970885",
+    "active_auto": 9,
+    "history_rows": 582,
+    "receipts": 18,
+    "max_receipt_bytes": 176,
+    "full_board_receipts": 0
+  },
+  {
+    "public_slug": "w7v501-56cf57399ccf93a5",
+    "state_version": 20,
+    "age_seconds": "94.755163",
+    "advance_age_seconds": "0.392885",
+    "active_auto": 41,
+    "history_rows": 2727,
+    "receipts": 19,
+    "max_receipt_bytes": 176,
+    "full_board_receipts": 0
+  }
+]

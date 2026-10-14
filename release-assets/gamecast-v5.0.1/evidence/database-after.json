@@ -1,0 +1,17 @@
+[
+  {
+    "result": {
+      "source_events": 17328,
+      "source_finals": 13,
+      "database_bytes": 2396739251,
+      "source_requests": 11211,
+      "source_state_md5": "43212ea3ddf3f1181bbcf9b5ab33f2ca",
+      "candidate_requests": 171,
+      "candidate_sessions": 4,
+      "source_state_version": 11213,
+      "candidate_active_sessions": 0,
+      "source_requests_relation_bytes": 2350628864,
+      "candidate_scheduler_response_max_bytes": 176
+    }
+  }
+]

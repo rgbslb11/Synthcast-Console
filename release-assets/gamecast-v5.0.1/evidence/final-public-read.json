@@ -1,0 +1,18 @@
+[
+  {
+    "name": "baseline",
+    "http": 200,
+    "engine": "GC-W7-V5.0.0-RC1",
+    "version": 11213,
+    "games": 54,
+    "elapsed_ms": 5276
+  },
+  {
+    "name": "candidate",
+    "http": 200,
+    "engine": "GC-W7-V5.0.1-RC1",
+    "version": 101,
+    "games": 54,
+    "elapsed_ms": 3882
+  }
+]
