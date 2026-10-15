@@ -1,0 +1,23 @@
+[
+  {
+    "role": "chairman",
+    "version": 1,
+    "hash": "feaea3afbc2a15527de23f4446aef7f5f5ab37e764803ab708f995a86dee2afb",
+    "files": 14,
+    "sourceParity": "PASS"
+  },
+  {
+    "role": "public",
+    "version": 1,
+    "hash": "3a9cede809283d7382c98527b7aced2531777ec095973d4b68071d58f0ad4b70",
+    "files": 14,
+    "sourceParity": "PASS"
+  },
+  {
+    "role": "scheduler",
+    "version": 1,
+    "hash": "20f6f7cca08ddf56c34f4e70eac3cd97f0fe84792bb879f5d29636a79eedcf79",
+    "files": 16,
+    "sourceParity": "PASS"
+  }
+]

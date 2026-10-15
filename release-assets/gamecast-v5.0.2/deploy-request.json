@@ -1,0 +1,13 @@
+{
+  "version": "5.0.2",
+  "scope": [
+    "Remove chain-sustain yardage assistance",
+    "Correct FG priorities",
+    "Record pre-snap and adjudicated play state",
+    "Protect late-game leads"
+  ],
+  "authorization": "Chairman explicitly requested implement, test, and deploy 5.0.2",
+  "baseline": "14063041b7d282f1b789042f4cfb016878eaafd3",
+  "priorRoutes": "preserve all 129 published files",
+  "sessions": "new 5.0.2 namespace; do not migrate 5.0.1"
+}

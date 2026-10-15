@@ -1,0 +1,73 @@
+name: Publish isolated GameCast 5.0.2 candidate
+on:
+  push:
+    branches: [release/gamecast-v5.0.2]
+    paths: ['release-assets/gamecast-v5.0.2/deploy-request.json']
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: gamecast-v502-isolated-pages
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Protect all prior releases
+        run: |
+          test "$GITHUB_REF" = refs/heads/release/gamecast-v5.0.2
+          test -z "$(git diff --name-only 14063041b7d282f1b789042f4cfb016878eaafd3 -- public/v5.0.1 release-assets/v5.0.1-week8 supabase)"
+      - run: mkdir -p outputs/v502
+      - run: node --test tests/v501/*.test.mjs tests/v502/*.test.mjs
+      - run: node tests/v502/scenarios.mjs && node tests/v502/timing-checks.mjs
+      - run: node tests/v502/release-parity.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/gamecast-browser" --save-exact playwright@1.62.1
+      - run: node "$RUNNER_TEMP/gamecast-browser/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/gamecast-browser/node_modules/playwright/index.mjs" node tests/v502/week8-browser.mjs
+      - run: GAMECAST_BROWSER=webkit PLAYWRIGHT_MODULE="$RUNNER_TEMP/gamecast-browser/node_modules/playwright/index.mjs" node tests/v502/week8-browser.mjs
+      - name: Preserve all prior published files and add only 5.0.2
+        run: node scripts/preserve-gamecast-pages-v502.mjs restore out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v502-predeployment
+          path: |
+            release-assets/gamecast-v5.0.2/evidence/
+            outputs/v502/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    environment:
+      name: gamecast-v502-isolated-qa
+      url: ${{ steps.publish.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: publish
+  postdeployment:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/preserve-gamecast-pages-v502.mjs verify out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gamecast-v502-preserved-deployment
+          path: outputs/v502/
+
