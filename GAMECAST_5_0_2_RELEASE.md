@@ -34,4 +34,24 @@ New schema gamecast_v502_w8, session prefix w8v502-, engine GC-W8-V5.0.2-RC1, se
 
 Rollback: disable only gamecast_v502_w8.release_control.writes_enabled, its scheduler_cron_control.enabled and cron job gamecast_v502_week8. Retain its sessions/events/receipts. Existing5.0.1 routes/functions remain available and unchanged. Do not restore new sessions into an older engine or delete official history.
 
-Release status and workflow receipt will be appended after publication verification.
+## Completed publication — October 15, 2026
+
+Application commit: `836356f64ef86e6cfb64e5fb553915e5bb4323fc`, branch release/gamecast-v5.0.2.
+Workflow https://github.com/rgbslb11/Synthcast-Console/actions/runs/38781047569: verify, deploy and postdeployment SUCCESS.
+
+The Chairman explicitly authorized public publication of source, deployment configuration and documentation. The initial approval-review block was resolved. The first CI publication attempt failed the frozen CSV checksum because a text transfer normalized CRLF; the original Git blob was restored without changing its data. The successful run retained the original checksum and passed all gates below.
+
+- 42 regression groups, 1,054 decision/timing checks and 8,400 full-game executions passed again in CI.
+- Chromium and mobile-sized WebKit: 15 Week 8 UI checks per browser passed, covering Chairman, Public and Condensed using local runtime/API fixtures.
+- Postdeployment verified all129 preserved published files and15 new5.0.2 files by SHA-256.
+- Hosted Public and Condensed rendered56 games; Condensed Saturday rendered45. Hosted Chairman route and sign-in boundary verified; authenticated hosted Chairman commands were not exercised in this browser. Their local runtime/UI fixtures and actual database transaction tests passed.
+- Public API returned GC-W8-V5.0.2-RC1 and56 unlaunched games with private seed/history fields redacted. Foreign-origin Public access rejected403, unauthenticated Chairman401 and scheduler POST403.
+- New operating session `w8v502-19b0b56f2fa95cdf`, version1. All56 games UNLAUNCHED, AutoOFF, OnAirOFF, DeadmanUNARMED. No existing game was migrated or accepted.
+- Writes, scheduler control and isolated cron are enabled. Authenticated scheduler dispatch returned200, no timeout/error, zero eligible sessions while all games are unlaunched/unarmed.
+- Existing5.0.1 session remains bound to GC-W8-V5.0.1-RC1; all prior release source and published routes remain unchanged.
+
+Chairman: https://rgbslb11.github.io/Synthcast-Console/v5.0.2/w8/?session=w8v502-19b0b56f2fa95cdf
+Public: https://rgbslb11.github.io/Synthcast-Console/v5.0.2/w8/?session=w8v502-19b0b56f2fa95cdf&view=public
+Condensed: https://rgbslb11.github.io/Synthcast-Console/v5.0.2/w8/ui1.3/?session=w8v502-19b0b56f2fa95cdf
+
+Native Mobile Safari, authenticated hosted Chairman command testing and long-duration hosted full-load soak remain NOT TESTED for this release. This is a deployed, bounded-test release, not independent production certification. SEUD remains on hold. Rollback instructions above apply only to5.0.2.
