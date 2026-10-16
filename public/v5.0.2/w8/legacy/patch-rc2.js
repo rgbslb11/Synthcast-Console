@@ -15,3 +15,8 @@ function saveEdit(id,resumeAuto){
   cmd(id,'edit_commit',{scores,quarter:+document.getElementById('e-'+id+'-q').value,clockSeconds:c,possession:+document.getElementById('e-'+id+'-p').value,ballSide:document.getElementById('e-'+id+'-s').value,yardline:+document.getElementById('e-'+id+'-y').value,down:+document.getElementById('e-'+id+'-d').value,distance:+document.getElementById('e-'+id+'-x').value,awayTimeouts:+document.getElementById('e-'+id+'-at').value,homeTimeouts:+document.getElementById('e-'+id+'-ht').value,resumeAuto,hold:!resumeAuto});
 }
 
+
+// Finished-game OT correction uses the verified new editor; preserve inherited live/delay behavior.
+const gamecastInheritedEdit=edit,gamecastInheritedSaveEdit=saveEdit;
+edit=function(g){return typeof gamecastFinishedOtEditImplementation==='function'&&isFinishedOtEdit(g)?gamecastFinishedOtEditImplementation(g):gamecastInheritedEdit(g)};
+saveEdit=function(id,resumeAuto){const g=state.find(x=>x.id===id);return typeof gamecastFinishedOtSaveImplementation==='function'&&isFinishedOtEdit(g)?gamecastFinishedOtSaveImplementation(id,resumeAuto):gamecastInheritedSaveEdit(id,resumeAuto)};
