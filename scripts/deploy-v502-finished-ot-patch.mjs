@@ -11,7 +11,9 @@ import {setTimeout as delay} from 'node:timers/promises';
 const root='https://rgbslb11.github.io/Synthcast-Console/';
 const baseline='ea5dfe6d321e1a30a8a353475391e624ba09a262';
 const existingRoot='public/v5.0.2/w8';
-const patchRoot='v5.0.2-ot-patch/w8';
+const patchRoot='v5.0.2-ot-patch-2/w8';
+const previousPatchRoot='v5.0.2-ot-patch/w8';
+const previousPatchCommit='a02f34593fd45a5c4859cc6d4b1ac94d20739adb';
 const out=process.argv[3]||'out';
 const mode=process.argv[2];
 const previous=JSON.parse(fs.readFileSync('release-assets/gamecast-v5.0.2/prior-pages-manifest.json','utf8')).files;
@@ -21,6 +23,7 @@ const toWebFile=source=>source.replace(/^public\//,'');
 const original=execFileSync('git',['ls-tree','-r','--name-only',baseline,'--','public/v5.0.2'],{encoding:'utf8'})
   .trim().split('\n').filter(Boolean).sort();
 const patchSource=walk(existingRoot);
+const previousPatchFiles=original.map(p=>previousPatchRoot+'/'+p.slice(existingRoot.length+1));
 assert.equal(original.length,15,'Expected exactly 15 original GameCast 5.0.2 files');
 assert.deepEqual(patchSource,original,'Patch must preserve the exact original 15-file route inventory');
 assert.equal(previous.length,129,'Previous site preservation manifest count changed');
@@ -41,6 +44,11 @@ function patchIndex(body){
     s=s.replace(from,to);
   }
   return Buffer.from(s);
+}
+function previousPatchBytes(webFile){
+  const name=webFile.slice(previousPatchRoot.length+1);
+  const b=execFileSync('git',['show',previousPatchCommit+':'+existingRoot+'/'+name],{maxBuffer:10*1024*1024});
+  return name==='index.html'?patchIndex(b):b;
 }
 function patchBytes(file){
   const b=fs.readFileSync(file);
@@ -74,6 +82,11 @@ async function existingAudit(copy){
     assert.equal(sha(live),sha(expected),'Original 5.0.2 deployed file changed: '+published);
     if(copy)write(published,live);
   });
+  await eachChunk(previousPatchFiles,async file=>{
+    const expected=previousPatchBytes(file),live=await fetchLive(file);
+    assert.equal(sha(live),sha(expected),'Previously deployed OT patch changed: '+file);
+    if(copy)write(file,live);
+  });
 }
 const patchItems=patchSource.map(file=>({
   source:file,
@@ -89,10 +102,11 @@ function manifest(){
   const files=[
     ...previous.map(f=>({path:f.path,sha256:f.sha256,classification:'PRESERVED'})),
     ...original.map(file=>({path:toWebFile(file),sha256:sha(originalBytes(file)),classification:'ORIGINAL_V502'})),
-    ...patchItems.map(x=>({path:x.published,sha256:sha(patchBytes(x.source)),classification:'NEW_OT_PATCH'}))
+    ...previousPatchFiles.map(file=>({path:file,sha256:sha(previousPatchBytes(file)),classification:'PRESERVED_OT_PATCH'})),
+    ...patchItems.map(x=>({path:x.published,sha256:sha(patchBytes(x.source)),classification:'NEW_OT_PATCH_V2'}))
   ];
-  assert.equal(files.length,159,'site file count');
-  assert.equal(new Set(files.map(x=>x.path)).size,159,'site unique file count');
+  assert.equal(files.length,174,'site file count');
+  assert.equal(new Set(files.map(x=>x.path)).size,174,'site unique file count');
   return files;
 }
 const reportDir='outputs/v502-ot-patch';fs.mkdirSync(reportDir,{recursive:true});
@@ -105,8 +119,8 @@ if(mode==='restore'){
   for(const x of patchItems)write(x.published,patchBytes(x.source));
   for(const {path:file,sha256} of manifest())assert.equal(sha(fs.readFileSync(path.join(out,file))),sha256,'predeployment copied file mismatch '+file);
   const result={status:'PASS',classification:'TEST RESULT',stage:'RESTORED_NOT_DEPLOYED',
-    originalPriorFiles:previous.length,originalV502Files:original.length,newPatchFiles:patchItems.length,
-    totalPublishedFiles:159,patchRoute:'/'+patchRoot+'/',baseline,checkedAt:new Date().toISOString()};
+    originalPriorFiles:previous.length,originalV502Files:original.length,previousPatchFiles:previousPatchFiles.length,newPatchFiles:patchItems.length,
+    totalPublishedFiles:174,patchRoute:'/'+patchRoot+'/',baseline,checkedAt:new Date().toISOString()};
   fs.writeFileSync(reportDir+'/preflight.json',JSON.stringify(result,null,2)+'\n');
   fs.writeFileSync(reportDir+'/file-manifest.json',JSON.stringify({files:manifest()},null,2)+'\n');
   console.log(JSON.stringify(result));
@@ -114,8 +128,8 @@ if(mode==='restore'){
   await existingAudit(false);
   await patchAudit();
   const result={status:'PASS',classification:'TEST RESULT',stage:'HOSTED_VERIFIED',
-    originalPriorFiles:previous.length,originalV502Files:original.length,newPatchFiles:patchItems.length,
-    totalPublishedFiles:159,patchRoute:'/'+patchRoot+'/',baseline,checkedAt:new Date().toISOString()};
+    originalPriorFiles:previous.length,originalV502Files:original.length,previousPatchFiles:previousPatchFiles.length,newPatchFiles:patchItems.length,
+    totalPublishedFiles:174,patchRoute:'/'+patchRoot+'/',baseline,checkedAt:new Date().toISOString()};
   fs.writeFileSync(reportDir+'/postdeployment.json',JSON.stringify(result,null,2)+'\n');
   console.log(JSON.stringify(result));
 }else throw Error('Use restore or verify');
