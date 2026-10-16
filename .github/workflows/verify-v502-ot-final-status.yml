@@ -1,0 +1,16 @@
+name: Verify GameCast 5.0.2 final OT status display
+on:
+  push:
+    branches: [feature/gamecast-v5.0.2-ot-final-status]
+    paths: ['.github/workflows/verify-v502-ot-final-status.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test tests/v502/final-ot-status.test.mjs tests/v502/finished-ot-box-editor.test.mjs tests/v502/week8.test.mjs
