@@ -9,3 +9,12 @@ header{padding:calc(5px + env(safe-area-inset-top)) 8px 5px}
 @media(max-width:650px){.wx-settings label,.wx-settings button{flex:1 1 44%}.wx-settings select{width:100%}}
 .toolbar[hidden]{display:none!important}
 
+
+/* Chairman finished-result overtime editor: branch-only, no live-game layout changes. */
+.finished-ot-scroll{overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.finished-ot-grid{width:max-content;min-width:100%;grid-template-columns:minmax(110px,1fr) repeat(var(--score-periods,5),70px)}
+.ot-score-total{font-weight:900;text-align:center;font-size:13px;border-left:1px solid #4b525d;padding:8px 4px}
+.ot-editor-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:2px 0 12px}
+.ot-editor-actions button{min-height:36px;padding:7px 10px;font-size:11px}
+.ot-editor-actions span{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:#aeb5bf}
+@media(max-width:650px){.finished-ot-grid{grid-template-columns:minmax(95px,1fr) repeat(var(--score-periods,5),54px)}}
