@@ -25,7 +25,7 @@ game.scores={'1':[10,7],'2':[10,0],'3':[0,10],'4':[7,10],OT:[0,7]};game.scoreboa
 const server=http.createServer(async(req,res)=>{
  try{
   const url=new URL(req.url,originRef.value);let filepath=url.pathname;
-  if(filepath==='/api/chairman'){
+  if(filepath==='/api/chairman'||filepath==='/api/public'){
     const data={public_slug:slug,state_version:1,engine_version:row.engine_version,state:row.state,master_zulu:new Date().toISOString()};
     res.writeHead(200,{'content-type':'application/json','access-control-allow-origin':originRef.value});res.end(JSON.stringify(data));return;
   }
@@ -48,7 +48,6 @@ const failures=[];page.on('pageerror',e=>failures.push(e.message));
 await page.addInitScript(()=>sessionStorage.setItem('synthcastGameCast502Auth',JSON.stringify({access_token:'fixture',refresh_token:'fixture',expiresAt:Date.now()+3600000,recovery:false})));
 try{
  await page.goto(originRef.value+'/v5.0.2/w8/?session='+slug);
- await page.locator('[data-game="'+game.id+'"] .card').count().catch(()=>0);
  const card=page.locator('[data-game="'+game.id+'"]');
  await card.locator('.clock').waitFor({timeout:15000});
  assert.equal(await card.locator('.clock').innerText(),'FINAL/1OT');
