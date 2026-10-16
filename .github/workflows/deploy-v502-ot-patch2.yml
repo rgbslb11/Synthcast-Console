@@ -1,0 +1,65 @@
+name: Deploy corrected GameCast 5.0.2 OT editor patch 2
+on:
+  push:
+    branches: [fix/gamecast-v5.0.2-ot-editor-script-order]
+    paths: ['.github/workflows/deploy-v502-ot-patch2.yml']
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: gamecast-v502-ot-patch2-preserved-publication
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Branch and protected backend gate
+        run: |
+          test "$GITHUB_REF" = refs/heads/fix/gamecast-v5.0.2-ot-editor-script-order
+          git diff --quiet a02f34593fd45a5c4859cc6d4b1ac94d20739adb -- release-assets/v5.0.2-week8 supabase
+      - run: node --check public/v5.0.2/w8/app.js
+      - run: node --check public/v5.0.2/w8/legacy/patch-rc2.js
+      - run: node --test tests/v502/finished-ot-box-editor.test.mjs tests/v502/week8.test.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/gamecast-ot-browser" --save-exact playwright@1.62.1
+      - run: node "$RUNNER_TEMP/gamecast-ot-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/gamecast-ot-browser/node_modules/playwright/index.mjs" node tests/v502/finished-ot-browser.mjs
+      - run: node scripts/deploy-v502-finished-ot-patch.mjs restore out
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v502-ot-patch2-preflight
+          path: outputs/v502-ot-patch/
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    environment:
+      name: gamecast-v502-ot-patch2
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deploy
+  verify-hosted:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/deploy-v502-finished-ot-patch.mjs verify
