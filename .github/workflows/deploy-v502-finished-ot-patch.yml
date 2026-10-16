@@ -1,0 +1,70 @@
+name: Deploy isolated GameCast 5.0.2 finished OT patch
+on:
+  push:
+    branches: [feature/gamecast-v5.0.2-finished-ot-box-editor]
+    paths:
+      - .github/workflows/deploy-v502-finished-ot-patch.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: gamecast-v502-ot-preserve-all-pages
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Restrict execution to approved patch branch
+        run: test "$GITHUB_REF" = refs/heads/feature/gamecast-v5.0.2-finished-ot-box-editor
+      - name: Prove original 5.0.2 source files are not part of this patch
+        run: |
+          git diff --quiet ea5dfe6d321e1a30a8a353475391e624ba09a262 -- release-assets/v5.0.2-week8 release-assets/gamecast-v5.0.2/prior-pages-manifest.json supabase
+      - run: node --check public/v5.0.2/w8/app.js
+      - run: node --test tests/v502/finished-ot-box-editor.test.mjs tests/v502/week8.test.mjs
+      - run: node scripts/deploy-v502-finished-ot-patch.mjs restore out
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v502-ot-patch-preflight
+          path: outputs/v502-ot-patch/
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: gamecast-v502-ot-patch
+      url: ${{ steps.publish.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: publish
+  verify-hosted:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/deploy-v502-finished-ot-patch.mjs verify
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v502-ot-patch-postdeployment
+          path: outputs/v502-ot-patch/
