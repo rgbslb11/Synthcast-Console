@@ -1,0 +1,26 @@
+name: Verify finished-game OT editor (no deployment)
+on:
+  push:
+    branches:
+      - feature/gamecast-v5.0.2-finished-ot-box-editor
+    paths:
+      - public/v5.0.2/w8/app.js
+      - public/v5.0.2/w8/legacy/app.css
+      - tests/v502/finished-ot-box-editor.test.mjs
+      - .github/workflows/verify-v502-finished-ot.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --check public/v5.0.2/w8/app.js
+      - run: node --test tests/v502/finished-ot-box-editor.test.mjs tests/v502/week8.test.mjs
