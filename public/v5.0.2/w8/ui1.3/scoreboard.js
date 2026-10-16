@@ -36,7 +36,8 @@
   const isDelay=g=>g.lifecycle==='DELAY'||g.delayed===true;
   const isUpcoming=g=>g.lifecycle==='UNLAUNCHED';
   const isBroadcast=g=>/^(?:SEN(?:\+)?|EBC|EBCOTT|EBC\+EBCOTT)$/i.test(g.network||'');
-  const scoreState=g=>g.lifecycle==='FINAL_PENDING'?'FINAL PENDING':isFinal(g)?'FINAL':isDelay(g)?'DELAY':g.breakLabel==='HALFTIME'?'HALF':g.breakLabel==='END 1ST'?'END 1Q':g.breakLabel==='END 3RD'?'END 3Q':isLive(g)?(g.displayStatus||`${g.period||''} ${clock(g.scoreboardSeconds)}`).replace(' · ',' '):g.kickoff||'UPCOMING';
+  const otFinalLabel=g=>{const periods=Object.keys(g.scores||{}).filter(k=>k==='OT'||/^(?:[2-9]|[1-9][0-9]+)OT$/.test(k));const n=periods.reduce((max,k)=>Math.max(max,k==='OT'?1:Number(k.slice(0,-2))),0);return n?'FINAL/'+n+'OT':'FINAL';};
+  const scoreState=g=>g.lifecycle==='FINAL_PENDING'?'FINAL PENDING':isFinal(g)?otFinalLabel(g):isDelay(g)?'DELAY':g.breakLabel==='HALFTIME'?'HALF':g.breakLabel==='END 1ST'?'END 1Q':g.breakLabel==='END 3RD'?'END 3Q':isLive(g)?(g.displayStatus||`${g.period||''} ${clock(g.scoreboardSeconds)}`).replace(' · ',' '):g.kickoff||'UPCOMING';
   const stateClass=g=>isDelay(g)?'delay':isLive(g)?'live':'';
   const sortRank=g=>isDelay(g)?0:isLive(g)?1:g.breakLabel==='HALFTIME'?1:g.lifecycle==='FINAL_PENDING'?2:isFinal(g)?3:4;
   const completedStamp=g=>Number.isFinite(Date.parse(g.completedAt||''))?Date.parse(g.completedAt):0;
