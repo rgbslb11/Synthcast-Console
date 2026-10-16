@@ -450,3 +450,7 @@ window.addEventListener('gamecast-auth',()=>{if(!publicView)load({force:true});}
 
 if(!publicView)document.getElementById('retryRequest').onclick=async()=>{if(writing)return;writing=true;const id=gamecastPendingGameId();try{const b=await gamecastRetryPending();adopt(b);render(id);status('REQUEST RECOVERED · V'+version);}catch(e){status('RETRY ERROR · '+e.message,true);}finally{writing=false;}};
 
+
+// Preserve the approved finished-result editor before inherited presentation shims load.
+const gamecastFinishedOtEditImplementation=edit;
+const gamecastFinishedOtSaveImplementation=saveEdit;
