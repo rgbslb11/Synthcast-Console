@@ -1,0 +1,12 @@
+{
+  "release": "5.0.3",
+  "week": "2026-W09",
+  "authorization": "Chairman: Proceed with publication and release, October 19, 2026",
+  "scope": ["52 approved Week 9 games", "121 approved SYNTH-SAG TEAM / TEMPO OFF / DEF ratings", "latest finished OT editor and final OT status UI"],
+  "baselineCommit": "57e688da30d59f470b82c72f8d6f3d6a25991feb",
+  "minimumPriorPublishedFiles": 174,
+  "patch3Route": "Source exists; preflight route returned 404. Preserve any files discovered online.",
+  "expectedNewPublishedFiles": 15,
+  "footballModelChanges": false,
+  "automaticGameLaunch": false
+}

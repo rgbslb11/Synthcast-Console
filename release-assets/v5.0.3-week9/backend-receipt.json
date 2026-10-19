@@ -1,0 +1,55 @@
+{
+  "project": "xsvdmcipviejxynkdbhq",
+  "status": "STAGED_WRITES_AND_SCHEDULER_DISABLED",
+  "functions": [
+    {
+      "surface": "chairman",
+      "id": "7c926dfc-febe-4043-9001-d44167dd97cb",
+      "slug": "gamecast-week9-v5-0-3-chairman",
+      "name": "gamecast-week9-v5-0-3-chairman",
+      "status": "ACTIVE",
+      "version": 1,
+      "created_at": 1792434396923,
+      "updated_at": 1792434396923,
+      "verify_jwt": true,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_xsvdmcipviejxynkdbhq_7c926dfc-febe-4043-9001-d44167dd97cb_1/source/supabase/functions/gamecast-week9-v5-0-3-chairman/index.ts",
+      "ezbr_sha256": "47b91452e331e668db7936677003da6f7ea640b9c48988f5937625a5b64be0bb"
+    },
+    {
+      "surface": "public",
+      "id": "91a0b14d-df09-42ac-a8a3-3385536f77a4",
+      "slug": "gamecast-week9-v5-0-3-public",
+      "name": "gamecast-week9-v5-0-3-public",
+      "status": "ACTIVE",
+      "version": 1,
+      "created_at": 1792434401271,
+      "updated_at": 1792434401271,
+      "verify_jwt": false,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_xsvdmcipviejxynkdbhq_91a0b14d-df09-42ac-a8a3-3385536f77a4_1/source/supabase/functions/gamecast-week9-v5-0-3-public/index.ts",
+      "ezbr_sha256": "62c32da3b50688f01fb841c70813d1f8a4038b7b81df68941400b984d03c0852"
+    },
+    {
+      "surface": "scheduler",
+      "id": "bb964a84-6030-4471-9894-c096e3edad68",
+      "slug": "gamecast-week9-v5-0-3-scheduler",
+      "name": "gamecast-week9-v5-0-3-scheduler",
+      "status": "ACTIVE",
+      "version": 1,
+      "created_at": 1792434410107,
+      "updated_at": 1792434410107,
+      "verify_jwt": false,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_xsvdmcipviejxynkdbhq_bb964a84-6030-4471-9894-c096e3edad68_1/source/supabase/functions/gamecast-week9-v5-0-3-scheduler/index.ts",
+      "ezbr_sha256": "cb560380876154e88a6755c1dbb842b810168c8e5f3315fa5d96139908692177"
+    }
+  ],
+  "persistenceProbe": "PASS_ALL_WRITES_ROLLED_BACK",
+  "priorSession": {
+    "slug": "w8v502-19b0b56f2fa95cdf",
+    "stateVersion": 42785,
+    "stateMD5": "4782821de6b6686faf70e156fccfe85d",
+    "games": 56
+  }
+}
