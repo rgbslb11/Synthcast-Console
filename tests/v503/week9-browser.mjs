@@ -27,6 +27,9 @@ page.on('pageerror',e=>errors.push(e.message));await page.addInitScript(()=>sess
 const check=async(name,fn)=>{await fn();checks.push(name);console.log('PASS',name);};
 try{
  for(const [label,suffix] of [['Chairman',''],['Public','&view=public'],['Condensed',null]]){
+  // Each surface starts with the complete upcoming schedule; Chairman control
+  // tests below intentionally transition its fixture into a live game.
+  row.state=OPERATING_SLATE.map(s=>({...runtime.engine.initialGame(s),qaOnly:false}));row.state_version++;
   const start=performance.now();await page.goto(origin+'/v5.0.3/w9/'+(suffix===null?'ui1.3/':'')+'?session='+slug+(suffix||''));await page.locator('[data-game="G0445"]').waitFor();timings.push({surface:label,navigationToLastCardMs:performance.now()-start,fixture:true});
   await check(label+' shows exact 52 ordered Week 9 identities',async()=>{assert.deepEqual(await page.locator('article[data-game]').evaluateAll(es=>es.map(e=>e.dataset.game)),OPERATING_SLATE.map(g=>g.id));});
   await check(label+' preserves every team, network and kickoff',async()=>{for(const g of OPERATING_SLATE){const text=await page.locator('article[data-game="'+g.id+'"]').innerText();for(const value of [g.away,g.home,g.network,g.kickoff])assert.ok(text.toLowerCase().includes(value.toLowerCase()),g.id+' '+value);}});
