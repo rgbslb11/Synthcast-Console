@@ -26,7 +26,7 @@ const server=http.createServer(async(req,res)=>{
  try{
   const url=new URL(req.url,originRef.value);let filepath=url.pathname;
   if(filepath==='/api/chairman'||filepath==='/api/public'){
-    const data={public_slug:slug,state_version:1,engine_version:row.engine_version,state:row.state,master_zulu:new Date().toISOString()};
+    const data={public_slug:slug,week_key:row.week_key,state_version:1,engine_version:row.engine_version,state:row.state,master_zulu:new Date().toISOString()};
     res.writeHead(200,{'content-type':'application/json','access-control-allow-origin':originRef.value});res.end(JSON.stringify(data));return;
   }
   if(filepath==='/v5.0.3/w9/release-config.js'){
