@@ -27,3 +27,24 @@ The earlier 104,000-simulation comparison remains applicable to the unchanged fo
 ## Rollback
 
 `release-assets/v5.0.3-week9/rollback.sql` disables only new Week 9 writes and scheduling while retaining state and audit evidence. Existing Week 8 routes continue to operate. If the new page route must be withdrawn, reconstruct the preserved published manifest excluding only `v5.0.3/`; do not replace the entire site from an old repository checkout. No games are launched or accepted by publication.
+
+## Published and activated — October 20, 2026 UTC (October 19 Central)
+
+Release source: `4c66a22edf5260d82e3988761a9702dc04fc2b54`.
+Successful workflow: https://github.com/rgbslb11/Synthcast-Console/actions/runs/39345383113
+
+- PASS: 25 logic tests; Chromium and WebKit/mobile-viewport tests for the full board, controls, polling, OT editor, and final OT labels.
+- PASS: hosted verification of all 15 new files and byte-for-byte preservation of 174 existing files.
+- PASS: live public API readback of all 52 ordered games, dates, kickoff times, networks, and participant rating objects against the approved runtime inputs.
+- PASS: authenticated Chairman boundary (unauthenticated HTTP 401) and public write rejection (HTTP 405).
+- PASS: exactly one operating session, `w9v503-38631f64661af135`; all 52 UNLAUNCHED, AUTO off, ON AIR off, Deadman UNARMED. Week 9 writes and scheduler enabled; three observed cron runs succeeded.
+- PASS: existing Week 8 state version 42785 and state MD5 `4782821de6b6686faf70e156fccfe85d` unchanged.
+- Scope limitation: browser tests used actual release UI with local API fixtures; physical iOS Safari and real-user sign-in were not exercised. Hosted source bytes and live public API were verified separately. No games were launched or accepted for production testing.
+
+Two failed preflight runs were corrected only in test fixtures: reset upcoming state between surfaces, and include the required week identity in OT mock responses. No application or football code changed in those corrections.
+
+Chairman: https://rgbslb11.github.io/Synthcast-Console/v5.0.3/w9/?session=w9v503-38631f64661af135
+
+Public: https://rgbslb11.github.io/Synthcast-Console/v5.0.3/w9/?session=w9v503-38631f64661af135&view=public
+
+Condensed: https://rgbslb11.github.io/Synthcast-Console/v5.0.3/w9/ui1.3/?session=w9v503-38631f64661af135
