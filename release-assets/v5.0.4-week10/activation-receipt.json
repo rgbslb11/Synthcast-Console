@@ -1,0 +1,35 @@
+{
+  "releasedAt": "2026-10-27",
+  "publicationCommit": "8099e2516d59761b2d79ac5378e53ee29785e0af",
+  "workflowRun": 40514592417,
+  "publicSlug": "w10v504-9995310e7622fcbf",
+  "week": "2026-W10",
+  "engine": "GC-W10-V5.0.4-RC1",
+  "stateVersionAtAcceptance": 1,
+  "games": 56,
+  "ratedTeams": 121,
+  "scheduledTeams": 112,
+  "ratingObjectMismatches": 0,
+  "writesEnabled": true,
+  "schedulerEnabled": true,
+  "allUnlaunched": true,
+  "autoEnabledGames": 0,
+  "onAirGames": 0,
+  "deadmanArmedGames": 0,
+  "priorHostedFilesPreserved": 189,
+  "newHostedFiles": 15,
+  "totalHostedFilesVerified": 204,
+  "schedulerProbe": {
+    "requestId": 626402,
+    "status": 200,
+    "sessions": 0,
+    "processed": 0
+  },
+  "priorWeek": {
+    "slug": "w9v503-38631f64661af135",
+    "stateVersion": 89718,
+    "stateMd5": "b3965ef12c8ee1aa38e5d4e1e391b0b8",
+    "unchanged": true
+  },
+  "ratingsSha256": "f615022104fe545af1585c4a1b76d5dc0802ceb36ca4afe5b98756d760f1bc2a"
+}
