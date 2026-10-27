@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
+import {TEAM_POWER as BASE_POWER} from '../release-assets/v5.0.3-week9/backend/runtime/power.mjs';
 const base='release-assets/v5.0.3-week9',target='release-assets/v5.0.4-week10';
 const canonical=JSON.parse(fs.readFileSync(target+'/canonical-week10.json'));
 const rows=fs.readFileSync(target+'/chairman-carriage.tsv','utf8').trim().split('\n').map(l=>l.split('\t'));
@@ -21,7 +22,9 @@ assert.equal(slate.length,56);assert.equal(new Set(slate.map(g=>g.id)).size,56);
 assert.deepEqual(slate.map(g=>g.id).sort(),canonical.map(g=>g.id).sort());
 for(let i=1;i<slate.length;i++)assert(slate[i].kickoffZulu>=slate[i-1].kickoffZulu);
 const digest=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
-const dataVersion='W10-SLATE56+RATINGS121_RETAINED_V503+CSV_dc8160bcfcb2429a+V504';
+const approvedHash=digest(target+'/approved-ratings.csv');
+assert.equal(approvedHash,'f615022104fe545af1585c4a1b76d5dc0802ceb36ca4afe5b98756d760f1bc2a','Final Chairman-approved input changed');
+const dataVersion='W10-SLATE56+RATINGS121_CHAIRMAN_R2+CSV_'+approvedHash.slice(0,16)+'+V504';
 const substitutions=[['v5.0.3-week9','v5.0.4-week10'],['5.0.3','5.0.4'],['v5-0-3','v5-0-4'],['V503','V504'],['v503','v504'],['503','504'],['week9','week10'],['Week 9','Week 10'],['WEEK 9','WEEK 10'],['2026-W09','2026-W10'],['W09_OPERATOR','W10_OPERATOR'],['W9','W10'],['w9','w10']];
 const replace=s=>substitutions.reduce((s,[a,b])=>s.replaceAll(a,b),s);
 function walk(d){return fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(d,e.name)):[path.join(d,e.name)]);}
@@ -36,14 +39,27 @@ for(const f of walk(base+'/backend')){
 }
 write(target+'/slate.json',JSON.stringify(slate,null,2)+'\n');
 write(target+'/backend/runtime/week10.mjs','// Chairman-approved Week 10 carriage; Eastern time.\nexport const OPERATING_SLATE = '+JSON.stringify(slate,null,2)+';\n');
-// Exact inherited rating bytes; no new weekly ratings or recalibration inferred.
-fs.copyFileSync(base+'/ratings.csv',target+'/ratings.csv');fs.copyFileSync(base+'/backend/runtime/power.mjs',target+'/backend/runtime/power.mjs');
+// Frozen final Week 10 CSV is authoritative. No re-scaling or symmetry correction.
+const ratingLines=fs.readFileSync(target+'/approved-ratings.csv','utf8').trim().split(/\r?\n/);
+assert.equal(ratingLines.shift(),'ID,TEAM,OFF,DEF');
+const identities=JSON.parse(fs.readFileSync(target+'/team-identities.json'));
+const power={},ratingIds=new Set(),sourceVersion='W10-OPTION2-CHAIRMAN-R2';
+for(const line of ratingLines){
+ const [id,...fields]=line.split(','),name=identities[id],values=fields.map(Number);
+ assert(!ratingIds.has(id)&&name&&BASE_POWER[name],id);ratingIds.add(id);
+ assert.equal(values.length,3);assert(values.every(v=>Number.isInteger(v)&&v>=60&&v<=99),id);
+ power[name]={...BASE_POWER[name],overall:values[0],offense:values[1],defense:values[2],sourceVersion};
+}
+assert.equal(ratingIds.size,121);assert.deepEqual(Object.keys(power).sort(),Object.keys(BASE_POWER).sort());
+for(const g of slate)assert(power[g.away]&&power[g.home],g.id);
+fs.copyFileSync(target+'/approved-ratings.csv',target+'/ratings.csv');
+write(target+'/backend/runtime/power.mjs','// 121 final Chairman-approved Week 10 triples; 112 scheduled participants.\nexport const POWER_SOURCE_VERSION='+JSON.stringify(sourceVersion)+';\nexport const SCHEDULED_TEAM_COUNT=112;\nexport const TEAM_POWER = '+JSON.stringify(power,null,2)+';\n');
 for(const f of walk('public/v5.0.3/w9')){
  let s=replace(fs.readFileSync(f,'utf8'));
  if(!f.endsWith('.css'))s=s.replace(/\b52\b/g,'56').replace(/SATURDAY · 43/g,'SATURDAY · 48');
  if(f.endsWith('/ui1.3/scoreboard.js'))s=s.replaceAll('2026-10-24','2026-10-31').replace('{"2026-10-20":2,"2026-10-21":2,"2026-10-22":2,"2026-10-23":3,"2026-10-31":43}', '{"2026-10-27":1,"2026-10-28":2,"2026-10-29":2,"2026-10-30":3,"2026-10-31":48}');
- s=s.replace('121 supplied W10 TEAM/OFF/DEF ratings loaded.', '121 retained v5.0.3 TEAM/OFF/DEF ratings loaded.');
- s=s.replace('WEEK 10 ROLLOVER: approved slate and approved W10 ratings only. Create a new session on this route. The Chairman link requires sign-in. Share COPY PUBLIC LINK for viewing.', 'WEEK 10: approved carriage with retained v5.0.3 ratings, engine and OT features. Create a new Week 10 session on this route. The Chairman link requires sign-in. Share COPY PUBLIC LINK for viewing.');
+ s=s.replace('121 supplied W10 TEAM/OFF/DEF ratings loaded.', '121 final Chairman-approved W10 TEAM/OFF/DEF ratings loaded.');
+ s=s.replace('WEEK 10 ROLLOVER: approved slate and approved W10 ratings only. Create a new session on this route. The Chairman link requires sign-in. Share COPY PUBLIC LINK for viewing.', 'WEEK 10: approved carriage and final Chairman-approved ratings. Existing engine and OT features retained. Create a new Week 10 session on this route. The Chairman link requires sign-in. Share COPY PUBLIC LINK for viewing.');
  write(replace(f),s);
 }
 for(const suffix of ['schema.sql','scheduler.sql']){
@@ -70,6 +86,6 @@ end $$;`);
  write(target+'/week10-'+suffix,s);
 }
 write(target+'/rollback.sql',replace(fs.readFileSync(base+'/rollback.sql','utf8')));
-const manifest={week:'2026-W10',release:'5.0.4',baseRelease:'5.0.3',baseCommit:'17e3809730351301ae71cce5f127deb78c08bfec',dataVersion,sourceSha256:digest(target+'/ratings.csv'),ratingPolicy:'RETAIN_V503_EXACT_BYTES_NO_NEW_RATINGS',ratingRows:121,scheduledTeams:112,games:56,saturdayGames:48,conferenceGames:slate.filter(g=>g.conferenceGame).length,nonconferenceGames:slate.filter(g=>!g.conferenceGame).length,neutralGames:slate.filter(g=>g.neutral).map(g=>g.id),gameIds:slate.map(g=>g.id),carriageSha256:digest(target+'/chairman-carriage.tsv'),canonicalSha256:digest(target+'/canonical-week10.json'),sourceSchedule:'Chairman message: October 27–31, 2026 carriage',canonicalSource:'synthetic_CFB seud.games joined to seud.teams; read-only Week 10 query',approvedPollRole:'DISPLAY_ONLY_WEIGHT_ZERO',unresolvedDisplayNotes:slate.filter(g=>g.notes.includes('outstanding')).map(g=>g.id),venueMetadataBlocked:slate.filter(g=>g.venueId==='venue-undetermined').map(g=>g.id),productionActivation:'NOT_AUTHORIZED',deploymentStatus:'NOT_DEPLOYED'};
+const manifest={week:'2026-W10',release:'5.0.4',baseRelease:'5.0.3',baseCommit:'17e3809730351301ae71cce5f127deb78c08bfec',dataVersion,sourceSha256:digest(target+'/ratings.csv'),ratingPolicy:'FINAL_W10_OPTION2_WITH_18_EXACT_CHAIRMAN_OVERRIDES',ratingSourceVersion:sourceVersion,ratingRows:121,ratingFields:363,chairmanOverrideTeams:18,baseOption2TeamsUnchanged:103,nonCenteredTriples:9,scheduledTeams:112,games:56,saturdayGames:48,conferenceGames:slate.filter(g=>g.conferenceGame).length,nonconferenceGames:slate.filter(g=>!g.conferenceGame).length,neutralGames:slate.filter(g=>g.neutral).map(g=>g.id),gameIds:slate.map(g=>g.id),carriageSha256:digest(target+'/chairman-carriage.tsv'),canonicalSha256:digest(target+'/canonical-week10.json'),sourceSchedule:'Chairman message: October 27–31, 2026 carriage',canonicalSource:'synthetic_CFB seud.games joined to seud.teams; read-only Week 10 query',approvedPollRole:'DISPLAY_ONLY_WEIGHT_ZERO',unresolvedDisplayNotes:slate.filter(g=>g.notes.includes('outstanding')).map(g=>g.id),venueMetadataBlocked:slate.filter(g=>g.venueId==='venue-undetermined').map(g=>g.id),ratingsLoadAuthorization:'Chairman: Please load into 5.0.4',productionActivation:'NOT_AUTHORIZED',deploymentStatus:'NOT_DEPLOYED'};
 write(target+'/input-manifest.json',JSON.stringify(manifest,null,2)+'\n');
 console.log(JSON.stringify(manifest,null,2));

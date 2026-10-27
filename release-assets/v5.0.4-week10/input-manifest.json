@@ -3,10 +3,15 @@
   "release": "5.0.4",
   "baseRelease": "5.0.3",
   "baseCommit": "17e3809730351301ae71cce5f127deb78c08bfec",
-  "dataVersion": "W10-SLATE56+RATINGS121_RETAINED_V503+CSV_dc8160bcfcb2429a+V504",
-  "sourceSha256": "dc8160bcfcb2429a14a900de3f3aa5a0c5804a70698733f5722e9b5ff9601939",
-  "ratingPolicy": "RETAIN_V503_EXACT_BYTES_NO_NEW_RATINGS",
+  "dataVersion": "W10-SLATE56+RATINGS121_CHAIRMAN_R2+CSV_f615022104fe545a+V504",
+  "sourceSha256": "f615022104fe545af1585c4a1b76d5dc0802ceb36ca4afe5b98756d760f1bc2a",
+  "ratingPolicy": "FINAL_W10_OPTION2_WITH_18_EXACT_CHAIRMAN_OVERRIDES",
+  "ratingSourceVersion": "W10-OPTION2-CHAIRMAN-R2",
   "ratingRows": 121,
+  "ratingFields": 363,
+  "chairmanOverrideTeams": 18,
+  "baseOption2TeamsUnchanged": 103,
+  "nonCenteredTriples": 9,
   "scheduledTeams": 112,
   "games": 56,
   "saturdayGames": 48,
@@ -90,6 +95,7 @@
     "G0465",
     "G0473"
   ],
+  "ratingsLoadAuthorization": "Chairman: Please load into 5.0.4",
   "productionActivation": "NOT_AUTHORIZED",
   "deploymentStatus": "NOT_DEPLOYED"
 }

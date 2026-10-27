@@ -8,12 +8,31 @@ import {TEAM_POWER} from '../../release-assets/v5.0.4-week10/backend/runtime/pow
 import {createEngineOperations} from '../../release-assets/v5.0.4-week10/backend/src/engine-operations.mjs';
 const old='release-assets/v5.0.3-week9/',fresh='release-assets/v5.0.4-week10/';
 const read=f=>fs.readFileSync(f,'utf8');
-test('Football engine changes only the four release constants and slate import; every rating byte survives',()=>{
+test('Football engine changes only the four release constants and slate import; approved ratings cover every team',()=>{
  const normalize=s=>s.replace(/const (ENGINE_VERSION|DATA_VERSION|WEEK_KEY|CONSOLE_URL) = .*;/g,'const $1 = RELEASE_IDENTITY;').replaceAll('./week9.mjs','./week10.mjs');
  assert.equal(normalize(read(old+'backend/runtime/engine.mjs')),normalize(read(fresh+'backend/runtime/engine.mjs')));
- for(const f of ['ratings.csv','backend/runtime/power.mjs','backend/src/weather.mjs','backend/src/deadman.mjs'])assert.equal(read(old+f),read(fresh+f),f);
+ for(const f of ['backend/src/weather.mjs','backend/src/deadman.mjs'])assert.equal(read(old+f),read(fresh+f),f);
  assert.equal(Object.keys(TEAM_POWER).length,121);
  for(const g of slate){assert(TEAM_POWER[g.away],g.away);assert(TEAM_POWER[g.home],g.home);}
+});
+test('All 363 final approved ratings compile exactly; 18 Chairman overrides and 103 untouched base triples survive',()=>{
+ const parse=file=>read(fresh+file).trim().split(/\r?\n/).slice(1).map(l=>l.split(','));
+ const approved=parse('approved-ratings.csv'),base=new Map(parse('option2-base-ratings.csv').map(([id,...v])=>[id,v.map(Number)]));
+ const ids=JSON.parse(read(fresh+'team-identities.json')),audit=JSON.parse(read(fresh+'chairman-rating-overrides.json'));
+ const overrides=new Map(audit.audit.map(a=>[a.id,a.after]));assert.equal(overrides.size,18);
+ assert.equal(approved.length,121);assert.equal(new Set(approved.map(r=>r[0])).size,121);
+ assert.equal(read(fresh+'approved-ratings.csv'),read(fresh+'ratings.csv'));
+ let unchanged=0,nonCentered=0;
+ for(const [id,...raw] of approved){const values=raw.map(Number),p=TEAM_POWER[ids[id]];
+  assert.deepEqual([p.overall,p.offense,p.defense],values,id);assert(values.every(v=>Number.isInteger(v)&&v>=60&&v<=99));
+  if(overrides.has(id))assert.deepEqual(values,overrides.get(id),id);else{assert.deepEqual(values,base.get(id),id);unchanged++;}
+  if(values[1]+values[2]!==2*values[0])nonCentered++;
+ }
+ assert.equal(unchanged,103);assert.equal(nonCentered,9);
+ for(const [team,values] of [['North Dakota State',[82,80,89]],['Georgia State',[72,73,74]],['Florida',[95,96,95]],['UTSA',[85,86,84]],['Nevada',[77,72,74]]]){
+  const p=TEAM_POWER[team];assert.deepEqual([p.overall,p.offense,p.defense],values,team);
+ }
+ const sql=read(fresh+'week10-schema.sql'),m=JSON.parse(read(fresh+'input-manifest.json'));assert(sql.includes("'"+m.dataVersion+"'"));
 });
 test('All 56 carriage rows exactly retain Chairman date, kickoff, network, matchup and notes',()=>{
  const rows=read(fresh+'chairman-carriage.tsv').trim().split('\n').map(l=>l.split('\t'));

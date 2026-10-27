@@ -9,7 +9,7 @@ import {WEATHER_MODEL_VERSION,freshWeather,setWeather,lockWeather,weatherPassRat
 
 
 const ENGINE_VERSION = "GC-W10-V5.0.4-RC1";
-const DATA_VERSION = "W10-SLATE56+RATINGS121_RETAINED_V503+CSV_dc8160bcfcb2429a+V504";
+const DATA_VERSION = "W10-SLATE56+RATINGS121_CHAIRMAN_R2+CSV_f615022104fe545a+V504";
 const WEEK_KEY = "2026-W10";
 const CONSOLE_URL = "https://rgbslb11.github.io/Synthcast-Console/v5.0.4/w10/";
 const SPEEDS = [1, 4, 10, 20, 50];

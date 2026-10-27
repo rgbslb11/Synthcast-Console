@@ -1,0 +1,277 @@
+{
+  "changedTeams": 18,
+  "unchangedTeamsFromBase": 103,
+  "centeringExceptions": 9,
+  "audit": [
+    {
+      "team": "Georgia State",
+      "id": "GAST",
+      "before": [
+        81,
+        82,
+        80
+      ],
+      "after": [
+        72,
+        73,
+        74
+      ],
+      "residual": 3
+    },
+    {
+      "team": "South Florida",
+      "id": "USF",
+      "before": [
+        83,
+        83,
+        83
+      ],
+      "after": [
+        76,
+        75,
+        77
+      ],
+      "residual": 0
+    },
+    {
+      "team": "Memphis",
+      "id": "MEM",
+      "before": [
+        91,
+        92,
+        90
+      ],
+      "after": [
+        81,
+        82,
+        80
+      ],
+      "residual": 0
+    },
+    {
+      "team": "Florida",
+      "id": "FLA",
+      "before": [
+        86,
+        87,
+        85
+      ],
+      "after": [
+        95,
+        96,
+        95
+      ],
+      "residual": 1
+    },
+    {
+      "team": "South Carolina",
+      "id": "SC",
+      "before": [
+        84,
+        84,
+        84
+      ],
+      "after": [
+        88,
+        89,
+        92
+      ],
+      "residual": 5
+    },
+    {
+      "team": "Kansas",
+      "id": "KU",
+      "before": [
+        71,
+        71,
+        71
+      ],
+      "after": [
+        75,
+        75,
+        75
+      ],
+      "residual": 0
+    },
+    {
+      "team": "Army",
+      "id": "ARMY",
+      "before": [
+        81,
+        81,
+        81
+      ],
+      "after": [
+        77,
+        77,
+        77
+      ],
+      "residual": 0
+    },
+    {
+      "team": "Cincinnati",
+      "id": "CIN",
+      "before": [
+        87,
+        88,
+        86
+      ],
+      "after": [
+        84,
+        84,
+        84
+      ],
+      "residual": 0
+    },
+    {
+      "team": "Baylor",
+      "id": "BAY",
+      "before": [
+        77,
+        76,
+        78
+      ],
+      "after": [
+        82,
+        80,
+        82
+      ],
+      "residual": -2
+    },
+    {
+      "team": "Arizona State",
+      "id": "ASU",
+      "before": [
+        70,
+        72,
+        68
+      ],
+      "after": [
+        74,
+        74,
+        72
+      ],
+      "residual": -2
+    },
+    {
+      "team": "Georgia Southern",
+      "id": "GASO",
+      "before": [
+        61,
+        61,
+        61
+      ],
+      "after": [
+        73,
+        72,
+        72
+      ],
+      "residual": -2
+    },
+    {
+      "team": "UCF",
+      "id": "UCF",
+      "before": [
+        89,
+        88,
+        90
+      ],
+      "after": [
+        85,
+        83,
+        87
+      ],
+      "residual": 0
+    },
+    {
+      "team": "Wisconsin",
+      "id": "WIS",
+      "before": [
+        85,
+        83,
+        87
+      ],
+      "after": [
+        90,
+        88,
+        92
+      ],
+      "residual": 0
+    },
+    {
+      "team": "Tulane",
+      "id": "TLN",
+      "before": [
+        78,
+        79,
+        77
+      ],
+      "after": [
+        74,
+        76,
+        77
+      ],
+      "residual": 5
+    },
+    {
+      "team": "Illinois",
+      "id": "ILL",
+      "before": [
+        90,
+        90,
+        90
+      ],
+      "after": [
+        82,
+        82,
+        82
+      ],
+      "residual": 0
+    },
+    {
+      "team": "North Dakota State",
+      "id": "NDSU",
+      "before": [
+        79,
+        80,
+        78
+      ],
+      "after": [
+        82,
+        80,
+        89
+      ],
+      "residual": 5
+    },
+    {
+      "team": "UTSA",
+      "id": "UTSA",
+      "before": [
+        72,
+        73,
+        71
+      ],
+      "after": [
+        85,
+        86,
+        84
+      ],
+      "residual": 0
+    },
+    {
+      "team": "Nevada",
+      "id": "NEV",
+      "before": [
+        63,
+        62,
+        64
+      ],
+      "after": [
+        77,
+        72,
+        74
+      ],
+      "residual": -8
+    }
+  ]
+}
