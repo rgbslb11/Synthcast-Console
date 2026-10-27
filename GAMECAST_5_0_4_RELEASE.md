@@ -26,7 +26,7 @@ New SQL create/commit guards use all 56 ordered canonical IDs. Writes and cron c
 
 27 local tests PASS: frozen inputs and ordering; retained rating bytes and all scheduled-team coverage; canonical identities; timezone rollover; neutral flags; safe defaults; public/private boundaries; Chairman authorization; acceptance controls; concurrency preconditions; Deadman batch controls; OT editor/status regressions; SQL identity guards; exact football source parity; 56 full-game baseline/candidate comparisons; and fixed-seed 1x/50x comparison across all 56 games.
 
-Local browser execution is BLOCKED: browser binaries were unavailable and their download failed. The read-only verification workflow runs Chromium and WebKit mobile-viewport checks for all three views, search, Upcoming, Start/Stop Auto, polling and OT. Workflow results must be inspected separately; workflow presence is not a PASS. Physical iOS Safari remains NOT TESTED.
+The local browser download failed, so browser verification ran in GitHub Actions. Workflow [40434385718](https://github.com/rgbslb11/Synthcast-Console/actions/runs/40434385718) PASSED on candidate commit `979558cef6932231732f656a5304f92b4f6ce5f2`: all 27 logic tests, exact reproducible preparation, prior-source preservation, Chromium and WebKit mobile-viewport checks for the Chairman, public and condensed views, all 56 ordered games, all supplied teams/networks/kickoffs, 48 Saturday games, search, Upcoming, Start/Stop Auto, live polling, finished OT editing and final OT labels. Browser checks used local API fixtures with actual release handlers; they did not exercise the live database or real-user sign-in. Physical iOS Safari remains NOT TESTED. Hosted v5.0.3 index.html, app.js, release-config.js and condensed scoreboard.js were also fetched and matched source exactly.
 
 Four canonical venue IDs remain `venue-undetermined`: G0476 Washington–Nebraska; G0455 Georgia–Florida; G0465 Minnesota–Indiana; G0473 Notre Dame–Navy. Specific stadium identity is BLOCKED. Existing weather mechanics use Chairman-entered categories, not a stadium lookup; no venue is inferred or canonical record altered.
 
@@ -41,14 +41,14 @@ Three supplied display notes say Week 9 results are outstanding: G0451 Utah–Ci
 | Poll/chunk invariance | NOT TESTED for this candidate |
 | 1x vs 50x | PASS — 56-game equal-synthetic-time checks |
 | Backend persistence/versioning | NOT TESTED — SQL prepared, not applied |
-| Chairman console | Logic checks PASS; browser execution pending workflow |
-| Public scoreboard | Logic checks PASS; browser execution pending workflow |
-| Mobile Safari | NOT TESTED — physical device; WebKit workflow pending |
+| Chairman console | PASS — logic and Chromium/WebKit fixture checks |
+| Public scoreboard | PASS — logic and Chromium/WebKit fixture checks |
+| Mobile Safari | NOT TESTED — physical device; WebKit mobile-viewport fixtures PASS |
 | Existing-session compatibility | Separate namespace; prior source unchanged; no live migration tested |
 | Chairman production approval | PENDING — preparation authorized; publication not authorized |
 
 ## Publication and rollback
 
-NOT DEPLOYED. Before publication: inspect browser workflow results; resolve or explicitly accept display/venue exceptions; transaction-test and provision the new schema with both writes and scheduling OFF; deploy and verify three new functions; preserve and hash all existing hosted files before adding the 15 new UI files; obtain Chairman production approval; then create and verify exactly one unlaunched operating session before enabling scheduling. Retain v5.0.3 and every earlier release throughout.
+NOT DEPLOYED. Before publication: resolve or explicitly accept display/venue exceptions; transaction-test and provision the new schema with both writes and scheduling OFF; deploy and verify three new functions; preserve and hash all existing hosted files before adding the 15 new UI files; obtain Chairman production approval; then create and verify exactly one unlaunched operating session before enabling scheduling. Retain v5.0.3 and every earlier release throughout.
 
 `release-assets/v5.0.4-week10/rollback.sql` disables only the new release's writes and cron while preserving state. Before activation, withdrawing this source-only branch requires no production rollback. Do not publish a whole checkout over the existing Pages site: historical routes require preservation as in the v5.0.3 publisher.
