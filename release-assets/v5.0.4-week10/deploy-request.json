@@ -1,0 +1,10 @@
+{
+  "release": "5.0.4",
+  "authorization": "Chairman: Continue publish and release provide UI links",
+  "date": "2026-10-27",
+  "ratingSha256": "f615022104fe545af1585c4a1b76d5dc0802ceb36ca4afe5b98756d760f1bc2a",
+  "games": 56,
+  "ratedTeams": 121,
+  "preservePriorReleases": true,
+  "launchGames": false
+}

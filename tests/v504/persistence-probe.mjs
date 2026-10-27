@@ -1,0 +1,37 @@
+import fs from 'node:fs';
+import * as E from '../../release-assets/v5.0.4-week10/backend/runtime/engine.mjs';
+import {OPERATING_SLATE} from '../../release-assets/v5.0.4-week10/backend/runtime/week10.mjs';
+const state=OPERATING_SLATE.map(s=>({...E.initialGame(s),qaOnly:false}));
+const g=state[0];g.lifecycle='ACTIVE';g.activity='LIVE';g.auto=true;E.ensureOpeningToss(g);E.advanceGame(g,600);
+const payload=JSON.stringify(state).replaceAll("'","''");
+fs.writeFileSync('outputs/v504/persistence-probe.sql',`BEGIN;
+SET LOCAL statement_timeout='45s';
+UPDATE gamecast_v504_w10.release_control SET writes_enabled=true WHERE singleton;
+DO $probe$
+DECLARE owner_id uuid; r record; s gamecast_v504_w10.sessions%rowtype; expected jsonb := '${payload}'::jsonb; receipt jsonb;
+BEGIN
+ SELECT user_id INTO STRICT owner_id FROM gamecast_v504_w10.operators WHERE active AND role='CHAIRMAN';
+ PERFORM gamecast_v504_w10.create_session(owner_id,'w10v504-0000000000000001','${E.DATA_VERSION}',expected,'v504-probe-create-0001',repeat('a',64));
+ SELECT * INTO STRICT s FROM gamecast_v504_w10.sessions WHERE public_slug='w10v504-0000000000000001';
+ IF s.state<>expected THEN RAISE EXCEPTION 'initial serialization mismatch'; END IF;
+ SELECT * INTO r FROM gamecast_v504_w10.commit_state(s.session_id,1,expected,'[{"type":"V504_ADVANCE","payload":{"qaProbe":true}}]'::jsonb,'SCHEDULER','v504-probe-commit-0001',repeat('b',64),s.last_advanced_at);
+ receipt:=r.response;
+ IF r.replayed OR (receipt->>'state_version')::int<>2 THEN RAISE EXCEPTION 'commit mismatch'; END IF;
+ SELECT * INTO r FROM gamecast_v504_w10.commit_state(s.session_id,1,expected,'[{"type":"V504_ADVANCE"}]'::jsonb,'SCHEDULER','v504-probe-commit-0001',repeat('b',64),s.last_advanced_at);
+ IF NOT r.replayed OR r.response<>receipt THEN RAISE EXCEPTION 'replay mismatch'; END IF;
+ BEGIN
+  PERFORM gamecast_v504_w10.commit_state(s.session_id,1,expected,'[{"type":"V504_ADVANCE"}]'::jsonb,'SCHEDULER','v504-probe-stale-0001',repeat('c',64),s.last_advanced_at);
+  RAISE EXCEPTION 'stale write accepted';
+ EXCEPTION WHEN OTHERS THEN IF SQLERRM<>'version conflict' THEN RAISE; END IF; END;
+ BEGIN
+  PERFORM gamecast_v504_w10.commit_state(s.session_id,1,expected,'[{"type":"V504_ADVANCE"}]'::jsonb,'SCHEDULER','v504-probe-commit-0001',repeat('c',64),s.last_advanced_at);
+  RAISE EXCEPTION 'conflicting replay accepted';
+ EXCEPTION WHEN OTHERS THEN IF SQLERRM<>'idempotency conflict' THEN RAISE; END IF; END;
+ SELECT * INTO r FROM gamecast_v504_w10.read_session(s.public_slug);
+ IF r.state<>expected OR r.state_version<>2 THEN RAISE EXCEPTION 'recovery mismatch'; END IF;
+ IF (SELECT count(*) FROM gamecast_v504_w10.events WHERE session_id=s.session_id)<>2 THEN RAISE EXCEPTION 'duplicate event'; END IF;
+ IF has_schema_privilege('anon','gamecast_v504_w10','usage') OR has_schema_privilege('authenticated','gamecast_v504_w10','usage') THEN RAISE EXCEPTION 'schema access leak'; END IF;
+ IF EXISTS(SELECT 1 FROM pg_class WHERE relnamespace='gamecast_v504_w10'::regnamespace AND relkind='r' AND NOT relrowsecurity) THEN RAISE EXCEPTION 'RLS missing'; END IF;
+END $probe$;
+ROLLBACK;
+SELECT 'PASS: engine state, play ledger, commit, replay, conflict, recovery, RLS; all probe writes rolled back' AS result;`);

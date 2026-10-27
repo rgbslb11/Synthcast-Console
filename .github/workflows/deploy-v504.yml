@@ -1,0 +1,84 @@
+name: Publish GameCast 5.0.4 Week 10 with OT UI
+on:
+  push:
+    branches: [release/gamecast-v5.0.4]
+    paths: ['release-assets/v5.0.4-week10/deploy-request.json']
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: gamecast-pages-preserved-publication
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify branch and preserve prior release source
+        run: |
+          test "$GITHUB_REF" = refs/heads/release/gamecast-v5.0.4
+          git diff --quiet 57e688da30d59f470b82c72f8d6f3d6a25991feb -- public/v5.0.2 release-assets/v5.0.2-week8 supabase
+          git diff --quiet 17e3809730351301ae71cce5f127deb78c08bfec -- public/v5.0.3 release-assets/v5.0.3-week9
+      - run: mkdir -p outputs/v504
+      - run: node --test tests/v504/*.test.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/gamecast-browser" --save-exact playwright@1.62.1
+      - run: node "$RUNNER_TEMP/gamecast-browser/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Chromium full board, controls, OT editor, and final OT status
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/gamecast-browser/node_modules/playwright/index.mjs
+        run: |
+          node tests/v504/week10-browser.mjs
+          node tests/v504/finished-ot-browser.mjs
+          node tests/v504/final-ot-status-browser.mjs
+      - name: WebKit mobile viewport full board and OT
+        env:
+          GAMECAST_BROWSER: webkit
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/gamecast-browser/node_modules/playwright/index.mjs
+        run: |
+          node tests/v504/week10-browser.mjs
+          node tests/v504/finished-ot-browser.mjs
+          node tests/v504/final-ot-status-browser.mjs
+      - name: Verify and preserve all existing published files; add 15 Week 10 files
+        run: node scripts/deploy-v504.mjs restore out-v504
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v504-preflight
+          path: outputs/v504/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out-v504
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    environment:
+      name: gamecast-v504-release
+      url: ${{ steps.publish.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: publish
+  verify-hosted:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/deploy-v504.mjs verify
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gamecast-v504-hosted-verification
+          path: outputs/v504/

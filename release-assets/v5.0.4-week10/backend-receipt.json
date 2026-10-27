@@ -1,0 +1,47 @@
+{
+  "project": "xsvdmcipviejxynkdbhq",
+  "persistenceProbe": "PASS_ROLLED_BACK",
+  "writesEnabled": false,
+  "schedulingEnabled": false,
+  "functions": {
+    "public": {
+      "id": "b394ca46-e068-4da8-b2ba-8438ed7813b0",
+      "slug": "gamecast-week10-v5-0-4-public",
+      "name": "gamecast-week10-v5-0-4-public",
+      "status": "ACTIVE",
+      "version": 1,
+      "created_at": 1793108551069,
+      "updated_at": 1793108551069,
+      "verify_jwt": false,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_xsvdmcipviejxynkdbhq_b394ca46-e068-4da8-b2ba-8438ed7813b0_1/source/supabase/functions/gamecast-week10-v5-0-4-public/index.ts",
+      "ezbr_sha256": "cd6696ca763bab9f7d6cd926af31ea03636bb21757d7779bc0d65778c304a460"
+    },
+    "chairman": {
+      "id": "37e792a6-74fc-4451-a033-c58e1a8d58ec",
+      "slug": "gamecast-week10-v5-0-4-chairman",
+      "name": "gamecast-week10-v5-0-4-chairman",
+      "status": "ACTIVE",
+      "version": 1,
+      "created_at": 1793108556469,
+      "updated_at": 1793108556469,
+      "verify_jwt": true,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_xsvdmcipviejxynkdbhq_37e792a6-74fc-4451-a033-c58e1a8d58ec_1/source/supabase/functions/gamecast-week10-v5-0-4-chairman/index.ts",
+      "ezbr_sha256": "a3a520c03d7484d1d74bc7a418e8b9c0ef8df749851a0afc0a1a5396b91c275a"
+    },
+    "scheduler": {
+      "id": "09a58b65-a2b5-4b56-bb4f-d9fed0c53829",
+      "slug": "gamecast-week10-v5-0-4-scheduler",
+      "name": "gamecast-week10-v5-0-4-scheduler",
+      "status": "ACTIVE",
+      "version": 1,
+      "created_at": 1793108565219,
+      "updated_at": 1793108565219,
+      "verify_jwt": false,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_xsvdmcipviejxynkdbhq_09a58b65-a2b5-4b56-bb4f-d9fed0c53829_1/source/supabase/functions/gamecast-week10-v5-0-4-scheduler/index.ts",
+      "ezbr_sha256": "bf6a47f8c500be14de047b15aeaaa621303e23bf0e903b594dc54f7570d8c90e"
+    }
+  }
+}
