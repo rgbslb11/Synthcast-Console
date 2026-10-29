@@ -1,0 +1,26 @@
+{
+  "version": "5.0.5",
+  "engine": "GC-W10-V5.0.5-RC1",
+  "parentRelease": "5.0.4",
+  "baselineCommit": "285ef52cdb626deb5648fd1a0e773921546dfe5d",
+  "approved": {
+    "performanceEdgeMultiplier": 2,
+    "normalRunoffBaseSeconds": 18,
+    "positiveNonfumbleRushGainAddYards": 1
+  },
+  "games": 56,
+  "teams": 121,
+  "sourceRatingsSha256": "f615022104fe545af1585c4a1b76d5dc0802ceb36ca4afe5b98756d760f1bc2a",
+  "releaseStatus": "PREPARED_NOT_DEPLOYED",
+  "migrationStatus": "AUTO_REVIEW_REJECTED_NO_CHANGES_APPLIED",
+  "results": {
+    "localRegression": "54/54",
+    "populationGames": 56000,
+    "shutoutPct": 3.4339285714,
+    "margin1to7Pct": 38.9892857143,
+    "snapsPerGame": 127.92425,
+    "combinedPointsPerGame": 42.71125
+  },
+  "engineSha256": "24000c714ecd312f90abdbf7b55c223311046a82896d00dd0705abf0787536bf",
+  "githubStatus": "AUTO_REVIEW_REJECTED_NO_SOURCE_UPLOADED"
+}

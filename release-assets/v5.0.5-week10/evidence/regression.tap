@@ -1,0 +1,334 @@
+TAP version 13
+# Subtest: candidate differs from retained deployed source only by three approved edits
+ok 1 - candidate differs from retained deployed source only by three approved edits
+  ---
+  duration_ms: 1.217331
+  type: 'test'
+  ...
+# Subtest: Delay freezes football and RNG while GL advances; Resume restores the checkpoint
+ok 2 - Delay freezes football and RNG while GL advances; Resume restores the checkpoint
+  ---
+  duration_ms: 4.49877
+  type: 'test'
+  ...
+# Subtest: Chairman edit freezes RNG and preserves history; save creates a continuation
+ok 3 - Chairman edit freezes RNG and preserves history; save creates a continuation
+  ---
+  duration_ms: 3.370673
+  type: 'test'
+  ...
+# Subtest: same-seed restart reproduces candidate football history
+ok 4 - same-seed restart reproduces candidate football history
+  ---
+  duration_ms: 7.584458
+  type: 'test'
+  ...
+# Subtest: old checkpoint can structurally load but must not be resumed with candidate mathematics
+ok 5 - old checkpoint can structurally load but must not be resumed with candidate mathematics
+  ---
+  duration_ms: 5.933547
+  type: 'test'
+  ...
+# Subtest: overtime resolves a tied regulation state to valid periods and a non-tied final
+ok 6 - overtime resolves a tied regulation state to valid periods and a non-tied final
+  ---
+  duration_ms: 6.453274
+  type: 'test'
+  ...
+# Subtest: Chairman and public displays correct OT count after lock, without changing other lifecycle labels
+ok 7 - Chairman and public displays correct OT count after lock, without changing other lifecycle labels
+  ---
+  duration_ms: 0.971463
+  type: 'test'
+  ...
+# Subtest: Condensed displays correct OT count after lock, without changing other lifecycle labels
+ok 8 - Condensed displays correct OT count after lock, without changing other lifecycle labels
+  ---
+  duration_ms: 0.306658
+  type: 'test'
+  ...
+# Subtest: source scripts parse and use only recorded scores
+ok 9 - source scripts parse and use only recorded scores
+  ---
+  duration_ms: 1.539824
+  type: 'test'
+  ...
+# Subtest: 5.0.5 standalone Chairman app remains JavaScript syntax-valid
+ok 10 - 5.0.5 standalone Chairman app remains JavaScript syntax-valid
+  ---
+  duration_ms: 1.703929
+  type: 'test'
+  ...
+# Subtest: OT numbering maps UI OT1 to backend OT, and allows 10OT and beyond
+ok 11 - OT numbering maps UI OT1 to backend OT, and allows 10OT and beyond
+  ---
+  duration_ms: 3.009943
+  type: 'test'
+  ...
+# Subtest: finished-only permission checks every final lifecycle; live/Delay/public blocked
+ok 12 - finished-only permission checks every final lifecycle; live/Delay/public blocked
+  ---
+  duration_ms: 1.801845
+  type: 'test'
+  ...
+# Subtest: finished editor displays historic OT scores, controls and recalculated total preview
+ok 13 - finished editor displays historic OT scores, controls and recalculated total preview
+  ---
+  duration_ms: 2.321342
+  type: 'test'
+  ...
+# Subtest: live Chairman Edit remains four-quarter editor without overtime controls
+ok 14 - live Chairman Edit remains four-quarter editor without overtime controls
+  ---
+  duration_ms: 1.080757
+  type: 'test'
+  ...
+# Subtest: finished save sends Q1-Q4 plus all OT periods and preserves overtime activePeriod
+ok 15 - finished save sends Q1-Q4 plus all OT periods and preserves overtime activePeriod
+  ---
+  duration_ms: 1.086115
+  type: 'test'
+  ...
+# Subtest: regulation completed save retains quarter field and does not claim to set OT state
+ok 16 - regulation completed save retains quarter field and does not claim to set OT state
+  ---
+  duration_ms: 0.84269
+  type: 'test'
+  ...
+# Subtest: invalid overtime score cannot submit a correction
+ok 17 - invalid overtime score cannot submit a correction
+  ---
+  duration_ms: 0.886176
+  type: 'test'
+  ...
+# Subtest: live save retains old four-quarter payload and does not validate unrelated values
+ok 18 - live save retains old four-quarter payload and does not validate unrelated values
+  ---
+  duration_ms: 0.782611
+  type: 'test'
+  ...
+# Subtest: actual 5.0.5 backend can commit finished-result overtime scores without a new API
+ok 19 - actual 5.0.5 backend can commit finished-result overtime scores without a new API
+  ---
+  duration_ms: 4.19729
+  type: 'test'
+  ...
+# Subtest: lock/accepted correction still returns to FINAL_PENDING and never automatically accepts
+ok 20 - lock/accepted correction still returns to FINAL_PENDING and never automatically accepts
+  ---
+  duration_ms: 0.403263
+  type: 'test'
+  ...
+# Subtest: baseline witnesses fail both required behaviors
+ok 21 - baseline witnesses fail both required behaviors
+  ---
+  duration_ms: 3.708317
+  type: 'test'
+  ...
+# Subtest: tie deep-own-territory fourth-and-long punts across boundary times, distances and orientations
+ok 22 - tie deep-own-territory fourth-and-long punts across boundary times, distances and orientations
+  ---
+  duration_ms: 6.319374
+  type: 'test'
+  ...
+# Subtest: trailing desperation and ordinary short fourth downs preserve baseline decisions
+ok 23 - trailing desperation and ordinary short fourth downs preserve baseline decisions
+  ---
+  duration_ms: 30.900048
+  type: 'test'
+  ...
+# Subtest: safety exact goal line and beyond: two points, reciprocal possession, stopped clock, log and free-kick evidence
+ok 24 - safety exact goal line and beyond: two points, reciprocal possession, stopped clock, log and free-kick evidence
+  ---
+  duration_ms: 2.638898
+  type: 'test'
+  ...
+# Subtest: loss ending at OWN 1 and incompletions are not safeties
+ok 25 - loss ending at OWN 1 and incompletions are not safeties
+  ---
+  duration_ms: 0.337935
+  type: 'test'
+  ...
+# Subtest: kneel is pure and matches exact clock capacity for all timeout/down combinations
+ok 26 - kneel is pure and matches exact clock capacity for all timeout/down combinations
+  ---
+  duration_ms: 14.049478
+  type: 'test'
+  ...
+# Subtest: Miami 57 seconds/two opponent timeouts is not a safe kneel; 36 is
+ok 27 - Miami 57 seconds/two opponent timeouts is not a safe kneel; 36 is
+  ---
+  duration_ms: 0.211957
+  type: 'test'
+  ...
+# Subtest: automatic fourth-down kneel prohibited; forced fourth kneel transfers possession and stops clock
+ok 28 - automatic fourth-down kneel prohibited; forced fourth kneel transfers possession and stops clock
+  ---
+  duration_ms: 0.237375
+  type: 'test'
+  ...
+# Subtest: all 16 halftime timeout pairs reset once with reciprocal receiving team
+ok 29 - all 16 halftime timeout pairs reset once with reciprocal receiving team
+  ---
+  duration_ms: 0.817343
+  type: 'test'
+  ...
+# Subtest: Deadman arms, launches once, preserves RNG until toss, and recognizes Chairman stop
+ok 30 - Deadman arms, launches once, preserves RNG until toss, and recognizes Chairman stop
+  ---
+  duration_ms: 0.725024
+  type: 'test'
+  ...
+# Subtest: fixed seed/chunk/speed invariance and full board football state, 41 games
+ok 31 - fixed seed/chunk/speed invariance and full board football state, 41 games
+  ---
+  duration_ms: 231.363191
+  type: 'test'
+  ...
+# Subtest: actual HTTP handlers -> engine -> disk-backed RPC fixture -> restart -> public read
+ok 32 - actual HTTP handlers -> engine -> disk-backed RPC fixture -> restart -> public read
+  ---
+  duration_ms: 382.127846
+  type: 'test'
+  ...
+# Subtest: intermediate football state invariants through 41 complete games
+ok 33 - intermediate football state invariants through 41 complete games
+  ---
+  duration_ms: 85.494313
+  type: 'test'
+  ...
+# Subtest: final, locked and accepted states are frozen during projection
+ok 34 - final, locked and accepted states are frozen during projection
+  ---
+  duration_ms: 1.917098
+  type: 'test'
+  ...
+# Subtest: existing Final -> Lock -> Accept transition preserved; QA cannot become accepted
+ok 35 - existing Final -> Lock -> Accept transition preserved; QA cannot become accepted
+  ---
+  duration_ms: 0.991092
+  type: 'test'
+  ...
+# Subtest: unrelated scheduler version churn retries with current CAS; no blind board overwrite
+ok 36 - unrelated scheduler version churn retries with current CAS; no blind board overwrite
+  ---
+  duration_ms: 29.506152
+  type: 'test'
+  ...
+# Subtest: three unrelated CAS collisions return busy without changing the game
+ok 37 - three unrelated CAS collisions return busy without changing the game
+  ---
+  duration_ms: 12.197128
+  type: 'test'
+  ...
+# Subtest: concurrent target control change rejects safely
+ok 38 - concurrent target control change rejects safely
+  ---
+  duration_ms: 6.158964
+  type: 'test'
+  ...
+# Subtest: same key returns original receipt once, even after newer versions; changed body conflicts
+ok 39 - same key returns original receipt once, even after newer versions; changed body conflicts
+  ---
+  duration_ms: 25.248974
+  type: 'test'
+  ...
+# Subtest: edit token ignores only elapsed GL, detects real field changes
+ok 40 - edit token ignores only elapsed GL, detects real field changes
+  ---
+  duration_ms: 2.893018
+  type: 'test'
+  ...
+# Subtest: missing token never bypasses strict session-version protection
+ok 41 - missing token never bypasses strict session-version protection
+  ---
+  duration_ms: 2.722032
+  type: 'test'
+  ...
+# Subtest: scheduler compact receipt replays exact committed version without full-board state
+ok 42 - scheduler compact receipt replays exact committed version without full-board state
+  ---
+  duration_ms: 8.707296
+  type: 'test'
+  ...
+# Subtest: 500 namespace denied and public read exposes no private/control witnesses
+ok 43 - 500 namespace denied and public read exposes no private/control witnesses
+  ---
+  duration_ms: 8.714477
+  type: 'test'
+  ...
+# Subtest: operator render receives tokens without RNG/history disclosure
+ok 44 - operator render receives tokens without RNG/history disclosure
+  ---
+  duration_ms: 8.688568
+  type: 'test'
+  ...
+# Subtest: 5.0.5 rejects 5.0.4 session identifiers and isolates transport and browser storage
+ok 45 - 5.0.5 rejects 5.0.4 session identifiers and isolates transport and browser storage
+  ---
+  duration_ms: 1.085764
+  type: 'test'
+  ...
+# Subtest: all approved rating and schedule input files remain byte-identical to 5.0.4
+ok 46 - all approved rating and schedule input files remain byte-identical to 5.0.4
+  ---
+  duration_ms: 1.077942
+  type: 'test'
+  ...
+# Subtest: Week 10 exact frozen input, count, order, ratings and safe defaults
+ok 47 - Week 10 exact frozen input, count, order, ratings and safe defaults
+  ---
+  duration_ms: 6.9053
+  type: 'test'
+  ...
+# Subtest: Week 7 and malformed/duplicate slate rejected; public data excludes secrets
+ok 48 - Week 7 and malformed/duplicate slate rejected; public data excludes secrets
+  ---
+  duration_ms: 3.332185
+  type: 'test'
+  ...
+# Subtest: 56-game selected Deadman arm/disarm and no unarmed past-date launch
+ok 49 - 56-game selected Deadman arm/disarm and no unarmed past-date launch
+  ---
+  duration_ms: 5.546518
+  type: 'test'
+  ...
+# Subtest: Official acceptance requires LOCKED and explicit confirmation; QA remains prohibited
+ok 50 - Official acceptance requires LOCKED and explicit confirmation; QA remains prohibited
+  ---
+  duration_ms: 1.418913
+  type: 'test'
+  ...
+# Subtest: Per-game concurrency preserves unrelated changes and rejects stale game control
+ok 51 - Per-game concurrency preserves unrelated changes and rejects stale game control
+  ---
+  duration_ms: 1.148438
+  type: 'test'
+  ...
+# Subtest: Week 10 create remains authenticated, operator-authorized and frozen
+ok 52 - Week 10 create remains authenticated, operator-authorized and frozen
+  ---
+  duration_ms: 4.673782
+  type: 'test'
+  ...
+# Subtest: 56 scheduled pairings retain fixed-seed 1x/50x football invariance
+ok 53 - 56 scheduled pairings retain fixed-seed 1x/50x football invariance
+  ---
+  duration_ms: 63.325046
+  type: 'test'
+  ...
+# Subtest: Week 10 schema guards and bindings have no Week 7 runtime fallback
+ok 54 - Week 10 schema guards and bindings have no Week 7 runtime fallback
+  ---
+  duration_ms: 0.58138
+  type: 'test'
+  ...
+1..54
+# tests 54
+# suites 0
+# pass 54
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1760.206889

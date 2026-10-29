@@ -1,0 +1,45 @@
+name: Verify GameCast 5.0.5 Week 10 candidate
+on:
+  push:
+    branches: [release/gamecast-v5.0.5]
+    paths: ['public/v5.0.5/**', 'release-assets/v5.0.5-week10/**', 'tests/v505/**', 'scripts/prepare-v505.mjs', '.github/workflows/verify-v505.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify prior releases are unchanged
+        run: git diff --exit-code 285ef52cdb626deb5648fd1a0e773921546dfe5d -- public/v5.0.4 release-assets/v5.0.4-week10 supabase
+      - run: mkdir -p outputs/v505
+      - run: node --test tests/v505/*.test.mjs | tee outputs/v505/logic-tests.txt
+      - run: npm install --prefix "$RUNNER_TEMP/gamecast-browser" --save-exact playwright@1.62.1
+      - run: node "$RUNNER_TEMP/gamecast-browser/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Chromium Chairman, public and condensed UI
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/gamecast-browser/node_modules/playwright/index.mjs
+        run: |
+          node tests/v505/week10-browser.mjs
+          node tests/v505/finished-ot-browser.mjs
+          node tests/v505/final-ot-status-browser.mjs
+      - name: WebKit mobile viewport
+        env:
+          GAMECAST_BROWSER: webkit
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/gamecast-browser/node_modules/playwright/index.mjs
+        run: |
+          node tests/v505/week10-browser.mjs
+          node tests/v505/finished-ot-browser.mjs
+          node tests/v505/final-ot-status-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v505-candidate-verification
+          path: outputs/v505/
