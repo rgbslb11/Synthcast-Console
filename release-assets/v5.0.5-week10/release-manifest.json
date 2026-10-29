@@ -11,7 +11,7 @@
   "games": 56,
   "teams": 121,
   "sourceRatingsSha256": "f615022104fe545af1585c4a1b76d5dc0802ceb36ca4afe5b98756d760f1bc2a",
-  "releaseStatus": "BACKEND_INSTALLED_NOT_ACTIVATED",
+  "releaseStatus": "BACKEND_ACTIVE_UI_PUBLICATION_REQUESTED",
   "migrationStatus": "APPLIED",
   "results": {
     "localRegression": "54/54",
@@ -31,8 +31,8 @@
     "webkitMobileViewport": "PASS",
     "realMobileSafari": "NOT TESTED"
   },
-  "activationStatus": "AUTO_REVIEW_REJECTED",
+  "activationStatus": "APPLIED_USER_APPROVED",
   "schedulerInstallation": "COMPLETE",
-  "writesEnabled": false,
-  "schedulerEnabled": false
+  "writesEnabled": true,
+  "schedulerEnabled": true
 }

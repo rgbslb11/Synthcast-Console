@@ -1,0 +1,10 @@
+{
+  "version": "5.0.5",
+  "approval": "Chairman explicitly approved production writes, cron, one fresh 56-game unlaunched session, and publication of the 5.0.5 UI.",
+  "requestedAt": "2026-10-29T05:36:41.802864+00:00",
+  "sourceCommit": "386a61beda88d8e048f9150ce2da067a83759229",
+  "engine": "GC-W10-V5.0.5-RC1",
+  "preserveAllPriorRoutes": true,
+  "launchGames": false,
+  "acceptResults": false
+}

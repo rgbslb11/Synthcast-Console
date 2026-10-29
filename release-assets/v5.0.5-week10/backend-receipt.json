@@ -26,10 +26,10 @@
     "name": "gamecast_v505_week10",
     "interval": "5 seconds",
     "created": true,
-    "active": false
+    "active": true
   },
-  "writesEnabled": false,
-  "sessions": 0,
+  "writesEnabled": true,
+  "sessions": 1,
   "eventsAfterProbeRollback": 0,
   "oldSessionsPreserved": 2,
   "uiPublished": false,
@@ -41,7 +41,7 @@
     "webkit": "PASS"
   },
   "vaultSecretCreated": true,
-  "schedulerControlEnabled": false,
+  "schedulerControlEnabled": true,
   "schedulerProbe": {
     "authorizedRequestId": 740314,
     "authorizedStatus": 200,
@@ -50,6 +50,10 @@
     "disabledRequestId": 740365,
     "disabledStatus": 403
   },
-  "activation": "AUTO_REVIEW_REJECTED_NO_ACTIVATION_APPLIED",
-  "oldSessionStateHashesUnchanged": true
+  "activation": "APPLIED_USER_APPROVED",
+  "oldSessionStateHashesUnchanged": true,
+  "operatingSession": "w10v505-bae989b4996e081e",
+  "gamesUnlaunched": 56,
+  "activatedAt": "2026-10-29T05:36:41.802864+00:00",
+  "cronDispatch": "PASS: recent cron jobs succeeded"
 }
