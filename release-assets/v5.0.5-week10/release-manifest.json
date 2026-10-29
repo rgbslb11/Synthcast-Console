@@ -11,8 +11,8 @@
   "games": 56,
   "teams": 121,
   "sourceRatingsSha256": "f615022104fe545af1585c4a1b76d5dc0802ceb36ca4afe5b98756d760f1bc2a",
-  "releaseStatus": "PREPARED_NOT_DEPLOYED",
-  "migrationStatus": "AUTO_REVIEW_REJECTED_NO_CHANGES_APPLIED",
+  "releaseStatus": "SOURCE_PUBLISHED_BACKEND_PARTIAL_NOT_ACTIVATED",
+  "migrationStatus": "APPLIED",
   "results": {
     "localRegression": "54/54",
     "populationGames": 56000,
@@ -22,5 +22,13 @@
     "combinedPointsPerGame": 42.71125
   },
   "engineSha256": "24000c714ecd312f90abdbf7b55c223311046a82896d00dd0705abf0787536bf",
-  "githubStatus": "AUTO_REVIEW_REJECTED_NO_SOURCE_UPLOADED"
+  "githubStatus": "UPLOADED",
+  "sourceCommit": "181ef860ce13c9896bea515797d7093ee8f742fc",
+  "browserCI": {
+    "runId": 40822995615,
+    "status": "PASS",
+    "chromium": "PASS",
+    "webkitMobileViewport": "PASS",
+    "realMobileSafari": "NOT TESTED"
+  }
 }

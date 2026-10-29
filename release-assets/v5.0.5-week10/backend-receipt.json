@@ -1,0 +1,34 @@
+{
+  "project": "xsvdmcipviejxynkdbhq",
+  "schema": "gamecast_v505_w10",
+  "migration": "gamecast_v505_week10_approved_model",
+  "persistenceProbe": "PASS_ROLLED_BACK",
+  "RLS": "7/7 tables enabled",
+  "publicFunction": {
+    "name": "gamecast-week10-v5-0-5-public",
+    "version": 1,
+    "status": "ACTIVE",
+    "health": 200,
+    "engine": "GC-W10-V5.0.5-RC1"
+  },
+  "chairmanFunction": {
+    "name": "gamecast-week10-v5-0-5-chairman",
+    "version": 1,
+    "status": "ACTIVE",
+    "unauthenticated": 401
+  },
+  "schedulerFunction": "AUTO_REVIEW_REJECTED_NOT_DEPLOYED",
+  "recurringScheduler": "AUTO_REVIEW_REJECTED_NOT_CREATED",
+  "writesEnabled": false,
+  "sessions": 0,
+  "eventsAfterProbeRollback": 0,
+  "oldSessionsPreserved": 2,
+  "uiPublished": false,
+  "CI": {
+    "runId": 40822995615,
+    "jobId": 123279487760,
+    "conclusion": "success",
+    "chromium": "PASS",
+    "webkit": "PASS"
+  }
+}

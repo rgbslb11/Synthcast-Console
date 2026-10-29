@@ -1,23 +1,26 @@
-# GameCast 5.0.5 — approved mathematics release
+# GameCast 5.0.5 — source published, backend partially deployed
 
-Engine: GC-W10-V5.0.5-RC1. Exactly the approved 2x rating-edge multiplier, 18-second ordinary runoff base and +1 yard on positive nonfumble rushing gains. W10 schedule and all 121 ratings are unchanged.
+Engine GC-W10-V5.0.5-RC1 implements exactly the approved 2x rating-edge multiplier, 18-second normal runoff base, and +1 yard on already-positive nonfumble rushing gains. All 56 W10 schedule rows and all 121 rating records are unchanged. Prior 5.0.4 files/functions/sessions/results remain unchanged.
 
-Separate identities: gamecast_v505_w10 schema; w10v505- sessions; /v5.0.5/w10/ UI; gamecast-week10-v5-0-5-{chairman,public,scheduler} functions. Existing 5.0.4 endpoints, sessions, UI, data and results remain untouched. New 5.0.5 sessions start unlaunched; no existing 5.0.4 game is automatically migrated, restarted, accepted or republished. Existing results remain on the 5.0.4 route.
+## Verified
 
-## Tests
+- Source published to release/gamecast-v5.0.5, first source commit 181ef860ce13c9896bea515797d7093ee8f742fc.
+- 54/54 local and GitHub logic tests passed. Chromium and WebKit mobile-viewport UI/OT suites passed in GitHub run 40822995615. Real iPhone Safari is not tested.
+- Final-version 56,000-game population: shutouts 3.43%, margins1–7 38.99%, offensive snaps 127.92, combined points 42.71.
+- Schema gamecast_v505_w10 created; one authorized operator copied. All seven tables have RLS; anon/authenticated lack schema usage.
+- Actual database state/ledger/commit/idempotent replay/conflict/recovery/RLS probe passed and all probe writes rolled back. Sessions/events remain zero; writes disabled.
+- Public and Chairman functions deployed at version 1. Public health returns engine GC-W10-V5.0.5-RC1; unauthenticated Chairman returns 401.
 
-54/54 local regression checks passed. Final-version population: 56 matchups x 1,000 seeds; 3.43% shutouts, 38.99% margins 1–7, 127.92 offensive snaps, 42.71 combined points. All population accounting and sampled replay/chunk checks passed. Source and evidence are frozen here. GitHub verification runs Chromium/WebKit fixtures before any publication; no deploy-request exists.
+## Remaining automatic approval block
 
-## Production block
+Automatic approval review rejected the scheduler endpoint gamecast-week10-v5-0-5-scheduler and the separate scheduler migration. The latter creates Vault secret gamecast_v505_w10_scheduler_cron_token, scheduler control table/functions, and cron job gamecast_v505_week10 at five-second intervals. Review treated this recurring infrastructure and scheduler endpoint as requiring more explicit authorization despite approval of the three-function rollout. Neither rejected action was executed or retried through another path.
 
-Automatic approval review rejected applying week10-schema.sql to project xsvdmcipviejxynkdbhq, citing new persistent production tables/functions, copying authorized operator records and appending gamecast_v505_w10 to PostgREST exposure without exact boundary-change authorization. No SQL migration was applied. Do not retry via raw SQL or another path. No new functions or UI were deployed.
+## Activation remains disabled
 
-After explicit authorization: apply this exact schema (new namespace only; writes initially disabled), add the separately named disabled scheduler from week10-scheduler.sql, deploy the three new functions, run actual-cloud persistence/Auth/recovery probes, verify CI browser evidence, create an unlaunched 5.0.5 session, then publish the preserved-site bundle through deploy-request.json. No automatic game launch is permitted. Database writes and scheduler activation must occur only after cloud probes pass.
+No operational session, game launch or Pages publication has occurred. Before activation, explicitly authorize the named scheduler endpoint, Vault secret and five-second cron job. Deploy/create them initially disabled, test authenticated scheduler and rollback, then enable only new-release writes/scheduling, create a fresh unlaunched session and publish through the gated preservation workflow. Old sessions remain on old endpoints; no accepted/pending result is migrated or re-simulated automatically.
+
+Distinct release bindings: schema gamecast_v505_w10; w10v505- session prefix; /v5.0.5/w10/ UI; independent 505 browser storage keys. New 5.0.5 sessions start unlaunched. Completed/pending 5.0.4 results remain on the old route.
 
 ## Rollback
 
-Use rollback.sql to disable only new-release writes and cron; retain its state and audit evidence. Keep prior endpoints and routes available. Never run 5.0.5 histories through 5.0.4 mathematics. No rollback is currently needed because no production change occurred. Real Mobile Safari, cloud persistence, final hosted UI and rollback rehearsal remain untested.
-
-## GitHub handoff block
-
-Automatic approval review also rejected the 66-file release tree upload to the public rgbslb11/Synthcast-Console repository, citing insufficiently explicit authorization for source, SQL/configuration, schedule/rating inputs and population evidence disclosure. Repository identity and admin/push permission were verified. The remote release/gamecast-v5.0.5 branch exists at 285ef52 only. No 5.0.5 source or workflow was uploaded and no CI/publication started. Explicit approval for this public-repository payload and the separate production schema/API change is required before retrying.
+Retain all old routes and state. Disable new-release writes and, once created, its scheduler/cron. Preserve all 5.0.5 histories and never continue them with 5.0.4 mathematics. No operational rollback is needed while writes remain disabled and no sessions exist.
