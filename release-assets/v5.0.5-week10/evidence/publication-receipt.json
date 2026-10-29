@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "runId": 40824439901,
+  "commit": "1b3daaaaa7a7fca7bdc3bdd5e15db6f5ff38bc95",
+  "hostedFiles": {
+    "preserved": 204,
+    "added": 15,
+    "total": 219
+  },
+  "regression": "54/54",
+  "chromium": "PASS",
+  "webkitMobileViewport": "PASS",
+  "realIphoneSafari": "NOT TESTED",
+  "hostedCheckAt": "2026-10-29T05:38:53.627Z",
+  "liveBrowser": {
+    "public": "PASS",
+    "condensed": "PASS",
+    "chairmanEntry": "SIGN_IN_REQUIRED"
+  },
+  "rollback": "release-assets/v5.0.5-week10/rollback.sql"
+}

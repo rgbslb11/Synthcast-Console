@@ -3,7 +3,7 @@
   "schema": "gamecast_v505_w10",
   "migration": "gamecast_v505_week10_approved_model",
   "persistenceProbe": "PASS_ROLLED_BACK",
-  "RLS": "7/7 tables enabled",
+  "RLS": "8/8 tables enabled including scheduler control",
   "publicFunction": {
     "name": "gamecast-week10-v5-0-5-public",
     "version": 1,
@@ -32,7 +32,7 @@
   "sessions": 1,
   "eventsAfterProbeRollback": 0,
   "oldSessionsPreserved": 2,
-  "uiPublished": false,
+  "uiPublished": true,
   "CI": {
     "runId": 40822995615,
     "jobId": 123279487760,
@@ -50,10 +50,32 @@
     "disabledRequestId": 740365,
     "disabledStatus": 403
   },
-  "activation": "APPLIED_USER_APPROVED",
+  "activation": "APPLIED_USER_APPROVED_VERIFIED",
   "oldSessionStateHashesUnchanged": true,
   "operatingSession": "w10v505-bae989b4996e081e",
   "gamesUnlaunched": 56,
   "activatedAt": "2026-10-29T05:36:41.802864+00:00",
-  "cronDispatch": "PASS: recent cron jobs succeeded"
+  "cronDispatch": "PASS: recent cron jobs succeeded",
+  "publicationCommit": "1b3daaaaa7a7fca7bdc3bdd5e15db6f5ff38bc95",
+  "publicationRun": 40824439901,
+  "publicationStatus": "SUCCESS",
+  "hostedVerification": {
+    "status": "PASS",
+    "preserved": 204,
+    "added": 15,
+    "total": 219
+  },
+  "verifiedAt": "2026-10-29T05:40:32.882074+00:00",
+  "liveBrowser": {
+    "public": "PASS: 56 unlaunched, power 56/56",
+    "condensed": "PASS: 56 upcoming, 0 live, 0 final",
+    "chairmanEntry": "PASS: sign-in required",
+    "authenticatedChairmanLive": "NOT TESTED; CI handler fixtures passed"
+  },
+  "activeSchedulerProbe": {
+    "requestId": 740709,
+    "http": 200,
+    "eligibleSessions": 0,
+    "processed": 0
+  }
 }

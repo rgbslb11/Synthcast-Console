@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "session": "w10v505-bae989b4996e081e",
+  "engine": "GC-W10-V5.0.5-RC1",
+  "games": 56,
+  "unlaunched": 56,
+  "powerReady": 56,
+  "auto": 0,
+  "onAir": 0,
+  "scheduleAndRatings": "MATCH_APPROVED_SOURCE",
+  "publicHttp": 200,
+  "checkedAt": "2026-10-29T05:38:48.838Z"
+}
