@@ -11,13 +11,15 @@ Engine GC-W10-V5.0.5-RC1 implements exactly the approved 2x rating-edge multipli
 - Actual database state/ledger/commit/idempotent replay/conflict/recovery/RLS probe passed and all probe writes rolled back. Sessions/events remain zero; writes disabled.
 - Public and Chairman functions deployed at version 1. Public health returns engine GC-W10-V5.0.5-RC1; unauthenticated Chairman returns 401.
 
-## Remaining automatic approval block
+## Scheduler installed and verified
 
-Automatic approval review rejected the scheduler endpoint gamecast-week10-v5-0-5-scheduler and the separate scheduler migration. The latter creates Vault secret gamecast_v505_w10_scheduler_cron_token, scheduler control table/functions, and cron job gamecast_v505_week10 at five-second intervals. Review treated this recurring infrastructure and scheduler endpoint as requiring more explicit authorization despite approval of the three-function rollout. Neither rejected action was executed or retried through another path.
+The user explicitly approved gamecast-week10-v5-0-5-scheduler, gamecast_v505_w10_scheduler_cron_token and gamecast_v505_week10. All three are now created/deployed. The cron job runs every five seconds when enabled; it is currently inactive. An authenticated empty scheduler sweep returned HTTP 200 with zero sessions/processed; disabling the scheduler control caused the same valid-token probe to return HTTP 403. All flags were left disabled.
 
-## Activation remains disabled
+## Remaining activation block
 
-No operational session, game launch or Pages publication has occurred. Before activation, explicitly authorize the named scheduler endpoint, Vault secret and five-second cron job. Deploy/create them initially disabled, test authenticated scheduler and rollback, then enable only new-release writes/scheduling, create a fresh unlaunched session and publish through the gated preservation workflow. Old sessions remain on old endpoints; no accepted/pending result is migrated or re-simulated automatically.
+Automatic approval review rejected the activation transaction, stating that enabling production writes/cron and creating an operational session require exact activation authorization beyond installing the components. No activation was applied. New release sessions/events remain zero; writes, scheduler control and cron are all disabled. Both prior 5.0.4 session state hashes remain unchanged across the work. No rejected action was bypassed.
+
+The prepared activation script is scripts/prepare-v505-operating-session.mjs. Its generated SQL creates one 56-game, unlaunched operating session, enables only 5.0.5 writes/scheduling and starts no games. Preserve the generated SQL between retries; do not regenerate random input seeds after a successful create. After exact activation approval, execute the prepared transaction, verify all game flags, publish through deploy-request.json and the preservation workflow, then verify old/new routes. No game launch or result acceptance is implied.
 
 Distinct release bindings: schema gamecast_v505_w10; w10v505- session prefix; /v5.0.5/w10/ UI; independent 505 browser storage keys. New 5.0.5 sessions start unlaunched. Completed/pending 5.0.4 results remain on the old route.
 

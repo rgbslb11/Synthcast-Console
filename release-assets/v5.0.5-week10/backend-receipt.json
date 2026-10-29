@@ -17,8 +17,17 @@
     "status": "ACTIVE",
     "unauthenticated": 401
   },
-  "schedulerFunction": "AUTO_REVIEW_REJECTED_NOT_DEPLOYED",
-  "recurringScheduler": "AUTO_REVIEW_REJECTED_NOT_CREATED",
+  "schedulerFunction": {
+    "name": "gamecast-week10-v5-0-5-scheduler",
+    "version": 1,
+    "status": "ACTIVE"
+  },
+  "recurringScheduler": {
+    "name": "gamecast_v505_week10",
+    "interval": "5 seconds",
+    "created": true,
+    "active": false
+  },
   "writesEnabled": false,
   "sessions": 0,
   "eventsAfterProbeRollback": 0,
@@ -30,5 +39,17 @@
     "conclusion": "success",
     "chromium": "PASS",
     "webkit": "PASS"
-  }
+  },
+  "vaultSecretCreated": true,
+  "schedulerControlEnabled": false,
+  "schedulerProbe": {
+    "authorizedRequestId": 740314,
+    "authorizedStatus": 200,
+    "sessions": 0,
+    "processed": 0,
+    "disabledRequestId": 740365,
+    "disabledStatus": 403
+  },
+  "activation": "AUTO_REVIEW_REJECTED_NO_ACTIVATION_APPLIED",
+  "oldSessionStateHashesUnchanged": true
 }
