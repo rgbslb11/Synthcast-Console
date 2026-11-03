@@ -1,0 +1,15 @@
+{
+  "baseline": "9d13c58548072f4e8ba9cd8f8c9ebcb5cd0f4bd8",
+  "status": "QA_ONLY_NOT_DEPLOYABLE",
+  "games": 56,
+  "teams": 121,
+  "scheduledTeams": 112,
+  "ratingFields": 363,
+  "ratingsSha256": "1bd1827b535f93c6caf664049deb4b78728c645d813a21bc50d0e6819f04485c",
+  "source": "Chairman supplied W11 carriage, game IDs and R2 CSV",
+  "pending": [
+    "Presentation metadata (records, poll ranks, announcers) retained in Chairman thread; not yet serialized here",
+    "Venue IDs and conference classification not supplied; absent, not inferred",
+    "Final screens, cloud provisioning and release approval"
+  ]
+}

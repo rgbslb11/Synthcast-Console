@@ -1,0 +1,79 @@
+{
+  "project": "xsvdmcipviejxynkdbhq",
+  "function": "gamecast-week10-v5-0-5-public",
+  "version": 1,
+  "status": "ACTIVE",
+  "baselineCommit": "9d13c58548072f4e8ba9cd8f8c9ebcb5cd0f4bd8",
+  "files": [
+    {
+      "path": "supabase/functions/gamecast-week10-v5-0-5-public/index.ts",
+      "sha256": "eae5fdf8ddad3dd9ba5e99eb4ce493872596b632c1121e6006dcb407a2301615",
+      "matchesRepository": true
+    },
+    {
+      "path": "deployment/configured-runtime.mjs",
+      "sha256": "7447bef7732c51b3ad512e5955c727895788705a255d82181217919da8e80fff",
+      "matchesRepository": true
+    },
+    {
+      "path": "src/release-runtime.mjs",
+      "sha256": "c52d65c4357c052475597facf1aca8e2decb417994067c76328cc54bd4ae7e44",
+      "matchesRepository": true
+    },
+    {
+      "path": "runtime/engine.mjs",
+      "sha256": "24000c714ecd312f90abdbf7b55c223311046a82896d00dd0705abf0787536bf",
+      "matchesRepository": true
+    },
+    {
+      "path": "runtime/week10.mjs",
+      "sha256": "d19009eab6388362f00bf15199227af8bc9bd3d31b074f14657cb964a92e43c3",
+      "matchesRepository": true
+    },
+    {
+      "path": "runtime/power.mjs",
+      "sha256": "53c1e031f2fbfc038c641512d72017809f9f8489f0b0ab721d4ea42453786836",
+      "matchesRepository": true
+    },
+    {
+      "path": "src/deadman.mjs",
+      "sha256": "01da1a05687d90b65d19c28a39648423370ecc299927d838479b336a3e278bf3",
+      "matchesRepository": true
+    },
+    {
+      "path": "src/weather.mjs",
+      "sha256": "5d06ebc05f6009dae7eb51aabdece551cf207f85c8b7db7ab668146b01475002",
+      "matchesRepository": true
+    },
+    {
+      "path": "src/supabase-rest.mjs",
+      "sha256": "0056aa6f4a92cc5ccbb9d11b01a3836707db003486fdf152be5d977e2929c7f5",
+      "matchesRepository": true
+    },
+    {
+      "path": "security/security-core.mjs",
+      "sha256": "c8e61c21e0d0f7d5f8562c5720bef7008d7ab1acf5c4a1598023df9e8c6e9ffc",
+      "matchesRepository": true
+    },
+    {
+      "path": "src/database-store.mjs",
+      "sha256": "f89088c423c672ef20f798fefc1751aaa8e0f3379940ca384312a1a8fe80ace0",
+      "matchesRepository": true
+    },
+    {
+      "path": "src/command-preconditions.mjs",
+      "sha256": "0e4b656ec9d6a72f690cd9ad295d527b2e8cb9dd3d503dd9759d34ad500aecd0",
+      "matchesRepository": true
+    },
+    {
+      "path": "src/engine-operations.mjs",
+      "sha256": "ff2598c9f2520df383d22a9e371657757ec50325a6abf2f1f8099b3ab6f9149d",
+      "matchesRepository": true
+    },
+    {
+      "path": "security/edge-boundaries.mjs",
+      "sha256": "c8bcdc292f3e990e52180c4d79fabd11e7b9b0508f4112a6ae3b9314ba54f09f",
+      "matchesRepository": true
+    }
+  ]
+}

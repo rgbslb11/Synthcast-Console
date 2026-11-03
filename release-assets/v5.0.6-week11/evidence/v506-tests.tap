@@ -1,0 +1,41 @@
+✔ baseline witnesses fail both required behaviors (4.772693ms)
+✔ tie deep-own-territory fourth-and-long punts across boundary times, distances and orientations (8.350237ms)
+✔ trailing desperation and ordinary short fourth downs preserve baseline decisions (53.48745ms)
+✔ safety exact goal line and beyond: two points, reciprocal possession, stopped clock, log and free-kick evidence (5.869366ms)
+✔ loss ending at OWN 1 and incompletions are not safeties (0.448734ms)
+✔ kneel is pure and matches exact clock capacity for all timeout/down combinations (36.476811ms)
+✔ Miami 57 seconds/two opponent timeouts is not a safe kneel; 36 is (0.329678ms)
+✔ automatic fourth-down kneel prohibited; forced fourth kneel transfers possession and stops clock (0.388835ms)
+✔ all 16 halftime timeout pairs reset once with reciprocal receiving team (1.127789ms)
+✔ Deadman arms, launches once, preserves RNG until toss, and recognizes Chairman stop (1.020521ms)
+✔ fixed seed/chunk/speed invariance and full board football state, 41 games (389.981182ms)
+✔ actual HTTP handlers -> engine -> disk-backed RPC fixture -> restart -> public read (589.865736ms)
+✔ intermediate football state invariants through 41 complete games (138.019251ms)
+✔ final, locked and accepted states are frozen during projection (2.554411ms)
+✔ existing Final -> Lock -> Accept transition preserved; QA cannot become accepted (1.464507ms)
+W11_LOCAL_56_ACTIVE_MS 13764
+W11_POPULATION {"games":56,"seedsPerGame":10,"runs":560,"points":23792,"minTotal":10,"maxTotal":89,"meanTotal":42.48571428571429}
+✔ W11 exact data counts, IDs, coverage, ranges and UTC midnight rollovers (3.534471ms)
+✔ football code is byte-identical after explicit release metadata normalization (0.635911ms)
+✔ stats polling cannot mutate pending plays, RNG or history; started and resolved are distinct (8.179044ms)
+✔ stats endpoint exposes resolved evidence only; rejects old sessions and unknown games (8.90627ms)
+✔ invalid period cannot be silently reported as a valid score (0.680206ms)
+✔ 56 active games progress together with stats reads between ticks (13884.315342ms)
+✔ 56 games x 10 seeds: finals, stats, regulation TOP, polling/chunk and 1/4/20/50x invariance (2469.881927ms)
+✔ unrelated scheduler version churn retries with current CAS; no blind board overwrite (37.95868ms)
+✔ three unrelated CAS collisions return busy without changing the game (20.898687ms)
+✔ concurrent target control change rejects safely (17.285651ms)
+✔ same key returns original receipt once, even after newer versions; changed body conflicts (34.167123ms)
+✔ edit token ignores only elapsed GL, detects real field changes (4.719004ms)
+✔ missing token never bypasses strict session-version protection (4.802056ms)
+✔ scheduler compact receipt replays exact committed version without full-board state (18.002992ms)
+✔ 500 namespace denied and public read exposes no private/control witnesses (14.229803ms)
+✔ operator render receives tokens without RNG/history disclosure (15.134318ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16633.871004
