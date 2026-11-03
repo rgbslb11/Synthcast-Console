@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {calculate,MODEL,sigmoid} from '../../release-assets/v5.1.0/backend/reporting/illustrative-wp.mjs';
+const s={gameId:'qa-game',runId:'qa-run',eventId:'kickoff',favoriteTeamId:'A',otherTeamId:'B',sequence:0,stateRevision:1,favoriteScore:0,otherScore:0,pregameMargin:7,kind:'kickoff',possessionTeamId:'A',period:1,quarterSeconds:600,clockSeconds:600,yardsToGoal:75};
+test('supplied illustrative kickoff formula is retained, including 10/15-minute modes',()=>{for(const q of [600,900])assert.equal(calculate({...s,quarterSeconds:q,clockSeconds:q}).probability,sigmoid(0.14*7));});
+test('model remains pure and explicit about calibration',()=>{const before=JSON.stringify(s);const a=calculate(s);assert.deepEqual(a,calculate(s));assert.equal(JSON.stringify(s),before);assert.equal(a.modelId,MODEL.id);assert.equal(a.calibrationStatus,'DEFERRED');});
+test('live observed score changes affect estimate; nonterminal OT is unavailable',()=>{const live={...s,kind:'possession_end',period:4,clockSeconds:120};assert(calculate({...live,favoriteScore:14}).probability>calculate({...live,otherScore:14}).probability);assert.equal(calculate({...live,period:'OT'}).probability,null);});
+test('terminal result requires an untied outcome and does not imply official acceptance',()=>{assert.throws(()=>calculate({...s,kind:'final'}));assert.equal(calculate({...s,kind:'final',favoriteScore:7}).probability,1);assert.equal(calculate({...s,kind:'final',otherScore:7}).probability,0);});

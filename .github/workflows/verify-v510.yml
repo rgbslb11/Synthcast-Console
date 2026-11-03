@@ -1,0 +1,23 @@
+name: Verify isolated GameCast 5.1.0 development
+on:
+  push:
+    branches: [development/gamecast-v5.1.0]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Protect deployed 5.0.6 source and publication workflow
+        run: git diff --exit-code 754d959def7a67f2ada99a13f4e3a4c3254be4b8 -- public/v5.0.6 release-assets/v5.0.6-week11 .github/workflows/deploy-v506.yml
+      - name: Retained 5.0.6 regression
+        run: node --test tests/v506/*.test.mjs
+      - name: Reporting contract and calculation tests
+        run: node --test tests/v510/*.test.mjs
