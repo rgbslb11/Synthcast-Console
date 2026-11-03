@@ -1,3 +1,14 @@
+## Source/outbox milestone — November 3, 2026
+
+QA source commits and durable outbox are now implemented and provisioned.
+Two-game hosted recovery passed. Read-only QA details Edge Function v1 is active
+with JWT verification; unauthenticated request returned 401. 98 local tests PASS.
+Positive signed-in HTTP, hosted engine caller, concurrent load, WP/UI and Safari
+remain unverified/incomplete. See SOURCE-OUTBOX-QA.md for exact boundaries.
+Earlier milestone records below are historical.
+
+---
+
 ## Subsequent integration and cloud QA — November 3, 2026
 
 Backend commit 5a0456ac was fast-forwarded into development/gamecast-v5.1.0
