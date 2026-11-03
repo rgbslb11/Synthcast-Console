@@ -30,7 +30,7 @@ try{
   // Each surface starts with the complete upcoming schedule; Chairman control
   // tests below intentionally transition its fixture into a live game.
   row.state=OPERATING_SLATE.map(s=>({...runtime.engine.initialGame(s),qaOnly:false}));row.state_version++;
-  const start=performance.now();await page.goto(origin+'/v5.0.6/w11/'+(suffix===null?'ui1.3/':'')+'?session='+slug+(suffix||''));await page.locator('[data-game="G0526"]').waitFor();timings.push({surface:label,navigationToLastCardMs:performance.now()-start,fixture:true});
+  const start=performance.now();await page.goto(origin+'/v5.0.6/w11/'+(suffix===null?'ui1.3/':'')+'?session='+slug+(suffix||''));await page.locator('[data-game="G0549"]').waitFor();timings.push({surface:label,navigationToLastCardMs:performance.now()-start,fixture:true});
   await check(label+' shows exact 56 ordered Week 11 identities',async()=>{assert.deepEqual(await page.locator('article[data-game]').evaluateAll(es=>es.map(e=>e.dataset.game)),OPERATING_SLATE.map(g=>g.id));});
   await check(label+' preserves every team, network and kickoff',async()=>{for(const g of OPERATING_SLATE){const text=await page.locator('article[data-game="'+g.id+'"]').innerText();for(const value of [g.away,g.home,g.network,g.kickoff])assert.ok(text.toLowerCase().includes(value.toLowerCase()),g.id+' '+value);}});
   await check(label+' fits viewport',async()=>assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1)));
@@ -59,8 +59,8 @@ try{
    });
   }else await check(label+' has no operator action controls',async()=>{assert.equal(await page.getByRole('button',{name:'LAUNCH',exact:true}).count(),0);assert.equal(await page.getByRole('button',{name:'ACCEPT',exact:true}).count(),0);});
   if(label==='Condensed'){
-   await page.getByRole('tab',{name:/SATURDAY/}).click();await check('Condensed Saturday has exact 48 games',async()=>assert.deepEqual(await page.locator('article[data-game]').evaluateAll(es=>es.map(e=>e.dataset.game)),OPERATING_SLATE.filter(g=>g.date==='2026-11-07').map(g=>g.id)));
-   await page.getByRole('tab',{name:/FULL WEEK/}).click();await page.locator('#teamSearch').fill('Wyoming');await check('Condensed search and detail retain Week 11 game',async()=>{assert.equal(await page.locator('article[data-game]').count(),1);await page.locator('[data-toggle="G0526"]').click();assert.match(await page.locator('[data-game="G0526"]').innerText(),/WEATHER OFF/);});
+   await page.getByRole('tab',{name:/SATURDAY/}).click();await check('Condensed Saturday has exact scheduled Saturday games',async()=>assert.deepEqual(await page.locator('article[data-game]').evaluateAll(es=>es.map(e=>e.dataset.game)),OPERATING_SLATE.filter(g=>g.date==='2026-11-07').map(g=>g.id)));
+   await page.getByRole('tab',{name:/FULL WEEK/}).click();await page.locator('#teamSearch').fill('Wyoming');await check('Condensed search and detail retain Week 11 game',async()=>{assert.equal(await page.locator('article[data-game]').count(),1);await page.locator('[data-toggle="G0549"]').click();assert.match(await page.locator('[data-game="G0549"]').innerText(),/WEATHER OFF/);});
   }
   await page.screenshot({path:'outputs/v506/week11-'+browserType+'-'+label.toLowerCase()+'.png',fullPage:false});
  }
