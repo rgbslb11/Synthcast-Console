@@ -95,3 +95,11 @@ launch-versus-kickoff wording; the WP thread owns implementation.
   truncated by the engine's 99-yard spot clamp (e.g. OWN 64 + recorded 40 becomes
   OPP 1, a 35-yard field change). Whether to report recorded net yards or field
   change is a **P2 accounting decision**, not silently changed in this milestone.
+
+## Isolated QA command caller
+
+The authenticated command route and exact retry/expected-version interface are
+documented in [HOSTED-COMMAND-QA.md](HOSTED-COMMAND-QA.md). The GC-STATS-1 field
+counts and GC-DELIVERY-1 read contract are unchanged. WP/UI owners must retain the
+Launch freeze boundary and server-side correction blocks. Successful signed-in
+cloud command execution is not yet verified; no production endpoint is changed.

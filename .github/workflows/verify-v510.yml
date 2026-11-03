@@ -1,7 +1,7 @@
 name: Verify isolated GameCast 5.1.0 development
 on:
   push:
-    branches: [development/gamecast-v5.1.0, development/gamecast-v5.1.0-backend, development/gamecast-v5.1.0-source]
+    branches: [development/gamecast-v5.1.0, development/gamecast-v5.1.0-backend, development/gamecast-v5.1.0-source, development/gamecast-v5.1.0-hosted]
 permissions:
   contents: read
 jobs:

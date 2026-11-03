@@ -1,3 +1,12 @@
+## 2026-11-03 — isolated hosted command path
+
+101 local tests PASS. QA command endpoint deployed with JWT verification enabled.
+Hosted 56-game database check: 168 receipts, 434 plays, all projections available,
+no pending revision, zero active grants. Positive signed-in HTTP remains BLOCKED
+by the rejected temporary privileged QA harness; it was not deployed.
+See [HOSTED-COMMAND-QA.md](HOSTED-COMMAND-QA.md) for exact evidence and limits.
+No production activation. Launch = WP freeze remains unchanged.
+
 ## Source/outbox milestone — November 3, 2026
 
 QA source commits and durable outbox are now implemented and provisioned.
