@@ -2,6 +2,14 @@
 
 Status: QA_ONLY, not deployed, not release-ready. Screen designs remain pending.
 
+Win-probability follow-up: four P1 history corrections, authenticated pregame
+configuration, five-second backend sampling contract, override BLOCKED/grey
+behavior, dedicated probability read endpoint and local smoke tests are now
+implemented. See [WP-IMPLEMENTATION-REVIEW.md](WP-IMPLEMENTATION-REVIEW.md) for
+all input flags, evidence and remaining model/cloud/UI blockers. The initial
+31-test milestone below is preserved as historical evidence; the expanded
+candidate suite now contains 48 tests.
+
 Procedures fully read: GAMECAST_MASTER_ROUTER.md, 01_WEEKLY_DATA_DEPLOYMENT.md,
 05_INTEGRATED_UI_ENGINE_FEATURE.md at baseline commit
 9d13c58548072f4e8ba9cd8f8c9ebcb5cd0f4bd8 (release/gamecast-v5.0.5).

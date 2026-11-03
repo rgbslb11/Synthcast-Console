@@ -1,7 +1,8 @@
+import {assertHistoryPreserved,assertHistoryEvents} from '../probability/history.mjs';
 import {SecurityError,requireSessionSlug,requireExpectedVersion,requireIdempotencyKey,sha256,persistedRead,publicGame,composeDisplayBoard,ACTIVE_GAME_IDS} from '../security/security-core.mjs';
 import {checkCommandPreconditions,withTokens} from './command-preconditions.mjs';
 const one=rows=>Array.isArray(rows)?rows[0]:rows;
-const secrets=new Set(['seedHex','rngState','coinTossAudit','history','runHistory','pendingPlay','pendingRandom','operatorToken','operator_token','operator_token_hash','schedulerSecret','editSnapshot','awayPower','homePower']);
+const secrets=new Set(['winProbability','seedHex','rngState','coinTossAudit','history','runHistory','pendingPlay','pendingRandom','operatorToken','operator_token','operator_token_hash','schedulerSecret','editSnapshot','awayPower','homePower']);
 export function chairmanGame(value){
   if(Array.isArray(value))return value.map(chairmanGame);
   if(!value||typeof value!=='object')return value;
@@ -17,8 +18,9 @@ export function validateCommit(before,draft,events){
   composeDisplayBoard(draft.finals,draft.state);
   for(const k of ['sessionId','publicSlug','ownerUserId','weekKey','engineVersion','dataVersion','stateVersion'])if(before[k]!==draft[k])throw new SecurityError('SESSION_IDENTITY_CHANGED',409);
   if(sha256(before.finals)!==sha256(draft.finals))throw new SecurityError('IMMUTABLE_FINALS_CHANGED',409);
-  for(const old of before.state){const next=draft.state.find(g=>g.id===old.id);if(old.weather?.locked&&sha256(old.weather)!==sha256(next.weather)&&!weatherChangeAllowedForPurge(old,next,events))throw new SecurityError('LOCKED_WEATHER_CHANGED',409);}
+  for(const old of before.state){const next=draft.state.find(g=>g.id===old.id);assertHistoryPreserved(old,next);if(old.weather?.locked&&sha256(old.weather)!==sha256(next.weather)&&!weatherChangeAllowedForPurge(old,next,events))throw new SecurityError('LOCKED_WEATHER_CHANGED',409);}
   if(!Array.isArray(events)||!events.length)throw new SecurityError('AUDIT_EVENTS_REQUIRED',400);
+  assertHistoryEvents(before,draft,events);
   for(const e of events){if(!/^V506_[A-Z0-9_]+$/.test(e.type??''))throw new SecurityError('EVENT_TYPE_INVALID',400);if(/"(seedHex|rngState|operatorToken|operator_token|operator_token_hash|schedulerSecret|pendingRandom)"\s*:/.test(JSON.stringify(e)))throw new SecurityError('PRIVATE_EVENT_FIELD',400);}
 }
 export class DatabaseStore{

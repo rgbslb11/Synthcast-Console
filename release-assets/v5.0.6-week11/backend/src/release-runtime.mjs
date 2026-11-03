@@ -1,3 +1,4 @@
+import {withProbability} from '../probability/operations.mjs';
 import * as engine from '../runtime/engine.mjs';
 import {OPERATING_SLATE} from '../runtime/week11.mjs';
 import {createSupabaseTransport} from './supabase-rest.mjs';
@@ -9,7 +10,7 @@ import {sha256,composeDisplayBoard,SecurityError} from '../security/security-cor
 export function createReleaseRuntime({url,publishableKey,serviceKey,allowedOrigins,schedulerSecret,clock=()=>new Date().toISOString(),fetchImpl=fetch,transport,writesEnabled=()=>false}){
   const backend=transport??createSupabaseTransport({url,publishableKey,serviceKey,fetchImpl});
   if(!schedulerSecret||!Array.isArray(allowedOrigins)||!allowedOrigins.length)throw Error('Explicit origins and scheduler secret required');
-  const store=new DatabaseStore({rpc:backend.rpc,clock}),operations=createEngineOperations({engine,clock});
+  const store=new DatabaseStore({rpc:backend.rpc,clock}),operations=withProbability(createEngineOperations({engine,clock}),{clock});
   const requireWrites=()=>{if(writesEnabled()!==true)throw new SecurityError('RELEASE_WRITES_DISABLED',504);};
   const elapsed=(draft,command)=>{
     const seconds=Math.floor((Date.parse(clock())-Date.parse(draft.lastAdvancedAt))/1000);

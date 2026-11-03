@@ -1,0 +1,300 @@
+TAP version 13
+# Subtest: baseline witnesses fail both required behaviors
+ok 1 - baseline witnesses fail both required behaviors
+  ---
+  duration_ms: 4.408456
+  type: 'test'
+  ...
+# Subtest: tie deep-own-territory fourth-and-long punts across boundary times, distances and orientations
+ok 2 - tie deep-own-territory fourth-and-long punts across boundary times, distances and orientations
+  ---
+  duration_ms: 10.992762
+  type: 'test'
+  ...
+# Subtest: trailing desperation and ordinary short fourth downs preserve baseline decisions
+ok 3 - trailing desperation and ordinary short fourth downs preserve baseline decisions
+  ---
+  duration_ms: 61.718814
+  type: 'test'
+  ...
+# Subtest: safety exact goal line and beyond: two points, reciprocal possession, stopped clock, log and free-kick evidence
+ok 4 - safety exact goal line and beyond: two points, reciprocal possession, stopped clock, log and free-kick evidence
+  ---
+  duration_ms: 3.826134
+  type: 'test'
+  ...
+# Subtest: loss ending at OWN 1 and incompletions are not safeties
+ok 5 - loss ending at OWN 1 and incompletions are not safeties
+  ---
+  duration_ms: 0.340904
+  type: 'test'
+  ...
+# Subtest: kneel is pure and matches exact clock capacity for all timeout/down combinations
+ok 6 - kneel is pure and matches exact clock capacity for all timeout/down combinations
+  ---
+  duration_ms: 25.727603
+  type: 'test'
+  ...
+# Subtest: Miami 57 seconds/two opponent timeouts is not a safe kneel; 36 is
+ok 7 - Miami 57 seconds/two opponent timeouts is not a safe kneel; 36 is
+  ---
+  duration_ms: 0.56761
+  type: 'test'
+  ...
+# Subtest: automatic fourth-down kneel prohibited; forced fourth kneel transfers possession and stops clock
+ok 8 - automatic fourth-down kneel prohibited; forced fourth kneel transfers possession and stops clock
+  ---
+  duration_ms: 0.367234
+  type: 'test'
+  ...
+# Subtest: all 16 halftime timeout pairs reset once with reciprocal receiving team
+ok 9 - all 16 halftime timeout pairs reset once with reciprocal receiving team
+  ---
+  duration_ms: 1.136603
+  type: 'test'
+  ...
+# Subtest: Deadman arms, launches once, preserves RNG until toss, and recognizes Chairman stop
+ok 10 - Deadman arms, launches once, preserves RNG until toss, and recognizes Chairman stop
+  ---
+  duration_ms: 1.105997
+  type: 'test'
+  ...
+# Subtest: fixed seed/chunk/speed invariance and full board football state, 41 games
+ok 11 - fixed seed/chunk/speed invariance and full board football state, 41 games
+  ---
+  duration_ms: 569.381791
+  type: 'test'
+  ...
+# Subtest: actual HTTP handlers -> engine -> disk-backed RPC fixture -> restart -> public read
+ok 12 - actual HTTP handlers -> engine -> disk-backed RPC fixture -> restart -> public read
+  ---
+  duration_ms: 720.22061
+  type: 'test'
+  ...
+# Subtest: intermediate football state invariants through 41 complete games
+ok 13 - intermediate football state invariants through 41 complete games
+  ---
+  duration_ms: 171.273878
+  type: 'test'
+  ...
+# Subtest: final, locked and accepted states are frozen during projection
+ok 14 - final, locked and accepted states are frozen during projection
+  ---
+  duration_ms: 2.948735
+  type: 'test'
+  ...
+# Subtest: existing Final -> Lock -> Accept transition preserved; QA cannot become accepted
+ok 15 - existing Final -> Lock -> Accept transition preserved; QA cannot become accepted
+  ---
+  duration_ms: 6.26251
+  type: 'test'
+  ...
+# Subtest: WP smoke: authenticated pregame update -> launch -> gameplay -> immutable save -> restart -> override -> grey public response
+ok 16 - WP smoke: authenticated pregame update -> launch -> gameplay -> immutable save -> restart -> override -> grey public response
+  ---
+  duration_ms: 805.190977
+  type: 'test'
+  ...
+# Subtest: supplied 14 worked examples retain exact math; final boundaries reject corrupt inputs
+ok 17 - supplied 14 worked examples retain exact math; final boundaries reject corrupt inputs
+  ---
+  duration_ms: 7.871803
+  type: 'test'
+  ...
+# Subtest: pregame is updateable before launch, frozen at kickoff, and no rating-to-margin inference
+ok 18 - pregame is updateable before launch, frozen at kickoff, and no rating-to-margin inference
+  ---
+  duration_ms: 7.084937
+  type: 'test'
+  ...
+# Subtest: missing or mismatched source inputs are BLOCKED; betting source not accepted
+ok 19 - missing or mismatched source inputs are BLOCKED; betting source not accepted
+  ---
+  duration_ms: 1.969706
+  type: 'test'
+  ...
+# Subtest: P1-1 session namespacing isolates identical game and run IDs
+ok 20 - P1-1 session namespacing isolates identical game and run IDs
+  ---
+  duration_ms: 2.08756
+  type: 'test'
+  ...
+# Subtest: P1-2 event identity excludes revision; exact retry no-op; changed revision and second kickoff rejected
+ok 21 - P1-2 event identity excludes revision; exact retry no-op; changed revision and second kickoff rejected
+  ---
+  duration_ms: 3.714944
+  type: 'test'
+  ...
+# Subtest: P1-3 recovery reconciles reordered original events, detects missing/tampered records and preserves prefix
+ok 22 - P1-3 recovery reconciles reordered original events, detects missing/tampered records and preserves prefix
+  ---
+  duration_ms: 10.552921
+  type: 'test'
+  ...
+# Subtest: P1-4 model, prior and revision cannot silently change within frozen history
+ok 23 - P1-4 model, prior and revision cannot silently change within frozen history
+  ---
+  duration_ms: 1.005639
+  type: 'test'
+  ...
+# Subtest: probability state and recovery journal must commit together with matching session identity
+ok 24 - probability state and recovery journal must commit together with matching session identity
+  ---
+  duration_ms: 1.467002
+  type: 'test'
+  ...
+# Subtest: five-second slots, unchanged paused state and outage gaps are explicit; reads append nothing
+ok 25 - five-second slots, unchanged paused state and outage gaps are explicit; reads append nothing
+  ---
+  duration_ms: 1.701348
+  type: 'test'
+  ...
+# Subtest: observed scores and possession change live probability; model cannot see queued plays or RNG
+ok 26 - observed scores and possession change live probability; model cannot see queued plays or RNG
+  ---
+  duration_ms: 0.731764
+  type: 'test'
+  ...
+# Subtest: first resolved gameplay gets an immediate record even inside the current five-second slot
+ok 27 - first resolved gameplay gets an immediate record even inside the current five-second slot
+  ---
+  duration_ms: 4.529976
+  type: 'test'
+  ...
+# Subtest: every override blocks grey, preserves old points, and continues blocked; pause/delay do not
+ok 28 - every override blocks grey, preserves old points, and continues blocked; pause/delay do not
+  ---
+  duration_ms: 7.138317
+  type: 'test'
+  ...
+# Subtest: edit cancel retains observations; analytics stamps do not invalidate correction tokens
+ok 29 - edit cancel retains observations; analytics stamps do not invalidate correction tokens
+  ---
+  duration_ms: 2.794457
+  type: 'test'
+  ...
+# Subtest: final is immediate and terminal; post-final polling rejected; OT estimates explicitly blocked
+ok 30 - final is immediate and terminal; post-final polling rejected; OT estimates explicitly blocked
+  ---
+  duration_ms: 2.068522
+  type: 'test'
+  ...
+# Subtest: chart renders BLOCKED grey with label, escapes text and never connects across known gaps
+ok 31 - chart renders BLOCKED grey with label, escapes text and never connects across known gaps
+  ---
+  duration_ms: 2.626428
+  type: 'test'
+  ...
+# Subtest: 56 matchups: observer enabled/disabled gives identical football state and outcomes at 1x and 50x
+ok 32 - 56 matchups: observer enabled/disabled gives identical football state and outcomes at 1x and 50x
+  ---
+  duration_ms: 1003.525231
+  type: 'test'
+  ...
+# W11_LOCAL_56_ACTIVE_MS 12173
+# W11_POPULATION {"games":56,"seedsPerGame":10,"runs":560,"points":23792,"minTotal":10,"maxTotal":89,"meanTotal":42.48571428571429}
+# Subtest: W11 exact data counts, IDs, coverage, ranges and UTC midnight rollovers
+ok 33 - W11 exact data counts, IDs, coverage, ranges and UTC midnight rollovers
+  ---
+  duration_ms: 4.642332
+  type: 'test'
+  ...
+# Subtest: football code is byte-identical after explicit release metadata normalization
+ok 34 - football code is byte-identical after explicit release metadata normalization
+  ---
+  duration_ms: 0.815658
+  type: 'test'
+  ...
+# Subtest: stats polling cannot mutate pending plays, RNG or history; started and resolved are distinct
+ok 35 - stats polling cannot mutate pending plays, RNG or history; started and resolved are distinct
+  ---
+  duration_ms: 10.915217
+  type: 'test'
+  ...
+# Subtest: stats endpoint exposes resolved evidence only; rejects old sessions and unknown games
+ok 36 - stats endpoint exposes resolved evidence only; rejects old sessions and unknown games
+  ---
+  duration_ms: 10.370121
+  type: 'test'
+  ...
+# Subtest: invalid period cannot be silently reported as a valid score
+ok 37 - invalid period cannot be silently reported as a valid score
+  ---
+  duration_ms: 0.785522
+  type: 'test'
+  ...
+# Subtest: 56 active games progress together with stats reads between ticks
+ok 38 - 56 active games progress together with stats reads between ticks
+  ---
+  duration_ms: 12354.682538
+  type: 'test'
+  ...
+# Subtest: 56 games x 10 seeds: finals, stats, regulation TOP, polling/chunk and 1/4/20/50x invariance
+ok 39 - 56 games x 10 seeds: finals, stats, regulation TOP, polling/chunk and 1/4/20/50x invariance
+  ---
+  duration_ms: 1474.984249
+  type: 'test'
+  ...
+# Subtest: unrelated scheduler version churn retries with current CAS; no blind board overwrite
+ok 40 - unrelated scheduler version churn retries with current CAS; no blind board overwrite
+  ---
+  duration_ms: 63.052378
+  type: 'test'
+  ...
+# Subtest: three unrelated CAS collisions return busy without changing the game
+ok 41 - three unrelated CAS collisions return busy without changing the game
+  ---
+  duration_ms: 31.321104
+  type: 'test'
+  ...
+# Subtest: concurrent target control change rejects safely
+ok 42 - concurrent target control change rejects safely
+  ---
+  duration_ms: 16.420757
+  type: 'test'
+  ...
+# Subtest: same key returns original receipt once, even after newer versions; changed body conflicts
+ok 43 - same key returns original receipt once, even after newer versions; changed body conflicts
+  ---
+  duration_ms: 44.796645
+  type: 'test'
+  ...
+# Subtest: edit token ignores only elapsed GL, detects real field changes
+ok 44 - edit token ignores only elapsed GL, detects real field changes
+  ---
+  duration_ms: 7.993829
+  type: 'test'
+  ...
+# Subtest: missing token never bypasses strict session-version protection
+ok 45 - missing token never bypasses strict session-version protection
+  ---
+  duration_ms: 6.092108
+  type: 'test'
+  ...
+# Subtest: scheduler compact receipt replays exact committed version without full-board state
+ok 46 - scheduler compact receipt replays exact committed version without full-board state
+  ---
+  duration_ms: 18.870492
+  type: 'test'
+  ...
+# Subtest: 500 namespace denied and public read exposes no private/control witnesses
+ok 47 - 500 namespace denied and public read exposes no private/control witnesses
+  ---
+  duration_ms: 13.533633
+  type: 'test'
+  ...
+# Subtest: operator render receives tokens without RNG/history disclosure
+ok 48 - operator render receives tokens without RNG/history disclosure
+  ---
+  duration_ms: 12.860842
+  type: 'test'
+  ...
+1..48
+# tests 48
+# suites 0
+# pass 48
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14011.480848

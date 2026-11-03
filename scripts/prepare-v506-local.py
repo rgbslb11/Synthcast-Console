@@ -49,4 +49,6 @@ s=s.replace(needle,"""      if(action==='stats'){
 p.write_text(s)
 (OUT/'slate.json').write_text(json.dumps(slate,indent=2)+'\n')
 (OUT/'input-manifest.json').write_text(json.dumps(dict(baseline='9d13c58548072f4e8ba9cd8f8c9ebcb5cd0f4bd8',status='QA_ONLY_NOT_DEPLOYABLE',games=56,teams=121,scheduledTeams=112,ratingFields=363,ratingsSha256=sha,source='Chairman supplied W11 carriage, game IDs and R2 CSV',pending=['Presentation metadata (records, poll ranks, announcers) retained in Chairman thread; not yet serialized here','Venue IDs and conference classification not supplied; absent, not inferred','Final screens, cloud provisioning and release approval']),indent=2)+'\n')
+import runpy
+runpy.run_path(str(ROOT/'scripts/integrate-v506-wp.py'))
 print(json.dumps(dict(games=len(slate),ratings=len(power),ratingFields=3*len(power),ratingsSha256=sha)))

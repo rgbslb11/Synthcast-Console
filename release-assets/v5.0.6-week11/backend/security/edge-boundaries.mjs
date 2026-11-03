@@ -1,3 +1,4 @@
+import {probabilityView} from '../probability/history.mjs';
 import {liveStats} from '../src/live-stats.mjs';
 import {
   SecurityError,requireAllowedOrigin,requireMethod,parseJsonObject,requireSessionSlug,
@@ -20,6 +21,12 @@ export function createPublicHandler({allowedOrigins,store}){
       requireMethod(req.method,['GET']);
       const url=new URL(req.url),action=url.searchParams.get('api');
       if(action==='health')return json({engine_version:'GC-W11-V5.0.6-RC1',week_key:'2026-W11',activation_inputs_ready:true,immutable_finals_ready:true,release_scope:'W11_OPERATOR',canonical_games:56,active_games:56,immutable_finals_required:0},200,origin);
+      if(action==='probability'){
+        const snapshot=await store.snapshot(requireSessionSlug(url.searchParams.get('session')));
+        const game=snapshot.state.find(g=>g.id===url.searchParams.get('game'));
+        if(!game)throw new SecurityError('GAME_NOT_FOUND',404);
+        return json({...probabilityView(game),stateVersion:snapshot.stateVersion},200,origin);
+      }
       if(action==='stats'){
         const snapshot=await store.read(requireSessionSlug(url.searchParams.get('session')),{operator:true});
         const game=snapshot.state.find(g=>g.id===url.searchParams.get('game'));

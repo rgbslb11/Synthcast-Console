@@ -6,7 +6,7 @@ import {sha256,SecurityError} from '../security/security-core.mjs';
 const controls=['id','runId','lifecycle','auto','onAir','operatorPaused','delayed',
   'editing','locked','deadman','weather','quarterLengthSeconds','editResume'];
 export function controlToken(game){return sha256(Object.fromEntries(controls.map(k=>[k,game[k]])));}
-export function editToken(game){const copy={...game};delete copy.glSeconds;return sha256(copy);}
+export function editToken(game){const copy={...game};delete copy.glSeconds;delete copy.winProbability;return sha256(copy);}
 const strict=new Set(['edit_commit','edit_cancel','clock_set','score']);
 export function checkCommandPreconditions(session,body){
   const ids=body.command==='deadman_batch'?body.payload?.ids:[body.id];

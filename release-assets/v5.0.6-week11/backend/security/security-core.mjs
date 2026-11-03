@@ -9,7 +9,7 @@ export const FINAL_GAME_IDS=Object.freeze([]);
 export const ACTIVE_GAME_IDS=Object.freeze(["G0531", "G0508", "G0515", "G0513", "G0511", "G0503", "G0512", "G0555", "G0529", "G0536", "G0554", "G0502", "G0520", "G0506", "G0524", "G0546", "G0532", "G0540", "G0534", "G0509", "G0517", "G0518", "G0544", "G0541", "G0550", "G0557", "G0505", "G0547", "G0545", "G0522", "G0551", "G0516", "G0552", "G0527", "G0537", "G0525", "G0514", "G0521", "G0523", "G0519", "G0526", "G0530", "G0543", "G0538", "G0548", "G0528", "G0556", "G0533", "G0539", "G0510", "G0553", "G0535", "G0549", "G0504", "G0507", "G0542"]);
 export const CANONICAL_GAME_IDS=ACTIVE_GAME_IDS;
 export const PRIVATE_GAME_KEYS=new Set([
-  'seedHex','rngState','history','runHistory','coinTossAudit','pendingRandom',
+  'winProbability','seedHex','rngState','history','runHistory','coinTossAudit','pendingRandom',
   'operatorToken','operator_token','operator_token_hash','schedulerSecret','deadman',
   'pendingPlay','awayPower','homePower','editSnapshot','editResume','weatherAudit'
 ]);
