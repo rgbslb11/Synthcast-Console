@@ -1,0 +1,15 @@
+{
+  "contractVersion": "GC-DELIVERY-1",
+  "extends": "GC-STATS-1",
+  "scope": "QA_ONLY",
+  "sessionNamespace": "qa-v510-",
+  "schema": "gamecast_v510",
+  "endpoint": {"method": "GET", "route": "UNDEPLOYED", "authorization": "Bearer token verified by Auth; active database session grant"},
+  "query": {"session": "required QA session ID", "game": "required game ID", "after": "resolved-play sequence acknowledged by client; default 0", "limit": "integer 1..250; default 100", "run": "required on continuation pages", "version": "required on continuation pages"},
+  "response": {"base": "GC-STATS-1 envelope", "deliveryVersion": "GC-DELIVERY-1", "generatedAt": "persisted source commit UTC timestamp; never request wall time", "throughEventSequence": "zero-based raw history index including scoring records; -1 before history", "plays.sequence": "one-based resolved-play sequence; differs from raw eventSequence", "nextSequence": "last acknowledged resolved-play sequence for next page", "hasMore": "true while snapshot has further plays", "scoreboard": "exact 17 GC-STATS-1 fields", "fieldAvailability": "per-field BLOCKED reasons; missing authoritative records never fabricated", "teamStatistics": "away then home; exact 27 keys each", "field": "offense-relative live coordinates or explicit OT BLOCKED status", "possessions": "regulation possessions; resolved-play sequence references"},
+  "recovery": {"sameRevision": "continue with run/version and acknowledged nextSequence", "newRevisionSameRun": "discard old summary, request after=0 and rebuild pages at returned revision", "changedRun": "clear displayed pages, request after=0; retain old immutable server journal", "lag": "BLOCKED SOURCE_REVISION_UNAVAILABLE until projection reaches independently read authoritative version", "writer": "replay every committed revision in order from explicit genesis version 0; exact retry permitted; gaps/rewrite rejected"},
+  "blockedPayload": "envelope only: no scoreboard, statistics, field, possessions or plays",
+  "limits": {"summaryBytes": 262144, "ingestionPacketBytes": 16777216, "pagePlays": 250},
+  "wp": "No model, prior, sampler, observation journal or UI change. WP thread consumes separately authorized committed state; this detail endpoint is not a sampler trigger.",
+  "counts": {"scoreboard": 17, "teamStatistics": 27, "playAttributes": 22, "possessionFeatures": 2, "probabilityFeatures": 1}
+}

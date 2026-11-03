@@ -1,22 +1,32 @@
-# 5.1.0 foundation milestone — November 3, 2026
+# 5.1.0 backend delivery milestone — November 3, 2026
 
-Development only. No 5.1.0 deployment exists. This branch is based on the released Week11 source and adds reporting modules without modifying it. The prior WP development branch is retained, not merged wholesale.
+**DEVELOPMENT ONLY — NOT RELEASE READY.** Dedicated branch:
+`development/gamecast-v5.1.0-backend`, from foundation
+`f0eb2a56df7fe8d10e1f7739a261a1d5084b6699`.
+Router and procedures 04/05 read in full. Current scope is backend reporting,
+access/correction policy, delivery/recovery, and regression. WP and UI remain
+separate owners. No production activation or integration merge was performed.
 
-| # | Workstream | Current evidence |
+| # | Workstream | Current evidence / remaining work |
 |---|---|---|
-| 1 | Freeze data contract | GC-STATS-1 field inventory and semantics committed: 17/27/22 + 2 field features + 1 chart |
-| 2 | Implement access and correction blocking | Server service policy locally tested; trusted production identity/audit adapter still required |
-| 3 | Normalize resolved plays | Pure adapter implemented and exercised on 56 full simulated games; unknown records fail closed |
-| 4 | Team stat calculations | All 27 output keys implemented; hand-checked scoring/yardage/safety/turnover fixtures pass; broader statistical audit pending |
-| 5 | Possession and field functionality | Backend possession grouping and field coordinates implemented; interactive UI not yet built |
-| 6 | WP calculation | Exact supplied illustrative model ported from cd26ed23; four pure-model tests pass; actual priors, expanded late-game/OT model and durable journal remain blocked/pending |
-| 7 | Live delivery and recovery | Pure revision/run-bound paginated service implemented; actual API, immutable journal, reconnect and database recovery integration pending |
-| 8 | Regression and load check | 24 foundation tests pass, including 56-game source immutability; retained release suite run separately. Cloud/reporting load NOT TESTED |
-| 9 | Scoreboard-Stats-Rollup UI | Contract and access states defined; implementation pending |
-| 10 | Detailed stats UI | Field/table inventory defined; implementation and final design acceptance pending |
+| 1 | Freeze data contract | Existing GC-STATS-1 unchanged: exact 17/27/22 + 2 + 1 inventories. Additive GC-DELIVERY-1 and BACKEND-INTERFACES.md define transport, cursor, unknown fields and handoff. |
+| 2 | Access and correction blocking | Auth-verifying HTTP adapter, database session grants, repeated SQL authorization, source-audit validation, sticky correction evidence; local tests pass. Hosted Auth/source loader not connected. |
+| 3 | Normalize resolved plays | Strict state/category/ruling/strategy/score-prefix checks; original descriptions retained; nested output allowlisted. 56 full histories plus boundary fixtures pass. |
+| 4 | Team stat calculations | Exact 27 rows retained; scoring ledger reconciles to line score; independent mixed-drive fixture passes; missing TOP is explicit. Punt interpretation noted for Chairman decision. |
+| 5 | Possession and field functionality | Exact scoreboard inventory, live/historical field, halftime and regulation-end boundaries; OT field explicitly BLOCKED. Graphical interaction remains UI-owned. |
+| 6 | WP calculation | Existing illustrative module and tests unchanged; shared identity/correction/revision interface documented. No sampler or WP journal implemented here. Launch-versus-kickoff freeze wording needs cross-thread coordination. |
+| 7 | Live delivery and recovery | Revision/run-bound read handler, bounded summary, immutable PostgreSQL play/source/run journals, source manifest consumer, idempotent receipts, gap detection and disk reopen tests pass locally. Actual authoritative outbox/loader and isolated cloud wiring remain pending. |
+| 8 | Regression and load check | 38 local 5.1 tests + 5 PostgreSQL runtime tests + 54 retained release tests pass. 56-game reporting exercise passes; hosted load, networking and browser gates NOT TESTED. |
+| 9 | Scoreboard-Stats-Rollup UI | Exact 17-field backend payload and availability handoff ready for separate UI thread; UI implementation not changed. |
+| 10 | Detailed stats UI | Pagination/reconnect, 27-row statistics, field, possessions and blocked payload interface documented; UI implementation not changed. |
 
-Tests are local author verification, not production certification. Request identity/session grants must be supplied by trusted server adapters, never copied from browser input. The service is intentionally not registered on the public API. Source history/audit must be loaded atomically at one revision. Correction evidence covers the entire session/game so a restart cannot erase it.
+See BACKEND-VERIFICATION.md for commands, evidence, all twelve release gates and
+limitations. Local SQL uses pinned PGlite PostgreSQL/WASM with disk close/reopen;
+it is not hosted Supabase durability or concurrent-transaction certification.
 
-Code changes: reporting/access.mjs, normalize.mjs, statistics.mjs, field.mjs, service.mjs, illustrative-wp.mjs. Statistical ratios are unrounded; formatting belongs in the client. Regulation-only coverage remains explicit; score includes overtime. The supplied WP formula remains experimental and cannot provide a nonterminal OT probability. Calibration is deferred, not a barrier to local experimentation.
-
-No cloud writes, cron changes, published UI, ratings updates, or live session mutations were performed for this milestone. Runtime APIs and UI adapters remain a subsequent implementation stage; no ready claim is made for them. Rollback: leave the branch unused.
+Protection diff confirms no changes to `public/v5.0.6`,
+`release-assets/v5.0.6-week11`, or `deploy-v506.yml` from protected base 754d959.
+No cloud writes, live-session mutations, cron changes, publication, ratings or
+schedule changes. No 5.1 cloud deployment or preview URL exists from this work.
+Rollback: leave the backend branch unused; if development integration occurs,
+revert this backend change set. No production restoration is required.

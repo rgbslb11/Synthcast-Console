@@ -1,9 +1,11 @@
 // Coordinates are offense-relative yards from own goal; never player tracking.
 export function fieldState(game,play=null){
+ if(!play&&String(game.activePeriod).includes('OT'))return {mode:'LIVE',availability:{status:'BLOCKED',reason:'OVERTIME_FIELD_UNAVAILABLE'}};
  const position=play?.preFieldPosition??game.fieldPos,down=play?.preDown??game.down,distance=play?.preDistance??game.distance;
+ if(![position,down,distance].every(Number.isFinite)||position<0||position>100||!Number.isInteger(down)||down<1||down>4||distance<1||distance>100||![0,1].includes(play?.possessingTeam??game.possession))throw Error('INVALID_FIELD_STATE');
  return {mode:play?'HISTORICAL':'LIVE',possession:play?.possessingTeam??game.possession,ball:position,lineOfScrimmage:position,lineToGain:Math.min(100,position+distance),goalToGo:distance>=100-position,down,distance,postBall:play?.postFieldPosition??null,postPossession:play?.postPossession??null};
 }
-export function possessions(plays,lifecycle){
+export function possessions(plays,lifecycle,period=null){
  const drives=[];let current=null,previous=null;
  for(const p of plays){
   const halftime=previous&&Number(previous.period)<=2&&Number(p.period)>=3;
@@ -17,6 +19,6 @@ export function possessions(plays,lifecycle){
   if(current.result!=='IN_PROGRESS')current=null;
   previous=p;
  }
- if(current&&['FINAL_PENDING','LOCKED','READY','FINAL'].includes(lifecycle))current.result='REGULATION_END';
+ if(current&&(String(period).includes('OT')||['FINAL_PENDING','LOCKED','READY','FINAL'].includes(lifecycle)))current.result='REGULATION_END';
  return drives;
 }

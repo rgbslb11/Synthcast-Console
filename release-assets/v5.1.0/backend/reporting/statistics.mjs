@@ -2,6 +2,12 @@ const rate=(n,d)=>d?n/d:null;
 export function teamStatistics(game,plays){
  const periods=Object.entries(game.scores??{});
  if(periods.length<4||periods.some(([p,v])=>!/^(1|2|3|4|OT|[2-9]OT|[1-9][0-9]+OT)$/.test(p)||!Array.isArray(v)||v.length!==2||v.some(n=>!Number.isInteger(n)||n<0)))throw Error('INVALID_LINE_SCORE');
+ if(!['1','2','3','4'].every(p=>Object.hasOwn(game.scores,p)))throw Error('INVALID_LINE_SCORE');
+ const ledger={};
+ for(const h of game.history){if(!h.preSnap){const p=String(h.period);ledger[p]??=[0,0];ledger[p][h.team]+=h.points;}}
+ for(const [p,score] of periods)if(score.some((n,t)=>n!==(ledger[p]?.[t]??0)))throw Error('SCORING_LEDGER_MISMATCH');
+ if(Object.keys(ledger).some(p=>!Object.hasOwn(game.scores,p)))throw Error('SCORING_LEDGER_MISMATCH');
+ if(game.teamTopSeconds!=null&&(!Array.isArray(game.teamTopSeconds)||game.teamTopSeconds.length!==2||game.teamTopSeconds.some(n=>!Number.isFinite(n)||n<0)))throw Error('INVALID_TOP');
  return [0,1].map(team=>{
   const p=plays.filter(x=>x.possessingTeam===team),rush=p.filter(x=>['RUN','FUMBLE_LOST','SACK','KNEEL'].includes(x.category)),pass=p.filter(x=>['COMPLETE','INCOMPLETE','INTERCEPTION'].includes(x.category)),complete=pass.filter(x=>x.category==='COMPLETE'),off=p.filter(x=>x.offensive),third=off.filter(x=>x.preDown===3),fourth=off.filter(x=>x.preDown===4),sum=a=>a.reduce((s,x)=>s+x.creditedYards,0);
   const rushingYards=sum(rush),passingYards=sum(complete),interceptionsThrown=pass.filter(x=>x.category==='INTERCEPTION').length,fumblesLost=rush.filter(x=>x.category==='FUMBLE_LOST').length;

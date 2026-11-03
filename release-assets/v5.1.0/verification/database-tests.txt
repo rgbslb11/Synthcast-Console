@@ -1,0 +1,14 @@
+✔ PostgreSQL schema denies public roles and makes journal/receipts immutable (1190.946413ms)
+✔ transactional journal: idempotency, source gaps, rewrite rollback, cursor binding and disconnect recovery (1086.838359ms)
+✔ Edit/cancel restores only clean games; saved correction survives accept, restart and audit rewrite attempts (719.450777ms)
+✔ 56 active games: retained engine with reporting reads, durable commits, recovery and concurrent HTTP requests (4316.151904ms)
+ℹ {"games":56,"commits":392,"measuredReads":336,"concurrentHttp":56,"readP95Ms":4.001769999999851,"readMaxMs":6.074570000000676,"totalMs":3544.4411910000003}
+✔ competing projection writers cannot overwrite a revision or reuse an empty run ID (656.722112ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8115.14421

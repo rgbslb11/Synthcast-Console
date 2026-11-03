@@ -1,7 +1,7 @@
 name: Verify isolated GameCast 5.1.0 development
 on:
   push:
-    branches: [development/gamecast-v5.1.0]
+    branches: [development/gamecast-v5.1.0, development/gamecast-v5.1.0-backend]
 permissions:
   contents: read
 jobs:
@@ -21,3 +21,7 @@ jobs:
         run: node --test tests/v506/*.test.mjs
       - name: Reporting contract and calculation tests
         run: node --test tests/v510/*.test.mjs
+      - name: Install isolated PostgreSQL test runtime
+        run: npm ci --prefix tests/v510/database --ignore-scripts --no-audit --no-fund
+      - name: Local PostgreSQL durability and 56-game reporting load
+        run: node --test tests/v510/database/recovery.test.mjs

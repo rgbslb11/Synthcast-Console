@@ -1,0 +1,46 @@
+✔ HTTP verifies Auth and grant before any source or detail read; spoofed identity ignored (6.844332ms)
+✔ HTTP rejects public origins, methods, legacy scope and unbound cursors (3.053725ms)
+✔ HTTP requires live source version, scrubs errors, and forbids caching (1.575276ms)
+✔ projection is pure, QA-only, has complete envelope and missing TOP is explicit (4.76735ms)
+✔ invalid coordinates, ruling, score ledger and unknown scoring records fail closed (1.316726ms)
+✔ resolved nested weather fields cannot leak RNG or pending outcomes (1.098296ms)
+✔ foundation service rejects stale revision without detail (0.470059ms)
+✔ transport uses verified Auth user and fixed v510 schema; anonymous users rejected (2.668074ms)
+✔ scoreboard preserves all 17 fields and marks missing records without inventing them (1.184787ms)
+✔ live OT carries score but exposes no invented field or offensive snaps (0.686956ms)
+✔ unknown audit commands do not establish a clean game (0.295365ms)
+✔ hand-calculated mixed drive reconciles all efficiency and scoring rows (1.095042ms)
+✔ trusted atomic source adapter verifies complete revision/event manifests (1.710009ms)
+✔ per-play score mismatch and private nested state never reach detail responses (0.556079ms)
+✔ contract inventories retain every requested entry and ten workstreams (2.341311ms)
+✔ unauthenticated and wrong-session users cannot trigger storage reads (0.748869ms)
+✔ missing, stale and wrong-game audit fail closed (2.134039ms)
+✔ score permanently blocks details after final/accept/restart (0.319181ms)
+✔ clock_set permanently blocks details after final/accept/restart (0.288505ms)
+✔ edit_commit permanently blocks details after final/accept/restart (0.173141ms)
+✔ end permanently blocks details after final/accept/restart (0.141143ms)
+✔ reopen_live permanently blocks details after final/accept/restart (0.118118ms)
+✔ open Edit blocks; clean cancellation restores; pause/delay do not block (0.881099ms)
+✔ touchdown yards stop at goal line; scoring is not double counted (2.372278ms)
+✔ college sacks/kneels count as rushes; safety loss stops at own goal (0.572193ms)
+✔ interception flight and punts are excluded from offense and conversion attempts (0.652353ms)
+✔ lost fumble gains use actual spot and remain giveaways (0.509288ms)
+✔ unknown or incomplete plays block entire derived response (1.811172ms)
+✔ zero-denominator rates are null and all 27 statistic keys are retained (0.412572ms)
+✔ paginated reads are pure, deterministic and reject mixed run continuation (1.675918ms)
+✔ blocked response contains no plays, statistics or field (0.47108ms)
+✔ field coordinates preserve offense-relative meaning and cap line to gain (0.33823ms)
+✔ halftime starts a new possession even with same offense (1.446821ms)
+✔ all 56 complete engine games normalize without mutating source state (136.892668ms)
+✔ supplied illustrative kickoff formula is retained, including 10/15-minute modes (1.503287ms)
+✔ model remains pure and explicit about calibration (0.97458ms)
+✔ live observed score changes affect estimate; nonterminal OT is unavailable (0.501927ms)
+✔ terminal result requires an untied outcome and does not imply official acceptance (0.387674ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 269.309139
