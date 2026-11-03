@@ -120,7 +120,7 @@
     document.getElementById('upcomingCount').textContent=c.upcoming;
     document.getElementById('delayCount').textContent=c.delay;
     document.getElementById('weekLabel').textContent='WEEK 11';
-    document.getElementById('boardHeadingText').textContent=selected==='saturday'?'SATURDAY · 48 GAMES':'FULL WEEK · 56 GAMES';
+    document.getElementById('boardHeadingText').textContent=selected==='saturday'?'SATURDAY · 41 GAMES':'FULL WEEK · 56 GAMES';
   }
 
   function setSync(mode,text){
@@ -137,7 +137,7 @@
       if(!r.ok)throw new Error(data.error||`HTTP ${r.status}`);
       if(data.public_slug!==source.slug||data.week_key!=='2026-W11'||data.engine_version!==source.engine||!Array.isArray(data.state)||data.state.length!==source.expected)throw new Error('session identity mismatch');
       const dates=data.state.reduce((out,g)=>(out[g.date]=(out[g.date]||0)+1,out),{});
-      const expected={"2026-10-27":1,"2026-10-28":2,"2026-10-29":2,"2026-10-30":3,"2026-11-07":48};
+      const expected={"2026-11-03": 2, "2026-11-04": 3, "2026-11-05": 7, "2026-11-06": 3, "2026-11-07": 41};
       if(Object.keys(dates).length!==Object.keys(expected).length||Object.entries(expected).some(([date,n])=>dates[date]!==n)||new Set(data.state.map(g=>g.id)).size!==source.expected)throw new Error('game slate mismatch');
       snapshots[key]=data.state;
       versions[key]=data.state_version;
