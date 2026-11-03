@@ -1,3 +1,21 @@
+## Subsequent integration and cloud QA — November 3, 2026
+
+Backend commit 5a0456ac was fast-forwarded into development/gamecast-v5.1.0
+with an expected-head lease after checking concurrent WP changes. All 97 local
+tests passed again. Chairman resolved WP freeze: **Launch freezes WP**.
+
+Private gamecast_v510 schema is now provisioned in xsvdmcipviejxynkdbhq.
+This is schema isolation on the existing project, which also hosts Week 11;
+it is not a separate cloud project. Bounded hosted PostgreSQL smoke checks passed.
+No Edge Function, cron, UI, live game or existing-release schema was changed.
+One QA-only reporting fixture remains; zero reporting grants remain.
+
+See CLOUD-QA-20261103.md. Authoritative source/outbox wiring, hosted HTTP/Auth,
+concurrent load, WP/UI and mobile integration remain incomplete. The foundation
+and backend milestone record below describes the earlier pre-cloud state.
+
+---
+
 # 5.1.0 backend delivery milestone — November 3, 2026
 
 **DEVELOPMENT ONLY — NOT RELEASE READY.** Dedicated branch:

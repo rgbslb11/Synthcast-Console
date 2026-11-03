@@ -76,9 +76,9 @@ reads, and do not use cursor/page delivery as the five-second sampling clock.
 The consumer's committed-source boundary is the integration point for a WP
 writer owned by that thread. Model version/prior freeze, kickoff/first-play/
 final/override observations and immutable WP storage remain that thread's scope.
-The frozen contract currently says freeze at **launch**; the newer WP discussion
-uses **kickoff**. That distinction needs explicit coordination before either
-thread changes the shared rule. This backend adds no freeze behavior.
+Chairman decision, November 3, 2026: **Launch freezes WP.** The prior and model
+freeze at the authoritative Launch transition. This resolves the earlier
+launch-versus-kickoff wording; the WP thread owns implementation.
 
 ## Unresolved integration boundaries
 
