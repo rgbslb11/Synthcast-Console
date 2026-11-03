@@ -1,0 +1,18 @@
+{
+  "baseline": "9d13c58548072f4e8ba9cd8f8c9ebcb5cd0f4bd8",
+  "baselineTests": 54,
+  "rolloverTests": 54,
+  "populationRuns": 560,
+  "pollChunkComparisons": 56,
+  "speedComparisons": 224,
+  "deployedBaselineFilesMatched": 14,
+  "databaseProbe": "PASS; rollback completed",
+  "session": "w11v506-43c2306679a19d1e",
+  "games": 56,
+  "unlaunched": 56,
+  "powerReady": 56,
+  "priorStateHash": "76b61f8a9b2b7b898850c4d5a2688c97",
+  "mobileSafari": "NOT TESTED",
+  "fullBoardGames": 56,
+  "fullBoardLocalElapsedMs": 236
+}
