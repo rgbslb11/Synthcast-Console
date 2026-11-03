@@ -52,7 +52,15 @@ test('WP smoke: authenticated pregame update -> launch -> gameplay -> immutable 
   assert.equal((await send('wp_pregame',prior)).status,409);
   assert.equal((await send('auto')).status,201);
   milliseconds+=120000;assert.equal((await send('pause')).status,201);
-  const live=(await read()).result;assert.ok(live.points.at(-1).resolvedPlays>0);assert.notEqual(live.probability,expected);
+  let live=(await read()).result;assert.ok(live.points.at(-1).resolvedPlays>0);assert.notEqual(live.probability,expected);
+  const beforeEdit=live;
+  assert.equal((await send('edit_begin')).status,201);
+  assert.equal((await read()).result.reason,'CHAIRMAN_EDIT_IN_PROGRESS');
+  runtime=make();
+  assert.equal((await send('edit_cancel')).status,201);
+  live=(await read()).result;assert.equal(live.status,'ESTIMATED');assert.equal(live.reason,null);
+  assert.equal(live.probability,beforeEdit.probability);
+  assert.deepEqual(live.points.slice(0,beforeEdit.points.length),beforeEdit.points);
   const before=load();for(let i=0;i<10;i++)await read();assert.deepEqual(load(),before);
   runtime=make();assert.deepEqual((await read()).result,live);
   // A separate Node process can recover from serialized history without any live engine instance.

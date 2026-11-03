@@ -32,8 +32,8 @@ export function renderChart(points,{title='Favorite Win Probability',favoriteLab
   if(a.y===null||b.y===null||a.x===null||b.x===null||b.x<a.x||b.p.kind==='correction'||b.p.gapBefore)continue;
   for(const s of splitAt50(a,b))out.push(`<line x1="${px(s.a.x)}" y1="${py(s.a.y)}" x2="${px(s.b.x)}" y2="${py(s.b.y)}" stroke="${blocked?'#808080':s.color}" stroke-width="3"/>`);
  }
- for(const r of mapped){if(r.y===null||r.x===null)continue;const p=r.p;
- out.push(`<circle cx="${px(r.x)}" cy="${py(r.y)}" r="4.5" fill="${blocked?'#808080':r.y>=50?'#1267b1':'#d32f3b'}" stroke="white"><title>${esc(`${p.eventId} | ${p.period} | clock ${p.clockSeconds}s | ${p.favoriteScore}-${p.otherScore} | ${r.y.toFixed(2)}%`)}</title></circle>`);}
+ for(const r of mapped){if(r.y===null||r.x===null)continue;const p=r.p,score=p.input??p;
+ out.push(`<circle cx="${px(r.x)}" cy="${py(r.y)}" r="4.5" fill="${blocked?'#808080':r.y>=50?'#1267b1':'#d32f3b'}" stroke="white"><title>${esc(`${p.eventId} | ${p.period} | clock ${p.clockSeconds}s | ${score.favoriteScore??'—'}-${score.otherScore??'—'} | ${r.y.toFixed(2)}%`)}</title></circle>`);}
  out.push(`<text x="${L+pw/2}" y="${H-29}" text-anchor="middle" font-size="14">Game Progression</text><text transform="translate(21 ${top+ph/2}) rotate(-90)" text-anchor="middle" font-size="14">Favorite Win %</text><text x="${L}" y="${H-7}" font-size="11" fill="#596570">${ot?'OT estimates unavailable; gaps preserved. Horizontal spacing follows observation order.':'Horizontal spacing follows regulation scoreboard time. Dots are stored observations.'}</text></svg>`);
  return out.join('');
 }

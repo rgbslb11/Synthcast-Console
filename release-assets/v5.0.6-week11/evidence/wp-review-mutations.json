@@ -1,0 +1,42 @@
+[
+  {
+    "mutation": "edit-block-removed",
+    "exitCode": 1,
+    "detected": true,
+    "summary": [
+      "# tests 30",
+      "# pass 20",
+      "# fail 10"
+    ]
+  },
+  {
+    "mutation": "cancel-event-removed",
+    "exitCode": 1,
+    "detected": true,
+    "summary": [
+      "# tests 30",
+      "# pass 20",
+      "# fail 10"
+    ]
+  },
+  {
+    "mutation": "gap-threshold-reverted",
+    "exitCode": 1,
+    "detected": true,
+    "summary": [
+      "# tests 30",
+      "# pass 29",
+      "# fail 1"
+    ]
+  },
+  {
+    "mutation": "reason-fallback-reverted",
+    "exitCode": 1,
+    "detected": true,
+    "summary": [
+      "# tests 30",
+      "# pass 19",
+      "# fail 11"
+    ]
+  }
+]

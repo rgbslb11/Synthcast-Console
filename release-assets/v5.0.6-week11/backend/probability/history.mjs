@@ -53,7 +53,8 @@ export function appendRecord(history,record){
  const kickoff=run.find(r=>r.kind==='kickoff');
  requireValue(record.kind!=='kickoff'||!kickoff,'HISTORY_DUPLICATE_KICKOFF');
  if(kickoff&&record.prior)requireValue(sha256(kickoff.prior)===sha256(record.prior),'HISTORY_FROZEN_PRIOR_CHANGED');
- requireValue(!last?.terminal||['override','edit_begin'].includes(record.kind),'HISTORY_AFTER_FINAL');
+ const cancellingEdit=record.kind==='edit_cancel'&&(last?.kind==='edit_begin'||last?.stateContext?.editing===true);
+ requireValue(!last?.terminal||['override','edit_begin'].includes(record.kind)||cancellingEdit,'HISTORY_AFTER_FINAL');
  const next={...body,index:records.length,previousHash:prev?.hash??null};
  next.hash=sha256(next);
  return {version:HISTORY_VERSION,records:[...records,next]};
@@ -118,9 +119,9 @@ export function observe(draft,g,{stamp,trigger='poll',forceBlock=null}={}){
  const nplays=plays(g),now=Date.parse(stamp);
  requireValue(Number.isFinite(now),'OBSERVATION_TIME_INVALID');
  const sticky=forceBlock??run.find(r=>r.blockSticky)?.reason??null;
- const kind=forceBlock?'override':trigger==='edit_begin'?'edit_begin':!current.length?(g.glSeconds>0||nplays>0?'attach':'kickoff'):
+ const kind=forceBlock?'override':trigger==='edit_begin'?'edit_begin':trigger==='edit_cancel'?'edit_cancel':!current.length?(g.glSeconds>0||nplays>0?'attach':'kickoff'):
   final(g)?'final':nplays>0&&!run.some(r=>r.resolvedPlays>0)?'first_play':'poll';
- if(last?.terminal&&!forceBlock&&trigger!=='edit_begin')return null;
+ if(last?.terminal&&!forceBlock&&!['edit_begin','edit_cancel'].includes(trigger))return null;
  if(kind==='poll'&&trigger==='poll'&&last&&Math.floor(now/SAMPLE_MS)<=Math.floor(Date.parse(last.observedAt)/SAMPLE_MS))return null;
  const prior=current[0]?.prior??run.findLast(r=>r.kind==='pregame')?.prior??
   history.records.findLast(r=>r.runId===g.continuationOf&&r.prior)?.prior??null;
@@ -131,18 +132,19 @@ export function observe(draft,g,{stamp,trigger='poll',forceBlock=null}={}){
  if(!reason){
   try{
    validatePrior(prior,g,draft);
-   input=modelInput(g,prior,kind,stamp,draft.stateVersion+1);
+   input=modelInput(g,prior,final(g)?'final':kind,stamp,draft.stateVersion+1);
    const result=calculate(input);trace=result.trace;
    if(result.status==='ot_unavailable')reason='OVERTIME_MODEL_UNAVAILABLE';
    else {status=result.status==='terminal'?'FINAL':'ESTIMATED';probability=result.probability;}
   }catch(error){reason=error.message;}
  }
  const previousAt=last?Date.parse(last.observedAt):now;
+ const missingIntervals=Math.max(0,Math.floor(now/SAMPLE_MS)-Math.floor(previousAt/SAMPLE_MS)-1);
  const eventId=kind==='kickoff'?'kickoff':kind==='final'?'final':kind==='poll'?'poll:'+Math.floor(now/SAMPLE_MS):kind+':'+(draft.stateVersion+1);
  const record={...identity(draft,g),eventId,kind,stateRevision:draft.stateVersion+1,observedAt:stamp,
   prior,probability,status,reason,blockSticky:!!sticky,terminal:final(g),parentRunId:g.continuationOf??null,
   resolvedPlays:nplays,glSeconds:g.glSeconds,period:g.activePeriod,clockSeconds:g.scoreboardSeconds,
-  gapBefore:now-previousAt>2*SAMPLE_MS,missingIntervals:Math.max(0,Math.floor(now/SAMPLE_MS)-Math.floor(previousAt/SAMPLE_MS)-1),
+  gapBefore:missingIntervals>0,missingIntervals,
   stateContext:{down:g.down,distance:g.distance,awayTimeouts:g.awayTimeouts,homeTimeouts:g.homeTimeouts,
    gameClockStatus:g.gameClockStatus,lifecycle:g.lifecycle,activity:g.activity,
    breakLabel:g.breakLabel,breakSeconds:g.breakSeconds,editing:g.editing===true,
@@ -157,7 +159,7 @@ export function probabilityView(g){
  const points=entries(g).filter(r=>r.runId===g.runId&&(g.lifecycle==='UNLAUNCHED'||r.kind!=='pregame'));
  const last=points.at(-1);
  return {gameId:g.id,runId:g.runId,modelId:MODEL.id,sampleIntervalSeconds:SAMPLE_MS/1000,
-  status:last?.status??'BLOCKED',reason:last?.reason??'NO_COMMITTED_OBSERVATION',
+  status:last?.status??'BLOCKED',reason:last?(last.reason??null):'NO_COMMITTED_OBSERVATION',
   probability:last?.probability??null,color:last?.status==='BLOCKED'||!last?'#808080':last.probability>=0.5?'#1267b1':'#d32f3b',
   calibrationStatus:'DEFERRED',points:clone(points)};
 }

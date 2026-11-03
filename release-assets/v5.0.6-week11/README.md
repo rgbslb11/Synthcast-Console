@@ -2,6 +2,12 @@
 
 Status: QA_ONLY, not deployed, not release-ready. Screen designs remain pending.
 
+Review corrections: the five follow-up findings are fixed on
+`fix/v506-wp-review-findings`. The expanded candidate suite passes 62/62 tests;
+four deliberate regressions were detected. Details and limitations are in the
+follow-up section of WP-IMPLEMENTATION-REVIEW.md. Earlier test counts below
+describe prior milestones.
+
 Win-probability follow-up: four P1 history corrections, authenticated pregame
 configuration, five-second backend sampling contract, override BLOCKED/grey
 behavior, dedicated probability read endpoint and local smoke tests are now

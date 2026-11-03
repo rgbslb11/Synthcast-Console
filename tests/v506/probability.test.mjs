@@ -20,6 +20,53 @@ function fixture(sessionId='qa-session-a',i=0){
 function launch(f){setPregame(f.draft,f.g,f.prior,stamp(0));f.draft.stateVersion++;f.g.lifecycle='ACTIVE';engine.ensureOpeningToss(f.g);observe(f.draft,f.g,{stamp:stamp(0)});return f;}
 const strip=r=>{const {hash,previousHash,index,key,...rest}=r;return rest;};
 const clean=value=>Array.isArray(value)?value.map(clean):value&&typeof value==='object'?Object.fromEntries(Object.entries(value).filter(([k])=>!['winProbability','masterZulu','timestamp','createdRunAt','launchedAt','completedAt','atZulu'].includes(k)).map(([k,v])=>[k,clean(v)])):value;
+for(const lifecycle of ['ACTIVE','FINAL_PENDING','LOCKED','READY','FINAL'])for(const sameSlot of [true,false]){
+ test(`review: cancelling ${lifecycle} edit restores status (${sameSlot?'same':'later'} slot)`,async()=>{
+  const f=launch(fixture());let time=1;const clock=()=>stamp(time),ops=withProbability(createEngineOperations({engine,clock}),{clock});
+  f.g.lifecycle=lifecycle;
+  if(lifecycle!=='ACTIVE'){f.g.scores['4']=[0,7];observe(f.draft,f.g,{stamp:clock()});}
+  const expected=probabilityView(f.g);f.draft.stateVersion++;time=5;
+  await ops.advance(f.draft,{seconds:0});
+  await ops.executeCommand(f.draft,{id:f.g.id,command:'edit_begin',payload:{confirmed:true}});
+  let view=probabilityView(f.draft.state[0]);assert.equal(view.status,'BLOCKED');assert.equal(view.reason,'CHAIRMAN_EDIT_IN_PROGRESS');assert.equal(view.color,'#808080');assert.equal(view.probability,null);
+  const saved=structuredClone(f.draft.state[0].winProbability.records);
+  f.draft.stateVersion++;if(!sameSlot)time=10;
+  await ops.advance(f.draft,{seconds:0});
+  await ops.executeCommand(f.draft,{id:f.g.id,command:'edit_cancel',payload:{}});
+  const g=f.draft.state[0];view=probabilityView(g);
+  assert.equal(view.status,expected.status);assert.equal(view.probability,expected.probability);assert.equal(view.reason,null);
+  assert.equal(view.points.at(-1).kind,'edit_cancel');assert.equal(g.lifecycle,lifecycle);
+  assert.deepEqual(g.winProbability.records.slice(0,saved.length),saved);
+  assert.deepEqual(recoverHistory(null,g.winProbability.records),g.winProbability);
+  if(lifecycle!=='ACTIVE'){time=20;const count=g.winProbability.records.length;await ops.advance(f.draft,{seconds:0});assert.equal(f.draft.state[0].winProbability.records.length,count);}
+ });
+}
+test('review: cancelling edit never clears a committed Chairman override',async()=>{
+ const f=launch(fixture());let time=5;const clock=()=>stamp(time),ops=withProbability(createEngineOperations({engine,clock}),{clock});
+ for(const command of ['score','edit_begin','edit_cancel']){
+  f.draft.stateVersion++;await ops.executeCommand(f.draft,{id:f.g.id,command,payload:{team:0,points:7}});
+  assert.equal(probabilityView(f.draft.state[0]).reason,'CHAIRMAN_OVERRIDE');
+  assert.equal(probabilityView(f.draft.state[0]).probability,null);time+=5;
+ }
+});
+test('review: every missing five-second slot breaks the chart, including boundary offsets',()=>{
+ for(const [a,b,missing] of [[0,5,0],[0,10,1],[4,10,1],[4,9,0],[0,15,2]]){
+  const f=launch(fixture());if(a)observe(f.draft,f.g,{stamp:stamp(a),trigger:'edit_cancel'});
+  observe(f.draft,f.g,{stamp:stamp(b)});const points=probabilityView(f.g).points;
+  assert.equal(points.at(-1).missingIntervals,missing);assert.equal(points.at(-1).gapBefore,missing>0);
+  const svg=renderChart(points.slice(-2));assert.equal(svg.includes('stroke-width="3"'),missing===0);
+ }
+});
+test('review: API reason matches observation availability and status',()=>{
+ const f=fixture();assert.equal(probabilityView(f.g).reason,'NO_COMMITTED_OBSERVATION');
+ setPregame(f.draft,f.g,f.prior,stamp(0));assert.equal(probabilityView(f.g).reason,null);
+ f.g.lifecycle='ACTIVE';observe(f.draft,f.g,{stamp:stamp(0)});assert.equal(probabilityView(f.g).reason,null);
+ observe(f.draft,f.g,{stamp:stamp(5),forceBlock:'CHAIRMAN_OVERRIDE'});assert.equal(probabilityView(f.g).reason,'CHAIRMAN_OVERRIDE');
+});
+test('review: tooltip reads scores from persisted model input',()=>{
+ const f=launch(fixture());f.g.scores['1']=[3,7];observe(f.draft,f.g,{stamp:stamp(5)});
+ const svg=renderChart(probabilityView(f.g).points);assert.match(svg,/\| 7-3 \|/);assert.doesNotMatch(svg,/undefined/);
+});
 test('supplied 14 worked examples retain exact math; final boundaries reject corrupt inputs',()=>{
  const examples=JSON.parse(fs.readFileSync('tests/v506/fixtures/wp-example-inputs.json'));
  assert.equal(examples.length,14);

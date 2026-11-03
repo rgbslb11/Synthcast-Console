@@ -1,5 +1,49 @@
 # Win-probability history — v5.0.6 candidate
 
+## Follow-up corrections — November 3, 2026
+
+Chairman authorized correction of the five findings from the author self-check.
+Fix branch: `fix/v506-wp-review-findings`, based on remote commit
+`b433942e4c07d187f8be4f64195cf7e356fce2ef` (tree
+`aff0ca0c2eb5952b3cbefbd8692f474961ba120e`). Repository router and procedures
+02/04/05 were loaded for this work; no additional model or football change was
+required. Earlier milestone counts below remain historical.
+
+| Finding | Correction | Verification |
+|---|---|---|
+| P1 cancelled Edit remains BLOCKED | Append a distinct edit_cancel observation, bypassing poll-slot deduplication; use terminal calculation when returning to a finished game. Existing history remains intact. | Ten cases: ACTIVE, FINAL_PENDING, LOCKED, READY and FINAL, each with same-slot/later-slot cancellation. Recovery and continued terminal polling checked. |
+| P2 missing sample drawn as continuous | Derive gapBefore directly from missingIntervals > 0. | Five boundary cases, including 0→10 and 4→10 seconds; SVG must not bridge missing samples. |
+| P3 valid API observation has missing-observation reason | Distinguish absent record from a record with a null reason. | Pregame/live observations return null; absent and override-blocked observations retain their specific reasons. |
+| P3 tooltip score undefined | Read score from persisted model input, retaining compatibility with standalone model output. | A 7–3 score renders correctly without undefined text. |
+| P1 insufficient edit-state coverage | Assert BLOCKED/null/grey while Edit is open, then restoration on cancellation; a committed override must remain blocked. | Removing edit blocking now fails ten tests instead of leaving the suite passing. |
+
+Before the fixes, the expanded unit suite reproduced 13 failures (17 passes out
+of 30). After correction, the full candidate suite passes **62/62**. The existing
+API smoke test additionally opens Edit, recreates the runtime, cancels in the
+same time slot and verifies the public response and preserved history. The
+existing football isolation, 560-run population, 56-matchup speed checks and
+HTTP/storage recovery tests pass in that full run.
+
+Evidence: `evidence/v506-wp-review-fixes.tap` and
+`evidence/wp-review-mutations.json`. Four mutations were applied only in temporary
+copies: remove edit blocking (10 failing tests), remove the cancellation event
+(10), restore the old gap threshold (1), restore the incorrect reason fallback
+(11). Each mutant exited 1; the corrected candidate suite exited 0. No mutation
+was applied to the saved implementation.
+
+Reproduce with `node --test --test-reporter=tap tests/v506/*.test.mjs` from the
+repository root. The candidate regeneration script preserves these standalone
+probability modules. Only probability history/rendering, tests and review
+evidence changed. No football formula, ratings, schedule, accepted result or
+production configuration changed.
+
+These five findings are **FIXED locally**. This is author verification, not an
+independent production certification. Cloud persistence/load, scheduler, final
+UI integration, Mobile Safari and the other release dependencies below remain
+unverified. **DO NOT APPROVE production release on these tests alone.** Rollback
+is to leave the fix branch unused or revert its correction commit; production
+requires no restoration.
+
 Status: **local implementation and smoke test; NOT APPROVED FOR PRODUCTION**.
 Chairman authorized the four P1 corrections, kickoff/poll observation behavior,
 grey BLOCKED behavior following overrides, and smoke-test design. No production,
