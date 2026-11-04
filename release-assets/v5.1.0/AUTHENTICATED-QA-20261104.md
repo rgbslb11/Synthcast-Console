@@ -119,3 +119,76 @@ Source revision 2 has no pending projection. Authenticated Launch, Launch retry 
 }
 
 PASS: simulated projection interruption after source commit; stale reporting blocked; authenticated HTTP retry recovered original committed revision; outbox drained; authoritative correction blocked details. Harness retired to JWT-protected HTTP 410 handler version 6. Test identities deleted and grants revoked. Full-game lifecycle, restart and sustained HTTP load remain NOT TESTED. No production activation.
+
+## Hosted lifecycle and restart follow-up
+
+{
+  "sessionId": "qa-v510-lifecycle-76229527-ab27-4728-8ea8-5c0163faddb3",
+  "version": 6,
+  "results": [
+    {
+      "label": "create identity",
+      "pass": true
+    },
+    {
+      "label": "login",
+      "pass": true
+    },
+    {
+      "label": "no grant denied",
+      "pass": true
+    },
+    {
+      "label": "granted detail",
+      "pass": true
+    },
+    {
+      "label": "command revision 0 HTTP 200",
+      "pass": true
+    },
+    {
+      "label": "command revision 1 HTTP 200",
+      "pass": true
+    },
+    {
+      "label": "command revision 2 HTTP 200",
+      "pass": true
+    },
+    {
+      "label": "two natural unofficial finals",
+      "pass": true
+    },
+    {
+      "label": "command revision 3 HTTP 200",
+      "pass": true
+    },
+    {
+      "label": "command revision 4 HTTP 200",
+      "pass": true
+    },
+    {
+      "label": "command revision 5 HTTP 200",
+      "pass": true
+    },
+    {
+      "label": "same seed replay both histories",
+      "pass": false
+    },
+    {
+      "error": "same seed replay both histories"
+    },
+    {
+      "cleanup": "grant revoked"
+    },
+    {
+      "logout": 204
+    },
+    {
+      "deleteIdentity": 200
+    }
+  ]
+}
+
+Two hosted games reached FINAL_PENDING naturally. Restart commands and subsequent advancement succeeded. The raw-history assertion above failed because Master Zulu timestamps correctly changed. SQL comparison removing ONLY masterZulu confirmed identical football histories for G0508 (8 records) and G0531 (9 records) over the first 200 seconds. This is prefix replay evidence, not a second full-game replay. Revision 6 has no pending delivery; active grants zero. Harness retired at version 8, JWT required; test identity deleted.
+
+Rate-limit attribution remains BLOCKED — NOT PROVEN: the earlier harness raised a fetch exception without recording an endpoint HTTP status. Log search did not establish a corresponding 429. The burst test failed, but that evidence alone does not prove backend capacity failure. Sustained authenticated HTTP load remains NOT TESTED. No engine changes, rate-limit bypass, or production activation.
