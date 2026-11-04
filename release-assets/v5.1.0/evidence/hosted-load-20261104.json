@@ -1,0 +1,391 @@
+[
+  {
+    "phase": "full replay",
+    "response": {
+      "game": null,
+      "status": 200,
+      "ms": 1840,
+      "retryAfter": null,
+      "requestId": "01a1a6cf-9d27-7144-80ef-8fd32bac5095",
+      "stateVersion": 7
+    }
+  },
+  {
+    "phase": "load",
+    "round": 0,
+    "rows": [
+      {
+        "game": "G0531",
+        "status": 200,
+        "ms": 725,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-a513-780a-bca1-bca427a7497b",
+        "availability": {
+          "reason": "CHAIRMAN_CORRECTION",
+          "status": "BLOCKED"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0508",
+        "status": 200,
+        "ms": 669,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-a51a-75a6-bcff-a5dd5be7192a",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0515",
+        "status": 200,
+        "ms": 724,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-a517-76f2-887c-c91e4236dbaa",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0513",
+        "status": 200,
+        "ms": 635,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-a516-7c71-80fd-690dfea628ab",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0511",
+        "status": 200,
+        "ms": 882,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-abcf-76c8-ba2a-b11b25d080bb",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0503",
+        "status": 200,
+        "ms": 614,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-abcf-78ce-9d29-482fa3b410cc",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0512",
+        "status": 200,
+        "ms": 723,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-abd7-7269-8d35-862854b2e872",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0555",
+        "status": 200,
+        "ms": 847,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-abd5-7c68-b5d6-c020de2442b8",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0529",
+        "status": 200,
+        "ms": 538,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-b338-7a67-8f41-8270fc70d7ae",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0536",
+        "status": 200,
+        "ms": 530,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-b32e-7924-a933-0787bce36060",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0554",
+        "status": 200,
+        "ms": 543,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-b32c-75d4-85e4-c932fd8c31e7",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0502",
+        "status": 200,
+        "ms": 629,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-b331-7667-a8b3-add5a28a528b",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0520",
+        "status": 200,
+        "ms": 458,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-b98b-7dbd-ba82-3bade8ec1563",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0506",
+        "status": 200,
+        "ms": 461,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-b995-7bab-a2df-974c87b0acac",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0524",
+        "status": 200,
+        "ms": 540,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-b99d-7ea6-8b8b-ea4ebe8f7da5",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0546",
+        "status": 200,
+        "ms": 517,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-b98f-7736-a524-e05aea300945",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0532",
+        "status": 200,
+        "ms": 457,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-bf8f-7bf4-b006-6ce4a6be4a8b",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0540",
+        "status": 200,
+        "ms": 570,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-bf97-72d2-b00c-4e6535a7c58b",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0534",
+        "status": 200,
+        "ms": 698,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-bfa3-78ed-9b1c-8643bc0dfdc5",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0509",
+        "status": 200,
+        "ms": 518,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-bfa4-70b7-94b9-b9b3891b2a11",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0517",
+        "status": 200,
+        "ms": 485,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-c638-7762-a471-3c08f1c53b61",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0518",
+        "status": 200,
+        "ms": 406,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-c632-7030-ab0b-b5bd2000ac6e",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0544",
+        "status": 200,
+        "ms": 505,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-c639-74a1-807f-8aaa7d6d74e3",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0541",
+        "status": 200,
+        "ms": 542,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-c63a-7974-ae2d-a988526a7fe0",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0550",
+        "status": 200,
+        "ms": 444,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-cc3d-7851-9ac4-68387548634d",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0557",
+        "status": 200,
+        "ms": 440,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-cc3e-79ab-a46c-dbf8bdee2688",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0505",
+        "status": 200,
+        "ms": 427,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-cc3f-70cb-aa6c-a2db7b57d117",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0547",
+        "status": 200,
+        "ms": 419,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-cc3f-7d2f-bb8e-550279d2c955",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0545",
+        "status": 200,
+        "ms": 386,
+        "retryAfter": null,
+        "requestId": "01a1a6cf-d1e8-7f97-bc9b-30eeab2ba60b",
+        "availability": {
+          "reason": null,
+          "status": "AVAILABLE"
+        },
+        "stateVersion": 4
+      },
+      {
+        "game": "G0522",
+        "status": null,
+        "ms": 1,
+        "error": "Rate limit exceeded for trace 01a1a6cf977d7623bc583f4287a0bf3b. Retry after 46498ms."
+      },
+      {
+        "game": "G0551",
+        "status": null,
+        "ms": 1,
+        "error": "Rate limit exceeded for trace 01a1a6cf977d7623bc583f4287a0bf3b. Retry after 46498ms."
+      },
+      {
+        "game": "G0516",
+        "status": null,
+        "ms": 0,
+        "error": "Rate limit exceeded for trace 01a1a6cf977d7623bc583f4287a0bf3b. Retry after 46498ms."
+      }
+    ]
+  },
+  {
+    "logout": 204
+  },
+  {
+    "deleteIdentity": 200
+  }
+]
