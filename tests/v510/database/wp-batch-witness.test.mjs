@@ -4,7 +4,7 @@ import * as E from '../../../release-assets/v5.0.6-week11/backend/runtime/engine
 import {OPERATING_SLATE} from '../../../release-assets/v5.0.6-week11/backend/runtime/week11.mjs';
 import {createQaController} from '../../../release-assets/v5.1.0/backend/delivery/controller.mjs';
 const dir='release-assets/v5.1.0/backend/delivery/';
-test('WP witness: committed batch has no intermediate edit snapshot',async()=>{
+test('WP captures preserve intermediate Edit/Cancel only in committed source',async()=>{
  const db=new PGlite();try{
  await db.exec('create role service_role bypassrls;create role anon;create role authenticated');
  for(const f of ['schema.sql','source-schema.sql','gateway.sql','controller-schema.sql'])await db.exec(fs.readFileSync(dir+f,'utf8'));
@@ -29,7 +29,8 @@ test('WP witness: committed batch has no intermediate edit snapshot',async()=>{
  assert.deepEqual(events.map(e=>e.command),['edit_begin','edit_cancel']);
  assert.equal(committed.games[0].editing,false);
  assert.equal(committed.games[0].lifecycle,'ACTIVE');
- assert.equal(events.some(e=>Object.hasOwn(e,'snapshot')||Object.hasOwn(e,'wpCapture')),false);
+ assert.equal(events[0].wpCaptures[0].editing,true); assert.equal(events[1].wpCaptures[0].editing,false); assert.deepEqual(events.map(e=>e.wpCaptures[0].actionOrdinal),[0,1]);
+ const beforeVersion=await controller.store.sourceVersion(sid,g.id); await assert.rejects(()=>call(8,[action('edit_begin'),action('accept')])); assert.equal(await controller.store.sourceVersion(sid,g.id),beforeVersion);
  console.log('BATCH_CAPTURE_EVIDENCE '+JSON.stringify({stateVersion:8,commands:events.map(e=>e.command),storedEditing:committed.games[0].editing,storedLifecycle:committed.games[0].lifecycle,eventKeys:events.map(e=>Object.keys(e))}));
  }finally{await db.close();}
 });
