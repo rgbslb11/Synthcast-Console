@@ -86,7 +86,7 @@ probability is substituted as the prior.
 
 ## Verification
 
-112 local tests PASS (18 UI + 94 retained release/backend). New checks cover
+113 local tests PASS (19 UI + 94 retained release/backend). New checks cover
 threshold boundaries and blocked priority, four widgets/four tabs, drive mapping,
 22 attributes, no detail team images/betting elements, identity/revision mismatch,
 separate frozen pregame prior and cleared blocked details.

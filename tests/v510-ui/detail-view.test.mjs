@@ -43,3 +43,7 @@ test('server block clears the detail layout even when a malicious envelope inclu
  for(const forbidden of ['class="score-band"','class="overview-grid"','class="wp-value"','class="play-attributes"'])assert.equal(html.includes(forbidden),false);
  assert.match(html,/CHAIRMAN_CORRECTION/);
 });
+test('entering-game records are rendered only from supplied authoritative fields',()=>{
+ const data=structuredClone(options.data);data.scoreboard.awayTeamAndRecords.record='4-1';
+ const html=renderGameStats({...options,data},renderers);assert.match(html,/4-1/);assert.match(html,/Record unavailable/);
+});

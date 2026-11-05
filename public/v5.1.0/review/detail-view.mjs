@@ -12,7 +12,7 @@ function gameBank(o){
 
 function scoreBand(o,lineScore){
  const d=o.data,s=d.scoreboard;
- const side=t=>`<div class="band-team"><div><strong>${esc(teamName(s,t))}</strong><span>Timeouts: ${esc(s[t?'homeTimeouts':'awayTimeouts']??'—')}</span></div><b>${esc(d.teamStatistics[t]?.totalPoints??'—')}</b></div>`;
+ const side=t=>`<div class="band-team"><div><strong>${esc(teamName(s,t))}</strong><span>${esc(s[t?'homeTeamAndRecords':'awayTeamAndRecords']?.record??'Record unavailable')}</span><span>Timeouts: ${esc(s[t?'homeTimeouts':'awayTimeouts']??'—')}</span></div><b>${esc(d.teamStatistics[t]?.totalPoints??'—')}</b></div>`;
  return `<section class="panel score-band" aria-label="Authoritative game score"><div class="score-band-main">${side(0)}<div class="band-state"><strong>${esc(period(s.period))} ${esc(clock(s.scoreboardClock))}</strong><span>${esc([0,1].includes(s.possession)?`${teamName(s,s.possession)} possession`:'Possession unavailable')}</span><b>${esc(downDistance(s.downDistance))} · ${esc(spot(s.fieldPosition))}</b><span>GL ${esc(clock(s.gameLengthClock))}</span></div>${side(1)}</div><div class="band-line-score">${lineScore(d)}</div></section>`;
 }
 
