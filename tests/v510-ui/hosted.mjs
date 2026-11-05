@@ -22,12 +22,13 @@ try{
  await page.locator('#return-live').click();assert.match(await page.locator('.combined-history .field').getAttribute('aria-label'),/Live committed field/);assert.ok(await page.locator('#return-live').isDisabled());
  await page.locator('[data-tab=overview]').click();
  results.push({name:'Real polling retains expanded/closed disclosures and selected play returns to live field',status:'PASS'});
- for(const width of [390,1920]){await page.setViewportSize({width,height:1080});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth));}
- results.push({name:'Hosted responsive overflow check',status:'PASS'});
+ for(const width of [390,1920]){await page.setViewportSize({width,height:1080});const dimensions=await page.evaluate(()=>({scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth}));results.push({name:'Hosted expanded Source details overflow check',width,status:dimensions.scrollWidth<=dimensions.clientWidth?'PASS':'FAIL',...dimensions});}
+ await page.setViewportSize({width:1920,height:1080});
  await context.setOffline(true);await page.evaluate(()=>dispatchEvent(new Event('offline')));assert.equal(await page.locator('#detail svg').count(),0);
  await context.setOffline(false);await page.evaluate(()=>dispatchEvent(new Event('online')));await page.waitForFunction(()=>/\d+\.\d%/.test(document.querySelector('.wp-value')?.textContent??''),null,{timeout:60000});
  results.push({name:'Actual QA disconnect and reconnect',status:'PASS'});
  assert.deepEqual(errors,[]);
+ if(results.some(r=>r.status==='FAIL'))process.exitCode=1;
 }finally{
  // Explicit normal-user logout, including when assertions fail. Never save auth traces.
  try{if(await page.locator('#sign-out').count())await page.locator('#sign-out').evaluate(e=>e.click());await page.waitForTimeout(1000);}catch{}
