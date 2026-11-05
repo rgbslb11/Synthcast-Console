@@ -1,0 +1,103 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {PGlite} from '@electric-sql/pglite';import os from 'node:os';import path from 'node:path';
+import * as E from '../../../release-assets/v5.0.6-week11/backend/runtime/engine.mjs';
+import {OPERATING_SLATE as slate} from '../../../release-assets/v5.0.6-week11/backend/runtime/week11.mjs';
+import {createQaController} from '../../../release-assets/v5.1.0/backend/delivery/controller.mjs';
+import {createWpBackend} from '../../../release-assets/v5.1.0/backend/probability/integration.mjs';
+import {createWpStore} from '../../../release-assets/v5.1.0/backend/probability/store.mjs';
+import {createWpPipeline} from '../../../release-assets/v5.1.0/backend/probability/pipeline.mjs';
+import {captureGame} from '../../../release-assets/v5.1.0/backend/probability/capture.mjs';
+import {createWpHandler} from '../../../release-assets/v5.1.0/backend/probability/http.mjs';
+const fixtures={};function output(name,view){fixtures[name]=view;if(process.env.WP_EXPORT_FIXTURES){fs.mkdirSync('release-assets/v5.1.0/wp-ui',{recursive:true});fs.writeFileSync('release-assets/v5.1.0/wp-ui/fixtures.json',JSON.stringify({qaOnly:true,illustrative:true,fixtures},null,2));}}
+const dir='release-assets/v5.1.0/backend/',actor='00000000-0000-4000-8000-000000000001';
+async function fixture(n=1,dataDir=undefined){
+ const db=new PGlite(dataDir);await db.exec('create role service_role bypassrls;create role anon;create role authenticated');
+ for(const f of ['delivery/schema.sql','delivery/source-schema.sql','delivery/gateway.sql','delivery/controller-schema.sql','probability/schema.sql'])await db.exec(fs.readFileSync(dir+f,'utf8'));
+ let tx=null;const query=(...a)=>(tx??db).query(...a),transaction=fn=>db.transaction(async t=>{tx=t;try{return await fn();}finally{tx=null;}});
+ const store=createWpStore({query,transaction}),sid='qa-v510-wp-integration',games=slate.slice(0,n).map(g=>({...E.initialGame(g),sessionId:sid,qaOnly:true}));
+ let time=Date.parse('2026-11-04T15:00:00Z');const clock=()=>new Date(time).toISOString();
+ const rpc=async(name,args)=>(await db.query('select public.gamecast_v510_gateway($1,$2) result',[name,JSON.stringify(args)])).rows[0].result;
+ const ctl=createQaController({rpc,clock});await ctl.store.commit({sessionId:sid,expectedVersion:-1,engineVersion:E.ENGINE_VERSION,games,events:[],requestId:'wp-genesis-request-0001'});
+ await db.query('insert into gamecast_v510.reporting_grants values($1,$2,true)',[sid,actor]);
+ const pipeline=createWpPipeline({store,readSource:ctl.store.loadCommittedRevision,sourceVersion:s=>ctl.store.sourceVersion(s,games[0].id)});
+ let version=0;const call=async actions=>{const r=await ctl.execute({sessionId:sid,actorId:actor,requestId:'wp-integration-action-'+version,expectedVersion:version,actions});version=r.stateVersion;return r;};
+ const prior=g=>({favoriteTeamId:g.homeCode,otherTeamId:g.awayCode,pregameMargin:7,source:{kind:'QA_FIXTURE',id:'not-an-approved-forecast',sampleCount:1,generatedAt:clock(),contextHash:captureGame(g,{engineVersion:E.ENGINE_VERSION,stateVersion:0,actionOrdinal:0,command:'pregame',observedAt:clock()}).contextHash}});
+ const set=async(g=games[0],margin=7,key='wp-prior-request-0001')=>store.setPrior({sessionId:sid,gameId:g.id,userId:actor,expectedVersion:version,requestId:key,prior:{...prior(g),pregameMargin:margin}});
+ const read=(g=games[0],extra={})=>store.read({sessionId:sid,gameId:g.id,userId:actor,...extra});
+ return {db,query,transaction,rpc,store,ctl,pipeline,sid,games,clock,call,prior,set,read,advanceTime:s=>time+=s*1000};
+}
+test('WP full SQL path: pregame updates, launch freeze, first gameplay, batch edit/cancel, gaps, sticky override and immutable recovery',async()=>{
+ const f=await fixture();try{const g=f.games[0],action=(command,payload)=>({id:g.id,command,payload});
+ await f.set();await f.pipeline.sample(f.sid,f.clock());assert.equal((await f.read()).summary.status,'PREGAME');output('pregame',await f.read());
+ await f.set(g,3,'wp-prior-request-0002');f.advanceTime(5);await f.pipeline.sample(f.sid,f.clock());assert.ok(Math.abs((await f.read()).summary.probability-1/(1+Math.exp(-.42)))<1e-12);
+ await f.call([action('launch'),action('auto')]);await f.pipeline.recover(f.sid);
+ let view=await f.read();assert.equal(view.points.filter(x=>x.kind==='kickoff').length,1);assert.equal(view.summary.status,'ESTIMATED');output('launch',view);
+ await assert.rejects(()=>f.set(g,9,'wp-prior-request-0003'),/PREGAME_FROZEN/);
+ await f.call([{command:'advance',seconds:200}]);await f.pipeline.recover(f.sid);view=await f.read();assert.ok(view.points.some(x=>x.kind==='first_observed_gameplay'));output('live',view);
+ await f.call([action('edit_begin'),action('edit_cancel')]);await f.pipeline.recover(f.sid);view=await f.read();const end=view.points.slice(-2);assert.deepEqual(end.map(x=>x.kind),['edit_begin','edit_cancel']);assert.equal(end[0].status,'BLOCKED');assert.equal(end[1].status,'ESTIMATED');output('editCancelled',view);
+ await f.call([action('edit_begin')]);await f.pipeline.recover(f.sid);output('editOpen',await f.read());await f.call([action('edit_cancel')]);await f.pipeline.recover(f.sid);view=await f.read();
+ const frozen=JSON.stringify(view.points);await f.pipeline.recover(f.sid);assert.equal(JSON.stringify((await f.read()).points),frozen);
+ f.advanceTime(15);await f.pipeline.sample(f.sid,f.clock());view=await f.read();assert.equal(view.points.at(-1).gapBefore,true);assert.equal(view.points.at(-1).missingIntervals,2);output('gap',view);
+ const before=await f.db.query('select count(*) n from gamecast_v510.wp_records');await f.read();await f.read();assert.deepEqual(await f.db.query('select count(*) n from gamecast_v510.wp_records'),before);
+ await f.call([action('score',{team:0,points:7}),action('edit_begin'),action('edit_cancel')]);assert.equal((await f.read()).summary.reason,'WP_SOURCE_PENDING');await f.pipeline.recover(f.sid);assert.equal((await f.read()).summary.reason,'CHAIRMAN_CORRECTION');output('overrideBlocked',await f.read());
+ await f.call([action('restart_same_seed',{confirmed:true})]);await f.pipeline.recover(f.sid);f.advanceTime(5);await f.pipeline.sample(f.sid,f.clock());assert.equal((await f.read()).summary.status,'BLOCKED');
+ await assert.rejects(()=>f.db.exec('delete from gamecast_v510.wp_records'),/IMMUTABLE_JOURNAL/);
+ await assert.rejects(()=>f.db.exec("update gamecast_v510.wp_priors set prior='{}'"),/IMMUTABLE_JOURNAL/);
+ }finally{await f.db.close();}
+});
+test('56-game committed batch and periodic SQL history use bounded summaries; unauthorized HTTP does not read data',async()=>{
+ const f=await fixture(56);try{
+ for(const g of f.games)await f.set(g);
+ await f.pipeline.sample(f.sid,f.clock());await f.call(f.games.flatMap(g=>[{id:g.id,command:'launch'},{id:g.id,command:'auto'}]));await f.pipeline.recover(f.sid);
+ await f.call([{command:'advance',seconds:120}]);await f.pipeline.recover(f.sid);f.advanceTime(5);await f.pipeline.sample(f.sid,f.clock());
+ for(const g of f.games){const v=await f.read(g);assert.equal(v.summary.status,'ESTIMATED');assert.ok(Buffer.byteLength(JSON.stringify(v.summary))<1024);assert.ok(v.points.some(p=>p.kind==='kickoff'));}
+ const origin='https://qa.example';let allowed=false;
+ const handler=createWpHandler({allowedOrigins:[origin],authenticate:async()=>({id:actor}),authorize:async()=>({userId:actor,authenticated:true,active:allowed,role:'CHAIRMAN',authorizedSessionIds:[f.sid]}),store:f.store});
+ const req=()=>new Request(`https://qa.example/wp?session=${f.sid}&game=${f.games[0].id}`,{headers:{origin,authorization:'Bearer fixture'}});
+ assert.equal((await handler(req())).status,403);allowed=true;const response=await handler(req());assert.equal(response.status,200);assert.equal((await response.json()).summary.status,'ESTIMATED');
+ for(const role of ['anon','authenticated']){await f.db.exec('set role '+role);await assert.rejects(()=>f.db.query('select * from gamecast_v510.wp_records'),/permission denied/);await f.db.exec('reset role');}
+ }finally{await f.db.close();}
+});
+
+test('disk restart replays pending source captures; natural final and post-final edit cancellation remain terminal',async()=>{
+ const folder=fs.mkdtempSync(path.join(os.tmpdir(),'gc-wp-durable-')),f=await fixture(1,folder),g=f.games[0];let reopened;
+ try{
+  await f.set();await f.call([{id:g.id,command:'launch'},{id:g.id,command:'auto'},{command:'advance',seconds:20000}]);
+  assert.equal(await f.store.progress(f.sid),-1);await f.db.close();
+  reopened=new PGlite(folder);let tx=null;const query=(...a)=>(tx??reopened).query(...a),transaction=fn=>reopened.transaction(async t=>{tx=t;try{return await fn();}finally{tx=null;}});
+  const store=createWpStore({query,transaction});
+  const rpc=async(name,args)=>(await reopened.query('select public.gamecast_v510_gateway($1,$2) result',[name,JSON.stringify(args)])).rows[0].result;
+  const ctl=createQaController({rpc,clock:f.clock}),pipeline=createWpPipeline({store,readSource:ctl.store.loadCommittedRevision,sourceVersion:s=>ctl.store.sourceVersion(s,g.id)});
+  assert.equal((await pipeline.recover(f.sid)).caughtUp,true);
+  const read=()=>store.read({sessionId:f.sid,gameId:g.id,userId:actor});let v=await read();assert.equal(v.summary.status,'FINAL');assert.equal(v.points.filter(p=>p.kind==='kickoff').length,1);assert.equal(v.points.filter(p=>p.kind==='first_observed_gameplay').length,1);assert.equal(v.points.filter(p=>p.kind==='final').length,1);output('final',v);
+  const count=v.highWatermark;await pipeline.sample(f.sid,'2026-11-04T15:01:00Z');assert.equal((await read()).highWatermark,count);
+  await ctl.execute({sessionId:f.sid,actorId:actor,requestId:'wp-final-cancel-request',expectedVersion:1,actions:[{id:g.id,command:'edit_begin'},{id:g.id,command:'edit_cancel'}]});await pipeline.recover(f.sid);v=await read();assert.equal(v.summary.status,'FINAL');assert.equal(v.points.at(-2).status,'BLOCKED');assert.equal(v.points.at(-1).kind,'edit_cancel');
+  const first=await store.read({sessionId:f.sid,gameId:g.id,userId:actor,limit:1});const page=await store.read({sessionId:f.sid,gameId:g.id,userId:actor,limit:1,after:first.nextSequence,runId:first.summary.runId});assert.ok(page.nextSequence>first.nextSequence);
+ }finally{if(reopened)await reopened.close();else await f.db.close();fs.rmSync(folder,{recursive:true,force:true});}
+});
+
+test('conflicting append rolls back entire batch and preserves latest projection and receipt',async()=>{
+ const f=await fixture();try{
+ await f.set();await f.pipeline.sample(f.sid,f.clock());
+ const row=(await f.db.query('select state from gamecast_v510.wp_heads')).rows[0].state;
+ const original=(await f.db.query('select record from gamecast_v510.wp_records order by sequence desc limit 1')).rows[0].record;
+ const before=await f.read(),progress=await f.store.progress(f.sid);
+ const fresh={...original,eventId:'test:atomic-rollback'};
+ await assert.rejects(()=>f.store.commit({sessionId:f.sid,requestId:'atomic-conflicting-batch',sourceVersion:progress,expectedProgress:progress,updates:[{record:fresh,state:row},{record:{...original,probability:.111},state:row}]}),/HISTORY_EVENT_CONFLICT/);
+ assert.deepEqual(await f.read(),before);
+ const receipt=await f.db.query("select count(*) n from gamecast_v510.wp_receipts where request_id='atomic-conflicting-batch'");assert.equal(Number(receipt.rows[0].n),0);
+ }finally{await f.db.close();}
+});
+
+test('composed backend recovers after commit and WP failure never replays football',async()=>{
+ const f=await fixture();try{
+ await f.set();const errors=[];
+ const b=createWpBackend({...f,authenticate:async()=>null,authorize:async()=>null,allowedOrigins:[],listSessions:async()=>[f.sid],onRecoveryError:e=>errors.push(e)});
+ const req={sessionId:f.sid,actorId:actor,requestId:'composed-launch-request',expectedVersion:0,actions:[{id:f.games[0].id,command:'launch'}]};
+ const receipt=await b.controller.execute(req);assert.equal(receipt.stateVersion,1);assert.equal((await f.read()).summary.status,'ESTIMATED');
+ const recover=b.pipeline.recover;b.pipeline.recover=async()=>{throw Error('INJECTED_STORAGE_FAILURE');};
+ const auto={...req,requestId:'composed-auto-request',expectedVersion:1,actions:[{id:f.games[0].id,command:'auto'}]};
+ assert.equal((await b.controller.execute(auto)).stateVersion,2);assert.equal(errors[0].code,'INJECTED_STORAGE_FAILURE');assert.equal((await f.read()).summary.reason,'WP_SOURCE_PENDING');
+ b.pipeline.recover=recover;await b.controller.execute(auto);assert.equal(await f.store.progress(f.sid),2);assert.equal((await f.read()).summary.status,'ESTIMATED');
+ assert.equal(await f.ctl.store.sourceVersion(f.sid,f.games[0].id),2);
+ }finally{await f.db.close();}
+});

@@ -1,0 +1,20 @@
+-- QA only additive WP persistence; no existing release objects are modified.
+begin;
+create table gamecast_v510.wp_priors(session_id text not null,game_id text not null,run_id text not null,source_version bigint not null,revision bigint generated always as identity,prior jsonb not null,request_id text not null,primary key(session_id,game_id,revision),unique(session_id,game_id,request_id));
+create table gamecast_v510.wp_heads(session_id text not null,game_id text not null,state jsonb not null,sequence bigint not null,primary key(session_id,game_id));
+create table gamecast_v510.wp_records(session_id text not null,game_id text not null,sequence bigint not null,run_id text not null,event_id text not null,model_id text not null,record jsonb not null,primary key(session_id,game_id,sequence),unique(session_id,game_id,run_id,model_id,event_id));
+create table gamecast_v510.wp_receipts(session_id text not null,request_id text not null,body jsonb not null,response jsonb not null,primary key(session_id,request_id));
+create table gamecast_v510.wp_progress(session_id text primary key,source_version bigint not null);
+create trigger immutable_wp_records before update or delete on gamecast_v510.wp_records for each row execute function gamecast_v510.reject_journal_mutation();
+create trigger immutable_wp_priors before update or delete on gamecast_v510.wp_priors for each row execute function gamecast_v510.reject_journal_mutation();
+create trigger immutable_wp_receipts before update or delete on gamecast_v510.wp_receipts for each row execute function gamecast_v510.reject_journal_mutation();
+alter table gamecast_v510.wp_priors enable row level security;
+alter table gamecast_v510.wp_heads enable row level security;
+alter table gamecast_v510.wp_records enable row level security;
+alter table gamecast_v510.wp_receipts enable row level security;
+alter table gamecast_v510.wp_progress enable row level security;
+revoke all on gamecast_v510.wp_priors,gamecast_v510.wp_heads,gamecast_v510.wp_records,gamecast_v510.wp_receipts,gamecast_v510.wp_progress from public;
+grant select,insert on gamecast_v510.wp_priors,gamecast_v510.wp_records,gamecast_v510.wp_receipts to service_role;
+grant select,insert,update on gamecast_v510.wp_heads,gamecast_v510.wp_progress to service_role;
+grant usage on sequence gamecast_v510.wp_priors_revision_seq to service_role;
+commit;
