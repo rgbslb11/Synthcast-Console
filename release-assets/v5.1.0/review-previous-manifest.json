@@ -10,15 +10,15 @@
     },
     {
       "path": "v5.1.0/review/desktop-field.mjs",
-      "sha256": "2cf6b0d0cb3a7fd0fb0eb3c1718392c9c2b53a9d2ee64b9d3fc26c747d77adf2"
+      "sha256": "630a5d1a72097ce16c1d00202c9f1417434b9233e4cb7f191845cef16ea3ecac"
     },
     {
       "path": "v5.1.0/review/desktop-product.css",
-      "sha256": "f5345caab3f42e54dd7895d95540660293e628109f7ff306b9431cc0952cdbad"
+      "sha256": "e20adb551c743283cd88b437e6ec49e01bd6fccd63f8e4887de6021a11c55fd0"
     },
     {
       "path": "v5.1.0/review/detail-view.css",
-      "sha256": "e0f0e3f7cd5038968626c11832a0563904e7ee88c64e3ee0d3c9ed85aab6ace3"
+      "sha256": "b8deb7a6a7393551f855b42a68c4e9269b1fe620d6b485fca7d3c6f8382d0baa"
     },
     {
       "path": "v5.1.0/review/detail-view.mjs",
@@ -26,11 +26,11 @@
     },
     {
       "path": "v5.1.0/review/fixtures/stats.json",
-      "sha256": "42903684c6d8dfc5da32e0809043c75d359563ed6f9bd884dcdfd7c6d56f851e"
+      "sha256": "2acb4d6ef6f377c480555199f35795dc4c8d9dcc2957f8ed40e3f7cf5a06d0c4"
     },
     {
       "path": "v5.1.0/review/fixtures/wp.json",
-      "sha256": "1315be50e568e770340c62e0030d8001871a200afa2399facf5a00ecad69cc89"
+      "sha256": "019da1762f2289731402f0dc2c76c9edb932fa56c787c56b14ed19767c61e6c4"
     },
     {
       "path": "v5.1.0/review/index.html",
@@ -42,7 +42,11 @@
     },
     {
       "path": "v5.1.0/review/review.css",
-      "sha256": "a22b9437fde9bf0c97ecea26417d5e1969c36dbc2da5da8c9f7c8d33d4a966e6"
+      "sha256": "928521b8b585ea047b1c97094db5ffc106839a1e76d9c0880659a8c203836b5f"
+    },
+    {
+      "path": "v5.1.0/review/synthcast-s.png",
+      "sha256": "1ef07d96544525c32612fb4ca03d6e28ac138ae459bde1d6581b2f4d02761e7b"
     },
     {
       "path": "v5.1.0/review/wp-transport.mjs",
