@@ -1,4 +1,25 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {PGlite} from '@electric-sql/pglite';import os from 'node:os';import path from 'node:path';
+
+test('single-statement WP reads preserve authorization, bounded history, stale-source blocks and cursor errors',async()=>{
+ const f=await fixture();try{
+  await f.set();await f.pipeline.sample(f.sid,f.clock());
+  const g=f.games[0],args={sessionId:f.sid,gameId:g.id,userId:actor};
+  let calls=0;const store=createWpStore({query:async(...a)=>{calls++;return f.query(...a);},transaction:()=>{throw Error('READ_MUST_BE_ONE_STATEMENT');}});
+  const first=await store.read({...args,limit:1});assert.equal(calls,1);assert.equal(first.points.length,1);
+  await assert.rejects(()=>store.read({...args,userId:'00000000-0000-4000-8000-000000000002'}),/CHAIRMAN_FORBIDDEN/);
+  const missing=await store.read({...args,gameId:'G9999'});assert.equal(missing.summary.reason,'NO_COMMITTED_OBSERVATION');assert.deepEqual(missing.points,[]);
+  await assert.rejects(()=>store.read({...args,highWatermark:first.highWatermark+1}),/INVALID_CURSOR/);
+  await assert.rejects(()=>store.read({...args,runId:'different-run'}),/RUN_CHANGED/);
+  f.advanceTime(5);await f.pipeline.sample(f.sid,f.clock());
+  const pinned=await store.read({...args,runId:first.summary.runId,after:first.nextSequence,highWatermark:first.highWatermark});
+  assert.deepEqual(pinned.points,[]);assert.equal(pinned.highWatermark,first.highWatermark);
+  await f.call([{id:g.id,command:'launch'}]);
+  const pending=await store.read(args);assert.equal(pending.summary.reason,'WP_SOURCE_PENDING');assert.equal(pending.summary.probability,null);assert.deepEqual(pending.points,[]);
+  await f.db.query('update gamecast_v510.reporting_grants set active=false where session_id=$1',[f.sid]);
+  await assert.rejects(()=>store.read(args),/CHAIRMAN_FORBIDDEN/);
+ }finally{await f.db.close();}
+});
+
 import * as E from '../../../release-assets/v5.0.6-week11/backend/runtime/engine.mjs';
 import {OPERATING_SLATE as slate} from '../../../release-assets/v5.0.6-week11/backend/runtime/week11.mjs';
 import {createQaController} from '../../../release-assets/v5.1.0/backend/delivery/controller.mjs';
@@ -102,22 +123,27 @@ test('composed backend recovers after commit and WP failure never replays footba
  }finally{await f.db.close();}
 });
 
-test('single-statement WP reads preserve authorization, bounded history, stale-source blocks and cursor errors',async()=>{
- const f=await fixture();try{
-  await f.set();await f.pipeline.sample(f.sid,f.clock());
-  const g=f.games[0],args={sessionId:f.sid,gameId:g.id,userId:actor};
-  let calls=0;const store=createWpStore({query:async(...a)=>{calls++;return f.query(...a);},transaction:()=>{throw Error('READ_MUST_BE_ONE_STATEMENT');}});
-  const first=await store.read({...args,limit:1});assert.equal(calls,1);assert.equal(first.points.length,1);
-  await assert.rejects(()=>store.read({...args,userId:'00000000-0000-4000-8000-000000000002'}),/CHAIRMAN_FORBIDDEN/);
-  const missing=await store.read({...args,gameId:'G9999'});assert.equal(missing.summary.reason,'NO_COMMITTED_OBSERVATION');assert.deepEqual(missing.points,[]);
-  await assert.rejects(()=>store.read({...args,highWatermark:first.highWatermark+1}),/INVALID_CURSOR/);
-  await assert.rejects(()=>store.read({...args,runId:'different-run'}),/RUN_CHANGED/);
-  f.advanceTime(5);await f.pipeline.sample(f.sid,f.clock());
-  const pinned=await store.read({...args,runId:first.summary.runId,after:first.nextSequence,highWatermark:first.highWatermark});
-  assert.deepEqual(pinned.points,[]);assert.equal(pinned.highWatermark,first.highWatermark);
-  await f.call([{id:g.id,command:'launch'}]);
-  const pending=await store.read(args);assert.equal(pending.summary.reason,'WP_SOURCE_PENDING');assert.equal(pending.summary.probability,null);assert.deepEqual(pending.points,[]);
+
+test('board snapshot returns exactly 56 ordered summaries with independent history and live authorization',async()=>{
+ const f=await fixture(56);try{
+  for(const g of f.games)await f.set(g);
+  await f.pipeline.sample(f.sid,f.clock());
+  const gameIds=f.games.map(g=>g.id).reverse(),args={sessionId:f.sid,gameIds,userId:actor};
+  let calls=0;const store=createWpStore({query:async(...a)=>{calls++;return f.query(...a);},transaction:()=>{throw Error('READ_ONLY');}});
+  const before=(await f.db.query('select count(*) n from gamecast_v510.wp_records')).rows;
+  const board=await store.readBoard(args);assert.equal(calls,1);assert.equal(board.contractVersion,'GC-WP-BOARD-1');assert.equal(board.games.length,56);assert.deepEqual(board.games.map(g=>g.gameId),gameIds);
+  for(const g of board.games){assert.deepEqual(g.summary,(await f.read({id:g.gameId})).summary);assert.equal(g.summary.status,'PREGAME');assert.equal(g.points,undefined);}
+  assert.ok(Buffer.byteLength(JSON.stringify(board))<56000);
+  const missing=await store.readBoard({...args,gameIds:['G9999']});assert.equal(missing.games[0].summary.reason,'NO_COMMITTED_OBSERVATION');
+  for(const bad of [[],[...gameIds,'G9999'],[gameIds[0],gameIds[0]],['invalid']])await assert.rejects(()=>store.readBoard({...args,gameIds:bad}),/INVALID_BOARD_GAMES|QA_SCOPE_REQUIRED/);
+  assert.deepEqual((await f.db.query('select count(*) n from gamecast_v510.wp_records')).rows,before);
+  await f.call(f.games.flatMap(g=>[{id:g.id,command:'launch'},{id:g.id,command:'auto'}]));
+  const pending=await store.readBoard(args);assert.ok(pending.games.every(g=>g.summary.status==='BLOCKED'&&g.summary.reason==='WP_SOURCE_PENDING'&&g.summary.probability===null));
+  await f.pipeline.recover(f.sid);const active=await store.readBoard(args);assert.ok(active.games.every(g=>g.summary.status==='ESTIMATED'));
+  const origin='https://qa.example',handler=createWpHandler({allowedOrigins:[origin],authenticate:async()=>({id:actor}),authorize:async()=>({userId:actor,authenticated:true,active:true,role:'CHAIRMAN',authorizedSessionIds:[f.sid]}),store});
+  const req=(ids=gameIds,method='GET')=>new Request(`https://qa.example/wp?session=${f.sid}&view=board&games=${ids.join(',')}`,{method,headers:{origin,authorization:'Bearer fixture'}});
+  assert.equal((await handler(req())).status,200);assert.equal((await handler(req([]))).status,400);assert.equal((await handler(req(gameIds,'POST'))).status,405);
   await f.db.query('update gamecast_v510.reporting_grants set active=false where session_id=$1',[f.sid]);
-  await assert.rejects(()=>store.read(args),/CHAIRMAN_FORBIDDEN/);
+  assert.equal((await handler(req())).status,403);await assert.rejects(()=>store.readBoard(args),/CHAIRMAN_FORBIDDEN/);
  }finally{await f.db.close();}
 });

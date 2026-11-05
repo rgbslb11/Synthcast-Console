@@ -12,12 +12,18 @@ export function createWpHandler({allowedOrigins,authenticate,authorize,store}){
    const user=await authenticate(token);if(!user?.id||user.is_anonymous)return reply({error:'AUTHENTICATION_REQUIRED'},401);
    const q=new URL(request.url).searchParams,sessionId=q.get('session'),gameId=q.get('game'),identity=await authorize(user,sessionId);
    requireChairman(identity,sessionId);if(identity.userId!==user.id)return reply({error:'CHAIRMAN_FORBIDDEN'},403);
+   if(q.get('view')==='board'){
+    if(request.method!=='GET')return reply({error:'METHOD_NOT_ALLOWED'},405);
+    const gameIds=q.get('games')?.split(',')??[];
+    return reply(await store.readBoard({sessionId,gameIds,userId:user.id}));
+   }
    if(request.method==='POST'){
     const requestId=request.headers.get('idempotency-key');if(!/^[\w.-]{16,128}$/.test(requestId??''))return reply({error:'INVALID_REQUEST'},400);
     const text=await request.text();if(text.length>16384)return reply({error:'REQUEST_TOO_LARGE'},413);
     const {expectedVersion,prior}=JSON.parse(text);return reply(await store.setPrior({sessionId,gameId,userId:user.id,expectedVersion,requestId,prior}));
    }
    return reply(await store.read({sessionId,gameId,userId:user.id,after:Number(q.get('after')??0),limit:Number(q.get('limit')??100),runId:q.get('run'),highWatermark:q.has('through')?Number(q.get('through')):null}));
-  }catch(e){const code=e.code??e.message;const status=e.status??(['CHAIRMAN_FORBIDDEN'].includes(code)?403:['PREGAME_FROZEN','VERSION_CONFLICT','IDEMPOTENCY_CONFLICT','RUN_CHANGED'].includes(code)?409:code.startsWith('PRIOR_')||code==='INVALID_CURSOR'?400:503);if(status===503)console.error('WP_REQUEST_FAILURE',JSON.stringify({name:e.name,code:/^[A-Z0-9_]{1,64}$/.test(String(e.code??''))?e.code:null,reason:/^[A-Z_]{1,64}$/.test(String(e.message??''))?e.message:'REDACTED'}));return reply({error:status===503?'BACKEND_UNAVAILABLE':code},status);}
+  }catch(e){const code=e.code??e.message;const status=e.status??(['CHAIRMAN_FORBIDDEN'].includes(code)?403:['PREGAME_FROZEN','VERSION_CONFLICT','IDEMPOTENCY_CONFLICT','RUN_CHANGED'].includes(code)?409:code.startsWith('PRIOR_')||['INVALID_CURSOR','INVALID_BOARD_GAMES','QA_SCOPE_REQUIRED'].includes(code)?400:503);if(status===503)console.error('WP_REQUEST_FAILURE',JSON.stringify({name:e.name,code:/^[A-Z0-9_]{1,64}$/.test(String(e.code??''))?e.code:null,reason:/^[A-Z_]{1,64}$/.test(String(e.message??''))?e.message:'REDACTED'}));return reply({error:status===503?'BACKEND_UNAVAILABLE':code},status);}
  };
 }
+
