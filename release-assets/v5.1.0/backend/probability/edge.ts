@@ -7,7 +7,7 @@ Deno.serve(async req=>{
  // Request-local connection/transaction binding: concurrent users cannot share tx state.
  let sql,tx;
  const connect=()=>sql??=postgres(Deno.env.get('SUPABASE_DB_URL'),{prepare:false,max:1,connect_timeout:10,idle_timeout:5});
- const query=async(text,args=[])=>({rows:await (tx??connect()).unsafe(text,args)});
+ const query=async(text,args=[])=>({rows:await (tx??connect()).unsafe(text,args.map(v=>typeof v==='string'&&/^[{[]/.test(v)?connect().json(JSON.parse(v)):v))});
  const transaction=fn=>connect().begin(async scoped=>{tx=scoped;try{return await fn();}finally{tx=undefined;}});
  const handler=createWpHandler({allowedOrigins:['https://rgbslb11.github.io'],authenticate:t.authenticate,authorize:t.authorize,store:createWpStore({query,transaction})});
  try{return await handler(req);}finally{if(sql)await sql.end({timeout:5});}

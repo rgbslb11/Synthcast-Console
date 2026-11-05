@@ -3,7 +3,7 @@ import {createWpStore} from './store.mjs';
 import {createWpPipeline} from './pipeline.mjs';
 import {createSourceStore} from '../delivery/source-store.mjs';
 import {createReportingTransport} from '../delivery/supabase-adapter.mjs';
-const sessionId='qa-v510-wp-hosted-20261104';
+const sessionId='qa-v510-wp-hosted-r2';
 Deno.serve(async req=>{
  if(req.method!=='POST')return Response.json({error:'METHOD_NOT_ALLOWED'},{status:405});
  const token=req.headers.get('x-wp-worker-token');
@@ -11,7 +11,7 @@ Deno.serve(async req=>{
  const url=Deno.env.get('SUPABASE_DB_URL');
  if(!url){console.error('WP_DATABASE_CONFIGURATION_MISSING');return Response.json({error:'BACKEND_UNAVAILABLE'},{status:503});}
  const sql=postgres(url,{prepare:false,max:1,connect_timeout:10,idle_timeout:5});let tx;
- const query=async(q,a=[])=>({rows:await (tx??sql).unsafe(q,a)});
+ const query=async(q,a=[])=>({rows:await (tx??sql).unsafe(q,a.map(v=>typeof v==='string'&&/^[{[]/.test(v)?sql.json(JSON.parse(v)):v))});
  const transaction=fn=>sql.begin(async s=>{tx=s;try{return await fn();}finally{tx=undefined;}});
  try{
   const allowed=await sql.unsafe("select exists(select 1 from vault.decrypted_secrets where name='gamecast_v510_wp_worker_token' and decrypted_secret=$1) ok",[token]);
