@@ -1,0 +1,24 @@
+// Public generic UI examples. No engine import, database, live API, real teams,
+// schedule, game history or backend-derived probability observations are used.
+import fs from 'node:fs';
+const contract=JSON.parse(fs.readFileSync('release-assets/v5.1.0/data-contract.v1.json'));
+const sessionId='qa-v510-ui-example',timestamp='2000-01-01T00:00:00.000Z';
+const examplePlay=n=>({sequence:n,possessingTeam:0,period:'1',resolutionClock:600-n*10,gameLengthTimestamp:n*10,preDown:n,preDistance:10,preFieldPosition:25+n*5,description:`Generic UI example play ${n}`,originalDescription:`Generic UI example play ${n}`,rawYards:5,creditedYards:5,category:'RUN',postPossession:0,postFieldPosition:30+n*5,postDownDistance:{down:n+1,distance:5},pointsAwarded:0,scoreAfter:[0,0],ruling:null,strategy:'NORMAL',safetyFreeKick:null,weatherAdjustment:null,eventId:`public-ui-example-${n}`,eventSequence:n-1});
+const stats=()=>Object.fromEntries(contract.teamStatistics.map(k=>[k,k==='pointsByQuarter'?{'1':0,'2':0,'3':0,'4':0}:k==='pointsByOvertime'?{}:k==='scoringSummary'?[]:k==='thirdDownConversionsPercentage'||k==='fourthDownConversionsPercentage'?{made:0,attempted:0,percentage:null}:['timeOfPossession','yardsPerRush','completionPercentage','yardsPerCompletion','yardsPerOffensivePlay'].includes(k)?null:0]));
+const games=[],responses={};
+for(let i=1;i<=6;i++){
+ const id=`G900${i}`,lifecycle=i===4?'UNLAUNCHED':i>=5?'FINAL_PENDING':'ACTIVE',blocked=[3,6].includes(i);
+ const game={id,away:`Example Away ${i}`,home:`Example Home ${i}`,network:null,kickoffZulu:null,lifecycle};games.push(game);
+ const plays=[examplePlay(1),examplePlay(2)],board={noTeamLogos:true,awayTeamAndRecords:{name:game.away,record:null},homeTeamAndRecords:{name:game.home,record:null},awayTimeouts:3,homeTimeouts:3,possession:0,period:'1',scoreboardClock:580,downDistance:{down:3,distance:5},fieldPosition:40,scheduledKickoff:null,gameLengthClock:20,network:null,weather:null,week:null,lineScore:{'1':[0,0],'2':[0,0],'3':[0,0],'4':[0,0]},lastResolvedPlay:plays[1]};
+ const away=stats(),home=stats();Object.assign(away,{offensiveSnaps:2,rushingAttempts:2,rushingYards:10,yardsPerRush:5,totalOffense:10,yardsPerOffensivePlay:5});
+ responses[id]={contractVersion:'GC-STATS-1',deliveryVersion:'GC-DELIVERY-1',sessionId,engineVersion:'GENERIC-UI-EXAMPLE-NO-ENGINE',gameId:id,runId:`${id}-EXAMPLE`,stateVersion:3,throughEventSequence:1,availability:blocked?{status:'BLOCKED',reason:'CHAIRMAN_CORRECTION'}:i===4?{status:'NOT_STARTED',reason:'NOT_LAUNCHED'}:{status:'AVAILABLE',reason:null},coverage:['REGULATION_ONLY','SCORE_INCLUDES_OVERTIME'],generatedAt:timestamp,...(!blocked&&i!==4?{scoreboard:board,teamStatistics:[away,home],field:{mode:'LIVE',possession:0,ball:40,lineOfScrimmage:40,lineToGain:45,goalToGo:false,down:3,distance:5,postBall:null,postPossession:null},possessions:[],plays,nextSequence:2,hasMore:false,fieldAvailability:{timeOfPossession:{status:'BLOCKED',reason:'SOURCE_MISSING'}}}:{})};
+}
+const wp={qaOnly:true,illustrative:true,provenance:'Hand-authored generic interface examples. No estimator or backend observations.',fixtures:{}};
+for(const name of ['pregame','launch','live','editCancelled','editOpen','gap','overrideBlocked','final']){
+ const blocked=['editOpen','overrideBlocked'].includes(name),status=blocked?'BLOCKED':name==='pregame'?'PREGAME':name==='final'?'FINAL':'ESTIMATED',reason=name==='editOpen'?'CHAIRMAN_EDIT_OPEN':name==='overrideBlocked'?'CHAIRMAN_CORRECTION':null;
+ const points=[1,2,3].map(n=>({observationSequence:n,eventId:`example-${n}`,kind:'UI_EXAMPLE',sessionId:'qa-v510-wp-ui-example',gameId:'G9001',runId:'PUBLIC-UI-EXAMPLE',modelId:'UI-EXAMPLE-NO-MODEL',stateVersion:1,observedAt:`2000-01-01T00:00:${String(n*5).padStart(2,'0')}.000Z`,probability:n===3&&blocked?null:n===3&&name==='final'?1:0.6,status:n===3?status:'ESTIMATED',reason:n===3?reason:null,gapBefore:name==='gap'&&n===3,missingIntervals:name==='gap'&&n===3?1:0,input:{favoriteScore:0,otherScore:0},trace:{}}));
+ wp.fixtures[name]={summary:{sessionId:'qa-v510-wp-ui-example',gameId:'G9001',runId:'PUBLIC-UI-EXAMPLE',modelId:'UI-EXAMPLE-NO-MODEL',stateVersion:1,throughEventSequence:1,observationSequence:3,observedAt:points[2].observedAt,status,reason,probability:blocked?null:name==='final'?1:0.6,favoriteTeamId:'Example Favorite',color:blocked?'#808080':'#D71A20',calibrationStatus:'EXAMPLE_ONLY'},points,nextSequence:3,highWatermark:3};
+}
+fs.mkdirSync('public/v5.1.0/review/fixtures',{recursive:true});
+fs.writeFileSync('public/v5.1.0/review/fixtures/stats.json',JSON.stringify({qaOnly:true,illustrative:true,sessionId,provenance:'Hand-authored generic examples; no real teams, engine, schedule, game histories or live backend reads.',games,responses,contract},null,2)+'\n');
+fs.writeFileSync('public/v5.1.0/review/fixtures/wp.json',JSON.stringify(wp,null,2)+'\n');

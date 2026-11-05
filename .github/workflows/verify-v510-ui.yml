@@ -1,0 +1,41 @@
+name: Verify isolated 5.1 UI review
+on:
+  push:
+    branches: [ui/gamecast-v5.1.0-review]
+  pull_request:
+    branches: [development/gamecast-v5.1.0]
+    paths: ['public/v5.1.0/review/**', 'tests/v510-ui/**', 'scripts/ui/**', '.github/workflows/verify-v510-ui.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Protect engine, contracts, prior releases, hosted Site configuration and operator app
+        run: git diff --exit-code 8a1a647845d2ab6c05241973239937b6ca1e6ab3 -- app .openai public/v5.0.6 release-assets/v5.0.6-week11 release-assets/v5.1.0/backend release-assets/v5.1.0/data-contract.v1.json release-assets/v5.1.0/delivery-contract.v1.json .github/workflows/deploy-v506.yml
+      - run: node --test tests/v510-ui/*.test.mjs tests/v506/*.test.mjs tests/v510/*.test.mjs
+      - name: Install pinned browser verification runtime
+        run: npm install --prefix "$RUNNER_TEMP/gamecast-ui-browser" --no-audit --no-fund --save-exact playwright@1.62.1
+      - run: node "$RUNNER_TEMP/gamecast-ui-browser/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Chromium fixtures and mocked HTTP
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/gamecast-ui-browser/node_modules/playwright/index.mjs
+        run: node tests/v510-ui/browser.mjs
+      - name: WebKit fixtures and mocked HTTP
+        env:
+          GAMECAST_BROWSER: webkit
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/gamecast-ui-browser/node_modules/playwright/index.mjs
+        run: node tests/v510-ui/browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v510-ui-review
+          path: outputs/v510-ui
