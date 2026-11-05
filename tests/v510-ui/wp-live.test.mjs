@@ -35,3 +35,23 @@ test('sign-out revokes only this QA session and accepts already expired token',a
  let called=false;await signOut('test-only',{fetchImpl:async(url,init)=>{called=true;assert.match(url,/logout\?scope=local$/);assert.equal(init.headers.Authorization,'Bearer test-only');return new Response(null,{status:204});}});assert.ok(called);
  await signOut('expired',{fetchImpl:async()=>new Response(null,{status:401})});
 });
+
+import {readWpBoard,selectWpResponse} from '../../public/v5.1.0/review/wp-transport.mjs';
+test('board transport makes one bounded authenticated request and validates all 56 identities',async()=>{
+ const games=Array.from({length:56},(_,i)=>`G${String(502+i).padStart(4,'0')}`),summary=response.summary;
+ const body={contractVersion:'GC-WP-BOARD-1',sessionId:req.session,sourceVersion:summary.stateVersion,wpVersion:summary.stateVersion,games:games.map(gameId=>({gameId,summary:{...summary,gameId}}))};
+ let calls=0;const fetchImpl=async(url,init)=>{calls++;assert.equal(url.searchParams.get('view'),'board');assert.equal(url.searchParams.get('games'),games.join(','));assert.equal(init.headers.Authorization,'Bearer test-only');assert.equal(init.method,'GET');assert.equal(init.redirect,'error');return Response.json(body);};
+ assert.deepEqual(await readWpBoard({...req,games,fetchImpl}),body);assert.equal(calls,1);
+ for(const bad of [[],[...games,'G9999'],[games[0],games[0]],['bad']])await assert.rejects(readWpBoard({...req,games:bad,fetchImpl}));assert.equal(calls,1);
+ for(const bad of [{...body,contractVersion:'wrong'},{...body,games:body.games.slice(1)},{...body,games:[...body.games].reverse()},{...body,sourceVersion:summary.stateVersion+1},{...body,games:body.games.map(g=>({...g,summary:{...g.summary,sessionId:'qa-v510-wrong'}}))}])await assert.rejects(readWpBoard({...req,games,fetchImpl:async()=>Response.json(bad)}),/WP_INVALID_BOARD/);
+ for(const status of [401,403,429,503])await assert.rejects(readWpBoard({...req,games,fetchImpl:async()=>new Response('',{status})}));
+ const missing={...body,games:body.games.map(g=>({gameId:g.gameId,summary:{status:'BLOCKED',reason:'NO_COMMITTED_OBSERVATION',probability:null}}))};assert.deepEqual(await readWpBoard({...req,games,fetchImpl:async()=>Response.json(missing)}),missing);
+});
+test('summary priming never invents history or crosses session, game, run, revision or freshness boundaries',()=>{
+ const summary=response.summary,data={...summary},board={summary,fetchedAt:1000},args={board,data,now:2000};
+ const primed=selectWpResponse(args);assert.equal(primed.summaryOnly,true);assert.deepEqual(primed.points,[]);assert.equal(primed.highWatermark,undefined);
+ assert.equal(selectWpResponse({...args,history:response}),response);
+ for(const change of [{sessionId:'other'},{gameId:'G9999'},{runId:'other'},{stateVersion:summary.stateVersion+1}])assert.equal(selectWpResponse({...args,data:{...data,...change}}),undefined);
+ assert.equal(selectWpResponse({...args,now:12000}),undefined);
+ const blocked={summary:{...summary,status:'BLOCKED',reason:'WP_SOURCE_PENDING',probability:null},fetchedAt:1000};assert.equal(selectWpResponse({...args,board:blocked,history:response}).summary.probability,null);
+});
