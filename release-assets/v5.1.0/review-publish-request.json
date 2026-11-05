@@ -1,1 +1,1 @@
-{"scope":"Add isolated read-only QA review only","route":"v5.1.0/review/","uiSource":"7aba63b36e23816623b39b6c75ceea64c605df1c","preservedPublicationRun":41707776889,"productionReleaseAuthorized":false}
+{"scope": "Repair QA disclosure persistence and live-field button feedback only", "route": "v5.1.0/review/", "previousPublicationRun": 41980513018, "productionReleaseAuthorized": false}

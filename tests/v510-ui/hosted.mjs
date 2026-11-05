@@ -13,6 +13,15 @@ try{
  await page.locator('[data-open=G0502]').click();await page.locator('[data-tab=overview]').click();
  await page.waitForFunction(()=>/\d+\.\d%/.test(document.querySelector('.wp-value')?.textContent??''),null,{timeout:60000});
  results.push({name:'Hosted password sign-in and actual QA WP display',status:'PASS',wp:await page.locator('.wp-value').innerText()});
+ await page.locator('.wp-options > summary').click();await page.locator('.all-fields > summary').click();
+ await page.waitForTimeout(11000);
+ for(const selector of ['.wp-options','.all-fields'])assert.ok(await page.locator(selector).evaluate(el=>el.open));
+ await page.locator('.wp-options > summary').click();await page.waitForTimeout(6000);assert.equal(await page.locator('.wp-options').evaluate(el=>el.open),false);
+ await page.setViewportSize({width:1920,height:1080});await page.locator('[data-tab=plays]').click();await page.locator('[data-play]').first().click();
+ assert.match(await page.locator('.combined-history .field').getAttribute('aria-label'),/Historical play/);
+ await page.locator('#return-live').click();assert.match(await page.locator('.combined-history .field').getAttribute('aria-label'),/Live committed field/);assert.ok(await page.locator('#return-live').isDisabled());
+ await page.locator('[data-tab=overview]').click();
+ results.push({name:'Real polling retains expanded/closed disclosures and selected play returns to live field',status:'PASS'});
  for(const width of [390,1920]){await page.setViewportSize({width,height:1080});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth));}
  results.push({name:'Hosted responsive overflow check',status:'PASS'});
  await context.setOffline(true);await page.evaluate(()=>dispatchEvent(new Event('offline')));assert.equal(await page.locator('#detail svg').count(),0);

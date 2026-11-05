@@ -1,0 +1,52 @@
+{
+  "files": [
+    {
+      "path": "v5.1.0/review/app.mjs",
+      "sha256": "135f44b038a55b23f6a97ccbe591cc5b8c4d791b74cb2ae3ccc564ffc03dadd0"
+    },
+    {
+      "path": "v5.1.0/review/auth.mjs",
+      "sha256": "f4bbcc001be28a739f9d0772ab05f540ee2c0003cc3fcecf99f75fe93df54535"
+    },
+    {
+      "path": "v5.1.0/review/desktop-field.mjs",
+      "sha256": "2cf6b0d0cb3a7fd0fb0eb3c1718392c9c2b53a9d2ee64b9d3fc26c747d77adf2"
+    },
+    {
+      "path": "v5.1.0/review/desktop-product.css",
+      "sha256": "f5345caab3f42e54dd7895d95540660293e628109f7ff306b9431cc0952cdbad"
+    },
+    {
+      "path": "v5.1.0/review/detail-view.css",
+      "sha256": "e0f0e3f7cd5038968626c11832a0563904e7ee88c64e3ee0d3c9ed85aab6ace3"
+    },
+    {
+      "path": "v5.1.0/review/detail-view.mjs",
+      "sha256": "68691e960b44e5d59ee3fdd8bcdd5d463080b46825953809892120c4d594b97b"
+    },
+    {
+      "path": "v5.1.0/review/fixtures/stats.json",
+      "sha256": "42903684c6d8dfc5da32e0809043c75d359563ed6f9bd884dcdfd7c6d56f851e"
+    },
+    {
+      "path": "v5.1.0/review/fixtures/wp.json",
+      "sha256": "1315be50e568e770340c62e0030d8001871a200afa2399facf5a00ecad69cc89"
+    },
+    {
+      "path": "v5.1.0/review/index.html",
+      "sha256": "a1af226cb25c5ccd098f2c8da83c36d11fadd9cb01714cf9467279e413262dab"
+    },
+    {
+      "path": "v5.1.0/review/model.mjs",
+      "sha256": "ce3d0d6f399d05e06ba0b680cb641b29b4bb3933e64e34398a5b08ad790e860b"
+    },
+    {
+      "path": "v5.1.0/review/review.css",
+      "sha256": "a22b9437fde9bf0c97ecea26417d5e1969c36dbc2da5da8c9f7c8d33d4a966e6"
+    },
+    {
+      "path": "v5.1.0/review/wp-transport.mjs",
+      "sha256": "598e44c6f078d3f02463961f440ceb8f8a689c3342f2b1958da7b6b0ada10da5"
+    }
+  ]
+}

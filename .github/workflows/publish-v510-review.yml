@@ -1,7 +1,7 @@
 name: Publish isolated 5.1 QA review preserving prior Pages
 on:
   push:
-    branches: [ui/gamecast-v5.1.0-wp-connected]
+    branches: [fix/v510-desktop-disclosures]
     paths: ['release-assets/v5.1.0/review-publish-request.json']
 permissions:
   contents: read
@@ -25,7 +25,7 @@ jobs:
           node-version: '24'
       - name: Preserve approved UI, engine and prior release source
         run: |
-          git diff --exit-code 7aba63b36e23816623b39b6c75ceea64c605df1c -- public app .openai release-assets/v5.1.0/backend release-assets/v5.0.6-week11
+          git diff --exit-code f3369a7702d7c11108fd5bd04afb274f25938d83 -- public app .openai release-assets/v5.1.0/backend release-assets/v5.0.6-week11 ':(exclude)public/v5.1.0/review/app.mjs' ':(exclude)public/v5.1.0/review/detail-view.mjs'
           node --test tests/v510-ui/*.test.mjs tests/v506/*.test.mjs tests/v510/*.test.mjs
       - name: Verify latest successful Pages publisher baseline
         uses: actions/github-script@v7
@@ -33,7 +33,15 @@ jobs:
           script: |
             const runs = await github.paginate(github.rest.actions.listWorkflowRunsForRepo, {...context.repo, per_page: 100});
             const latest = runs.filter(r => /publish|deploy/i.test(r.name) && r.conclusion === 'success').sort((a,b) => b.id-a.id)[0];
-            if (latest?.id !== 41707776889) throw new Error('Published baseline changed; reconstruct inventory before publishing');
+            if (latest?.id !== 41980513018) throw new Error('Published baseline changed; reconstruct inventory before publishing');
+      - run: npm install --prefix "$RUNNER_TEMP/preflight" --no-audit --no-fund --save-exact playwright@1.62.1
+      - run: node "$RUNNER_TEMP/preflight/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Verify desktop fixes and mobile regression before publishing
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/preflight/node_modules/playwright/index.mjs
+        run: |
+          node tests/v510-ui/browser.mjs
+          GAMECAST_BROWSER=webkit node tests/v510-ui/browser.mjs
       - run: node scripts/ui/publish-review.mjs prepare
       - uses: actions/upload-artifact@v4
         with:

@@ -9,14 +9,15 @@ const old=JSON.parse(fs.readFileSync('release-assets/v5.1.0/pages-baseline.json'
 assert.equal(old.length,234);assert.equal(new Set(old.map(e=>e.path)).size,234);
 const fresh=walk('public/v5.1.0/review').map(f=>({path:f.slice(7),sha256:digest(fs.readFileSync(f))}));
 assert(fresh.length>10);assert(fresh.every(e=>e.path.startsWith('v5.1.0/review/')&&!old.some(p=>p.path===e.path)));
+const previous=JSON.parse(fs.readFileSync('release-assets/v5.1.0/review-previous-manifest.json')).files;
+assert.equal(previous.length,13);assert.deepEqual(previous.map(e=>e.path).sort(),fresh.map(e=>e.path).sort());
 const out='out-v510-review';
 async function get(p){const r=await fetch(root+p,{cache:'no-store',signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,p);return Buffer.from(await r.arrayBuffer());}
 function write(p,b){assert(!p.startsWith('/')&&!p.split('/').includes('..'));fs.mkdirSync(path.dirname(`${out}/${p}`),{recursive:true});fs.writeFileSync(`${out}/${p}`,b);}
 if(mode==='prepare'){
- const r=await fetch(root+'v5.1.0/review/',{cache:'no-store'});assert.equal(r.status,404,'QA route exists: do not overwrite');await r.arrayBuffer();
  assert(!fs.existsSync(out));fs.mkdirSync(out);
 }else assert.equal(mode,'verify');
-const items=mode==='prepare'?old:[...old,...fresh];
+const items=mode==='prepare'?[...old,...previous]:[...old,...fresh];
 for(let i=0;i<items.length;i+=4){await Promise.all(items.slice(i,i+4).map(async e=>{const b=await get(e.path);assert.equal(digest(b),e.sha256,`Published bytes differ: ${e.path}`);if(mode==='prepare')write(e.path,b);}));}
 if(mode==='prepare')for(const e of fresh)write(e.path,fs.readFileSync('public/'+e.path));
 fs.mkdirSync('outputs/v510-hosted',{recursive:true});fs.writeFileSync(`outputs/v510-hosted/${mode}.json`,JSON.stringify({status:'PASS',preserved:old.length,added:fresh.length,files:[...old,...fresh]},null,2));
