@@ -1,10 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {wpDatabaseUrl} from '../../release-assets/v5.1.0/qa-wp-api/database-config.mjs';
-const pooled='postgresql://postgres.xsvdmcipviejxynkdbhq:test-only@aws-0-example.pooler.supabase.com:6543/postgres';
-test('QA pool option does not replace other components database defaults',()=>{
- const env={SUPABASE_DB_URL:'existing-direct-url'};assert.equal(wpDatabaseUrl(k=>env[k]),'existing-direct-url');env.GAMECAST_V510_WP_DATABASE_URL=pooled;assert.equal(wpDatabaseUrl(k=>env[k]),pooled);assert.equal(env.SUPABASE_DB_URL,'existing-direct-url');
+const base={SUPABASE_URL:'https://xsvdmcipviejxynkdbhq.supabase.co',SUPABASE_DB_URL:'postgresql://postgres:test%25%40%3A@internal-db:5432/postgres?sslmode=require'};
+test('derive dedicated pool without changing existing secret or encoded credentials',()=>{
+ const env={...base},before={...env};const u=new URL(wpDatabaseUrl(k=>env[k]));
+ assert.equal(u.hostname,'db.xsvdmcipviejxynkdbhq.supabase.co');assert.equal(u.port,'6543');assert.equal(decodeURIComponent(u.password),'test%@:');assert.equal(u.search,'?sslmode=require');assert.deepEqual(env,before);
 });
-test('wrong project, session-mode, missing password and malformed URL fail without credential disclosure',()=>{
- for(const value of [pooled.replace('6543','5432'),pooled.replace('xsvdmcipviejxynkdbhq','anotherproject'),pooled.replace(':test-only',''),'bad test-only'])assert.throws(()=>wpDatabaseUrl(()=>value),e=>e.message==='WP_POOL_CONFIGURATION_INVALID'&&!e.message.includes('test-only'));
+test('reject missing config, wrong project and unsupported role with static errors',()=>{
+ for(const env of [{},{...base,SUPABASE_URL:'https://other.supabase.co'},{...base,SUPABASE_DB_URL:'invalid'},{...base,SUPABASE_DB_URL:base.SUPABASE_DB_URL.replace('postgres:','other:')}])assert.throws(()=>wpDatabaseUrl(k=>env[k]),{message:'WP_POOL_CONFIGURATION_INVALID'});
+});
+test('obsolete candidate secret cannot override verified runtime credential',()=>{
+ assert.equal(wpDatabaseUrl(k=>({...base,GAMECAST_V510_WP_DATABASE_URL:'invalid-candidate'})[k]),wpDatabaseUrl(k=>base[k]));
 });
