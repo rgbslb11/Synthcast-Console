@@ -80,8 +80,12 @@ try{
  denied=false;revision++;await page.locator('#refresh').click();await page.locator('#connection').filter({hasText:'Recovered'}).waitFor();assert.ok(await page.locator('#detail table').count()>0);
  await page.reload();await page.locator('#connection').filter({hasText:'Authentication required after reload'}).waitFor();assert.equal(await page.locator('#detail table').count(),0);assert.match(await page.locator('#review-banner').innerText(),/READ-ONLY QA/);assert.ok(methods.every(m=>m==='GET'));
  record('Mocked live access denial, recovery, no writes and safe reload');
- await page.locator('#settings-toggle').click();await page.locator('#fixtures').click();await page.locator('#board:not([hidden])').waitFor();await page.locator('[data-filter=all]').click();await page.setViewportSize({width:1440,height:1000});await page.screenshot({path:`${output}/statscenter.png`,fullPage:true});
+ await page.locator('#settings-toggle').click();await page.locator('#fixtures').click();await page.locator('#board:not([hidden])').waitFor();await page.locator('[data-filter=all]').click();if(await page.locator('#settings').isVisible())await page.locator('#settings-toggle').click();await page.setViewportSize({width:1440,height:1000});await page.screenshot({path:`${output}/statscenter.png`,fullPage:true});
  await page.locator('[data-open=G9001]').click();await page.locator('[data-tab=overview]').click();await page.screenshot({path:`${output}/game-center.png`,fullPage:true});
+ await page.locator('#wp-case').selectOption('editCancelled');await page.screenshot({path:`${output}/game-stats-favorite-above-50.png`,fullPage:true});await page.locator('#wp-case').selectOption('live');
+ await page.locator('[data-tab=plays]').click();await page.screenshot({path:`${output}/game-stats-play-by-play-drives.png`,fullPage:true});
+ await page.locator('[data-tab=overview]').click();await page.setViewportSize({width:390,height:1000});await page.screenshot({path:`${output}/game-stats-phone-width.png`,fullPage:true});
+
  assert.deepEqual(errors,[]);record('No application JavaScript errors');
 }catch(error){results.push({name:'Browser verification',status:'FAIL',error:error.stack});await page.screenshot({path:`${output}/failure.png`,fullPage:true});process.exitCode=1;}
 finally{await fs.writeFile(`${output}/results.json`,JSON.stringify({browser:kind,evidence:'FIXTURE / MOCK HTTP ONLY; viewport emulation, not real devices',results},null,2));console.log(JSON.stringify({browser:kind,results}));await context.close();await browser.close();server.close();}
