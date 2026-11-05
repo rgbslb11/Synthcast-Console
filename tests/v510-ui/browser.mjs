@@ -69,6 +69,9 @@ try{
  // Actual app transport calls are intercepted; these are fixtures, not live QA.
  const stats=JSON.parse(await fs.readFile('public/v5.1.0/review/fixtures/stats.json','utf8'));
  let denied=false,transportLost=false,blockedReason=null,revision=3,sourceTime=stats.responses.G9001.generatedAt,methods=[];
+ const wp=JSON.parse(await fs.readFile('public/v5.1.0/review/fixtures/wp.json','utf8')).fixtures.live;
+ await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/auth/v1/**',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({access_token:'qa-fixture-not-a-real-token',expires_in:3600,user:{id:'fixture',is_anonymous:false}})}));
+ await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-v5-1-0-qa-wp**',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({...wp,summary:{...wp.summary,sessionId:stats.sessionId,gameId:'G9001',runId:stats.responses.G9001.runId,stateVersion:revision}})}));
  await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-v5-1-0-qa-details**',async route=>{
   methods.push(route.request().method());
   if(transportLost){await route.abort('failed');return;}
@@ -76,10 +79,13 @@ try{
   if(blockedReason){const {contractVersion,deliveryVersion,sessionId,gameId,runId,generatedAt}=body;body={contractVersion,deliveryVersion,sessionId,gameId,runId,generatedAt,stateVersion:revision,availability:{status:'BLOCKED',reason:blockedReason}};}
   await route.fulfill({status:denied?403:200,contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},body:JSON.stringify(body)});
  });
- await page.goto(base+'#board');await page.locator('#settings-toggle').click();await page.locator('#session-input').fill(stats.sessionId);await page.locator('#games-input').fill('G9001');await page.locator('#token-input').fill('qa-fixture-not-a-real-token');await page.getByRole('button',{name:'Connect to QA',exact:true}).click();
+ await page.goto(base+'#board');await page.locator('#settings-toggle').click();await page.locator('#session-input').fill(stats.sessionId);await page.locator('#games-input').fill('G9001');await page.locator('#email-input').fill('qa@example.invalid');await page.locator('#password-input').fill('test-only');await page.getByRole('button',{name:'Connect to QA',exact:true}).click();
  await page.locator('#connection').filter({hasText:'Connected'}).waitFor();
  await page.locator('[data-open=G9001]').click();await page.locator('#detail table').first().waitFor();
  assert.ok(await page.locator('.notice').filter({hasText:'STALE'}).count()>0);
+ assert.equal(await page.locator('.wp-value').innerText(),`${(wp.summary.probability*100).toFixed(1)}%`);assert.equal(await page.locator('#password-input').inputValue(),'');
+ assert.ok(!(await page.evaluate(()=>JSON.stringify(sessionStorage))).includes('qa-fixture-not-a-real-token'));
+ record('Mock sign-in and selected-game WP HTTP wiring; credentials absent from storage');
  const clockBefore=await page.locator('.band-state').innerText();await manualRefresh();assert.equal(await page.locator('.band-state').innerText(),clockBefore);
  sourceTime=new Date().toISOString();revision++;await manualRefresh();assert.equal(await page.locator('.notice').filter({hasText:'STALE'}).count(),0);
  await page.locator('[data-tab=plays]').click();await page.locator('#drive-filter').selectOption('1');await page.locator('[data-play="2"]').click();
@@ -143,3 +149,4 @@ try{
  assert.deepEqual(errors,[]);record('No application JavaScript errors');
 }catch(error){results.push({name:'Browser verification',status:'FAIL',error:error.stack});await page.screenshot({path:`${output}/failure.png`,fullPage:true});process.exitCode=1;}
 finally{await fs.writeFile(`${output}/results.json`,JSON.stringify({browser:kind,evidence:'FIXTURE / MOCK HTTP ONLY; viewport emulation, not real devices',results},null,2));console.log(JSON.stringify({browser:kind,results}));await context.close();await browser.close();server.close();}
+
