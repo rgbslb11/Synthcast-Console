@@ -1,0 +1,31 @@
+name: Verify bounded 56-game WP board QA
+on:
+  push:
+    branches: [qa/v510-wp-sustained]
+    paths: ['release-assets/v5.1.0/wp-board-request.json']
+permissions:
+  contents: read
+concurrency:
+  group: gamecast-v510-wp-external-qa
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Bounded normal-user board and selected history reads
+        env:
+          GAMECAST_QA_EMAIL: ${{ secrets.GAMECAST_QA_EMAIL }}
+          GAMECAST_QA_PASSWORD: ${{ secrets.GAMECAST_QA_PASSWORD }}
+        run: node scripts/qa/wp-board-load.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v510-wp-board
+          path: outputs/v510-wp/board-load.json
