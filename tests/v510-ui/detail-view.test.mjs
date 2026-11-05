@@ -47,3 +47,32 @@ test('entering-game records are rendered only from supplied authoritative fields
  const data=structuredClone(options.data);data.scoreboard.awayTeamAndRecords.record='4-1';
  const html=renderGameStats({...options,data},renderers);assert.match(html,/4-1/);assert.match(html,/Record unavailable/);
 });
+
+test('desktop field uses authoritative coordinates, mirrored yard labels and text end zones',async()=>{
+ const {desktopField}=await import('../../public/v5.1.0/review/desktop-field.mjs');
+ const data=structuredClone(options.data);data.field={possession:0,ball:38,lineOfScrimmage:38,lineToGain:44,down:2,distance:6};
+ const before=JSON.stringify(data),html=desktopField(data);
+ assert.match(html,/class="turf-ball" cx="480"/);
+ assert.match(html,/class="turf-scrimmage" x1="480"/);
+ assert.match(html,/class="turf-gain" x1="540"/);
+ assert.match(html,/Example Away 1/);assert.match(html,/Example Home 1/);
+ assert.equal((html.match(/>50<\/text>/g)??[]).length,2);
+ assert.equal((html.match(/>10<\/text>/g)??[]).length,4);
+ assert.equal(JSON.stringify(data),before);
+ assert.doesNotMatch(html,/<img/);
+});
+test('desktop field never positions missing/invalid coordinates at zero; blocking clears turf',async()=>{
+ const {desktopField}=await import('../../public/v5.1.0/review/desktop-field.mjs');
+ const data=structuredClone(options.data);
+ for(const value of [null,undefined,NaN,-1,101,'38']){
+  data.field={possession:0,ball:value,lineOfScrimmage:value,lineToGain:value};
+  const html=desktopField(data);assert.doesNotMatch(html,/class="turf-(ball|scrimmage|gain)"/);assert.match(html,/unavailable/);
+ }
+ data.field={availability:{status:'BLOCKED',reason:'OT_FIELD_UNAVAILABLE'},ball:38};
+ assert.doesNotMatch(desktopField(data),/<svg/);assert.match(desktopField(data),/OT_FIELD_UNAVAILABLE/);
+});
+test('historical desktop field uses supplied pre-snap coordinates and never infers line to gain',async()=>{
+ const {desktopField}=await import('../../public/v5.1.0/review/desktop-field.mjs');
+ const html=desktopField(options.data,{sequence:2,possessingTeam:0,preFieldPosition:25,preDown:1,preDistance:10});
+ assert.match(html,/class="turf-ball" cx="350"/);assert.doesNotMatch(html,/class="turf-gain"/);assert.match(html,/Historical play 2/);
+});

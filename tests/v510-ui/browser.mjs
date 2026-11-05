@@ -95,6 +95,7 @@ try{
  const compactBottom=await page.locator('.key-stats').evaluate(el=>el.getBoundingClientRect().bottom);assert.ok(compactBottom<=1080,`Overview extends below 1080: ${compactBottom}`);
 
  const fieldWidth=await page.locator('.current-drive .field').evaluate(el=>el.getBoundingClientRect().width);const overviewWidth=await page.locator('.overview-grid').evaluate(el=>el.getBoundingClientRect().width);assert.ok(fieldWidth/overviewWidth>=0.68,`Field too narrow: ${fieldWidth}/${overviewWidth}`);
+ assert.equal(await page.locator('.turf-field').count(),1);assert.equal(await page.locator('.turf-field svg').count(),1);assert.equal(await page.locator('.timeout-dots').count(),2);assert.equal(await page.locator('#game-stats-nav[aria-current=page]').count(),1);
  await page.screenshot({path:`${output}/game-stats-1920x1080.png`,fullPage:false});
  await page.locator('#back').click();await page.locator('#board:not([hidden])').waitFor();const pairGap=await page.locator('.card .teams').first().evaluate(el=>{const name=el.querySelector('.team'),score=el.querySelector('.score');return score.getBoundingClientRect().left-name.getBoundingClientRect().right;});assert.ok(pairGap<=18,`Team-score gap ${pairGap}`);await page.screenshot({path:`${output}/statscenter-1920x1080.png`,fullPage:false});
  record('Compact layout: four overview panels fit 1920x1080; mobile menu/game picker/stats collapse and retain state');

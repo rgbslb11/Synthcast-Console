@@ -110,3 +110,36 @@ The earlier screenshots were 1440-pixel-wide full-page captures (Game Stats 1440
 Mobile appearance accepted by Chairman. Subsequent desktop-only rules are confined to min-width 1101px: field column increased to approximately 70%, WP narrowed, card gutters reduced to 5–7px, desktop header/navigation grouped, padding reduced, and numeric team-stat columns paired at 140px. StatsCenter team/score pairs use content-sized name columns with a 16px gap, rather than scores pinned to the far card edge. Verification measures field width at least 68% of Overview and team-score gaps no greater than 18px. No <=1100px CSS rule or mobile markup changed.
 
 At widths above 1300px, the Overview uses a 24-column layout: field 17 columns / WP 7 columns on top; Key Team Stats 12 / Scoring Summary 12 below. The field is dominant while bottom comparisons remain balanced.
+
+## Approved professional concept — full UI build, November 5
+
+The Chairman rejected the earlier desktop spacing iterations, then approved the
+professional desktop concept and instructed the full build. That concept now
+supersedes the earlier neutral-field desktop treatment above. Its green turf is
+approved illustration content, not a replacement for the canonical brand palette.
+The accepted mobile view remains the baseline at widths <=1100px.
+
+Implemented in repository-native HTML/CSS/SVG, not a flattened mockup:
+- Desktop masthead/navigation, compact score band, separate scoreboard/GL labels,
+  supplied timeout dots, quarter line score and network metadata.
+- Wide perspective turf with mowing stripes, mirrored yard numbers, text-only
+  end zones and supplied ball/scrimmage/gain coordinates. Missing coordinates
+  omit markers; blocked field omits the illustration. Historical view uses
+  supplied pre-snap position and leaves the unavailable gain line absent.
+- Four Overview panels with compact tables and aligned hierarchy. WP selector
+  and immutable-observation disclosure remain available below the primary chart.
+- StatsCenter typography, compact team/score pairs, filters and status lanes.
+- Desktop Game Stats navigation state and breakpoint rerendering. Existing
+  return-to-board, selection, filters, read-only polling and recovery retained.
+
+The concept's sample teams, scores, drive duration, full scoring descriptions,
+quarter-based WP coordinates and opponent percentage are not permission to
+invent source values. All backend handoffs above remain open. Chairman Console
+navigation stays visibly disabled pending a verified 5.1 route; controls remain
+in the existing operator console. No backend, hosted Site or release changed.
+
+New semantic tests cover authoritative field geometry, missing/invalid coordinates,
+blocked fields, historical positions and immutable input. Browser verification
+must be read from the current commit's run before claiming a pass. Live authorized
+HTTP integration and real iPhone/iPad/Safari remain NOT TESTED. Rollback: restore
+UI commit 5f96298; no cloud restoration is needed.
