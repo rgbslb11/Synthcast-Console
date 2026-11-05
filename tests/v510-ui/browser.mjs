@@ -64,7 +64,7 @@ try{
    await page.locator(`[data-tab=${tab}]`).click();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),`${kind} ${width} ${tab} overflow`);
   }
  }
- record('Responsive board and all four detail tabs: 390/820/1194/1440');
+ record('Responsive board and all four detail tabs: 390/820/1194/1440/1920');
  // Actual app transport calls are intercepted; these are fixtures, not live QA.
  const stats=JSON.parse(await fs.readFile('public/v5.1.0/review/fixtures/stats.json','utf8'));
  let denied=false,revision=3,methods=[];

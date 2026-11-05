@@ -14,3 +14,4 @@
 @media(max-width:600px){.masthead .brand,.brand>div{min-width:0}.brand h1{font-size:14px;white-space:normal}}
 /* Keep the status-lane board as compact as the detail workspace. */
 .lane-body{padding:8px;gap:8px}.card{padding:12px}.card-meta{margin-bottom:10px}.card-bottom{margin-top:10px}.card .team{font-size:18px}.card .score{font-size:26px}.card .message{margin-top:8px}.lane-title{padding:12px 14px}.filters{margin-bottom:14px}.section-heading{margin-bottom:16px}.footnote{margin-top:14px}
+@media(min-width:901px){.key-stats td,.key-stats th{padding-top:5px;padding-bottom:5px}.masthead{padding-top:10px;padding-bottom:10px}.toolbar{padding-top:6px;padding-bottom:6px}}
