@@ -1,0 +1,36 @@
+name: Verify external WP QA runner
+on:
+  push:
+    branches: [development/gamecast-v5.1.0-wp]
+    paths:
+      - scripts/qa/wp-external-load.mjs
+      - tests/v510-ui/external-load.test.mjs
+      - .github/workflows/verify-v510-wp-external.yml
+      - release-assets/v5.1.0/wp-load-request.json
+permissions:
+  contents: read
+concurrency:
+  group: gamecast-v510-wp-external-qa
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test tests/v510-ui/external-load.test.mjs
+      - name: Run authorized QA workload or report missing credentials
+        env:
+          GAMECAST_QA_EMAIL: ${{ secrets.GAMECAST_QA_EMAIL }}
+          GAMECAST_QA_PASSWORD: ${{ secrets.GAMECAST_QA_PASSWORD }}
+        run: node scripts/qa/wp-external-load.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v510-wp-external-load
+          path: outputs/v510-wp/external-load.json
