@@ -71,7 +71,12 @@ try{
  let denied=false,transportLost=false,blockedReason=null,revision=3,sourceTime=stats.responses.G9001.generatedAt,methods=[];
  const wp=JSON.parse(await fs.readFile('public/v5.1.0/review/fixtures/wp.json','utf8')).fixtures.live;
  await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/auth/v1/**',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({access_token:'qa-fixture-not-a-real-token',expires_in:3600,user:{id:'fixture',is_anonymous:false}})}));
- await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-v5-1-0-qa-wp**',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({...wp,summary:{...wp.summary,sessionId:stats.sessionId,gameId:'G9001',runId:stats.responses.G9001.runId,stateVersion:revision}})}));
+ let boardReads=0,historyReads=0;
+ await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-v5-1-0-qa-wp**',async route=>{
+  const q=new URL(route.request().url()).searchParams,summary={...wp.summary,sessionId:stats.sessionId,gameId:'G9001',runId:stats.responses.G9001.runId,stateVersion:revision};
+  if(q.get('view')==='board'){boardReads++;assert.equal(q.get('games'),'G9001');await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({contractVersion:'GC-WP-BOARD-1',sessionId:stats.sessionId,sourceVersion:revision,wpVersion:revision,games:[{gameId:'G9001',summary}]})});}
+  else{historyReads++;await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({...wp,summary})});}
+ });
  await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-v5-1-0-qa-details**',async route=>{
   methods.push(route.request().method());await new Promise(resolve=>setTimeout(resolve,150));
   if(transportLost){await route.abort('failed');return;}
@@ -81,12 +86,13 @@ try{
  });
  await page.goto(base+'#board');await page.locator('#settings-toggle').click();await page.locator('#session-input').fill(stats.sessionId);await page.locator('#games-input').fill('G9001');await page.locator('#email-input').fill('qa@example.invalid');await page.locator('#password-input').fill('test-only');await page.getByRole('button',{name:'Connect to QA',exact:true}).click();
  await page.locator('#connection').filter({hasText:'Connected'}).waitFor();
+ assert.ok(boardReads>=1);assert.equal(historyReads,0);
  await page.locator('[data-open=G9001]').click();await page.locator('#detail table').first().waitFor();
  assert.ok(await page.locator('.notice').filter({hasText:'STALE'}).count()>0);
  await page.locator('[data-tab=overview]').click();await page.waitForFunction(()=>document.querySelector('.wp-value')?.textContent==='40.0%');
  assert.equal(await page.locator('.wp-value').innerText(),`${(wp.summary.probability*100).toFixed(1)}%`);assert.equal(await page.locator('#password-input').inputValue(),'');
  assert.ok(!(await page.evaluate(()=>JSON.stringify(sessionStorage))).includes('qa-fixture-not-a-real-token'));
- record('Mock sign-in and selected-game WP HTTP wiring; credentials absent from storage');
+ await page.waitForFunction(()=>!document.querySelector('#refresh').disabled);assert.ok(historyReads>=1);record('One board summary request; history fetched separately only after selection; credentials absent from storage');
  await page.setViewportSize({width:1920,height:1080});
  await page.locator('.wp-options > summary').click();await page.locator('.all-fields > summary').click();
  const beforePoll=methods.length;
