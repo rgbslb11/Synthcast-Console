@@ -104,3 +104,7 @@ regression suite. Rollback is to the previous UI commit; no cloud restoration.
 ## Compact layout correction
 
 The earlier screenshots were 1440-pixel-wide full-page captures (Game Stats 1440x1374; phone 390x2238), not 1920x1080 viewport captures. The Chairman requested tighter spacing and real mobile collapse. This revision reduces header/panel/table padding, stops empty overview panels stretching to their neighbor height, and uses the available desktop width. Mobile has collapsible Menu/Status, Games selector, line score, Key Team Stats and Scoring Summary. Primary score, field and WP remain visible; expanded menu/game/stats state survives refresh. No CSS zoom, image scaling or football/API changes. GitHub verification checks a real 1920x1080 viewport and produces an exact 1920x1080 PNG separately from full-page screenshots.
+
+## Desktop spacing feedback
+
+Mobile appearance accepted by Chairman. Subsequent desktop-only rules are confined to min-width 1101px: field column increased to approximately 70%, WP narrowed, card gutters reduced to 5–7px, desktop header/navigation grouped, padding reduced, and numeric team-stat columns paired at 140px. StatsCenter team/score pairs use content-sized name columns with a 16px gap, rather than scores pinned to the far card edge. Verification measures field width at least 68% of Overview and team-score gaps no greater than 18px. No <=1100px CSS rule or mobile markup changed.

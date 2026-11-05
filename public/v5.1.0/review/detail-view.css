@@ -15,3 +15,17 @@
 /* Keep the status-lane board as compact as the detail workspace. */
 .lane-body{padding:8px;gap:8px}.card{padding:12px}.card-meta{margin-bottom:10px}.card-bottom{margin-top:10px}.card .team{font-size:18px}.card .score{font-size:26px}.card .message{margin-top:8px}.lane-title{padding:12px 14px}.filters{margin-bottom:14px}.section-heading{margin-bottom:16px}.footnote{margin-top:14px}
 @media(min-width:901px){.key-stats td,.key-stats th{padding-top:5px;padding-bottom:5px}.masthead{padding-top:10px;padding-bottom:10px}.toolbar{padding-top:6px;padding-bottom:6px}}
+/* Desktop density revision. The accepted <=1100px layout is unchanged. */
+@media(min-width:1101px){
+ .masthead{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:24px;padding:8px 14px}.masthead-status{justify-self:end}.masthead .surface-nav{justify-self:start}
+ main{padding-left:14px;padding-right:14px}.toolbar{padding:4px 14px}.review-banner{max-width:1892px;margin-top:5px;padding:5px 9px}
+ .game-workspace{grid-template-columns:174px minmax(0,1fr);gap:6px}.game-heading{margin-bottom:6px}.game-heading h2{font-size:19px}.game-bank{padding:7px}.bank-game{margin-bottom:5px}
+ .score-band{padding:8px 10px;gap:8px}.score-band-main{gap:10px}.band-team{justify-content:flex-start;gap:14px}.band-team:last-child{justify-content:flex-end}.band-state{gap:3px;padding:0 7px}.band-line-score td,.band-line-score th{padding:5px}
+ .detail-meta{margin:5px 0}.game-main .tabs{padding-bottom:5px}.game-main .tabs button{padding:8px 11px;min-height:38px}
+ .overview-grid{grid-template-columns:minmax(0,2.4fr) minmax(320px,1fr);gap:5px;align-items:start}.overview-grid .panel{padding:9px}.overview-grid h3{margin-bottom:8px}
+ .current-drive .field{height:165px;margin:8px 0 6px}.current-drive>p{margin:6px 0}.last-play{margin-top:7px;padding-top:7px;gap:10px}.last-play>strong{padding:7px}
+ .wp-layout{grid-template-columns:minmax(0,1fr) 80px;gap:8px}.wp-svg{height:128px;min-height:128px;max-height:128px;margin-top:6px}.example-selector{margin-bottom:7px}.pregame-wp{padding-left:8px}.wp-options{margin-top:5px}.wp-options summary{min-height:30px;padding-top:7px}.wp-panel>.muted{margin-top:7px}
+ .key-stats table{table-layout:fixed}.key-stats th:first-child{width:calc(100% - 280px)}.key-stats th.num{width:140px}.key-stats th.num,.key-stats td.num{text-align:center}.key-stats td,.key-stats th{padding:5px 7px}
+ .scoring-summary td,.scoring-summary th{padding:6px}.game-main .all-fields summary{min-height:28px;padding:6px 0}
+ .lanes{gap:7px}.lane-body{padding:6px;gap:6px}.lane-title{padding:10px 12px}.card{padding:10px}.card .teams{grid-template-columns:fit-content(280px) 56px;column-gap:16px;justify-content:start}.card .score{text-align:left}.card-meta{margin-bottom:8px}.card-bottom{margin-top:8px}.filters{margin-bottom:10px}.section-heading{margin-bottom:10px}
+}
