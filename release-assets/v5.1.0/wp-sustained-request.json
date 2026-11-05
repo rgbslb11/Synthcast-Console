@@ -1,1 +1,1 @@
-{"session":"qa-v510-wp-load-r3","expectedVersion":10,"maxReadRounds":120,"maxCommands":20,"advanceSeconds":600,"minimumReadDurationSeconds":180,"scope":"QA only; independent sampler; no acceptance or forced final"}
+{"session":"qa-v510-wp-load-r3","expectedVersion":11,"maxReadRounds":120,"maxCommands":20,"advanceSeconds":600,"minimumReadDurationSeconds":180,"scope":"QA only; independent sampler; no acceptance or forced final"}
