@@ -26,6 +26,32 @@ Deno.serve(async req=>{
    const t=createReportingTransport({url:Deno.env.get('SUPABASE_URL'),publishableKey:Deno.env.get('SUPABASE_ANON_KEY'),serviceKey:Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'),gateway:true});
    const source=createSourceStore({rpc:t.rpc}),store=createWpStore({query,transaction});
    const operation=await req.json();
+   if(operation.qaAction==='auth_checks'){
+    const base=Deno.env.get('SUPABASE_URL'),key=Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'),anon=Deno.env.get('SUPABASE_ANON_KEY');
+    let uid,token;const results=[];
+    const call=async(path,method,body,bearer=key,apikey=key,extra={})=>{const r=await fetch(base+path,{method,headers:{apikey,Authorization:'Bearer '+bearer,'Content-Type':'application/json',...extra},body:body===undefined?undefined:JSON.stringify(body)});return {status:r.status,body:await r.json().catch(()=>null)};};
+    const check=(name,ok)=>{results.push({name,pass:!!ok});if(!ok)throw Error(name);};
+    try{
+     const email='wp-qa-'+crypto.randomUUID()+'@example.invalid',password=crypto.randomUUID()+crypto.randomUUID();
+     const user=await call('/auth/v1/admin/users','POST',{email,password,email_confirm:true});uid=user.body?.id;check('temporary identity',user.status===200&&uid);
+     const login=await call('/auth/v1/token?grant_type=password','POST',{email,password},anon,anon);token=login.body?.access_token;check('login',login.status===200&&token);
+     const path='/functions/v1/gamecast-v5-1-0-qa-wp?session='+sessionId+'&game=G0503&limit=1';
+     const read=()=>call(path,'GET',undefined,token,anon,{Origin:'https://rgbslb11.github.io'});
+     check('ungranted denial',(await read()).status===403);
+     await query('insert into gamecast_v510.reporting_grants values($1,$2,true)',[sessionId,uid]);
+     const first=await read();check('authorized read',first.status===200&&first.body.points.length===1);
+     const page=await call(path+'&after='+first.body.nextSequence+'&run='+encodeURIComponent(first.body.summary.runId)+'&through='+first.body.highWatermark,'GET',undefined,token,anon,{Origin:'https://rgbslb11.github.io'});
+     check('bound pagination',page.status===200&&page.body.nextSequence>first.body.nextSequence&&page.body.highWatermark===first.body.highWatermark);
+     const frozen=await call(path,'POST',{expectedVersion:4,prior:{}},token,anon,{Origin:'https://rgbslb11.github.io','Idempotency-Key':'qa-freeze-'+crypto.randomUUID()});
+     check('prior frozen',frozen.status===409&&frozen.body.error==='PREGAME_FROZEN');
+    }catch(e){results.push({error:e.message});}
+    finally{
+     if(uid){await query('delete from gamecast_v510.reporting_grants where session_id=$1 and user_id=$2',[sessionId,uid]);}
+     if(token){const r=await call('/auth/v1/logout','POST',{},token,anon);results.push({logout:r.status});}
+     if(uid){const r=await call('/auth/v1/admin/users/'+uid,'DELETE');results.push({deleteIdentity:r.status});}
+    }
+    return Response.json({results});
+   }
    if(operation.qaAction){
     const actors=await query('select user_id from gamecast_v510.reporting_grants where session_id=$1 and active',[sessionId]);
     if(actors.rows.length!==1)throw Error('QA_ACTOR_REQUIRED');
