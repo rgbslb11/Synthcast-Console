@@ -34,7 +34,9 @@ export async function readWpBoard({session,games,token,signal,fetchImpl=fetch}){
 }
 export function selectWpResponse({history,board,data,now=Date.now()}){
  const matches=s=>s&&data&&s.sessionId===data.sessionId&&s.gameId===data.gameId&&s.runId===data.runId&&s.stateVersion===data.stateVersion;
- const current=board&&now-board.fetchedAt>=0&&now-board.fetchedAt<=10000&&matches(board.summary);
+ const fresh=board&&now-board.fetchedAt>=0&&now-board.fetchedAt<=10000;
+ if(fresh&&!matches(board.summary))return undefined;
+ const current=fresh&&matches(board.summary);
  if(current&&board.summary.status==='BLOCKED')return {summary:board.summary,points:[],summaryOnly:true};
  if(matches(history?.summary))return history;
  if(current)return {summary:board.summary,points:[],summaryOnly:true};

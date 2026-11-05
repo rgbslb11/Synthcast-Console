@@ -53,5 +53,7 @@ test('summary priming never invents history or crosses session, game, run, revis
  assert.equal(selectWpResponse({...args,history:response}),response);
  for(const change of [{sessionId:'other'},{gameId:'G9999'},{runId:'other'},{stateVersion:summary.stateVersion+1}])assert.equal(selectWpResponse({...args,data:{...data,...change}}),undefined);
  assert.equal(selectWpResponse({...args,now:12000}),undefined);
+ assert.equal(selectWpResponse({...args,history:response,board:{fetchedAt:1000,summary:{status:'BLOCKED',reason:'NO_COMMITTED_OBSERVATION',probability:null}}}),undefined);
+ assert.equal(selectWpResponse({...args,history:response,board:{fetchedAt:1000,summary:{...summary,runId:'new-run'}}}),undefined);
  const blocked={summary:{...summary,status:'BLOCKED',reason:'WP_SOURCE_PENDING',probability:null},fetchedAt:1000};assert.equal(selectWpResponse({...args,board:blocked,history:response}).summary.probability,null);
 });
