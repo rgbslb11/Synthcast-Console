@@ -1,5 +1,6 @@
-import postgres from 'npm:postgres@3.4.5';
+import {createWpSqlAuthorization} from './probability/sql-authorization.mjs';
 import {wpDatabaseUrl} from './database-config.mjs';
+import postgres from 'npm:postgres@3.4.5';
 import {createWpStore} from './probability/store.mjs';
 import {createWpHandler} from './probability/http.mjs';
 import {createReportingTransport} from './delivery/supabase-adapter.mjs';
@@ -10,6 +11,6 @@ Deno.serve(async req=>{
  const connect=()=>sql??=postgres(wpDatabaseUrl(name=>Deno.env.get(name)),{prepare:false,max:1,connect_timeout:10,idle_timeout:5});
  const query=async(text,args=[])=>({rows:await (tx??connect()).unsafe(text,args.map(v=>typeof v==='string'&&/^[{[]/.test(v)?connect().json(JSON.parse(v)):v))});
  const transaction=fn=>connect().begin(async scoped=>{tx=scoped;try{return await fn();}finally{tx=undefined;}});
- const handler=createWpHandler({allowedOrigins:['https://rgbslb11.github.io'],authenticate:t.authenticate,authorize:t.authorize,store:createWpStore({query,transaction})});
+ const handler=createWpHandler({allowedOrigins:['https://rgbslb11.github.io'],authenticate:t.authenticate,authorize:createWpSqlAuthorization(query),store:createWpStore({query,transaction})});
  try{return await handler(req);}finally{if(sql)await sql.end({timeout:5});}
 });
