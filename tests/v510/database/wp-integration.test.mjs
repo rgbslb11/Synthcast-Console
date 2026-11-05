@@ -101,3 +101,23 @@ test('composed backend recovers after commit and WP failure never replays footba
  assert.equal(await f.ctl.store.sourceVersion(f.sid,f.games[0].id),2);
  }finally{await f.db.close();}
 });
+
+test('single-statement WP reads preserve authorization, bounded history, stale-source blocks and cursor errors',async()=>{
+ const f=await fixture();try{
+  await f.set();await f.pipeline.sample(f.sid,f.clock());
+  const g=f.games[0],args={sessionId:f.sid,gameId:g.id,userId:actor};
+  let calls=0;const store=createWpStore({query:async(...a)=>{calls++;return f.query(...a);},transaction:()=>{throw Error('READ_MUST_BE_ONE_STATEMENT');}});
+  const first=await store.read({...args,limit:1});assert.equal(calls,1);assert.equal(first.points.length,1);
+  await assert.rejects(()=>store.read({...args,userId:'00000000-0000-4000-8000-000000000002'}),/CHAIRMAN_FORBIDDEN/);
+  const missing=await store.read({...args,gameId:'G9999'});assert.equal(missing.summary.reason,'NO_COMMITTED_OBSERVATION');assert.deepEqual(missing.points,[]);
+  await assert.rejects(()=>store.read({...args,highWatermark:first.highWatermark+1}),/INVALID_CURSOR/);
+  await assert.rejects(()=>store.read({...args,runId:'different-run'}),/RUN_CHANGED/);
+  f.advanceTime(5);await f.pipeline.sample(f.sid,f.clock());
+  const pinned=await store.read({...args,runId:first.summary.runId,after:first.nextSequence,highWatermark:first.highWatermark});
+  assert.deepEqual(pinned.points,[]);assert.equal(pinned.highWatermark,first.highWatermark);
+  await f.call([{id:g.id,command:'launch'}]);
+  const pending=await store.read(args);assert.equal(pending.summary.reason,'WP_SOURCE_PENDING');assert.equal(pending.summary.probability,null);assert.deepEqual(pending.points,[]);
+  await f.db.query('update gamecast_v510.reporting_grants set active=false where session_id=$1',[f.sid]);
+  await assert.rejects(()=>store.read(args),/CHAIRMAN_FORBIDDEN/);
+ }finally{await f.db.close();}
+});
