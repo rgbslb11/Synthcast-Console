@@ -73,7 +73,7 @@ try{
  await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/auth/v1/**',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({access_token:'qa-fixture-not-a-real-token',expires_in:3600,user:{id:'fixture',is_anonymous:false}})}));
  await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-v5-1-0-qa-wp**',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({...wp,summary:{...wp.summary,sessionId:stats.sessionId,gameId:'G9001',runId:stats.responses.G9001.runId,stateVersion:revision}})}));
  await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-v5-1-0-qa-details**',async route=>{
-  methods.push(route.request().method());
+  methods.push(route.request().method());await new Promise(resolve=>setTimeout(resolve,150));
   if(transportLost){await route.abort('failed');return;}
   let body=denied?{error:'CHAIRMAN_FORBIDDEN'}:{...stats.responses.G9001,stateVersion:revision,generatedAt:sourceTime};
   if(blockedReason){const {contractVersion,deliveryVersion,sessionId,gameId,runId,generatedAt}=body;body={contractVersion,deliveryVersion,sessionId,gameId,runId,generatedAt,stateVersion:revision,availability:{status:'BLOCKED',reason:blockedReason}};}
@@ -87,6 +87,23 @@ try{
  assert.equal(await page.locator('.wp-value').innerText(),`${(wp.summary.probability*100).toFixed(1)}%`);assert.equal(await page.locator('#password-input').inputValue(),'');
  assert.ok(!(await page.evaluate(()=>JSON.stringify(sessionStorage))).includes('qa-fixture-not-a-real-token'));
  record('Mock sign-in and selected-game WP HTTP wiring; credentials absent from storage');
+ await page.setViewportSize({width:1920,height:1080});
+ await page.locator('.wp-options > summary').click();await page.locator('.all-fields > summary').click();
+ const beforePoll=methods.length;
+ await page.waitForFunction(()=>document.querySelector('#refresh').disabled,{timeout:10000});
+ assert.ok(await page.locator('.wp-options').evaluate(el=>el.open),'WP history stays open at poll start');
+ await page.waitForFunction(()=>!document.querySelector('#refresh').disabled,{timeout:15000});
+ assert.ok(methods.length>beforePoll);
+ for(const selector of ['.wp-options','.all-fields'])assert.ok(await page.locator(selector).evaluate(el=>el.open),selector+' stays open after poll');
+ await page.locator('.wp-options > summary').click();await manualRefresh();assert.equal(await page.locator('.wp-options').evaluate(el=>el.open),false);
+ await page.locator('[data-tab=plays]').click();await page.locator('[data-play="2"]').click();
+ assert.match(await page.locator('.combined-history .field').getAttribute('aria-label'),/Historical play 2/);
+ await page.locator('#return-live').click();assert.match(await page.locator('.combined-history .field').getAttribute('aria-label'),/Live committed field/);
+ assert.equal(await page.locator('[data-play][aria-pressed=true]').count(),0);assert.ok(await page.locator('#return-live').isDisabled());
+ await manualRefresh();assert.ok(await page.locator('#return-live').isDisabled());assert.match(await page.locator('.combined-history .field').getAttribute('aria-label'),/Live committed field/);
+ await page.locator('[data-tab=overview]').click();
+ record('Desktop disclosures survive automatic poll start/completion; explicit close persists; historical play returns to live field');
+
  const clockBefore=await page.locator('.band-state').innerText();await manualRefresh();assert.equal(await page.locator('.band-state').innerText(),clockBefore);
  sourceTime=new Date().toISOString();revision++;await manualRefresh();assert.equal(await page.locator('.notice').filter({hasText:'STALE'}).count(),0);
  await page.locator('[data-tab=plays]').click();await page.locator('#drive-filter').selectOption('1');await page.locator('[data-play="2"]').click();

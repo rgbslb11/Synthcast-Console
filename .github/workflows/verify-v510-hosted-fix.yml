@@ -1,0 +1,40 @@
+name: Verify hosted desktop persistence repair
+on:
+  push:
+    branches: [fix/v510-desktop-disclosures]
+    paths: ['tests/v510-ui/hosted.mjs', '.github/workflows/verify-v510-hosted-fix.yml']
+permissions:
+  contents: read
+jobs:
+  hosted:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/ui/publish-review.mjs verify
+      - run: npm install --prefix "$RUNNER_TEMP/browser" --no-audit --no-fund --save-exact playwright@1.62.1
+      - run: node "$RUNNER_TEMP/browser/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Hosted Chromium actual QA access
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/browser/node_modules/playwright/index.mjs
+          GAMECAST_QA_EMAIL: ${{ secrets.GAMECAST_QA_EMAIL }}
+          GAMECAST_QA_PASSWORD: ${{ secrets.GAMECAST_QA_PASSWORD }}
+        run: node tests/v510-ui/hosted.mjs
+      - name: Hosted WebKit actual QA access
+        if: always()
+        env:
+          GAMECAST_BROWSER: webkit
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/browser/node_modules/playwright/index.mjs
+          GAMECAST_QA_EMAIL: ${{ secrets.GAMECAST_QA_EMAIL }}
+          GAMECAST_QA_PASSWORD: ${{ secrets.GAMECAST_QA_PASSWORD }}
+        run: node tests/v510-ui/hosted.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v510-hosted-evidence
+          path: outputs/v510-hosted
