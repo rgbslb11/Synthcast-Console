@@ -19,6 +19,7 @@ const server=http.createServer(async(req,res)=>{
 const base=`http://127.0.0.1:${server.address().port}/v5.1.0/review/`,browser=await ({chromium,webkit}[kind]).launch(),context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage();
 const errors=[];page.on('pageerror',error=>errors.push(error.message));
 const record=(name,extra={})=>results.push({name,status:'PASS',...extra});
+const manualRefresh=async()=>{await page.locator('#refresh').click();await page.waitForFunction(()=>!document.querySelector('#refresh').disabled);};
 try{
  await page.goto(base);await page.locator('.card').first().waitFor();
  assert.equal(await page.locator('.card').count(),6);
@@ -38,7 +39,7 @@ try{
  await page.locator('[data-filter=all]').click();await page.locator('#search').fill('Example Away 1');assert.equal(await page.locator('.card').count(),1);
  await page.locator('[data-open=G9001]').click();await page.locator('#detail:not([hidden])').waitFor();
  await page.locator('[data-tab=plays]').click();await page.locator('[data-play="2"]').click();assert.equal(await page.locator('.play-attributes > div').count(),22);
- await page.locator('#refresh').click();assert.equal(await page.locator('[data-play="2"]').getAttribute('aria-pressed'),'true');
+ await manualRefresh();assert.equal(await page.locator('[data-play="2"]').getAttribute('aria-pressed'),'true');
  await page.locator('#back').click();await page.locator('#board:not([hidden])').waitFor();assert.equal(await page.locator('#search').inputValue(),'Example Away 1');assert.equal(await page.locator('.card').count(),1);
  record('Navigation, filters, selection and refresh retention');
  await page.goto(base+'#game=G9003');await page.locator('#detail:not([hidden])').waitFor();assert.match(await page.locator('#detail-content').innerText(),/CHAIRMAN_CORRECTION/);assert.equal(await page.locator('#detail table').count(),0);
@@ -53,7 +54,7 @@ try{
  assert.equal(await page.getByRole('tab',{name:'Play-by-Play / Drives',exact:true}).count(),1);
  assert.match(await page.locator('.scoring-summary h3').innerText(),/SCORING SUMMARY/);
  await page.locator('[data-tab=plays]').click();await page.locator('#drive-filter').selectOption('1');assert.equal(await page.locator('[data-play]').count(),2);
- await page.locator('[data-play="2"]').click();await page.locator('#refresh').click();assert.equal(await page.locator('#drive-filter').inputValue(),'1');assert.equal(await page.locator('[data-play="2"]').getAttribute('aria-pressed'),'true');
+ await page.locator('[data-play="2"]').click();await manualRefresh();assert.equal(await page.locator('#drive-filter').inputValue(),'1');assert.equal(await page.locator('[data-play="2"]').getAttribute('aria-pressed'),'true');
  record('Detailed reference: game bank, four overview panels, combined drives/plays, no team logos, black/red threshold');
 
  for(const width of [390,820,1194,1440,1920]){
@@ -79,21 +80,21 @@ try{
  await page.locator('#connection').filter({hasText:'Connected'}).waitFor();
  await page.locator('[data-open=G9001]').click();await page.locator('#detail table').first().waitFor();
  assert.ok(await page.locator('.notice').filter({hasText:'STALE'}).count()>0);
- const clockBefore=await page.locator('.band-state').innerText();await page.locator('#refresh').click();assert.equal(await page.locator('.band-state').innerText(),clockBefore);
- sourceTime=new Date().toISOString();revision++;await page.locator('#refresh').click();assert.equal(await page.locator('.notice').filter({hasText:'STALE'}).count(),0);
+ const clockBefore=await page.locator('.band-state').innerText();await manualRefresh();assert.equal(await page.locator('.band-state').innerText(),clockBefore);
+ sourceTime=new Date().toISOString();revision++;await manualRefresh();assert.equal(await page.locator('.notice').filter({hasText:'STALE'}).count(),0);
  await page.locator('[data-tab=plays]').click();await page.locator('#drive-filter').selectOption('1');await page.locator('[data-play="2"]').click();
  revision++;const polledRevision=revision;
  await page.waitForFunction(rev=>document.querySelector('.all-fields')?.textContent.includes(`Revision ${rev}`),polledRevision,{timeout:10000});
  assert.equal(await page.locator('[data-play="2"]').getAttribute('aria-pressed'),'true');assert.equal(await page.locator('#drive-filter').inputValue(),'1');
  await page.locator('[data-tab=overview]').click();
- blockedReason='CHAIRMAN_EDIT_OPEN';revision++;await page.locator('#refresh').click();await page.getByRole('heading',{name:'BLOCKED',exact:true}).waitFor();assert.equal(await page.locator('#detail table, #detail svg').count(),0);assert.match(await page.locator('#detail-content').innerText(),/CHAIRMAN_EDIT_OPEN/);
- blockedReason=null;revision++;await page.locator('#refresh').click();assert.ok(await page.locator('#detail table').count()>0);
- transportLost=true;await page.locator('#refresh').click();await page.locator('#connection').filter({hasText:'reconnecting'}).waitFor();assert.equal(await page.locator('#detail table, #detail svg').count(),0);
- transportLost=false;revision++;await page.locator('#refresh').click();await page.locator('#connection').filter({hasText:'Recovered'}).waitFor();assert.ok(await page.locator('#detail table').count()>0);
+ blockedReason='CHAIRMAN_EDIT_OPEN';revision++;await manualRefresh();await page.getByRole('heading',{name:'BLOCKED',exact:true}).waitFor();assert.equal(await page.locator('#detail table, #detail svg').count(),0);assert.match(await page.locator('#detail-content').innerText(),/CHAIRMAN_EDIT_OPEN/);
+ blockedReason=null;revision++;await manualRefresh();assert.ok(await page.locator('#detail table').count()>0);
+ transportLost=true;await manualRefresh();await page.locator('#connection').filter({hasText:'reconnecting'}).waitFor();assert.equal(await page.locator('#detail table, #detail svg').count(),0);
+ transportLost=false;revision++;await manualRefresh();await page.locator('#connection').filter({hasText:'Recovered'}).waitFor();assert.ok(await page.locator('#detail table').count()>0);
  record('Mock HTTP: stale/fresh source, pure GET polling, automatic five-second refresh, selection retention, edit/cancel and transport recovery');
- denied=true;await page.locator('#refresh').click();await page.getByRole('heading',{name:'ACCESS_DENIED',exact:true}).waitFor();assert.equal(await page.locator('#detail table').count(),0);
- denied=false;revision++;await page.locator('#refresh').click();await page.locator('#connection').filter({hasText:'Recovered'}).waitFor();assert.ok(await page.locator('#detail table').count()>0);
- blockedReason='CHAIRMAN_CORRECTION';revision++;await page.locator('#refresh').click();await page.getByRole('heading',{name:'BLOCKED',exact:true}).waitFor();await page.locator('#refresh').click();assert.match(await page.locator('#detail-content').innerText(),/CHAIRMAN_CORRECTION/);assert.equal(await page.locator('#detail table, #detail svg').count(),0);
+ denied=true;await manualRefresh();await page.getByRole('heading',{name:'ACCESS_DENIED',exact:true}).waitFor();assert.equal(await page.locator('#detail table').count(),0);
+ denied=false;revision++;await manualRefresh();await page.locator('#connection').filter({hasText:'Recovered'}).waitFor();assert.ok(await page.locator('#detail table').count()>0);
+ blockedReason='CHAIRMAN_CORRECTION';revision++;await manualRefresh();await page.getByRole('heading',{name:'BLOCKED',exact:true}).waitFor();await manualRefresh();assert.match(await page.locator('#detail-content').innerText(),/CHAIRMAN_CORRECTION/);assert.equal(await page.locator('#detail table, #detail svg').count(),0);
  record('Mock HTTP: saved correction remains blocked through repeated reads');
  await page.reload();await page.locator('#connection').filter({hasText:'Authentication required after reload'}).waitFor();assert.equal(await page.locator('#detail table').count(),0);assert.match(await page.locator('#review-banner').innerText(),/READ-ONLY QA/);assert.ok(methods.every(m=>m==='GET'));
  record('Mocked live access denial, recovery, no writes and safe reload');
@@ -104,9 +105,9 @@ try{
  await page.locator('[data-tab=overview]').click();await page.setViewportSize({width:390,height:1000});await page.screenshot({path:`${output}/game-stats-phone-width.png`,fullPage:true});
 
 
- await page.locator('#mobile-menu-toggle').click();assert.equal(await page.locator('#mobile-menu-toggle').getAttribute('aria-expanded'),'true');await page.locator('#refresh').click();assert.equal(await page.locator('#mobile-menu-toggle').getAttribute('aria-expanded'),'true');await page.locator('#mobile-menu-toggle').click();
- await page.locator('.mobile-games > summary').click();assert.ok(await page.locator('#game-switch').isVisible());await page.locator('#refresh').click();assert.ok(await page.locator('#game-switch').isVisible());await page.locator('.mobile-games > summary').click();
- assert.equal(await page.locator('.key-stats table').isVisible(),false);await page.locator('.key-stats summary').click();assert.ok(await page.locator('.key-stats table').isVisible());await page.locator('#refresh').click();assert.ok(await page.locator('.key-stats table').isVisible());await page.locator('.key-stats summary').click();
+ await page.locator('#mobile-menu-toggle').click();assert.equal(await page.locator('#mobile-menu-toggle').getAttribute('aria-expanded'),'true');await manualRefresh();assert.equal(await page.locator('#mobile-menu-toggle').getAttribute('aria-expanded'),'true');await page.locator('#mobile-menu-toggle').click();
+ await page.locator('.mobile-games > summary').click();assert.ok(await page.locator('#game-switch').isVisible());await manualRefresh();assert.ok(await page.locator('#game-switch').isVisible());await page.locator('.mobile-games > summary').click();
+ assert.equal(await page.locator('.key-stats table').isVisible(),false);await page.locator('.key-stats summary').click();assert.ok(await page.locator('.key-stats table').isVisible());await manualRefresh();assert.ok(await page.locator('.key-stats table').isVisible());await page.locator('.key-stats summary').click();
  await page.screenshot({path:`${output}/game-stats-phone-compact.png`,fullPage:true});
  await page.setViewportSize({width:1920,height:1080});await page.locator('[data-tab=overview]').click();
  await page.evaluate(()=>window.scrollTo(0,0));
