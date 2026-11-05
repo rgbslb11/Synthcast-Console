@@ -132,10 +132,10 @@ try{
   await boardPage.goto(base);await boardPage.locator('.card').last().waitFor();assert.equal(await boardPage.locator('.card').count(),56);
   const started=performance.now();for(let i=0;i<10;i++)await boardPage.locator('#refresh').click();const refreshTenMs=Math.round(performance.now()-started);
   assert.equal(await boardPage.locator('.card').count(),56);assert.equal(await boardPage.locator('[data-open]').count(),56);
-  await boardPage.locator('#search').fill('G9155');assert.equal(await boardPage.locator('.card').count(),1);await boardPage.locator('[data-open=G9155]').click();assert.equal(await boardPage.locator('.game-bank [data-bank-game]').count(),56);
+  await boardPage.locator('#search').fill('G9155');assert.equal(await boardPage.locator('.card').count(),1);await boardPage.locator('[data-open=G9155]').click();await boardPage.locator('.game-bank [data-bank-game]').last().waitFor();assert.equal(await boardPage.locator('.game-bank [data-bank-game]').count(),56);
   await boardPage.locator('[data-tab=overview]').click();await boardPage.locator('[data-tab=overview]').press('ArrowRight');assert.equal(await boardPage.locator('[data-tab=stats]').getAttribute('aria-selected'),'true');
   await boardPage.locator('[data-tab=stats]').press('End');assert.equal(await boardPage.locator('[data-tab=scoring]').getAttribute('aria-selected'),'true');
-  await boardPage.locator('#back').click();assert.equal(await boardPage.locator('#search').inputValue(),'G9155');assert.equal(await boardPage.locator('.card').count(),1);
+  await boardPage.locator('#back').click();await boardPage.locator('#board:not([hidden])').waitFor();assert.equal(await boardPage.locator('#search').inputValue(),'G9155');assert.equal(await boardPage.locator('.card').count(),1);
   await boardPage.locator('#search').fill('');await boardPage.setViewportSize({width:390,height:1000});assert.ok(await boardPage.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth));
   await boardPage.locator('[data-open=G9155]').click();await boardPage.locator('.mobile-games > summary').click();assert.equal(await boardPage.locator('#game-switch option').count(),56);
   record('56-game generic fixture board: ten refreshes, search/return, keyboard tabs and phone picker',{games:56,refreshTenMs,evidence:'DOM/interaction only; not live load or a performance SLA'});
