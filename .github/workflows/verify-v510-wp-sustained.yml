@@ -1,0 +1,32 @@
+name: Verify sustained 56-game WP QA
+on:
+  push:
+    branches: [qa/v510-wp-sustained]
+    paths: ['release-assets/v5.1.0/wp-sustained-request.json']
+permissions:
+  contents: read
+concurrency:
+  group: gamecast-v510-wp-external-qa
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test tests/v510-ui/sustained-load.test.mjs
+      - name: Bounded normal-user QA traffic, natural finals only
+        env:
+          GAMECAST_QA_EMAIL: ${{ secrets.GAMECAST_QA_EMAIL }}
+          GAMECAST_QA_PASSWORD: ${{ secrets.GAMECAST_QA_PASSWORD }}
+        run: node scripts/qa/wp-sustained-load.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v510-wp-sustained
+          path: outputs/v510-wp/sustained-load.json
