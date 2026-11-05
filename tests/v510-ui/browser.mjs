@@ -94,6 +94,7 @@ try{
  await page.setViewportSize({width:1920,height:1080});await page.locator('[data-tab=overview]').click();
  const compactBottom=await page.locator('.key-stats').evaluate(el=>el.getBoundingClientRect().bottom);assert.ok(compactBottom<=1080,`Overview extends below 1080: ${compactBottom}`);
  await page.screenshot({path:`${output}/game-stats-1920x1080.png`,fullPage:false});
+ await page.locator('#back').click();await page.locator('#board:not([hidden])').waitFor();await page.screenshot({path:`${output}/statscenter-1920x1080.png`,fullPage:false});
  record('Compact layout: four overview panels fit 1920x1080; mobile menu/game picker/stats collapse and retain state');
  assert.deepEqual(errors,[]);record('No application JavaScript errors');
 }catch(error){results.push({name:'Browser verification',status:'FAIL',error:error.stack});await page.screenshot({path:`${output}/failure.png`,fullPage:true});process.exitCode=1;}
