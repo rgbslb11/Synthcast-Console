@@ -49,7 +49,7 @@ export async function readDetails({session,game,token,fetchImpl=fetch,signal,onR
 }
 export function wpView(response){
  const s=response?.summary;
- if(!s)return {status:'UNAVAILABLE',probability:null,segments:[],points:[],reason:'WP_ENDPOINT_NOT_DEPLOYED'};
+ if(!s)return {status:'UNAVAILABLE',probability:null,segments:[],points:[],reason:'WP_HISTORY_UNAVAILABLE'};
  const points=response.points??[],segments=[];let line=[],previous=null;
  for(const p of points){
   const valid=typeof p.probability==='number'&&p.probability>=0&&p.probability<=1&&p.status!=='BLOCKED';
@@ -73,8 +73,10 @@ export async function readWpHistory({fetchPage,session,game,onReset=()=>{}}){
    run??=s.runId;through??=r.highWatermark;
    if(r.highWatermark!==through||r.points.some((p,i)=>p.runId!==run||p.modelId!==s.modelId||p.observationSequence<=(i?r.points[i-1].observationSequence:after)||p.observationSequence>through)||r.nextSequence!==(r.points.at(-1)?.observationSequence??after))throw Error('WP_INVALID_PAGE_SEQUENCE');
    points.push(...r.points);after=r.nextSequence;
-   if(after>=through||r.points.length===0)return {...r,points,highWatermark:through};
+   if(r.points.length===0&&after<through)throw Error('WP_INCOMPLETE_HISTORY');
+   if(after>=through)return {...r,points,highWatermark:through};
   }
  }
  throw Error('WP_RECONNECTING_RUN_CHANGING');
 }
+

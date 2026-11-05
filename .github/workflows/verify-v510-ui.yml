@@ -1,7 +1,7 @@
 name: Verify isolated 5.1 UI review
 on:
   push:
-    branches: [ui/gamecast-v5.1.0-review]
+    branches: [ui/gamecast-v5.1.0-review, ui/gamecast-v5.1.0-wp-connected]
   pull_request:
     branches: [development/gamecast-v5.1.0]
     paths: ['public/v5.1.0/review/**', 'tests/v510-ui/**', 'scripts/ui/**', '.github/workflows/verify-v510-ui.yml']
@@ -39,3 +39,4 @@ jobs:
         with:
           name: gamecast-v510-ui-review
           path: outputs/v510-ui
+
