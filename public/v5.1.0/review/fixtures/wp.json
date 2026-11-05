@@ -5,11 +5,11 @@
   "fixtures": {
     "pregame": {
       "summary": {
-        "sessionId": "qa-v510-wp-ui-example",
+        "sessionId": "qa-v510-ui-example",
         "gameId": "G9001",
-        "runId": "PUBLIC-UI-EXAMPLE",
+        "runId": "G9001-EXAMPLE",
         "modelId": "UI-EXAMPLE-NO-MODEL",
-        "stateVersion": 1,
+        "stateVersion": 3,
         "throughEventSequence": 1,
         "observationSequence": 3,
         "observedAt": "2000-01-01T00:00:15.000Z",
@@ -24,21 +24,24 @@
         {
           "observationSequence": 1,
           "eventId": "example-1",
-          "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "kind": "pregame",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:05.000Z",
           "probability": 0.6,
-          "status": "ESTIMATED",
+          "status": "PREGAME",
           "reason": null,
           "gapBefore": false,
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 590,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -46,11 +49,11 @@
           "observationSequence": 2,
           "eventId": "example-2",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:10.000Z",
           "probability": 0.6,
           "status": "ESTIMATED",
@@ -59,7 +62,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 580,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -67,11 +73,11 @@
           "observationSequence": 3,
           "eventId": "example-3",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:15.000Z",
           "probability": 0.6,
           "status": "PREGAME",
@@ -80,7 +86,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 570,
+            "quarterSeconds": 600
           },
           "trace": {}
         }
@@ -90,11 +99,11 @@
     },
     "launch": {
       "summary": {
-        "sessionId": "qa-v510-wp-ui-example",
+        "sessionId": "qa-v510-ui-example",
         "gameId": "G9001",
-        "runId": "PUBLIC-UI-EXAMPLE",
+        "runId": "G9001-EXAMPLE",
         "modelId": "UI-EXAMPLE-NO-MODEL",
-        "stateVersion": 1,
+        "stateVersion": 3,
         "throughEventSequence": 1,
         "observationSequence": 3,
         "observedAt": "2000-01-01T00:00:15.000Z",
@@ -109,21 +118,24 @@
         {
           "observationSequence": 1,
           "eventId": "example-1",
-          "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "kind": "pregame",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:05.000Z",
           "probability": 0.6,
-          "status": "ESTIMATED",
+          "status": "PREGAME",
           "reason": null,
           "gapBefore": false,
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 590,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -131,11 +143,11 @@
           "observationSequence": 2,
           "eventId": "example-2",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:10.000Z",
           "probability": 0.6,
           "status": "ESTIMATED",
@@ -144,7 +156,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 580,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -152,11 +167,11 @@
           "observationSequence": 3,
           "eventId": "example-3",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:15.000Z",
           "probability": 0.6,
           "status": "ESTIMATED",
@@ -165,7 +180,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 570,
+            "quarterSeconds": 600
           },
           "trace": {}
         }
@@ -175,17 +193,17 @@
     },
     "live": {
       "summary": {
-        "sessionId": "qa-v510-wp-ui-example",
+        "sessionId": "qa-v510-ui-example",
         "gameId": "G9001",
-        "runId": "PUBLIC-UI-EXAMPLE",
+        "runId": "G9001-EXAMPLE",
         "modelId": "UI-EXAMPLE-NO-MODEL",
-        "stateVersion": 1,
+        "stateVersion": 3,
         "throughEventSequence": 1,
         "observationSequence": 3,
         "observedAt": "2000-01-01T00:00:15.000Z",
         "status": "ESTIMATED",
         "reason": null,
-        "probability": 0.6,
+        "probability": 0.4,
         "favoriteTeamId": "Example Favorite",
         "color": "#D71A20",
         "calibrationStatus": "EXAMPLE_ONLY"
@@ -194,21 +212,24 @@
         {
           "observationSequence": 1,
           "eventId": "example-1",
-          "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "kind": "pregame",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:05.000Z",
           "probability": 0.6,
-          "status": "ESTIMATED",
+          "status": "PREGAME",
           "reason": null,
           "gapBefore": false,
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 590,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -216,11 +237,11 @@
           "observationSequence": 2,
           "eventId": "example-2",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:10.000Z",
           "probability": 0.6,
           "status": "ESTIMATED",
@@ -229,7 +250,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 580,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -237,20 +261,23 @@
           "observationSequence": 3,
           "eventId": "example-3",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:15.000Z",
-          "probability": 0.6,
+          "probability": 0.4,
           "status": "ESTIMATED",
           "reason": null,
           "gapBefore": false,
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 570,
+            "quarterSeconds": 600
           },
           "trace": {}
         }
@@ -260,11 +287,11 @@
     },
     "editCancelled": {
       "summary": {
-        "sessionId": "qa-v510-wp-ui-example",
+        "sessionId": "qa-v510-ui-example",
         "gameId": "G9001",
-        "runId": "PUBLIC-UI-EXAMPLE",
+        "runId": "G9001-EXAMPLE",
         "modelId": "UI-EXAMPLE-NO-MODEL",
-        "stateVersion": 1,
+        "stateVersion": 3,
         "throughEventSequence": 1,
         "observationSequence": 3,
         "observedAt": "2000-01-01T00:00:15.000Z",
@@ -279,21 +306,24 @@
         {
           "observationSequence": 1,
           "eventId": "example-1",
-          "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "kind": "pregame",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:05.000Z",
           "probability": 0.6,
-          "status": "ESTIMATED",
+          "status": "PREGAME",
           "reason": null,
           "gapBefore": false,
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 590,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -301,11 +331,11 @@
           "observationSequence": 2,
           "eventId": "example-2",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:10.000Z",
           "probability": 0.6,
           "status": "ESTIMATED",
@@ -314,7 +344,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 580,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -322,11 +355,11 @@
           "observationSequence": 3,
           "eventId": "example-3",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:15.000Z",
           "probability": 0.6,
           "status": "ESTIMATED",
@@ -335,7 +368,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 570,
+            "quarterSeconds": 600
           },
           "trace": {}
         }
@@ -345,11 +381,11 @@
     },
     "editOpen": {
       "summary": {
-        "sessionId": "qa-v510-wp-ui-example",
+        "sessionId": "qa-v510-ui-example",
         "gameId": "G9001",
-        "runId": "PUBLIC-UI-EXAMPLE",
+        "runId": "G9001-EXAMPLE",
         "modelId": "UI-EXAMPLE-NO-MODEL",
-        "stateVersion": 1,
+        "stateVersion": 3,
         "throughEventSequence": 1,
         "observationSequence": 3,
         "observedAt": "2000-01-01T00:00:15.000Z",
@@ -364,21 +400,24 @@
         {
           "observationSequence": 1,
           "eventId": "example-1",
-          "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "kind": "pregame",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:05.000Z",
           "probability": 0.6,
-          "status": "ESTIMATED",
+          "status": "PREGAME",
           "reason": null,
           "gapBefore": false,
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 590,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -386,11 +425,11 @@
           "observationSequence": 2,
           "eventId": "example-2",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:10.000Z",
           "probability": 0.6,
           "status": "ESTIMATED",
@@ -399,7 +438,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 580,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -407,11 +449,11 @@
           "observationSequence": 3,
           "eventId": "example-3",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:15.000Z",
           "probability": null,
           "status": "BLOCKED",
@@ -420,7 +462,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 570,
+            "quarterSeconds": 600
           },
           "trace": {}
         }
@@ -430,11 +475,11 @@
     },
     "gap": {
       "summary": {
-        "sessionId": "qa-v510-wp-ui-example",
+        "sessionId": "qa-v510-ui-example",
         "gameId": "G9001",
-        "runId": "PUBLIC-UI-EXAMPLE",
+        "runId": "G9001-EXAMPLE",
         "modelId": "UI-EXAMPLE-NO-MODEL",
-        "stateVersion": 1,
+        "stateVersion": 3,
         "throughEventSequence": 1,
         "observationSequence": 3,
         "observedAt": "2000-01-01T00:00:15.000Z",
@@ -449,21 +494,24 @@
         {
           "observationSequence": 1,
           "eventId": "example-1",
-          "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "kind": "pregame",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:05.000Z",
           "probability": 0.6,
-          "status": "ESTIMATED",
+          "status": "PREGAME",
           "reason": null,
           "gapBefore": false,
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 590,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -471,11 +519,11 @@
           "observationSequence": 2,
           "eventId": "example-2",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:10.000Z",
           "probability": 0.6,
           "status": "ESTIMATED",
@@ -484,7 +532,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 580,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -492,11 +543,11 @@
           "observationSequence": 3,
           "eventId": "example-3",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:15.000Z",
           "probability": 0.6,
           "status": "ESTIMATED",
@@ -505,7 +556,10 @@
           "missingIntervals": 1,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 570,
+            "quarterSeconds": 600
           },
           "trace": {}
         }
@@ -515,11 +569,11 @@
     },
     "overrideBlocked": {
       "summary": {
-        "sessionId": "qa-v510-wp-ui-example",
+        "sessionId": "qa-v510-ui-example",
         "gameId": "G9001",
-        "runId": "PUBLIC-UI-EXAMPLE",
+        "runId": "G9001-EXAMPLE",
         "modelId": "UI-EXAMPLE-NO-MODEL",
-        "stateVersion": 1,
+        "stateVersion": 3,
         "throughEventSequence": 1,
         "observationSequence": 3,
         "observedAt": "2000-01-01T00:00:15.000Z",
@@ -534,21 +588,24 @@
         {
           "observationSequence": 1,
           "eventId": "example-1",
-          "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "kind": "pregame",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:05.000Z",
           "probability": 0.6,
-          "status": "ESTIMATED",
+          "status": "PREGAME",
           "reason": null,
           "gapBefore": false,
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 590,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -556,11 +613,11 @@
           "observationSequence": 2,
           "eventId": "example-2",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:10.000Z",
           "probability": 0.6,
           "status": "ESTIMATED",
@@ -569,7 +626,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 580,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -577,11 +637,11 @@
           "observationSequence": 3,
           "eventId": "example-3",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:15.000Z",
           "probability": null,
           "status": "BLOCKED",
@@ -590,7 +650,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 570,
+            "quarterSeconds": 600
           },
           "trace": {}
         }
@@ -600,11 +663,11 @@
     },
     "final": {
       "summary": {
-        "sessionId": "qa-v510-wp-ui-example",
+        "sessionId": "qa-v510-ui-example",
         "gameId": "G9001",
-        "runId": "PUBLIC-UI-EXAMPLE",
+        "runId": "G9001-EXAMPLE",
         "modelId": "UI-EXAMPLE-NO-MODEL",
-        "stateVersion": 1,
+        "stateVersion": 3,
         "throughEventSequence": 1,
         "observationSequence": 3,
         "observedAt": "2000-01-01T00:00:15.000Z",
@@ -619,21 +682,24 @@
         {
           "observationSequence": 1,
           "eventId": "example-1",
-          "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "kind": "pregame",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:05.000Z",
           "probability": 0.6,
-          "status": "ESTIMATED",
+          "status": "PREGAME",
           "reason": null,
           "gapBefore": false,
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 590,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -641,11 +707,11 @@
           "observationSequence": 2,
           "eventId": "example-2",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:10.000Z",
           "probability": 0.6,
           "status": "ESTIMATED",
@@ -654,7 +720,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 580,
+            "quarterSeconds": 600
           },
           "trace": {}
         },
@@ -662,11 +731,11 @@
           "observationSequence": 3,
           "eventId": "example-3",
           "kind": "UI_EXAMPLE",
-          "sessionId": "qa-v510-wp-ui-example",
+          "sessionId": "qa-v510-ui-example",
           "gameId": "G9001",
-          "runId": "PUBLIC-UI-EXAMPLE",
+          "runId": "G9001-EXAMPLE",
           "modelId": "UI-EXAMPLE-NO-MODEL",
-          "stateVersion": 1,
+          "stateVersion": 3,
           "observedAt": "2000-01-01T00:00:15.000Z",
           "probability": 1,
           "status": "FINAL",
@@ -675,7 +744,10 @@
           "missingIntervals": 0,
           "input": {
             "favoriteScore": 0,
-            "otherScore": 0
+            "otherScore": 0,
+            "period": 1,
+            "clockSeconds": 570,
+            "quarterSeconds": 600
           },
           "trace": {}
         }

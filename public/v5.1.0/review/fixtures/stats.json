@@ -246,7 +246,21 @@
         "postBall": null,
         "postPossession": null
       },
-      "possessions": [],
+      "possessions": [
+        {
+          "id": 1,
+          "team": 0,
+          "start": 30,
+          "end": 40,
+          "playSequences": [
+            1,
+            2
+          ],
+          "offensivePlays": 2,
+          "offensiveYards": 10,
+          "result": "IN_PROGRESS"
+        }
+      ],
       "plays": [
         {
           "sequence": 1,
@@ -514,7 +528,21 @@
         "postBall": null,
         "postPossession": null
       },
-      "possessions": [],
+      "possessions": [
+        {
+          "id": 1,
+          "team": 0,
+          "start": 30,
+          "end": 40,
+          "playSequences": [
+            1,
+            2
+          ],
+          "offensivePlays": 2,
+          "offensiveYards": 10,
+          "result": "IN_PROGRESS"
+        }
+      ],
       "plays": [
         {
           "sequence": 1,
@@ -820,7 +848,21 @@
         "postBall": null,
         "postPossession": null
       },
-      "possessions": [],
+      "possessions": [
+        {
+          "id": 1,
+          "team": 0,
+          "start": 30,
+          "end": 40,
+          "playSequences": [
+            1,
+            2
+          ],
+          "offensivePlays": 2,
+          "offensiveYards": 10,
+          "result": "IN_PROGRESS"
+        }
+      ],
       "plays": [
         {
           "sequence": 1,

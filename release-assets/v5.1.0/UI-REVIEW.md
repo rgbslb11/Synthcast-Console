@@ -1,5 +1,7 @@
 # GameCast 5.1 UI review — GitHub only
 
+Current detail-layout update: see [DETAILED-UI-MARKUPS.md](DETAILED-UI-MARKUPS.md). The new IMG_0548.jpeg reference and Chairman responses supersede the earlier exploratory detail layout below.
+
 Development branch: `ui/gamecast-v5.1.0-review`.
 Verified base: `development/gamecast-v5.1.0` at
 `8a1a647845d2ab6c05241973239937b6ca1e6ab3`.
@@ -66,9 +68,7 @@ All nine pages of Synthcast_UI_Mockups_Review.pdf were reviewed: Detailed Game
 Center overview/statistics/play history; Broadcast live/drive/WP; Chairman
 monitor/analysis/alerts. They are labeled illustrative design concepts. Team
 logos, betting lines and invented fields in those concepts were not adopted.
-The marked Status Lane Board is the specific board direction. No final Detailed
-Game Center visual approval was found. Its current layout is a review scaffold,
-not an approved final design. Relevant editable PPTX files were not located after
+The marked Status Lane Board is the specific board direction. The subsequently supplied IMG_0548.jpeg establishes the Detailed Stats layout direction. Its two ambiguous notes were clarified by the Chairman: combine Play-by-Play and Drives; favorite WP is black above 50% and red below 50%. Final implementation acceptance remains pending. Relevant editable PPTX files were not located after
 two targeted searches; their contents and approval status remain BLOCKED.
 
 ## 1. Scoreboard–Stats–Rollup / StatsCenter
@@ -98,8 +98,7 @@ metadata for blocked/not-started games. Existing operator controls are untouched
 ## 2. Detailed Stats / Game Center
 
 Before: no 5.1 detail UI. After: separate route (`#game=G9001` in the fixture),
-game switching, Team Stats default, Overview, Play-by-Play, Possessions/Field,
-Scoring and WP tabs. Return preserves filter/search/card position. The viewer
+game switching, Overview default, Team Stats, combined Play-by-Play / Drives, and Scoring tabs. WP is integrated in Overview. Return preserves filter/search/card position. The viewer
 renders backend values only; scoreboard and GL never advance in the browser.
 
 Exact inventory: 17 scoreboard fields; 27 statistics per team (26 table rows plus
@@ -115,14 +114,14 @@ connection into fixture values; it requires authentication again.
 
 WP rendering uses generic observation-shaped examples only. It does not generate estimates. Separate fixture examples are
 explicitly labeled as independent of the selected game's statistics. Current
-BLOCKED value is null and prior points are grey. Lines break at missing/null
+BLOCKED value is null and prior points are grey. Current favorite numbers and graph use black at/above 50%, red below 50%; the fixed favorite identity is unchanged. Lines break at missing/null
 observations and run/model boundaries; no smoothing or model calculation. The
 prepared WP pagination adapter preserves the high watermark and observation
 cursor. No hosted WP URL is guessed; no prior editor is connected without a
 supplied approved prior manifest.
 
 Remaining: hosted WP composition/sampler/endpoint, authenticated positive live
-read, final layout approval, real devices, and historical line-to-gain geometry
+read, final implementation acceptance, real devices, and historical line-to-gain geometry
 from the backend. Historical ball coordinates are shown; historical line to gain
 is unavailable rather than recomputed in UI.
 
@@ -135,7 +134,7 @@ is unavailable rather than recomputed in UI.
 | Backend | Historical field geometry | Expose per-play pre-snap lineToGain/goalToGo from existing fieldState logic, or document the approved presentation transform; UI does not duplicate that calculation. |
 | Integration | Chairman destination/Auth | Provide verified 5.1 console route and supported active Chairman identity/session flow. Existing QA details origin is GitHub Pages only. No origin allowlist or grant is changed here. |
 | WP | Hosted endpoint and worker | Review WP branch independently, provision its QA storage/composition, central five-second sampler, explicit authenticated route, approved manifest and hosted tests. UI consumes read-only observations. |
-| Chairman | Final Detailed Game Center design | Approve or mark up this scaffold after reviewing the marked board implementation. Exploratory mockups are not treated as final approval. |
+| Chairman | Detailed Game Center acceptance | IMG_0548.jpeg plus direct tab/color answers now establish design direction. Review implementation screenshots; the isolated code is not production-approved. |
 
 ## Verification and limits
 

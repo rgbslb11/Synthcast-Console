@@ -43,17 +43,28 @@ try{
  record('Navigation, filters, selection and refresh retention');
  await page.goto(base+'#game=G9003');await page.locator('#detail:not([hidden])').waitFor();assert.match(await page.locator('#detail-content').innerText(),/CHAIRMAN_CORRECTION/);assert.equal(await page.locator('#detail table').count(),0);
  record('Direct blocked detail clears all detailed data');
- await page.goto(base+'#game=G9001');await page.locator('[data-tab=wp]').click();await page.locator('.wp-options > summary').click();await page.locator('#wp-case').selectOption('overrideBlocked');assert.equal(await page.locator('.wp-value').innerText(),'—');assert.ok(await page.locator('.wp-svg.audit circle').count()>0);
+ await page.goto(base+'#game=G9001');await page.locator('[data-tab=overview]').click();await page.locator('#wp-case').selectOption('overrideBlocked');assert.equal(await page.locator('.wp-value').innerText(),'—');assert.ok(await page.locator('.wp-svg.audit circle').count()>0);
  record('WP blocked current value and grey immutable history');
+ await page.locator('#wp-case').selectOption('editCancelled');assert.equal(await page.locator('.wp-value').evaluate(el=>getComputedStyle(el).color),'rgb(0, 0, 0)');
+ await page.locator('#wp-case').selectOption('live');assert.equal(await page.locator('.wp-value').evaluate(el=>getComputedStyle(el).color),'rgb(215, 26, 32)');
+ assert.equal(await page.locator('#detail-content img').count(),0);
+ assert.equal(await page.locator('.game-bank [data-bank-game]').count(),6);
+ assert.equal(await page.locator('.overview-grid > section').count(),4);
+ assert.equal(await page.getByRole('tab',{name:'Play-by-Play / Drives',exact:true}).count(),1);
+ assert.match(await page.locator('.scoring-summary h3').innerText(),/SCORING SUMMARY/);
+ await page.locator('[data-tab=plays]').click();await page.locator('#drive-filter').selectOption('1');assert.equal(await page.locator('[data-play]').count(),2);
+ await page.locator('[data-play="2"]').click();await page.locator('#refresh').click();assert.equal(await page.locator('#drive-filter').inputValue(),'1');assert.equal(await page.locator('[data-play="2"]').getAttribute('aria-pressed'),'true');
+ record('Detailed reference: game bank, four overview panels, combined drives/plays, no team logos, black/red threshold');
+
  for(const width of [390,820,1194,1440]){
   await page.setViewportSize({width,height:1000});await page.goto(base+'#board');await page.locator('#search').fill('');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth));
   await page.goto(base+'#game=G9001');
-  for(const tab of ['stats','overview','plays','possessions','scoring','wp']){
+  for(const tab of ['overview','stats','plays','scoring']){
    await page.locator(`[data-tab=${tab}]`).click();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),`${kind} ${width} ${tab} overflow`);
   }
  }
- record('Responsive board and all six detail tabs: 390/820/1194/1440');
+ record('Responsive board and all four detail tabs: 390/820/1194/1440');
  // Actual app transport calls are intercepted; these are fixtures, not live QA.
  const stats=JSON.parse(await fs.readFile('public/v5.1.0/review/fixtures/stats.json','utf8'));
  let denied=false,revision=3,methods=[];

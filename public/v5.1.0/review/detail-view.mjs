@@ -1,0 +1,62 @@
+import {available,clock,period,spot,downDistance,teamName,statistic,wpView,wpColor,freshness} from './model.mjs';
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const percent=p=>typeof p==='number'&&Number.isFinite(p)?`${(p*100).toFixed(1)}%`:'—';
+const titleName=(g,s,t)=>s?teamName(s,t):g?.[t?'home':'away']??'Team unavailable';
+
+function gameBank(o){
+ return `<aside class="game-bank" aria-label="Game selection"><h3>GAMES (${o.games.length})</h3>${o.games.map(g=>{
+  const d=o.allData.get(g.id),s=available(d)?d.scoreboard:null;
+  return `<a class="bank-game" data-bank-game="${esc(g.id)}" href="#game=${encodeURIComponent(g.id)}" ${g.id===o.id?'aria-current="page"':''}><span class="bank-meta">${esc(g.id)} · ${esc(s?`${period(s.period)} ${clock(s.scoreboardClock)}`:d?.availability.status??'Unavailable')}</span>${[0,1].map(t=>`<span class="bank-team">${esc(titleName(g,s,t))}<b>${esc(s?d.teamStatistics?.[t]?.totalPoints??'—':'—')}</b></span>`).join('')}</a>`;
+ }).join('')}</aside>`;
+}
+
+function scoreBand(o,lineScore){
+ const d=o.data,s=d.scoreboard;
+ const side=t=>`<div class="band-team"><div><strong>${esc(teamName(s,t))}</strong><span>Timeouts: ${esc(s[t?'homeTimeouts':'awayTimeouts']??'—')}</span></div><b>${esc(d.teamStatistics[t]?.totalPoints??'—')}</b></div>`;
+ return `<section class="panel score-band" aria-label="Authoritative game score"><div class="score-band-main">${side(0)}<div class="band-state"><strong>${esc(period(s.period))} ${esc(clock(s.scoreboardClock))}</strong><span>${esc([0,1].includes(s.possession)?`${teamName(s,s.possession)} possession`:'Possession unavailable')}</span><b>${esc(downDistance(s.downDistance))} · ${esc(spot(s.fieldPosition))}</b><span>GL ${esc(clock(s.gameLengthClock))}</span></div>${side(1)}</div><div class="band-line-score">${lineScore(d)}</div></section>`;
+}
+
+function keyStats(d){
+ const keys=[['totalOffense','Total yards'],['rushingYards','Rush yards'],['passingYards','Pass yards'],['firstDowns','First downs'],['thirdDownConversionsPercentage','Third down'],['turnovers','Turnovers'],['timeOfPossession','Time of possession']];
+ return `<section class="panel key-stats"><h3>KEY TEAM STATS</h3><div class="table-wrap"><table><thead><tr><th>Statistic</th>${[0,1].map(t=>`<th class="num">${esc(teamName(d.scoreboard,t))}</th>`).join('')}</tr></thead><tbody>${keys.map(([k,label])=>`<tr><td>${label}</td>${[0,1].map(t=>`<td class="num">${esc(statistic(d.teamStatistics[t]?.[k],k))}</td>`).join('')}</tr>`).join('')}</tbody></table></div></section>`;
+}
+
+export function wpPanel({response,data,mode,wpCase,wpCases}){
+ const s=response?.summary;
+ // A selected game never inherits another game's or another run's WP values.
+ const match=s&&s.sessionId===data.sessionId&&s.gameId===data.gameId&&s.runId===data.runId;
+ const sameRevision=match&&s.stateVersion===data.stateVersion;
+ const v=wpView(sameRevision?response:null),blocked=v.status==='BLOCKED';
+ const pts=v.points,first=pts[0]?.observationSequence??0,last=pts.at(-1)?.observationSequence??first;
+ const x=p=>40+(p.observationSequence-first)/Math.max(1,last-first)*400,y=p=>140-p.probability*130;
+ const lines=v.segments.map(seg=>seg.map(p=>`${x(p)},${y(p)}`).join(' '));
+ const prior=pts.find(p=>p.kind==='pregame'||p.status==='PREGAME'),priorColor=wpColor(prior?.probability,blocked?'BLOCKED':prior?.status);
+ const chart=`<svg class="wp-svg ${blocked?'audit':''}" viewBox="0 0 470 166" role="img" aria-label="Favorite probability; black at or above 50 percent, red below 50 percent; source gaps preserved"><defs><clipPath id="wp-above"><rect width="470" height="75"/></clipPath><clipPath id="wp-below"><rect y="75" width="470" height="91"/></clipPath></defs>${[0,0.5,1].map(p=>`<line x1="36" x2="450" y1="${140-p*130}" y2="${140-p*130}" stroke="#B8B8B8"/><text x="0" y="${144-p*130}" font-size="10">${p*100}%</text>`).join('')}${lines.map(line=>blocked?`<polyline points="${line}" style="stroke:#808080"/>`:`<polyline points="${line}" clip-path="url(#wp-above)" style="stroke:#000000"/><polyline points="${line}" clip-path="url(#wp-below)" style="stroke:#D71A20"/>`).join('')}${pts.filter(p=>typeof p.probability==='number').map(p=>`<circle cx="${x(p)}" cy="${y(p)}" r="3" style="fill:${wpColor(p.probability,blocked?'BLOCKED':p.status)}"><title>${esc(`${p.observedAt} · ${percent(p.probability)}`)}</title></circle>`).join('')}<text x="40" y="162" font-size="10">Observation ${first}</text><text x="385" y="162" font-size="10">${last}</text></svg>`;
+ const priorRing=prior?`<svg class="prior-ring" viewBox="0 0 100 100" role="img" aria-label="Pregame favorite ${esc(percent(prior.probability))}"><circle cx="50" cy="50" r="39" pathLength="100" fill="none" stroke="#B8B8B8" stroke-width="10"/><circle cx="50" cy="50" r="39" pathLength="100" fill="none" stroke="${priorColor}" stroke-width="10" stroke-dasharray="${prior.probability*100} 100" transform="rotate(-90 50 50)"/><text x="50" y="54" text-anchor="middle" font-size="17" font-weight="700" fill="${priorColor}">${esc(percent(prior.probability))}</text></svg>`:'<p class="muted">Unavailable</p>';
+ return `<section class="panel wp-panel"><h3>LIVE WIN PROBABILITY</h3>${mode==='fixture'?`<label class="example-selector">Generic WP example<select id="wp-case">${wpCases.map(k=>`<option ${k===wpCase?'selected':''}>${esc(k)}</option>`).join('')}</select></label>`:''}${!sameRevision?`<p class="notice">${match?'BLOCKED · WP_SOURCE_PENDING':'Unavailable · Hosted WP endpoint is not connected for this game.'}</p>`:''}<div class="wp-layout"><div><div class="wp-top"><span><b>${esc(v.favoriteTeamId??'Favorite unavailable')}</b><br><span class="muted">${esc(v.status)}</span></span><strong class="wp-value" style="color:${wpColor(v.probability,v.status)}">${percent(v.probability)}</strong></div>${chart}</div><aside class="pregame-wp"><h4>PREGAME WP</h4>${priorRing}<span class="muted">Frozen prior${blocked?' · audit only':''}</span></aside></div>${v.reason?`<p class="muted">${esc(v.reason)}</p>`:''}<p class="muted">${mode==='fixture'?'Generic examples only. ':''}Illustrative estimate — calibration deferred. No smoothing across missing observations. ${blocked?'Grey history is audit only.':''}</p><details class="wp-options"><summary>Observation history</summary><div class="table-wrap"><table><thead><tr><th>Seq.</th><th>Observed UTC</th><th>Status</th><th>Favorite</th></tr></thead><tbody>${pts.map(p=>`<tr><td>${p.observationSequence}</td><td>${esc(p.observedAt)}</td><td>${esc(p.status)}${p.gapBefore?' · GAP':''}</td><td>${percent(p.probability)}</td></tr>`).join('')}</tbody></table></div></details></section>`;
+}
+
+function currentDrive(o,field){
+ const d=o.data,drive=d.possessions?.at(-1),p=d.scoreboard.lastResolvedPlay;
+ return `<section class="panel current-drive"><div class="widget-heading"><h3>CURRENT DRIVE</h3><span class="muted">${drive?`Drive ${esc(drive.id)} · ${esc(drive.offensivePlays)} snaps · ${esc(drive.offensiveYards)} yds`:'Drive unavailable'} · duration unavailable</span></div>${field(d)}<div class="last-play"><strong>${esc(downDistance(d.scoreboard.downDistance))}<br><span class="muted">${esc(spot(d.scoreboard.fieldPosition))}</span></strong><p><b>Last play</b><br>${esc(p?.description??'Unavailable')}</p></div></section>`;
+}
+
+function combinedHistory(o,field){
+ const d=o.data,drives=d.possessions??[],drive=drives.find(x=>String(x.id)===String(o.drive)),list=drive?d.plays.filter(p=>drive.playSequences?.includes(p.sequence)):d.plays,chosen=d.plays.find(p=>p.sequence===o.historical);
+ return `<div class="combined-history"><section class="panel"><div class="history-toolbar"><h3>PLAY-BY-PLAY / DRIVES</h3><label>Drive<select id="drive-filter"><option value="all">All drives</option>${drives.map(x=>`<option value="${esc(x.id)}" ${String(o.drive)===String(x.id)?'selected':''}>Drive ${esc(x.id)} · ${esc(teamName(d.scoreboard,x.team))} · ${esc(x.result)}</option>`).join('')}</select></label><button id="return-live">Return to live field</button></div><p class="muted">${drive?`${esc(drive.offensivePlays)} snaps · ${esc(drive.offensiveYards)} yards · ${esc(spot(drive.start))} → ${esc(spot(drive.end))}`:`${d.plays.length} resolved plays · ${drives.length} recorded drives`}</p>${list.map(p=>`<button class="play-row" data-play="${p.sequence}" aria-pressed="${p.sequence===o.historical}"><span>${esc(period(p.period))}<br>${esc(clock(p.resolutionClock))}</span><span><strong>${esc(p.description)}</strong>${esc(teamName(d.scoreboard,p.possessingTeam))} · ${esc(downDistance({down:p.preDown,distance:p.preDistance}))} · ${esc(spot(p.preFieldPosition))}</span><span>${esc(p.creditedYards)} yds · GL ${esc(clock(p.gameLengthTimestamp))}</span></button>`).join('')||'<p class="muted">No resolved plays available in this drive.</p>'}</section><aside class="stack"><section class="panel"><h3>${chosen?'SELECTED PLAY':'LIVE FIELD'}</h3>${field(d,chosen)}</section>${chosen?`<section class="panel"><h3>Play ${chosen.sequence} · all 22 attributes</h3><dl class="play-attributes">${o.contract.playAttributes.map(k=>`<div><dt>${esc(k)}</dt><dd>${esc(chosen[k]==null?'Unavailable':typeof chosen[k]==='object'?JSON.stringify(chosen[k]):chosen[k])}</dd></div>`).join('')}</dl></section>`:''}</aside></div>`;
+}
+
+export function renderGameStats(o,{lineScore,stats,field,scoring}){
+ const g=o.game,d=o.data,s=available(d)?d.scoreboard:null;
+ const heading=`<div class="game-heading"><div><p class="eyebrow">GAME STATS / ${esc(o.id)}</p><h2>${esc(titleName(g,s,0))} at ${esc(titleName(g,s,1))}</h2></div><label class="mobile-switch">Switch game<select id="game-switch">${o.games.map(x=>`<option value="${esc(x.id)}" ${x.id===o.id?'selected':''}>${esc(x.away&&x.home?`${x.away} at ${x.home}`:x.id)}</option>`).join('')}</select></label></div>`;
+ let main;
+ if(!g)main='<p class="notice">Game unavailable in this connection. Return to the board.</p>';
+ else if(!available(d))main=`<section class="panel"><h3>${esc(o.error??d?.availability?.status??'LOADING')}</h3><p>${esc(d?.availability?.reason??'Waiting for an authorized response.')}</p><p class="muted">Scoreboard, stats, plays, field and current probability are cleared.</p></section>`;
+ else{
+  const tab=['overview','stats','plays','scoring'].includes(o.tab)?o.tab:'overview';
+  const tabs=[['overview','Overview'],['stats','Team Stats'],['plays','Play-by-Play / Drives'],['scoring','Scoring']];
+  const content=tab==='overview'?`<div class="overview-grid">${currentDrive(o,field)}${wpPanel({response:o.wpResponse,data:d,mode:o.mode,wpCase:o.wpCase,wpCases:o.wpCases})}${keyStats(d)}<section class="panel scoring-summary"><h3>SCORING SUMMARY</h3>${scoring(d)}</section></div>`:tab==='stats'?`<section class="panel"><h3>TEAM STATS · 27 contracted entries</h3>${stats(d)}<h3>SCORING SUMMARY</h3>${scoring(d)}</section>`:tab==='plays'?combinedHistory(o,field):`<section class="panel"><h3>SCORING SUMMARY</h3>${scoring(d)}</section>`;
+  main=`${scoreBand(o,lineScore)}<p class="detail-meta">${esc(s.week??'Week unavailable')} · ${esc(s.network??'Network unavailable')} · Kickoff ${esc(s.scheduledKickoff??'unavailable')} · Weather ${esc(!s.weather?'unavailable':s.weather.enabled===false?'inactive':`wind ${s.weather.wind??'unavailable'}, rain ${s.weather.rain??'unavailable'}, temperature ${s.weather.temperature??'unavailable'}`)}</p>${o.mode==='live'&&freshness(d)!=='CURRENT'?'<p class="notice">STALE · Last committed source state; browser clocks do not advance football.</p>':''}<div class="tabs" role="tablist" aria-label="Game detail sections">${tabs.map(([k,label])=>`<button role="tab" id="tab-${k}" data-tab="${k}" aria-controls="tab-panel" aria-selected="${tab===k}" tabindex="${tab===k?0:-1}">${label}</button>`).join('')}</div><div id="tab-panel" role="tabpanel" aria-labelledby="tab-${tab}">${content}</div><details class="all-fields"><summary>Source / coverage / unavailable fields</summary><p>Run ${esc(d.runId)} · Revision ${esc(d.stateVersion)} · Engine ${esc(d.engineVersion)}<br>Source commit ${esc(d.generatedAt)}<br>${esc((d.coverage??[]).join(' · '))}</p><p>${esc(JSON.stringify(d.fieldAvailability??{}))}</p><p>Drive duration, scoring-play descriptions and running scoring-summary scores are unavailable in this contract. They are not reconstructed here.</p></details>`;
+ }
+ return `<div class="game-workspace">${gameBank(o)}<div class="game-main">${heading}${main}</div></div>`;
+}
