@@ -83,6 +83,7 @@ try{
  await page.locator('#connection').filter({hasText:'Connected'}).waitFor();
  await page.locator('[data-open=G9001]').click();await page.locator('#detail table').first().waitFor();
  assert.ok(await page.locator('.notice').filter({hasText:'STALE'}).count()>0);
+ await page.locator('[data-tab=overview]').click();await page.waitForFunction(()=>document.querySelector('.wp-value')?.textContent==='40.0%');
  assert.equal(await page.locator('.wp-value').innerText(),`${(wp.summary.probability*100).toFixed(1)}%`);assert.equal(await page.locator('#password-input').inputValue(),'');
  assert.ok(!(await page.evaluate(()=>JSON.stringify(sessionStorage))).includes('qa-fixture-not-a-real-token'));
  record('Mock sign-in and selected-game WP HTTP wiring; credentials absent from storage');
