@@ -92,6 +92,7 @@ try{
  assert.equal(await page.locator('.key-stats table').isVisible(),false);await page.locator('.key-stats summary').click();assert.ok(await page.locator('.key-stats table').isVisible());await page.locator('#refresh').click();assert.ok(await page.locator('.key-stats table').isVisible());await page.locator('.key-stats summary').click();
  await page.screenshot({path:`${output}/game-stats-phone-compact.png`,fullPage:true});
  await page.setViewportSize({width:1920,height:1080});await page.locator('[data-tab=overview]').click();
+ await page.evaluate(()=>window.scrollTo(0,0));
  const compactBottom=await page.locator('.key-stats').evaluate(el=>el.getBoundingClientRect().bottom);assert.ok(compactBottom<=1080,`Overview extends below 1080: ${compactBottom}`);
 
  const fieldWidth=await page.locator('.current-drive .field').evaluate(el=>el.getBoundingClientRect().width);const overviewWidth=await page.locator('.overview-grid').evaluate(el=>el.getBoundingClientRect().width);assert.ok(fieldWidth/overviewWidth>=0.68,`Field too narrow: ${fieldWidth}/${overviewWidth}`);

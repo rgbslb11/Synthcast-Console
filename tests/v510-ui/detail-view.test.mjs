@@ -76,3 +76,9 @@ test('historical desktop field uses supplied pre-snap coordinates and never infe
  const html=desktopField(options.data,{sequence:2,possessingTeam:0,preFieldPosition:25,preDown:1,preDistance:10});
  assert.match(html,/class="turf-ball" cx="350"/);assert.doesNotMatch(html,/class="turf-gain"/);assert.match(html,/Historical play 2/);
 });
+test('resolved trace uses supplied positions and is omitted across possession changes',async()=>{
+ const {desktopField}=await import('../../public/v5.1.0/review/desktop-field.mjs');
+ const data=structuredClone(options.data);assert.match(desktopField(data),/class="last-resolved-trace"/);
+ data.scoreboard.lastResolvedPlay.postPossession=1;assert.doesNotMatch(desktopField(data),/class="last-resolved-trace"/);
+ data.scoreboard.lastResolvedPlay.postPossession=0;data.scoreboard.lastResolvedPlay.postFieldPosition=null;assert.doesNotMatch(desktopField(data),/class="last-resolved-trace"/);
+});
