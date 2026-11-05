@@ -2,7 +2,7 @@
   "files": [
     {
       "path": "v5.1.0/review/app.mjs",
-      "sha256": "135f44b038a55b23f6a97ccbe591cc5b8c4d791b74cb2ae3ccc564ffc03dadd0"
+      "sha256": "ab6d0fa01a259c2f084aaf37cfd114e945cdae18b55f3c330bc158b6330b5055"
     },
     {
       "path": "v5.1.0/review/auth.mjs",
@@ -22,7 +22,7 @@
     },
     {
       "path": "v5.1.0/review/detail-view.mjs",
-      "sha256": "68691e960b44e5d59ee3fdd8bcdd5d463080b46825953809892120c4d594b97b"
+      "sha256": "6b7332ea06ff92d3f45a480a586a23de9c075075eb46a484c6de99c2802228a0"
     },
     {
       "path": "v5.1.0/review/fixtures/stats.json",

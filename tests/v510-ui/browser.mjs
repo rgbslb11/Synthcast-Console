@@ -165,6 +165,11 @@ try{
   record('56-game generic fixture board: ten refreshes, search/return, keyboard tabs and phone picker',{games:56,refreshTenMs,evidence:'DOM/interaction only; not live load or a performance SLA'});
  }finally{await boardContext.close();}
  assert.deepEqual(errors,[]);record('No application JavaScript errors');
+ await page.goto(base+'#game=G9001');await page.setViewportSize({width:390,height:1080});
+ if(!await page.locator('.all-fields').evaluate(el=>el.open))await page.locator('.all-fields > summary').click();
+ await page.locator('.all-fields p').first().evaluate(el=>el.textContent+=' '+ 'source-context-'.repeat(30));
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth));
+ record('Expanded source metadata wraps long identifiers at 390px');
 }catch(error){results.push({name:'Browser verification',status:'FAIL',error:error.stack});await page.screenshot({path:`${output}/failure.png`,fullPage:true});process.exitCode=1;}
 finally{await fs.writeFile(`${output}/results.json`,JSON.stringify({browser:kind,evidence:'FIXTURE / MOCK HTTP ONLY; viewport emulation, not real devices',results},null,2));console.log(JSON.stringify({browser:kind,results}));await context.close();await browser.close();server.close();}
 
