@@ -100,3 +100,7 @@ Actual authorized live integration, 56-game sustained browser load, native
 iPhone/iPad/Mobile Safari and Chairman final implementation acceptance remain
 NOT TESTED. The StatsCenter board behavior is preserved and remains in the same
 regression suite. Rollback is to the previous UI commit; no cloud restoration.
+
+## Compact layout correction
+
+The earlier screenshots were 1440-pixel-wide full-page captures (Game Stats 1440x1374; phone 390x2238), not 1920x1080 viewport captures. The Chairman requested tighter spacing and real mobile collapse. This revision reduces header/panel/table padding, stops empty overview panels stretching to their neighbor height, and uses the available desktop width. Mobile has collapsible Menu/Status, Games selector, line score, Key Team Stats and Scoring Summary. Primary score, field and WP remain visible; expanded menu/game/stats state survives refresh. No CSS zoom, image scaling or football/API changes. GitHub verification checks a real 1920x1080 viewport and produces an exact 1920x1080 PNG separately from full-page screenshots.

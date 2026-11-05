@@ -56,7 +56,7 @@ try{
  await page.locator('[data-play="2"]').click();await page.locator('#refresh').click();assert.equal(await page.locator('#drive-filter').inputValue(),'1');assert.equal(await page.locator('[data-play="2"]').getAttribute('aria-pressed'),'true');
  record('Detailed reference: game bank, four overview panels, combined drives/plays, no team logos, black/red threshold');
 
- for(const width of [390,820,1194,1440]){
+ for(const width of [390,820,1194,1440,1920]){
   await page.setViewportSize({width,height:1000});await page.goto(base+'#board');await page.locator('#search').fill('');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth));
   await page.goto(base+'#game=G9001');
@@ -86,6 +86,15 @@ try{
  await page.locator('[data-tab=plays]').click();await page.screenshot({path:`${output}/game-stats-play-by-play-drives.png`,fullPage:true});
  await page.locator('[data-tab=overview]').click();await page.setViewportSize({width:390,height:1000});await page.screenshot({path:`${output}/game-stats-phone-width.png`,fullPage:true});
 
+
+ await page.locator('#mobile-menu-toggle').click();assert.equal(await page.locator('#mobile-menu-toggle').getAttribute('aria-expanded'),'true');await page.locator('#refresh').click();assert.equal(await page.locator('#mobile-menu-toggle').getAttribute('aria-expanded'),'true');await page.locator('#mobile-menu-toggle').click();
+ await page.locator('.mobile-games > summary').click();assert.ok(await page.locator('#game-switch').isVisible());await page.locator('#refresh').click();assert.ok(await page.locator('#game-switch').isVisible());await page.locator('.mobile-games > summary').click();
+ assert.equal(await page.locator('.key-stats table').isVisible(),false);await page.locator('.key-stats summary').click();assert.ok(await page.locator('.key-stats table').isVisible());await page.locator('#refresh').click();assert.ok(await page.locator('.key-stats table').isVisible());await page.locator('.key-stats summary').click();
+ await page.screenshot({path:`${output}/game-stats-phone-compact.png`,fullPage:true});
+ await page.setViewportSize({width:1920,height:1080});await page.locator('[data-tab=overview]').click();
+ const compactBottom=await page.locator('.key-stats').evaluate(el=>el.getBoundingClientRect().bottom);assert.ok(compactBottom<=1080,`Overview extends below 1080: ${compactBottom}`);
+ await page.screenshot({path:`${output}/game-stats-1920x1080.png`,fullPage:false});
+ record('Compact layout: four overview panels fit 1920x1080; mobile menu/game picker/stats collapse and retain state');
  assert.deepEqual(errors,[]);record('No application JavaScript errors');
 }catch(error){results.push({name:'Browser verification',status:'FAIL',error:error.stack});await page.screenshot({path:`${output}/failure.png`,fullPage:true});process.exitCode=1;}
 finally{await fs.writeFile(`${output}/results.json`,JSON.stringify({browser:kind,evidence:'FIXTURE / MOCK HTTP ONLY; viewport emulation, not real devices',results},null,2));console.log(JSON.stringify({browser:kind,results}));await context.close();await browser.close();server.close();}
