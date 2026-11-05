@@ -1,13 +1,14 @@
-import {writeFile,mkdir} from 'node:fs/promises';
+import {writeFile,mkdir,readFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
 const BASE='https://xsvdmcipviejxynkdbhq.supabase.co';
 const KEY='sb_publishable_5jxF1vOOyWdUvvk3-poZqQ_83gaaUdf';
 const SESSION='qa-v510-wp-load-r3';
 const GAMES=Array.from({length:56},(_,i)=>`G${String(502+i).padStart(4,'0')}`);
 // Normal client traffic; no service key, worker activation or database access.
-export async function run({email,password,fetchImpl=fetch,now=Date.now,sleep=ms=>new Promise(r=>setTimeout(r,ms))}={}){
- const report={session:SESSION,games:56,plannedRounds:6,intervalMs:5000,requests:[],rounds:[],status:'BLOCKED'};
+export async function run({email,password,expectedVersion,fetchImpl=fetch,now=Date.now,sleep=ms=>new Promise(r=>setTimeout(r,ms))}={}){
+ const report={session:SESSION,games:56,plannedRounds:6,intervalMs:5000,concurrency:56,requests:[],rounds:[],status:'BLOCKED'};
  if(!email||!password){report.reason='QA_CREDENTIALS_REQUIRED';return report;}
+ if(!Number.isSafeInteger(expectedVersion)||expectedVersion<0){report.reason='SOURCE_REVISION_REQUIRED';return report;}
  let token;
  async function call(path,method='GET',body,extra={}){
   const start=now();let response;
@@ -26,7 +27,7 @@ export async function run({email,password,fetchImpl=fetch,now=Date.now,sleep=ms=
   const login=await call('/auth/v1/token?grant_type=password','POST',{email,password});
   if(!login.access_token||!login.user?.id||login.user.is_anonymous)throw Error('AUTHENTICATION_REQUIRED');
   token=login.access_token;password=undefined;
-  let version=(await read(GAMES[0])).summary.stateVersion;
+  await read(GAMES[0]);let version=expectedVersion;
   const started=now();
   for(let round=0;round<6;round++){
    const due=started+round*5000;if(now()<due)await sleep(due-now());
@@ -34,7 +35,7 @@ export async function run({email,password,fetchImpl=fetch,now=Date.now,sleep=ms=
    // Always await the in-flight command, including when a read fails.
    const command=call(`/functions/v1/gamecast-v5-1-0-qa-commands?session=${SESSION}`,'POST',{expectedVersion:version,actions:[{command:'advance',seconds:60}]},{Origin:'https://rgbslb11.github.io','Idempotency-Key':`external-wp-${crypto.randomUUID()}`}).then(value=>({value}),error=>({error}));
    let count=0,failure;
-   try{for(let offset=0;offset<56;offset+=8){const batch=await Promise.allSettled(GAMES.slice(offset,offset+8).map(read));count+=batch.filter(x=>x.status==='fulfilled').length;const rejected=batch.find(x=>x.status==='rejected');if(rejected)throw rejected.reason;}}
+   try{for(let offset=0;offset<56;offset+=56){const batch=await Promise.allSettled(GAMES.slice(offset,offset+56).map(read));count+=batch.filter(x=>x.status==='fulfilled').length;const rejected=batch.find(x=>x.status==='rejected');if(rejected)throw rejected.reason;}}
    catch(error){failure=error;}
    const advanced=await command;
    report.rounds.push({round:round+1,reads:count,startLagMs:roundStart-due,elapsedMs:now()-roundStart,commandConfirmed:advanced.value?.stateVersion===version+1});
@@ -51,7 +52,9 @@ export async function run({email,password,fetchImpl=fetch,now=Date.now,sleep=ms=
  return report;
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
- const report=await run({email:process.env.GAMECAST_QA_EMAIL,password:process.env.GAMECAST_QA_PASSWORD});
+ const request=JSON.parse(await readFile('release-assets/v5.1.0/wp-load-request.json','utf8'));
+ if(request.session!==SESSION)throw Error('QA_SCOPE_REQUIRED');
+ const report=await run({email:process.env.GAMECAST_QA_EMAIL,password:process.env.GAMECAST_QA_PASSWORD,expectedVersion:request.expectedVersion});
  await mkdir('outputs/v510-wp',{recursive:true});await writeFile('outputs/v510-wp/external-load.json',JSON.stringify(report,null,2)+'\n');
  console.log(JSON.stringify({status:report.status,reason:report.reason,rounds:report.rounds,logout:report.logout}));
  if(report.status!=='PASS')process.exitCode=1;
