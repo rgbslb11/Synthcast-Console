@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {fetchPublishedFile} from './fetch-preserved.mjs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -12,7 +13,7 @@ assert(fresh.length>10);assert(fresh.every(e=>e.path.startsWith('v5.1.0/review/'
 const previous=JSON.parse(fs.readFileSync('release-assets/v5.1.0/review-previous-manifest.json')).files;
 assert.equal(previous.length,13);assert.deepEqual(previous.map(e=>e.path).sort(),fresh.map(e=>e.path).sort());
 const out='out-v510-review';
-async function get(p){const r=await fetch(root+p,{cache:'no-store',signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,p);return Buffer.from(await r.arrayBuffer());}
+async function get(p){return fetchPublishedFile(root+p);}
 function write(p,b){assert(!p.startsWith('/')&&!p.split('/').includes('..'));fs.mkdirSync(path.dirname(`${out}/${p}`),{recursive:true});fs.writeFileSync(`${out}/${p}`,b);}
 if(mode==='prepare'){
  assert(!fs.existsSync(out));fs.mkdirSync(out);
