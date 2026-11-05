@@ -44,6 +44,15 @@ Deno.serve(async req=>{
      check('bound pagination',page.status===200&&page.body.nextSequence>first.body.nextSequence&&page.body.highWatermark===first.body.highWatermark);
      const frozen=await call(path,'POST',{expectedVersion:4,prior:{}},token,anon,{Origin:'https://rgbslb11.github.io','Idempotency-Key':'qa-freeze-'+crypto.randomUUID()});
      check('prior frozen',frozen.status===409&&frozen.body.error==='PREGAME_FROZEN');
+     const version=Number((await query('select state_version from gamecast_v510.source_heads where session_id=$1',[sessionId])).rows[0].state_version);
+     const requestId='qa-http-recover-'+crypto.randomUUID(),actions=[{command:'advance',seconds:120}];
+     await createQaController({rpc:t.rpc}).execute({sessionId,actorId:uid,requestId,expectedVersion:version,actions});
+     const pending=await read();check('pending WP blocked',pending.status===200&&pending.body.summary.reason==='WP_SOURCE_PENDING');
+     const command=()=>call('/functions/v1/gamecast-v5-1-0-qa-commands?session='+sessionId,'POST',{expectedVersion:version,actions},token,anon,{Origin:'https://rgbslb11.github.io','Idempotency-Key':requestId});
+     const recovered=await command();check('HTTP retry recovers original commit',recovered.status===200&&recovered.body.stateVersion===version+1&&recovered.body.replayed===true);
+     check('WP caught up',(await read()).body.summary.reason!=='WP_SOURCE_PENDING');
+     const duplicate=await command();check('duplicate no reroll',duplicate.status===200&&duplicate.body.stateVersion===version+1);
+
     }catch(e){results.push({error:e.message});}
     finally{
      if(uid){await query('delete from gamecast_v510.reporting_grants where session_id=$1 and user_id=$2',[sessionId,uid]);}
