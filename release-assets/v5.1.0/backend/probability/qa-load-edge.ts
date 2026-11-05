@@ -29,7 +29,13 @@ Deno.serve(async req=>{
    if(operation.qaAction==='auth_checks'){
     const base=Deno.env.get('SUPABASE_URL'),key=Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'),anon=Deno.env.get('SUPABASE_ANON_KEY');
     let uid,token;const results=[];
-    const call=async(path,method,body,bearer=key,apikey=key,extra={})=>{const r=await fetch(base+path,{method,headers:{apikey,Authorization:'Bearer '+bearer,'Content-Type':'application/json',...extra},body:body===undefined?undefined:JSON.stringify(body)});return {status:r.status,body:await r.json().catch(()=>null)};};
+    const call=async(path,method,body,bearer=key,apikey=key,extra={})=>{
+     const started=Date.now(),endpoint=path.split('?')[0];
+     try{const r=await fetch(base+path,{method,headers:{apikey,Authorization:'Bearer '+bearer,'Content-Type':'application/json',...extra},body:body===undefined?undefined:JSON.stringify(body)});
+      const result={status:r.status,body:await r.json().catch(()=>null)};
+      results.push({endpoint,method,status:r.status,elapsedMs:Date.now()-started,retryAfter:r.headers.get('retry-after')});return result;
+     }catch(e){results.push({endpoint,method,status:null,elapsedMs:Date.now()-started,transportError:String(e.message).slice(0,250)});return {status:0,body:null};}
+    };
     const check=(name,ok)=>{results.push({name,pass:!!ok});if(!ok)throw Error(name);};
     try{
      const email='wp-qa-'+crypto.randomUUID()+'@example.invalid',password=crypto.randomUUID()+crypto.randomUUID();
@@ -38,15 +44,14 @@ Deno.serve(async req=>{
 
      await query('insert into gamecast_v510.reporting_grants values($1,$2,true)',[sessionId,uid]);
      const src=await source.loadCommittedRevision(sessionId,0),games=src.games;
-     for(const g of games){const c=captureGame(g,{engineVersion:src.engineVersion,stateVersion:0,actionOrdinal:0,command:'pregame',observedAt:new Date().toISOString()});await store.setPrior({sessionId,gameId:g.id,userId:uid,expectedVersion:0,requestId:'load-prior-fixture-0001',prior:{favoriteTeamId:g.homeCode,otherTeamId:g.awayCode,pregameMargin:7,source:{kind:'QA_FIXTURE',id:'load-test-only',sampleCount:1,generatedAt:'2026-11-05T00:00:00Z',contextHash:c.contextHash}}});}
      const command=(version,actions)=>call('/functions/v1/gamecast-v5-1-0-qa-commands?session='+sessionId,'POST',{expectedVersion:version,actions},token,anon,{Origin:'https://rgbslb11.github.io','Idempotency-Key':'load-'+version+'-'+crypto.randomUUID()});
-     check('launch board',(await command(0,games.flatMap(g=>[{id:g.id,command:'launch'},{id:g.id,command:'auto'}]))).status===200);
+     const initialVersion=Number(head[0].state_version);
      const pipeline=createWpPipeline({store,readSource:source.loadCommittedRevision,sourceVersion:async()=>Number((await query('select state_version from gamecast_v510.source_heads where session_id=$1',[sessionId])).rows[0].state_version)});
      const started=Date.now();let reads=0;
      for(let round=0;round<6;round++){
-      const advancing=command(round+1,[{command:'advance',seconds:60}]);
+      const advancing=command(initialVersion+round,[{command:'advance',seconds:60}]);
       for(let offset=0;offset<games.length;offset+=8){const batch=await Promise.all(games.slice(offset,offset+8).map(g=>call('/functions/v1/gamecast-v5-1-0-qa-wp?session='+sessionId+'&game='+g.id+'&limit=10','GET',undefined,token,anon,{Origin:'https://rgbslb11.github.io'})));check('reads '+round+'/'+offset,batch.every(r=>r.status===200&&r.body.summary&&Array.isArray(r.body.points)));reads+=batch.length;}
-      const advanced=await advancing;check('advance '+round,advanced.status===200&&advanced.body.stateVersion===round+2);
+      const advanced=await advancing;check('advance '+round,advanced.status===200&&advanced.body.stateVersion===initialVersion+round+1);
       await pipeline.sample(sessionId,()=>new Date().toISOString());
       await new Promise(r=>setTimeout(r,5000));
      }
