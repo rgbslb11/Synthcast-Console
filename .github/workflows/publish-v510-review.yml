@@ -32,9 +32,13 @@ jobs:
         with:
           script: |
             const runs = await github.paginate(github.rest.actions.listWorkflowRunsForRepo, {...context.repo, per_page: 100});
-            const latest = runs.filter(r => /publish|deploy/i.test(r.name) && r.status === 'completed' && r.id !== Number(context.runId)).sort((a,b) => b.id-a.id)[0];
-            const jobs = await github.rest.actions.listJobsForWorkflowRun({...context.repo, run_id: 41985422038});
-            if (!jobs.data.jobs.some(j => j.name === 'publish' && j.conclusion === 'success')) throw new Error('Prior publication not verified');
+            const candidates = runs.filter(r => /publish|deploy/i.test(r.name) && r.status === 'completed' && r.id !== Number(context.runId)).sort((a,b) => b.id-a.id);
+            let latest;
+            for (const candidate of candidates) {
+              const jobs = await github.rest.actions.listJobsForWorkflowRun({...context.repo, run_id: candidate.id});
+              if (jobs.data.jobs.some(j => /publish|deploy/i.test(j.name) && j.conclusion === 'success')) { latest = candidate; break; }
+              if (candidate.conclusion === 'success') throw new Error('Unrecognized successful publisher; verify baseline');
+            }
             if (latest?.id !== 41985422038) throw new Error('Published baseline changed; reconstruct inventory before publishing');
       - run: npm install --prefix "$RUNNER_TEMP/preflight" --no-audit --no-fund --save-exact playwright@1.62.1
       - run: node "$RUNNER_TEMP/preflight/node_modules/playwright/cli.js" install --with-deps chromium webkit
