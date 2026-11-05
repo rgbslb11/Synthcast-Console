@@ -28,22 +28,25 @@ export async function run({email,password,expectedVersion,fetchImpl=fetch,now=Da
   if(!login.access_token||!login.user?.id||login.user.is_anonymous)throw Error('AUTHENTICATION_REQUIRED');
   token=login.access_token;password=undefined;
   await read(GAMES[0]);let version=expectedVersion;
-  const started=now();
-  for(let round=0;round<6;round++){
+  const started=now();let stop=false,commandFailure;
+  report.commands=[];
+  const commands=(async()=>{for(let i=0;i<6&&!stop;i++){
+   const commandStart=now();
+   try{const result=await call(`/functions/v1/gamecast-v5-1-0-qa-commands?session=${SESSION}`,'POST',{expectedVersion:version,actions:[{command:'advance',seconds:60}]},{Origin:'https://rgbslb11.github.io','Idempotency-Key':`external-wp-${crypto.randomUUID()}`});
+    if(result.stateVersion!==version+1)throw Error('COMMAND_REVISION_MISMATCH');version++;
+    report.commands.push({stateVersion:version,elapsedMs:now()-commandStart});
+   }catch(error){commandFailure=error;stop=true;}
+  }})();
+  try{for(let round=0;round<6;round++){
+   if(commandFailure)throw commandFailure;
    const due=started+round*5000;if(now()<due)await sleep(due-now());
-   const roundStart=now();
-   // Always await the in-flight command, including when a read fails.
-   const command=call(`/functions/v1/gamecast-v5-1-0-qa-commands?session=${SESSION}`,'POST',{expectedVersion:version,actions:[{command:'advance',seconds:60}]},{Origin:'https://rgbslb11.github.io','Idempotency-Key':`external-wp-${crypto.randomUUID()}`}).then(value=>({value}),error=>({error}));
-   let count=0,failure;
-   try{for(let offset=0;offset<56;offset+=56){const batch=await Promise.allSettled(GAMES.slice(offset,offset+56).map(read));count+=batch.filter(x=>x.status==='fulfilled').length;const rejected=batch.find(x=>x.status==='rejected');if(rejected)throw rejected.reason;}}
-   catch(error){failure=error;}
-   const advanced=await command;
-   report.rounds.push({round:round+1,reads:count,startLagMs:roundStart-due,elapsedMs:now()-roundStart,commandConfirmed:advanced.value?.stateVersion===version+1});
-   if(failure)throw failure;if(advanced.error)throw advanced.error;
-   if(advanced.value?.stateVersion!==version+1)throw Error('COMMAND_REVISION_MISMATCH');
-   version++;
-   if(now()-roundStart>5000||roundStart-due>1000)throw Error('FIVE_SECOND_CADENCE_MISSED');
-  }
+   const roundStart=now(),batch=await Promise.allSettled(GAMES.map(read));
+   const count=batch.filter(x=>x.status==='fulfilled').length,rejected=batch.find(x=>x.status==='rejected');
+   report.rounds.push({round:round+1,reads:count,startLagMs:roundStart-due,elapsedMs:now()-roundStart});
+   if(rejected)throw rejected.reason;
+   if(now()-roundStart>5000||roundStart-due>1000)throw Error('FIVE_SECOND_READ_CADENCE_MISSED');
+  }}catch(error){stop=true;throw error;}finally{await commands;}
+  if(commandFailure)throw commandFailure;
   report.status='PASS';report.finalSourceVersion=version;
  }catch(error){report.status='FAIL';report.reason=error.message;}
  finally{
@@ -56,6 +59,6 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
  if(request.session!==SESSION)throw Error('QA_SCOPE_REQUIRED');
  const report=await run({email:process.env.GAMECAST_QA_EMAIL,password:process.env.GAMECAST_QA_PASSWORD,expectedVersion:request.expectedVersion});
  await mkdir('outputs/v510-wp',{recursive:true});await writeFile('outputs/v510-wp/external-load.json',JSON.stringify(report,null,2)+'\n');
- console.log(JSON.stringify({status:report.status,reason:report.reason,rounds:report.rounds,logout:report.logout}));
+ console.log(JSON.stringify({status:report.status,reason:report.reason,rounds:report.rounds,commands:report.commands,logout:report.logout}));
  if(report.status!=='PASS')process.exitCode=1;
 }
