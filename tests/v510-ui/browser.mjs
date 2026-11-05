@@ -67,17 +67,34 @@ try{
  record('Responsive board and all four detail tabs: 390/820/1194/1440/1920');
  // Actual app transport calls are intercepted; these are fixtures, not live QA.
  const stats=JSON.parse(await fs.readFile('public/v5.1.0/review/fixtures/stats.json','utf8'));
- let denied=false,revision=3,methods=[];
+ let denied=false,transportLost=false,blockedReason=null,revision=3,sourceTime=stats.responses.G9001.generatedAt,methods=[];
  await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-v5-1-0-qa-details**',async route=>{
   methods.push(route.request().method());
-  const body=denied?{error:'CHAIRMAN_FORBIDDEN'}:{...stats.responses.G9001,stateVersion:revision};
+  if(transportLost){await route.abort('failed');return;}
+  let body=denied?{error:'CHAIRMAN_FORBIDDEN'}:{...stats.responses.G9001,stateVersion:revision,generatedAt:sourceTime};
+  if(blockedReason){const {contractVersion,deliveryVersion,sessionId,gameId,runId,generatedAt}=body;body={contractVersion,deliveryVersion,sessionId,gameId,runId,generatedAt,stateVersion:revision,availability:{status:'BLOCKED',reason:blockedReason}};}
   await route.fulfill({status:denied?403:200,contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},body:JSON.stringify(body)});
  });
  await page.goto(base+'#board');await page.locator('#settings-toggle').click();await page.locator('#session-input').fill(stats.sessionId);await page.locator('#games-input').fill('G9001');await page.locator('#token-input').fill('qa-fixture-not-a-real-token');await page.getByRole('button',{name:'Connect to QA',exact:true}).click();
  await page.locator('#connection').filter({hasText:'Connected'}).waitFor();
  await page.locator('[data-open=G9001]').click();await page.locator('#detail table').first().waitFor();
+ assert.ok(await page.locator('.notice').filter({hasText:'STALE'}).count()>0);
+ const clockBefore=await page.locator('.band-state').innerText();await page.locator('#refresh').click();assert.equal(await page.locator('.band-state').innerText(),clockBefore);
+ sourceTime=new Date().toISOString();revision++;await page.locator('#refresh').click();assert.equal(await page.locator('.notice').filter({hasText:'STALE'}).count(),0);
+ await page.locator('[data-tab=plays]').click();await page.locator('#drive-filter').selectOption('1');await page.locator('[data-play="2"]').click();
+ revision++;const polledRevision=revision;
+ await page.waitForFunction(rev=>document.querySelector('.all-fields')?.textContent.includes(`Revision ${rev}`),polledRevision,{timeout:10000});
+ assert.equal(await page.locator('[data-play="2"]').getAttribute('aria-pressed'),'true');assert.equal(await page.locator('#drive-filter').inputValue(),'1');
+ await page.locator('[data-tab=overview]').click();
+ blockedReason='CHAIRMAN_EDIT_OPEN';revision++;await page.locator('#refresh').click();await page.getByRole('heading',{name:'BLOCKED',exact:true}).waitFor();assert.equal(await page.locator('#detail table, #detail svg').count(),0);assert.match(await page.locator('#detail-content').innerText(),/CHAIRMAN_EDIT_OPEN/);
+ blockedReason=null;revision++;await page.locator('#refresh').click();assert.ok(await page.locator('#detail table').count()>0);
+ transportLost=true;await page.locator('#refresh').click();await page.locator('#connection').filter({hasText:'reconnecting'}).waitFor();assert.equal(await page.locator('#detail table, #detail svg').count(),0);
+ transportLost=false;revision++;await page.locator('#refresh').click();await page.locator('#connection').filter({hasText:'Recovered'}).waitFor();assert.ok(await page.locator('#detail table').count()>0);
+ record('Mock HTTP: stale/fresh source, pure GET polling, automatic five-second refresh, selection retention, edit/cancel and transport recovery');
  denied=true;await page.locator('#refresh').click();await page.getByRole('heading',{name:'ACCESS_DENIED',exact:true}).waitFor();assert.equal(await page.locator('#detail table').count(),0);
  denied=false;revision++;await page.locator('#refresh').click();await page.locator('#connection').filter({hasText:'Recovered'}).waitFor();assert.ok(await page.locator('#detail table').count()>0);
+ blockedReason='CHAIRMAN_CORRECTION';revision++;await page.locator('#refresh').click();await page.getByRole('heading',{name:'BLOCKED',exact:true}).waitFor();await page.locator('#refresh').click();assert.match(await page.locator('#detail-content').innerText(),/CHAIRMAN_CORRECTION/);assert.equal(await page.locator('#detail table, #detail svg').count(),0);
+ record('Mock HTTP: saved correction remains blocked through repeated reads');
  await page.reload();await page.locator('#connection').filter({hasText:'Authentication required after reload'}).waitFor();assert.equal(await page.locator('#detail table').count(),0);assert.match(await page.locator('#review-banner').innerText(),/READ-ONLY QA/);assert.ok(methods.every(m=>m==='GET'));
  record('Mocked live access denial, recovery, no writes and safe reload');
  await page.locator('#settings-toggle').click();await page.locator('#fixtures').click();await page.locator('#board:not([hidden])').waitFor();await page.locator('[data-filter=all]').click();if(await page.locator('#settings').isVisible())await page.locator('#settings-toggle').click();await page.setViewportSize({width:1440,height:1000});await page.screenshot({path:`${output}/statscenter.png`,fullPage:true});
@@ -100,6 +117,28 @@ try{
  await page.screenshot({path:`${output}/game-stats-1920x1080.png`,fullPage:false});
  await page.locator('#back').click();await page.locator('#board:not([hidden])').waitFor();const pairGap=await page.locator('.card .teams').first().evaluate(el=>{const name=el.querySelector('.team'),score=el.querySelector('.score');return score.getBoundingClientRect().left-name.getBoundingClientRect().right;});assert.ok(pairGap<=18,`Team-score gap ${pairGap}`);await page.screenshot({path:`${output}/statscenter-1920x1080.png`,fullPage:false});
  record('Compact layout: four overview panels fit 1920x1080; mobile menu/game picker/stats collapse and retain state');
+ // Hand-authored generic response copies only. This is DOM/interaction load,
+ // not 56 live subscriptions, engine capacity or hosted endpoint load evidence.
+ const boardContext=await browser.newContext({viewport:{width:1920,height:1080}}),boardPage=await boardContext.newPage();
+ boardPage.on('pageerror',error=>errors.push(error.message));
+ try{
+  const large=structuredClone(stats);large.games=[];large.responses={};
+  for(let i=0;i<56;i++){
+   const id=`G${9100+i}`,d=structuredClone(stats.responses.G9001),away=`Example Away ${i+1}`,home=`Example Home ${i+1}`;
+   large.games.push({id,away,home,lifecycle:'ACTIVE'});d.gameId=id;d.runId=`${id}-EXAMPLE`;d.scoreboard.awayTeamAndRecords.name=away;d.scoreboard.homeTeamAndRecords.name=home;large.responses[id]=d;
+  }
+  await boardPage.route('**/fixtures/stats.json',route=>route.fulfill({contentType:'application/json',body:JSON.stringify(large)}));
+  await boardPage.goto(base);await boardPage.locator('.card').last().waitFor();assert.equal(await boardPage.locator('.card').count(),56);
+  const started=performance.now();for(let i=0;i<10;i++)await boardPage.locator('#refresh').click();const refreshTenMs=Math.round(performance.now()-started);
+  assert.equal(await boardPage.locator('.card').count(),56);assert.equal(await boardPage.locator('[data-open]').count(),56);
+  await boardPage.locator('#search').fill('G9155');assert.equal(await boardPage.locator('.card').count(),1);await boardPage.locator('[data-open=G9155]').click();assert.equal(await boardPage.locator('.game-bank [data-bank-game]').count(),56);
+  await boardPage.locator('[data-tab=overview]').click();await boardPage.locator('[data-tab=overview]').press('ArrowRight');assert.equal(await boardPage.locator('[data-tab=stats]').getAttribute('aria-selected'),'true');
+  await boardPage.locator('[data-tab=stats]').press('End');assert.equal(await boardPage.locator('[data-tab=scoring]').getAttribute('aria-selected'),'true');
+  await boardPage.locator('#back').click();assert.equal(await boardPage.locator('#search').inputValue(),'G9155');assert.equal(await boardPage.locator('.card').count(),1);
+  await boardPage.locator('#search').fill('');await boardPage.setViewportSize({width:390,height:1000});assert.ok(await boardPage.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth));
+  await boardPage.locator('[data-open=G9155]').click();await boardPage.locator('.mobile-games > summary').click();assert.equal(await boardPage.locator('#game-switch option').count(),56);
+  record('56-game generic fixture board: ten refreshes, search/return, keyboard tabs and phone picker',{games:56,refreshTenMs,evidence:'DOM/interaction only; not live load or a performance SLA'});
+ }finally{await boardContext.close();}
  assert.deepEqual(errors,[]);record('No application JavaScript errors');
 }catch(error){results.push({name:'Browser verification',status:'FAIL',error:error.stack});await page.screenshot({path:`${output}/failure.png`,fullPage:true});process.exitCode=1;}
 finally{await fs.writeFile(`${output}/results.json`,JSON.stringify({browser:kind,evidence:'FIXTURE / MOCK HTTP ONLY; viewport emulation, not real devices',results},null,2));console.log(JSON.stringify({browser:kind,results}));await context.close();await browser.close();server.close();}
