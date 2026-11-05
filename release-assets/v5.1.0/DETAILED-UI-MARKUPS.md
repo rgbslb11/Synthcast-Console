@@ -108,3 +108,5 @@ The earlier screenshots were 1440-pixel-wide full-page captures (Game Stats 1440
 ## Desktop spacing feedback
 
 Mobile appearance accepted by Chairman. Subsequent desktop-only rules are confined to min-width 1101px: field column increased to approximately 70%, WP narrowed, card gutters reduced to 5–7px, desktop header/navigation grouped, padding reduced, and numeric team-stat columns paired at 140px. StatsCenter team/score pairs use content-sized name columns with a 16px gap, rather than scores pinned to the far card edge. Verification measures field width at least 68% of Overview and team-score gaps no greater than 18px. No <=1100px CSS rule or mobile markup changed.
+
+At widths above 1300px, the Overview uses a 24-column layout: field 17 columns / WP 7 columns on top; Key Team Stats 12 / Scoring Summary 12 below. The field is dominant while bottom comparisons remain balanced.

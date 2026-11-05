@@ -29,3 +29,4 @@
  .scoring-summary td,.scoring-summary th{padding:6px}.game-main .all-fields summary{min-height:28px;padding:6px 0}
  .lanes{gap:7px}.lane-body{padding:6px;gap:6px}.lane-title{padding:10px 12px}.card{padding:10px}.card .teams{grid-template-columns:fit-content(280px) 56px;column-gap:16px;justify-content:start}.card .score{text-align:left}.card-meta{margin-bottom:8px}.card-bottom{margin-top:8px}.filters{margin-bottom:10px}.section-heading{margin-bottom:10px}
 }
+@media(min-width:1301px){.overview-grid{grid-template-columns:repeat(24,minmax(0,1fr))}.current-drive{grid-column:span 17}.wp-panel{grid-column:span 7}.key-stats,.scoring-summary{grid-column:span 12}}
