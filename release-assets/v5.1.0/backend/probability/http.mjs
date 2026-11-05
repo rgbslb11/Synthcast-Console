@@ -18,6 +18,6 @@ export function createWpHandler({allowedOrigins,authenticate,authorize,store}){
     const {expectedVersion,prior}=JSON.parse(text);return reply(await store.setPrior({sessionId,gameId,userId:user.id,expectedVersion,requestId,prior}));
    }
    return reply(await store.read({sessionId,gameId,userId:user.id,after:Number(q.get('after')??0),limit:Number(q.get('limit')??100),runId:q.get('run'),highWatermark:q.has('through')?Number(q.get('through')):null}));
-  }catch(e){const code=e.code??e.message;const status=e.status??(['CHAIRMAN_FORBIDDEN'].includes(code)?403:['PREGAME_FROZEN','VERSION_CONFLICT','IDEMPOTENCY_CONFLICT','RUN_CHANGED'].includes(code)?409:code.startsWith('PRIOR_')||code==='INVALID_CURSOR'?400:503);return reply({error:status===503?'BACKEND_UNAVAILABLE':code},status);}
+  }catch(e){const code=e.code??e.message;const status=e.status??(['CHAIRMAN_FORBIDDEN'].includes(code)?403:['PREGAME_FROZEN','VERSION_CONFLICT','IDEMPOTENCY_CONFLICT','RUN_CHANGED'].includes(code)?409:code.startsWith('PRIOR_')||code==='INVALID_CURSOR'?400:503);if(status===503)console.error('WP_REQUEST_FAILURE',JSON.stringify({name:e.name,code:/^[A-Z0-9_]{1,64}$/.test(String(e.code??''))?e.code:null,reason:/^[A-Z_]{1,64}$/.test(String(e.message??''))?e.message:'REDACTED'}));return reply({error:status===503?'BACKEND_UNAVAILABLE':code},status);}
  };
 }

@@ -3,7 +3,7 @@ import {pathToFileURL} from 'node:url';
 const BASE='https://xsvdmcipviejxynkdbhq.supabase.co';
 const KEY='sb_publishable_5jxF1vOOyWdUvvk3-poZqQ_83gaaUdf';
 const SESSION='qa-v510-wp-load-r3';
-const GAMES=Array.from({length:56},(_,i)=>`G${502+i}`);
+const GAMES=Array.from({length:56},(_,i)=>`G${String(502+i).padStart(4,'0')}`);
 // Normal client traffic; no service key, worker activation or database access.
 export async function run({email,password,fetchImpl=fetch,now=Date.now,sleep=ms=>new Promise(r=>setTimeout(r,ms))}={}){
  const report={session:SESSION,games:56,plannedRounds:6,intervalMs:5000,requests:[],rounds:[],status:'BLOCKED'};
