@@ -1,6 +1,6 @@
 ## 2026-11-06 — authenticated session board
 
-Dedicated login accepted by the Chairman. Automatic authorized roster and lifecycle filters implemented on `feature/v510-session-board` (PR #30). 157 unit/regression and 17 SQL checks pass; Chromium/WebKit CI 42155227408 passes. QA WP v16 deployed with JWT verification and exact bundle readback. See [SESSION-BOARD-READINESS-20261106.md](SESSION-BOARD-READINESS-20261106.md) for current publication evidence, preservation and remaining release work. Earlier records below are historical.
+Dedicated login accepted by the Chairman. Automatic authorized roster and lifecycle filters implemented on `feature/v510-session-board` (PR #30). 157 unit/regression and 17 SQL checks pass; Chromium/WebKit CI 42156049913 and hosted publication 42156049841 pass, including all 56 games and reconnect recovery. QA WP v16 deployed with JWT verification and exact bundle readback. See [SESSION-BOARD-READINESS-20261106.md](SESSION-BOARD-READINESS-20261106.md) for current publication evidence, preservation and remaining release work. Earlier records below are historical.
 
 ## 2026-11-05 — assembled development candidate
 

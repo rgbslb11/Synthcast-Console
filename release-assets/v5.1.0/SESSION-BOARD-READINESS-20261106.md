@@ -2,7 +2,7 @@
 
 ## Delivered scope
 
-Candidate `a3dd67ffe06104b8dcf5f4c91dcc30239544b228`, branch `feature/v510-session-board`, PR #30. The Chairman accepted the dedicated login before this work. Login now leads to all games in the authorized QA session without manually supplying game IDs. Lifecycle filters use stored source state; FINAL_PENDING remains explicitly not accepted. Full details and WP history load only for the selected game.
+Published candidate `86979142c1c9fec70cc82a4248d82d725bf94b39`, branch `feature/v510-session-board`, PR #30. The Chairman accepted the dedicated login before this work. Login now leads to all games in the authorized QA session without manually supplying game IDs. Lifecycle filters use stored source state; FINAL_PENDING remains explicitly not accepted. Full details and WP history load only for the selected game.
 
 New additive contract: [GC-BOARD-1](contracts/session-board-v1.md). Existing stats, delivery and WP contracts remain unchanged. One SQL snapshot rechecks authorization, enumerates up to 56 games and withholds stale/pending or corrected statistics. UI clears board data on failed reads.
 
@@ -11,10 +11,10 @@ New additive contract: [GC-BOARD-1](contracts/session-board-v1.md). Existing sta
 - Local unit/regression/transport: **157 PASS**.
 - Local PostgreSQL/PGlite: **17 PASS**, including one-statement roster authorization, all 56 source IDs, pending/corrected blocking, read immutability and revocation.
 - Full-game local rehearsal: **56/56 natural FINAL_PENDING**, no acceptance; terminal history unchanged after later source revision.
-- GitHub CI **42155227408 PASS**: same suites plus Chromium and WebKit fixtures. WebKit is not native-device Safari.
+- GitHub CI **42156049913 PASS**: same suites plus Chromium and WebKit fixtures. WebKit is not native-device Safari.
 - QA WP Edge Function **v16 ACTIVE**, JWT verification true; all 18 deployed source files read back and matched the intended bundle. Only store/http plus the new session-board module differ from v15.
 - Read-only hosted source check after backend deployment: session `qa-v510-wp-load-r3`, revision **24**, exactly **56 games**, all **56 FINAL_PENDING**, original commit timestamp `2026-11-05T15:44:40.036745+00:00` unchanged.
-- QA Pages run **42155227356** published successfully; hosted login, all 56 games, final filter, search, stats/WP and overflow checks passed. Disconnect/reconnect exposed an empty selected-game identity after clearing the roster; corrected by retaining IDs only while clearing all metadata/statistics, with a new browser regression. Follow-up publication/hosted verification is pending. No production certification implied.
+- QA Pages run **42155227356** published successfully; hosted login, all 56 games, final filter, search, stats/WP and overflow checks passed. Disconnect/reconnect exposed an empty selected-game identity after clearing the roster; corrected by retaining IDs only while clearing all metadata/statistics, with a new browser regression. Corrected publication **42156049841 PASS**: preservation/byte verification plus signed-in Chromium and WebKit checks passed for all 56 games, final filtering/search, selected-game stats/WP, polling, desktop/mobile overflow, offline/reconnect and logout/reload. No production certification implied.
 
 ## Preservation and rollback
 
