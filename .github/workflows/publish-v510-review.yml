@@ -10,8 +10,7 @@ permissions:
   id-token: write
 concurrency:
   group: gamecast-pages-preserved-publication
-  # One recovery push cancels only the observed stalled publication; restored immediately after start.
-  cancel-in-progress: ${{ github.event.head_commit.message == 'Retry stalled login publication 42150246396' }}
+  cancel-in-progress: false
 jobs:
   prepare:
     runs-on: ubuntu-latest
