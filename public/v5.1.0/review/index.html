@@ -1,11 +1,32 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Synthcast StatsCenter | 5.1 UI Review</title><link rel="stylesheet" href="review.css"><link rel="stylesheet" href="detail-view.css"><link rel="stylesheet" href="desktop-product.css"></head>
-<body><a class="skip" href="#main">Skip to games</a>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Sign in | GameCast 5.1</title><link rel="stylesheet" href="review.css"><link rel="stylesheet" href="detail-view.css"><link rel="stylesheet" href="desktop-product.css"></head>
+<body class="login-active"><section id="settings" class="login-page" aria-labelledby="login-title">
+ <div class="login-card">
+  <img class="login-logo" src="synthcast-s.png" alt="Synthcast" width="48" height="48">
+  <p class="login-brand">SYNTHCAST GAMECAST <span>5.1</span></p>
+  <h1 id="login-title">Sign in</h1>
+  <p class="login-intro">Open your GameCast workspace.</p>
+  <form id="connect-form">
+   <label>Email<input id="email-input" type="email" autocomplete="username" autocapitalize="none" spellcheck="false" required></label>
+   <label>Password<input id="password-input" type="password" autocomplete="current-password" required></label>
+   <p id="sign-in-status" role="status" aria-live="polite">Enter your GameCast email and password.</p>
+   <button id="connect-submit" type="submit">Sign in</button>
+   <details id="qa-options"><summary>QA options</summary>
+    <label>QA session<input id="session-input" value="qa-v510-wp-load-r3" autocomplete="off" required></label>
+    <label>Game IDs<input id="games-input" value="G0502" autocomplete="off" required></label>
+    <p>Read-only QA access. Reloading the page requires signing in again.</p>
+    <button id="fixtures" type="button">View sample UI</button>
+   </details>
+  </form>
+  <button id="login-back" type="button" hidden>Return to StatsCenter</button>
+ </div>
+</section>
+<div id="workspace" hidden><a class="skip" href="#main">Skip to games</a>
 <header class="masthead"><div class="brand"><img src="synthcast-s.png" alt="Synthcast" width="52" height="52"><div><h1>SYNTHCAST <span>SCOREBOARD</span></h1><p>GAMECAST 5.1 · CHAIRMAN STATS REVIEW</p></div></div><button id="mobile-menu-toggle" aria-expanded="false" type="button">Menu / Status</button><nav class="surface-nav" aria-label="GameCast surfaces"><a class="button" href="#board" aria-current="page">StatsCenter</a><button disabled title="Verified 5.1 Chairman Console route required">Chairman Console</button><a id="game-stats-nav" href="#game=G9001" hidden>Game Stats</a></nav><div class="masthead-status"><span id="updated-zulu">Updated Zulu Time · unavailable</span><span id="master-zulu">Master Zulu unavailable</span><span id="connection" role="status" aria-live="polite">Loading preview</span></div></header>
 <div class="review-banner" id="review-banner">UI REVIEW · Illustrative QA fixtures · No live session or official results</div>
-<div class="toolbar"><a id="back" href="#board" hidden>← Return to board</a><span id="breadcrumb">Scoreboard / Stats / Rollup</span><button id="refresh" type="button">Refresh</button><button id="settings-toggle" type="button" aria-expanded="false" aria-controls="settings">Review connection</button></div>
-<section id="settings" class="panel settings" hidden><h2>Read-only QA connection</h2><p>Sign in with your GameCast account email and password. This is separate from your GitHub login and database password. QA access requires an active session grant. Credentials are kept in memory only; sign in again after reload or expiration.</p><p id="sign-in-status" class="notice" role="status" aria-live="polite">Enter your GameCast account details to connect.</p><form id="connect-form"><label>QA session<input id="session-input" placeholder="qa-v510-…" autocomplete="off" required></label><label>Game IDs<input id="games-input" placeholder="G0531, G0508" autocomplete="off" required></label><label>Email<input id="email-input" type="email" autocomplete="username" required></label><label>Password<input id="password-input" type="password" autocomplete="current-password" required></label><button id="connect-submit" type="submit">Connect to QA</button><button id="sign-out" type="button">Sign out</button><button id="fixtures" type="button">Return to fixtures</button></form><p>WP uses the authenticated QA history endpoint. Board enumeration and lifecycle remain unavailable. Access is restricted to the approved preview origin.</p></section>
+<div class="toolbar"><a id="back" href="#board" hidden>← Return to board</a><span id="breadcrumb">Scoreboard / Stats / Rollup</span><button id="refresh" type="button">Refresh</button><button id="settings-toggle" type="button" aria-expanded="false" aria-controls="settings">Connection</button><button id="sign-out" type="button">Sign out</button></div>
+
 <main id="main" tabindex="-1"><section id="board"><div class="section-heading"><div><p class="eyebrow">NETWORK OVERVIEW</p><h2>StatsCenter</h2></div><p id="game-count"></p></div><div class="filters"><div class="filter-buttons" aria-label="Filter games"><button data-filter="all" aria-pressed="true">All</button><button data-filter="live" aria-pressed="false">INPROGRESS</button><button data-filter="upcoming" aria-pressed="false">Upcoming</button><button data-filter="finished" aria-pressed="false">Final Results</button><button data-filter="blocked" aria-pressed="false">Blocked</button></div><label class="search">Search games<input id="search" type="search" placeholder="Team, network or game ID"></label></div><div id="lanes" class="lanes"></div><p class="footnote">Stats are Chairman only. The existing operator console remains the control surface; this preview issues no football commands.</p></section>
 <section id="detail" hidden><div id="detail-content"></div></section></main>
-<footer>5.1 UI REVIEW · GC-STATS-1 / GC-DELIVERY-1 · <span>Text teams · No team logos</span></footer><script type="module" src="app.mjs"></script></body></html>
+<footer>5.1 UI REVIEW · GC-STATS-1 / GC-DELIVERY-1 · <span>Text teams · No team logos</span></footer></div><script type="module" src="app.mjs"></script></body></html>
 

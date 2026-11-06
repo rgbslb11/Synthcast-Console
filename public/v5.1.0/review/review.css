@@ -9,3 +9,26 @@
 
 /* Source metadata can contain long IDs and JSON keys on narrow screens. */
 .all-fields p{overflow-wrap:anywhere}
+
+/* Dedicated sign-in route; dashboard stays out of view until entry. */
+.login-page{min-height:100vh;min-height:100svh;display:grid;place-items:center;padding:40px 20px;background:#ECECEC}
+.login-page[hidden],#workspace[hidden]{display:none!important}
+body.login-active{margin:0;padding:0}
+.login-card{width:100%;max-width:360px;color:#111}
+.login-logo{display:block;margin:0 0 22px}
+.login-brand{font-size:13px;font-weight:800;letter-spacing:.5px;margin:0 0 24px}
+.login-brand span{color:#D9101C;margin-left:6px}
+.login-card h1{font-size:32px;line-height:1.15;margin:0 0 8px}
+.login-intro{font-size:14px;color:#555;margin:0 0 26px}
+.login-card form{display:grid;gap:18px}
+.login-card label{display:grid;gap:8px;font-size:13px;font-weight:600}
+.login-card input{width:100%;min-width:0;min-height:48px;font-size:16px;background:#fff}
+.login-card #connect-submit{background:#D9101C;border-color:#D9101C;color:#fff;min-height:48px;width:100%;font-size:15px}
+.login-card #sign-in-status{font-size:13px;line-height:1.5;margin:0;overflow-wrap:anywhere}
+.login-card #qa-options{font-size:12px;color:#555;border-top:1px solid #ccc;padding-top:14px}
+.login-card #qa-options summary{cursor:pointer;min-height:36px;display:list-item}
+.login-card #qa-options label{margin-top:12px}
+.login-card #qa-options p{line-height:1.5}
+.login-card #fixtures,.login-card #login-back{font-size:12px;min-height:44px;background:transparent}
+.login-card #login-back{margin-top:12px;width:100%}
+@media(max-width:600px){.login-page{padding:32px 24px}.login-card{max-width:360px}}

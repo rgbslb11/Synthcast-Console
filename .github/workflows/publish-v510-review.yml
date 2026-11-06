@@ -1,7 +1,7 @@
 name: Publish isolated 5.1 QA review preserving prior Pages
 on:
   push:
-    branches: [fix/v510-mobile-sign-in]
+    branches: [feature/v510-login-page]
     paths: ['release-assets/v5.1.0/review-publish-request.json']
 permissions:
   contents: read
@@ -25,7 +25,7 @@ jobs:
           node-version: '24'
       - name: Preserve approved UI, engine and prior release source
         run: |
-          git diff --exit-code 059fed9009dd8591142e17ccab3dc872aa09d404 -- public app .openai release-assets/v5.1.0/backend release-assets/v5.0.6-week11 ':(exclude)public/v5.1.0/review/app.mjs' ':(exclude)public/v5.1.0/review/auth.mjs' ':(exclude)public/v5.1.0/review/index.html'
+          git diff --exit-code 7f4c31fe0f87d1a80296de25544bedf6afb314af -- public app .openai release-assets/v5.1.0/backend release-assets/v5.0.6-week11 ':(exclude)public/v5.1.0/review/app.mjs' ':(exclude)public/v5.1.0/review/review.css' ':(exclude)public/v5.1.0/review/index.html'
           node --test tests/v510-ui/*.test.mjs tests/v506/*.test.mjs tests/v510/*.test.mjs
       - name: Verify latest successful Pages publisher baseline
         uses: actions/github-script@v7
@@ -39,7 +39,7 @@ jobs:
               if (jobs.data.jobs.some(j => /publish|deploy/i.test(j.name) && j.conclusion === 'success')) { latest = candidate; break; }
               if (candidate.conclusion === 'success') throw new Error('Unrecognized successful publisher; verify baseline');
             }
-            if (latest?.id !== 42142313303) throw new Error('Published baseline changed; reconstruct inventory before publishing');
+            if (latest?.id !== 42147793078) throw new Error('Published baseline changed; reconstruct inventory before publishing');
       - run: npm install --prefix "$RUNNER_TEMP/preflight" --no-audit --no-fund --save-exact playwright@1.62.1
       - run: node "$RUNNER_TEMP/preflight/node_modules/playwright/cli.js" install --with-deps chromium webkit
       - name: Verify desktop fixes and mobile regression before publishing

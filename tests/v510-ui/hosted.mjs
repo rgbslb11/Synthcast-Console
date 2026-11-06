@@ -7,9 +7,9 @@ assert(process.env.GAMECAST_QA_EMAIL&&process.env.GAMECAST_QA_PASSWORD,'QA crede
 const browser=await ({chromium,webkit}[kind]).launch(),context=await browser.newContext(),page=await context.newPage(),results=[];
 const errors=[];page.on('pageerror',()=>errors.push('PAGE_ERROR'));
 try{
- await page.goto('https://rgbslb11.github.io/Synthcast-Console/v5.1.0/review/');await page.locator('.card').first().waitFor();
- await page.locator('#settings-toggle').click();await page.locator('#session-input').fill('qa-v510-wp-load-r3');await page.locator('#games-input').fill('G0502');await page.locator('#email-input').fill(process.env.GAMECAST_QA_EMAIL);await page.locator('#password-input').fill(process.env.GAMECAST_QA_PASSWORD);await page.getByRole('button',{name:'Connect to QA',exact:true}).click();
- await page.locator('#connection').filter({hasText:'Connected'}).waitFor({timeout:60000});assert.equal(await page.locator('#password-input').inputValue(),'');
+ await page.goto('https://rgbslb11.github.io/Synthcast-Console/v5.1.0/review/');await page.locator('#login-title').waitFor();assert.equal(await page.locator('#workspace').isVisible(),false);
+ assert.equal(await page.locator('#session-input').inputValue(),'qa-v510-wp-load-r3');assert.equal(await page.locator('#games-input').inputValue(),'G0502');await page.locator('#email-input').fill(process.env.GAMECAST_QA_EMAIL);await page.locator('#password-input').fill(process.env.GAMECAST_QA_PASSWORD);await page.getByRole('button',{name:'Sign in',exact:true}).click();
+ await page.locator('#connection').filter({hasText:'Connected'}).waitFor({timeout:60000});assert.equal(await page.locator('#password-input').inputValue(),'');assert.equal(await page.locator('#settings').isVisible(),false);
  await page.locator('[data-open=G0502]').click();await page.locator('[data-tab=overview]').click();
  await page.waitForFunction(()=>/\d+\.\d%/.test(document.querySelector('.wp-value')?.textContent??''),null,{timeout:60000});
  results.push({name:'Hosted password sign-in and actual QA WP display',status:'PASS',wp:await page.locator('.wp-value').innerText()});
@@ -29,10 +29,10 @@ try{
  results.push({name:'Actual QA disconnect and reconnect',status:'PASS'});
  await page.locator('#sign-out').click();await page.locator('#sign-in-status').filter({hasText:'Signed out'}).waitFor();
  await page.setViewportSize({width:390,height:844});await page.reload();
- await page.locator('#detail h2').filter({hasText:'Sign-in required'}).waitFor();
+ await page.locator('#login-title').waitFor();assert.equal(await page.locator('#workspace').isVisible(),false);assert.match(page.url(),/#login$/);
  assert.ok(await page.locator('#settings').isVisible());assert.ok(await page.locator('#sign-in-status').isVisible());
  assert.equal(await page.locator('#password-input').inputValue(),'');
- results.push({name:'Hosted phone reload exposes sign-in without hidden loading state',status:'PASS'});
+ results.push({name:'Hosted phone logout/reload returns to dedicated login page with workspace hidden',status:'PASS'});
  assert.deepEqual(errors,[]);
  if(results.some(r=>r.status==='FAIL'))process.exitCode=1;
 }finally{
