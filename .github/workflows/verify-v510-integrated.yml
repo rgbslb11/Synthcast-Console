@@ -1,7 +1,7 @@
 name: Verify assembled 5.1 candidate
 on:
   push:
-    branches: [integration/v510-readiness-20261105, fix/v510-final-wp-revision]
+    branches: [integration/v510-readiness-20261105, fix/v510-final-wp-revision, fix/v510-mobile-sign-in]
 permissions:
   contents: read
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - name: Verify protected releases and exact integration inputs
         run: |
           git diff --exit-code 754d959def7a67f2ada99a13f4e3a4c3254be4b8 -- public/v5.0.6 release-assets/v5.0.6-week11 .github/workflows/deploy-v506.yml
-          git diff --exit-code 671183ee7bdd950908b5a5949c56338fe773fd15 -- public app .openai ':(exclude)public/v5.1.0/review/app.mjs' ':(exclude)public/v5.1.0/review/wp-transport.mjs' ':(exclude)public/v5.1.0/review/detail-view.mjs' release-assets/v5.1.0/data-contract.v1.json release-assets/v5.1.0/delivery-contract.v1.json
+          git diff --exit-code 059fed9009dd8591142e17ccab3dc872aa09d404 -- public app .openai ':(exclude)public/v5.1.0/review/app.mjs' ':(exclude)public/v5.1.0/review/auth.mjs' ':(exclude)public/v5.1.0/review/index.html' release-assets/v5.1.0/data-contract.v1.json release-assets/v5.1.0/delivery-contract.v1.json
           git diff --exit-code c3d19c034f3c69bcdc66fce8eb53099454492571 -- release-assets/v5.1.0/backend release-assets/v5.1.0/qa-wp-api ':(exclude)release-assets/v5.1.0/backend/probability/read-snapshot.mjs'
       - name: Combined regression and database verification
         run: |
