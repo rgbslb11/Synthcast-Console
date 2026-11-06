@@ -71,10 +71,11 @@ try{
  let denied=false,transportLost=false,blockedReason=null,revision=3,sourceTime=stats.responses.G9001.generatedAt,methods=[];
  const wp=JSON.parse(await fs.readFile('public/v5.1.0/review/fixtures/wp.json','utf8')).fixtures.live;
  await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/auth/v1/**',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({access_token:'qa-fixture-not-a-real-token',expires_in:3600,user:{id:'fixture',is_anonymous:false}})}));
- let boardReads=0,historyReads=0;
+ let boardReads=0,historyReads=0,rosterReads=0;
  await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-v5-1-0-qa-wp**',async route=>{
   const q=new URL(route.request().url()).searchParams,summary={...wp.summary,sessionId:stats.sessionId,gameId:'G9001',runId:stats.responses.G9001.runId,stateVersion:revision};
-  if(q.get('view')==='board'){boardReads++;assert.equal(q.get('games'),'G9001');await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({contractVersion:'GC-WP-BOARD-1',sessionId:stats.sessionId,sourceVersion:revision,wpVersion:revision,games:[{gameId:'G9001',summary}]})});}
+  if(q.get('view')==='roster'){rosterReads++;const d=stats.responses.G9001;await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({contractVersion:'GC-BOARD-1',sessionId:stats.sessionId,stateVersion:revision,generatedAt:sourceTime,games:[{...stats.games.find(g=>g.id==='G9001'),runId:d.runId,availability:d.availability,scoreboard:d.scoreboard,teamStatistics:d.teamStatistics.map(t=>({totalPoints:t.totalPoints}))}]})});}
+  else if(q.get('view')==='board'){boardReads++;assert.equal(q.get('games'),'G9001');await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({contractVersion:'GC-WP-BOARD-1',sessionId:stats.sessionId,sourceVersion:revision,wpVersion:revision,games:[{gameId:'G9001',summary}]})});}
   else{historyReads++;await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({...wp,summary})});}
  });
  await page.route('https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-v5-1-0-qa-details**',async route=>{
@@ -86,7 +87,7 @@ try{
  });
  await page.goto(base+'#board');await page.locator('#settings-toggle').click();await page.locator('#qa-options > summary').click();await page.locator('#session-input').fill(stats.sessionId);await page.locator('#games-input').fill('G9001');await page.locator('#email-input').fill('qa@example.invalid');await page.locator('#password-input').fill('test-only');await page.getByRole('button',{name:'Sign in',exact:true}).click();
  await page.locator('#connection').filter({hasText:'Connected'}).waitFor();assert.equal(await page.locator('#settings').isVisible(),false);assert.ok(await page.locator('#workspace').isVisible());
- assert.ok(boardReads>=1);assert.equal(historyReads,0);
+ await page.waitForFunction(()=>!document.querySelector('#refresh').disabled);assert.ok(rosterReads>=1);for(let n=0;n<100&&boardReads===0;n++)await page.waitForTimeout(20);assert.ok(boardReads>=1);assert.equal(historyReads,0);assert.equal(methods.length,0);assert.equal(await page.locator('[data-filter=live]').isDisabled(),false);
  await page.locator('[data-open=G9001]').click();await page.locator('#detail table').first().waitFor();
  assert.ok(await page.locator('.notice').filter({hasText:'STALE'}).count()>0);
  await page.locator('[data-tab=overview]').click();await page.waitForFunction(()=>document.querySelector('.wp-value')?.textContent==='40.0%');

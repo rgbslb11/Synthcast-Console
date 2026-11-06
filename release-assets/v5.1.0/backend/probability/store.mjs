@@ -1,3 +1,4 @@
+import {readSessionBoard} from './session-board.mjs';
 import {readWpBoard} from './board.mjs';
 import {readWpSnapshot} from './read-snapshot.mjs';
 import {hash,requireScope} from '../delivery/projection.mjs';
@@ -8,6 +9,7 @@ export function createWpStore({query,transaction}){
  const one=async(sql,args)=>(await query(sql,args)).rows[0];
  const load=async sid=>(await query('select game_id,state from gamecast_v510.wp_heads where session_id=$1',[sid])).rows;
  return {load,
+  readSessionBoard:args=>readSessionBoard(query,args),
   readBoard:args=>readWpBoard(query,args),
   async prior(sid,gid,run,revision){const r=await one('select prior from gamecast_v510.wp_priors where session_id=$1 and game_id=$2 and run_id=$3 and source_version<$4 order by revision desc limit 1',[sid,gid,run,revision]);return r?.prior??null;},
   async setPrior({sessionId,gameId,userId,expectedVersion,requestId,prior}){requireScope(sessionId,gameId);if(!Number.isSafeInteger(expectedVersion)||expectedVersion<0||typeof requestId!=='string'||requestId.length<16||requestId.length>128)throw Error('INVALID_REQUEST');requestId=hash([userId,requestId]);return transaction(async()=>{

@@ -50,3 +50,25 @@ export function wpMatchesData(response,data){
  if(s.stateVersion===data.stateVersion)return true;
  return s.status==='FINAL'&&[0,1].includes(s.probability)&&Number.isSafeInteger(s.stateVersion)&&s.stateVersion<data.stateVersion&&response.verifiedSourceVersion===data.stateVersion;
 }
+
+// Lightweight, server-enumerated board. No plays/history are requested here.
+export async function readSessionBoard({session,token,signal,fetchImpl=fetch}){
+ if(!/^qa-v510-[a-z0-9-]{1,64}$/.test(session))throw Error('QA_SCOPE_REQUIRED');
+ if(!token)throw Error('AUTHENTICATION_REQUIRED');
+ const url=new URL(WP_URL);url.search=new URLSearchParams({session,view:'roster'});
+ const r=await fetchImpl(url,{method:'GET',headers:{Authorization:`Bearer ${token}`},signal,cache:'no-store',credentials:'omit',redirect:'error'});
+ if(!r.ok)throw Error(r.status===401?'AUTHENTICATION_REQUIRED':r.status===403?'ACCESS_DENIED':`BOARD_HTTP_${r.status}`);
+ const b=await r.json();
+ if(b.contractVersion!=='GC-BOARD-1'||b.sessionId!==session||!Number.isSafeInteger(b.stateVersion)||b.stateVersion<0||!Number.isFinite(Date.parse(b.generatedAt))||!Array.isArray(b.games)||b.games.length<1||b.games.length>56||new Set(b.games.map(g=>g.id)).size!==b.games.length)throw Error('INVALID_SESSION_BOARD');
+ const games=b.games.map(g=>{
+  if(!/^G[0-9]{4}$/.test(g.id)||typeof g.runId!=='string'||!g.runId||!['UNLAUNCHED','ACTIVE','DELAY','EDIT','FINAL_PENDING','LOCKED','FINAL','READY'].includes(g.lifecycle)||!['AVAILABLE','BLOCKED','NOT_STARTED'].includes(g.availability?.status))throw Error('INVALID_SESSION_BOARD');
+  for(const k of ['away','home','awayRecord','homeRecord','network','kickoffZulu','week'])if(g[k]!=null&&typeof g[k]!=='string')throw Error('INVALID_SESSION_BOARD');
+  const row={id:g.id,runId:g.runId,lifecycle:g.lifecycle,away:g.away,home:g.home,awayRecord:g.awayRecord,homeRecord:g.homeRecord,network:g.network,kickoffZulu:g.kickoffZulu,week:g.week,availability:g.availability};
+  if(g.availability.status==='AVAILABLE'){
+   if(!g.scoreboard||!Array.isArray(g.teamStatistics)||g.teamStatistics.length!==2)throw Error('INVALID_SESSION_BOARD');
+   row.scoreboard=g.scoreboard;row.teamStatistics=g.teamStatistics;
+  }
+  return row;
+ });
+ return {contractVersion:b.contractVersion,sessionId:b.sessionId,stateVersion:b.stateVersion,generatedAt:b.generatedAt,games};
+}

@@ -12,6 +12,10 @@ export function createWpHandler({allowedOrigins,authenticate,authorize,store}){
    const user=await authenticate(token);if(!user?.id||user.is_anonymous)return reply({error:'AUTHENTICATION_REQUIRED'},401);
    const q=new URL(request.url).searchParams,sessionId=q.get('session'),gameId=q.get('game'),identity=await authorize(user,sessionId);
    requireChairman(identity,sessionId);if(identity.userId!==user.id)return reply({error:'CHAIRMAN_FORBIDDEN'},403);
+   if(q.get('view')==='roster'){
+    if(request.method!=='GET')return reply({error:'METHOD_NOT_ALLOWED'},405);
+    return reply(await store.readSessionBoard({sessionId,userId:user.id}));
+   }
    if(q.get('view')==='board'){
     if(request.method!=='GET')return reply({error:'METHOD_NOT_ALLOWED'},405);
     const gameIds=q.get('games')?.split(',')??[];

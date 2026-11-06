@@ -2,7 +2,7 @@
   "files": [
     {
       "path": "v5.1.0/review/app.mjs",
-      "sha256": "336a68a7736921d56f1c8c28dc7cfea8c29e0fcff862b03cd8c106e1470d3ce5"
+      "sha256": "5fbbb54a0a477be0cea61cf349390ede8a89632833ccb41d956be0f7f9afd251"
     },
     {
       "path": "v5.1.0/review/auth.mjs",
@@ -34,7 +34,7 @@
     },
     {
       "path": "v5.1.0/review/index.html",
-      "sha256": "168f79322e13f502d92c595541193b3892cbf55a505d72fdfc2c03b5d0a99e3d"
+      "sha256": "93763511db156f529d6916704f3917c44904447620a358c73bf21d130e61ea35"
     },
     {
       "path": "v5.1.0/review/model.mjs",
@@ -42,7 +42,7 @@
     },
     {
       "path": "v5.1.0/review/review.css",
-      "sha256": "f4b117f124995869c4fd87a8ad7e167961ed324cdda97615b1f9b9cded0e2ffd"
+      "sha256": "a97905022226cf306bf896507f19bf5223cd6c2ba1f46bc91acbca03d15db132"
     },
     {
       "path": "v5.1.0/review/synthcast-s.png",
