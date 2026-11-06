@@ -1,3 +1,15 @@
+## 2026-11-05 — assembled development candidate
+
+Backend/WP `c3d19c0` and approved board UI `671183ee` are combined on
+`integration/v510-readiness-20261105`. 153 unit/regression tests, 15 existing
+SQL tests and one new 56-game full-game SQL rehearsal pass locally (169 total).
+All 56 games reached natural FINAL_PENDING without acceptance. This is not
+hosted capacity certification. See INTEGRATED-READINESS-20261105.md for exact
+source inputs, live read-only observations, all ten workstreams and twelve gates.
+Publication retry and combined CI must be checked separately; production is not ready.
+
+Earlier entries below are historical milestones, not a complete current status.
+
 ## 2026-11-03 — isolated hosted command path
 
 101 local tests PASS. QA command endpoint deployed with JWT verification enabled.

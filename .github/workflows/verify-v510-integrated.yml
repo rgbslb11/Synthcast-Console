@@ -1,0 +1,43 @@
+name: Verify assembled 5.1 candidate
+on:
+  push:
+    branches: [integration/v510-readiness-20261105]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify protected releases and exact integration inputs
+        run: |
+          git diff --exit-code 754d959def7a67f2ada99a13f4e3a4c3254be4b8 -- public/v5.0.6 release-assets/v5.0.6-week11 .github/workflows/deploy-v506.yml
+          git diff --exit-code 671183ee7bdd950908b5a5949c56338fe773fd15 -- public app .openai release-assets/v5.1.0/data-contract.v1.json release-assets/v5.1.0/delivery-contract.v1.json
+          git diff --exit-code c3d19c034f3c69bcdc66fce8eb53099454492571 -- release-assets/v5.1.0/backend release-assets/v5.1.0/qa-wp-api
+      - name: Combined regression and database verification
+        run: |
+          node --test tests/v510-ui/*.test.mjs tests/v506/*.test.mjs tests/v510/*.test.mjs
+          npm ci --prefix tests/v510/database --ignore-scripts --no-audit --no-fund
+          node --test tests/v510/database/*.test.mjs
+      - name: Install pinned browser runtime
+        run: |
+          npm install --prefix "$RUNNER_TEMP/browser" --no-audit --no-fund --save-exact playwright@1.62.1
+          node "$RUNNER_TEMP/browser/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Chromium and WebKit fixture integration
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/browser/node_modules/playwright/index.mjs
+        run: |
+          node tests/v510-ui/browser.mjs
+          GAMECAST_BROWSER=webkit node tests/v510-ui/browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v510-integrated-evidence
+          path: outputs/v510-ui
