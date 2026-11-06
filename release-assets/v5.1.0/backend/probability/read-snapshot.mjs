@@ -34,5 +34,5 @@ export async function readWpSnapshot(query,{sessionId,gameId,userId,after=0,limi
  if(h.state_version==null||h.source_version==null||Number(h.state_version)!==Number(h.source_version))return {summary:{...compactView(h.state),status:'BLOCKED',probability:null,color:'#808080',reason:'WP_SOURCE_PENDING'},points:[],nextSequence:after};
  if(runId&&runId!==h.state.runId)throw Error('RUN_CHANGED');
  const rows=h.points;
- return {summary:compactView(h.state),points:rows.map(r=>({...r.record,observationSequence:Number(r.sequence)})),nextSequence:rows.length?Number(rows.at(-1).sequence):after,highWatermark:high};
+ return {summary:compactView(h.state),verifiedSourceVersion:Number(h.state_version),points:rows.map(r=>({...r.record,observationSequence:Number(r.sequence)})),nextSequence:rows.length?Number(rows.at(-1).sequence):after,highWatermark:high};
 }

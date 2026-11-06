@@ -58,7 +58,14 @@ test('assembled candidate: all 56 games reach natural final through source, repo
    assert.equal(view.points.filter(p=>p.kind==='kickoff').length,1);
    assert.equal(view.points.filter(p=>p.kind==='final').length,1);
   }
-  const report={qaOnly:true,environment:'local PGlite, synthetic time; not hosted capacity',games:56,finals,rounds,sourceVersion:await f.ctl.store.sourceVersion(f.sid,f.games[0].id)};
+  const finalViews=await Promise.all(f.games.map(g=>f.read(g)));
+  await f.call([{command:'advance',seconds:600}]);await f.pipeline.recover(f.sid);
+  const verified=await f.ctl.store.sourceVersion(f.sid,f.games[0].id);
+  for(const [i,g] of f.games.entries()){
+   const view=await f.read(g);assert.equal(view.verifiedSourceVersion,verified);
+   assert.deepEqual(view.summary,finalViews[i].summary);assert.deepEqual(view.points,finalViews[i].points);
+  }
+  const report={qaOnly:true,environment:'local PGlite, synthetic time; not hosted capacity',games:56,finals,rounds,sourceVersion:verified};
   console.log('FULL_BOARD_REHEARSAL '+JSON.stringify(report));
  }finally{await f.db.close();}
 });

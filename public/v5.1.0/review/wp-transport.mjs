@@ -33,12 +33,20 @@ export async function readWpBoard({session,games,token,signal,fetchImpl=fetch}){
  return body;
 }
 export function selectWpResponse({history,board,data,now=Date.now()}){
- const matches=s=>s&&data&&s.sessionId===data.sessionId&&s.gameId===data.gameId&&s.runId===data.runId&&s.stateVersion===data.stateVersion;
+ const boardResponse=board&&{summary:board.summary,verifiedSourceVersion:board.sourceVersion===board.wpVersion?board.sourceVersion:null};
  const fresh=board&&now-board.fetchedAt>=0&&now-board.fetchedAt<=10000;
- if(fresh&&!matches(board.summary))return undefined;
- const current=fresh&&matches(board.summary);
+ if(fresh&&!wpMatchesData(boardResponse,data))return undefined;
+ const current=fresh&&wpMatchesData(boardResponse,data);
  if(current&&board.summary.status==='BLOCKED')return {summary:board.summary,points:[],summaryOnly:true};
- if(matches(history?.summary))return history;
- if(current)return {summary:board.summary,points:[],summaryOnly:true};
+ if(wpMatchesData(history,data))return history;
+ if(current)return {...boardResponse,points:[],summaryOnly:true};
  return history;
+}
+// Final observations stop sampling. A caught-up server snapshot can verify an
+// unchanged final against a later session revision without rewriting its history.
+export function wpMatchesData(response,data){
+ const s=response?.summary;
+ if(!s||!data||s.sessionId!==data.sessionId||s.gameId!==data.gameId||s.runId!==data.runId)return false;
+ if(s.stateVersion===data.stateVersion)return true;
+ return s.status==='FINAL'&&[0,1].includes(s.probability)&&Number.isSafeInteger(s.stateVersion)&&s.stateVersion<data.stateVersion&&response.verifiedSourceVersion===data.stateVersion;
 }

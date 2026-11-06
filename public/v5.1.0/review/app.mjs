@@ -48,7 +48,7 @@ function render(){const id=selected();const detailNav=$('#game-stats-nav');detai
 async function refreshBoardWp(){
  if(state.mode!=='live'||!state.token||selected()||state.boardBusy||Date.now()<state.retryAt||Date.now()>=state.expiresAt)return;
  const generation=state.generation;state.boardBusy=true;boardController=new AbortController();
- try{const board=await readWpBoard({session:state.session,games:state.games.map(g=>g.id),token:state.token,signal:boardController.signal});if(generation!==state.generation)return;const fetchedAt=Date.now();state.wpBoard=new Map(board.games.map(g=>[g.gameId,{summary:g.summary,fetchedAt}]));}
+ try{const board=await readWpBoard({session:state.session,games:state.games.map(g=>g.id),token:state.token,signal:boardController.signal});if(generation!==state.generation)return;const fetchedAt=Date.now();state.wpBoard=new Map(board.games.map(g=>[g.gameId,{summary:g.summary,fetchedAt,sourceVersion:board.sourceVersion,wpVersion:board.wpVersion}]));}
  catch(e){if(generation!==state.generation)return;state.wpBoard.clear();if(e.message==='WP_HTTP_429')state.retryAt=Date.now()+60000;if(['ACCESS_DENIED','AUTHENTICATION_REQUIRED'].includes(e.message)){resetConnection();if(e.message==='AUTHENTICATION_REQUIRED')state.token='';state.connection=e.message;render();}}
  finally{if(generation===state.generation)state.boardBusy=false;}
 }

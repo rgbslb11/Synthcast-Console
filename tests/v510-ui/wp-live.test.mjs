@@ -36,7 +36,19 @@ test('sign-out revokes only this QA session and accepts already expired token',a
  await signOut('expired',{fetchImpl:async()=>new Response(null,{status:401})});
 });
 
-import {readWpBoard,selectWpResponse} from '../../public/v5.1.0/review/wp-transport.mjs';
+import {readWpBoard,selectWpResponse,wpMatchesData} from '../../public/v5.1.0/review/wp-transport.mjs';
+test('unchanged final requires caught-up server proof without changing observation revision',()=>{
+ const summary={...response.summary,status:'FINAL',probability:0},data={...summary,stateVersion:summary.stateVersion+1};
+ const final={...response,summary,verifiedSourceVersion:data.stateVersion};
+ const before=JSON.stringify(final);
+ assert.equal(wpMatchesData(final,data),true);
+ assert.equal(wpMatchesData({...final,verifiedSourceVersion:undefined},data),false);
+ for(const change of [{status:'ESTIMATED'},{status:'BLOCKED',probability:null},{runId:'other'},{gameId:'G9999'},{sessionId:'other'},{probability:0.5}])assert.equal(wpMatchesData({...final,summary:{...summary,...change}},data),false);
+ const board={summary,fetchedAt:1000,sourceVersion:data.stateVersion,wpVersion:data.stateVersion};
+ assert.equal(selectWpResponse({history:final,board,data,now:2000}),final);
+ assert.equal(selectWpResponse({history:final,board:{...board,wpVersion:data.stateVersion-1},data,now:2000}),undefined);
+ assert.equal(JSON.stringify(final),before);
+});
 test('board transport makes one bounded authenticated request and validates all 56 identities',async()=>{
  const games=Array.from({length:56},(_,i)=>`G${String(502+i).padStart(4,'0')}`),summary=response.summary;
  const body={contractVersion:'GC-WP-BOARD-1',sessionId:req.session,sourceVersion:summary.stateVersion,wpVersion:summary.stateVersion,games:games.map(gameId=>({gameId,summary:{...summary,gameId}}))};
