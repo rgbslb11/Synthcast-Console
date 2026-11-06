@@ -52,6 +52,7 @@ test('assembled candidate: all 56 games reach natural final through source, repo
    assert.equal(board.games.filter(g=>g.summary.status==='FINAL').length,finals);
   }
   assert.equal(finals,56,'every game must finish without acceptance');
+  const roster=await f.store.readSessionBoard({sessionId:f.sid,userId:actor});assert.equal(roster.games.length,56);assert.ok(roster.games.every(g=>g.lifecycle==='FINAL_PENDING'&&g.availability.status==='AVAILABLE'));
   for(const g of f.games){
    const view=await f.read(g);assert.equal(view.summary.status,'FINAL');
    assert.ok([0,1].includes(view.summary.probability));
@@ -185,5 +186,27 @@ test('board snapshot returns exactly 56 ordered summaries with independent histo
   assert.equal((await handler(req())).status,200);assert.equal((await handler(req([]))).status,400);assert.equal((await handler(req(gameIds,'POST'))).status,405);
   await f.db.query('update gamecast_v510.reporting_grants set active=false where session_id=$1',[f.sid]);
   assert.equal((await handler(req())).status,403);await assert.rejects(()=>store.readBoard(args),/CHAIRMAN_FORBIDDEN/);
+ }finally{await f.db.close();}
+});
+
+
+test('session roster enumerates exactly 56 games in one authorized read and blocks pending/corrected stats',async()=>{
+ const f=await fixture(56);try{
+  let calls=0;const store=createWpStore({query:async(...a)=>{calls++;return f.query(...a);},transaction:()=>{throw Error('READ_ONLY');}}),args={sessionId:f.sid,userId:actor};
+  const pending=await store.readSessionBoard(args);assert.equal(calls,1);assert.equal(pending.games.length,56);assert.ok(pending.games.every(g=>g.availability.status==='BLOCKED'&&!g.scoreboard));
+  await f.ctl.store.recover(f.sid);
+  const board=await store.readSessionBoard(args);assert.equal(board.contractVersion,'GC-BOARD-1');assert.deepEqual(board.games.map(g=>g.id),f.games.map(g=>g.id));assert.ok(board.games.every(g=>g.lifecycle==='UNLAUNCHED'&&g.availability.status==='NOT_STARTED'));
+  await f.call(f.games.flatMap(g=>[{id:g.id,command:'launch'},{id:g.id,command:'auto'}]));
+  const before=await f.ctl.store.loadCommittedRevision(f.sid,1),active=await store.readSessionBoard(args);
+  assert.ok(active.games.every(g=>g.lifecycle==='ACTIVE'&&g.availability.status==='AVAILABLE'));
+  for(const g of active.games){assert.equal(g.history,undefined);assert.equal(g.seed,undefined);assert.equal(g.plays,undefined);assert.deepEqual(Object.keys(g.teamStatistics[0]),['totalPoints']);}
+  assert.deepEqual(await f.ctl.store.loadCommittedRevision(f.sid,1),before,'reads changed source');
+  await f.call([{id:f.games[0].id,command:'score',payload:{team:0,points:7}}]);
+  const corrected=(await store.readSessionBoard(args)).games[0];assert.equal(corrected.availability.status,'BLOCKED');assert.equal(corrected.scoreboard,undefined);assert.equal(corrected.teamStatistics,undefined);
+  const origin='https://qa.example',handler=createWpHandler({allowedOrigins:[origin],authenticate:async()=>({id:actor}),authorize:async()=>({userId:actor,authenticated:true,active:true,role:'CHAIRMAN',authorizedSessionIds:[f.sid]}),store});
+  const req=method=>new Request(`https://qa.example/wp?session=${f.sid}&view=roster`,{method,headers:{origin,authorization:'Bearer fixture'}});
+  assert.equal((await handler(req('GET'))).status,200);assert.equal((await handler(req('POST'))).status,405);
+  await f.db.query('update gamecast_v510.reporting_grants set active=false where session_id=$1',[f.sid]);
+  assert.equal((await handler(req('GET'))).status,403);await assert.rejects(()=>store.readSessionBoard(args),/CHAIRMAN_FORBIDDEN/);
  }finally{await f.db.close();}
 });

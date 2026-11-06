@@ -8,8 +8,9 @@ const browser=await ({chromium,webkit}[kind]).launch(),context=await browser.new
 const errors=[];page.on('pageerror',()=>errors.push('PAGE_ERROR'));
 try{
  await page.goto('https://rgbslb11.github.io/Synthcast-Console/v5.1.0/review/');await page.locator('#login-title').waitFor();assert.equal(await page.locator('#workspace').isVisible(),false);
- assert.equal(await page.locator('#session-input').inputValue(),'qa-v510-wp-load-r3');assert.equal(await page.locator('#games-input').inputValue(),'G0502');await page.locator('#email-input').fill(process.env.GAMECAST_QA_EMAIL);await page.locator('#password-input').fill(process.env.GAMECAST_QA_PASSWORD);await page.getByRole('button',{name:'Sign in',exact:true}).click();
+ assert.equal(await page.locator('#session-input').inputValue(),'qa-v510-wp-load-r3');assert.equal(await page.locator('#games-input').inputValue(),'');await page.locator('#email-input').fill(process.env.GAMECAST_QA_EMAIL);await page.locator('#password-input').fill(process.env.GAMECAST_QA_PASSWORD);await page.getByRole('button',{name:'Sign in',exact:true}).click();
  await page.locator('#connection').filter({hasText:'Connected'}).waitFor({timeout:60000});assert.equal(await page.locator('#password-input').inputValue(),'');assert.equal(await page.locator('#settings').isVisible(),false);
+ assert.equal(await page.locator('.card[data-game]').count(),56);await page.locator('[data-filter=finished]').click();assert.equal(await page.locator('.card[data-game]').count(),56);await page.locator('#search').fill('G0502');assert.equal(await page.locator('.card[data-game]').count(),1);results.push({name:'Authenticated full 56-game roster, authoritative final filter and search',status:'PASS'});
  await page.locator('[data-open=G0502]').click();await page.locator('[data-tab=overview]').click();
  await page.waitForFunction(()=>/\d+\.\d%/.test(document.querySelector('.wp-value')?.textContent??''),null,{timeout:60000});
  results.push({name:'Hosted password sign-in and actual QA WP display',status:'PASS',wp:await page.locator('.wp-value').innerText()});

@@ -2,7 +2,7 @@
   "files": [
     {
       "path": "v5.1.0/review/app.mjs",
-      "sha256": "336a68a7736921d56f1c8c28dc7cfea8c29e0fcff862b03cd8c106e1470d3ce5"
+      "sha256": "e677876c245c4357d2e20f55458a4ad2f846b0e87ce726577de57c7a0881ebde"
     },
     {
       "path": "v5.1.0/review/auth.mjs",
@@ -34,7 +34,7 @@
     },
     {
       "path": "v5.1.0/review/index.html",
-      "sha256": "168f79322e13f502d92c595541193b3892cbf55a505d72fdfc2c03b5d0a99e3d"
+      "sha256": "09222d1a3e1adc16c9737935263b2063cb407109d0e3fb8d1b63b24efb418e84"
     },
     {
       "path": "v5.1.0/review/model.mjs",
@@ -42,7 +42,7 @@
     },
     {
       "path": "v5.1.0/review/review.css",
-      "sha256": "f4b117f124995869c4fd87a8ad7e167961ed324cdda97615b1f9b9cded0e2ffd"
+      "sha256": "a97905022226cf306bf896507f19bf5223cd6c2ba1f46bc91acbca03d15db132"
     },
     {
       "path": "v5.1.0/review/synthcast-s.png",
@@ -50,7 +50,7 @@
     },
     {
       "path": "v5.1.0/review/wp-transport.mjs",
-      "sha256": "17695341bc22f415e3eba382569d39ae333d594448fd4caeb0c6da5096070817"
+      "sha256": "a4f554ec312bbd19e0b82ae6bcefe669fdb27856a38fe759115435c007e3b8d3"
     }
   ]
 }
