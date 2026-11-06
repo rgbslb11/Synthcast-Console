@@ -94,6 +94,7 @@ try{
  assert.equal(await page.locator('.wp-value').innerText(),`${(wp.summary.probability*100).toFixed(1)}%`);assert.equal(await page.locator('#password-input').inputValue(),'');
  assert.ok(!(await page.evaluate(()=>JSON.stringify(sessionStorage))).includes('qa-fixture-not-a-real-token'));
  await page.waitForFunction(()=>!document.querySelector('#refresh').disabled);assert.ok(historyReads>=1);record('One board summary request; history fetched separately only after selection; credentials absent from storage');
+ await page.evaluate(()=>dispatchEvent(new Event('offline')));assert.equal(await page.locator('#detail svg').count(),0);await page.evaluate(()=>dispatchEvent(new Event('online')));await page.waitForFunction(()=>document.querySelector('.wp-value')?.textContent==='40.0%');record('Offline clears data; reconnect retains selected game identity and restores authorized details');
  await page.setViewportSize({width:1920,height:1080});
  await page.locator('.wp-options > summary').click();await page.locator('.all-fields > summary').click();
  const beforePoll=methods.length;

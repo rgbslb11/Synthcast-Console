@@ -41,7 +41,7 @@ jobs:
               if (jobs.data.jobs.some(j => /publish|deploy/i.test(j.name) && j.conclusion === 'success')) { latest = candidate; break; }
               if (candidate.conclusion === 'success') throw new Error('Unrecognized successful publisher; verify baseline');
             }
-            if (latest?.id !== 42151750848) throw new Error('Published baseline changed; reconstruct inventory before publishing');
+            if (latest?.id !== 42155227356) throw new Error('Published baseline changed; reconstruct inventory before publishing');
       - run: npm install --prefix "$RUNNER_TEMP/preflight" --no-audit --no-fund --save-exact playwright@1.62.1
       - run: node "$RUNNER_TEMP/preflight/node_modules/playwright/cli.js" install --with-deps chromium webkit
         timeout-minutes: 4

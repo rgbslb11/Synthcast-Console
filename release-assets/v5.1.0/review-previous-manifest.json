@@ -2,7 +2,7 @@
   "files": [
     {
       "path": "v5.1.0/review/app.mjs",
-      "sha256": "5fbbb54a0a477be0cea61cf349390ede8a89632833ccb41d956be0f7f9afd251"
+      "sha256": "e677876c245c4357d2e20f55458a4ad2f846b0e87ce726577de57c7a0881ebde"
     },
     {
       "path": "v5.1.0/review/auth.mjs",
@@ -34,7 +34,7 @@
     },
     {
       "path": "v5.1.0/review/index.html",
-      "sha256": "93763511db156f529d6916704f3917c44904447620a358c73bf21d130e61ea35"
+      "sha256": "09222d1a3e1adc16c9737935263b2063cb407109d0e3fb8d1b63b24efb418e84"
     },
     {
       "path": "v5.1.0/review/model.mjs",
@@ -50,7 +50,7 @@
     },
     {
       "path": "v5.1.0/review/wp-transport.mjs",
-      "sha256": "17695341bc22f415e3eba382569d39ae333d594448fd4caeb0c6da5096070817"
+      "sha256": "a4f554ec312bbd19e0b82ae6bcefe669fdb27856a38fe759115435c007e3b8d3"
     }
   ]
 }
