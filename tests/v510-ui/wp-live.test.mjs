@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {readWp,WP_URL} from '../../public/v5.1.0/review/wp-transport.mjs';
-import {signIn,signOut} from '../../public/v5.1.0/review/auth.mjs';
+import {signIn,signOut,authMessage} from '../../public/v5.1.0/review/auth.mjs';
 const response=JSON.parse(fs.readFileSync('public/v5.1.0/review/fixtures/wp.json')).fixtures.live;
 const req={session:response.summary.sessionId,game:response.summary.gameId,token:'test-only'};
 test('live WP uses fixed QA URL, user bearer and bounded GET history',async()=>{
@@ -68,4 +68,13 @@ test('summary priming never invents history or crosses session, game, run, revis
  assert.equal(selectWpResponse({...args,history:response,board:{fetchedAt:1000,summary:{status:'BLOCKED',reason:'NO_COMMITTED_OBSERVATION',probability:null}}}),undefined);
  assert.equal(selectWpResponse({...args,history:response,board:{fetchedAt:1000,summary:{...summary,runId:'new-run'}}}),undefined);
  const blocked={summary:{...summary,status:'BLOCKED',reason:'WP_SOURCE_PENDING',probability:null},fetchedAt:1000};assert.equal(selectWpResponse({...args,board:blocked,history:response}).summary.probability,null);
+});
+
+test('sign-in bounds stalled requests and distinguishes network failure without leaking server text',async()=>{
+ let aborted=false;
+ await assert.rejects(signIn({timeoutMs:10,fetchImpl:async(url,init)=>{init.signal.addEventListener('abort',()=>aborted=true);return new Promise(()=>{});}}),/SIGN_IN_TIMEOUT/);
+ assert.equal(aborted,true);
+ await assert.rejects(signIn({fetchImpl:async()=>{throw Error('private upstream detail');}}),/SIGN_IN_NETWORK_ERROR/);
+ assert.match(authMessage('SIGN_IN_FAILED'),/GameCast email and password/);
+ assert.match(authMessage('ACCESS_DENIED'),/signed in but does not have access/);
 });

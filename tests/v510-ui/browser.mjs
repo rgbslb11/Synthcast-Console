@@ -128,7 +128,7 @@ try{
  record('Mock HTTP: saved correction remains blocked through repeated reads');
  await page.reload();await page.locator('#connection').filter({hasText:'Authentication required after reload'}).waitFor();assert.equal(await page.locator('#detail table').count(),0);assert.match(await page.locator('#review-banner').innerText(),/READ-ONLY QA/);assert.ok(methods.every(m=>m==='GET'));
  record('Mocked live access denial, recovery, no writes and safe reload');
- await page.locator('#settings-toggle').click();await page.locator('#fixtures').click();await page.locator('#board:not([hidden])').waitFor();await page.locator('[data-filter=all]').click();if(await page.locator('#settings').isVisible())await page.locator('#settings-toggle').click();await page.setViewportSize({width:1440,height:1000});await page.screenshot({path:`${output}/statscenter.png`,fullPage:true});
+ assert.ok(await page.locator('#settings').isVisible());await page.locator('#fixtures').click();await page.locator('#board:not([hidden])').waitFor();await page.locator('[data-filter=all]').click();if(await page.locator('#settings').isVisible())await page.locator('#settings-toggle').click();await page.setViewportSize({width:1440,height:1000});await page.screenshot({path:`${output}/statscenter.png`,fullPage:true});
  await page.locator('[data-open=G9001]').click();await page.locator('[data-tab=overview]').click();await page.screenshot({path:`${output}/game-center.png`,fullPage:true});
  await page.locator('#wp-case').selectOption('editCancelled');await page.screenshot({path:`${output}/game-stats-favorite-above-50.png`,fullPage:true});await page.locator('#wp-case').selectOption('live');
  await page.locator('[data-tab=plays]').click();await page.screenshot({path:`${output}/game-stats-play-by-play-drives.png`,fullPage:true});
@@ -170,6 +170,24 @@ try{
   await boardPage.locator('[data-open=G9155]').click();await boardPage.locator('.mobile-games > summary').click();assert.equal(await boardPage.locator('#game-switch option').count(),56);
   record('56-game generic fixture board: ten refreshes, search/return, keyboard tabs and phone picker',{games:56,refreshTenMs,evidence:'DOM/interaction only; not live load or a performance SLA'});
  }finally{await boardContext.close();}
+ // Reproduce the phone screenshot: remembered QA session, no retained credentials.
+ const loginContext=await browser.newContext({viewport:{width:390,height:844}}),loginPage=await loginContext.newPage();
+ try{
+  await loginPage.addInitScript(()=>sessionStorage.setItem('gc510-ui-review',JSON.stringify({mode:'live',session:'qa-v510-wp-load-r3',gameIds:['G0502']})));
+  await loginPage.route('**/auth/v1/token?grant_type=password',route=>route.fulfill({status:400,contentType:'application/json',body:JSON.stringify({error:'invalid_grant'})}));
+  await loginPage.goto(base+'#game=G0502');await loginPage.locator('#detail h2').filter({hasText:'Sign-in required'}).waitFor();
+  assert.ok(await loginPage.locator('#settings').isVisible());assert.ok(await loginPage.locator('#sign-in-status').isVisible());
+  assert.equal(await loginPage.locator('#mobile-menu-toggle').getAttribute('aria-expanded'),'false');
+  assert.equal(await loginPage.locator('#email-input').inputValue(),'');assert.equal(await loginPage.locator('#password-input').inputValue(),'');
+  await loginPage.locator('#email-input').fill('qa@example.invalid');await loginPage.locator('#password-input').fill('test-only');await loginPage.locator('#connect-submit').click();
+  await loginPage.locator('#sign-in-status').filter({hasText:'Sign-in failed.'}).waitFor();
+  assert.ok(await loginPage.locator('#sign-in-status').isVisible());assert.equal(await loginPage.locator('#connect-submit').isDisabled(),false);
+  assert.equal(await loginPage.locator('#password-input').inputValue(),'');
+  assert.ok(await loginPage.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth));
+  await loginPage.locator('#back').click();assert.equal(await loginPage.locator('.card').count(),0);
+  assert.match(await loginPage.locator('#lanes').innerText(),/Sign in above/);
+  record('Mobile restored QA session shows sign-in and rejected-login message outside collapsed menu; no misleading loading card');
+ }finally{await loginContext.close();}
  assert.deepEqual(errors,[]);record('No application JavaScript errors');
  await page.goto(base+'#game=G9001');await page.setViewportSize({width:390,height:1080});
  if(!await page.locator('.all-fields').evaluate(el=>el.open))await page.locator('.all-fields > summary').click();

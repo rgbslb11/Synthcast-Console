@@ -27,6 +27,12 @@ try{
  await context.setOffline(true);await page.evaluate(()=>dispatchEvent(new Event('offline')));assert.equal(await page.locator('#detail svg').count(),0);
  await context.setOffline(false);await page.evaluate(()=>dispatchEvent(new Event('online')));await page.waitForFunction(()=>/\d+\.\d%/.test(document.querySelector('.wp-value')?.textContent??''),null,{timeout:60000});
  results.push({name:'Actual QA disconnect and reconnect',status:'PASS'});
+ await page.locator('#sign-out').click();await page.locator('#sign-in-status').filter({hasText:'Signed out'}).waitFor();
+ await page.setViewportSize({width:390,height:844});await page.reload();
+ await page.locator('#detail h2').filter({hasText:'Sign-in required'}).waitFor();
+ assert.ok(await page.locator('#settings').isVisible());assert.ok(await page.locator('#sign-in-status').isVisible());
+ assert.equal(await page.locator('#password-input').inputValue(),'');
+ results.push({name:'Hosted phone reload exposes sign-in without hidden loading state',status:'PASS'});
  assert.deepEqual(errors,[]);
  if(results.some(r=>r.status==='FAIL'))process.exitCode=1;
 }finally{
