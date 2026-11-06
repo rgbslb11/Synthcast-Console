@@ -10,7 +10,8 @@ permissions:
   id-token: write
 concurrency:
   group: gamecast-pages-preserved-publication
-  cancel-in-progress: false
+  # One recovery push cancels only the observed stalled publication; restored immediately after start.
+  cancel-in-progress: ${{ github.event.head_commit.message == 'Retry stalled login publication 42150246396' }}
 jobs:
   prepare:
     runs-on: ubuntu-latest
@@ -42,6 +43,7 @@ jobs:
             if (latest?.id !== 42147793078) throw new Error('Published baseline changed; reconstruct inventory before publishing');
       - run: npm install --prefix "$RUNNER_TEMP/preflight" --no-audit --no-fund --save-exact playwright@1.62.1
       - run: node "$RUNNER_TEMP/preflight/node_modules/playwright/cli.js" install --with-deps chromium webkit
+        timeout-minutes: 4
       - name: Verify desktop fixes and mobile regression before publishing
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/preflight/node_modules/playwright/index.mjs
@@ -84,6 +86,7 @@ jobs:
       - run: node scripts/ui/publish-review.mjs verify
       - run: npm install --prefix "$RUNNER_TEMP/browser" --no-audit --no-fund --save-exact playwright@1.62.1
       - run: node "$RUNNER_TEMP/browser/node_modules/playwright/cli.js" install --with-deps chromium webkit
+        timeout-minutes: 4
       - name: Hosted Chromium actual QA access
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/browser/node_modules/playwright/index.mjs
