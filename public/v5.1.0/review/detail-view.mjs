@@ -1,4 +1,5 @@
 import {desktopField} from './desktop-field.mjs';
+import {wpMatchesData} from './wp-transport.mjs';
 import {available,clock,period,spot,downDistance,teamName,statistic,wpView,wpColor,freshness} from './model.mjs';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const percent=p=>typeof p==='number'&&Number.isFinite(p)?`${(p*100).toFixed(1)}%`:'—';
@@ -27,7 +28,7 @@ export function wpPanel({response,data,mode,wpCase,wpCases,error,expanded=false}
  const s=response?.summary;
  // A selected game never inherits another game's or another run's WP values.
  const match=s&&s.sessionId===data.sessionId&&s.gameId===data.gameId&&s.runId===data.runId;
- const sameRevision=match&&s.stateVersion===data.stateVersion;
+ const sameRevision=match&&wpMatchesData(response,data);
  const v=wpView(sameRevision?response:null),blocked=v.status==='BLOCKED';
  const pts=v.points,first=pts[0]?.observationSequence??0,last=pts.at(-1)?.observationSequence??first;
  const x=p=>40+(p.observationSequence-first)/Math.max(1,last-first)*400,y=p=>140-p.probability*130;
