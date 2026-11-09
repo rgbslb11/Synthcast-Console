@@ -63,6 +63,11 @@ for(const entry of fs.readdirSync(uiSource,{recursive:true})){
  const from=path.join(uiSource,entry);if(!fs.statSync(from).isFile())continue;
  const to=path.join(uiTarget,entry);fs.mkdirSync(path.dirname(to),{recursive:true});
  let text=rebind(fs.readFileSync(from,'utf8')).replaceAll('5.0.6','5.0.7').replaceAll('synthcastGameCast506','synthcastGameCast507').replaceAll('WEEK 11','WEEK 12').replaceAll('Week 11','Week 12').replace(/\bW11\b/g,'W12').replace(/\b56\b/g,'60').replace('SATURDAY · 41 GAMES','SATURDAY · 49 GAMES').replace('121 final Chairman','122 final Chairman');
+ if(entry==='ui1.3/scoreboard.js'){
+  const dates=slate.reduce((out,g)=>(out[g.date]=(out[g.date]||0)+1,out),{});
+  text=text.replaceAll('2026-11-07','2026-11-14').replace(/const expected=\{[^\n]+\};/,'const expected='+JSON.stringify(dates)+';');
+ }
+ if(entry==='ui1.3/index.html')text=text.replace('SATURDAY · 48','SATURDAY · 49');
  if(entry==='release-config.js')text="globalThis.GAMECAST_V507_CONFIG=Object.freeze({projectUrl:location.origin,publishableKey:'qa-only',publicApi:location.origin+'/qa/v507/public',chairmanApi:location.origin+'/qa/v507/chairman'});\n";
  if(entry==='index.html')text=text.replace('WEEK 12 · 60 GAMES · SEUD IMPORT ON HOLD','WEEK 12 · 60 GAMES · QA ONLY · DEPLOYMENT HELD');
  fs.writeFileSync(to,text);

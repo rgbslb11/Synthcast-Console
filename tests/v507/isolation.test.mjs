@@ -6,6 +6,13 @@ import {createEngineOperations} from '../../release-assets/v5.0.7-week12/backend
 import {requireSessionSlug} from '../../release-assets/v5.0.7-week12/backend/security/security-core.mjs';
 import {createSupabaseTransport} from '../../release-assets/v5.0.7-week12/backend/src/supabase-rest.mjs';
 const ops=createEngineOperations({engine,clock:()=> '2026-11-09T12:00:00Z'});
+test('condensed scoreboard validates exact Week 12 daily counts and Saturday date',()=>{
+ const text=fs.readFileSync('public/v5.0.7/w12/ui1.3/scoreboard.js','utf8');
+ const dates=slate.reduce((out,g)=>(out[g.date]=(out[g.date]||0)+1,out),{});
+ assert.deepEqual(JSON.parse(text.match(/const expected=(\{[^\n]+\});/)[1]),dates);
+ assert.match(text,/g\.date==='2026-11-14'/);assert.equal(dates['2026-11-14'],49);
+ assert.doesNotMatch(text,/2026-11-0[3-7]/);
+});
 test('approved input bytes, full rating coverage and QA-only defaults',()=>{
  const manifest=JSON.parse(fs.readFileSync('release-assets/v5.0.7-week12/input-manifest.json'));
  assert.equal(createHash('sha256').update(fs.readFileSync('release-assets/v5.0.7-week12/ratings.csv')).digest('hex'),manifest.ratingSha256);

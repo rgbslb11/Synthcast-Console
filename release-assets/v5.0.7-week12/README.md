@@ -83,7 +83,7 @@ Postgres integration evidence.
 
 ## Offline release gates
 
-77 automated tests pass: 54 unchanged 5.0.6 tests and 23 candidate tests.
+78 automated tests pass: 54 unchanged 5.0.6 tests and 24 candidate tests.
 The canonical 60-game board completed simultaneously, with 1x/50x equality.
 60 fixed-seed repeats, 60 chunked comparisons and 300 speed comparisons
 (1x/4x/10x/20x/50x) passed.
@@ -128,6 +128,10 @@ rate or score distribution is appropriate.
 The local browser download failed with an invalid/truncated archive. A test-only
 GitHub workflow runs Chromium and mobile WebKit without deploying anything.
 Its eventual results must be inspected before either UI gate can be marked PASS.
+The first CI run passed Chairman and public punt display checks, then exposed
+retained Week 11 date/count bindings in the condensed UI. Only the candidate's
+date validator, Saturday selector and labels were rebound to the verified Week
+12 slate; the 5.0.6 UI is unchanged. A regression test covers those bindings.
 
 ## History preservation and rollback
 

@@ -75,7 +75,7 @@
     const detailOpen=expanded.has(`${source}:${g.id}`);
     const situation=isUpcoming(g)?`${esc(g.dateLabel||'')} · ${esc(g.kickoff||'')}`:isFinal(g)?'Final result':g.lifecycle==='FINAL_PENDING'?'Awaiting final approval':`${teamName(g,g.possession===1?1:0)} ball · ${g.down||'-'}&${g.distance||'-'} · ${fieldText(g)}`;
     const meta=isFinal(g)?`Completed${g.completedAt?` · ${shortTime(new Date(g.completedAt))}`:''}`:`TO ${Number(g.awayTimeouts??0)} / ${Number(g.homeTimeouts??0)}`;
-    const date=g.date!=='2026-11-07'?`<span class="game-date">${esc(g.dateLabel||g.date)}</span>`:'';
+    const date=g.date!=='2026-11-14'?`<span class="game-date">${esc(g.dateLabel||g.date)}</span>`:'';
     const w=g.weather||{enabled:false,wind:'NONE',rain:'NONE',temperature:'INACTIVE'},weatherLabel=(w.enabled?`WEATHER ON · WIND ${w.wind} · RAIN ${w.rain}`:'WEATHER OFF')+(w.temperature!=='INACTIVE'?` · TEMP ${w.temperature.replace('_',' ')} (DISPLAY ONLY)`:``);
     return `<button class="game-button" type="button" aria-expanded="${detailOpen}" aria-controls="detail-${source}-${esc(g.id)}" data-toggle="${esc(g.id)}" data-source="${source}"><div class="game-main"><div class="game-left"><div class="game-head"><span class="state ${stateClass(g)}">${status}</span>${date}<span class="game-id">${esc(g.id)}</span><span class="network">${esc(g.network||'')}</span></div><div class="team-row">${poss(0)}<span class="team-name">${teamName(g,0)}</span></div><div class="team-row">${poss(1)}<span class="team-name">${teamName(g,1)}</span></div></div><div class="scores"><span>${total(g,0)}</span><span>${total(g,1)}</span></div></div></button><div class="detail" id="detail-${source}-${esc(g.id)}" ${detailOpen?'':'hidden'}><div class="detail-grid"><span><b>${status}</b></span><span>${esc(g.network||'')}</span><span>${situation}</span><span>${meta}</span><span class="weather-label">${esc(weatherLabel)}</span>${lineScore(g)}<div class="last-play">${esc(g.lastPlay||'No play detail available.')}</div></div></div>`;
   }
@@ -107,7 +107,7 @@
     }
   }
 
-  const visibleGames=()=>selected==='saturday'?snapshots.saturday.filter(g=>g.date==='2026-11-07'):snapshots.full;
+  const visibleGames=()=>selected==='saturday'?snapshots.saturday.filter(g=>g.date==='2026-11-14'):snapshots.full;
   function reconcile(){
     reconcileGrid(board,visibleGames().filter(matches).sort(compareGames),selected);
     reconcileGrid(earlierBoard,[],'full');
@@ -137,7 +137,7 @@
       if(!r.ok)throw new Error(data.error||`HTTP ${r.status}`);
       if(data.public_slug!==source.slug||data.week_key!=='2026-W12'||data.engine_version!==source.engine||!Array.isArray(data.state)||data.state.length!==source.expected)throw new Error('session identity mismatch');
       const dates=data.state.reduce((out,g)=>(out[g.date]=(out[g.date]||0)+1,out),{});
-      const expected={"2026-11-03": 2, "2026-11-04": 3, "2026-11-05": 7, "2026-11-06": 3, "2026-11-07": 41};
+      const expected={"2026-11-10":2,"2026-11-11":3,"2026-11-12":2,"2026-11-13":4,"2026-11-14":49};
       if(Object.keys(dates).length!==Object.keys(expected).length||Object.entries(expected).some(([date,n])=>dates[date]!==n)||new Set(data.state.map(g=>g.id)).size!==source.expected)throw new Error('game slate mismatch');
       snapshots[key]=data.state;
       versions[key]=data.state_version;
