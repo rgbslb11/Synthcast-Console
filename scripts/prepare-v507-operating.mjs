@@ -20,7 +20,7 @@ const slate=JSON.parse(fs.readFileSync(source+'/qa-week12-slate.json')).map(g=>(
 fs.writeFileSync(out+'/slate.json',JSON.stringify(slate,null,2)+'\n');
 fs.writeFileSync(out+'/backend/runtime/week12.mjs','// Approved Week 12 operating slate. Games remain unlaunched until Chairman action.\nexport const OPERATING_SLATE = '+JSON.stringify(slate,null,2)+';\n');
 for(const f of walk('public/v5.0.7/w12')){
- let s=fs.readFileSync(f,'utf8').replace('QA ONLY · DEPLOYMENT HELD','SEUD IMPORT ON HOLD');
+ let s=bind(fs.readFileSync(f,'utf8')).replace('QA ONLY · DEPLOYMENT HELD','SEUD IMPORT ON HOLD').replaceAll('synthcastGameCast507W11Session','synthcastGameCast507W12Session');
  if(f.endsWith('/release-config.js'))s="globalThis.GAMECAST_V507_CONFIG=Object.freeze({projectUrl:'https://xsvdmcipviejxynkdbhq.supabase.co',publishableKey:'sb_publishable_5jxF1vOOyWdUvvk3-poZqQ_83gaaUdf',publicApi:'https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-week12-v5-0-7-public',chairmanApi:'https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-week12-v5-0-7-chairman'});\n";
  const target=out+'/public/'+f.slice('public/'.length);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,s);
 }

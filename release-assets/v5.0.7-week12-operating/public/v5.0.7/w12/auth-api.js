@@ -87,7 +87,7 @@
     const r=await fetch(u,{method,cache:'no-store',headers:{...(operator?{authorization:'Bearer '+await bearer(),'content-type':'application/json'}:{}),...(mutating?{'idempotency-key':pending.key}:{})},body:operator?raw:undefined,signal:AbortSignal.timeout(15000)});
     const b=await r.json();
     if(!r.ok){if(r.status<500)pending=null;if(r.status===401){clearAuth();status('SIGN IN AGAIN');}throw Object.assign(Error(b.error||'Request failed'),{status:r.status});}
-    if(b.engine_version&&b.engine_version!=='GC-W12-V5.0.7-QA1')throw Error('Release identity mismatch');
+    if(b.engine_version&&b.engine_version!=='GC-W12-V5.0.7-RC1')throw Error('Release identity mismatch');
     if(b.public_slug&&slug&&b.public_slug!==slug)throw Error('Session identity mismatch');
     if(Array.isArray(b.state)&&(b.state.length!==60||new Set(b.state.map(g=>g.id)).size!==60))throw Error('Board count mismatch');
     if(mutating){pending=null;const button=document.getElementById('retryRequest');if(button)button.hidden=true;}return b;

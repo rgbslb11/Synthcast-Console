@@ -2,7 +2,7 @@ name: Verify hosted Week 12 operating board without launching games
 on:
   push:
     branches: [release/gamecast-v5.0.7]
-    paths: ['tests/v507-operating/hosted.mjs']
+    paths: ['tests/v507-operating/hosted.mjs', 'release-assets/v5.0.7-week12-operating/publish-request.json']
 permissions:
   contents: read
 jobs:

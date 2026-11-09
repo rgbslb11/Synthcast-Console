@@ -1,0 +1,65 @@
+{
+  "publisherRun": 42643087893,
+  "files": [
+    {
+      "path": "v5.0.7/w12/app.js",
+      "sha256": "049aec7613b16c9920aab4d645be2f3250744efcdd7abc12b081225a3e849cf0"
+    },
+    {
+      "path": "v5.0.7/w12/auth-api.js",
+      "sha256": "9e83a4f59fcfaff81b682626268d287eced2da964ec3bcd51e40f63e8db76f19"
+    },
+    {
+      "path": "v5.0.7/w12/confirmation.css",
+      "sha256": "dd57fa76d03ba80d554ae76d6274b9b4733c7d685e6abb3f7b0a6f98df0b52b6"
+    },
+    {
+      "path": "v5.0.7/w12/confirmation.js",
+      "sha256": "ad8af17f8881a24cfefd8dcd7e0b8da1b5b4bd4727129faaa5d9c5596c368872"
+    },
+    {
+      "path": "v5.0.7/w12/deadman.css",
+      "sha256": "d5c04acfffbd20c1c0b22cbccc5ad35872203004222b400285922b94de583f03"
+    },
+    {
+      "path": "v5.0.7/w12/index.html",
+      "sha256": "de4f159f37553331f8151679cb14ec055683dba45d674111d5ac889f0a9859f9"
+    },
+    {
+      "path": "v5.0.7/w12/legacy/app.css",
+      "sha256": "f1b00aa0c8587e2e96215b6ccb2acb2144d81cfc8729b41509c6a1bb22c19367"
+    },
+    {
+      "path": "v5.0.7/w12/legacy/patch-422.js",
+      "sha256": "856a83862ddb0f1e72f2f43eab93310565a15b15606cc6fd093fc9e8e36d07f0"
+    },
+    {
+      "path": "v5.0.7/w12/legacy/patch-rc2.js",
+      "sha256": "95f89bde5794ee7403497d5d678ced7b2d55d33c6789a0d82ed1c51cb1f4c492"
+    },
+    {
+      "path": "v5.0.7/w12/list-filters.js",
+      "sha256": "d618a877ea770d9f36f017005678a206aa4064a00da978b1d8908f351ad0ae55"
+    },
+    {
+      "path": "v5.0.7/w12/patch-500-weather.js",
+      "sha256": "1c25037c9582661b07fd661dd381c809100417b8079996cec2ffaffe8a936aeb"
+    },
+    {
+      "path": "v5.0.7/w12/release-config.js",
+      "sha256": "5ab27c0c13848348a5e42b4b52dd410883ff76aa124ff106148c801bebdee07f"
+    },
+    {
+      "path": "v5.0.7/w12/ui1.3/index.html",
+      "sha256": "5ff744a3864d414d7ae436ed8e28dae1e6b472f1505e42d30a956ac836fa1dba"
+    },
+    {
+      "path": "v5.0.7/w12/ui1.3/scoreboard.css",
+      "sha256": "5faeb3a2e6c26984f0672124e6d184a3b137e76ac475593f62a318850fdd6fc7"
+    },
+    {
+      "path": "v5.0.7/w12/ui1.3/scoreboard.js",
+      "sha256": "3b1bd0d77addf404307179e00950a67e79c55304b2c8f74726a106a5e057e87b"
+    }
+  ]
+}

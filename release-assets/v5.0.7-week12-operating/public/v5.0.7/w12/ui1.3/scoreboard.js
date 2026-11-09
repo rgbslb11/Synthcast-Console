@@ -2,8 +2,8 @@
 (() => {
   const params=new URLSearchParams(location.search);
   const sources={
-    saturday:{api:globalThis.GAMECAST_V507_CONFIG.publicApi,engine:'GC-W12-V5.0.7-QA1',slug:params.get('session')||'',expected:60},
-    full:{api:globalThis.GAMECAST_V507_CONFIG.publicApi,engine:'GC-W12-V5.0.7-QA1',slug:params.get('session')||'',expected:60},
+    saturday:{api:globalThis.GAMECAST_V507_CONFIG.publicApi,engine:'GC-W12-V5.0.7-RC1',slug:params.get('session')||'',expected:60},
+    full:{api:globalThis.GAMECAST_V507_CONFIG.publicApi,engine:'GC-W12-V5.0.7-RC1',slug:params.get('session')||'',expected:60},
   };
   const POLL_MS=4500;
   const FINALISH=new Set(['LOCKED','READY','FINAL']);

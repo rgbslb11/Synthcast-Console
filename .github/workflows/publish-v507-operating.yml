@@ -34,7 +34,8 @@ jobs:
               if(jobs.data.jobs.some(j=>/publish|deploy/i.test(j.name)&&j.conclusion==='success')){latest=r;break;}
               if(r.conclusion==='success')throw Error('Unrecognized successful publisher');
             }
-            if(latest?.id!==42156049841)throw Error('Published baseline changed; refresh inventory before publication');
+            const request=JSON.parse(require('fs').readFileSync('release-assets/v5.0.7-week12-operating/publish-request.json'));
+            if(latest?.id!==(request.previousPublisherRun||42156049841))throw Error('Published baseline changed; refresh inventory before publication');
       - name: Require successful operating preflight for parent source
         uses: actions/github-script@v7
         with:
