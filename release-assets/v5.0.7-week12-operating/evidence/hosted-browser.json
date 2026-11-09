@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "sourceSha": "66a7edf791712492ad59978926cfa43c6a5fbe62",
+  "checks": [
+    "chromium public: all 60 actual cloud games rendered",
+    "chromium condensed: all 60 actual cloud games rendered",
+    "chromium Chairman: existing password sign-in rendered; no credentials submitted",
+    "mobile-webkit public: all 60 actual cloud games rendered",
+    "mobile-webkit condensed: all 60 actual cloud games rendered",
+    "mobile-webkit Chairman: existing password sign-in rendered; no credentials submitted"
+  ],
+  "engine": "GC-W12-V5.0.7-RC1",
+  "slug": "w12v507-506ff58ba0cfb7a5",
+  "games": 60,
+  "cloudStateVersion": 1,
+  "readOnly": true,
+  "actualChairmanSignIn": "NOT TESTED",
+  "physicalMobileSafari": "NOT TESTED",
+  "scheduler": "BLOCKED_AUTOMATIC_APPROVAL_REVIEW; disabled",
+  "workflowRun": 42644783371,
+  "jobId": 129254996460
+}
