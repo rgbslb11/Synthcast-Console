@@ -1,0 +1,9 @@
+{
+  "requestedBy": "Chairman",
+  "week": "2026-W12",
+  "route": "/v5.0.7/w12/",
+  "publicSlug": "w12v507-506ff58ba0cfb7a5",
+  "preflightRun": 42642528729,
+  "preflightSha": "e2f9bccde666372c9782d8f7e4947fee57416679",
+  "rollout": "Tuesday–Thursday monitored operating games; no automatic launch"
+}
