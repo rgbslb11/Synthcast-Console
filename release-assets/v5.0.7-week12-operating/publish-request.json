@@ -3,7 +3,9 @@
   "week": "2026-W12",
   "route": "/v5.0.7/w12/",
   "publicSlug": "w12v507-506ff58ba0cfb7a5",
-  "preflightRun": 42642528729,
-  "preflightSha": "e2f9bccde666372c9782d8f7e4947fee57416679",
-  "rollout": "Tuesday–Thursday monitored operating games; no automatic launch"
+  "previousPublisherRun": 42643087893,
+  "preflightRun": 42644560696,
+  "preflightSha": "2a7466366884b7f8491a1253fc19bb24d78eb4d9",
+  "correction": "Bind operating UI engine identity and session validation; retain all prior routes and Week 12 state",
+  "rollout": "Tuesday–Thursday monitored operating games; scheduler remains disabled pending explicit authorization"
 }
