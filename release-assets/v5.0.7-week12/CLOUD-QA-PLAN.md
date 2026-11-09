@@ -80,6 +80,11 @@ establish Supabase Auth, PostgREST exposure, physical iPhone Safari or the targe
 Supabase deployment gates. Those remain separate and must not be marked PASS
 based on this workflow.
 
+Observed result: GitHub run 42638488305 succeeded on source commit `06f1a9b`.
+PostgreSQL 17.11 passed 60 database/browser checks, including 24 server-process
+restarts, exact retry receipts and all 60 persisted finals. The full automated
+suite passed 81 tests. Evidence is in `evidence/postgres-cloud-ci.json`.
+
 ## Rollback for the proposed shared installation
 
 If later approved and installed, disable only the new QA namespace's release

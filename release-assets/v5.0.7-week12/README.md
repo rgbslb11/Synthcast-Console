@@ -1,9 +1,10 @@
 # GameCast 5.0.7 — targeted punt correction, QA candidate
 
 Production deployment is HELD. No Supabase functions, SQL, cron, official result,
-Pages deployment or existing session was changed. This branch contains no
-deployment entrypoint or publication workflow. Its UI configuration points only
-to a same-origin QA fixture; it has no production endpoint or key.
+Pages deployment or existing session was changed. Shared Supabase setup was
+rejected by automatic approval review and remains BLOCKED pending explicit
+approval. Prepared QA entrypoints and SQL are review material only. The current
+UI configuration points to a same-origin QA backend and has no production key.
 
 ## Verified baseline and approved scope
 
@@ -83,7 +84,8 @@ Postgres integration evidence.
 
 ## Offline release gates
 
-78 automated tests pass: 54 unchanged 5.0.6 tests and 24 candidate tests.
+81 automated tests pass: 54 unchanged 5.0.6 tests and 27 candidate tests,
+including three tests for the prepared QA controller's OIDC verification.
 The canonical 60-game board completed simultaneously, with 1x/50x equality.
 60 fixed-seed repeats, 60 chunked comparisons and 300 speed comparisons
 (1x/4x/10x/20x/50x) passed.
@@ -118,9 +120,9 @@ rate or score distribution is appropriate.
 | Full board | PASS — all 60 canonical Week 12 games, offline |
 | Poll/chunk invariance | PASS — 60 full-game comparisons plus read-only API polls |
 | 1x–50x invariance | PASS — 300 comparisons, all supported speeds |
-| Backend persistence/versioning | PASS for disk RPC fixtures; cloud NOT TESTED |
-| Chairman console integration | PASS — Chromium and mobile WebKit against local QA handlers; deployed cloud integration NOT TESTED |
-| Public scoreboard integration | PASS — public and condensed views in Chromium and mobile WebKit; deployed cloud integration NOT TESTED |
+| Backend persistence/versioning | PASS — real disposable cloud PostgreSQL, exact retries and process restarts; target Supabase/PostgREST BLOCKED |
+| Chairman console integration | PASS — Chromium and mobile WebKit against actual handlers and cloud PostgreSQL; Auth fixture, target Supabase NOT TESTED |
+| Public scoreboard integration | PASS — public and condensed views against cloud PostgreSQL; target Supabase NOT TESTED |
 | Mobile Safari | NOT TESTED on a physical device; mobile WebKit emulation PASS |
 | Existing sessions | 5.0.6 untouched and namespace rejection tested; live 5.0.7 migration NOT TESTED and not implemented |
 | Chairman release approval | NOT GRANTED — deployment explicitly held |
@@ -134,6 +136,22 @@ The first CI run passed Chairman and public punt display checks, then exposed
 retained Week 11 date/count bindings in the condensed UI. Only the candidate's
 date validator, Saturday selector and labels were rebound to the verified Week
 12 slate; the 5.0.6 UI is unchanged. A regression test covers those bindings.
+
+Continuation cloud evidence: run 42638488305 on commit `06f1a9b` passed 81 tests
+and 60 database/browser checks using disposable PostgreSQL 17.11. It exercised
+24 actual server-process restarts, persistent request receipts, role access
+denial, both affected and both reviewed legitimate safety sequences, and all
+60 canonical Week 12 finals. See `evidence/postgres-cloud-ci.json`.
+This was an independent GitHub runner database with a test identity fixture;
+no Supabase credentials or shared data were used. It does not establish actual
+Supabase Auth, PostgREST exposure or physical Mobile Safari readiness.
+
+The proposed shared-project SQL and three QA functions are described in
+`CLOUD-QA-PLAN.md`. Automatic review rejected the setup because its operator
+copy, service-role grants and shared API allowlist change require explicit
+approval. Post-rejection read-only verification showed the candidate schema
+absent and the original Week 11 state witness unchanged. No workaround against
+the shared project was attempted.
 
 ## History preservation and rollback
 
