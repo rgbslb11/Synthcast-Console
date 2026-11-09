@@ -1,0 +1,66 @@
+{
+  "scope": "OFFLINE_OPERATING_ENGINE_QA_ONLY: approved 60 Week 12 pairings and verified canonical IDs; identical starting checkpoints and ratings for paired baseline/candidate; no official output",
+  "seedCount": 50,
+  "repeatability": 60,
+  "pollChunkInvariance": 60,
+  "speedInvariance": 300,
+  "concurrentFullBoard": 60,
+  "unaffectedCompleteGames": 1968,
+  "identicalPreCorrectionPrefixes": 1032,
+  "baseline": {
+    "games": 3000,
+    "safeties": 434,
+    "gamesWithSafety": 401,
+    "touchbacks": 0,
+    "goalLinePuntEndpoints": 1242,
+    "points": 127750,
+    "plays": 417119,
+    "gl": 23111027,
+    "margin": 36392,
+    "underdogWins": 829,
+    "unequalRatingGames": 2950,
+    "meanPoints": 42.583333333333336,
+    "meanPlays": 139.03966666666668,
+    "meanGLSeconds": 7703.675666666667,
+    "meanMargin": 12.130666666666666,
+    "safetyGamesRate": 0.13366666666666666,
+    "safetyGamesWilson95": [
+      0.12195668487808292,
+      0.14631365267899732
+    ],
+    "underdogWinRate": 0.2810169491525424,
+    "underdogWinsWilson95": [
+      0.2650890564912452,
+      0.29751443585580556
+    ]
+  },
+  "candidate": {
+    "games": 3000,
+    "safeties": 272,
+    "gamesWithSafety": 255,
+    "touchbacks": 1236,
+    "goalLinePuntEndpoints": 1236,
+    "points": 127791,
+    "plays": 417089,
+    "gl": 23111748,
+    "margin": 36131,
+    "underdogWins": 828,
+    "unequalRatingGames": 2950,
+    "meanPoints": 42.597,
+    "meanPlays": 139.02966666666666,
+    "meanGLSeconds": 7703.916,
+    "meanMargin": 12.043666666666667,
+    "safetyGamesRate": 0.085,
+    "safetyGamesWilson95": [
+      0.0755433598075621,
+      0.09551812359422582
+    ],
+    "underdogWinRate": 0.28067796610169493,
+    "underdogWinsWilson95": [
+      0.264756466933026,
+      0.297169941036853
+    ]
+  },
+  "status": "PASS",
+  "distributionPolicy": "Observed comparison only; no target safety rate, no forced statistical improvement."
+}

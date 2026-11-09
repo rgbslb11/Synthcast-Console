@@ -1,0 +1,27 @@
+name: Verify hosted Week 12 operating board without launching games
+on:
+  push:
+    branches: [release/gamecast-v5.0.7]
+    paths: ['tests/v507-operating/hosted.mjs']
+permissions:
+  contents: read
+jobs:
+  hosted-read-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --prefix "$RUNNER_TEMP/browser507" --save-exact playwright@1.62.1
+      - run: node "$RUNNER_TEMP/browser507/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Actual hosted public views and Chairman sign-in page
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/browser507/node_modules/playwright/index.mjs
+        run: node tests/v507-operating/hosted.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v507-hosted-browser
+          path: outputs/v507-operating/
