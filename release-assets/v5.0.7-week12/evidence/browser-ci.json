@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "runId": 42631448417,
+  "url": "https://github.com/rgbslb11/Synthcast-Console/actions/runs/42631448417",
+  "testedCommit": "ac0e4bd7feefe8edd97a8fd87bcc5a7589b8be51",
+  "automatedTests": 78,
+  "browserChecks": {
+    "chromium": [
+      "Chairman exact 60 ordered QA identities",
+      "Chairman fits viewport",
+      "Chairman shows 60/60 power ready",
+      "Chairman G0555 Q2 punt at 282: OWN 20",
+      "Chairman G0555 Q3 punt at 180: OWN 7",
+      "Chairman G0541 Q1 punt at 206: OWN 20",
+      "Chairman G0541 Q1 punt at 52: OWN 8",
+      "Public exact 60 ordered QA identities",
+      "Public fits viewport",
+      "Public G0555 Q2 punt at 282: OWN 20",
+      "Public G0555 Q3 punt at 180: OWN 7",
+      "Public G0541 Q1 punt at 206: OWN 20",
+      "Public G0541 Q1 punt at 52: OWN 8",
+      "Condensed exact 60 ordered QA identities",
+      "Condensed fits viewport",
+      "Condensed G0555 Q2 punt at 282: OWN 20",
+      "Condensed G0555 Q3 punt at 180: OWN 7",
+      "Condensed G0541 Q1 punt at 206: OWN 20",
+      "Condensed G0541 Q1 punt at 52: OWN 8"
+    ],
+    "mobileWebKit": [
+      "Chairman exact 60 ordered QA identities",
+      "Chairman fits viewport",
+      "Chairman shows 60/60 power ready",
+      "Chairman G0555 Q2 punt at 282: OWN 20",
+      "Chairman G0555 Q3 punt at 180: OWN 7",
+      "Chairman G0541 Q1 punt at 206: OWN 20",
+      "Chairman G0541 Q1 punt at 52: OWN 8",
+      "Public exact 60 ordered QA identities",
+      "Public fits viewport",
+      "Public G0555 Q2 punt at 282: OWN 20",
+      "Public G0555 Q3 punt at 180: OWN 7",
+      "Public G0541 Q1 punt at 206: OWN 20",
+      "Public G0541 Q1 punt at 52: OWN 8",
+      "Condensed exact 60 ordered QA identities",
+      "Condensed fits viewport",
+      "Condensed G0555 Q2 punt at 282: OWN 20",
+      "Condensed G0555 Q3 punt at 180: OWN 7",
+      "Condensed G0541 Q1 punt at 206: OWN 20",
+      "Condensed G0541 Q1 punt at 52: OWN 8"
+    ]
+  },
+  "scope": "GitHub-hosted local QA API/RPC fixtures, actual candidate engine and retained interfaces. Not deployed cloud DB, real sign-in or physical Mobile Safari.",
+  "productionDeployment": "HELD"
+}

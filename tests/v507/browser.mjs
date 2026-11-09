@@ -27,11 +27,12 @@ try{
   if(label==='Chairman')await check('Chairman shows 60/60 power ready',async()=>assert.match(await page.locator('#links').innerText(),/ACTIVE POWER 60\/60/));
   for(const sequence of sequences.filter(s=>s.period==='1'||s.gameId==='G0555')){
    const first=sequence.records[0],g=row.state[0];Object.assign(g,{lifecycle:'ACTIVE',activity:'LIVE',auto:false,possession:first.team,fieldPos:first.preSnap.fieldPos,down:first.preSnap.down,distance:first.preSnap.distance,quarter:Number(sequence.period),activePeriod:sequence.period,scoreboardSeconds:first.clock});
+   g.away.name=sequence.away;g.home.name=sequence.home;g.qaReplaySourceGameId=sequence.gameId;
    g.history=[];g.scores={'1':[0,0],'2':[0,0],'3':[0,0],'4':[0,0]};
    const p={team:first.team,strategy:'NORMAL',yards:first.yards,points:0,turnover:false,punt:true,fg:false,first:false,inBounds:false,incomplete:false,desc:first.desc,edgeAtSnap:0};runtime.engine.applyPlay(g,p);row.state_version++;
    await page.reload();const card=page.locator('[data-game="'+g.id+'"]');await card.waitFor();
    if(label==='Condensed')await page.locator('[data-toggle="'+g.id+'"]').click();
-   await check(`${label} ${sequence.gameId} Q${sequence.period} punt at ${first.clock}: OWN ${g.fieldPos}`,async()=>{assert.match(await card.innerText(),new RegExp('OWN '+g.fieldPos));if(first.preSnap.fieldPos+first.yards>=100)assert.match(await card.innerText(),/PUNT TOUCHBACK/);});
+   await check(`${label} ${sequence.gameId} Q${sequence.period} punt at ${first.clock}: OWN ${g.fieldPos}`,async()=>{const text=await card.innerText();assert.ok(text.includes(sequence.away));assert.ok(text.includes(sequence.home));assert.equal(g.possession,1-first.team);assert.match(text,new RegExp('OWN '+g.fieldPos));if(first.preSnap.fieldPos+first.yards>=100)assert.match(text,/PUNT TOUCHBACK/);});
   }
  }
  assert.deepEqual(errors,[]);fs.mkdirSync('release-assets/v5.0.7-week12/evidence',{recursive:true});fs.writeFileSync('release-assets/v5.0.7-week12/evidence/browser-'+browserType+'.json',JSON.stringify({status:'PASS',scope:'Local QA RPC fixture; actual candidate HTTP handlers and retained UIs. No cloud database or real login. WebKit is mobile emulation, not physical Mobile Safari.',browserType,checks,errors},null,2)+'\n');

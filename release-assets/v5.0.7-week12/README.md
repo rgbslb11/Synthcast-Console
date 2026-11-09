@@ -119,15 +119,17 @@ rate or score distribution is appropriate.
 | Poll/chunk invariance | PASS — 60 full-game comparisons plus read-only API polls |
 | 1x–50x invariance | PASS — 300 comparisons, all supported speeds |
 | Backend persistence/versioning | PASS for disk RPC fixtures; cloud NOT TESTED |
-| Chairman console integration | Browser test prepared; NOT TESTED pending CI |
-| Public scoreboard integration | Browser test prepared; NOT TESTED pending CI |
-| Mobile Safari | NOT TESTED; mobile WebKit test prepared, not a physical device |
+| Chairman console integration | PASS — Chromium and mobile WebKit against local QA handlers; deployed cloud integration NOT TESTED |
+| Public scoreboard integration | PASS — public and condensed views in Chromium and mobile WebKit; deployed cloud integration NOT TESTED |
+| Mobile Safari | NOT TESTED on a physical device; mobile WebKit emulation PASS |
 | Existing sessions | 5.0.6 untouched and namespace rejection tested; live 5.0.7 migration NOT TESTED and not implemented |
 | Chairman release approval | NOT GRANTED — deployment explicitly held |
 
-The local browser download failed with an invalid/truncated archive. A test-only
-GitHub workflow runs Chromium and mobile WebKit without deploying anything.
-Its eventual results must be inspected before either UI gate can be marked PASS.
+The local browser download failed with an invalid/truncated archive. The
+test-only GitHub workflow succeeded on commit `ac0e4bd`, run 42631448417: 78
+automated tests, population gates and 19 display checks each in Chromium and
+mobile WebKit. See `evidence/browser-ci.json`. These are actual browser tests
+against QA HTTP/RPC fixtures, not a deployed cloud database or real-user login.
 The first CI run passed Chairman and public punt display checks, then exposed
 retained Week 11 date/count bindings in the condensed UI. Only the candidate's
 date validator, Saturday selector and labels were rebound to the verified Week
