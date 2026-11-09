@@ -1,0 +1,36 @@
+name: GameCast 5.0.7 punt correction QA only
+on:
+  push:
+    branches: [development/gamecast-v5.0.7]
+permissions:
+  contents: read
+jobs:
+  offline-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/build-v507-qa.mjs
+      - run: git diff --exit-code -- release-assets/v5.0.7-week12/backend public/v5.0.7
+      - run: node --test tests/v506/*.test.mjs tests/v507/*.test.mjs
+      - run: node tests/v507/gates.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/gamecast-browser" --save-exact playwright@1.62.1
+      - run: node "$RUNNER_TEMP/gamecast-browser/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Chairman and public punt display, Chromium
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/gamecast-browser/node_modules/playwright/index.mjs
+        run: node tests/v507/browser.mjs
+      - name: Chairman and public punt display, mobile WebKit
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/gamecast-browser/node_modules/playwright/index.mjs
+          GAMECAST_BROWSER: webkit
+        run: node tests/v507/browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v507-qa-only-evidence
+          path: release-assets/v5.0.7-week12/evidence/
+# Intentionally no Pages publication, Supabase deployment, credentials or cron.
