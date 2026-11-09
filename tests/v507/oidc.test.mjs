@@ -1,0 +1,12 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {verifyGithubOIDC} from '../../release-assets/v5.0.7-week12/backend/cloud/oidc.mjs';
+const pair=await crypto.subtle.generateKey({name:'RSASSA-PKCS1-v1_5',modulusLength:2048,publicExponent:new Uint8Array([1,0,1]),hash:'SHA-256'},true,['sign','verify']);
+const jwk=await crypto.subtle.exportKey('jwk',pair.publicKey);jwk.kid='test-key';
+const now=1794230400,ref='refs/heads/development/gamecast-v5.0.7',repo='rgbslb11/Synthcast-Console';
+const claims={iss:'https://token.actions.githubusercontent.com',aud:'gamecast-v507-qa',sub:`repo:${repo}:ref:${ref}`,repository:repo,repository_id:'1347147838',repository_owner_id:'276151109',ref,workflow_ref:repo+'/.github/workflows/qa-v507-cloud.yml@'+ref,event_name:'push',runner_environment:'github-hosted',run_id:'123456789',run_attempt:'1',sha:'a'.repeat(40),iat:now,nbf:now,exp:now+300};
+const enc=v=>Buffer.from(JSON.stringify(v)).toString('base64url');
+async function token(c=claims,h={alg:'RS256',typ:'JWT',kid:'test-key'}){const msg=enc(h)+'.'+enc(c);const sig=await crypto.subtle.sign('RSASSA-PKCS1-v1_5',pair.privateKey,new TextEncoder().encode(msg));return msg+'.'+Buffer.from(sig).toString('base64url');}
+const options={clock:()=>now*1000,fetchImpl:async()=>Response.json({keys:[jwk]})};
+test('QA OIDC verifies signature and exact legacy or immutable repository subject',async()=>{assert.equal((await verifyGithubOIDC(await token(),options)).run_id,claims.run_id);assert.equal((await verifyGithubOIDC(await token({...claims,sub:`repo:rgbslb11@276151109/Synthcast-Console@1347147838:ref:${ref}`}),options)).repository_id,claims.repository_id);});
+test('QA OIDC rejects foreign repo, branch, workflow, audience, runner and event',async()=>{for(const change of [{repository:'other/repo'},{repository_id:'1'},{ref:'refs/heads/main'},{workflow_ref:'other.yml'},{aud:'other'},{sub:'repo:other'},{runner_environment:'self-hosted'},{event_name:'pull_request'}])await assert.rejects(verifyGithubOIDC(await token({...claims,...change}),options));});
+test('QA OIDC rejects expired tokens, unsigned algorithm and tampered signatures',async()=>{await assert.rejects(verifyGithubOIDC(await token({...claims,exp:now-1}),options));await assert.rejects(verifyGithubOIDC(await token(claims,{alg:'none',typ:'JWT',kid:'test-key'}),options));const t=await token();await assert.rejects(verifyGithubOIDC(t.slice(0,-10)+'abcdefghij',options));});

@@ -1,0 +1,43 @@
+name: GameCast 5.0.7 disposable cloud PostgreSQL QA
+on:
+  push:
+    branches: [development/gamecast-v5.0.7]
+permissions:
+  contents: read
+jobs:
+  postgres-recovery-and-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: ephemeral-qa-only
+          POSTGRES_DB: gc507qa
+        ports: ['55432:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres -d gc507qa"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      GC507_PG_URL: postgres://postgres:ephemeral-qa-only@127.0.0.1:55432/gc507qa
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/build-v507-qa.mjs
+      - run: node scripts/prepare-v507-cloud-qa.mjs
+      - run: node --test tests/v506/*.test.mjs tests/v507/*.test.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/gamecast-qa" --save-exact pg@8.16.3 playwright@1.62.1
+      - run: node "$RUNNER_TEMP/gamecast-qa/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Real PostgreSQL, request retries, process restarts and browser checks
+        env:
+          PG_MODULE: ${{ runner.temp }}/gamecast-qa/node_modules/pg/lib/index.js
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/gamecast-qa/node_modules/playwright/index.mjs
+        run: node tests/v507/postgres-cloud.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v507-disposable-postgres-results
+          path: outputs/v507-cloud/
+# No Supabase credentials, deployment, external database or Pages publication.

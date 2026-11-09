@@ -1,0 +1,461 @@
+export const sequences=[
+  {
+    "gameId": "G0555",
+    "away": "Tulsa",
+    "home": "UTSA",
+    "period": "2",
+    "sourceSession": "w11v506-43c2306679a19d1e",
+    "sourceStateVersion": 62958,
+    "sourceOnly": true,
+    "records": [
+      {
+        "gl": 2434,
+        "desc": "Punt · 45 net yards",
+        "team": 0,
+        "clock": 282,
+        "score": [
+          0,
+          10
+        ],
+        "yards": 45,
+        "period": "2",
+        "preSnap": {
+          "down": 4,
+          "distance": 5,
+          "fieldPos": 60
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-06T01:53:08.397Z",
+        "adjudicated": {
+          "down": 1,
+          "points": 0,
+          "distance": 10,
+          "fieldPos": 1,
+          "possession": 1
+        }
+      },
+      {
+        "gl": 2462,
+        "desc": "SAFETY · Run for -4 yards out of bounds",
+        "team": 1,
+        "clock": 279,
+        "score": [
+          2,
+          10
+        ],
+        "yards": -4,
+        "period": "2",
+        "ruling": "SAFETY",
+        "preSnap": {
+          "down": 1,
+          "distance": 10,
+          "fieldPos": 1
+        },
+        "freeKick": {
+          "fromOwn": 20,
+          "kickingTeam": 1,
+          "receivingTeam": 0
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-06T01:53:33.887Z",
+        "adjudicated": {
+          "down": 1,
+          "points": 2,
+          "distance": 10,
+          "fieldPos": 25,
+          "possession": 0
+        },
+        "scoringTeam": 0,
+        "originalDescription": "Run for -4 yards out of bounds"
+      }
+    ]
+  },
+  {
+    "gameId": "G0555",
+    "away": "Tulsa",
+    "home": "UTSA",
+    "period": "3",
+    "sourceSession": "w11v506-43c2306679a19d1e",
+    "sourceStateVersion": 62958,
+    "sourceOnly": true,
+    "records": [
+      {
+        "gl": 5234,
+        "desc": "Punt · 40 net yards",
+        "team": 0,
+        "clock": 180,
+        "score": [
+          2,
+          13
+        ],
+        "yards": 40,
+        "period": "3",
+        "preSnap": {
+          "down": 4,
+          "distance": 9,
+          "fieldPos": 53
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-06T02:42:58.068Z",
+        "adjudicated": {
+          "down": 1,
+          "points": 0,
+          "distance": 10,
+          "fieldPos": 7,
+          "possession": 1
+        }
+      },
+      {
+        "gl": 5267,
+        "desc": "Incomplete pass",
+        "team": 1,
+        "clock": 172,
+        "score": [
+          2,
+          13
+        ],
+        "yards": 0,
+        "period": "3",
+        "preSnap": {
+          "down": 1,
+          "distance": 10,
+          "fieldPos": 7
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-06T02:43:33.146Z",
+        "adjudicated": {
+          "down": 2,
+          "points": 0,
+          "distance": 10,
+          "fieldPos": 7,
+          "possession": 1
+        }
+      },
+      {
+        "gl": 5300,
+        "desc": "Run for 2 yards out of bounds",
+        "team": 1,
+        "clock": 164,
+        "score": [
+          2,
+          13
+        ],
+        "yards": 2,
+        "period": "3",
+        "preSnap": {
+          "down": 2,
+          "distance": 10,
+          "fieldPos": 7
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-06T02:44:08.201Z",
+        "adjudicated": {
+          "down": 3,
+          "points": 0,
+          "distance": 8,
+          "fieldPos": 9,
+          "possession": 1
+        }
+      },
+      {
+        "gl": 5505,
+        "desc": "SAFETY · Sack for 9-yard loss",
+        "team": 1,
+        "clock": 145,
+        "score": [
+          4,
+          13
+        ],
+        "yards": -9,
+        "period": "3",
+        "ruling": "SAFETY",
+        "preSnap": {
+          "down": 3,
+          "distance": 8,
+          "fieldPos": 9
+        },
+        "freeKick": {
+          "fromOwn": 20,
+          "kickingTeam": 1,
+          "receivingTeam": 0
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-06T02:47:44.214Z",
+        "adjudicated": {
+          "down": 1,
+          "points": 2,
+          "distance": 10,
+          "fieldPos": 25,
+          "possession": 0
+        },
+        "scoringTeam": 0,
+        "originalDescription": "Sack for 9-yard loss"
+      }
+    ]
+  },
+  {
+    "gameId": "G0541",
+    "away": "Texas A&M",
+    "home": "South Carolina",
+    "period": "1",
+    "sourceSession": "w11v506-43c2306679a19d1e",
+    "sourceStateVersion": 62958,
+    "sourceOnly": true,
+    "records": [
+      {
+        "gl": 916,
+        "desc": "Punt · 41 net yards",
+        "team": 0,
+        "clock": 206,
+        "score": [
+          0,
+          6
+        ],
+        "yards": 41,
+        "period": "1",
+        "preSnap": {
+          "down": 4,
+          "distance": 5,
+          "fieldPos": 59
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-07T17:19:28.663Z",
+        "adjudicated": {
+          "down": 1,
+          "points": 0,
+          "distance": 10,
+          "fieldPos": 1,
+          "possession": 1
+        }
+      },
+      {
+        "gl": 945,
+        "desc": "SAFETY · Run for -2 yards in bounds",
+        "team": 1,
+        "clock": 202,
+        "score": [
+          2,
+          6
+        ],
+        "yards": -2,
+        "period": "1",
+        "ruling": "SAFETY",
+        "preSnap": {
+          "down": 1,
+          "distance": 10,
+          "fieldPos": 1
+        },
+        "freeKick": {
+          "fromOwn": 20,
+          "kickingTeam": 1,
+          "receivingTeam": 0
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-07T17:19:59.359Z",
+        "adjudicated": {
+          "down": 1,
+          "points": 2,
+          "distance": 10,
+          "fieldPos": 25,
+          "possession": 0
+        },
+        "scoringTeam": 0,
+        "originalDescription": "Run for -2 yards in bounds"
+      }
+    ]
+  },
+  {
+    "gameId": "G0541",
+    "away": "Texas A&M",
+    "home": "South Carolina",
+    "period": "1",
+    "sourceSession": "w11v506-43c2306679a19d1e",
+    "sourceStateVersion": 62958,
+    "sourceOnly": true,
+    "records": [
+      {
+        "gl": 1505,
+        "desc": "Punt · 42 net yards",
+        "team": 0,
+        "clock": 52,
+        "score": [
+          2,
+          6
+        ],
+        "yards": 42,
+        "period": "1",
+        "preSnap": {
+          "down": 4,
+          "distance": 14,
+          "fieldPos": 50
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-07T17:30:04.189Z",
+        "adjudicated": {
+          "down": 1,
+          "points": 0,
+          "distance": 10,
+          "fieldPos": 8,
+          "possession": 1
+        }
+      },
+      {
+        "gl": 1535,
+        "desc": "Run for 0 yards in bounds",
+        "team": 1,
+        "clock": 47,
+        "score": [
+          2,
+          6
+        ],
+        "yards": 0,
+        "period": "1",
+        "preSnap": {
+          "down": 1,
+          "distance": 10,
+          "fieldPos": 8
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-07T17:30:36.455Z",
+        "adjudicated": {
+          "down": 2,
+          "points": 0,
+          "distance": 10,
+          "fieldPos": 8,
+          "possession": 1
+        }
+      },
+      {
+        "gl": 1561,
+        "desc": "SAFETY · Sack for 8-yard loss",
+        "team": 1,
+        "clock": 21,
+        "score": [
+          4,
+          6
+        ],
+        "yards": -8,
+        "period": "1",
+        "ruling": "SAFETY",
+        "preSnap": {
+          "down": 2,
+          "distance": 10,
+          "fieldPos": 8
+        },
+        "freeKick": {
+          "fromOwn": 20,
+          "kickingTeam": 1,
+          "receivingTeam": 0
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-07T17:31:01.514Z",
+        "adjudicated": {
+          "down": 1,
+          "points": 2,
+          "distance": 10,
+          "fieldPos": 25,
+          "possession": 0
+        },
+        "scoringTeam": 0,
+        "originalDescription": "Sack for 8-yard loss"
+      }
+    ]
+  },
+  {
+    "gameId": "G0541",
+    "away": "Texas A&M",
+    "home": "South Carolina",
+    "period": "2",
+    "sourceSession": "w11v506-43c2306679a19d1e",
+    "sourceStateVersion": 62958,
+    "sourceOnly": true,
+    "records": [
+      {
+        "gl": 2482,
+        "desc": "Punt · 41 net yards",
+        "team": 1,
+        "clock": 366,
+        "score": [
+          4,
+          13
+        ],
+        "yards": 41,
+        "period": "2",
+        "preSnap": {
+          "down": 4,
+          "distance": 8,
+          "fieldPos": 57
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-07T17:47:39.707Z",
+        "adjudicated": {
+          "down": 1,
+          "points": 0,
+          "distance": 10,
+          "fieldPos": 2,
+          "possession": 0
+        }
+      },
+      {
+        "gl": 2515,
+        "desc": "Run for 3 yards in bounds",
+        "team": 0,
+        "clock": 358,
+        "score": [
+          4,
+          13
+        ],
+        "yards": 3,
+        "period": "2",
+        "preSnap": {
+          "down": 1,
+          "distance": 10,
+          "fieldPos": 2
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-07T17:48:14.026Z",
+        "adjudicated": {
+          "down": 2,
+          "points": 0,
+          "distance": 7,
+          "fieldPos": 5,
+          "possession": 0
+        }
+      },
+      {
+        "gl": 2540,
+        "desc": "SAFETY · Sack for 7-yard loss",
+        "team": 0,
+        "clock": 333,
+        "score": [
+          4,
+          15
+        ],
+        "yards": -7,
+        "period": "2",
+        "ruling": "SAFETY",
+        "preSnap": {
+          "down": 2,
+          "distance": 7,
+          "fieldPos": 5
+        },
+        "freeKick": {
+          "fromOwn": 20,
+          "kickingTeam": 0,
+          "receivingTeam": 1
+        },
+        "strategy": "NORMAL",
+        "masterZulu": "2026-11-07T17:48:39.907Z",
+        "adjudicated": {
+          "down": 1,
+          "points": 2,
+          "distance": 10,
+          "fieldPos": 25,
+          "possession": 1
+        },
+        "scoringTeam": 1,
+        "originalDescription": "Sack for 7-yard loss"
+      }
+    ]
+  }
+];
