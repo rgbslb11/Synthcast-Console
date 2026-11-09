@@ -1,0 +1,12 @@
+{
+  "engineVersion": "GC-W12-V5.0.7-RC1",
+  "week": "2026-W12",
+  "games": 60,
+  "participants": 120,
+  "ratingRecords": 122,
+  "ratingsSha256": "6d04e960a60d00301e8158d336482831e9e509e2b2394d572d96aee340613427",
+  "storage": "private gamecast_v507_w12; fixed service-role-only public RPC",
+  "authorization": "existing gamecast_v506_w11 Chairman roster; no copies or new Auth users",
+  "launch": "Chairman controlled; no automatic launch during setup",
+  "rollout": "Tuesday–Thursday monitored operating games; no test outcomes accepted automatically"
+}
