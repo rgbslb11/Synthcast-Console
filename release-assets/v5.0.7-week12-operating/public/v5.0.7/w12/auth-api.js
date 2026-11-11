@@ -96,6 +96,9 @@
     if(!pending)throw Error('No request to retry');
     const p=pending;return globalThis.gamecastApi(p.action,p.body,{slug:p.slug,operator:p.operator});
   };
+  // Local retry state only. Called after an explicit Refresh successfully reads
+  // the authoritative board; never resends or manufactures a write receipt.
+  globalThis.gamecastClearPending=()=>{pending=null;const button=document.getElementById('retryRequest');if(button)button.hidden=true;};
   globalThis.gamecastPendingRequest=()=>!!pending;
   globalThis.gamecastPendingGameId=()=>pending?.body?.id??'';
   window.addEventListener('DOMContentLoaded',()=>{

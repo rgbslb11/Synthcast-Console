@@ -22,7 +22,12 @@ export function createReleaseRuntime({url,publishableKey,serviceKey,allowedOrigi
   };
   async function executeCommand(draft,body){
     requireWrites();
-    const tick=await operations.advance(draft,{seconds:elapsed(draft,body.command)});
+    // An explicit prelaunch Launch/Disarm wins over the fallback for its targets.
+    // Keep elapsed projection and every other game's fallback unchanged.
+    const ids=body.command==='deadman_batch'&&body.payload?.operation==='disarm'?body.payload.ids:
+      ['launch','deadman_disarm'].includes(body.command)?[body.id]:[];
+    const deadmanHoldIds=Array.isArray(ids)?ids.filter(id=>draft.state.some(g=>g.id===id&&g.lifecycle==='UNLAUNCHED')):[];
+    const tick=await operations.advance(draft,{seconds:elapsed(draft,body.command),deadmanHoldIds});
     const result=await operations.executeCommand(draft,body);
     return {events:[...tick.events,...result.events]};
   }

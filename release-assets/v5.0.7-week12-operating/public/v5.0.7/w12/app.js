@@ -339,6 +339,14 @@ async function load({background=false,force=false}={}){
 }
 async function refresh(){
   if(writing)return;
+  if(gamecastPendingRequest()){
+    if(!confirm('Read the latest cloud state and clear the local retry request? The previous command will not be repeated. Review the game before issuing another command.'))return;
+    if(readPromise)await readPromise;
+    readEpoch++;writing=true;status('SYNCING');
+    try{const b=await api('read');gamecastClearPending();adopt(b);document.getElementById('grid').replaceChildren();writeConflict=false;render();status('CLOUD V'+version+' · Previous request not repeated');}
+    catch(e){status('ERROR · '+e.message,true)}finally{writing=false}
+    return;
+  }
   if(writeConflict){
     if(!confirm('Discard local drafts and reload the latest cloud state? No correction will be saved.'))return;
     // Explicit recovery only: never silently rebase a stale correction.

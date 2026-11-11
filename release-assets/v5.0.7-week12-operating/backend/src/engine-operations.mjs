@@ -40,7 +40,7 @@ export function createEngineOperations({engine,clock=()=>new Date().toISOString(
     } else if(c==='deadman_arm'){
       try{deadmanArm(g,p,stamp);}catch{throw new SecurityError('DEADMAN_CONFIG_INVALID',400);}
     } else if(c==='deadman_disarm'){
-      deadmanDisarm(g,stamp);
+      required(['ARMED','BLOCKED'].includes(g.deadman?.status));deadmanDisarm(g,stamp);
     } else if(c==='score'){
       required(['ACTIVE','DELAY'].includes(g.lifecycle));required([0,1].includes(p.team)&&[1,2,3,6,7,8].includes(p.points),'SCORE_INVALID');engine.score(g,p.team,p.points,'MANUAL');
     } else if(c==='clock_set'){
@@ -73,7 +73,7 @@ export function createEngineOperations({engine,clock=()=>new Date().toISOString(
     draft.state=engine.project(draft.state,seconds);
     const events=[{type:'V507_ADVANCE',gameId:null,payload:{seconds,activeGames:60,masterZulu:stamp}}];
     for(const g of draft.state){
-      const change=deadmanTick(g,stamp);
+      const change=body.deadmanHoldIds?.includes(g.id)?null:deadmanTick(g,stamp);
       if(change?.action==='AUTONOMOUS_LAUNCH'){await weather.lockWeather(g,stamp);engine.ensureOpeningToss(g);events.push({type:'V507_DEADMAN_LAUNCH',gameId:g.id,payload:{weatherSnapshotId:g.weather.snapshotId,masterZulu:stamp}});}
       for(const record of g.history.slice(prior[g.id]))events.push({type:'V507_FOOTBALL_RECORD',gameId:g.id,payload:structuredClone(record)});
     }

@@ -13,6 +13,18 @@ for(const dir of ['runtime','src','security'])for(const f of walk(source+'/backe
   s=s.replaceAll("'gamecast_v507_w12'","'public'");
   s=s.replace("jsonRequest('rest/v1/rpc/'+name,{body:args})","jsonRequest('rest/v1/rpc/gc507_w12_rpc',{body:{p_action:name,p_args:args}})");
  }
+ if(f.endsWith('/release-runtime.mjs'))s=s.replace(
+  'const tick=await operations.advance(draft,{seconds:elapsed(draft,body.command)});',
+  `// An explicit prelaunch Launch/Disarm wins over the fallback for its targets.
+    // Keep elapsed projection and every other game's fallback unchanged.
+    const ids=body.command==='deadman_batch'&&body.payload?.operation==='disarm'?body.payload.ids:
+      ['launch','deadman_disarm'].includes(body.command)?[body.id]:[];
+    const deadmanHoldIds=Array.isArray(ids)?ids.filter(id=>draft.state.some(g=>g.id===id&&g.lifecycle==='UNLAUNCHED')):[];
+    const tick=await operations.advance(draft,{seconds:elapsed(draft,body.command),deadmanHoldIds});`);
+ if(f.endsWith('/engine-operations.mjs'))s=s.replace(
+  "deadmanDisarm(g,stamp);","required(['ARMED','BLOCKED'].includes(g.deadman?.status));deadmanDisarm(g,stamp);").replace(
+  'const change=deadmanTick(g,stamp);',
+  'const change=body.deadmanHoldIds?.includes(g.id)?null:deadmanTick(g,stamp);');
  const target=out+f.slice(source.length);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,s);
 }
 for(const f of ['ratings.csv','canonical-week12-identity-map.json','input-manifest.json'])fs.copyFileSync(source+'/'+f,out+'/'+f);
@@ -21,6 +33,22 @@ fs.writeFileSync(out+'/slate.json',JSON.stringify(slate,null,2)+'\n');
 fs.writeFileSync(out+'/backend/runtime/week12.mjs','// Approved Week 12 operating slate. Games remain unlaunched until Chairman action.\nexport const OPERATING_SLATE = '+JSON.stringify(slate,null,2)+';\n');
 for(const f of walk('public/v5.0.7/w12')){
  let s=bind(fs.readFileSync(f,'utf8')).replace('QA ONLY · DEPLOYMENT HELD','SEUD IMPORT ON HOLD').replaceAll('synthcastGameCast507W11Session','synthcastGameCast507W12Session');
+ if(f.endsWith('/auth-api.js'))s=s.replace('globalThis.gamecastPendingRequest=()=>!!pending;',
+  `// Local retry state only. Called after an explicit Refresh successfully reads
+  // the authoritative board; never resends or manufactures a write receipt.
+  globalThis.gamecastClearPending=()=>{pending=null;const button=document.getElementById('retryRequest');if(button)button.hidden=true;};
+  globalThis.gamecastPendingRequest=()=>!!pending;`);
+ if(f.endsWith('/app.js'))s=s.replace('async function refresh(){\n  if(writing)return;',
+  `async function refresh(){
+  if(writing)return;
+  if(gamecastPendingRequest()){
+    if(!confirm('Read the latest cloud state and clear the local retry request? The previous command will not be repeated. Review the game before issuing another command.'))return;
+    if(readPromise)await readPromise;
+    readEpoch++;writing=true;status('SYNCING');
+    try{const b=await api('read');gamecastClearPending();adopt(b);document.getElementById('grid').replaceChildren();writeConflict=false;render();status('CLOUD V'+version+' · Previous request not repeated');}
+    catch(e){status('ERROR · '+e.message,true)}finally{writing=false}
+    return;
+  }`);
  if(f.endsWith('/release-config.js'))s="globalThis.GAMECAST_V507_CONFIG=Object.freeze({projectUrl:'https://xsvdmcipviejxynkdbhq.supabase.co',publishableKey:'sb_publishable_5jxF1vOOyWdUvvk3-poZqQ_83gaaUdf',publicApi:'https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-week12-v5-0-7-public',chairmanApi:'https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-week12-v5-0-7-chairman'});\n";
  const target=out+'/public/'+f.slice('public/'.length);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,s);
 }

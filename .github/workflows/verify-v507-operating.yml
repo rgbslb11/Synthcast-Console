@@ -1,7 +1,7 @@
 name: Verify GameCast 5.0.7 operating setup
 on:
   push:
-    branches: [release/gamecast-v5.0.7]
+    branches: [release/gamecast-v5.0.7, fix/v507-deadman-command-recovery]
 permissions:
   contents: read
 jobs:
