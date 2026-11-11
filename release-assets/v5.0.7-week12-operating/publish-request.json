@@ -1,11 +1,12 @@
 {
-  "requestedBy": "Chairman",
+  "requestedBy": "Chairman; explicitly approved repair deployment and scheduler activation",
   "week": "2026-W12",
   "route": "/v5.0.7/w12/",
   "publicSlug": "w12v507-506ff58ba0cfb7a5",
-  "previousPublisherRun": 42643087893,
-  "preflightRun": 42644560696,
-  "preflightSha": "2a7466366884b7f8491a1253fc19bb24d78eb4d9",
-  "correction": "Bind operating UI engine identity and session validation; retain all prior routes and Week 12 state",
-  "rollout": "Tuesday–Thursday monitored operating games; scheduler remains disabled pending explicit authorization"
+  "previousPublisherRun": 42644783197,
+  "preflightRun": 42940897364,
+  "preflightSha": "4464f9f7326aa6fcf04a809b1cd98f257c7d4ec0",
+  "correction": "Overdue control precedence and explicit pending-request Refresh; cache-busted UI scripts",
+  "scheduler": "Enabled with explicit approval; G0568 launched 2026-11-11T01:40:39.720Z at 1x with actual late-start GL zero",
+  "protected": "Preserve every prior release and authoritative football history"
 }
