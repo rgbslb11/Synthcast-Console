@@ -1,7 +1,7 @@
 import {schedulerSignature,requireSessionSlug} from '../security/security-core.mjs';
 // One server-side scheduler sweep. Scheduling/activation is a separate deployment.
 export async function runSchedulerSweep({rpc,url,secret,fetchImpl=fetch,maxSessions=2,timeoutMs=10000,budgetMs=25000,clock=Date.now}){
-  const target=new URL(url);if(target.protocol!=='https:'||!target.pathname.endsWith('/gamecast-week12-v5-0-7-qa-scheduler'))throw Error('Canonical HTTPS scheduler URL required');
+  const target=new URL(url);if(target.protocol!=='https:'||!target.pathname.endsWith('/gamecast-week12-v5-0-7-scheduler'))throw Error('Canonical HTTPS scheduler URL required');
   if(target.username||target.password||target.search||target.hash)throw Error('Clean scheduler URL required');
   if(typeof secret!=='string'||!secret.trim())throw Error('Explicit scheduler secret required');
   for(const [name,value,maximum] of [['maxSessions',maxSessions,100],['timeoutMs',timeoutMs,30000],['budgetMs',budgetMs,60000]])if(!Number.isSafeInteger(value)||value<1||value>maximum)throw Error('Invalid scheduler '+name);

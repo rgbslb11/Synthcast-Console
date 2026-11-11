@@ -1,13 +1,13 @@
 {
-  "publisherRun": 42643087893,
+  "publisherRun": 42644783197,
   "files": [
     {
       "path": "v5.0.7/w12/app.js",
-      "sha256": "049aec7613b16c9920aab4d645be2f3250744efcdd7abc12b081225a3e849cf0"
+      "sha256": "0f94d7fb02caf5e4093b661429d2af136704e92999809f0f80712e298cec42dd"
     },
     {
       "path": "v5.0.7/w12/auth-api.js",
-      "sha256": "9e83a4f59fcfaff81b682626268d287eced2da964ec3bcd51e40f63e8db76f19"
+      "sha256": "f5032a6b807254e75dd78e05619c3635819b99918510ed6db8b7b3350c43dda8"
     },
     {
       "path": "v5.0.7/w12/confirmation.css",
@@ -43,7 +43,7 @@
     },
     {
       "path": "v5.0.7/w12/patch-500-weather.js",
-      "sha256": "1c25037c9582661b07fd661dd381c809100417b8079996cec2ffaffe8a936aeb"
+      "sha256": "e5d0f67001f6a14f682606d290eee00c85f2d3cc2bf3e5618975e4e9cd132130"
     },
     {
       "path": "v5.0.7/w12/release-config.js",
@@ -59,7 +59,7 @@
     },
     {
       "path": "v5.0.7/w12/ui1.3/scoreboard.js",
-      "sha256": "3b1bd0d77addf404307179e00950a67e79c55304b2c8f74726a106a5e057e87b"
+      "sha256": "e46daff195e1a3e59e62bd4cd15239e1dcc747ba6a4318d4e8d9f02bc52ba8df"
     }
   ]
 }

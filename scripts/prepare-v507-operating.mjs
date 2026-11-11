@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 const source='release-assets/v5.0.7-week12',out=source+'-operating';
 const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(d,e.name)):[path.join(d,e.name)]);
-const bind=s=>s.replaceAll('GC-W12-V5.0.7-QA1','GC-W12-V5.0.7-RC1').replaceAll('qa-w12v507-','w12v507-').replaceAll('V507_PUNT_TOUCHBACK_QA','V507_PUNT_TOUCHBACK').replaceAll('gamecast_v507_qa_w12','gamecast_v507_w12').replaceAll('W12_QA_ONLY','W12_OPERATOR');
+const bind=s=>s.replaceAll('GC-W12-V5.0.7-QA1','GC-W12-V5.0.7-RC1').replaceAll('qa-w12v507-','w12v507-').replaceAll('V507_PUNT_TOUCHBACK_QA','V507_PUNT_TOUCHBACK').replaceAll('gamecast_v507_qa_w12','gamecast_v507_w12').replaceAll('gamecast-week12-v5-0-7-qa','gamecast-week12-v5-0-7').replaceAll('W12_QA_ONLY','W12_OPERATOR');
 for(const dir of ['runtime','src','security'])for(const f of walk(source+'/backend/'+dir)){
  let s=bind(fs.readFileSync(f,'utf8'));
  s=s.replaceAll('qaOnly:true','qaOnly:false').replaceAll('qaOnly: true','qaOnly: false').replaceAll('"qaOnly": true','"qaOnly": false');
@@ -33,6 +33,7 @@ fs.writeFileSync(out+'/slate.json',JSON.stringify(slate,null,2)+'\n');
 fs.writeFileSync(out+'/backend/runtime/week12.mjs','// Approved Week 12 operating slate. Games remain unlaunched until Chairman action.\nexport const OPERATING_SLATE = '+JSON.stringify(slate,null,2)+';\n');
 for(const f of walk('public/v5.0.7/w12')){
  let s=bind(fs.readFileSync(f,'utf8')).replace('QA ONLY · DEPLOYMENT HELD','SEUD IMPORT ON HOLD').replaceAll('synthcastGameCast507W11Session','synthcastGameCast507W12Session');
+ if(f.endsWith('/index.html'))s=s.replace('auth-api.js?v=5.0.7-auth3','auth-api.js?v=5.0.7-deadman-recovery1').replace('app.js?v=5.0.7-confirm1','app.js?v=5.0.7-deadman-recovery1');
  if(f.endsWith('/auth-api.js'))s=s.replace('globalThis.gamecastPendingRequest=()=>!!pending;',
   `// Local retry state only. Called after an explicit Refresh successfully reads
   // the authoritative board; never resends or manufactures a write receipt.
