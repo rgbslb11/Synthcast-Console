@@ -1,5 +1,13 @@
 # G0568 deadman and pending-write incident
 
+**RESOLVED after explicit Chairman approval:** controller repair deployed;
+operating scheduler guard corrected; cron enabled. G0568 launched at
+`2026-11-11T01:40:39.720Z` (7:40:39 PM Central), at 1x from GL zero.
+111 tests pass. Actual hosted desktop/mobile WebKit views and recovery script
+pass; no test control command was sent to an operating game. See `STATUS.md`
+and `evidence/deadman-recovery-hosted.json`. The investigation and proposed
+release status below are retained as the pre-approval record.
+
 Inspected November 10, 2026 Central / November 11 UTC. Baseline branch
 `release/gamecast-v5.0.7`, commit `ac9d4aaf2640ee9b071e39899a7a07397d0beb25`.
 Actual deployed Chairman function: ACTIVE version 1. Procedures loaded in full:
@@ -82,3 +90,13 @@ scheduler. Preserve all sessions, events, seeds and accepted history.
 Out of scope: the console currently allows an arm while the scheduler is disabled.
 A visible availability warning is recommended separately; it is not implemented
 as an unrelated UI or authoritative-state change in this patch.
+
+## Activation-time endpoint binding correction
+
+The first authorized cron calls returned 500 because `scheduler-runner.mjs`
+still required the QA endpoint suffix. The normal operating URL was supplied
+correctly by the deployment wrapper. The generator now binds that suffix to the
+operating endpoint. Two regressions verify signed dispatch and rejection of QA
+URLs. Scheduler version 3 produced real 200/201 calls and persisted SCHEDULER
+receipts. This correction is necessary to complete the explicitly approved
+scheduler restoration; it changes no football probabilities or timing constants.

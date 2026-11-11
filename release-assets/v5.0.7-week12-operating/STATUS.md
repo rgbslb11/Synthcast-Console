@@ -1,10 +1,19 @@
-# Week 12 operating setup — November 9, 2026
+# Week 12 operating status — updated November 10, 2026 Central
 
 Engine `GC-W12-V5.0.7-RC1`; branch `release/gamecast-v5.0.7`.
 Backend source passed operating preflight at `2a7466366884b7f8491a1253fc19bb24d78eb4d9`.
 Initial Pages publication source `7ca25b7a21ed299d09e9ed285ee956ba51b0a4a6`; operating-binding correction publication source `66a7edf791712492ad59978926cfa43c6a5fbe62`.
 
 ## Published setup
+
+**Current activation:** Chairman approved deployment and scheduler activation.
+Chairman function version 2 and scheduler version 3 are deployed. Scheduler
+control and cron job 17 are enabled. G0568 launched at 7:40:39 PM Central on
+November 10 (`2026-11-11T01:40:39.720Z`), from GL zero at 1x. The seven other
+configured arms are retained. Read `DEADMAN-INCIDENT-2026-11-10.md` for the
+control/Refresh fixes and the operating scheduler endpoint correction.
+
+The following version-1 board checkpoint describes the original November 9 setup.
 
 - Chairman: https://rgbslb11.github.io/Synthcast-Console/v5.0.7/w12/?session=w12v507-506ff58ba0cfb7a5
 - Public: https://rgbslb11.github.io/Synthcast-Console/v5.0.7/w12/?session=w12v507-506ff58ba0cfb7a5&view=public
@@ -46,33 +55,38 @@ claim a complete recreation of the historical RNG run.
 | Full-board checks | PASS | All 60 games complete offline; earlier QA SQL run persisted all 60 in disposable PostgreSQL |
 | Poll/chunk invariance | PASS | 60 operating-engine cases; actual public reads preserve stored state |
 | 1x–50x invariance | PASS | 300 comparisons at 1x/4x/10x/20x/50x |
-| Backend persistence/versioning | NOT TESTED | Operating create/read and disposable SQL/retry tests pass; live authenticated command/restart progression remains untested |
+| Backend persistence/versioning | PASS | Real authenticated cron progression persists SCHEDULER receipts and football; SQL/CAS/retry tests pass. Live restart recovery was not forced on an operating game |
 | Chairman console integration | NOT TESTED | Existing sign-in retained; actual authenticated operating controls remain for Chairman verification |
 | Public scoreboard integration | PASS | Actual Chromium + mobile WebKit render all 60 games on both public views; source/persistence unchanged |
 | Mobile Safari | NOT TESTED | WebKit emulation is not physical iPhone Safari |
 | Existing-session compatibility | PASS | Prior source and all 247 hosted assets preserved; Week 11 state hash/version unchanged |
-| Chairman approval | NOT TESTED | Setup and monitored rollout directed; background scheduler activation still requires explicit approval |
+| Chairman approval | PASS | Explicit approval granted for the tested repair, scheduler activation and late G0568 start |
 
 Operating paired population: baseline 434 safeties; corrected 272 safeties and
 1,236 punt touchbacks. Mean combined points 42.5833 -> 42.5970; mean plays
 139.0397 -> 139.0297. 1,968 unaffected full games match exactly; 1,032 pairs
 match until the first corrected punt. No target safety rate was imposed.
 
-## Activation block
+## Activation and recovery
 
-The new write switch is enabled for authenticated Chairman setup commands.
-The Week 12 scheduler control and cron job remain **disabled**. Automatic
-approval review rejected enabling the persistent background scheduler because
-it enables future unattended progression. A guarded follow-up documenting all
-60 games as unlaunched/unarmed and zero eligible sessions was also rejected.
-No workaround or alternative trigger was installed.
+The previous automatic-review block was resolved by explicit Chairman approval.
+The scheduler was enabled at `2026-11-11T01:39:02.206625Z`. The first live check
+exposed a remaining QA endpoint name in the scheduler URL guard, returning 500
+before discovery. The operating binding was corrected and regression-tested.
+Scheduler version 3 launched G0568 and generated repeated real 200/201 responses,
+new persisted checkpoints and football records. No launch time was backdated.
 
-The board must not be described as ready for AUTO/deadman game progression
-until the Chairman explicitly authorizes enabling this scheduler and its
-actual target-cloud behavior is checked. Further live QA may be conducted
-during the Tuesday–Thursday games, as directed. Fixes must remain bounded,
-versioned, and tested before use; resolved history and accepted results stay
-immutable. No unattended monitoring automation was created.
+111 automated tests PASS, including 10 overdue-control/Refresh cases and two
+operating scheduler URL/discovery/dispatch cases. The UI scripts use new cache
+query versions. Confirmed Refresh reads the authoritative board before clearing
+only the local pending request; it never replays that request. An existing tab
+must be reloaded once to acquire the changed scripts. Actual human control clicks
+and physical Mobile Safari are still NOT TESTED for the patch.
+
+The live full and condensed public views and Chairman sign-in/recovery script
+passed actual Chromium and mobile WebKit checks. Browser verification issued zero
+create/command requests while independent background progression continued.
+Week 11 state remains version 62958 / MD5 `f685b33edc6101a9ed6d9a3b14eb3f4d`.
 
 ## Evidence links
 
@@ -102,4 +116,20 @@ The first hosted check exposed retained QA engine/session bindings in the genera
 
 Cloud schedule verification reconciled 12 fields for each of 60 games (720 checks). The private persisted TEAM/OFF/DEF values for all 120 participants match the approved source; canonical sorted participant-rating SHA-256 `96e18a1b6255033f06a8aaf9586ec412da1ac0132d325a861148228515885985`. Ratings are intentionally excluded from the public API payload. The deployed Edge Function runtime engine bytes match the tested operating source, including the punt ruling and unchanged safety adjudication.
 
-Final hosted verification PASS: Chromium and mobile WebKit each render all 60 games in the full public view and condensed view, and show the Chairman password sign-in form. No credentials were submitted, no games launched, and public polls left cloud state at version 1. All 247 prior hosted assets plus the 15 Week 12 assets passed byte verification after the binding correction. Actual Chairman sign-in/commands and physical Mobile Safari remain NOT TESTED. Background cron remains disabled following automatic approval review.
+Historical November 9 hosted verification PASS: Chromium and mobile WebKit each render all 60 games in the full public view and condensed view, and show the Chairman password sign-in form. No credentials were submitted, no games launched, and public polls left cloud state at version 1. All 247 prior hosted assets plus the 15 Week 12 assets passed byte verification after the binding correction. Actual Chairman sign-in/commands and physical Mobile Safari remain NOT TESTED. That historical activation block is superseded by the approved November 10 recovery above.
+
+## Recovery release evidence
+
+- Backend/UI recovery source: `8907a8b7b375e3ed670ed8ae582de751a229a1c4`.
+- Operating scheduler guard and cache setup: `92d79ff75a71d0c4bd9d4770fe4b67487a6184c7`.
+- Final preflight source: `4464f9f7326aa6fcf04a809b1cd98f257c7d4ec0`.
+- Published UI request source: `54d6c1e9a5c1f4d99c2cb0feda284940d1c089d8`.
+- Preflight: https://github.com/rgbslb11/Synthcast-Console/actions/runs/42940897364
+- Preserved Pages publication: https://github.com/rgbslb11/Synthcast-Console/actions/runs/42941046129
+- Hosted browser check: https://github.com/rgbslb11/Synthcast-Console/actions/runs/42941046149
+- Browser results: `evidence/deadman-recovery-hosted.json`.
+
+Football runtime files, ratings, schedule and historical releases are unchanged.
+Rollback retains every session and event: disable only Week 12 progression if
+needed, then restore the controller/UI files from the baseline. Never purge or
+restart an operating game to roll back this repair.
