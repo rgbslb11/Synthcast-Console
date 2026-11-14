@@ -1,0 +1,15 @@
+{
+  "requestedBy": "Chairman; latest approved SILENT FALL carriage supplied for 5.0.7.1",
+  "week": "2026-W12",
+  "route": "/v5.0.7.1/w12/",
+  "publicSlug": "w12v507-506ff58ba0cfb7a5",
+  "previousPublisherRun": 42941046129,
+  "preflightRun": 43564042397,
+  "preflightSha": "e2fa104d6397f3388645eeba5670defff74775cf",
+  "scope": "49 Saturday operational entries; 11 protected earlier games; no new session or backend/engine deployment",
+  "placeholders": [
+    "G0591",
+    "G0601"
+  ],
+  "newDeadmanArms": 0
+}
