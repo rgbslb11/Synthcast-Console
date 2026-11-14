@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "publicationRun": 43564281093,
+  "preflightRun": 43564042397,
+  "sourceCommit": "8be721ea1b7818fbdff129d13c3755185de250cc",
+  "results": [
+    {
+      "status": "PASS",
+      "mode": "verify",
+      "preserved": 262,
+      "added": 15
+    },
+    {
+      "status": "PASS",
+      "checks": [
+        "chromium full: all 60 games; 49 individual time/network checks; approved order; both placeholders explicit",
+        "chromium condensed: all 60 games; 49 individual time/network checks; approved order; both placeholders explicit",
+        "webkit full: all 60 games; 49 individual time/network checks; approved order; both placeholders explicit",
+        "webkit condensed: all 60 games; 49 individual time/network checks; approved order; both placeholders explicit"
+      ],
+      "writes": 0
+    }
+  ],
+  "physicalMobileSafari": "NOT TESTED",
+  "actualChairmanCommands": "NOT TESTED; actual public reads only"
+}
