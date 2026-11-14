@@ -1,0 +1,1134 @@
+[
+  {
+    "id": "G0564",
+    "away": "UConn",
+    "home": "Coastal Carolina",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "EBCOTT"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "EBCOTT",
+      "carriageOrder": 12,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T17:00:00Z"
+    }
+  },
+  {
+    "id": "G0565",
+    "away": "Georgia Tech",
+    "home": "Clemson",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "ESPN"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "ESPN",
+      "carriageOrder": 13,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T17:00:00Z"
+    }
+  },
+  {
+    "id": "G0566",
+    "away": "Harvard",
+    "home": "Colgate",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "CBSSN"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "CBSSN",
+      "carriageOrder": 14,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T17:00:00Z"
+    }
+  },
+  {
+    "id": "G0569",
+    "away": "Georgia Southern",
+    "home": "Georgia State",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "EBC"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "EBC",
+      "carriageOrder": 15,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T17:00:00Z"
+    }
+  },
+  {
+    "id": "G0572",
+    "away": "Cincinnati",
+    "home": "Iowa State",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "TNT"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "TNT",
+      "carriageOrder": 16,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T17:00:00Z"
+    }
+  },
+  {
+    "id": "G0575",
+    "away": "ULL",
+    "home": "Louisiana Tech",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "ESPN2"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "ESPN2",
+      "carriageOrder": 17,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T17:00:00Z"
+    }
+  },
+  {
+    "id": "G0576",
+    "away": "Wisconsin",
+    "home": "Maryland",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "NBC"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "NBC",
+      "carriageOrder": 18,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T17:00:00Z"
+    }
+  },
+  {
+    "id": "G0584",
+    "away": "Nevada",
+    "home": "Northern Illinois",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "CBS"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "CBS",
+      "carriageOrder": 19,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T17:00:00Z"
+    }
+  },
+  {
+    "id": "G0590",
+    "away": "Northwestern",
+    "home": "Ohio State",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "Fox"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "FOX",
+      "carriageOrder": 20,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T17:00:00Z"
+    }
+  },
+  {
+    "id": "G0591",
+    "away": "Ole Miss",
+    "home": "Oklahoma",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "7:30 PM",
+      "kickoffZulu": "2026-11-15T00:30:00Z",
+      "network": "ABC"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM · PLACEHOLDER",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "TBD",
+      "carriageOrder": 21,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "TEMPORARY_DEADMAN_PLACEHOLDER",
+      "actualKickoffZulu": null,
+      "actualKickoffStatus": "PENDING",
+      "actualGameDateStatus": "UNCONFIRMED",
+      "scheduleNote": "Operational launch placeholder only. Actual kickoff and game date unconfirmed; Sunday move previously considered likely."
+    }
+  },
+  {
+    "id": "G0597",
+    "away": "Nebraska",
+    "home": "Rutgers",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "B1G"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "B1G",
+      "carriageOrder": 22,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T17:00:00Z"
+    }
+  },
+  {
+    "id": "G0601",
+    "away": "Kansas State",
+    "home": "TCU",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "network": "Fox"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM · PLACEHOLDER",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "TBD",
+      "carriageOrder": 23,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "TEMPORARY_DEADMAN_PLACEHOLDER",
+      "actualKickoffZulu": null,
+      "actualKickoffStatus": "PENDING",
+      "scheduleNote": "Operational launch placeholder only. Actual kickoff pending."
+    }
+  },
+  {
+    "id": "G0610",
+    "away": "Tulsa",
+    "home": "North Texas",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "SEN"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "SEN",
+      "carriageOrder": 24,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T17:00:00Z"
+    }
+  },
+  {
+    "id": "G0612",
+    "away": "California",
+    "home": "Virginia",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "CW"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "CW",
+      "carriageOrder": 25,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T17:00:00Z"
+    }
+  },
+  {
+    "id": "G0614",
+    "away": "Stanford",
+    "home": "Virginia Tech",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "ACCN"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "12:00 PM",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "ACCN",
+      "carriageOrder": 26,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T17:00:00Z"
+    }
+  },
+  {
+    "id": "G0594",
+    "away": "Cornell",
+    "home": "Princeton",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "2:00 PM",
+      "kickoffZulu": "2026-11-14T19:00:00Z",
+      "network": "CBSSN+"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "2:00 PM",
+      "kickoffZulu": "2026-11-14T19:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "CBSSN+",
+      "carriageOrder": 27,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T19:00:00Z"
+    }
+  },
+  {
+    "id": "G0599",
+    "away": "Wake Forest",
+    "home": "SMU",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "2:10 PM",
+      "kickoffZulu": "2026-11-14T19:10:00Z",
+      "network": "SEN"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "2:10 PM",
+      "kickoffZulu": "2026-11-14T19:10:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "SEN",
+      "carriageOrder": 28,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T19:10:00Z"
+    }
+  },
+  {
+    "id": "G0571",
+    "away": "Purdue",
+    "home": "Iowa",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "network": "CBS"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "CBS",
+      "carriageOrder": 29,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T20:30:00Z"
+    }
+  },
+  {
+    "id": "G0578",
+    "away": "Duke",
+    "home": "Miami",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "network": "EBC"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "EBC",
+      "carriageOrder": 30,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T20:30:00Z"
+    }
+  },
+  {
+    "id": "G0582",
+    "away": "Syracuse",
+    "home": "NC State",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "network": "ESPN"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "ESPN",
+      "carriageOrder": 31,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T20:30:00Z"
+    }
+  },
+  {
+    "id": "G0583",
+    "away": "Boston College",
+    "home": "Notre Dame",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "network": "NBC"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "NBC",
+      "carriageOrder": 32,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T20:30:00Z"
+    }
+  },
+  {
+    "id": "G0587",
+    "away": "Middle Tennessee",
+    "home": "Old Dominion",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "network": "EBCOTT"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "EBCOTT",
+      "carriageOrder": 33,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T20:30:00Z"
+    }
+  },
+  {
+    "id": "G0609",
+    "away": "Louisville",
+    "home": "North Carolina",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "network": "EBCOTT"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "EBCOTT",
+      "carriageOrder": 34,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T20:30:00Z"
+    }
+  },
+  {
+    "id": "G0613",
+    "away": "Alabama",
+    "home": "Vanderbilt",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "network": "ABC"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "ESPN2",
+      "carriageOrder": 35,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T20:30:00Z"
+    }
+  },
+  {
+    "id": "G0616",
+    "away": "Kansas",
+    "home": "West Virginia",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "FS1"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "FOX",
+      "carriageOrder": 36,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T20:30:00Z"
+    }
+  },
+  {
+    "id": "G0603",
+    "away": "Fresno State",
+    "home": "Texas State",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "4:00 PM",
+      "kickoffZulu": "2026-11-14T21:00:00Z",
+      "network": "CW"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "4:00 PM",
+      "kickoffZulu": "2026-11-14T21:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "CW",
+      "carriageOrder": 37,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T21:00:00Z"
+    }
+  },
+  {
+    "id": "G0588",
+    "away": "Texas Tech",
+    "home": "Oklahoma State",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "4:30 PM",
+      "kickoffZulu": "2026-11-14T21:30:00Z",
+      "network": "SEN"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "4:30 PM",
+      "kickoffZulu": "2026-11-14T21:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "SEN",
+      "carriageOrder": 38,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T21:30:00Z"
+    }
+  },
+  {
+    "id": "G0607",
+    "away": "Missouri",
+    "home": "Georgia",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "ABC"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "4:30 PM",
+      "kickoffZulu": "2026-11-14T21:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "ABC",
+      "carriageOrder": 39,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T21:30:00Z"
+    }
+  },
+  {
+    "id": "G0605",
+    "away": "Arizona State",
+    "home": "UCF",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "network": "TNT"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "5:30 PM",
+      "kickoffZulu": "2026-11-14T22:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "TNT",
+      "carriageOrder": 40,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T22:30:00Z"
+    }
+  },
+  {
+    "id": "G0595",
+    "away": "Minnesota",
+    "home": "Penn State",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "network": "B1G"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "6:00 PM",
+      "kickoffZulu": "2026-11-14T23:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "B1G",
+      "carriageOrder": 41,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T23:00:00Z"
+    }
+  },
+  {
+    "id": "G0604",
+    "away": "Southern Miss",
+    "home": "UAB",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "6:00 PM",
+      "kickoffZulu": "2026-11-14T23:00:00Z",
+      "network": "ESPN+"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "6:00 PM",
+      "kickoffZulu": "2026-11-14T23:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "ESPN+",
+      "carriageOrder": 42,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T23:00:00Z"
+    }
+  },
+  {
+    "id": "G0562",
+    "away": "Oregon State",
+    "home": "Boise State",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "6:10 PM",
+      "kickoffZulu": "2026-11-14T23:10:00Z",
+      "network": "SEN"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "6:10 PM",
+      "kickoffZulu": "2026-11-14T23:10:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "SEN",
+      "carriageOrder": 43,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-14T23:10:00Z"
+    }
+  },
+  {
+    "id": "G0560",
+    "away": "South Carolina",
+    "home": "Arkansas",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "7:00 PM",
+      "kickoffZulu": "2026-11-15T00:00:00Z",
+      "network": "EBCOTT"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "7:00 PM",
+      "kickoffZulu": "2026-11-15T00:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "EBCOTT",
+      "carriageOrder": 44,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T00:00:00Z"
+    }
+  },
+  {
+    "id": "G0563",
+    "away": "Baylor",
+    "home": "BYU",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "network": "FS1"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "7:00 PM",
+      "kickoffZulu": "2026-11-15T00:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "FOX",
+      "carriageOrder": 45,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T00:00:00Z"
+    }
+  },
+  {
+    "id": "G0608",
+    "away": "Florida",
+    "home": "Kentucky",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "7:15 PM",
+      "kickoffZulu": "2026-11-15T00:15:00Z",
+      "network": "ESPN"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "7:15 PM",
+      "kickoffZulu": "2026-11-15T00:15:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "ESPN",
+      "carriageOrder": 46,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T00:15:00Z"
+    }
+  },
+  {
+    "id": "G0573",
+    "away": "USC",
+    "home": "Indiana",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "7:30 PM",
+      "kickoffZulu": "2026-11-15T00:30:00Z",
+      "network": "NBC"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "7:30 PM",
+      "kickoffZulu": "2026-11-15T00:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "NBC",
+      "carriageOrder": 47,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T00:30:00Z"
+    }
+  },
+  {
+    "id": "G0561",
+    "away": "Florida Atlantic",
+    "home": "Army",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "4:00 PM",
+      "kickoffZulu": "2026-11-14T21:00:00Z",
+      "network": "ESPN+"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "8:00 PM",
+      "kickoffZulu": "2026-11-15T01:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "SEN",
+      "carriageOrder": 48,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T01:00:00Z"
+    }
+  },
+  {
+    "id": "G0580",
+    "away": "Auburn",
+    "home": "Mississippi State",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "3:30 PM",
+      "kickoffZulu": "2026-11-14T20:30:00Z",
+      "network": "SECN"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "8:00 PM",
+      "kickoffZulu": "2026-11-15T01:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "ESPN2",
+      "carriageOrder": 49,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T01:00:00Z"
+    }
+  },
+  {
+    "id": "G0581",
+    "away": "Washington",
+    "home": "Michigan State",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "8:00 PM",
+      "kickoffZulu": "2026-11-15T01:00:00Z",
+      "network": "FS1"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "8:00 PM",
+      "kickoffZulu": "2026-11-15T01:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "FS1",
+      "carriageOrder": 50,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T01:00:00Z"
+    }
+  },
+  {
+    "id": "G0589",
+    "away": "Michigan",
+    "home": "Oregon",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "8:00 PM",
+      "kickoffZulu": "2026-11-15T01:00:00Z",
+      "network": "CBS"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "8:00 PM",
+      "kickoffZulu": "2026-11-15T01:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "CBS",
+      "carriageOrder": 51,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T01:00:00Z"
+    }
+  },
+  {
+    "id": "G0600",
+    "away": "Tennessee",
+    "home": "Texas A&M",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "SECN"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "8:00 PM",
+      "kickoffZulu": "2026-11-15T01:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "ABC",
+      "carriageOrder": 52,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T01:00:00Z"
+    }
+  },
+  {
+    "id": "G0574",
+    "away": "Texas",
+    "home": "LSU",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "8:00 PM",
+      "kickoffZulu": "2026-11-15T01:00:00Z",
+      "network": "EBC"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "9:00 PM",
+      "kickoffZulu": "2026-11-15T02:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "EBC",
+      "carriageOrder": 53,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T02:00:00Z"
+    }
+  },
+  {
+    "id": "G0598",
+    "away": "Utah State",
+    "home": "San Diego State",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "9:30 PM",
+      "kickoffZulu": "2026-11-15T02:30:00Z",
+      "network": "USA"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "9:30 PM",
+      "kickoffZulu": "2026-11-15T02:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "USA",
+      "carriageOrder": 54,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T02:30:00Z"
+    }
+  },
+  {
+    "id": "G0602",
+    "away": "Temple",
+    "home": "Tulane",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "Noon",
+      "kickoffZulu": "2026-11-14T17:00:00Z",
+      "network": "ESPN+"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "10:00 PM",
+      "kickoffZulu": "2026-11-15T03:00:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "ESPN",
+      "carriageOrder": 55,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T03:00:00Z"
+    }
+  },
+  {
+    "id": "G0558",
+    "away": "San Jose State",
+    "home": "Air Force",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "7:00 PM",
+      "kickoffZulu": "2026-11-15T00:00:00Z",
+      "network": "CBSSN+"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "10:30 PM",
+      "kickoffZulu": "2026-11-15T03:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "CW",
+      "carriageOrder": 56,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T03:30:00Z"
+    }
+  },
+  {
+    "id": "G0585",
+    "away": "UNLV",
+    "home": "New Mexico",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "7:30 PM",
+      "kickoffZulu": "2026-11-15T00:30:00Z",
+      "network": "CW"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "10:30 PM",
+      "kickoffZulu": "2026-11-15T03:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "ESPN2",
+      "carriageOrder": 57,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T03:30:00Z"
+    }
+  },
+  {
+    "id": "G0615",
+    "away": "Colorado State",
+    "home": "Washington State",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "10:30 PM",
+      "kickoffZulu": "2026-11-15T03:30:00Z",
+      "network": "CBSSN+"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "10:30 PM",
+      "kickoffZulu": "2026-11-15T03:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "CBSSN+",
+      "carriageOrder": 58,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T03:30:00Z"
+    }
+  },
+  {
+    "id": "G0559",
+    "away": "Utah",
+    "home": "Arizona",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "10:00 PM",
+      "kickoffZulu": "2026-11-15T03:00:00Z",
+      "network": "SEN"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "11:30 PM",
+      "kickoffZulu": "2026-11-15T04:30:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "EBC",
+      "carriageOrder": 59,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T04:30:00Z"
+    }
+  },
+  {
+    "id": "G0570",
+    "away": "North Dakota State",
+    "home": "Hawaii",
+    "before": {
+      "date": "2026-11-14",
+      "kickoff": "11:59 PM",
+      "kickoffZulu": "2026-11-15T04:59:00Z",
+      "network": "SEN"
+    },
+    "patch": {
+      "date": "2026-11-14",
+      "dateLabel": "Sat 11/14",
+      "kickoff": "11:59 PM",
+      "kickoffZulu": "2026-11-15T04:59:00Z",
+      "kickoffTimeZone": "America/New_York",
+      "network": "SEN",
+      "carriageOrder": 60,
+      "scheduleRevision": "W12-SILENT-FALL-R1",
+      "scheduleStatus": "CHAIRMAN_APPROVED",
+      "actualKickoffZulu": "2026-11-15T04:59:00Z"
+    }
+  }
+]

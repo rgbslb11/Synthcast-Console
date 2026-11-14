@@ -1,0 +1,56 @@
+name: Verify GameCast 5.0.7.1 SILENT FALL
+on:
+  push:
+    branches: [release/gamecast-v5.0.7.1]
+permissions:
+  contents: read
+jobs:
+  operating-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17@sha256:ff87138949ad9a46f32ff23bd6852b52ce024a13dffe9b4087be98292cdd3b4f
+        env:
+          POSTGRES_PASSWORD: ephemeral-only
+          POSTGRES_DB: gc507operating
+        ports: ['55432:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres -d gc507operating"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/build-v5071.mjs
+      - run: node scripts/prepare-v5071-sql.mjs
+      - name: Preserve Week 11 source and run targeted engine regression
+        run: |
+          git diff --exit-code 754d959def7a67f2ada99a13f4e3a4c3254be4b8 -- public/v5.0.6 release-assets/v5.0.6-week11 supabase
+          node --test tests/v506/*.test.mjs tests/v507/*.test.mjs
+          node --test tests/v507-operating/*.test.mjs tests/v5071/*.test.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/pg507" --save-exact pg@8.16.3
+      - name: Disposable operating storage and service-only API dispatch
+        env:
+          PG_MODULE: ${{ runner.temp }}/pg507/node_modules/pg/lib/index.js
+          GC507_PG_URL: postgres://postgres:ephemeral-only@127.0.0.1:55432/gc507operating
+        run: node tests/v507/operating-postgres.mjs
+      - name: Real PostgreSQL atomic schedule patch and idempotence
+        env:
+          PG_MODULE: ${{ runner.temp }}/pg507/node_modules/pg/lib/index.js
+          GC507_PG_URL: postgres://postgres:ephemeral-only@127.0.0.1:55432/gc507operating
+        run: node tests/v5071/postgres.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/browser5071" --save-exact playwright@1.62.1
+      - run: node "$RUNNER_TEMP/browser5071/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Isolated Chromium and mobile WebKit carriage rendering
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/browser5071/node_modules/playwright/index.mjs
+        run: node tests/v5071/browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v5071-preflight
+          path: outputs/v5071/
