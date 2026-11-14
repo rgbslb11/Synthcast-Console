@@ -1,0 +1,92 @@
+name: Publish GameCast 5.0.7.1 SILENT FALL
+on:
+  push:
+    branches: [release/gamecast-v5.0.7.1]
+    paths: ['release-assets/v5.0.7.1/publish-request.json']
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+concurrency:
+  group: gamecast-pages-preserved-publication
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify latest published baseline
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runs = await github.paginate(github.rest.actions.listWorkflowRunsForRepo, {...context.repo, per_page:100});
+            const candidates=runs.filter(r=>/publish|deploy/i.test(r.name)&&r.status==='completed'&&r.id!==Number(context.runId)).sort((a,b)=>b.id-a.id);
+            let latest;
+            for(const r of candidates){
+              const jobs=await github.rest.actions.listJobsForWorkflowRun({...context.repo,run_id:r.id});
+              if(jobs.data.jobs.some(j=>/publish|deploy/i.test(j.name)&&j.conclusion==='success')){latest=r;break;}
+              if(r.conclusion==='success')throw Error('Unrecognized successful publisher');
+            }
+            const request=JSON.parse(require('fs').readFileSync('release-assets/v5.0.7.1/publish-request.json'));
+            if(latest?.id!==(request.previousPublisherRun||42941046129))throw Error('Published baseline changed; refresh inventory before publication');
+      - name: Require successful operating preflight for parent source
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const request=JSON.parse(require('fs').readFileSync('release-assets/v5.0.7.1/publish-request.json'));
+            const run=(await github.rest.actions.getWorkflowRun({...context.repo,run_id:request.preflightRun})).data;
+            if(run.head_sha!==request.preflightSha||run.conclusion!=='success'||run.path!=='.github/workflows/verify-v5071.yml')throw Error('Operating preflight not successful');
+            const compare=(await github.rest.repos.compareCommitsWithBasehead({...context.repo,basehead:request.preflightSha+'...'+context.sha})).data;
+            if(compare.files.some(f=>f.filename!=='release-assets/v5.0.7.1/publish-request.json'))throw Error('Code changed after operating preflight');
+      - run: node scripts/publish-v5071.mjs prepare
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gamecast-v5071-pages-manifest
+          path: outputs/v5071/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out-v5071
+  publish:
+    needs: prepare
+    runs-on: ubuntu-latest
+    environment:
+      name: gamecast-v5071-release
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deploy
+  hosted:
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/publish-v5071.mjs verify
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gamecast-v5071-hosted-manifest
+          path: outputs/v5071/
+      - run: npm install --prefix "$RUNNER_TEMP/browser5071" --save-exact playwright@1.62.1
+      - run: node "$RUNNER_TEMP/browser5071/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Actual live-board public rendering; zero game controls
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/browser5071/node_modules/playwright/index.mjs
+          GC5071_HOSTED: '1'
+        run: node tests/v5071/browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v5071-hosted-browser
+          path: outputs/v5071/

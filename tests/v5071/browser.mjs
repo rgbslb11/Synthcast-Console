@@ -10,6 +10,7 @@ try{for(const name of ['chromium','webkit']){const browser=await engines[name].l
  const ids=await page.locator('article[data-game]').evaluateAll(nodes=>nodes.map(n=>n.dataset.game));assert.deepEqual(ids.filter(id=>patch.some(p=>p.id===id)),patch.map(p=>p.id));
  for(const p of patch){const text=await page.locator('[data-game="'+p.id+'"]').innerText();assert.ok(text.includes(p.patch.kickoff),p.id+' '+surface+' kickoff');assert.ok(text.includes(p.patch.network),p.id+' '+surface+' network');}
  for(const id of ['G0591','G0601'])assert.match(await page.locator('[data-game="'+id+'"]').innerText(),/PLACEHOLDER/);
+ assert.match(await page.locator('[data-game="G0591"]').innerText(),/game date unconfirmed/i);
  checks.push(name+' '+surface+': all 60 games; 49 individual time/network checks; approved order; both placeholders explicit');}
  assert.deepEqual(errors,[]);
  }finally{await browser.close();}}
