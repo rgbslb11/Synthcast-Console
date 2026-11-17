@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "sourceSha": "05fb29ff5a7fa978d6b45cabda6afacf8c1ffd0f",
+  "receipts": [
+    {
+      "surface": "public",
+      "slug": "gamecast-week13-v5-0-8-public",
+      "status": "ACTIVE",
+      "version": 1,
+      "ezbr_sha256": "fa1d3186b2ff44581f54ca4327f07a26c183eac3c473a151773234ace40744e9",
+      "comparedFiles": [
+        "deployment/public.ts",
+        "deployment/configured-runtime.mjs",
+        "src/release-runtime.mjs",
+        "runtime/engine.mjs",
+        "runtime/week13.mjs",
+        "runtime/power.mjs",
+        "src/deadman.mjs",
+        "src/weather.mjs",
+        "src/supabase-rest.mjs",
+        "security/security-core.mjs",
+        "src/database-store.mjs",
+        "src/command-preconditions.mjs",
+        "src/engine-operations.mjs",
+        "security/edge-boundaries.mjs"
+      ]
+    },
+    {
+      "surface": "chairman",
+      "slug": "gamecast-week13-v5-0-8-chairman",
+      "status": "ACTIVE",
+      "version": 1,
+      "ezbr_sha256": "731363e1b69e9011eca749d9af39fa72dfd9622e909364a68cbed7b9b01da88c",
+      "comparedFiles": [
+        "deployment/chairman.ts",
+        "deployment/configured-runtime.mjs",
+        "src/release-runtime.mjs",
+        "runtime/engine.mjs",
+        "runtime/week13.mjs",
+        "runtime/power.mjs",
+        "src/deadman.mjs",
+        "src/weather.mjs",
+        "src/supabase-rest.mjs",
+        "security/security-core.mjs",
+        "src/database-store.mjs",
+        "src/command-preconditions.mjs",
+        "src/engine-operations.mjs",
+        "security/edge-boundaries.mjs"
+      ]
+    },
+    {
+      "surface": "scheduler",
+      "slug": "gamecast-week13-v5-0-8-scheduler",
+      "status": "ACTIVE",
+      "version": 1,
+      "ezbr_sha256": "747a5d33b8909750838aec59827ee54943224b290859f3ef589646476f2053ec",
+      "comparedFiles": [
+        "deployment/scheduler.ts",
+        "deployment/configured-runtime.mjs",
+        "src/release-runtime.mjs",
+        "runtime/engine.mjs",
+        "runtime/week13.mjs",
+        "runtime/power.mjs",
+        "src/deadman.mjs",
+        "src/weather.mjs",
+        "src/supabase-rest.mjs",
+        "security/security-core.mjs",
+        "src/database-store.mjs",
+        "src/command-preconditions.mjs",
+        "src/engine-operations.mjs",
+        "security/edge-boundaries.mjs",
+        "src/scheduler-cron.mjs",
+        "src/scheduler-runner.mjs"
+      ]
+    }
+  ]
+}

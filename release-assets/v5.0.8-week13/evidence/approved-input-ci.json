@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "sourceSha": "05fb29ff5a7fa978d6b45cabda6afacf8c1ffd0f",
+  "runId": 44018086851,
+  "runUrl": "https://github.com/rgbslb11/Synthcast-Console/actions/runs/44018086851",
+  "scope": "Fresh approved attached ratings; isolated PostgreSQL 17 and actual generated UI/handlers in Chromium and mobile WebKit. No shared cloud game controls.",
+  "jobs": [
+    {
+      "id": 133820736201,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "passLines": [
+    "2026-11-17T04:34:44.4853464Z ℹ pass 17",
+    "2026-11-17T04:34:44.4853739Z ℹ fail 0",
+    "2026-11-17T04:34:51.2235398Z PASS operating SQL: private storage, service-only dispatcher, existing roster revocation, 59 initial unlaunched games, disposable Launch/Start Auto/Stop, exact creation retry, read-only polling, cron disabled, foreign release isolation. Vault/net/cron are disposable SQL fixtures; shared Supabase is not exercised.",
+    "2026-11-17T04:36:01.2357880Z PASS chromium Chairman exact 59 ordered canonical identities",
+    "2026-11-17T04:36:01.2370647Z PASS chromium Chairman fits viewport",
+    "2026-11-17T04:36:01.2412323Z PASS chromium Chairman reports 59/59 power",
+    "2026-11-17T04:36:01.3194825Z PASS chromium Chairman shows launch control per game",
+    "2026-11-17T04:36:01.4032013Z PASS chromium Chairman team search retains the single Colgate game",
+    "2026-11-17T04:36:01.4816966Z PASS chromium Public exact 59 ordered canonical identities",
+    "2026-11-17T04:36:01.4824006Z PASS chromium Public fits viewport",
+    "2026-11-17T04:36:01.5163177Z PASS chromium Public team search retains the single Colgate game",
+    "2026-11-17T04:36:01.6138517Z PASS chromium Condensed exact 59 ordered canonical identities",
+    "2026-11-17T04:36:01.6144733Z PASS chromium Condensed fits viewport",
+    "2026-11-17T04:36:01.6428619Z PASS chromium Condensed team search retains the single Colgate game",
+    "2026-11-17T04:36:01.6429248Z PASS chromium public and Chairman reads never write or progress football",
+    "2026-11-17T04:36:01.6742515Z PASS chromium foreign Week 12 session is rejected",
+    "2026-11-17T04:36:07.7099072Z PASS webkit Chairman exact 59 ordered canonical identities",
+    "2026-11-17T04:36:07.7106519Z PASS webkit Chairman fits viewport",
+    "2026-11-17T04:36:07.7151882Z PASS webkit Chairman reports 59/59 power",
+    "2026-11-17T04:36:07.7594140Z PASS webkit Chairman shows launch control per game",
+    "2026-11-17T04:36:07.8621364Z PASS webkit Chairman team search retains the single Colgate game",
+    "2026-11-17T04:36:07.9628673Z PASS webkit Public exact 59 ordered canonical identities",
+    "2026-11-17T04:36:07.9636077Z PASS webkit Public fits viewport",
+    "2026-11-17T04:36:08.0127290Z PASS webkit Public team search retains the single Colgate game",
+    "2026-11-17T04:36:08.1214379Z PASS webkit Condensed exact 59 ordered canonical identities",
+    "2026-11-17T04:36:08.1232012Z PASS webkit Condensed fits viewport",
+    "2026-11-17T04:36:08.1633251Z PASS webkit Condensed team search retains the single Colgate game",
+    "2026-11-17T04:36:08.1639621Z PASS webkit public and Chairman reads never write or progress football",
+    "2026-11-17T04:36:08.1940833Z PASS webkit foreign Week 12 session is rejected"
+  ]
+}

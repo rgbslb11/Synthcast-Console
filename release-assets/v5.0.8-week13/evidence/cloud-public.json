@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "engine": "GC-W13-V5.0.8-RC1",
+  "week": "2026-W13",
+  "session": "w13v508-6ecefa636ecf706e",
+  "version": 1,
+  "games": 59,
+  "individualScheduleChecks": 1003,
+  "nameChecks": 118,
+  "powerReady": 59,
+  "unlaunched": 59,
+  "publicPayloadSha256": "f7ddabc53e30f94a1bdbd2d61a8d94e3b14023b5d302d9fd5311805fe173c134",
+  "privateFieldsAbsent": true,
+  "unauthenticatedChairmanStatus": 401
+}

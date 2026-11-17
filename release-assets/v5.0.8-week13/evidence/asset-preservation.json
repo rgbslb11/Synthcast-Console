@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "publisherRun": 44019096550,
+  "publishedSource": "2bdf2e3c115cac0f131288166b5f0cf6cf6c6ee4",
+  "preserved": 277,
+  "added": 15,
+  "total": 292,
+  "evidence": "2026-11-17T04:44:21.1352340Z {\"status\":\"PASS\",\"mode\":\"verify\",\"preserved\":277,\"added\":15}",
+  "initialHostedAssertion": "FAILED: rendered capitalization versus canonical Fox; product bytes unaffected",
+  "followupHostedRun": 44019730928,
+  "followupHostedStatus": "PASS"
+}

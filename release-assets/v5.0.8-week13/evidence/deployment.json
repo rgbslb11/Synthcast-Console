@@ -1,0 +1,67 @@
+{
+  "deploymentStatus": "DEPLOYED_AND_HOSTED_VERIFIED",
+  "engine": "GC-W13-V5.0.8-RC1",
+  "week": "2026-W13",
+  "sourceSha": "05fb29ff5a7fa978d6b45cabda6afacf8c1ffd0f",
+  "publicationSha": "2bdf2e3c115cac0f131288166b5f0cf6cf6c6ee4",
+  "preflightRun": 44018086851,
+  "publicationRun": 44019096550,
+  "functions": {
+    "public": 1,
+    "chairman": 1,
+    "scheduler": 1
+  },
+  "session": "w13v508-6ecefa636ecf706e",
+  "stateVersion": 1,
+  "stateMd5": "46d01294102c6a933533ebd39fc6f463",
+  "games": 59,
+  "unlaunched": 59,
+  "unarmed": 59,
+  "participants": 118,
+  "participantRatingValues": 354,
+  "participantRatingMd5": "4718513140833e4949c29a3054715390",
+  "sourceRatingRows": 121,
+  "sourceRatingValues": 363,
+  "sourceRatingSha256": "d69662d7ac62554f770ddea65cee3646830ae4e3f28e5c72c9984b211f345ac4",
+  "kickoffTimezone": "America/New_York",
+  "creationReceipts": 1,
+  "events": 1,
+  "eventType": "V508_SESSION_CREATE",
+  "importedFinals": 0,
+  "schemaBytesAtVerification": 286720,
+  "onlyActiveWeeklyScheduler": {
+    "jobid": 18,
+    "name": "gamecast_v508_week13",
+    "schedule": "5 seconds",
+    "lastThreeHttpStatuses": [
+      200,
+      200,
+      200
+    ],
+    "sessionsProcessed": 0
+  },
+  "week12Scheduler": "DISABLED",
+  "priorWeekSchedulers": "DISABLED",
+  "week12Preserved": {
+    "stateVersion": 82118,
+    "stateMd5": "7936bfe9297c3af6328a3d68c81b51e4"
+  },
+  "week11Preserved": {
+    "stateVersion": 62958,
+    "stateMd5": "f685b33edc6101a9ed6d9a3b14eb3f4d"
+  },
+  "preservedHostedFiles": 277,
+  "addedHostedFiles": 15,
+  "totalHostedFiles": 292,
+  "productionGameControlsIssued": 0,
+  "notes": [
+    "All retrieved deployed dependency sources matched the tested package.",
+    "The initial hosted assertion compared rendered Fox text case-sensitively; inherited CSS displays FOX. The follow-up verifies exact canonical DOM values. No product code or data changed.",
+    "Initial workspace HTTP attempts timed out; database-origin and subsequent workspace health checks both returned 200. No repair or tuning was applied.",
+    "Seven INFO-only RLS-without-policy notices apply to intentionally private service-role-only tables; browser roles have no schema or dispatcher permission.",
+    "Physical Mobile Safari and actual human Chairman password/controls were not exercised."
+  ],
+  "hostedVerificationRun": 44019730928,
+  "hostedVerificationStatus": "PASS",
+  "publicationJobs": "prepare PASS; publish PASS; asset verification PASS; initial case-sensitive hosted assertion failed, corrected read-only follow-up PASS"
+}
