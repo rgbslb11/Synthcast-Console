@@ -1,0 +1,130 @@
+{
+  "status": "PASS",
+  "sourceSha": "5e219ed1d4447326c0b005f17051822511ff9336",
+  "runId": 43998121499,
+  "runUrl": "https://github.com/rgbslb11/Synthcast-Console/actions/runs/43998121499",
+  "scope": "Isolated GitHub CI only. No shared Supabase writes, deployment, publication or production login.",
+  "jobs": [
+    {
+      "id": 133755143605,
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Initialize containers",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Rebuild isolated Week 13 package",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Weekly bindings, controls, recovery and source preservation",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Baseline parity and deterministic invariance for all 59 games",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm install --prefix \"$RUNNER_TEMP/gc508-checks\" --save-exact pg@8.16.3 playwright@1.62.1",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Disposable PostgreSQL; no Supabase writes",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run node \"$RUNNER_TEMP/gc508-checks/node_modules/playwright/cli.js\" install --with-deps chromium webkit",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Local UI and actual HTTP handlers in Chromium and mobile WebKit",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Stop containers",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "passLines": [
+    "2026-11-17T01:47:08.5883491Z {\"status\":\"PASS\",\"games\":59,\"participants\":118,\"dates\":{\"2026-11-17\":1,\"2026-11-18\":1,\"2026-11-19\":3,\"2026-11-20\":6,\"2026-11-21\":48},\"rankedTeams\":25,\"ratingSelection\":\"BLOCKED\",\"productionActivation\":\"HELD\"}",
+    "2026-11-17T01:47:08.9716210Z \u2139 tests 17",
+    "2026-11-17T01:47:08.9716963Z \u2139 pass 17",
+    "2026-11-17T01:47:08.9717286Z \u2139 fail 0",
+    "2026-11-17T01:47:11.9248511Z {\"status\":\"PASS\",\"scope\":\"OFFLINE_QA_ONLY; inherited approved Week 12 ratings; no cloud writes or official outcomes\",\"seedCountPerGame\":20,\"games\":1180,\"exact507Parity\":1180,\"repeatability\":59,\"pollChunkInvariance\":59,\"speedInvariance\":295,\"fullBoard\":59,\"points\":50985,\"plays\":163940,\"gl\":9089036,\"meanPoints\":43.20762711864407,\"meanPlays\":138.9322033898305,\"meanGLSeconds\":7702.572881355933}",
+    "2026-11-17T01:47:16.5511211Z PASS operating SQL: private storage, service-only dispatcher, existing roster revocation, 59 unlaunched games, exact creation retry, read-only polling, cron disabled, foreign release isolation. Vault/net/cron are disposable SQL fixtures; shared Supabase is not exercised.",
+    "2026-11-17T01:48:33.8613210Z PASS chromium Chairman exact 59 ordered canonical identities",
+    "2026-11-17T01:48:33.8626088Z PASS chromium Chairman fits viewport",
+    "2026-11-17T01:48:33.8669015Z PASS chromium Chairman reports 59/59 power",
+    "2026-11-17T01:48:33.9448177Z PASS chromium Chairman shows launch control per game",
+    "2026-11-17T01:48:34.0340850Z PASS chromium Chairman team search retains the single Colgate game",
+    "2026-11-17T01:48:34.1283137Z PASS chromium Public exact 59 ordered canonical identities",
+    "2026-11-17T01:48:34.1291108Z PASS chromium Public fits viewport",
+    "2026-11-17T01:48:34.1685936Z PASS chromium Public team search retains the single Colgate game",
+    "2026-11-17T01:48:34.2685004Z PASS chromium Condensed exact 59 ordered canonical identities",
+    "2026-11-17T01:48:34.2691927Z PASS chromium Condensed fits viewport",
+    "2026-11-17T01:48:34.2963394Z PASS chromium Condensed team search retains the single Colgate game",
+    "2026-11-17T01:48:34.2988128Z PASS chromium public and Chairman reads never write or progress football",
+    "2026-11-17T01:48:34.3298245Z PASS chromium foreign Week 12 session is rejected",
+    "2026-11-17T01:48:42.2146995Z PASS webkit Chairman exact 59 ordered canonical identities",
+    "2026-11-17T01:48:42.2159542Z PASS webkit Chairman fits viewport",
+    "2026-11-17T01:48:42.2204203Z PASS webkit Chairman reports 59/59 power",
+    "2026-11-17T01:48:42.2751877Z PASS webkit Chairman shows launch control per game",
+    "2026-11-17T01:48:42.4326296Z PASS webkit Chairman team search retains the single Colgate game",
+    "2026-11-17T01:48:42.5325747Z PASS webkit Public exact 59 ordered canonical identities",
+    "2026-11-17T01:48:42.5336233Z PASS webkit Public fits viewport",
+    "2026-11-17T01:48:42.5827041Z PASS webkit Public team search retains the single Colgate game",
+    "2026-11-17T01:48:42.7048985Z PASS webkit Condensed exact 59 ordered canonical identities",
+    "2026-11-17T01:48:42.7060039Z PASS webkit Condensed fits viewport",
+    "2026-11-17T01:48:42.7414537Z PASS webkit Condensed team search retains the single Colgate game",
+    "2026-11-17T01:48:42.7422400Z PASS webkit public and Chairman reads never write or progress football",
+    "2026-11-17T01:48:42.7755014Z PASS webkit foreign Week 12 session is rejected"
+  ]
+}

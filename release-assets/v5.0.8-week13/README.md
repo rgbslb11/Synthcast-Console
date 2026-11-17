@@ -36,6 +36,6 @@ Before activation, select ratings, confirm Eastern, pass disposable storage and 
 
 `evidence/offline-gates.json` records 1,180 paired simulations with exact 5.0.7 parity, 59 repeatability cases, 59 poll/chunk comparisons, 295 speed comparisons, and a 59-game full board. `evidence/unit.tap` records 17 passing input, isolation, source, controls, retry/recovery and scheduler tests. QA fixtures never write to shared storage or accept official results.
 
-Local browser execution is unavailable because this execution host denies browser sockets. Browser and PostgreSQL checks are configured in isolated GitHub CI; their status must be inspected before claiming a pass. Physical Mobile Safari and actual production Chairman login remain NOT TESTED.
+Local browser execution is unavailable because this execution host denies browser sockets. Browser and PostgreSQL checks passed in isolated GitHub CI run 43998121499; see STATUS.md and evidence/ci-receipt.json. Physical Mobile Safari and actual production Chairman login remain NOT TESTED.
 
 Rollback before activation is simply to retain the existing operating route. After an approved install, `rollback.sql` disables only the new release's writes and scheduler; every session, event, audit receipt and historical result remains intact. Never roll back by restoring an old full board, replaying accepted games or purging storage.
