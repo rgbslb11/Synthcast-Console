@@ -1,0 +1,21 @@
+{
+  "authorization": "Chairman Week 13 deployment request, attached approved post-W12 ratings, explicit Eastern Time confirmation",
+  "previousPublisherRun": 43564281093,
+  "preflightRun": 44018086851,
+  "preflightSha": "05fb29ff5a7fa978d6b45cabda6afacf8c1ffd0f",
+  "engineVersion": "GC-W13-V5.0.8-RC1",
+  "week": "2026-W13",
+  "publicSlug": "w13v508-6ecefa636ecf706e",
+  "games": 59,
+  "participants": 118,
+  "ratingRows": 121,
+  "ratingSha256": "d69662d7ac62554f770ddea65cee3646830ae4e3f28e5c72c9984b211f345ac4",
+  "newArms": 0,
+  "automaticLaunch": false,
+  "backendVersions": {
+    "public": 1,
+    "chairman": 1,
+    "scheduler": 1
+  },
+  "publication": "Preserve all 277 existing hosted assets; add only the 15 Week 13 assets"
+}
