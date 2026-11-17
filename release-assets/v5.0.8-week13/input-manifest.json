@@ -1,0 +1,38 @@
+{
+  "baselineCommit": "538ea025efec5c4d517b7449c8b4d66169060b17",
+  "baselineEngine": "GC-W12-V5.0.7-RC1",
+  "baselineDeployedSource": "Verified 14 matching Chairman bundle files; evidence/baseline-provenance.json",
+  "engineVersion": "GC-W13-V5.0.8-RC1",
+  "week": "2026-W13",
+  "scheduleSource": "Chairman message: Deployment 5.0.8 - Week 13",
+  "kickoffTimeZone": "America/New_York",
+  "timeZoneStatus": "Inherited Week 12 convention; confirm before activation",
+  "games": 59,
+  "participants": 118,
+  "canonicalIds": 59,
+  "ratingRecords": 122,
+  "ratingValues": 366,
+  "ratingsSha256": "6d04e960a60d00301e8158d336482831e9e509e2b2394d572d96aee340613427",
+  "slateSha256": "ba001139b92e83575566635f57d454bc3680bb70cfaac6c6571b034c532d069a",
+  "carriageSha256": "7069263e76a3a4ee925496aeacfe81c814369c5286ce07fbdc21f8bc5a57e507",
+  "dates": {
+    "2026-11-17": 1,
+    "2026-11-18": 1,
+    "2026-11-19": 3,
+    "2026-11-20": 6,
+    "2026-11-21": 48
+  },
+  "rankedTeams": 25,
+  "ratingSelection": "BLOCKED: approve carry-forward or select newer post-W12 ratings",
+  "productionActivation": "HELD",
+  "defaultWrites": false,
+  "defaultCron": false,
+  "newArms": 0,
+  "physicalMobileSafari": "NOT TESTED",
+  "venueExceptions": [
+    {
+      "id": "G0649",
+      "status": "BLOCKED: canonical venue-undetermined; away/home designation confirmed"
+    }
+  ]
+}

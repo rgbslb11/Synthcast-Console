@@ -1,0 +1,1705 @@
+{
+  "status": "BLOCKED_PENDING_CHAIRMAN_RATING_SELECTION",
+  "activeSource": "Exact approved 5.0.7 values retained for isolated candidate tests",
+  "newerSourceLibraryId": "libfile_96e300a21b0c8191be4077587da8a050",
+  "newerSourceName": "Week12_GAMECAST_Ratings_POST_W12_121_R1.csv",
+  "newerSourceNote": "Extracted full 121-row content; index column is extraction metadata. Not selected for deployment.",
+  "reviewed": 121,
+  "changed": 85,
+  "rows": [
+    {
+      "teamId": "UGA",
+      "team": "Georgia",
+      "prior": [
+        99,
+        99,
+        99
+      ],
+      "proposed": [
+        99,
+        99,
+        99
+      ]
+    },
+    {
+      "teamId": "MIA",
+      "team": "Miami",
+      "prior": [
+        95,
+        97,
+        93
+      ],
+      "proposed": [
+        99,
+        99,
+        99
+      ]
+    },
+    {
+      "teamId": "ALA",
+      "team": "Alabama",
+      "prior": [
+        97,
+        99,
+        91
+      ],
+      "proposed": [
+        98,
+        99,
+        97
+      ]
+    },
+    {
+      "teamId": "ND",
+      "team": "Notre Dame",
+      "prior": [
+        98,
+        99,
+        97
+      ],
+      "proposed": [
+        98,
+        99,
+        97
+      ]
+    },
+    {
+      "teamId": "UTAH",
+      "team": "Utah",
+      "prior": [
+        97,
+        98,
+        96
+      ],
+      "proposed": [
+        98,
+        99,
+        97
+      ]
+    },
+    {
+      "teamId": "OSU",
+      "team": "Ohio State",
+      "prior": [
+        98,
+        99,
+        97
+      ],
+      "proposed": [
+        97,
+        98,
+        96
+      ]
+    },
+    {
+      "teamId": "TENN",
+      "team": "Tennessee",
+      "prior": [
+        97,
+        96,
+        98
+      ],
+      "proposed": [
+        97,
+        96,
+        98
+      ]
+    },
+    {
+      "teamId": "TEX",
+      "team": "Texas",
+      "prior": [
+        97,
+        97,
+        97
+      ],
+      "proposed": [
+        97,
+        97,
+        97
+      ]
+    },
+    {
+      "teamId": "TTU",
+      "team": "Texas Tech",
+      "prior": [
+        96,
+        98,
+        94
+      ],
+      "proposed": [
+        96,
+        98,
+        94
+      ]
+    },
+    {
+      "teamId": "IU",
+      "team": "Indiana",
+      "prior": [
+        96,
+        94,
+        98
+      ],
+      "proposed": [
+        96,
+        94,
+        98
+      ]
+    },
+    {
+      "teamId": "ORE",
+      "team": "Oregon",
+      "prior": [
+        91,
+        88,
+        93
+      ],
+      "proposed": [
+        96,
+        96,
+        96
+      ]
+    },
+    {
+      "teamId": "LSU",
+      "team": "LSU",
+      "prior": [
+        96,
+        97,
+        95
+      ],
+      "proposed": [
+        95,
+        95,
+        95
+      ]
+    },
+    {
+      "teamId": "MISS",
+      "team": "Ole Miss",
+      "prior": [
+        95,
+        97,
+        93
+      ],
+      "proposed": [
+        95,
+        97,
+        93
+      ]
+    },
+    {
+      "teamId": "ARIZ",
+      "team": "Arizona",
+      "prior": [
+        92,
+        90,
+        92
+      ],
+      "proposed": [
+        95,
+        96,
+        94
+      ]
+    },
+    {
+      "teamId": "LOU",
+      "team": "Louisville",
+      "prior": [
+        94,
+        94,
+        94
+      ],
+      "proposed": [
+        94,
+        94,
+        94
+      ]
+    },
+    {
+      "teamId": "BYU",
+      "team": "BYU",
+      "prior": [
+        94,
+        93,
+        95
+      ],
+      "proposed": [
+        94,
+        93,
+        95
+      ]
+    },
+    {
+      "teamId": "WAKE",
+      "team": "Wake Forest",
+      "prior": [
+        93,
+        94,
+        92
+      ],
+      "proposed": [
+        94,
+        95,
+        93
+      ]
+    },
+    {
+      "teamId": "IOWA",
+      "team": "Iowa",
+      "prior": [
+        93,
+        91,
+        95
+      ],
+      "proposed": [
+        93,
+        91,
+        95
+      ]
+    },
+    {
+      "teamId": "USC",
+      "team": "USC",
+      "prior": [
+        93,
+        95,
+        91
+      ],
+      "proposed": [
+        93,
+        94,
+        92
+      ]
+    },
+    {
+      "teamId": "TA&M",
+      "team": "Texas A&M",
+      "prior": [
+        92,
+        91,
+        93
+      ],
+      "proposed": [
+        93,
+        92,
+        94
+      ]
+    },
+    {
+      "teamId": "SMU",
+      "team": "SMU",
+      "prior": [
+        92,
+        92,
+        91
+      ],
+      "proposed": [
+        93,
+        93,
+        93
+      ]
+    },
+    {
+      "teamId": "DUKE",
+      "team": "Duke",
+      "prior": [
+        92,
+        90,
+        94
+      ],
+      "proposed": [
+        92,
+        90,
+        94
+      ]
+    },
+    {
+      "teamId": "OU",
+      "team": "Oklahoma",
+      "prior": [
+        91,
+        90,
+        92
+      ],
+      "proposed": [
+        92,
+        91,
+        93
+      ]
+    },
+    {
+      "teamId": "UK",
+      "team": "Kentucky",
+      "prior": [
+        91,
+        92,
+        90
+      ],
+      "proposed": [
+        92,
+        93,
+        91
+      ]
+    },
+    {
+      "teamId": "MIZ",
+      "team": "Missouri",
+      "prior": [
+        92,
+        91,
+        93
+      ],
+      "proposed": [
+        91,
+        90,
+        92
+      ]
+    },
+    {
+      "teamId": "HOU",
+      "team": "Houston",
+      "prior": [
+        93,
+        93,
+        93
+      ],
+      "proposed": [
+        91,
+        92,
+        90
+      ]
+    },
+    {
+      "teamId": "UCLA",
+      "team": "UCLA",
+      "prior": [
+        90,
+        90,
+        90
+      ],
+      "proposed": [
+        91,
+        91,
+        91
+      ]
+    },
+    {
+      "teamId": "BOISE",
+      "team": "Boise State",
+      "prior": [
+        89,
+        90,
+        87
+      ],
+      "proposed": [
+        90,
+        92,
+        88
+      ]
+    },
+    {
+      "teamId": "NEB",
+      "team": "Nebraska",
+      "prior": [
+        89,
+        88,
+        90
+      ],
+      "proposed": [
+        90,
+        89,
+        91
+      ]
+    },
+    {
+      "teamId": "UNC",
+      "team": "North Carolina",
+      "prior": [
+        90,
+        89,
+        91
+      ],
+      "proposed": [
+        90,
+        89,
+        91
+      ]
+    },
+    {
+      "teamId": "ILL",
+      "team": "Illinois",
+      "prior": [
+        88,
+        87,
+        89
+      ],
+      "proposed": [
+        89,
+        88,
+        90
+      ]
+    },
+    {
+      "teamId": "MICH",
+      "team": "Michigan",
+      "prior": [
+        89,
+        87,
+        91
+      ],
+      "proposed": [
+        89,
+        87,
+        91
+      ]
+    },
+    {
+      "teamId": "OKST",
+      "team": "Oklahoma State",
+      "prior": [
+        90,
+        92,
+        88
+      ],
+      "proposed": [
+        89,
+        91,
+        87
+      ]
+    },
+    {
+      "teamId": "FLA",
+      "team": "Florida",
+      "prior": [
+        87,
+        88,
+        86
+      ],
+      "proposed": [
+        88,
+        88,
+        88
+      ]
+    },
+    {
+      "teamId": "SC",
+      "team": "South Carolina",
+      "prior": [
+        89,
+        90,
+        88
+      ],
+      "proposed": [
+        88,
+        88,
+        88
+      ]
+    },
+    {
+      "teamId": "PSU",
+      "team": "Penn State",
+      "prior": [
+        86,
+        86,
+        86
+      ],
+      "proposed": [
+        88,
+        88,
+        88
+      ]
+    },
+    {
+      "teamId": "FSU",
+      "team": "Florida State",
+      "prior": [
+        86,
+        89,
+        83
+      ],
+      "proposed": [
+        87,
+        90,
+        84
+      ]
+    },
+    {
+      "teamId": "AUB",
+      "team": "Auburn",
+      "prior": [
+        82,
+        82,
+        82
+      ],
+      "proposed": [
+        87,
+        87,
+        87
+      ]
+    },
+    {
+      "teamId": "NU",
+      "team": "Northwestern",
+      "prior": [
+        87,
+        87,
+        87
+      ],
+      "proposed": [
+        87,
+        87,
+        87
+      ]
+    },
+    {
+      "teamId": "UVA",
+      "team": "Virginia",
+      "prior": [
+        86,
+        86,
+        86
+      ],
+      "proposed": [
+        86,
+        86,
+        86
+      ]
+    },
+    {
+      "teamId": "WASH",
+      "team": "Washington",
+      "prior": [
+        83,
+        83,
+        83
+      ],
+      "proposed": [
+        86,
+        86,
+        86
+      ]
+    },
+    {
+      "teamId": "BAY",
+      "team": "Baylor",
+      "prior": [
+        84,
+        84,
+        84
+      ],
+      "proposed": [
+        86,
+        86,
+        86
+      ]
+    },
+    {
+      "teamId": "CLEM",
+      "team": "Clemson",
+      "prior": [
+        88,
+        87,
+        89
+      ],
+      "proposed": [
+        85,
+        84,
+        86
+      ]
+    },
+    {
+      "teamId": "MEM",
+      "team": "Memphis",
+      "prior": [
+        85,
+        86,
+        84
+      ],
+      "proposed": [
+        85,
+        86,
+        84
+      ]
+    },
+    {
+      "teamId": "TCU",
+      "team": "TCU",
+      "prior": [
+        83,
+        81,
+        85
+      ],
+      "proposed": [
+        85,
+        83,
+        87
+      ]
+    },
+    {
+      "teamId": "USF",
+      "team": "South Florida",
+      "prior": [
+        83,
+        83,
+        83
+      ],
+      "proposed": [
+        84,
+        84,
+        84
+      ]
+    },
+    {
+      "teamId": "VAN",
+      "team": "Vanderbilt",
+      "prior": [
+        84,
+        86,
+        82
+      ],
+      "proposed": [
+        84,
+        85,
+        83
+      ]
+    },
+    {
+      "teamId": "WIS",
+      "team": "Wisconsin",
+      "prior": [
+        85,
+        82,
+        88
+      ],
+      "proposed": [
+        84,
+        82,
+        86
+      ]
+    },
+    {
+      "teamId": "LEH",
+      "team": "Lehigh",
+      "prior": [
+        84,
+        83,
+        85
+      ],
+      "proposed": [
+        83,
+        82,
+        84
+      ]
+    },
+    {
+      "teamId": "MSST",
+      "team": "Mississippi State",
+      "prior": [
+        88,
+        88,
+        88
+      ],
+      "proposed": [
+        83,
+        83,
+        83
+      ]
+    },
+    {
+      "teamId": "CIN",
+      "team": "Cincinnati",
+      "prior": [
+        87,
+        88,
+        86
+      ],
+      "proposed": [
+        83,
+        84,
+        82
+      ]
+    },
+    {
+      "teamId": "UCF",
+      "team": "UCF",
+      "prior": [
+        85,
+        84,
+        86
+      ],
+      "proposed": [
+        82,
+        81,
+        83
+      ]
+    },
+    {
+      "teamId": "ARMY",
+      "team": "Army",
+      "prior": [
+        82,
+        82,
+        82
+      ],
+      "proposed": [
+        82,
+        82,
+        82
+      ]
+    },
+    {
+      "teamId": "COLG",
+      "team": "Colgate",
+      "prior": [
+        81,
+        82,
+        80
+      ],
+      "proposed": [
+        82,
+        83,
+        81
+      ]
+    },
+    {
+      "teamId": "ISU",
+      "team": "Iowa State",
+      "prior": [
+        77,
+        78,
+        76
+      ],
+      "proposed": [
+        81,
+        82,
+        80
+      ]
+    },
+    {
+      "teamId": "PUR",
+      "team": "Purdue",
+      "prior": [
+        81,
+        82,
+        80
+      ],
+      "proposed": [
+        81,
+        82,
+        80
+      ]
+    },
+    {
+      "teamId": "ARK",
+      "team": "Arkansas",
+      "prior": [
+        76,
+        75,
+        77
+      ],
+      "proposed": [
+        81,
+        80,
+        82
+      ]
+    },
+    {
+      "teamId": "PITT",
+      "team": "Pittsburgh",
+      "prior": [
+        82,
+        82,
+        82
+      ],
+      "proposed": [
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "teamId": "TXST",
+      "team": "Texas State",
+      "prior": [
+        80,
+        83,
+        77
+      ],
+      "proposed": [
+        80,
+        83,
+        77
+      ]
+    },
+    {
+      "teamId": "NM",
+      "team": "New Mexico",
+      "prior": [
+        88,
+        86,
+        88
+      ],
+      "proposed": [
+        80,
+        78,
+        82
+      ]
+    },
+    {
+      "teamId": "HC",
+      "team": "Holy Cross",
+      "prior": [
+        80,
+        78,
+        82
+      ],
+      "proposed": [
+        80,
+        79,
+        81
+      ]
+    },
+    {
+      "teamId": "MSU",
+      "team": "Michigan State",
+      "prior": [
+        80,
+        79,
+        81
+      ],
+      "proposed": [
+        79,
+        79,
+        79
+      ]
+    },
+    {
+      "teamId": "NDSU",
+      "team": "North Dakota State",
+      "prior": [
+        78,
+        79,
+        77
+      ],
+      "proposed": [
+        79,
+        80,
+        78
+      ]
+    },
+    {
+      "teamId": "GT",
+      "team": "Georgia Tech",
+      "prior": [
+        79,
+        78,
+        80
+      ],
+      "proposed": [
+        79,
+        78,
+        80
+      ]
+    },
+    {
+      "teamId": "ORST",
+      "team": "Oregon State",
+      "prior": [
+        77,
+        79,
+        75
+      ],
+      "proposed": [
+        78,
+        80,
+        76
+      ]
+    },
+    {
+      "teamId": "FAU",
+      "team": "Florida Atlantic",
+      "prior": [
+        82,
+        82,
+        82
+      ],
+      "proposed": [
+        78,
+        79,
+        77
+      ]
+    },
+    {
+      "teamId": "UNT",
+      "team": "North Texas",
+      "prior": [
+        79,
+        80,
+        78
+      ],
+      "proposed": [
+        78,
+        78,
+        78
+      ]
+    },
+    {
+      "teamId": "VT",
+      "team": "Virginia Tech",
+      "prior": [
+        81,
+        83,
+        79
+      ],
+      "proposed": [
+        77,
+        79,
+        75
+      ]
+    },
+    {
+      "teamId": "FRES",
+      "team": "Fresno State",
+      "prior": [
+        77,
+        76,
+        78
+      ],
+      "proposed": [
+        77,
+        76,
+        78
+      ]
+    },
+    {
+      "teamId": "MD",
+      "team": "Maryland",
+      "prior": [
+        75,
+        76,
+        74
+      ],
+      "proposed": [
+        77,
+        78,
+        76
+      ]
+    },
+    {
+      "teamId": "ASU",
+      "team": "Arizona State",
+      "prior": [
+        73,
+        75,
+        71
+      ],
+      "proposed": [
+        76,
+        78,
+        74
+      ]
+    },
+    {
+      "teamId": "WVU",
+      "team": "West Virginia",
+      "prior": [
+        79,
+        82,
+        76
+      ],
+      "proposed": [
+        76,
+        79,
+        73
+      ]
+    },
+    {
+      "teamId": "PENN",
+      "team": "Penn",
+      "prior": [
+        76,
+        77,
+        75
+      ],
+      "proposed": [
+        76,
+        77,
+        75
+      ]
+    },
+    {
+      "teamId": "SYR",
+      "team": "Syracuse",
+      "prior": [
+        75,
+        77,
+        73
+      ],
+      "proposed": [
+        75,
+        77,
+        73
+      ]
+    },
+    {
+      "teamId": "GAST",
+      "team": "Georgia State",
+      "prior": [
+        78,
+        79,
+        77
+      ],
+      "proposed": [
+        75,
+        76,
+        74
+      ]
+    },
+    {
+      "teamId": "MINN",
+      "team": "Minnesota",
+      "prior": [
+        78,
+        77,
+        79
+      ],
+      "proposed": [
+        75,
+        75,
+        75
+      ]
+    },
+    {
+      "teamId": "UTSA",
+      "team": "UTSA",
+      "prior": [
+        76,
+        76,
+        76
+      ],
+      "proposed": [
+        74,
+        74,
+        74
+      ]
+    },
+    {
+      "teamId": "COLO",
+      "team": "Colorado",
+      "prior": [
+        72,
+        70,
+        74
+      ],
+      "proposed": [
+        74,
+        72,
+        76
+      ]
+    },
+    {
+      "teamId": "KSU",
+      "team": "Kansas State",
+      "prior": [
+        75,
+        76,
+        74
+      ],
+      "proposed": [
+        74,
+        75,
+        73
+      ]
+    },
+    {
+      "teamId": "NAVY",
+      "team": "Navy",
+      "prior": [
+        74,
+        71,
+        77
+      ],
+      "proposed": [
+        73,
+        71,
+        75
+      ]
+    },
+    {
+      "teamId": "NCSU",
+      "team": "NC State",
+      "prior": [
+        73,
+        73,
+        73
+      ],
+      "proposed": [
+        73,
+        73,
+        73
+      ]
+    },
+    {
+      "teamId": "KU",
+      "team": "Kansas",
+      "prior": [
+        80,
+        80,
+        80
+      ],
+      "proposed": [
+        73,
+        72,
+        74
+      ]
+    },
+    {
+      "teamId": "AF",
+      "team": "Air Force",
+      "prior": [
+        71,
+        72,
+        70
+      ],
+      "proposed": [
+        72,
+        72,
+        72
+      ]
+    },
+    {
+      "teamId": "TLN",
+      "team": "Tulane",
+      "prior": [
+        73,
+        74,
+        72
+      ],
+      "proposed": [
+        72,
+        72,
+        72
+      ]
+    },
+    {
+      "teamId": "USU",
+      "team": "Utah State",
+      "prior": [
+        74,
+        72,
+        76
+      ],
+      "proposed": [
+        72,
+        70,
+        74
+      ]
+    },
+    {
+      "teamId": "UConn",
+      "team": "UConn",
+      "prior": [
+        72,
+        74,
+        70
+      ],
+      "proposed": [
+        71,
+        73,
+        69
+      ]
+    },
+    {
+      "teamId": "BC",
+      "team": "Boston College",
+      "prior": [
+        72,
+        71,
+        73
+      ],
+      "proposed": [
+        71,
+        71,
+        71
+      ]
+    },
+    {
+      "teamId": "STAN",
+      "team": "Stanford",
+      "prior": [
+        70,
+        72,
+        68
+      ],
+      "proposed": [
+        71,
+        73,
+        69
+      ]
+    },
+    {
+      "teamId": "TROY",
+      "team": "Troy",
+      "prior": [
+        71,
+        69,
+        73
+      ],
+      "proposed": [
+        70,
+        69,
+        71
+      ]
+    },
+    {
+      "teamId": "CAL",
+      "team": "California",
+      "prior": [
+        71,
+        72,
+        70
+      ],
+      "proposed": [
+        70,
+        71,
+        69
+      ]
+    },
+    {
+      "teamId": "MRSH",
+      "team": "Marshall",
+      "prior": [
+        69,
+        69,
+        69
+      ],
+      "proposed": [
+        70,
+        70,
+        70
+      ]
+    },
+    {
+      "teamId": "SDSU",
+      "team": "San Diego State",
+      "prior": [
+        67,
+        68,
+        66
+      ],
+      "proposed": [
+        69,
+        70,
+        68
+      ]
+    },
+    {
+      "teamId": "UNLV",
+      "team": "UNLV",
+      "prior": [
+        70,
+        70,
+        70
+      ],
+      "proposed": [
+        69,
+        69,
+        69
+      ]
+    },
+    {
+      "teamId": "YALE",
+      "team": "Yale",
+      "prior": [
+        68,
+        67,
+        69
+      ],
+      "proposed": [
+        69,
+        68,
+        70
+      ]
+    },
+    {
+      "teamId": "ECU",
+      "team": "East Carolina",
+      "prior": [
+        69,
+        68,
+        70
+      ],
+      "proposed": [
+        68,
+        67,
+        69
+      ]
+    },
+    {
+      "teamId": "LT",
+      "team": "Louisiana Tech",
+      "prior": [
+        69,
+        68,
+        70
+      ],
+      "proposed": [
+        68,
+        67,
+        69
+      ]
+    },
+    {
+      "teamId": "PRIN",
+      "team": "Princeton",
+      "prior": [
+        67,
+        68,
+        66
+      ],
+      "proposed": [
+        68,
+        68,
+        68
+      ]
+    },
+    {
+      "teamId": "SJSU",
+      "team": "San Jose State",
+      "prior": [
+        68,
+        67,
+        69
+      ],
+      "proposed": [
+        67,
+        65,
+        69
+      ]
+    },
+    {
+      "teamId": "TLSA",
+      "team": "Tulsa",
+      "prior": [
+        67,
+        65,
+        69
+      ],
+      "proposed": [
+        67,
+        65,
+        69
+      ]
+    },
+    {
+      "teamId": "RUTG",
+      "team": "Rutgers",
+      "prior": [
+        68,
+        69,
+        67
+      ],
+      "proposed": [
+        67,
+        68,
+        66
+      ]
+    },
+    {
+      "teamId": "WSU",
+      "team": "Washington State",
+      "prior": [
+        65,
+        64,
+        66
+      ],
+      "proposed": [
+        67,
+        66,
+        68
+      ]
+    },
+    {
+      "teamId": "DEL",
+      "team": "Delaware",
+      "prior": [
+        69,
+        68,
+        76
+      ],
+      "proposed": [
+        66,
+        65,
+        67
+      ]
+    },
+    {
+      "teamId": "WYO",
+      "team": "Wyoming",
+      "prior": [
+        66,
+        66,
+        66
+      ],
+      "proposed": [
+        66,
+        66,
+        66
+      ]
+    },
+    {
+      "teamId": "ODU",
+      "team": "Old Dominion",
+      "prior": [
+        66,
+        64,
+        68
+      ],
+      "proposed": [
+        66,
+        64,
+        68
+      ]
+    },
+    {
+      "teamId": "GASO",
+      "team": "Georgia Southern",
+      "prior": [
+        75,
+        76,
+        73
+      ],
+      "proposed": [
+        65,
+        64,
+        66
+      ]
+    },
+    {
+      "teamId": "CCU",
+      "team": "Coastal Carolina",
+      "prior": [
+        65,
+        63,
+        67
+      ],
+      "proposed": [
+        65,
+        63,
+        67
+      ]
+    },
+    {
+      "teamId": "FIU",
+      "team": "Florida International",
+      "prior": [
+        64,
+        62,
+        66
+      ],
+      "proposed": [
+        65,
+        63,
+        67
+      ]
+    },
+    {
+      "teamId": "TEM",
+      "team": "Temple",
+      "prior": [
+        68,
+        67,
+        73
+      ],
+      "proposed": [
+        64,
+        63,
+        65
+      ]
+    },
+    {
+      "teamId": "BUFF",
+      "team": "Buffalo",
+      "prior": [
+        66,
+        66,
+        66
+      ],
+      "proposed": [
+        64,
+        63,
+        65
+      ]
+    },
+    {
+      "teamId": "UAB",
+      "team": "UAB",
+      "prior": [
+        63,
+        63,
+        63
+      ],
+      "proposed": [
+        64,
+        63,
+        65
+      ]
+    },
+    {
+      "teamId": "HARV",
+      "team": "Harvard",
+      "prior": [
+        65,
+        65,
+        65
+      ],
+      "proposed": [
+        63,
+        63,
+        63
+      ]
+    },
+    {
+      "teamId": "NEV",
+      "team": "Nevada",
+      "prior": [
+        63,
+        62,
+        64
+      ],
+      "proposed": [
+        63,
+        62,
+        64
+      ]
+    },
+    {
+      "teamId": "CSU",
+      "team": "Colorado State",
+      "prior": [
+        66,
+        75,
+        62
+      ],
+      "proposed": [
+        63,
+        65,
+        61
+      ]
+    },
+    {
+      "teamId": "HAW",
+      "team": "Hawaii",
+      "prior": [
+        62,
+        62,
+        62
+      ],
+      "proposed": [
+        62,
+        62,
+        62
+      ]
+    },
+    {
+      "teamId": "NIU",
+      "team": "Northern Illinois",
+      "prior": [
+        62,
+        62,
+        62
+      ],
+      "proposed": [
+        62,
+        62,
+        62
+      ]
+    },
+    {
+      "teamId": "USM",
+      "team": "Southern Miss",
+      "prior": [
+        62,
+        64,
+        60
+      ],
+      "proposed": [
+        62,
+        63,
+        61
+      ]
+    },
+    {
+      "teamId": "COR",
+      "team": "Cornell",
+      "prior": [
+        61,
+        61,
+        61
+      ],
+      "proposed": [
+        61,
+        61,
+        61
+      ]
+    },
+    {
+      "teamId": "RICE",
+      "team": "Rice",
+      "prior": [
+        61,
+        60,
+        62
+      ],
+      "proposed": [
+        61,
+        60,
+        62
+      ]
+    },
+    {
+      "teamId": "NMSU",
+      "team": "New Mexico State",
+      "prior": [
+        61,
+        60,
+        62
+      ],
+      "proposed": [
+        61,
+        60,
+        62
+      ]
+    },
+    {
+      "teamId": "MTSU",
+      "team": "Middle Tennessee",
+      "prior": [
+        60,
+        60,
+        60
+      ],
+      "proposed": [
+        60,
+        60,
+        60
+      ]
+    },
+    {
+      "teamId": "UTEP",
+      "team": "UTEP",
+      "prior": [
+        60,
+        60,
+        60
+      ],
+      "proposed": [
+        60,
+        60,
+        60
+      ]
+    }
+  ]
+}

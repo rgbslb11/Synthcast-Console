@@ -1,0 +1,25 @@
+✔ overdue G0654 launch with checkpoint 2026-11-17T05:47:03.541Z (88.949318ms)
+✔ overdue G0654 deadman_disarm with checkpoint 2026-11-17T05:47:03.541Z (80.278705ms)
+✔ overdue G0654 launch with checkpoint 2026-11-18T00:40:00.000Z (47.823564ms)
+✔ overdue G0654 deadman_disarm with checkpoint 2026-11-18T00:40:00.000Z (32.997838ms)
+✔ batch Disarm suppresses fallback only for explicit prelaunch targets (27.00149ms)
+✔ ordinary scheduler still fires overdue fallback with weather locked and GL zero (10.510391ms)
+✔ Disarm on an unarmed game returns 409 without a commit or ambiguous 500 (7.735507ms)
+✔ stale control witness is still rejected before mutation (4.214828ms)
+✔ explicit Refresh resolves the local retry latch only after read success; no command is replayed (5.241184ms)
+✔ cancelled or failed Refresh retains the original pending request (2.489173ms)
+✔ exact 59 canonical IDs, 118 distinct programs, supplied carriage and all 25 ranks (2.914542ms)
+✔ approved ratings and every football byte retained apart from release metadata (3.783933ms)
+✔ prior release source and all prior UI routes preserved in git (24.095146ms)
+✔ unlaunched defaults, exact board identities and foreign-session rejection (15.861347ms)
+✔ punt touchback and legitimate safety from 5.0.7 remain intact (1.652686ms)
+✔ operating cron sweep signs and dispatches to the actual operating endpoint (8.057452ms)
+✔ operating sweep rejects a QA endpoint before discovery or dispatch (0.742389ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 500.954544

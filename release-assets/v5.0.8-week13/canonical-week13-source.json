@@ -1,0 +1,536 @@
+{
+  "source": "Read-only seud.games, synthetic_CFB vhoihlibpmqqntuvjaaz, week=13; inspected 2026-11-16 Central",
+  "rows": [
+    {
+      "game_id": "G0618",
+      "away_id": "team-utep",
+      "home_id": "team-af",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-falcon-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0619",
+      "away_id": "team-prin",
+      "home_id": "team-ala",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-bryant-denny-stadium",
+      "conference_game": "false"
+    },
+    {
+      "game_id": "G0620",
+      "away_id": "team-yale",
+      "home_id": "team-aub",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-jordan-hare-stadium",
+      "conference_game": "false"
+    },
+    {
+      "game_id": "G0621",
+      "away_id": "team-ttu",
+      "home_id": "team-bay",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-mclane-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0622",
+      "away_id": "team-syr",
+      "home_id": "team-bc",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-alumni-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0623",
+      "away_id": "team-sdsu",
+      "home_id": "team-boise",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-albertsons-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0624",
+      "away_id": "team-ku",
+      "home_id": "team-byu",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-lavell-edwards-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0625",
+      "away_id": "team-stan",
+      "home_id": "team-cal",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-california-memorial-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0626",
+      "away_id": "team-mtsu",
+      "home_id": "team-ccu",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-brooks-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0627",
+      "away_id": "team-colo",
+      "home_id": "team-cin",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-nippert-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0628",
+      "away_id": "team-clem",
+      "home_id": "team-duke",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-wallace-wade-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0629",
+      "away_id": "team-cor",
+      "home_id": "team-ecu",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-dowdy-ficklen-stadium",
+      "conference_game": "false"
+    },
+    {
+      "game_id": "G0630",
+      "away_id": "team-van",
+      "home_id": "team-fla",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-ben-hill-griffin-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0631",
+      "away_id": "team-csu",
+      "home_id": "team-fres",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-valley-children-s-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0632",
+      "away_id": "team-ncsu",
+      "home_id": "team-fsu",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-doak-campbell-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0633",
+      "away_id": "team-wake",
+      "home_id": "team-gt",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-bobby-dodd-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0634",
+      "away_id": "team-army",
+      "home_id": "team-harv",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-harvard-stadium",
+      "conference_game": "false"
+    },
+    {
+      "game_id": "G0635",
+      "away_id": "team-colg",
+      "home_id": "team-hc",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-fitton-field",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0636",
+      "away_id": "team-iowa",
+      "home_id": "team-ill",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-memorial-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0637",
+      "away_id": "team-ariz",
+      "home_id": "team-ksu",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-bill-snyder-family-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0638",
+      "away_id": "team-fiu",
+      "home_id": "team-leh",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-goodman-stadium",
+      "conference_game": "false"
+    },
+    {
+      "game_id": "G0639",
+      "away_id": "team-pitt",
+      "home_id": "team-lou",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-l-n-federal-credit-union-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0640",
+      "away_id": "team-vt",
+      "home_id": "team-mia",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-hard-rock-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0641",
+      "away_id": "team-ucla",
+      "home_id": "team-mich",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-michigan-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0642",
+      "away_id": "team-nu",
+      "home_id": "team-minn",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-huntington-bank-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0643",
+      "away_id": "team-uk",
+      "home_id": "team-miz",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-faurot-field-at-memorial-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0644",
+      "away_id": "team-gast",
+      "home_id": "team-mrsh",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-joan-c-edwards-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0645",
+      "away_id": "team-buff",
+      "home_id": "team-msst",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-davis-wade-stadium",
+      "conference_game": "false"
+    },
+    {
+      "game_id": "G0646",
+      "away_id": "team-ore",
+      "home_id": "team-msu",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-spartan-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0647",
+      "away_id": "team-smu",
+      "home_id": "team-nd",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-notre-dame-stadium",
+      "conference_game": "false"
+    },
+    {
+      "game_id": "G0648",
+      "away_id": "team-niu",
+      "home_id": "team-ndsu",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-fargodome",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0649",
+      "away_id": "team-osu",
+      "home_id": "team-neb",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-undetermined",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0650",
+      "away_id": "team-haw",
+      "home_id": "team-nev",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-mackay-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0651",
+      "away_id": "team-asu",
+      "home_id": "team-okst",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-boone-pickens-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0652",
+      "away_id": "team-usu",
+      "home_id": "team-orst",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-reser-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0653",
+      "away_id": "team-ta-m",
+      "home_id": "team-ou",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-gaylord-family-oklahoma-memorial-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0654",
+      "away_id": "team-del",
+      "home_id": "team-penn",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-franklin-field",
+      "conference_game": "false"
+    },
+    {
+      "game_id": "G0655",
+      "away_id": "team-rutg",
+      "home_id": "team-psu",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-beaver-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0656",
+      "away_id": "team-wis",
+      "home_id": "team-pur",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-ross-ade-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0657",
+      "away_id": "team-lt",
+      "home_id": "team-rice",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-rice-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0658",
+      "away_id": "team-uga",
+      "home_id": "team-sc",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-williams-brice-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0659",
+      "away_id": "team-unlv",
+      "home_id": "team-sjsu",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-cefcu-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0660",
+      "away_id": "team-utah",
+      "home_id": "team-tcu",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-amon-g-carter-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0661",
+      "away_id": "team-fau",
+      "home_id": "team-tem",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-lincoln-financial-field",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0662",
+      "away_id": "team-lsu",
+      "home_id": "team-tenn",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-neyland-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0663",
+      "away_id": "team-ark",
+      "home_id": "team-tex",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-darrell-k-royal-texas-memorial-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0664",
+      "away_id": "team-gaso",
+      "home_id": "team-troy",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-veterans-memorial-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0665",
+      "away_id": "team-wsu",
+      "home_id": "team-txst",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-ufcu-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0666",
+      "away_id": "team-miss",
+      "home_id": "team-uab",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-protective-stadium",
+      "conference_game": "false"
+    },
+    {
+      "game_id": "G0667",
+      "away_id": "team-isu",
+      "home_id": "team-ucf",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-fbc-mortgage-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0668",
+      "away_id": "team-odu",
+      "home_id": "team-uconn",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-pratt-whitney-stadium-at-rentschler-field",
+      "conference_game": "false"
+    },
+    {
+      "game_id": "G0669",
+      "away_id": "team-mem",
+      "home_id": "team-unt",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-datcu-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0670",
+      "away_id": "team-md",
+      "home_id": "team-usc",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-los-angeles-memorial-coliseum",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0671",
+      "away_id": "team-usm",
+      "home_id": "team-usf",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-raymond-james-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0672",
+      "away_id": "team-tln",
+      "home_id": "team-utsa",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-alamodome",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0673",
+      "away_id": "team-unc",
+      "home_id": "team-uva",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-scott-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0674",
+      "away_id": "team-iu",
+      "home_id": "team-wash",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-husky-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0675",
+      "away_id": "team-hou",
+      "home_id": "team-wvu",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-milan-puskar-stadium",
+      "conference_game": "true"
+    },
+    {
+      "game_id": "G0676",
+      "away_id": "team-nm",
+      "home_id": "team-wyo",
+      "scheduled_date": "2026-11-21",
+      "neutral_site": "false",
+      "venue_id": "venue-war-memorial-stadium",
+      "conference_game": "true"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "function": "gamecast-week12-v5-0-7-chairman",
+  "functionVersion": 2,
+  "sourceCommit": "538ea025efec5c4d517b7449c8b4d66169060b17",
+  "files": [
+    {
+      "path": "deployment/chairman.ts",
+      "sha256": "d422ca02a55c7b5453ccab1dc4627c66b2a8680cfbb41cb653e400a1d561e52c"
+    },
+    {
+      "path": "deployment/configured-runtime.mjs",
+      "sha256": "6d834367c4e47a58eef265786facbf84c7be9c2bba8fd94dab016a28a4927c65"
+    },
+    {
+      "path": "src/release-runtime.mjs",
+      "sha256": "21ee0bb05700f2a29a769a1a58fb4661e7eb19d01c49cc180182d205220a1e8d"
+    },
+    {
+      "path": "runtime/engine.mjs",
+      "sha256": "bf6842e713ffd279e76ee8596b236035335f13b3fd59f703fb0ffa7ca60d310f"
+    },
+    {
+      "path": "runtime/week12.mjs",
+      "sha256": "838813540cad80dbe8a98b18582921bcacd8a68b4f138010bcf66a7b97d07a90"
+    },
+    {
+      "path": "runtime/power.mjs",
+      "sha256": "2e5113a91e516078fa39b538ef060bebabb35d8de4e70f816abece3052b2379d"
+    },
+    {
+      "path": "src/deadman.mjs",
+      "sha256": "01da1a05687d90b65d19c28a39648423370ecc299927d838479b336a3e278bf3"
+    },
+    {
+      "path": "src/weather.mjs",
+      "sha256": "5d06ebc05f6009dae7eb51aabdece551cf207f85c8b7db7ab668146b01475002"
+    },
+    {
+      "path": "src/supabase-rest.mjs",
+      "sha256": "fd6a67ed343214eda02fcc470e668813d7ee83d55b0a7093417735a43ad4999d"
+    },
+    {
+      "path": "security/security-core.mjs",
+      "sha256": "c785b5cd346b70a268c01675859f4edf0d932a64a57421164a9b163e3b64cb63"
+    },
+    {
+      "path": "src/database-store.mjs",
+      "sha256": "fe44715942ba4459984ec9e0e5b9cd94c33824e4582386ebb4da97d37db97fab"
+    },
+    {
+      "path": "src/command-preconditions.mjs",
+      "sha256": "0e4b656ec9d6a72f690cd9ad295d527b2e8cb9dd3d503dd9759d34ad500aecd0"
+    },
+    {
+      "path": "src/engine-operations.mjs",
+      "sha256": "106186f91ef1f17a2810e8e80810fc1b04f6c57501ea31292af2ee8151b90fa3"
+    },
+    {
+      "path": "security/edge-boundaries.mjs",
+      "sha256": "9de953d7c3a17acba4d3d543cc24ab5652c33c4afa3658a2a7270d3b857c3024"
+    }
+  ]
+}

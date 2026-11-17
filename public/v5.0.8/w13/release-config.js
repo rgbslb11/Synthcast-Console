@@ -1,0 +1,1 @@
+globalThis.GAMECAST_V508_CONFIG=Object.freeze({projectUrl:'https://xsvdmcipviejxynkdbhq.supabase.co',publishableKey:'sb_publishable_5jxF1vOOyWdUvvk3-poZqQ_83gaaUdf',publicApi:'https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-week13-v5-0-8-public',chairmanApi:'https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-week13-v5-0-8-chairman'});

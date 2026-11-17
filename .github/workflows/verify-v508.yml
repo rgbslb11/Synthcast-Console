@@ -1,0 +1,54 @@
+name: Verify GameCast 5.0.8 Week 13 candidate
+on:
+  push:
+    branches: [release/gamecast-v5.0.8]
+permissions:
+  contents: read
+jobs:
+  isolated-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17@sha256:ff87138949ad9a46f32ff23bd6852b52ce024a13dffe9b4087be98292cdd3b4f
+        env:
+          POSTGRES_PASSWORD: ephemeral-only
+          POSTGRES_DB: gc508operating
+        ports: ['55432:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres -d gc508operating"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Rebuild isolated Week 13 package
+        run: |
+          node scripts/build-v508.mjs
+          git diff --exit-code -- public/v5.0.8 release-assets/v5.0.8-week13
+      - name: Weekly bindings, controls, recovery and source preservation
+        run: node --test tests/v508/*.test.mjs
+      - name: Baseline parity and deterministic invariance for all 59 games
+        run: node tests/v508/gates.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/gc508-checks" --save-exact pg@8.16.3 playwright@1.62.1
+      - name: Disposable PostgreSQL; no Supabase writes
+        env:
+          PG_MODULE: ${{ runner.temp }}/gc508-checks/node_modules/pg/lib/index.js
+          GC508_PG_URL: postgres://postgres:ephemeral-only@127.0.0.1:55432/gc508operating
+        run: node tests/v508/postgres.mjs
+      - run: node "$RUNNER_TEMP/gc508-checks/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Local UI and actual HTTP handlers in Chromium and mobile WebKit
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/gc508-checks/node_modules/playwright/index.mjs
+        run: |
+          node tests/v508/browser.mjs
+          GAMECAST_BROWSER=webkit node tests/v508/browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v508-week13-preflight
+          path: release-assets/v5.0.8-week13/evidence/
