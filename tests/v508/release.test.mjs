@@ -33,7 +33,7 @@ test('exact approved post-W12 ratings mapped with every football byte retained',
 });
 test('prior release source and all prior UI routes preserved in git',()=>{
  const changes=execFileSync('git',['diff','538ea025efec5c4d517b7449c8b4d66169060b17','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
- assert.ok(changes.every(p=>p.startsWith('public/v5.0.8/')||p.startsWith('release-assets/v5.0.8-week13/')||p==='scripts/build-v508.mjs'||p.startsWith('tests/v508/')||p==='.github/workflows/verify-v508.yml'||p==='.github/workflows/publish-v508.yml'||p==='scripts/publish-v508.mjs'));
+ assert.ok(changes.every(p=>p.startsWith('public/v5.0.8/')||p.startsWith('release-assets/v5.0.8-week13/')||p==='scripts/build-v508.mjs'||p.startsWith('tests/v508/')||p==='.github/workflows/verify-v508.yml'||p==='.github/workflows/publish-v508.yml'||p==='.github/workflows/verify-v508-hosted.yml'||p==='scripts/publish-v508.mjs'));
 });
 test('unlaunched defaults, exact board identities and foreign-session rejection',()=>{
  const board=slate.map(e.initialGame);assert.equal(composeDisplayBoard([],board).length,59);

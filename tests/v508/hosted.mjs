@@ -13,7 +13,7 @@ for(const name of ['chromium','webkit']){
   for(const [surface,url] of [['full',root+'?session='+slug+'&view=public'],['condensed',root+'ui1.3/?session='+slug]]){
    await page.goto(url);await page.locator('[data-game="'+slate.at(-1).id+'"]').waitFor({timeout:30000});
    assert.deepEqual(await page.locator('article[data-game]').evaluateAll(es=>es.map(e=>e.dataset.game)),slate.map(g=>g.id));
-   for(const g of slate){const t=await page.locator('[data-game="'+g.id+'"]').innerText();assert.ok(t.includes(g.away),g.id+' away');assert.ok(t.includes(g.home),g.id+' home');assert.ok(t.includes(g.kickoff),g.id+' kickoff');assert.ok(t.includes(g.network),g.id+' network');}
+   for(const g of slate){const t=await page.locator('[data-game="'+g.id+'"]').innerText();assert.ok(t.includes(g.away),g.id+' away');assert.ok(t.includes(g.home),g.id+' home');assert.ok(t.includes(g.kickoff),g.id+' kickoff');const rawNetwork=await page.locator('[data-game="'+g.id+'"] '+(surface==='full'?'.head b':'.network')).textContent();assert.equal(rawNetwork.trim().split(' · ')[0],g.network,g.id+' network');}
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1));
    await page.locator('#teamSearch').fill('Colgate');await page.waitForFunction(()=>document.querySelectorAll('article[data-game]').length===1);assert.equal(await page.locator('article[data-game]').getAttribute('data-game'),'G0635');
    checks.push(name+' '+surface+': 59 exact IDs/order, all 59 names/time/network entries, search and viewport');

@@ -1,0 +1,30 @@
+name: Verify hosted GameCast 5.0.8 Week 13
+on:
+  push:
+    branches: [release/gamecast-v5.0.8]
+    paths: ['tests/v508/hosted.mjs', '.github/workflows/verify-v508-hosted.yml']
+permissions:
+  contents: read
+jobs:
+  hosted-read-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --prefix "$RUNNER_TEMP/browser508" --save-exact playwright@1.62.1
+      - run: node "$RUNNER_TEMP/browser508/node_modules/playwright/cli.js" install --with-deps chromium webkit
+      - name: Actual public views and Chairman sign-in form; zero game controls
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/browser508/node_modules/playwright/index.mjs
+          GC508_HOSTED: '1'
+        run: node tests/v508/hosted.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gamecast-v508-hosted-browser
+          path: outputs/v508/
