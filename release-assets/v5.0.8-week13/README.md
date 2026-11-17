@@ -1,41 +1,35 @@
-# GameCast 5.0.8 — Week 13 candidate
+# GameCast 5.0.8 — Week 13
 
-Prepared on `release/gamecast-v5.0.8` from verified 5.0.7.1 source `538ea025efec5c4d517b7449c8b4d66169060b17`. The 5.0.7 authoritative Chairman bundle matches 14 checked-in backend files, including the actual engine. The repository master router and `01_WEEKLY_DATA_DEPLOYMENT.md` were read completely. The attached 4.3.1 registry is historical relative to this baseline.
+Chairman-authorized weekly deployment on `release/gamecast-v5.0.8`. Source lineage is 5.0.7.1 commit `538ea025efec5c4d517b7449c8b4d66169060b17`; the authoritative football baseline remains deployed `GC-W12-V5.0.7-RC1`. The complete repository router and `01_WEEKLY_DATA_DEPLOYMENT.md` were loaded. The attached 4.3.1 registry is historical relative to this verified baseline.
 
-## Scope and inputs
+The Chairman supplied 59 games and the exact approved `Week12_GAMECAST_Ratings_POST_W12_121_R1(1).csv`, then explicitly confirmed Eastern Time. All 59 canonical game IDs, 118 distinct participants, 25 ranks, supplied overall/conference records, carriage dates and networks reconcile. The daily counts are 1 Tuesday, 1 Wednesday, 3 Thursday, 6 Friday and 48 Saturday. Each of the 59 named entries is recorded separately in `RECONCILIATION.md` and `slate.json`.
 
-This is a weekly data and release-binding update. Football engine bytes are identical to deployed 5.0.7 after removing the four release metadata declarations and renaming the schedule import. The punt touchback correction, safety adjudication, ratings, timing, weather, controls and deterministic RNG remain unchanged. No 5.1 probability or UI implementation is imported.
+`approved-ratings.csv` and generated `ratings.csv` retain the attachment's exact bytes: SHA-256 `d69662d7ac62554f770ddea65cee3646830ae4e3f28e5c72c9984b211f345ac4`. There are 121 unique rating rows, 363 values and complete coverage of the 118 scheduled teams. TEAM/OFF/DEF map directly to overall/offense/defense without recomputation. The file changes 85 of 121 teams relative to the approved 5.0.7 source; the prior extra ULL row is absent from the approved attachment and is not scheduled this week. All 121 separate comparisons are in `ratings-review.json`. The earlier extracted review file is retained as historical evidence, not a deployment input.
 
-The Chairman's supplied carriage has **59 games / 118 distinct participants**: Tuesday 1, Wednesday 1, Thursday 3, Friday 6, Saturday 48. Every game matches one canonical Week 13 ID, G0618–G0676. All 25 ranks, overall records and supplied conference records are retained as schedule metadata. Existing UI functionality is retained. All 59 named entries, dates, networks and UTC conversions appear in `RECONCILIATION.md`.
+Football engine bytes match 5.0.7 after four release metadata declarations and schedule-import normalization. Timing, RNG, HFA, safety adjudication, the punt touchback correction, controls, weather and lifecycle are preserved. No 5.1 probability implementation is imported.
 
-Kickoffs use **America/New_York (Eastern)**, inherited from the Week 12 convention. UTC conversion round-trips through the actual timezone implementation, including next-day UTC timestamps. Explicit confirmation remains pending because the supplied table has no timezone heading.
+Canonical locked-v5 dates are generic Saturday dates; the Chairman's supplied dates supersede them for 11 earlier-week games. The home designation and canonical conference classification remain intact. G0649 Ohio State at Nebraska still has an undetermined canonical venue ID; no stadium/address was inferred. The inherited engine does not use venue addresses for gameplay.
 
-Canonical locked-v5 dates use generic Saturday dates; the Chairman's 11 earlier-week carriage dates take precedence. Home designation and canonical conference classifications are retained. G0649 Ohio State at Nebraska has `venue-undetermined` in the canonical source; its home designation is known, but no stadium ID/address is inferred. This does not affect gameplay because the inherited engine does not use venue addresses.
+## Operating bindings
 
-## Ratings decision
+| Surface | Value |
+| --- | --- |
+| Engine / week | `GC-W13-V5.0.8-RC1` / `2026-W13` |
+| Session | See `operating-session.json`; one new unlaunched weekly board |
+| Private schema / session prefix | `gamecast_v508_w13` / `w13v508-` |
+| Public / Chairman / scheduler APIs | `gamecast-week13-v5-0-8-public`, `-chairman`, `-scheduler` |
+| UI | `/v5.0.8/w13/` and `/v5.0.8/w13/ui1.3/` |
+| Auth | Existing Chairman password and roster; no new users or copied credentials |
+| Initial games | UNLAUNCHED / UNARMED / AUTO false / ON AIR false |
 
-The candidate currently carries the **exact 122 approved 5.0.7 records / 366 values**, SHA-256 `6d04e960a60d00301e8158d336482831e9e509e2b2394d572d96aee340613427`. Its power values and original provenance match 5.0.7 exactly; only exported scheduled-participant metadata changes from 120 to 118. All 118 participants are covered.
+`week13-schema.sql` installs only the new private schema in a transaction, with service-only RPC, RLS, CAS, immutable event receipts, exact game identities/order and idempotent session creation. Default writes and scheduler switches are off. `rollback.sql` disables only Week 13 writes and scheduler; it retains every session, event and receipt.
 
-A newer `Week12_GAMECAST_Ratings_POST_W12_121_R1.csv` was found and read in full (Library `libfile_96e300a21b0c8191be4077587da8a050`). It changes 85 of its 121 rows relative to the approved 5.0.7 file. It has not been selected or deployed. Its extracted table and all 121 separate comparisons are retained in `post-week12-ratings-review.csv` and `ratings-review.json`. The extraction's `index` column is parser metadata, not a verified source-file column. Choose carry-forward or the newer ratings before activation; test results only certify the carry-forward candidate.
+The publisher preserves all 277 currently hosted assets byte-for-byte and adds 15 new Week 13 assets. It requires a successful isolated preflight for the exact source and rejects intervening code changes. Existing release routes and accepted results are retained. New root and condensed routes bind to the single provisioned operating session.
 
-## Isolation and deployment
+## Validation and activation
 
-- Engine: `GC-W13-V5.0.8-RC1`; week `2026-W13`.
-- Sessions: `w13v508-`; private schema: `gamecast_v508_w13`.
-- API names: `gamecast-week13-v5-0-8-public`, `-chairman`, `-scheduler`.
-- UI source: `public/v5.0.8/w13/` and `ui1.3/`; new browser storage keys; no hardcoded Week 12 session.
-- Existing Chairman roster is referenced, never copied; public RPC is service-role only.
-- `week13-schema.sql` is transaction-wrapped; constraints freeze game IDs, order, release, data version and board size. Session creation uses the inherited idempotency/CAS architecture. Migration is a one-time install, not a schema replacement.
-- Default writes, cron dispatch and cron job are disabled. Every game starts UNLAUNCHED/UNARMED, AUTO false and ON AIR false.
-- `verify-v508.yml` runs isolated tests only. It has no cloud credentials, deployment or publication steps.
-- Production schema, functions, session, scheduler and hosted route have **not been created or activated**. No games were launched and no official results accepted.
+The approved ratings passed 17 targeted checks, 1,180 paired full games, 59 repeatability tests, 59 poll/chunk comparisons, 295 speed comparisons and a 59-game full board locally. The baseline engine receives the identical new rating inputs in paired comparisons; the unchanged football history demonstrates code parity, not unchanged outcomes versus old ratings.
 
-Before activation, select ratings, confirm Eastern, pass disposable storage and browser tests, then install only the new release and verify actual deployed hashes/API bindings. Publish the new route by preserving the latest published assets, using the existing preserved-publication workflow pattern; never publish an incomplete branch-wide static export. Retain Week 12 and all historical routes. Do not enable Week 13's scheduler or arm games merely by creating the new board. Scheduler handoff must account for any unfinished Week 12 games; do not disable Week 12 while it is still needed.
+The earlier CI run 43998121499 validated the superseded carry-forward candidate only. A fresh isolated PostgreSQL/Chromium/mobile WebKit run is required for this approved-input source. The exact PostgreSQL fixture also exercises Launch, Start Auto and Stop without accepting results. Shared cloud installation, deployed-source verification, public reads and hosted checks follow that preflight. Physical Mobile Safari and actual human Chairman login/controls are not certified by emulation.
 
-## Validation and rollback
-
-`evidence/offline-gates.json` records 1,180 paired simulations with exact 5.0.7 parity, 59 repeatability cases, 59 poll/chunk comparisons, 295 speed comparisons, and a 59-game full board. `evidence/unit.tap` records 17 passing input, isolation, source, controls, retry/recovery and scheduler tests. QA fixtures never write to shared storage or accept official results.
-
-Local browser execution is unavailable because this execution host denies browser sockets. Browser and PostgreSQL checks passed in isolated GitHub CI run 43998121499; see STATUS.md and evidence/ci-receipt.json. Physical Mobile Safari and actual production Chairman login remain NOT TESTED.
-
-Rollback before activation is simply to retain the existing operating route. After an approved install, `rollback.sql` disables only the new release's writes and scheduler; every session, event, audit receipt and historical result remains intact. Never roll back by restoring an old full board, replaying accepted games or purging storage.
+The live Week 12 board was observed at version 82118, 60/60 READY. The rollover disables its completed scheduler and leaves history intact; Week 13 becomes the only active weekly scheduler. No games are armed or launched by deployment. See `STATUS.md` and deployment evidence for the observed final state.

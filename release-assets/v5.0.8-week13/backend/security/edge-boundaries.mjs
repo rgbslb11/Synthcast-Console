@@ -18,7 +18,7 @@ export function createPublicHandler({allowedOrigins,store}){
       if(req.method==='OPTIONS')return new Response(null,{status:204,headers:{...headers(origin),'access-control-allow-methods':'GET,OPTIONS','access-control-allow-headers':'content-type'}});
       requireMethod(req.method,['GET']);
       const url=new URL(req.url),action=url.searchParams.get('api');
-      if(action==='health')return json({engine_version:'GC-W13-V5.0.8-RC1',week_key:'2026-W13',activation_inputs_ready:false,immutable_finals_ready:true,release_scope:'W13_OPERATOR',canonical_games:59,active_games:59,immutable_finals_required:0},200,origin);
+      if(action==='health')return json({engine_version:'GC-W13-V5.0.8-RC1',week_key:'2026-W13',activation_inputs_ready:true,immutable_finals_ready:true,release_scope:'W13_OPERATOR',canonical_games:59,active_games:59,immutable_finals_required:0},200,origin);
       if(action!=='read')throw new SecurityError('UNSUPPORTED_ACTION',400);
       return json(await store.read(requireSessionSlug(url.searchParams.get('session'))),200,origin);
     }catch(error){return failure(error,origin);}

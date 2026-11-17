@@ -2,8 +2,8 @@
 (() => {
   const params=new URLSearchParams(location.search);
   const sources={
-    saturday:{api:globalThis.GAMECAST_V508_CONFIG.publicApi,engine:'GC-W13-V5.0.8-RC1',slug:params.get('session')||'',expected:59},
-    full:{api:globalThis.GAMECAST_V508_CONFIG.publicApi,engine:'GC-W13-V5.0.8-RC1',slug:params.get('session')||'',expected:59},
+    saturday:{api:globalThis.GAMECAST_V508_CONFIG.publicApi,engine:'GC-W13-V5.0.8-RC1',slug:params.get('session')||"w13v508-6ecefa636ecf706e",expected:59},
+    full:{api:globalThis.GAMECAST_V508_CONFIG.publicApi,engine:'GC-W13-V5.0.8-RC1',slug:params.get('session')||"w13v508-6ecefa636ecf706e",expected:59},
   };
   const POLL_MS=4500;
   const FINALISH=new Set(['LOCKED','READY','FINAL']);

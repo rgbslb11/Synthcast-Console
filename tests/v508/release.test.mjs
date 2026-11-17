@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import * as e from '../../release-assets/v5.0.8-week13/backend/runtime/engine.mjs';
 import {OPERATING_SLATE as slate} from '../../release-assets/v5.0.8-week13/backend/runtime/week13.mjs';
@@ -20,16 +21,19 @@ test('exact 59 canonical IDs, 118 distinct programs, supplied carriage and all 2
  assert.equal(slate[0].kickoffZulu,'2026-11-18T00:30:00Z');
  for(const g of slate){assert.ok(TEAM_POWER[g.away]);assert.ok(TEAM_POWER[g.home]);assert.equal(g.kickoffTimeZone,'America/New_York');}
 });
-test('approved ratings and every football byte retained apart from release metadata',()=>{
- assert.equal(fs.readFileSync(root+'/ratings.csv','utf8'),fs.readFileSync(prior+'/ratings.csv','utf8'));
- assert.equal(fs.readFileSync(root+'/backend/runtime/power.mjs','utf8').replace('SCHEDULED_TEAM_COUNT=118','SCHEDULED_TEAM_COUNT=120'),fs.readFileSync(prior+'/backend/runtime/power.mjs','utf8'));
+test('exact approved post-W12 ratings mapped with every football byte retained',()=>{
+ const csv=fs.readFileSync(root+'/ratings.csv');assert.equal(createHash('sha256').update(csv).digest('hex'),'d69662d7ac62554f770ddea65cee3646830ae4e3f28e5c72c9984b211f345ac4');
+ assert.deepEqual(csv,fs.readFileSync(root+'/approved-ratings.csv'));
+ const [header,...lines]=csv.toString().trim().split(/\r?\n/).map(l=>l.split(','));assert.equal(lines.length,121);assert.equal(Object.keys(TEAM_POWER).length,121);
+ for(const a of lines){const r=Object.fromEntries(header.map((k,i)=>[k,a[i]])),p=TEAM_POWER[r.team];assert.ok(p,r.team);assert.deepEqual([p.overall,p.offense,p.defense],[+r.gamecast_team,+r.gamecast_offense,+r.gamecast_defense]);}
+
  const normalize=s=>s.replace(/const (?:ENGINE_VERSION|DATA_VERSION|WEEK_KEY|CONSOLE_URL) = "[^"]+";/g,'RELEASE_BINDING').replaceAll('week13.mjs','week12.mjs');
  assert.equal(normalize(fs.readFileSync(root+'/backend/runtime/engine.mjs','utf8')),normalize(fs.readFileSync(prior+'/backend/runtime/engine.mjs','utf8')));
  for(const f of ['deadman.mjs','weather.mjs','command-preconditions.mjs'])assert.equal(fs.readFileSync(root+'/backend/src/'+f,'utf8'),fs.readFileSync(prior+'/backend/src/'+f,'utf8'));
 });
 test('prior release source and all prior UI routes preserved in git',()=>{
  const changes=execFileSync('git',['diff','538ea025efec5c4d517b7449c8b4d66169060b17','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
- assert.ok(changes.every(p=>p.startsWith('public/v5.0.8/')||p.startsWith('release-assets/v5.0.8-week13/')||p==='scripts/build-v508.mjs'||p.startsWith('tests/v508/')||p==='.github/workflows/verify-v508.yml'));
+ assert.ok(changes.every(p=>p.startsWith('public/v5.0.8/')||p.startsWith('release-assets/v5.0.8-week13/')||p==='scripts/build-v508.mjs'||p.startsWith('tests/v508/')||p==='.github/workflows/verify-v508.yml'||p==='.github/workflows/publish-v508.yml'||p==='scripts/publish-v508.mjs'));
 });
 test('unlaunched defaults, exact board identities and foreign-session rejection',()=>{
  const board=slate.map(e.initialGame);assert.equal(composeDisplayBoard([],board).length,59);

@@ -316,7 +316,7 @@ begin
   select writes_enabled into release_writes_enabled from gamecast_v508_w13.release_control where singleton for share;
   if release_writes_enabled is distinct from true then raise exception 'release writes disabled'; end if;
   if p_public_slug !~ '^w13v508-[a-f0-9]{16}$' then raise exception 'invalid release session'; end if;
-  if p_data_version <> 'W13-CANONICAL59+W12_APPROVED_RATINGS122_CARRY_FORWARD+CSV_6d04e960a60d0030+V508_PUNT_TOUCHBACK' then raise exception 'data version mismatch'; end if;
+  if p_data_version <> 'W13-CANONICAL59+CHAIRMAN_RATINGS121_POST_W12+CSV_d69662d7ac62554f+V508_PUNT_TOUCHBACK' then raise exception 'data version mismatch'; end if;
   if p_idempotency_key !~ '^[A-Za-z0-9._~-]{16,128}$' then raise exception 'invalid idempotency key'; end if;
   if p_request_hash !~ '^[a-f0-9]{64}$' then raise exception 'invalid request hash'; end if;
   if p_state is null or jsonb_typeof(p_state) <> 'array' or jsonb_array_length(p_state) <> 59 then raise exception 'active state count mismatch'; end if;

@@ -1,4 +1,5 @@
 import fs from 'node:fs';import assert from 'node:assert/strict';import {pathToFileURL} from 'node:url';
+import {controlToken} from '../../release-assets/v5.0.8-week13/backend/src/command-preconditions.mjs';
 import {createReleaseRuntime} from '../../release-assets/v5.0.8-week13/backend/src/release-runtime.mjs';
 const url=new URL(process.env.GC508_PG_URL||'http://invalid');
 assert.equal(process.env.GITHUB_ACTIONS,'true');assert.equal(url.hostname,'127.0.0.1');assert.equal(url.port,'55432');assert.equal(url.pathname,'/gc508operating');
@@ -35,6 +36,12 @@ try{
  const rows=await rpc('read_session',{p_slug:created.public_slug});assert.equal(rows.length,1);assert.equal(rows[0].state_version,1);assert.equal(rows[0].engine_version,'GC-W13-V5.0.8-RC1');
  const before=JSON.stringify(rows[0].state);await runtime.store.read(created.public_slug);assert.equal(JSON.stringify((await rpc('read_session',{p_slug:created.public_slug}))[0].state),before);
  assert.deepEqual(await rpc('read_session',{p_slug:'w11v506-'+'0'.repeat(16)}),[]);assert.deepEqual(await rpc('scheduler_sessions',{}),[]);
+ for(const command of ['launch','auto','auto']){
+  const latest=(await rpc('read_session',{p_slug:created.public_slug}))[0];
+  const request=new Request('https://example.invalid?api=command&session='+created.public_slug,{method:'POST',headers:{origin:'https://rgbslb11.github.io',authorization:'Bearer fixture','content-type':'application/json','idempotency-key':'fixture-controls-508-'+latest.state_version},body:JSON.stringify({id:latest.state[0].id,command,payload:{},expected_version:Number(latest.state_version),game_tokens:Object.fromEntries(latest.state.map(g=>[g.id,controlToken(g)]))})});
+  const controlled=await runtime.chairmanHandler(request);assert.equal(controlled.status,201,await controlled.clone().text());
+ }
+ const controlled=(await rpc('read_session',{p_slug:created.public_slug}))[0];assert.equal(controlled.state[0].lifecycle,'ACTIVE');assert.equal(controlled.state[0].auto,false);assert.ok(controlled.state.every(g=>!['READY','LOCKED'].includes(g.lifecycle)));
  await db.query(`update gamecast_v506_w11.operators set active=false where user_id='${actor}'`);assert.equal(await rpc('authorize_operator',{p_user_id:actor}),false);
- console.log('PASS operating SQL: private storage, service-only dispatcher, existing roster revocation, 59 unlaunched games, exact creation retry, read-only polling, cron disabled, foreign release isolation. Vault/net/cron are disposable SQL fixtures; shared Supabase is not exercised.');
+ console.log('PASS operating SQL: private storage, service-only dispatcher, existing roster revocation, 59 initial unlaunched games, disposable Launch/Start Auto/Stop, exact creation retry, read-only polling, cron disabled, foreign release isolation. Vault/net/cron are disposable SQL fixtures; shared Supabase is not exercised.');
 }finally{await db.end();}

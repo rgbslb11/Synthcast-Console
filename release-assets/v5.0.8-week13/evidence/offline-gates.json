@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "scope": "OFFLINE_QA_ONLY; inherited approved Week 12 ratings; no cloud writes or official outcomes",
+  "scope": "OFFLINE_QA_ONLY; approved attached post-Week 12 ratings; baseline 5.0.7 receives identical new rating inputs; no cloud writes or official outcomes",
   "seedCountPerGame": 20,
   "games": 1180,
   "exact507Parity": 1180,
@@ -8,10 +8,10 @@
   "pollChunkInvariance": 59,
   "speedInvariance": 295,
   "fullBoard": 59,
-  "points": 50985,
-  "plays": 163940,
-  "gl": 9089036,
-  "meanPoints": 43.20762711864407,
-  "meanPlays": 138.9322033898305,
-  "meanGLSeconds": 7702.572881355933
+  "points": 51464,
+  "plays": 164117,
+  "gl": 9087019,
+  "meanPoints": 43.6135593220339,
+  "meanPlays": 139.0822033898305,
+  "meanGLSeconds": 7700.863559322034
 }

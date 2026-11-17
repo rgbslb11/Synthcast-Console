@@ -6,13 +6,14 @@
   "week": "2026-W13",
   "scheduleSource": "Chairman message: Deployment 5.0.8 - Week 13",
   "kickoffTimeZone": "America/New_York",
-  "timeZoneStatus": "Inherited Week 12 convention; confirm before activation",
+  "timeZoneStatus": "EXPLICITLY_CONFIRMED_BY_CHAIRMAN",
   "games": 59,
   "participants": 118,
   "canonicalIds": 59,
-  "ratingRecords": 122,
-  "ratingValues": 366,
-  "ratingsSha256": "6d04e960a60d00301e8158d336482831e9e509e2b2394d572d96aee340613427",
+  "ratingRecords": 121,
+  "ratingValues": 363,
+  "ratingsSha256": "d69662d7ac62554f770ddea65cee3646830ae4e3f28e5c72c9984b211f345ac4",
+  "ratingSourceLibraryId": "libfile_00ce5821c2d881919f99986b94853857",
   "slateSha256": "ba001139b92e83575566635f57d454bc3680bb70cfaac6c6571b034c532d069a",
   "carriageSha256": "7069263e76a3a4ee925496aeacfe81c814369c5286ce07fbdc21f8bc5a57e507",
   "dates": {
@@ -23,11 +24,12 @@
     "2026-11-21": 48
   },
   "rankedTeams": 25,
-  "ratingSelection": "BLOCKED: approve carry-forward or select newer post-W12 ratings",
-  "productionActivation": "HELD",
+  "ratingSelection": "APPROVED: attached post-W12 ratings for Week 13",
+  "deploymentAuthorization": "Chairman Week 13 deployment request plus attached ratings and Eastern confirmation",
   "defaultWrites": false,
   "defaultCron": false,
   "newArms": 0,
+  "publicSlug": "w13v508-6ecefa636ecf706e",
   "physicalMobileSafari": "NOT TESTED",
   "venueExceptions": [
     {

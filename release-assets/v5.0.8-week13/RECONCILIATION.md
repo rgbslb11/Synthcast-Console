@@ -1,6 +1,6 @@
 # Week 13 schedule reconciliation
 
-59/59 Chairman rows = 59 canonical games = 118 distinct participants. Kickoffs interpreted as Eastern (America/New_York), following Week 12; pending explicit confirmation. All records, conference records and 25 ranks are retained as schedule metadata. Existing UI behavior is preserved.
+59/59 Chairman rows = 59 canonical games = 118 distinct participants. Kickoffs confirmed by the Chairman as Eastern (America/New_York). All records, conference records and 25 ranks are retained as schedule metadata. Existing UI behavior is preserved.
 
 | Row | ID | Matchup | Date | Kickoff ET | UTC | Network |
 | --- | --- | --- | --- | --- | --- | --- |
