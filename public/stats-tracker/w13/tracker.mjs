@@ -89,7 +89,8 @@ function renderGame(card, game, status) {
   set('snaps', game.teamPlayCount?.map((value) => Number.isInteger(value) && value >= 0 ? value : '—').join(' / ') ?? 'BLOCKED');
   set('possession', game.teamTopSeconds?.map(clock).join(' / ') ?? 'BLOCKED');
   set('coverage', status.key === 'scheduled' ? '' : 'Stats are listed away / home.');
-  bindReporting(card, game, status.key === 'final');
+  bindReporting(card, game, game.qaOnly ? null : status.key === 'final' ? 'final' :
+    ['ACTIVE', 'DELAY'].includes(game.lifecycle) ? 'live' : null);
 }
 
 function render() {

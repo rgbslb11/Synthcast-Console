@@ -37,6 +37,7 @@ function clearSession(message) {
   status.textContent = message;
   for (const row of rows.values()) {
     row.button.hidden = true;
+    row.watching = false;
     row.output.replaceChildren();
   }
 }
@@ -53,8 +54,8 @@ async function requestReport(bearer, game) {
 }
 
 function updateButton(row) {
-  row.button.hidden = !token || !row.accepted;
-  row.button.textContent = corrected.has(row.game.id) ? 'Derive Stats' : 'View Stats';
+  row.button.hidden = !token || !row.mode;
+  row.button.textContent = corrected.has(row.game.id) ? 'Derive Stats' : row.mode === 'live' ? 'View Live Stats' : 'View Stats';
 }
 
 function format(key, value) {
@@ -77,9 +78,10 @@ function showReport(row, result) {
   const caption = table.createCaption();
   const adjustments = result.stats.map(team => team.scoringSummary
     .filter(event => event.source === 'MANUAL').reduce((points, event) => points + event.points, 0));
+  const title = result.live ? 'Live box score · Committed plays · Rev ' + result.version : 'Box score';
   caption.textContent = result.corrected
-    ? 'Derived box score · Chairman scoring adjustment: ' + adjustments.join(' / ') + ' points (away / home)'
-    : 'Box score';
+    ? title + ' · Chairman scoring adjustment: ' + adjustments.join(' / ') + ' points (away / home)'
+    : title;
   const head = table.createTHead().insertRow();
   for (const value of ['Statistic', row.game.away.name, row.game.home.name]) {
     const cell = head.appendChild(document.createElement('th'));
@@ -97,41 +99,60 @@ function showReport(row, result) {
   row.output.replaceChildren(table);
 }
 
-export function bindReporting(card, game, accepted) {
-  const signature = JSON.stringify([game.runId, game.scores, accepted]);
+async function loadStats(row, manual = false) {
+  const bearer = token;
+  const { id, runId } = row.game;
+  const mode = row.mode;
+  if (!bearer || !mode || row.button.disabled) return;
+  row.requestedSnapshot = row.snapshot;
+  row.button.disabled = true;
+  if (manual) row.output.textContent = 'Checking committed plays…';
+  const current = () => token === bearer && row.game.runId === runId && row.mode === mode;
+  try {
+    const result = await requestReport(bearer, id);
+    if (!current()) return;
+    if (result.id !== id || result.run !== runId || result.live !== (mode === 'live')) {
+      if (manual) row.output.textContent = 'Game state changed. Refresh and try again.';
+      return;
+    }
+    if (result.corrected) corrected.add(id);
+    showReport(row, result);
+    updateButton(row);
+  } catch (error) {
+    if (!current()) return;
+    if ([401, 403].includes(error.status)) clearSession('Sign in again with a GameCast Chairman account.');
+    else if (manual) row.output.textContent = 'BLOCKED · Reporting is unavailable. Try again.';
+    else if (row.output.querySelector('caption')) {
+      const caption = row.output.querySelector('caption');
+      if (!caption.textContent.startsWith('Stale · ')) caption.textContent = 'Stale · ' + caption.textContent;
+    }
+  } finally {
+    row.button.disabled = false;
+  }
+}
+
+export function bindReporting(card, game, mode) {
+  const snapshot = JSON.stringify([game.scores, game.teamPlayCount, game.teamTopSeconds, game.lastPlay]);
   let row = rows.get(game.id);
   if (!row) {
-    row = { game, accepted, signature, button: card.querySelector('[data-report-button]'),
-      output: card.querySelector('[data-report-output]') };
-    row.button.addEventListener('click', async () => {
-      const bearer = token;
-      const version = row.signature;
-      if (!bearer || !row.accepted) return;
-      row.button.disabled = true;
-      row.output.textContent = 'Checking committed plays…';
-      try {
-        const result = await requestReport(bearer, row.game.id);
-        if (token !== bearer || row.signature !== version) return;
-        if (result.id !== row.game.id || result.run !== row.game.runId) {
-          row.output.textContent = 'BLOCKED · The game snapshot changed. Refresh and try again.';
-          return;
-        }
-        if (result.corrected) corrected.add(row.game.id);
-        showReport(row, result);
-        updateButton(row);
-      } catch (error) {
-        if (token !== bearer || row.signature !== version) return;
-        if ([401, 403].includes(error.status)) clearSession('Sign in again with a GameCast Chairman account.');
-        else row.output.textContent = 'BLOCKED · Reporting is unavailable. Try again.';
-      } finally {
-        row.button.disabled = false;
-      }
+    row = { game, mode, snapshot, details: card.querySelector('details'),
+      button: card.querySelector('[data-report-button]'), output: card.querySelector('[data-report-output]') };
+    row.button.addEventListener('click', () => {
+      row.watching = row.mode === 'live';
+      return loadStats(row, true);
+    });
+    row.details.addEventListener('toggle', () => {
+      if (row.details.open && row.watching && row.requestedSnapshot !== row.snapshot) loadStats(row);
     });
     rows.set(game.id, row);
   }
-  if (row.signature !== signature) row.output.replaceChildren();
-  Object.assign(row, { game, accepted, signature });
+  if (row.game.runId !== game.runId || row.mode !== mode) {
+    row.watching = false;
+    row.output.replaceChildren();
+  }
+  Object.assign(row, { game, mode, snapshot });
   updateButton(row);
+  if (row.watching && row.details.open && !card.hidden && row.requestedSnapshot !== snapshot) loadStats(row);
 }
 
 form.addEventListener('submit', async (event) => {
@@ -156,7 +177,7 @@ form.addEventListener('submit', async (event) => {
     corrected = new Set(access.corrected);
     form.hidden = true;
     signOut.hidden = false;
-    status.textContent = 'Signed in. Open an accepted matchup to view or derive its stats.';
+    status.textContent = 'Signed in. Open a live or accepted matchup to view its stats.';
     for (const row of rows.values()) updateButton(row);
   } catch (error) {
     clearSession(error.status === 503 ? 'Reporting is unavailable. Try again.' : 'Could not sign in for Chairman reporting.');
