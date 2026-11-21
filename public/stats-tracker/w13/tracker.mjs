@@ -1,3 +1,4 @@
+import { bindReporting } from './reporting.mjs';
 const boardUrl = 'https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-week13-v5-0-8-public';
 const session = 'w13v508-6ecefa636ecf706e';
 const filters = {
@@ -87,7 +88,8 @@ function renderGame(card, game, status) {
   set('note', game.qaOnly ? 'QA result.' : note[status.key]);
   set('snaps', game.teamPlayCount?.map((value) => Number.isInteger(value) && value >= 0 ? value : '—').join(' / ') ?? 'BLOCKED');
   set('possession', game.teamTopSeconds?.map(clock).join(' / ') ?? 'BLOCKED');
-  set('coverage', status.key === 'scheduled' ? '' : 'Stats are listed away / home. Full box score requires access to the GameCast play journal.');
+  set('coverage', status.key === 'scheduled' ? '' : 'Stats are listed away / home.');
+  bindReporting(card, game, status.key === 'final');
 }
 
 function render() {

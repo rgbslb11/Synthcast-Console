@@ -60,3 +60,13 @@ small{color:#435570;font-size:.77rem}
   .state{grid-area:2/2;align-self:start}
   .detail{padding-left:12px;padding-right:12px}
 }
+
+.chairman{border:1px solid #ccd4df;background:#fff;border-bottom:0;padding:0 18px 8px}
+.chairman summary{display:block;padding:10px 24px 10px 0;font-weight:700}
+.chairman form{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.chairman label{display:grid;gap:4px;font-size:.8rem;font-weight:700}
+.chairman p{margin:8px 0 4px;font-size:.83rem;color:#435570}
+.report-table{width:100%;max-width:620px;border-collapse:collapse;margin-top:10px}
+.report-table th,.report-table td{padding:5px 8px;border-bottom:1px solid #e0e5eb;text-align:right}
+.report-table th:first-child{text-align:left}
+.report-table caption{text-align:left;font-weight:700;padding:4px 0}
