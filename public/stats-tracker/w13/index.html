@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 13 Stats Tracker | Synthcast GameCast</title>
+  <link rel="stylesheet" href="./tracker.css">
+  <script type="module" src="./tracker.mjs"></script>
+</head>
+<body>
+  <main>
+    <header class="masthead">
+      <div>
+        <p class="wordmark">SYNTHCAST <span>GAMECAST</span></p>
+        <h1>Week 13 Stats Tracker</h1>
+        <p class="subtitle">2026 synthetic season <span aria-hidden="true">·</span> All times Eastern</p>
+      </div>
+      <button id="refresh" type="button">Refresh now</button>
+    </header>
+
+    <div class="status-bar">
+      <p id="connection" role="status">Connecting to GameCast…</p>
+      <p id="snapshot"></p>
+    </div>
+    <section class="board" aria-labelledby="matchups-title">
+      <div class="toolbar">
+        <h2 id="matchups-title">Matchups</h2>
+        <div class="filters">
+          <label><span>Search</span><input id="search" type="search" placeholder="Team or game ID"></label>
+          <label><span>Status</span>
+            <select id="status">
+              <option value="all">All games</option>
+              <option value="scheduled">Scheduled</option>
+              <option value="live">In progress</option>
+              <option value="pending">Awaiting acceptance</option>
+              <option value="final">Accepted finals</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <p id="result-count" class="result-count"></p>
+      <div class="column-labels" aria-hidden="true">
+        <span>Matchup</span><span>Kickoff / network</span><span>Score</span><span>Status</span>
+      </div>
+      <ul id="games" class="games"></ul>
+      <p id="empty" class="empty" hidden>No matchups match these filters.</p>
+    </section>
+  </main>
+
+  <template id="game-template">
+    <li class="game">
+      <details>
+        <summary>
+          <span class="matchup"><strong data-away></strong><strong data-home></strong><small data-id></small></span>
+          <span class="schedule"><span data-kickoff></span><small data-network></small></span>
+          <span class="score" data-score></span>
+          <span class="state"><span class="badge" data-badge></span><small data-clock></small></span>
+        </summary>
+        <div class="detail">
+          <p data-note></p>
+          <dl data-stats>
+            <div><dt>Recorded snaps</dt><dd data-snaps></dd></div>
+            <div><dt>Time of possession</dt><dd data-possession></dd></div>
+          </dl>
+          <p data-coverage></p>
+        </div>
+      </details>
+    </li>
+  </template>
+</body>
+</html>
