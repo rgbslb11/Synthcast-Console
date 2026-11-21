@@ -1,0 +1,31 @@
+name: Verify GameCast 5.0.8.5 Week 13 candidate
+
+on:
+  push:
+    branches: [release/gamecast-v5.0.8.5]
+
+permissions:
+  contents: read
+
+jobs:
+  isolated-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify the original Week 13 release assets
+        run: git diff --exit-code 37c52fa588f24454cbeb7dab75d94f4c72e98086 -- public/v5.0.8 release-assets/v5.0.8-week13
+      - name: Endgame and deterministic regression
+        run: |
+          node --test tests/v5085/*.test.mjs
+          node tests/v5085/gates.mjs
+      - name: Isolated PostgreSQL preview with candidate API handlers
+        run: |
+          npm install --prefix ./outputs/v5085-qa --save-exact --no-audit --no-fund @electric-sql/pglite@0.5.17
+          PGLITE_DIST=./outputs/v5085-qa/node_modules/@electric-sql/pglite/dist node tests/v5085/postgres.mjs
