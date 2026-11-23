@@ -1,0 +1,122 @@
+rank,team_id,team,gamecast_team,gamecast_offense,gamecast_defense
+1,UGA,Georgia,94,94,94
+2,MIA,Miami,94,93,91
+3,UTAH,Utah,93,93,91
+4,ND,Notre Dame,93,94,93
+5,ALA,Alabama,93,94,92
+6,TENN,Tennessee,93,90,94
+7,TEX,Texas,93,91,92
+8,OSU,Ohio State,93,92,90
+9,TTU,Texas Tech,92,94,90
+10,ORE,Oregon,92,88,90
+11,IU,Indiana,92,88,93
+12,LSU,LSU,91,91,93
+13,MISS,Ole Miss,91,91,90
+14,LOU,Louisville,91,87,90
+15,ARIZ,Arizona,90,94,91
+16,IOWA,Iowa,90,87,93
+17,BYU,BYU,90,85,91
+18,WAKE,Wake Forest,90,94,94
+19,USC,USC,90,89,84
+20,MIZ,Missouri,90,82,89
+21,OU,Oklahoma,90,81,89
+22,SMU,SMU,89,88,90
+23,TA&M,Texas A&M,89,76,86
+24,NEB,Nebraska,89,84,88
+25,HOU,Houston,88,89,87
+26,UCLA,UCLA,88,89,90
+27,DUKE,Duke,88,85,93
+28,UK,Kentucky,87,85,76
+29,MICH,Michigan,87,77,87
+30,BOISE,Boise State,87,91,78
+31,UVA,Virginia,87,75,81
+32,UNC,North Carolina,87,79,85
+33,FLA,Florida,87,81,81
+34,OKST,Oklahoma State,86,89,78
+35,ILL,Illinois,86,81,85
+36,WIS,Wisconsin,86,74,87
+37,NU,Northwestern,85,85,87
+38,PSU,Penn State,85,88,89
+39,AUB,Auburn,85,86,84
+40,WASH,Washington,84,84,82
+41,SC,South Carolina,84,80,79
+42,CLEM,Clemson,84,79,85
+43,FSU,Florida State,84,89,74
+44,BAY,Baylor,84,82,82
+45,TCU,TCU,84,76,87
+46,UCF,UCF,83,81,84
+47,MEM,Memphis,83,90,90
+48,VAN,Vanderbilt,83,84,74
+49,MSST,Mississippi State,82,78,78
+50,CIN,Cincinnati,82,85,78
+51,LEH,Lehigh,82,80,87
+52,USF,South Florida,81,86,85
+53,COLG,Colgate,81,93,87
+54,ARMY,Army,81,84,82
+55,TXST,Texas State,81,90,72
+56,ARK,Arkansas,81,77,81
+57,PITT,Pittsburgh,81,75,79
+58,ISU,Iowa State,80,77,72
+59,NM,New Mexico,80,83,90
+60,HC,Holy Cross,80,79,85
+61,PENN,Penn,80,87,82
+62,FRES,Fresno State,79,81,84
+63,VT,Virginia Tech,79,83,72
+64,GT,Georgia Tech,79,72,72
+65,ASU,Arizona State,78,79,70
+66,NDSU,North Dakota State,78,82,81
+67,PUR,Purdue,78,82,75
+68,ORST,Oregon State,78,90,83
+69,NCSU,NC State,78,72,77
+70,MSU,Michigan State,78,77,75
+71,KU,Kansas,77,71,74
+72,UNT,North Texas,77,79,78
+73,MINN,Minnesota,77,74,72
+74,WVU,West Virginia,76,88,68
+75,MD,Maryland,76,78,69
+76,FAU,Florida Atlantic,76,79,72
+77,COLO,Colorado,75,69,81
+78,KSU,Kansas State,75,80,72
+79,SYR,Syracuse,75,81,69
+80,AF,Air Force,75,84,81
+81,GAST,Georgia State,75,87,81
+82,NAVY,Navy,75,69,79
+83,UTSA,UTSA,74,78,75
+84,TLN,Tulane,74,84,79
+85,BC,Boston College,74,72,73
+86,STAN,Stanford,73,75,66
+87,UConn,UConn,73,84,74
+88,SDSU,San Diego State,73,78,78
+89,USU,Utah State,72,74,84
+90,MRSH,Marshall,72,74,75
+91,YALE,Yale,72,74,78
+92,UNLV,UNLV,72,77,73
+93,CAL,California,72,70,69
+94,ECU,East Carolina,72,67,70
+95,TROY,Troy,71,71,77
+96,PRIN,Princeton,71,68,69
+97,RUTG,Rutgers,71,67,66
+98,LT,Louisiana Tech,70,71,74
+99,GASO,Georgia Southern,70,69,72
+100,SJSU,San Jose State,70,72,81
+101,TLSA,Tulsa,70,66,77
+102,WYO,Wyoming,69,72,70
+103,ODU,Old Dominion,69,66,69
+104,WSU,Washington State,69,69,74
+105,FIU,Florida International,69,68,77
+106,DEL,Delaware,69,67,72
+107,TEM,Temple,69,69,71
+108,HARV,Harvard,68,68,68
+109,BUFF,Buffalo,68,68,71
+110,CCU,Coastal Carolina,68,68,76
+111,NEV,Nevada,67,66,70
+112,UAB,UAB,67,68,71
+113,USM,Southern Miss,67,73,66
+114,HAW,Hawaii,66,70,71
+115,NIU,Northern Illinois,66,65,65
+116,CSU,Colorado State,66,75,65
+117,COR,Cornell,66,66,66
+118,NMSU,New Mexico State,66,65,66
+119,RICE,Rice,66,65,66
+120,MTSU,Middle Tennessee,65,66,67
+121,UTEP,UTEP,65,65,65
