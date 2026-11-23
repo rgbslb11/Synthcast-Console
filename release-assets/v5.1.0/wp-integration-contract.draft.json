@@ -1,0 +1,143 @@
+{
+  "extensionVersion": "GC-WP-INTEGRATION-D1",
+  "status": "PROPOSED_REQUIRES_APPROVAL",
+  "release": "5.1.0",
+  "extendsContract": "GC-STATS-1",
+  "baselineCommit": "f0eb2a56df7fe8d10e1f7739a261a1d5084b6699",
+  "protectedRelease": "5.0.6",
+  "model": {
+    "id": "GC-WP-ILLUSTRATIVE-0.1.0",
+    "calibrationStatus": "DEFERRED",
+    "recommendedInitialPriorMethod": "ENSEMBLE_MEAN_MARGIN_LOGISTIC",
+    "selectionApproved": false,
+    "nonterminalOvertime": "BLOCKED_NULL",
+    "terminalOutcome": "OBSERVED_RESULT_NOT_OFFICIAL_ACCEPTANCE"
+  },
+  "access": {
+    "audience": "ACTIVE_AUTHENTICATED_SESSION_AUTHORIZED_CHAIRMAN",
+    "publicWP": false,
+    "correctionScope": "SESSION_GAME_ACROSS_RUNS"
+  },
+  "sampling": {
+    "intervalMs": 5000,
+    "clock": "MASTER_ZULU",
+    "slot": "floor(epochMilliseconds / 5000)",
+    "producer": "BACKEND_ONLY",
+    "readsAppend": false,
+    "specialKinds": [
+      "pregame",
+      "kickoff",
+      "first_observed_gameplay",
+      "edit_begin",
+      "edit_cancel",
+      "override",
+      "final"
+    ],
+    "pollEventId": "poll:<slot>",
+    "specialEventId": "<kind>:<stableSourceEventId>",
+    "noSyntheticBackfill": true
+  },
+  "observation": {
+    "identity": [
+      "sessionId",
+      "engineVersion",
+      "gameId",
+      "runId",
+      "modelId",
+      "eventId"
+    ],
+    "cursor": "observationSequence",
+    "payload": [
+      "stateVersion",
+      "throughEventSequence",
+      "sourceCommittedAt",
+      "observedAt",
+      "persistedAt",
+      "inputHash",
+      "priorId",
+      "priorHash",
+      "modelArtifactHash",
+      "status",
+      "reason",
+      "probability",
+      "input",
+      "trace",
+      "missingIntervals",
+      "gapBefore"
+    ],
+    "retry": "EXACT_PAYLOAD_REPLAY_OR_CONFLICT",
+    "immutable": true
+  },
+  "statuses": {
+    "envelope": [
+      "AVAILABLE",
+      "NOT_STARTED",
+      "BLOCKED"
+    ],
+    "wp": [
+      "PREGAME",
+      "ESTIMATED",
+      "FINAL",
+      "BLOCKED"
+    ],
+    "blocked": {
+      "probability": null,
+      "color": "#808080"
+    }
+  },
+  "corrections": [
+    "score",
+    "clock_set",
+    "edit_commit",
+    "end",
+    "reopen_live"
+  ],
+  "storage": {
+    "namespace": "gamecast_v510",
+    "deployed": false,
+    "appendOnly": [
+      "wp_prior_revisions",
+      "wp_run_bindings",
+      "wp_observations"
+    ],
+    "replaceableProjection": "wp_latest",
+    "captureOutbox": "wp_capture_outbox",
+    "atomicAppend": [
+      "observation",
+      "latest",
+      "cursor",
+      "receipt",
+      "outboxAck"
+    ],
+    "historyInsideGameSnapshot": false
+  },
+  "delivery": {
+    "summaryPollMs": 5000,
+    "defaultPageSize": 100,
+    "maxPageSize": 250,
+    "summaryByteBudgetPerGame": 1024,
+    "proposedStaleAfterMs": 15000,
+    "cursorBoundTo": [
+      "sessionId",
+      "gameId",
+      "runId",
+      "modelId",
+      "highWatermark"
+    ]
+  },
+  "forbiddenModelInputs": [
+    "seedHex",
+    "rngState",
+    "pendingPlay",
+    "pendingRandom",
+    "knownFutureOutcomes",
+    "fixedWinner",
+    "bettingInputs"
+  ],
+  "decisionsPending": [
+    "Approve margin-derived first-test model or request separately versioned direct-probability prior bridge",
+    "Approve atomic capture/outbox integration and WP-only blocking when kickoff prior is absent or mismatched"
+  ],
+  "cloudLoadStatus": "NOT_TESTED",
+  "productionAuthorized": false
+}

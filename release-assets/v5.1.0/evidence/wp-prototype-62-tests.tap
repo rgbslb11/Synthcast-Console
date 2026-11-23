@@ -1,0 +1,384 @@
+TAP version 13
+# Subtest: baseline witnesses fail both required behaviors
+ok 1 - baseline witnesses fail both required behaviors
+  ---
+  duration_ms: 6.155892
+  type: 'test'
+  ...
+# Subtest: tie deep-own-territory fourth-and-long punts across boundary times, distances and orientations
+ok 2 - tie deep-own-territory fourth-and-long punts across boundary times, distances and orientations
+  ---
+  duration_ms: 24.955123
+  type: 'test'
+  ...
+# Subtest: trailing desperation and ordinary short fourth downs preserve baseline decisions
+ok 3 - trailing desperation and ordinary short fourth downs preserve baseline decisions
+  ---
+  duration_ms: 82.050786
+  type: 'test'
+  ...
+# Subtest: safety exact goal line and beyond: two points, reciprocal possession, stopped clock, log and free-kick evidence
+ok 4 - safety exact goal line and beyond: two points, reciprocal possession, stopped clock, log and free-kick evidence
+  ---
+  duration_ms: 3.836915
+  type: 'test'
+  ...
+# Subtest: loss ending at OWN 1 and incompletions are not safeties
+ok 5 - loss ending at OWN 1 and incompletions are not safeties
+  ---
+  duration_ms: 0.446183
+  type: 'test'
+  ...
+# Subtest: kneel is pure and matches exact clock capacity for all timeout/down combinations
+ok 6 - kneel is pure and matches exact clock capacity for all timeout/down combinations
+  ---
+  duration_ms: 36.626127
+  type: 'test'
+  ...
+# Subtest: Miami 57 seconds/two opponent timeouts is not a safe kneel; 36 is
+ok 7 - Miami 57 seconds/two opponent timeouts is not a safe kneel; 36 is
+  ---
+  duration_ms: 0.277118
+  type: 'test'
+  ...
+# Subtest: automatic fourth-down kneel prohibited; forced fourth kneel transfers possession and stops clock
+ok 8 - automatic fourth-down kneel prohibited; forced fourth kneel transfers possession and stops clock
+  ---
+  duration_ms: 0.468307
+  type: 'test'
+  ...
+# Subtest: all 16 halftime timeout pairs reset once with reciprocal receiving team
+ok 9 - all 16 halftime timeout pairs reset once with reciprocal receiving team
+  ---
+  duration_ms: 1.218517
+  type: 'test'
+  ...
+# Subtest: Deadman arms, launches once, preserves RNG until toss, and recognizes Chairman stop
+ok 10 - Deadman arms, launches once, preserves RNG until toss, and recognizes Chairman stop
+  ---
+  duration_ms: 1.049041
+  type: 'test'
+  ...
+# Subtest: fixed seed/chunk/speed invariance and full board football state, 41 games
+ok 11 - fixed seed/chunk/speed invariance and full board football state, 41 games
+  ---
+  duration_ms: 478.132155
+  type: 'test'
+  ...
+# Subtest: actual HTTP handlers -> engine -> disk-backed RPC fixture -> restart -> public read
+ok 12 - actual HTTP handlers -> engine -> disk-backed RPC fixture -> restart -> public read
+  ---
+  duration_ms: 642.892493
+  type: 'test'
+  ...
+# Subtest: intermediate football state invariants through 41 complete games
+ok 13 - intermediate football state invariants through 41 complete games
+  ---
+  duration_ms: 246.222316
+  type: 'test'
+  ...
+# Subtest: final, locked and accepted states are frozen during projection
+ok 14 - final, locked and accepted states are frozen during projection
+  ---
+  duration_ms: 4.101254
+  type: 'test'
+  ...
+# Subtest: existing Final -> Lock -> Accept transition preserved; QA cannot become accepted
+ok 15 - existing Final -> Lock -> Accept transition preserved; QA cannot become accepted
+  ---
+  duration_ms: 1.307652
+  type: 'test'
+  ...
+# Subtest: WP smoke: authenticated pregame update -> launch -> gameplay -> immutable save -> restart -> override -> grey public response
+ok 16 - WP smoke: authenticated pregame update -> launch -> gameplay -> immutable save -> restart -> override -> grey public response
+  ---
+  duration_ms: 1079.973178
+  type: 'test'
+  ...
+# Subtest: review: cancelling ACTIVE edit restores status (same slot)
+ok 17 - review: cancelling ACTIVE edit restores status (same slot)
+  ---
+  duration_ms: 22.172293
+  type: 'test'
+  ...
+# Subtest: review: cancelling ACTIVE edit restores status (later slot)
+ok 18 - review: cancelling ACTIVE edit restores status (later slot)
+  ---
+  duration_ms: 5.614406
+  type: 'test'
+  ...
+# Subtest: review: cancelling FINAL_PENDING edit restores status (same slot)
+ok 19 - review: cancelling FINAL_PENDING edit restores status (same slot)
+  ---
+  duration_ms: 3.961564
+  type: 'test'
+  ...
+# Subtest: review: cancelling FINAL_PENDING edit restores status (later slot)
+ok 20 - review: cancelling FINAL_PENDING edit restores status (later slot)
+  ---
+  duration_ms: 6.131616
+  type: 'test'
+  ...
+# Subtest: review: cancelling LOCKED edit restores status (same slot)
+ok 21 - review: cancelling LOCKED edit restores status (same slot)
+  ---
+  duration_ms: 7.715043
+  type: 'test'
+  ...
+# Subtest: review: cancelling LOCKED edit restores status (later slot)
+ok 22 - review: cancelling LOCKED edit restores status (later slot)
+  ---
+  duration_ms: 13.782572
+  type: 'test'
+  ...
+# Subtest: review: cancelling READY edit restores status (same slot)
+ok 23 - review: cancelling READY edit restores status (same slot)
+  ---
+  duration_ms: 5.381043
+  type: 'test'
+  ...
+# Subtest: review: cancelling READY edit restores status (later slot)
+ok 24 - review: cancelling READY edit restores status (later slot)
+  ---
+  duration_ms: 6.650217
+  type: 'test'
+  ...
+# Subtest: review: cancelling FINAL edit restores status (same slot)
+ok 25 - review: cancelling FINAL edit restores status (same slot)
+  ---
+  duration_ms: 5.710931
+  type: 'test'
+  ...
+# Subtest: review: cancelling FINAL edit restores status (later slot)
+ok 26 - review: cancelling FINAL edit restores status (later slot)
+  ---
+  duration_ms: 6.383835
+  type: 'test'
+  ...
+# Subtest: review: cancelling edit never clears a committed Chairman override
+ok 27 - review: cancelling edit never clears a committed Chairman override
+  ---
+  duration_ms: 2.269322
+  type: 'test'
+  ...
+# Subtest: review: every missing five-second slot breaks the chart, including boundary offsets
+ok 28 - review: every missing five-second slot breaks the chart, including boundary offsets
+  ---
+  duration_ms: 19.044958
+  type: 'test'
+  ...
+# Subtest: review: API reason matches observation availability and status
+ok 29 - review: API reason matches observation availability and status
+  ---
+  duration_ms: 0.526614
+  type: 'test'
+  ...
+# Subtest: review: tooltip reads scores from persisted model input
+ok 30 - review: tooltip reads scores from persisted model input
+  ---
+  duration_ms: 1.154
+  type: 'test'
+  ...
+# Subtest: supplied 14 worked examples retain exact math; final boundaries reject corrupt inputs
+ok 31 - supplied 14 worked examples retain exact math; final boundaries reject corrupt inputs
+  ---
+  duration_ms: 1.071165
+  type: 'test'
+  ...
+# Subtest: pregame is updateable before launch, frozen at kickoff, and no rating-to-margin inference
+ok 32 - pregame is updateable before launch, frozen at kickoff, and no rating-to-margin inference
+  ---
+  duration_ms: 1.652387
+  type: 'test'
+  ...
+# Subtest: missing or mismatched source inputs are BLOCKED; betting source not accepted
+ok 33 - missing or mismatched source inputs are BLOCKED; betting source not accepted
+  ---
+  duration_ms: 1.736819
+  type: 'test'
+  ...
+# Subtest: P1-1 session namespacing isolates identical game and run IDs
+ok 34 - P1-1 session namespacing isolates identical game and run IDs
+  ---
+  duration_ms: 1.888893
+  type: 'test'
+  ...
+# Subtest: P1-2 event identity excludes revision; exact retry no-op; changed revision and second kickoff rejected
+ok 35 - P1-2 event identity excludes revision; exact retry no-op; changed revision and second kickoff rejected
+  ---
+  duration_ms: 0.954729
+  type: 'test'
+  ...
+# Subtest: P1-3 recovery reconciles reordered original events, detects missing/tampered records and preserves prefix
+ok 36 - P1-3 recovery reconciles reordered original events, detects missing/tampered records and preserves prefix
+  ---
+  duration_ms: 6.132407
+  type: 'test'
+  ...
+# Subtest: P1-4 model, prior and revision cannot silently change within frozen history
+ok 37 - P1-4 model, prior and revision cannot silently change within frozen history
+  ---
+  duration_ms: 6.656968
+  type: 'test'
+  ...
+# Subtest: probability state and recovery journal must commit together with matching session identity
+ok 38 - probability state and recovery journal must commit together with matching session identity
+  ---
+  duration_ms: 1.368945
+  type: 'test'
+  ...
+# Subtest: five-second slots, unchanged paused state and outage gaps are explicit; reads append nothing
+ok 39 - five-second slots, unchanged paused state and outage gaps are explicit; reads append nothing
+  ---
+  duration_ms: 4.500426
+  type: 'test'
+  ...
+# Subtest: observed scores and possession change live probability; model cannot see queued plays or RNG
+ok 40 - observed scores and possession change live probability; model cannot see queued plays or RNG
+  ---
+  duration_ms: 0.773447
+  type: 'test'
+  ...
+# Subtest: first resolved gameplay gets an immediate record even inside the current five-second slot
+ok 41 - first resolved gameplay gets an immediate record even inside the current five-second slot
+  ---
+  duration_ms: 4.110358
+  type: 'test'
+  ...
+# Subtest: every override blocks grey, preserves old points, and continues blocked; pause/delay do not
+ok 42 - every override blocks grey, preserves old points, and continues blocked; pause/delay do not
+  ---
+  duration_ms: 10.751878
+  type: 'test'
+  ...
+# Subtest: edit cancel retains observations; analytics stamps do not invalidate correction tokens
+ok 43 - edit cancel retains observations; analytics stamps do not invalidate correction tokens
+  ---
+  duration_ms: 5.291779
+  type: 'test'
+  ...
+# Subtest: final is immediate and terminal; post-final polling rejected; OT estimates explicitly blocked
+ok 44 - final is immediate and terminal; post-final polling rejected; OT estimates explicitly blocked
+  ---
+  duration_ms: 1.287211
+  type: 'test'
+  ...
+# Subtest: chart renders BLOCKED grey with label, escapes text and never connects across known gaps
+ok 45 - chart renders BLOCKED grey with label, escapes text and never connects across known gaps
+  ---
+  duration_ms: 1.311217
+  type: 'test'
+  ...
+# Subtest: 56 matchups: observer enabled/disabled gives identical football state and outcomes at 1x and 50x
+ok 46 - 56 matchups: observer enabled/disabled gives identical football state and outcomes at 1x and 50x
+  ---
+  duration_ms: 848.696397
+  type: 'test'
+  ...
+# W11_LOCAL_56_ACTIVE_MS 12433
+# W11_POPULATION {"games":56,"seedsPerGame":10,"runs":560,"points":23792,"minTotal":10,"maxTotal":89,"meanTotal":42.48571428571429}
+# Subtest: W11 exact data counts, IDs, coverage, ranges and UTC midnight rollovers
+ok 47 - W11 exact data counts, IDs, coverage, ranges and UTC midnight rollovers
+  ---
+  duration_ms: 4.794329
+  type: 'test'
+  ...
+# Subtest: football code is byte-identical after explicit release metadata normalization
+ok 48 - football code is byte-identical after explicit release metadata normalization
+  ---
+  duration_ms: 0.680597
+  type: 'test'
+  ...
+# Subtest: stats polling cannot mutate pending plays, RNG or history; started and resolved are distinct
+ok 49 - stats polling cannot mutate pending plays, RNG or history; started and resolved are distinct
+  ---
+  duration_ms: 11.117835
+  type: 'test'
+  ...
+# Subtest: stats endpoint exposes resolved evidence only; rejects old sessions and unknown games
+ok 50 - stats endpoint exposes resolved evidence only; rejects old sessions and unknown games
+  ---
+  duration_ms: 18.127564
+  type: 'test'
+  ...
+# Subtest: invalid period cannot be silently reported as a valid score
+ok 51 - invalid period cannot be silently reported as a valid score
+  ---
+  duration_ms: 0.727588
+  type: 'test'
+  ...
+# Subtest: 56 active games progress together with stats reads between ticks
+ok 52 - 56 active games progress together with stats reads between ticks
+  ---
+  duration_ms: 12645.507908
+  type: 'test'
+  ...
+# Subtest: 56 games x 10 seeds: finals, stats, regulation TOP, polling/chunk and 1/4/20/50x invariance
+ok 53 - 56 games x 10 seeds: finals, stats, regulation TOP, polling/chunk and 1/4/20/50x invariance
+  ---
+  duration_ms: 1612.429994
+  type: 'test'
+  ...
+# Subtest: unrelated scheduler version churn retries with current CAS; no blind board overwrite
+ok 54 - unrelated scheduler version churn retries with current CAS; no blind board overwrite
+  ---
+  duration_ms: 69.99274
+  type: 'test'
+  ...
+# Subtest: three unrelated CAS collisions return busy without changing the game
+ok 55 - three unrelated CAS collisions return busy without changing the game
+  ---
+  duration_ms: 26.09658
+  type: 'test'
+  ...
+# Subtest: concurrent target control change rejects safely
+ok 56 - concurrent target control change rejects safely
+  ---
+  duration_ms: 13.28351
+  type: 'test'
+  ...
+# Subtest: same key returns original receipt once, even after newer versions; changed body conflicts
+ok 57 - same key returns original receipt once, even after newer versions; changed body conflicts
+  ---
+  duration_ms: 56.315446
+  type: 'test'
+  ...
+# Subtest: edit token ignores only elapsed GL, detects real field changes
+ok 58 - edit token ignores only elapsed GL, detects real field changes
+  ---
+  duration_ms: 5.763251
+  type: 'test'
+  ...
+# Subtest: missing token never bypasses strict session-version protection
+ok 59 - missing token never bypasses strict session-version protection
+  ---
+  duration_ms: 5.276777
+  type: 'test'
+  ...
+# Subtest: scheduler compact receipt replays exact committed version without full-board state
+ok 60 - scheduler compact receipt replays exact committed version without full-board state
+  ---
+  duration_ms: 15.854967
+  type: 'test'
+  ...
+# Subtest: 500 namespace denied and public read exposes no private/control witnesses
+ok 61 - 500 namespace denied and public read exposes no private/control witnesses
+  ---
+  duration_ms: 14.063777
+  type: 'test'
+  ...
+# Subtest: operator render receives tokens without RNG/history disclosure
+ok 62 - operator render receives tokens without RNG/history disclosure
+  ---
+  duration_ms: 23.077117
+  type: 'test'
+  ...
+1..62
+# tests 62
+# suites 0
+# pass 62
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14528.994527

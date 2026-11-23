@@ -1,0 +1,42 @@
+{
+  "sourceCommit": "cd26ed23bff38004e61210a1004051ae51906846",
+  "branch": "fix/v506-wp-review-findings",
+  "testCommand": "node --test --test-reporter=tap tests/v506/*.test.mjs",
+  "expectedTests": 62,
+  "actualPassed": 62,
+  "files": [
+    {
+      "path": "tests/v506/fixtures/wp-example-inputs.json",
+      "sha256": "7b151500cbe2c5f5d55d39d65e7e5aad5d5905b6327a895c468eea3f157a2d5e"
+    },
+    {
+      "path": "tests/v506/football-boundaries.test.mjs",
+      "sha256": "898e3f3edea958d7944627e3391442eec8b10de6dc88ffe31edf6fb3e21af958"
+    },
+    {
+      "path": "tests/v506/http-recovery.test.mjs",
+      "sha256": "d44702e8bf4eeccfc82120d7c935459a465111f5d2ca352ed1d47e2e1ed522e6"
+    },
+    {
+      "path": "tests/v506/invariants.test.mjs",
+      "sha256": "4266740bf6551fbf3b2d8fe416a3b7277b736281739f5e3fa3985d85aaa37e6e"
+    },
+    {
+      "path": "tests/v506/probability-http.test.mjs",
+      "sha256": "fd30f62dc767c7a57b45e026240bdf6a2a355c223682b2caa0385a06e4c8fa58"
+    },
+    {
+      "path": "tests/v506/probability.test.mjs",
+      "sha256": "87447cc07352ef9d06ce07964242376ddcd92e8f8f63e19cf252053255283bd5"
+    },
+    {
+      "path": "tests/v506/stats.test.mjs",
+      "sha256": "f6bc0198f68e866b7a4c9d201006c30814c4acab74cc3365a0b00d2998243814"
+    },
+    {
+      "path": "tests/v506/store.test.mjs",
+      "sha256": "18e2e2247b632a5b506093eb27813ccff2155dc2d983adaf37f490bac24900c6"
+    }
+  ],
+  "preservation": "Source files verified against exact Git blob hashes. Original branch and tests not modified. Run in a separate pinned worktree; never replace the protected tests/v506 in 5.1.0."
+}

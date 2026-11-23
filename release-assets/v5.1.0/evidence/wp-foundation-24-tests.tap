@@ -1,0 +1,154 @@
+TAP version 13
+# Subtest: contract inventories retain every requested entry and ten workstreams
+ok 1 - contract inventories retain every requested entry and ten workstreams
+  ---
+  duration_ms: 2.698831
+  type: 'test'
+  ...
+# Subtest: unauthenticated and wrong-session users cannot trigger storage reads
+ok 2 - unauthenticated and wrong-session users cannot trigger storage reads
+  ---
+  duration_ms: 0.53053
+  type: 'test'
+  ...
+# Subtest: missing, stale and wrong-game audit fail closed
+ok 3 - missing, stale and wrong-game audit fail closed
+  ---
+  duration_ms: 3.020891
+  type: 'test'
+  ...
+# Subtest: score permanently blocks details after final/accept/restart
+ok 4 - score permanently blocks details after final/accept/restart
+  ---
+  duration_ms: 0.296717
+  type: 'test'
+  ...
+# Subtest: clock_set permanently blocks details after final/accept/restart
+ok 5 - clock_set permanently blocks details after final/accept/restart
+  ---
+  duration_ms: 0.236938
+  type: 'test'
+  ...
+# Subtest: edit_commit permanently blocks details after final/accept/restart
+ok 6 - edit_commit permanently blocks details after final/accept/restart
+  ---
+  duration_ms: 0.158559
+  type: 'test'
+  ...
+# Subtest: end permanently blocks details after final/accept/restart
+ok 7 - end permanently blocks details after final/accept/restart
+  ---
+  duration_ms: 0.154933
+  type: 'test'
+  ...
+# Subtest: reopen_live permanently blocks details after final/accept/restart
+ok 8 - reopen_live permanently blocks details after final/accept/restart
+  ---
+  duration_ms: 1.029644
+  type: 'test'
+  ...
+# Subtest: open Edit blocks; clean cancellation restores; pause/delay do not block
+ok 9 - open Edit blocks; clean cancellation restores; pause/delay do not block
+  ---
+  duration_ms: 0.508357
+  type: 'test'
+  ...
+# Subtest: touchdown yards stop at goal line; scoring is not double counted
+ok 10 - touchdown yards stop at goal line; scoring is not double counted
+  ---
+  duration_ms: 2.073498
+  type: 'test'
+  ...
+# Subtest: college sacks/kneels count as rushes; safety loss stops at own goal
+ok 11 - college sacks/kneels count as rushes; safety loss stops at own goal
+  ---
+  duration_ms: 0.630511
+  type: 'test'
+  ...
+# Subtest: interception flight and punts are excluded from offense and conversion attempts
+ok 12 - interception flight and punts are excluded from offense and conversion attempts
+  ---
+  duration_ms: 0.608328
+  type: 'test'
+  ...
+# Subtest: lost fumble gains use actual spot and remain giveaways
+ok 13 - lost fumble gains use actual spot and remain giveaways
+  ---
+  duration_ms: 0.31861
+  type: 'test'
+  ...
+# Subtest: unknown or incomplete plays block entire derived response
+ok 14 - unknown or incomplete plays block entire derived response
+  ---
+  duration_ms: 0.36446
+  type: 'test'
+  ...
+# Subtest: zero-denominator rates are null and all 27 statistic keys are retained
+ok 15 - zero-denominator rates are null and all 27 statistic keys are retained
+  ---
+  duration_ms: 0.46416
+  type: 'test'
+  ...
+# Subtest: paginated reads are pure, deterministic and reject mixed run continuation
+ok 16 - paginated reads are pure, deterministic and reject mixed run continuation
+  ---
+  duration_ms: 1.098097
+  type: 'test'
+  ...
+# Subtest: blocked response contains no plays, statistics or field
+ok 17 - blocked response contains no plays, statistics or field
+  ---
+  duration_ms: 0.341626
+  type: 'test'
+  ...
+# Subtest: field coordinates preserve offense-relative meaning and cap line to gain
+ok 18 - field coordinates preserve offense-relative meaning and cap line to gain
+  ---
+  duration_ms: 0.367975
+  type: 'test'
+  ...
+# Subtest: halftime starts a new possession even with same offense
+ok 19 - halftime starts a new possession even with same offense
+  ---
+  duration_ms: 0.292421
+  type: 'test'
+  ...
+# Subtest: all 56 complete engine games normalize without mutating source state
+ok 20 - all 56 complete engine games normalize without mutating source state
+  ---
+  duration_ms: 165.042427
+  type: 'test'
+  ...
+# Subtest: supplied illustrative kickoff formula is retained, including 10/15-minute modes
+ok 21 - supplied illustrative kickoff formula is retained, including 10/15-minute modes
+  ---
+  duration_ms: 1.511741
+  type: 'test'
+  ...
+# Subtest: model remains pure and explicit about calibration
+ok 22 - model remains pure and explicit about calibration
+  ---
+  duration_ms: 1.02764
+  type: 'test'
+  ...
+# Subtest: live observed score changes affect estimate; nonterminal OT is unavailable
+ok 23 - live observed score changes affect estimate; nonterminal OT is unavailable
+  ---
+  duration_ms: 0.47027
+  type: 'test'
+  ...
+# Subtest: terminal result requires an untied outcome and does not imply official acceptance
+ok 24 - terminal result requires an untied outcome and does not imply official acceptance
+  ---
+  duration_ms: 0.414215
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 304.118096
