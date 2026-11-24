@@ -1,0 +1,60 @@
+kickoff_et,away,away_team_id,home,home_team_id,temperature_f,forecast,precip_probability_pct,wind_from,wind_mph,venue,forecast_exposure,snapshot_as_of_ct
+2026-11-24T20:00:00-05:00,Colgate,COLG,Cornell,COR,30,clear,0,NW,1,Schoellkopf Field,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-24T22:00:00-05:00,UConn,UConn,Wyoming,WYO,28,partly cloudy,0,WSW,15,War Memorial Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-26T19:30:00-05:00,TCU,TCU,Texas Tech,TTU,45,partly cloudy,0,S,5,Jones AT&T Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T11:00:00-05:00,LSU,LSU,Arkansas,ARK,43,sunny,0,SW,5,Razorback Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T12:00:00-05:00,Georgia Tech,GT,Georgia,UGA,56,mostly sunny,0,W,15,Sanford Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T12:00:00-05:00,Louisville,LOU,Kentucky,UK,44,mostly cloudy,3,W,8,Kroger Field,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T12:00:00-05:00,North Dakota State,NDSU,Tulane,TLN,55,partly sunny,0,N,5,Yulman Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T14:30:00-05:00,Nebraska,NEB,Iowa,IOWA,45,mostly sunny,2,SW,5,Kinnick Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T15:30:00-05:00,Virginia,UVA,Virginia Tech,VT,47,mostly sunny,1,W,9,Lane Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T15:30:00-05:00,Florida State,FSU,Florida,FLA,63,partly sunny,2,NW,5,Ben Hill Griffin Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T15:30:00-05:00,Holy Cross,HC,Lehigh,LEH,52,slight chance of light rain,15,W,15,Goodman Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T16:30:00-05:00,Duke,DUKE,Wake Forest,WAKE,54,sunny,0,W,13,Allegacy Federal Credit Union Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T18:15:00-05:00,Pittsburgh,PITT,California,CAL,60,mostly cloudy,1,NE,6,California Memorial Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T19:30:00-05:00,Minnesota,MINN,Wisconsin,WIS,37,partly cloudy,12,SW,5,Camp Randall Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T20:00:00-05:00,West Virginia,WVU,Utah,UTAH,45,mostly cloudy,7,CALM,0,Rice-Eccles Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T20:30:00-05:00,Cincinnati,CIN,BYU,BYU,47,mostly cloudy,5,SE,1,LaVell Edwards Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-27T23:30:00-05:00,SMU,SMU,Stanford,STAN,57,mostly cloudy,2,ESE,1,Stanford Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T12:00:00-05:00,East Carolina,ECU,Florida Atlantic,FAU,74,chance of showers,28,N,8,FAU Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T12:00:00-05:00,Yale,YALE,Harvard,HARV,49,mostly sunny,2,W,8,Harvard Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T12:00:00-05:00,Penn,PENN,Princeton,PRIN,51,partly sunny,0,W,5,Princeton Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T12:00:00-05:00,South Carolina,SC,Clemson,CLEM,56,mostly sunny,6,SW,3,Memorial Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T12:00:00-05:00,Boston College,BC,Miami,MIA,73,chance of showers,33,N,6,Hard Rock Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T12:00:00-05:00,UTEP,UTEP,Northern Illinois,NIU,41,partly sunny,8,SW,10,Huskie Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T12:00:00-05:00,Southern Miss,USM,Temple,TEM,52,mostly sunny,0,W,5,Lincoln Financial Field,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T12:00:00-05:00,Middle Tennessee,MTSU,Marshall,MRSH,48,partly sunny,2,SW,7,Joan C. Edwards Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T12:00:00-05:00,Michigan,MICH,Ohio State,OSU,45,partly sunny,5,SW,9,Ohio Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T12:00:00-05:00,Notre Dame,ND,Syracuse,SYR,44,slight chance of light rain outside,19,W,7,JMA Wireless Dome,INDOOR_EXTERIOR,2026-11-23T00:09:00-06:00
+2026-11-28T12:00:00-05:00,NC State,NCSU,North Carolina,UNC,57,mostly sunny,1,SW,7,Kenan Memorial Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T12:00:00-05:00,Buffalo,BUFF,Coastal Carolina,CCU,61,mostly sunny,4,W,5,Brooks Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T14:10:00-05:00,Oklahoma,OU,Missouri,MIZ,54,sunny,0,W,8,Memorial Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T15:30:00-05:00,Kansas State,KSU,Iowa State,ISU,50,mostly sunny,5,WNW,9,Jack Trice Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T15:30:00-05:00,Michigan State,MSU,Rutgers,RUTG,54,mostly sunny,0,W,5,SHI Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T15:30:00-05:00,Illinois,ILL,Northwestern,NU,47,partly sunny,14,SW,10,Ryan Field,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T15:30:00-05:00,Air Force,AF,New Mexico,NM,61,mostly sunny,0,CALM,0,University Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T15:30:00-05:00,Auburn,AUB,Alabama,ALA,63,sunny,2,SW,5,Bryant-Denny Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T15:30:00-05:00,UAB,UAB,Georgia State,GAST,60,sunny,2,W,10,Center Parc Credit Union Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T15:30:00-05:00,UCF,UCF,Colorado,COLO,59,mostly sunny,10,W,5,Folsom Field,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T15:30:00-05:00,Army,ARMY,Tulsa,TLSA,62,sunny,0,SW,5,H.A. Chapman Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T15:30:00-05:00,North Texas,UNT,Old Dominion,ODU,58,mostly sunny,6,W,7,S.B. Ballard Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T15:30:00-05:00,Penn State,PSU,Maryland,MD,55,partly sunny,4,W,5,SECU Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T15:30:00-05:00,Kansas,KU,Oklahoma State,OKST,62,sunny,0,WSW,6,Boone Pickens Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T16:00:00-05:00,Delaware,DEL,Georgia Southern,GASO,64,slight chance of showers,15,W,7,Paulson Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T16:00:00-05:00,Florida International,FIU,Troy,TROY,60,mostly sunny,1,W,5,Veterans Memorial Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T16:30:00-05:00,Tennessee,TENN,Vanderbilt,VAN,57,sunny,5,SW,10,FirstBank Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T18:00:00-05:00,Boise State,BOISE,Colorado State,CSU,54,mostly sunny,7,W,3,Canvas Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T18:15:00-05:00,South Florida,USF,UTSA,UTSA,63,sunny outside,0,S,5,Alamodome,INDOOR_EXTERIOR,2026-11-23T00:09:00-06:00
+2026-11-28T18:30:00-05:00,San Diego State,SDSU,Washington State,WSU,46,chance of light rain,39,S,7,Martin Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T19:00:00-05:00,Purdue,PUR,Indiana,IU,45,partly cloudy,3,SSW,5,Memorial Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T19:15:00-05:00,Mississippi State,MSST,Ole Miss,MISS,50,mostly clear,0,CALM,0,Vaught-Hemingway Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T19:30:00-05:00,Washington,WASH,Oregon,ORE,53,chance of light rain,49,SSE,5,Autzen Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T20:00:00-05:00,Nevada,NEV,UNLV,UNLV,65,mostly sunny outside,0,SE,3,Allegiant Stadium,INDOOR_EXTERIOR,2026-11-23T00:09:00-06:00
+2026-11-28T20:00:00-05:00,USC,USC,UCLA,UCLA,68,slight chance of light rain,17,SSW,5,Rose Bowl,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T20:30:00-05:00,Texas,TEX,Texas A&M,TA&M,58,mostly clear,0,CALM,0,Kyle Field,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T21:30:00-05:00,Baylor,BAY,Houston,HOU,57,mostly clear,0,CALM,0,TDECU Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T21:30:00-05:00,Texas State,TXST,Utah State,USU,43,chance of light rain,36,SSE,2,Maverik Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T22:00:00-05:00,Oregon State,ORST,Fresno State,FRES,59,chance of light rain,34,E,5,Valley Children’s Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T22:00:00-05:00,Arizona State,ASU,Arizona,ARIZ,62,mostly clear,0,E,1,Arizona Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T22:30:00-05:00,Rice,RICE,New Mexico State,NMSU,52,partly cloudy,0,W,1,Aggie Memorial Stadium,OUTDOOR,2026-11-23T00:09:00-06:00
+2026-11-28T23:59:00-05:00,Navy,NAVY,Hawaii,HAW,76,isolated showers,16,ENE,14,Clarence T.C. Ching Complex,OUTDOOR,2026-11-23T00:09:00-06:00
