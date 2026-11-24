@@ -1,0 +1,18 @@
+[
+  {
+    "path": "stats-tracker/w13/index.html",
+    "sha256": "0f1baa00aa7753b5186bfee856e51d3e34e82d66f15a6386e3ffdbddd73eb983"
+  },
+  {
+    "path": "stats-tracker/w13/reporting.mjs",
+    "sha256": "8dbad0b81aaf65480d41fe56f5c914ea17bf4d82058079e5e84a45e0f786c893"
+  },
+  {
+    "path": "stats-tracker/w13/tracker.css",
+    "sha256": "6232db11a7226e365f76641115229d6e53692070e1e6f299ee86859b178d29bd"
+  },
+  {
+    "path": "stats-tracker/w13/tracker.mjs",
+    "sha256": "88c0300a971be87a745c5846d7781bfa93048335c0da7b857f731b974c7c5373"
+  }
+]

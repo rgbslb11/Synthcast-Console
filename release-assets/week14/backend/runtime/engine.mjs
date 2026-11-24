@@ -1,13 +1,13 @@
 import {POWER_SOURCE_VERSION, TEAM_POWER} from './power.mjs';
-import {freshDeadman,arm as deadmanArm,disarm as deadmanDisarm,tick as deadmanTick,afterOperatorCommand} from '../../../v5.0.8.5-week13/backend/src/deadman.mjs';
-import {WEATHER_MODEL_VERSION,freshWeather,setWeather,lockWeather,weatherPassRate,weatherCompletion,weatherInterception,weatherFumble,weatherExplosivePass,weatherFieldGoal,weatherPunt,weatherAudit} from '../../../v5.0.8.5-week13/backend/src/weather.mjs';
+import {freshDeadman,arm as deadmanArm,disarm as deadmanDisarm,tick as deadmanTick,afterOperatorCommand} from '../src/deadman.mjs';
+import {WEATHER_MODEL_VERSION,freshWeather,setWeather,lockWeather,weatherPassRate,weatherCompletion,weatherInterception,weatherFumble,weatherExplosivePass,weatherFieldGoal,weatherPunt,weatherAudit} from '../src/weather.mjs';
 
 
 
 
 
 
-const ENGINE_VERSION = "GC-W14-OT-DEV";
+const ENGINE_VERSION = "GC-W14-OT-RC1";
 const OPENING_TOSS_STREAM_VERSION = "GC-W13-V5.0.8-RC1";
 const DATA_VERSION = "W14-CHAIRMAN-RATINGS121";
 const SPEEDS = [1, 4, 10, 20, 50];
