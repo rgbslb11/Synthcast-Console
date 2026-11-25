@@ -36,5 +36,4 @@ console.log(JSON.stringify({
   candidateP90Seconds: values[Math.floor(values.length * 0.90)],
   withinTarget: values.filter(seconds => seconds >= 9000 && seconds <= 9900).length,
   meanCommercials: mean(samples.map(sample => sample.breaks)),
-  estimatedMeanAt210SecondCommercials: mean(samples.map(sample => sample.revised + sample.breaks * 30)),
 }, null, 2));

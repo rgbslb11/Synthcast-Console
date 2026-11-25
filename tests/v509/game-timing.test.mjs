@@ -42,12 +42,12 @@ test('a crossed threshold cannot interrupt a drive and the next possession chang
   engine.advanceGame(g, g.pendingPlay.remaining);
   play(g, { turnover: true });
   const state = [g.possession, g.down, g.distance, g.fieldPos, g.scoreboardSeconds, g.quarter];
-  assert.equal(g.breakSeconds, 180);
+  assert.equal(g.breakSeconds, 210);
   assert.equal(commercials(g)[0].reason, 'CHANGE_OF_POSSESSION');
   const oldGL = g.glSeconds;
-  engine.advanceGame(g, 180);
+  engine.advanceGame(g, 210);
   assert.deepEqual([g.possession, g.down, g.distance, g.fieldPos, g.scoreboardSeconds, g.quarter], state);
-  assert.equal(g.glSeconds - oldGL, 180);
+  assert.equal(g.glSeconds - oldGL, 210);
 });
 
 test('charged timeout has 90 seconds before the queued commercial, without scoreboard runoff', () => {
@@ -70,7 +70,7 @@ test('charged timeout has 90 seconds before the queued commercial, without score
   engine.advanceGame(g, 89);
   assert.equal(g.breakSeconds, 0);
   engine.advanceGame(g, 1);
-  assert.equal(g.breakSeconds, 180);
+  assert.equal(g.breakSeconds, 210);
   assert.equal(g.glSeconds - elapsed, 102);
   assert.equal(g.scoreboardSeconds, 177);
 });
@@ -82,9 +82,9 @@ test('the official two-minute stoppage consumes exactly one Q2 or Q4 slot', () =
     play(g);
     engine.advanceGame(g, 3);
     assert.equal(g.scoreboardSeconds, 120);
-    assert.equal(g.breakSeconds, 180);
+    assert.equal(g.breakSeconds, 210);
     assert.equal(commercials(g)[0].reason, 'TWO_MINUTE_TIMEOUT');
-    engine.advanceGame(g, 180);
+    engine.advanceGame(g, 210);
     assert.equal(g.scoreboardSeconds, 120);
     assert.equal(commercials(g).length, 1);
   }
@@ -164,13 +164,13 @@ test('all 17 slots can be used with enough eligible stoppages, including 15-minu
       const hasOfficialTimeout = quarter === 2 || quarter === 4;
       for (let i = 0; i < cap - Number(hasOfficialTimeout); i++) {
         assert.equal(engine.registerOfficiatingStoppage(g, 'OFFICIAL_REVIEW'), true);
-        engine.advanceGame(g, 180);
+        engine.advanceGame(g, 210);
       }
       assert.equal(engine.registerOfficiatingStoppage(g, 'OFFICIAL_REVIEW'), false);
       if (hasOfficialTimeout) {
         play(g);
         engine.advanceGame(g, 3);
-        assert.equal(g.breakSeconds, 180);
+        assert.equal(g.breakSeconds, 210);
       }
       assert.equal(commercials(g).length, cap);
     }
