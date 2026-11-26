@@ -2,7 +2,10 @@ name: Publish GameCast 5.1 Week 14
 on:
   push:
     branches: [release/gamecast-v5.1.0-week14]
-    paths: ['.github/workflows/publish-v510-week14.yml']
+    paths:
+      - '.github/workflows/publish-v510-week14.yml'
+      - 'scripts/publish-v510-week14.mjs'
+      - 'public/v5.1.0/week14/**'
 permissions:
   contents: read
   actions: read
