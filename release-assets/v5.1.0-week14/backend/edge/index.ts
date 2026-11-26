@@ -107,10 +107,10 @@ Deno.serve(async req=>{
    return {body:{stateVersion:old.data.stateVersion,replayed:true},status:200};
   }
   if(!isWorker&&body.expectedVersion!==version){
-   const controlCommands=['auto','on_air','pause','speed'];
+   const controlCommands=['launch','auto','on_air','pause','speed'];
    if(!controlCommands.includes(body.command)||body.expectedVersion<0||body.expectedVersion>version)
     return {body:{error:'VERSION_CONFLICT'},status:409};
-   // Scheduler revisions are safe for mode controls only. Any intervening
+   // Scheduler revisions are safe for launch and mode controls. Any intervening
    // command for this game requires the Chairman to review again.
    const stale=await one(`select exists(select 1 from ${schema}.source_commits c
     cross join lateral jsonb_array_elements(c.events) e
