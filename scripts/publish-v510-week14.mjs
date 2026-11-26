@@ -31,7 +31,7 @@ function verifyImports(){
  }
 }
 verifyImports();
-assert.equal(overlay.length,4);
+for(const name of ['index.html','app.mjs','model.mjs','wp-transport.mjs'])assert.ok(overlay.includes(path.join(assets,name)),name);
 if(mode==='prepare'){
  const prior=walk(out);
  for(const name of ['index.html','week14/index.html','v5.0.8/w13/index.html','v5.1.0/review/index.html']){
