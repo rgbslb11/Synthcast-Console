@@ -41,8 +41,9 @@ function renderDetail(){
  const id=selected();
  if(!['overview','stats','plays','scoring'].includes(state.tab))state.tab='overview';
  $('#detail-content').innerHTML=renderGameStats({id,game:gameById(id),data:state.data.get(id),games:state.games,allData:state.data,tab:state.tab,historical:state.historical,drive:state.drive,wpCase:state.wpCase,wpCases:Object.keys(wpFixtures.fixtures),wpResponse:state.mode==='fixture'?wpFixtures.fixtures[state.wpCase]:state.wp.get(id),mode:state.mode,contract:fixtures.contract,error:state.errors.get(id),wpError:state.wpErrors.get(id),desktop:matchMedia('(min-width:1101px)').matches,compact:matchMedia('(max-width:600px)').matches,gamePickerOpen:state.gamePickerOpen,detailSections:state.detailSections},{lineScore,stats,field,scoring});
+ renderControls(id);
 }
-function render(){const id=selected();const detailNav=$('#game-stats-nav');detailNav.hidden=!id;detailNav.href=id?`#game=${encodeURIComponent(id)}`:'#board';detailNav.setAttribute('aria-current',id?'page':'false');$('.surface-nav a[href="#board"]').setAttribute('aria-current',id?'false':'page');$('.masthead').classList.toggle('mobile-open',state.mobileMenu);$('#mobile-menu-toggle').setAttribute('aria-expanded',String(state.mobileMenu));$('#board').hidden=!!id;$('#detail').hidden=!id;$('#back').hidden=!id;$('#breadcrumb').textContent=id?`StatsCenter / ${id} / Game Stats`:'Scoreboard / Stats / Rollup';$('.brand h1 span').textContent=id?'GAME STATS':'SCOREBOARD';document.title=id?'Synthcast Game Stats | 5.1 Week 14':'Synthcast StatsCenter | 5.1 Week 14';$('#connection').textContent=state.connection;$('#review-banner').textContent='WEEK 14 · 57 scheduled games';const sourceTimes=[...state.data.values()].map(d=>d.generatedAt).filter(t=>Number.isFinite(Date.parse(t))).sort();$('#updated-zulu').textContent=`Updated Zulu Time · ${sourceTimes.at(-1)??'Unavailable'} · source commit`;$('#master-zulu').textContent='Master Zulu · '+(state.masterZulu??'—');$('#refresh').disabled=state.busy;renderBoard();if(id){renderDetail();renderControls(id);}}
+function render(){const id=selected();const detailNav=$('#game-stats-nav');detailNav.hidden=!id;detailNav.href=id?`#game=${encodeURIComponent(id)}`:'#board';detailNav.setAttribute('aria-current',id?'page':'false');$('.surface-nav a[href="#board"]').setAttribute('aria-current',id?'false':'page');$('.masthead').classList.toggle('mobile-open',state.mobileMenu);$('#mobile-menu-toggle').setAttribute('aria-expanded',String(state.mobileMenu));$('#board').hidden=!!id;$('#detail').hidden=!id;$('#back').hidden=!id;$('#breadcrumb').textContent=id?`StatsCenter / ${id} / Game Stats`:'Scoreboard / Stats / Rollup';$('.brand h1 span').textContent=id?'GAME STATS':'SCOREBOARD';document.title=id?'Synthcast Game Stats | 5.1 Week 14':'Synthcast StatsCenter | 5.1 Week 14';$('#connection').textContent=state.connection;$('#review-banner').textContent='WEEK 14 · 57 scheduled games';const sourceTimes=[...state.data.values()].map(d=>d.generatedAt).filter(t=>Number.isFinite(Date.parse(t))).sort();$('#updated-zulu').textContent=`Updated Zulu Time · ${sourceTimes.at(-1)??'Unavailable'} · source commit`;$('#master-zulu').textContent='Master Zulu · '+(state.masterZulu??'—');$('#refresh').disabled=state.busy;renderBoard();if(id)renderDetail();}
 async function refresh(){if(state.busy||Date.now()<state.retryAt)return;if(state.mode==='live'&&(!state.token||Date.now()>=state.expiresAt)){resetConnection();state.token='';state.connection='Authentication required · sign in to Week 14';render();return;}if(state.mode==='fixture'){render();return;}state.busy=true;const generation=state.generation;controller=new AbortController();let failed=false;
  try{
   const board=await request('board',{signal:controller.signal});
@@ -107,7 +108,7 @@ function renderControls(id){
  const options=(choices[game.lifecycle]??[]).filter(([command])=>command!=='speed'||game.auto);
  const wp=state.wp.get(id)?.summary;
  const prior=wp?.status==='PREGAME'&&typeof wp.probability==='number'?'<p>'+ (wp.pickEm?'Pick’em · ':'Pregame WP · ')+(wp.probability*100).toFixed(1)+'%</p>':'';
- $('#detail-content').insertAdjacentHTML('afterbegin','<section class="panel" aria-label="Chairman controls"><h3>Chairman controls</h3>'+prior+options.map(([command,label])=>'<button type="button" data-command="'+command+'">'+label+'</button>').join(' ')+'<p id="command-status" role="status">'+esc(state.commandStatus??'')+'</p></section>');
+ $('#detail-content').insertAdjacentHTML('afterbegin','<section class="panel" aria-label="Chairman controls"><h3>Chairman controls</h3>'+prior+options.map(([command,label])=>'<button type="button" data-command="'+command+'"'+(state.commandBusy?' disabled':'')+'>'+label+'</button>').join(' ')+'<p id="command-status" role="status">'+esc(state.commandStatus??'')+'</p></section>');
 }
 document.addEventListener('click',async e=>{
  const button=e.target.closest('[data-command]');
@@ -130,8 +131,10 @@ document.addEventListener('click',async e=>{
   try{payload=JSON.parse(answer);if(!payload||Array.isArray(payload)||typeof payload!=='object')throw Error();}
   catch{state.commandStatus='Invalid edit format';render();return;}
  }
- state.commandBusy=true;state.commandStatus='Sending command';button.disabled=true;
+ state.commandBusy=true;state.commandStatus='Sending command…';
+ $('#command-status').textContent=state.commandStatus;
+ document.querySelectorAll('[data-command]').forEach(control=>{control.disabled=true;});
  try{const receipt=await request('command',{body:{id,command,payload,expectedVersion:state.stateVersion}});state.commandStatus='Saved · revision '+receipt.stateVersion;}
  catch(error){state.commandStatus=error.message==='VERSION_CONFLICT'?'Board updated. Review the current state before retrying.':error.message;}
- finally{state.commandBusy=false;await refresh();render();}
+ finally{state.commandBusy=false;render();await refresh();}
 });

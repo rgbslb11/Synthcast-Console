@@ -43,9 +43,9 @@ export function createWpPipeline({store,readSource,sourceVersion}){
   for(const g of source.games){
    const previous=states.get(g.id);
    if(['FINAL_PENDING','LOCKED','FINAL','READY'].includes(g.lifecycle))continue;
-   if(g.lifecycle==='UNLAUNCHED' && previous?.runId===g.runId && previous.stateVersion===source.stateVersion)continue;
    if(previous&&Math.floor(Date.parse(previous.observedAt)/5000)>=slot)continue;
    const c=captureGame(g,{engineVersion:source.engineVersion,stateVersion:source.stateVersion,actionOrdinal:0,command:'poll',observedAt});
+   if(g.lifecycle==='UNLAUNCHED'&&previous?.status==='PREGAME'&&previous.runId===g.runId&&previous.capture?.contextHash===c.contextHash)continue;
    const prior=g.lifecycle==='UNLAUNCHED'?await store.prior(sessionId,g.id,g.runId,source.stateVersion+1):null;
    const result=observeCapture(previous,c,{prior,kind:g.lifecycle==='UNLAUNCHED'?'pregame':'poll',eventId:'poll:'+slot});updates.push(result);
   }

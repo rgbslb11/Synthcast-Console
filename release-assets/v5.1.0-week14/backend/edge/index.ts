@@ -41,7 +41,12 @@ Deno.serve(async req=>{
  const transaction=(fn)=>sql.begin(async t=>{tx=t;try{return await fn();}finally{tx=undefined;}});
  const one=async(q,args=[]) => (await query(q,args)).rows[0];
  const revision=async()=>Number((await one(`select state_version from ${schema}.source_heads where session_id=$1`,[session]))?.state_version);
- const load=async(sid,v)=> (await one(`select ${schema}.load_source($1,$2) data`,[sid,v]))?.data;
+ const load=async(sid,v)=>{
+  const row=await one(`select session_id, state_version, engine_version, committed_at, games, events
+   from ${schema}.source_commits where session_id=$1 and state_version=$2`,[sid,v]);
+  return row&&{sessionId:row.session_id,stateVersion:Number(row.state_version),engineVersion:row.engine_version,
+   committedAt:new Date(row.committed_at).toISOString(),games:row.games,commits:[{events:row.events}]};
+ };
  const store=createWpStore({query,transaction});
  const wp=createWpPipeline({store,readSource:load,sourceVersion:revision});
  try{
@@ -69,7 +74,10 @@ Deno.serve(async req=>{
   if(action==='details'){
    const game=source.games.find(g=>g.id===gameId);
    if(!game)return answer({error:'GAME_NOT_FOUND'},404);
-   const commands=source.commits.flatMap(c=>c.events.filter(e=>e.gameId===null||e.gameId===gameId).map(e=>({stateVersion:c.stateVersion,command:e.command})));
+   const {rows:audit}=await query(`select c.state_version, e->>'command' command from ${schema}.source_commits c
+    cross join lateral jsonb_array_elements(c.events) e where c.session_id=$1 and c.state_version<=$2
+    and (e->>'gameId'=$3 or e->>'gameId' is null) order by c.state_version`,[session,version,gameId]);
+   const commands=audit.map(row=>({stateVersion:Number(row.state_version),command:row.command}));
    const p=buildProjection({game,engineVersion:source.engineVersion,stateVersion:version,committedAt:source.committedAt,audit:{sessionId:session,gameId,throughStateVersion:version,complete:true,commands}});
    const after=Number(url.searchParams.get('after')??0),limit=Number(url.searchParams.get('limit')??100);
    if(!Number.isSafeInteger(after)||after<0||!Number.isSafeInteger(limit)||limit<1||limit>250)return answer({error:'INVALID_CURSOR'},400);
@@ -88,17 +96,33 @@ Deno.serve(async req=>{
   }
   const key=isWorker?'tick:'+Math.floor(Date.now()/5000):req.headers.get('idempotency-key')??'';
   if(!isWorker&&!/^[A-Za-z0-9._~-]{16,128}$/.test(key))return answer({error:'IDEMPOTENCY_REQUIRED'},400);
-  const requestId=hash([actor,key]),fingerprint=hash(body),old=await one(`select ${schema}.lookup_source_request($1,$2) data`,[session,requestId]);
+  const requestId=hash([actor,key]),fingerprint=hash(body);
+  const result=await transaction(async()=>{
+   await query("select pg_advisory_xact_lock(hashtextextended('source/'||$1,0))",[session]);
+   const version=await revision(), source=await load(session,version);
+   if(!source||source.engineVersion!==engine.ENGINE_VERSION)return {body:{error:'WEEK14_SOURCE_UNAVAILABLE'},status:503};
+   const old=await one(`select ${schema}.lookup_source_request($1,$2) data`,[session,requestId]);
   if(old?.data){
-   if(old.data.requestHash!==fingerprint)return answer({error:'IDEMPOTENCY_CONFLICT'},409);
-   return answer({stateVersion:old.data.stateVersion,replayed:true});
+   if(old.data.requestHash!==fingerprint)return {body:{error:'IDEMPOTENCY_CONFLICT'},status:409};
+   return {body:{stateVersion:old.data.stateVersion,replayed:true},status:200};
   }
-  if(!isWorker&&body.expectedVersion!==version)return answer({error:'VERSION_CONFLICT'},409);
+  if(!isWorker&&body.expectedVersion!==version){
+   const controlCommands=['auto','on_air','pause','speed'];
+   if(!controlCommands.includes(body.command)||body.expectedVersion<0||body.expectedVersion>version)
+    return {body:{error:'VERSION_CONFLICT'},status:409};
+   // Scheduler revisions are safe for mode controls only. Any intervening
+   // command for this game requires the Chairman to review again.
+   const stale=await one(`select exists(select 1 from ${schema}.source_commits c
+    cross join lateral jsonb_array_elements(c.events) e
+    where c.session_id=$1 and c.state_version>$2 and c.state_version<=$3 and e->>'gameId'=$4) changed`,
+    [session,body.expectedVersion,version,body.id]);
+   if(stale.changed)return {body:{error:'VERSION_CONFLICT'},status:409};
+  }
   const now=clock();
   const elapsed=Math.floor((Date.parse(now)-Date.parse(source.committedAt))/1000);
   const hasRunning=source.games.some(g=>['ACTIVE','EDIT','DELAY'].includes(g.lifecycle));
-  if(hasRunning&&(elapsed<0||elapsed>21600))return answer({error:'PROGRESSION_INTERVAL_INVALID'},409);
-  if(isWorker&&!hasRunning){const result=await wp.sample(session,clock);return answer({stateVersion:version,...result});}
+  if(hasRunning&&(elapsed<0||elapsed>21600))return {body:{error:'PROGRESSION_INTERVAL_INVALID'},status:409};
+  if(isWorker&&!hasRunning)return {body:{stateVersion:version},status:200};
   const draft={state:source.games};
   const events=[];
   function append(result){
@@ -115,9 +139,10 @@ Deno.serve(async req=>{
   if(events.length){
    await one(`select ${schema}.commit_source($1,$2,$3,$4,$5,$6)`,[session,version,source.engineVersion,JSON.stringify(draft.state),JSON.stringify(events),requestId]);
   }
-  if(isWorker)await wp.sample(session,clock);
-  else try{await wp.recover(session);}catch(e){console.error('WP_RECOVERY_PENDING',String(e?.message));}
-  return answer({stateVersion:version+Number(events.length>0)});
+  return {body:{stateVersion:version+Number(events.length>0)},status:200};
+  });
+  if(isWorker&&result.status===200)await wp.sample(session,clock);
+  return answer(result.body,result.status);
  }catch(e){
   const code=String(e?.code??e?.message??'BACKEND_ERROR');
   const message=String(e?.message??code);
