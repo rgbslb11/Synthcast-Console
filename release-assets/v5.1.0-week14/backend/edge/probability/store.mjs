@@ -39,6 +39,7 @@ export function createWpStore({query,transaction}){
   });},
   async read({sessionId,gameId,userId,after=0,limit=100,runId=null,highWatermark=null}){requireScope(sessionId,gameId);if(!Number.isSafeInteger(after)||after<0||!Number.isSafeInteger(limit)||limit<1||limit>250||after>0&&!runId)throw Error('INVALID_CURSOR');
    return transaction(async()=>{
+    await query('set transaction isolation level repeatable read read only');
     const allowed=await one('select gamecast_v510_w14.authorize_reporting($1,$2) ok',[userId,sessionId]);if(!allowed?.ok)throw Error('CHAIRMAN_FORBIDDEN');
     const h=await one('select state,sequence from gamecast_v510_w14.wp_heads where session_id=$1 and game_id=$2',[sessionId,gameId]);
     if(!h)return {summary:compactView(null),points:[],nextSequence:after};
