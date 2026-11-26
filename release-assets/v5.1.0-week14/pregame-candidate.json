@@ -1,0 +1,2066 @@
+{
+  "status": "CHAIRMAN_APPROVED_SCHEDULE_AND_RATINGS",
+  "productionImportReady": true,
+  "week": "2026-W14",
+  "kickoffTimeZone": "America/New_York",
+  "gameCount": 57,
+  "participantCount": 114,
+  "counts": {
+    "2026-11-26": 1,
+    "2026-11-27": 14,
+    "2026-11-28": 42
+  },
+  "sources": {
+    "week14Runtime": {
+      "function": "gamecast-week14-ot-chairman",
+      "version": 1,
+      "bundleSha256": "ce3fe974029540ae8151c14bd488c59eb5feb6d977d9389f70f9411d42882b8e",
+      "engine": "GC-W14-OT-RC1"
+    },
+    "gameIdMappingCommit": "25d56750f2e4fbf4ea3ef512d4d12de7eff5f7ad",
+    "carriageFile": "OSF_W14_TV_Carriage_2026_LOCKED.xml",
+    "carriageFileId": "libfile_2e8b41ce334481918571e75a06f070a5",
+    "ratings": "W14-CHAIRMAN-APPROVED-2026-11-23",
+    "g0714Kickoff": "Chairman confirmed 11:30 p.m. ET on November 26, 2026"
+  },
+  "unresolved": [],
+  "pregameWinProbability": {
+    "status": "BLOCKED",
+    "reason": "APPROVED_WEEK14_PREGAME_PRIOR_MANIFEST_MISSING",
+    "requiredGameCount": 57
+  },
+  "games": [
+    {
+      "id": "G0721",
+      "runtimeSourceId": "G1403",
+      "date": "2026-11-26",
+      "kickoffET": "19:30",
+      "kickoffZulu": "2026-11-27T00:30:00Z",
+      "network": "SEN",
+      "away": "TCU",
+      "awayCode": "TCU",
+      "home": "Texas Tech",
+      "homeCode": "TTU",
+      "venueName": "Jones AT&T Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 45,
+        "summary": "partly cloudy",
+        "precipPct": 0,
+        "windFrom": "S",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0679",
+      "runtimeSourceId": "G1404",
+      "date": "2026-11-27",
+      "kickoffET": "11:00",
+      "kickoffZulu": "2026-11-27T16:00:00Z",
+      "network": "ESPN",
+      "away": "LSU",
+      "awayCode": "LSU",
+      "home": "Arkansas",
+      "homeCode": "ARK",
+      "venueName": "Razorback Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 43,
+        "summary": "sunny",
+        "precipPct": 0,
+        "windFrom": "SW",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0723",
+      "runtimeSourceId": "G1405",
+      "date": "2026-11-27",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-27T17:00:00Z",
+      "network": "ABC",
+      "away": "Georgia Tech",
+      "awayCode": "GT",
+      "home": "Georgia",
+      "homeCode": "UGA",
+      "venueName": "Sanford Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": false,
+      "kickoffForecast": {
+        "temperatureF": 56,
+        "summary": "mostly sunny",
+        "precipPct": 0,
+        "windFrom": "W",
+        "windMph": 15,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0724",
+      "runtimeSourceId": "G1406",
+      "date": "2026-11-27",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-27T17:00:00Z",
+      "network": "EBC",
+      "away": "Louisville",
+      "awayCode": "LOU",
+      "home": "Kentucky",
+      "homeCode": "UK",
+      "venueName": "Kroger Field",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": false,
+      "kickoffForecast": {
+        "temperatureF": 44,
+        "summary": "mostly cloudy",
+        "precipPct": 3,
+        "windFrom": "W",
+        "windMph": 8,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0718",
+      "runtimeSourceId": "G1407",
+      "date": "2026-11-27",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-27T17:00:00Z",
+      "network": "SEN",
+      "away": "North Dakota State",
+      "awayCode": "NDSU",
+      "home": "Tulane",
+      "homeCode": "TLN",
+      "venueName": "Yulman Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": false,
+      "kickoffForecast": {
+        "temperatureF": 55,
+        "summary": "partly sunny",
+        "precipPct": 0,
+        "windFrom": "N",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0695",
+      "runtimeSourceId": "G1408",
+      "date": "2026-11-27",
+      "kickoffET": "14:30",
+      "kickoffZulu": "2026-11-27T19:30:00Z",
+      "network": "CBS",
+      "away": "Nebraska",
+      "awayCode": "NEB",
+      "home": "Iowa",
+      "homeCode": "IOWA",
+      "venueName": "Kinnick Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 45,
+        "summary": "mostly sunny",
+        "precipPct": 2,
+        "windFrom": "SW",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0731",
+      "runtimeSourceId": "G1409",
+      "date": "2026-11-27",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-27T20:30:00Z",
+      "network": "ABC",
+      "away": "Virginia",
+      "awayCode": "UVA",
+      "home": "Virginia Tech",
+      "homeCode": "VT",
+      "venueName": "Lane Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 47,
+        "summary": "mostly sunny",
+        "precipPct": 1,
+        "windFrom": "W",
+        "windMph": 9,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0688",
+      "runtimeSourceId": "G1410",
+      "date": "2026-11-27",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-27T20:30:00Z",
+      "network": "EBC",
+      "away": "Florida State",
+      "awayCode": "FSU",
+      "home": "Florida",
+      "homeCode": "FLA",
+      "venueName": "Ben Hill Griffin Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": false,
+      "kickoffForecast": {
+        "temperatureF": 63,
+        "summary": "partly sunny",
+        "precipPct": 2,
+        "windFrom": "NW",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0698",
+      "runtimeSourceId": "G1411",
+      "date": "2026-11-27",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-27T20:30:00Z",
+      "network": "EBCOTT",
+      "away": "Holy Cross",
+      "awayCode": "HC",
+      "home": "Lehigh",
+      "homeCode": "LEH",
+      "venueName": "Goodman Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 52,
+        "summary": "slight chance of light rain",
+        "precipPct": 15,
+        "windFrom": "W",
+        "windMph": 15,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0732",
+      "runtimeSourceId": "G1412",
+      "date": "2026-11-27",
+      "kickoffET": "16:30",
+      "kickoffZulu": "2026-11-27T21:30:00Z",
+      "network": "SEN",
+      "away": "Duke",
+      "awayCode": "DUKE",
+      "home": "Wake Forest",
+      "homeCode": "WAKE",
+      "venueName": "Allegacy Federal Credit Union Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 54,
+        "summary": "sunny",
+        "precipPct": 0,
+        "windFrom": "W",
+        "windMph": 13,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0681",
+      "runtimeSourceId": "G1413",
+      "date": "2026-11-27",
+      "kickoffET": "18:15",
+      "kickoffZulu": "2026-11-27T23:15:00Z",
+      "network": "SEN",
+      "away": "Pittsburgh",
+      "awayCode": "PITT",
+      "home": "California",
+      "homeCode": "CAL",
+      "venueName": "California Memorial Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 60,
+        "summary": "mostly cloudy",
+        "precipPct": 1,
+        "windFrom": "NE",
+        "windMph": 6,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0733",
+      "runtimeSourceId": "G1414",
+      "date": "2026-11-27",
+      "kickoffET": "19:30",
+      "kickoffZulu": "2026-11-28T00:30:00Z",
+      "network": "NBC",
+      "away": "Minnesota",
+      "awayCode": "MINN",
+      "home": "Wisconsin",
+      "homeCode": "WIS",
+      "venueName": "Camp Randall Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 37,
+        "summary": "partly cloudy",
+        "precipPct": 12,
+        "windFrom": "SW",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0728",
+      "runtimeSourceId": "G1415",
+      "date": "2026-11-27",
+      "kickoffET": "20:00",
+      "kickoffZulu": "2026-11-28T01:00:00Z",
+      "network": "EBC",
+      "away": "West Virginia",
+      "awayCode": "WVU",
+      "home": "Utah",
+      "homeCode": "UTAH",
+      "venueName": "Rice-Eccles Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 45,
+        "summary": "mostly cloudy",
+        "precipPct": 7,
+        "windFrom": "CALM",
+        "windMph": 0,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0680",
+      "runtimeSourceId": "G1416",
+      "date": "2026-11-27",
+      "kickoffET": "20:30",
+      "kickoffZulu": "2026-11-28T01:30:00Z",
+      "network": "SEN",
+      "away": "Cincinnati",
+      "awayCode": "CIN",
+      "home": "BYU",
+      "homeCode": "BYU",
+      "venueName": "LaVell Edwards Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 47,
+        "summary": "mostly cloudy",
+        "precipPct": 5,
+        "windFrom": "SE",
+        "windMph": 1,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0714",
+      "runtimeSourceId": "G1417",
+      "date": "2026-11-27",
+      "kickoffET": "23:30",
+      "kickoffZulu": "2026-11-28T04:30:00Z",
+      "network": "EBC",
+      "away": "SMU",
+      "awayCode": "SMU",
+      "home": "Stanford",
+      "homeCode": "STAN",
+      "venueName": "Stanford Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 57,
+        "summary": "mostly cloudy",
+        "precipPct": 2,
+        "windFrom": "ESE",
+        "windMph": 1,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0687",
+      "runtimeSourceId": "G1418",
+      "date": "2026-11-28",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-28T17:00:00Z",
+      "network": "ABC",
+      "away": "East Carolina",
+      "awayCode": "ECU",
+      "home": "Florida Atlantic",
+      "homeCode": "FAU",
+      "venueName": "FAU Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 74,
+        "summary": "chance of showers",
+        "precipPct": 28,
+        "windFrom": "N",
+        "windMph": 8,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0692",
+      "runtimeSourceId": "G1419",
+      "date": "2026-11-28",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-28T17:00:00Z",
+      "network": "CBSSN",
+      "away": "Yale",
+      "awayCode": "YALE",
+      "home": "Harvard",
+      "homeCode": "HARV",
+      "venueName": "Harvard Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 49,
+        "summary": "mostly sunny",
+        "precipPct": 2,
+        "windFrom": "W",
+        "windMph": 8,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0712",
+      "runtimeSourceId": "G1420",
+      "date": "2026-11-28",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-28T17:00:00Z",
+      "network": "CBSSN+",
+      "away": "Penn",
+      "awayCode": "PENN",
+      "home": "Princeton",
+      "homeCode": "PRIN",
+      "venueName": "Princeton Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 51,
+        "summary": "partly sunny",
+        "precipPct": 0,
+        "windFrom": "W",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0683",
+      "runtimeSourceId": "G1421",
+      "date": "2026-11-28",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-28T17:00:00Z",
+      "network": "CW",
+      "away": "South Carolina",
+      "awayCode": "SC",
+      "home": "Clemson",
+      "homeCode": "CLEM",
+      "venueName": "Memorial Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": false,
+      "kickoffForecast": {
+        "temperatureF": 56,
+        "summary": "mostly sunny",
+        "precipPct": 6,
+        "windFrom": "SW",
+        "windMph": 3,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0700",
+      "runtimeSourceId": "G1422",
+      "date": "2026-11-28",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-28T17:00:00Z",
+      "network": "EBC",
+      "away": "Boston College",
+      "awayCode": "BC",
+      "home": "Miami",
+      "homeCode": "MIA",
+      "venueName": "Hard Rock Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 73,
+        "summary": "chance of showers",
+        "precipPct": 33,
+        "windFrom": "N",
+        "windMph": 6,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0704",
+      "runtimeSourceId": "G1423",
+      "date": "2026-11-28",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-28T17:00:00Z",
+      "network": "EBCOTT",
+      "away": "UTEP",
+      "awayCode": "UTEP",
+      "home": "Northern Illinois",
+      "homeCode": "NIU",
+      "venueName": "Huskie Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 41,
+        "summary": "partly sunny",
+        "precipPct": 8,
+        "windFrom": "SW",
+        "windMph": 10,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0717",
+      "runtimeSourceId": "G1424",
+      "date": "2026-11-28",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-28T17:00:00Z",
+      "network": "ESPN",
+      "away": "Southern Miss",
+      "awayCode": "USM",
+      "home": "Temple",
+      "homeCode": "TEM",
+      "venueName": "Lincoln Financial Field",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 52,
+        "summary": "mostly sunny",
+        "precipPct": 0,
+        "windFrom": "W",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0703",
+      "runtimeSourceId": "G1425",
+      "date": "2026-11-28",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-28T17:00:00Z",
+      "network": "ESPN2",
+      "away": "Middle Tennessee",
+      "awayCode": "MTSU",
+      "home": "Marshall",
+      "homeCode": "MRSH",
+      "venueName": "Joan C. Edwards Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 48,
+        "summary": "partly sunny",
+        "precipPct": 2,
+        "windFrom": "SW",
+        "windMph": 7,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0711",
+      "runtimeSourceId": "G1426",
+      "date": "2026-11-28",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-28T17:00:00Z",
+      "network": "FOX",
+      "away": "Michigan",
+      "awayCode": "MICH",
+      "home": "Ohio State",
+      "homeCode": "OSU",
+      "venueName": "Ohio Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 45,
+        "summary": "partly sunny",
+        "precipPct": 5,
+        "windFrom": "SW",
+        "windMph": 9,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0715",
+      "runtimeSourceId": "G1427",
+      "date": "2026-11-28",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-28T17:00:00Z",
+      "network": "NBC",
+      "away": "Notre Dame",
+      "awayCode": "ND",
+      "home": "Syracuse",
+      "homeCode": "SYR",
+      "venueName": "JMA Wireless Dome",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": false,
+      "kickoffForecast": {
+        "temperatureF": 44,
+        "summary": "slight chance of light rain outside",
+        "precipPct": 19,
+        "windFrom": "W",
+        "windMph": 7,
+        "scope": "INDOOR_EXTERIOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0725",
+      "runtimeSourceId": "G1428",
+      "date": "2026-11-28",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-28T17:00:00Z",
+      "network": "SEN",
+      "away": "NC State",
+      "awayCode": "NCSU",
+      "home": "North Carolina",
+      "homeCode": "UNC",
+      "venueName": "Kenan Memorial Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 57,
+        "summary": "mostly sunny",
+        "precipPct": 1,
+        "windFrom": "SW",
+        "windMph": 7,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0682",
+      "runtimeSourceId": "G1429",
+      "date": "2026-11-28",
+      "kickoffET": "12:00",
+      "kickoffZulu": "2026-11-28T17:00:00Z",
+      "network": "SEN+",
+      "away": "Buffalo",
+      "awayCode": "BUFF",
+      "home": "Coastal Carolina",
+      "homeCode": "CCU",
+      "venueName": "Brooks Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 61,
+        "summary": "mostly sunny",
+        "precipPct": 4,
+        "windFrom": "W",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0702",
+      "runtimeSourceId": "G1430",
+      "date": "2026-11-28",
+      "kickoffET": "14:10",
+      "kickoffZulu": "2026-11-28T19:10:00Z",
+      "network": "SEN",
+      "away": "Oklahoma",
+      "awayCode": "OU",
+      "home": "Missouri",
+      "homeCode": "MIZ",
+      "venueName": "Memorial Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 54,
+        "summary": "sunny",
+        "precipPct": 0,
+        "windFrom": "W",
+        "windMph": 8,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0696",
+      "runtimeSourceId": "G1431",
+      "date": "2026-11-28",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-28T20:30:00Z",
+      "network": "ABC",
+      "away": "Kansas State",
+      "awayCode": "KSU",
+      "home": "Iowa State",
+      "homeCode": "ISU",
+      "venueName": "Jack Trice Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 50,
+        "summary": "mostly sunny",
+        "precipPct": 5,
+        "windFrom": "WNW",
+        "windMph": 9,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0713",
+      "runtimeSourceId": "G1432",
+      "date": "2026-11-28",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-28T20:30:00Z",
+      "network": "B1G",
+      "away": "Michigan State",
+      "awayCode": "MSU",
+      "home": "Rutgers",
+      "homeCode": "RUTG",
+      "venueName": "SHI Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 54,
+        "summary": "mostly sunny",
+        "precipPct": 0,
+        "windFrom": "W",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0707",
+      "runtimeSourceId": "G1433",
+      "date": "2026-11-28",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-28T20:30:00Z",
+      "network": "CBS",
+      "away": "Illinois",
+      "awayCode": "ILL",
+      "home": "Northwestern",
+      "homeCode": "NU",
+      "venueName": "Ryan Field",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 47,
+        "summary": "partly sunny",
+        "precipPct": 14,
+        "windFrom": "SW",
+        "windMph": 10,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0705",
+      "runtimeSourceId": "G1434",
+      "date": "2026-11-28",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-28T20:30:00Z",
+      "network": "CW",
+      "away": "Air Force",
+      "awayCode": "AF",
+      "home": "New Mexico",
+      "homeCode": "NM",
+      "venueName": "University Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 61,
+        "summary": "mostly sunny",
+        "precipPct": 0,
+        "windFrom": "CALM",
+        "windMph": 0,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0677",
+      "runtimeSourceId": "G1435",
+      "date": "2026-11-28",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-28T20:30:00Z",
+      "network": "EBC",
+      "away": "Auburn",
+      "awayCode": "AUB",
+      "home": "Alabama",
+      "homeCode": "ALA",
+      "venueName": "Bryant-Denny Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 63,
+        "summary": "sunny",
+        "precipPct": 2,
+        "windFrom": "SW",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0691",
+      "runtimeSourceId": "G1436",
+      "date": "2026-11-28",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-28T20:30:00Z",
+      "network": "EBCOTT",
+      "away": "UAB",
+      "awayCode": "UAB",
+      "home": "Georgia State",
+      "homeCode": "GAST",
+      "venueName": "Center Parc Credit Union Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": false,
+      "kickoffForecast": {
+        "temperatureF": 60,
+        "summary": "sunny",
+        "precipPct": 2,
+        "windFrom": "W",
+        "windMph": 10,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0684",
+      "runtimeSourceId": "G1437",
+      "date": "2026-11-28",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-28T20:30:00Z",
+      "network": "ESPN",
+      "away": "UCF",
+      "awayCode": "UCF",
+      "home": "Colorado",
+      "homeCode": "COLO",
+      "venueName": "Folsom Field",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 59,
+        "summary": "mostly sunny",
+        "precipPct": 10,
+        "windFrom": "W",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0719",
+      "runtimeSourceId": "G1438",
+      "date": "2026-11-28",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-28T20:30:00Z",
+      "network": "ESPN2",
+      "away": "Army",
+      "awayCode": "ARMY",
+      "home": "Tulsa",
+      "homeCode": "TLSA",
+      "venueName": "H.A. Chapman Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 62,
+        "summary": "sunny",
+        "precipPct": 0,
+        "windFrom": "SW",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0708",
+      "runtimeSourceId": "G1439",
+      "date": "2026-11-28",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-28T20:30:00Z",
+      "network": "FOX",
+      "away": "North Texas",
+      "awayCode": "UNT",
+      "home": "Old Dominion",
+      "homeCode": "ODU",
+      "venueName": "S.B. Ballard Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": false,
+      "kickoffForecast": {
+        "temperatureF": 58,
+        "summary": "mostly sunny",
+        "precipPct": 6,
+        "windFrom": "W",
+        "windMph": 7,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0699",
+      "runtimeSourceId": "G1440",
+      "date": "2026-11-28",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-28T20:30:00Z",
+      "network": "NBC",
+      "away": "Penn State",
+      "awayCode": "PSU",
+      "home": "Maryland",
+      "homeCode": "MD",
+      "venueName": "SECU Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 55,
+        "summary": "partly sunny",
+        "precipPct": 4,
+        "windFrom": "W",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0709",
+      "runtimeSourceId": "G1441",
+      "date": "2026-11-28",
+      "kickoffET": "15:30",
+      "kickoffZulu": "2026-11-28T20:30:00Z",
+      "network": "TNT",
+      "away": "Kansas",
+      "awayCode": "KU",
+      "home": "Oklahoma State",
+      "homeCode": "OKST",
+      "venueName": "Boone Pickens Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 62,
+        "summary": "sunny",
+        "precipPct": 0,
+        "windFrom": "WSW",
+        "windMph": 6,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0690",
+      "runtimeSourceId": "G1442",
+      "date": "2026-11-28",
+      "kickoffET": "16:00",
+      "kickoffZulu": "2026-11-28T21:00:00Z",
+      "network": "SEN+",
+      "away": "Delaware",
+      "awayCode": "DEL",
+      "home": "Georgia Southern",
+      "homeCode": "GASO",
+      "venueName": "Paulson Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 64,
+        "summary": "slight chance of showers",
+        "precipPct": 15,
+        "windFrom": "W",
+        "windMph": 7,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0720",
+      "runtimeSourceId": "G1443",
+      "date": "2026-11-28",
+      "kickoffET": "16:00",
+      "kickoffZulu": "2026-11-28T21:00:00Z",
+      "network": "SEN+",
+      "away": "Florida International",
+      "awayCode": "FIU",
+      "home": "Troy",
+      "homeCode": "TROY",
+      "venueName": "Veterans Memorial Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 60,
+        "summary": "mostly sunny",
+        "precipPct": 1,
+        "windFrom": "W",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0730",
+      "runtimeSourceId": "G1444",
+      "date": "2026-11-28",
+      "kickoffET": "16:30",
+      "kickoffZulu": "2026-11-28T21:30:00Z",
+      "network": "SEN",
+      "away": "Tennessee",
+      "awayCode": "TENN",
+      "home": "Vanderbilt",
+      "homeCode": "VAN",
+      "venueName": "FirstBank Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 57,
+        "summary": "sunny",
+        "precipPct": 5,
+        "windFrom": "SW",
+        "windMph": 10,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0686",
+      "runtimeSourceId": "G1445",
+      "date": "2026-11-28",
+      "kickoffET": "18:00",
+      "kickoffZulu": "2026-11-28T23:00:00Z",
+      "network": "USA",
+      "away": "Boise State",
+      "awayCode": "BOISE",
+      "home": "Colorado State",
+      "homeCode": "CSU",
+      "venueName": "Canvas Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": false,
+      "kickoffForecast": {
+        "temperatureF": 54,
+        "summary": "mostly sunny",
+        "precipPct": 7,
+        "windFrom": "W",
+        "windMph": 3,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0729",
+      "runtimeSourceId": "G1446",
+      "date": "2026-11-28",
+      "kickoffET": "18:15",
+      "kickoffZulu": "2026-11-28T23:15:00Z",
+      "network": "SEN",
+      "away": "South Florida",
+      "awayCode": "USF",
+      "home": "UTSA",
+      "homeCode": "UTSA",
+      "venueName": "Alamodome",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 63,
+        "summary": "sunny outside",
+        "precipPct": 0,
+        "windFrom": "S",
+        "windMph": 5,
+        "scope": "INDOOR_EXTERIOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0734",
+      "runtimeSourceId": "G1447",
+      "date": "2026-11-28",
+      "kickoffET": "18:30",
+      "kickoffZulu": "2026-11-28T23:30:00Z",
+      "network": "CW",
+      "away": "San Diego State",
+      "awayCode": "SDSU",
+      "home": "Washington State",
+      "homeCode": "WSU",
+      "venueName": "Martin Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": false,
+      "kickoffForecast": {
+        "temperatureF": 46,
+        "summary": "chance of light rain",
+        "precipPct": 39,
+        "windFrom": "S",
+        "windMph": 7,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0697",
+      "runtimeSourceId": "G1448",
+      "date": "2026-11-28",
+      "kickoffET": "19:00",
+      "kickoffZulu": "2026-11-29T00:00:00Z",
+      "network": "FS1",
+      "away": "Purdue",
+      "awayCode": "PUR",
+      "home": "Indiana",
+      "homeCode": "IU",
+      "venueName": "Memorial Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 45,
+        "summary": "partly cloudy",
+        "precipPct": 3,
+        "windFrom": "SSW",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0701",
+      "runtimeSourceId": "G1449",
+      "date": "2026-11-28",
+      "kickoffET": "19:15",
+      "kickoffZulu": "2026-11-29T00:15:00Z",
+      "network": "ESPN",
+      "away": "Mississippi State",
+      "awayCode": "MSST",
+      "home": "Ole Miss",
+      "homeCode": "MISS",
+      "venueName": "Vaught-Hemingway Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 50,
+        "summary": "mostly clear",
+        "precipPct": 0,
+        "windFrom": "CALM",
+        "windMph": 0,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0710",
+      "runtimeSourceId": "G1450",
+      "date": "2026-11-28",
+      "kickoffET": "19:30",
+      "kickoffZulu": "2026-11-29T00:30:00Z",
+      "network": "NBC",
+      "away": "Washington",
+      "awayCode": "WASH",
+      "home": "Oregon",
+      "homeCode": "ORE",
+      "venueName": "Autzen Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 53,
+        "summary": "chance of light rain",
+        "precipPct": 49,
+        "windFrom": "SSE",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0726",
+      "runtimeSourceId": "G1451",
+      "date": "2026-11-28",
+      "kickoffET": "20:00",
+      "kickoffZulu": "2026-11-29T01:00:00Z",
+      "network": "CBS",
+      "away": "Nevada",
+      "awayCode": "NEV",
+      "home": "UNLV",
+      "homeCode": "UNLV",
+      "venueName": "Allegiant Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 65,
+        "summary": "mostly sunny outside",
+        "precipPct": 0,
+        "windFrom": "SE",
+        "windMph": 3,
+        "scope": "INDOOR_EXTERIOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0722",
+      "runtimeSourceId": "G1452",
+      "date": "2026-11-28",
+      "kickoffET": "20:00",
+      "kickoffZulu": "2026-11-29T01:00:00Z",
+      "network": "EBC",
+      "away": "USC",
+      "awayCode": "USC",
+      "home": "UCLA",
+      "homeCode": "UCLA",
+      "venueName": "Rose Bowl",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 68,
+        "summary": "slight chance of light rain",
+        "precipPct": 17,
+        "windFrom": "SSW",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0716",
+      "runtimeSourceId": "G1453",
+      "date": "2026-11-28",
+      "kickoffET": "20:30",
+      "kickoffZulu": "2026-11-29T01:30:00Z",
+      "network": "SEN",
+      "away": "Texas",
+      "awayCode": "TEX",
+      "home": "Texas A&M",
+      "homeCode": "TA&M",
+      "venueName": "Kyle Field",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 58,
+        "summary": "mostly clear",
+        "precipPct": 0,
+        "windFrom": "CALM",
+        "windMph": 0,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0694",
+      "runtimeSourceId": "G1454",
+      "date": "2026-11-28",
+      "kickoffET": "21:30",
+      "kickoffZulu": "2026-11-29T02:30:00Z",
+      "network": "ESPN2",
+      "away": "Baylor",
+      "awayCode": "BAY",
+      "home": "Houston",
+      "homeCode": "HOU",
+      "venueName": "TDECU Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 57,
+        "summary": "mostly clear",
+        "precipPct": 0,
+        "windFrom": "CALM",
+        "windMph": 0,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0727",
+      "runtimeSourceId": "G1455",
+      "date": "2026-11-28",
+      "kickoffET": "21:30",
+      "kickoffZulu": "2026-11-29T02:30:00Z",
+      "network": "USA",
+      "away": "Texas State",
+      "awayCode": "TXST",
+      "home": "Utah State",
+      "homeCode": "USU",
+      "venueName": "Maverik Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": false,
+      "kickoffForecast": {
+        "temperatureF": 43,
+        "summary": "chance of light rain",
+        "precipPct": 36,
+        "windFrom": "SSE",
+        "windMph": 2,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0689",
+      "runtimeSourceId": "G1456",
+      "date": "2026-11-28",
+      "kickoffET": "22:00",
+      "kickoffZulu": "2026-11-29T03:00:00Z",
+      "network": "CW",
+      "away": "Oregon State",
+      "awayCode": "ORST",
+      "home": "Fresno State",
+      "homeCode": "FRES",
+      "venueName": "Valley Children’s Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": false,
+      "kickoffForecast": {
+        "temperatureF": 59,
+        "summary": "chance of light rain",
+        "precipPct": 34,
+        "windFrom": "E",
+        "windMph": 5,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0678",
+      "runtimeSourceId": "G1457",
+      "date": "2026-11-28",
+      "kickoffET": "22:00",
+      "kickoffZulu": "2026-11-29T03:00:00Z",
+      "network": "FOX",
+      "away": "Arizona State",
+      "awayCode": "ASU",
+      "home": "Arizona",
+      "homeCode": "ARIZ",
+      "venueName": "Arizona Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 62,
+        "summary": "mostly clear",
+        "precipPct": 0,
+        "windFrom": "E",
+        "windMph": 1,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0706",
+      "runtimeSourceId": "G1458",
+      "date": "2026-11-28",
+      "kickoffET": "22:30",
+      "kickoffZulu": "2026-11-29T03:30:00Z",
+      "network": "ESPN",
+      "away": "Rice",
+      "awayCode": "RICE",
+      "home": "New Mexico State",
+      "homeCode": "NMSU",
+      "venueName": "Aggie Memorial Stadium",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": true,
+      "kickoffForecast": {
+        "temperatureF": 52,
+        "summary": "partly cloudy",
+        "precipPct": 0,
+        "windFrom": "W",
+        "windMph": 1,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    },
+    {
+      "id": "G0693",
+      "runtimeSourceId": "G1459",
+      "date": "2026-11-28",
+      "kickoffET": "23:59",
+      "kickoffZulu": "2026-11-29T04:59:00Z",
+      "network": "SEN",
+      "away": "Navy",
+      "awayCode": "NAVY",
+      "home": "Hawaii",
+      "homeCode": "HAW",
+      "venueName": "Clarence T.C. Ching Complex",
+      "venueDesignation": "HOME",
+      "neutral": false,
+      "conferenceGame": false,
+      "kickoffForecast": {
+        "temperatureF": 76,
+        "summary": "isolated showers",
+        "precipPct": 16,
+        "windFrom": "ENE",
+        "windMph": 14,
+        "scope": "OUTDOOR",
+        "asOf": "2026-11-23T00:09:00-06:00"
+      }
+    }
+  ],
+  "teamRatings": {
+    "Georgia": {
+      "overall": 94,
+      "offense": 94,
+      "defense": 94
+    },
+    "Miami": {
+      "overall": 94,
+      "offense": 93,
+      "defense": 91
+    },
+    "Utah": {
+      "overall": 93,
+      "offense": 93,
+      "defense": 91
+    },
+    "Notre Dame": {
+      "overall": 93,
+      "offense": 94,
+      "defense": 93
+    },
+    "Alabama": {
+      "overall": 93,
+      "offense": 94,
+      "defense": 92
+    },
+    "Tennessee": {
+      "overall": 93,
+      "offense": 90,
+      "defense": 94
+    },
+    "Texas": {
+      "overall": 93,
+      "offense": 91,
+      "defense": 92
+    },
+    "Ohio State": {
+      "overall": 93,
+      "offense": 92,
+      "defense": 90
+    },
+    "Texas Tech": {
+      "overall": 92,
+      "offense": 94,
+      "defense": 90
+    },
+    "Oregon": {
+      "overall": 92,
+      "offense": 88,
+      "defense": 90
+    },
+    "Indiana": {
+      "overall": 92,
+      "offense": 88,
+      "defense": 93
+    },
+    "LSU": {
+      "overall": 91,
+      "offense": 91,
+      "defense": 93
+    },
+    "Ole Miss": {
+      "overall": 91,
+      "offense": 91,
+      "defense": 90
+    },
+    "Louisville": {
+      "overall": 91,
+      "offense": 87,
+      "defense": 90
+    },
+    "Arizona": {
+      "overall": 90,
+      "offense": 94,
+      "defense": 91
+    },
+    "Iowa": {
+      "overall": 90,
+      "offense": 87,
+      "defense": 93
+    },
+    "BYU": {
+      "overall": 90,
+      "offense": 85,
+      "defense": 91
+    },
+    "Wake Forest": {
+      "overall": 90,
+      "offense": 94,
+      "defense": 94
+    },
+    "USC": {
+      "overall": 90,
+      "offense": 89,
+      "defense": 84
+    },
+    "Missouri": {
+      "overall": 90,
+      "offense": 82,
+      "defense": 89
+    },
+    "Oklahoma": {
+      "overall": 90,
+      "offense": 81,
+      "defense": 89
+    },
+    "SMU": {
+      "overall": 89,
+      "offense": 88,
+      "defense": 90
+    },
+    "Texas A&M": {
+      "overall": 89,
+      "offense": 76,
+      "defense": 86
+    },
+    "Nebraska": {
+      "overall": 89,
+      "offense": 84,
+      "defense": 88
+    },
+    "Houston": {
+      "overall": 88,
+      "offense": 89,
+      "defense": 87
+    },
+    "UCLA": {
+      "overall": 88,
+      "offense": 89,
+      "defense": 90
+    },
+    "Duke": {
+      "overall": 88,
+      "offense": 85,
+      "defense": 93
+    },
+    "Kentucky": {
+      "overall": 87,
+      "offense": 85,
+      "defense": 76
+    },
+    "Michigan": {
+      "overall": 87,
+      "offense": 77,
+      "defense": 87
+    },
+    "Boise State": {
+      "overall": 87,
+      "offense": 91,
+      "defense": 78
+    },
+    "Virginia": {
+      "overall": 87,
+      "offense": 75,
+      "defense": 81
+    },
+    "North Carolina": {
+      "overall": 87,
+      "offense": 79,
+      "defense": 85
+    },
+    "Florida": {
+      "overall": 87,
+      "offense": 81,
+      "defense": 81
+    },
+    "Oklahoma State": {
+      "overall": 86,
+      "offense": 89,
+      "defense": 78
+    },
+    "Illinois": {
+      "overall": 86,
+      "offense": 81,
+      "defense": 85
+    },
+    "Wisconsin": {
+      "overall": 86,
+      "offense": 74,
+      "defense": 87
+    },
+    "Northwestern": {
+      "overall": 85,
+      "offense": 85,
+      "defense": 87
+    },
+    "Penn State": {
+      "overall": 85,
+      "offense": 88,
+      "defense": 89
+    },
+    "Auburn": {
+      "overall": 85,
+      "offense": 86,
+      "defense": 84
+    },
+    "Washington": {
+      "overall": 84,
+      "offense": 84,
+      "defense": 82
+    },
+    "South Carolina": {
+      "overall": 84,
+      "offense": 80,
+      "defense": 79
+    },
+    "Clemson": {
+      "overall": 84,
+      "offense": 79,
+      "defense": 85
+    },
+    "Florida State": {
+      "overall": 84,
+      "offense": 89,
+      "defense": 74
+    },
+    "Baylor": {
+      "overall": 84,
+      "offense": 82,
+      "defense": 82
+    },
+    "TCU": {
+      "overall": 84,
+      "offense": 76,
+      "defense": 87
+    },
+    "UCF": {
+      "overall": 83,
+      "offense": 81,
+      "defense": 84
+    },
+    "Memphis": {
+      "overall": 83,
+      "offense": 90,
+      "defense": 90
+    },
+    "Vanderbilt": {
+      "overall": 83,
+      "offense": 84,
+      "defense": 74
+    },
+    "Mississippi State": {
+      "overall": 82,
+      "offense": 78,
+      "defense": 78
+    },
+    "Cincinnati": {
+      "overall": 82,
+      "offense": 85,
+      "defense": 78
+    },
+    "Lehigh": {
+      "overall": 82,
+      "offense": 80,
+      "defense": 87
+    },
+    "South Florida": {
+      "overall": 81,
+      "offense": 86,
+      "defense": 85
+    },
+    "Colgate": {
+      "overall": 81,
+      "offense": 93,
+      "defense": 87
+    },
+    "Army": {
+      "overall": 81,
+      "offense": 84,
+      "defense": 82
+    },
+    "Texas State": {
+      "overall": 81,
+      "offense": 90,
+      "defense": 72
+    },
+    "Arkansas": {
+      "overall": 81,
+      "offense": 77,
+      "defense": 81
+    },
+    "Pittsburgh": {
+      "overall": 81,
+      "offense": 75,
+      "defense": 79
+    },
+    "Iowa State": {
+      "overall": 80,
+      "offense": 77,
+      "defense": 72
+    },
+    "New Mexico": {
+      "overall": 80,
+      "offense": 83,
+      "defense": 90
+    },
+    "Holy Cross": {
+      "overall": 80,
+      "offense": 79,
+      "defense": 85
+    },
+    "Penn": {
+      "overall": 80,
+      "offense": 87,
+      "defense": 82
+    },
+    "Fresno State": {
+      "overall": 79,
+      "offense": 81,
+      "defense": 84
+    },
+    "Virginia Tech": {
+      "overall": 79,
+      "offense": 83,
+      "defense": 72
+    },
+    "Georgia Tech": {
+      "overall": 79,
+      "offense": 72,
+      "defense": 72
+    },
+    "Arizona State": {
+      "overall": 78,
+      "offense": 79,
+      "defense": 70
+    },
+    "North Dakota State": {
+      "overall": 78,
+      "offense": 82,
+      "defense": 81
+    },
+    "Purdue": {
+      "overall": 78,
+      "offense": 82,
+      "defense": 75
+    },
+    "Oregon State": {
+      "overall": 78,
+      "offense": 90,
+      "defense": 83
+    },
+    "NC State": {
+      "overall": 78,
+      "offense": 72,
+      "defense": 77
+    },
+    "Michigan State": {
+      "overall": 78,
+      "offense": 77,
+      "defense": 75
+    },
+    "Kansas": {
+      "overall": 77,
+      "offense": 71,
+      "defense": 74
+    },
+    "North Texas": {
+      "overall": 77,
+      "offense": 79,
+      "defense": 78
+    },
+    "Minnesota": {
+      "overall": 77,
+      "offense": 74,
+      "defense": 72
+    },
+    "West Virginia": {
+      "overall": 76,
+      "offense": 88,
+      "defense": 68
+    },
+    "Maryland": {
+      "overall": 76,
+      "offense": 78,
+      "defense": 69
+    },
+    "Florida Atlantic": {
+      "overall": 76,
+      "offense": 79,
+      "defense": 72
+    },
+    "Colorado": {
+      "overall": 75,
+      "offense": 69,
+      "defense": 81
+    },
+    "Kansas State": {
+      "overall": 75,
+      "offense": 80,
+      "defense": 72
+    },
+    "Syracuse": {
+      "overall": 75,
+      "offense": 81,
+      "defense": 69
+    },
+    "Air Force": {
+      "overall": 75,
+      "offense": 84,
+      "defense": 81
+    },
+    "Georgia State": {
+      "overall": 75,
+      "offense": 87,
+      "defense": 81
+    },
+    "Navy": {
+      "overall": 75,
+      "offense": 69,
+      "defense": 79
+    },
+    "UTSA": {
+      "overall": 74,
+      "offense": 78,
+      "defense": 75
+    },
+    "Tulane": {
+      "overall": 74,
+      "offense": 84,
+      "defense": 79
+    },
+    "Boston College": {
+      "overall": 74,
+      "offense": 72,
+      "defense": 73
+    },
+    "Stanford": {
+      "overall": 73,
+      "offense": 75,
+      "defense": 66
+    },
+    "UConn": {
+      "overall": 73,
+      "offense": 84,
+      "defense": 74
+    },
+    "San Diego State": {
+      "overall": 73,
+      "offense": 78,
+      "defense": 78
+    },
+    "Utah State": {
+      "overall": 72,
+      "offense": 74,
+      "defense": 84
+    },
+    "Marshall": {
+      "overall": 72,
+      "offense": 74,
+      "defense": 75
+    },
+    "Yale": {
+      "overall": 72,
+      "offense": 74,
+      "defense": 78
+    },
+    "UNLV": {
+      "overall": 72,
+      "offense": 77,
+      "defense": 73
+    },
+    "California": {
+      "overall": 72,
+      "offense": 70,
+      "defense": 69
+    },
+    "East Carolina": {
+      "overall": 72,
+      "offense": 67,
+      "defense": 70
+    },
+    "Troy": {
+      "overall": 71,
+      "offense": 71,
+      "defense": 77
+    },
+    "Princeton": {
+      "overall": 71,
+      "offense": 68,
+      "defense": 69
+    },
+    "Rutgers": {
+      "overall": 71,
+      "offense": 67,
+      "defense": 66
+    },
+    "Louisiana Tech": {
+      "overall": 70,
+      "offense": 71,
+      "defense": 74
+    },
+    "Georgia Southern": {
+      "overall": 70,
+      "offense": 69,
+      "defense": 72
+    },
+    "San Jose State": {
+      "overall": 70,
+      "offense": 72,
+      "defense": 81
+    },
+    "Tulsa": {
+      "overall": 70,
+      "offense": 66,
+      "defense": 77
+    },
+    "Wyoming": {
+      "overall": 69,
+      "offense": 72,
+      "defense": 70
+    },
+    "Old Dominion": {
+      "overall": 69,
+      "offense": 66,
+      "defense": 69
+    },
+    "Washington State": {
+      "overall": 69,
+      "offense": 69,
+      "defense": 74
+    },
+    "Florida International": {
+      "overall": 69,
+      "offense": 68,
+      "defense": 77
+    },
+    "Delaware": {
+      "overall": 69,
+      "offense": 67,
+      "defense": 72
+    },
+    "Temple": {
+      "overall": 69,
+      "offense": 69,
+      "defense": 71
+    },
+    "Harvard": {
+      "overall": 68,
+      "offense": 68,
+      "defense": 68
+    },
+    "Buffalo": {
+      "overall": 68,
+      "offense": 68,
+      "defense": 71
+    },
+    "Coastal Carolina": {
+      "overall": 68,
+      "offense": 68,
+      "defense": 76
+    },
+    "Nevada": {
+      "overall": 67,
+      "offense": 66,
+      "defense": 70
+    },
+    "UAB": {
+      "overall": 67,
+      "offense": 68,
+      "defense": 71
+    },
+    "Southern Miss": {
+      "overall": 67,
+      "offense": 73,
+      "defense": 66
+    },
+    "Hawaii": {
+      "overall": 66,
+      "offense": 70,
+      "defense": 71
+    },
+    "Northern Illinois": {
+      "overall": 66,
+      "offense": 65,
+      "defense": 65
+    },
+    "Colorado State": {
+      "overall": 66,
+      "offense": 75,
+      "defense": 65
+    },
+    "Cornell": {
+      "overall": 66,
+      "offense": 66,
+      "defense": 66
+    },
+    "New Mexico State": {
+      "overall": 66,
+      "offense": 65,
+      "defense": 66
+    },
+    "Rice": {
+      "overall": 66,
+      "offense": 65,
+      "defense": 66
+    },
+    "Middle Tennessee": {
+      "overall": 65,
+      "offense": 66,
+      "defense": 67
+    },
+    "UTEP": {
+      "overall": 65,
+      "offense": 65,
+      "defense": 65
+    }
+  }
+}
