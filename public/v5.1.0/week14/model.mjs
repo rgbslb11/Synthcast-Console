@@ -3,7 +3,12 @@ export const DETAILS_URL='https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/
 export const textValue=v=>v==null?'Unavailable':String(v);
 export const clock=v=>typeof v==='number'&&Number.isFinite(v)&&v>=0?`${Math.floor(v/60)}:${String(Math.floor(v%60)).padStart(2,'0')}`:'Unavailable';
 export const period=v=>/^[1-4]$/.test(String(v))?`Q${v}`:/^(OT|[2-9]OT|[1-9][0-9]+OT)$/.test(String(v))?String(v):'Unavailable';
-export const spot=v=>typeof v==='number'&&v>=0&&v<=100?(v===50?'50':v<50?`OWN ${v}`:`OPP ${100-v}`):'Unavailable';
+export const spot=v=>typeof v==='number'&&Number.isFinite(v)&&v>=0&&v<=100?(v===50?'50':v<50?`OWN ${v}`:`OPP ${100-v}`):'Unavailable';
+export function fieldSides(scoreboard,possession){
+ return possession===0||possession===1
+  ? [teamName(scoreboard,possession),teamName(scoreboard,1-possession)]
+  : ['Own goal','Opponent goal'];
+}
 export const downDistance=v=>v&&[1,2,3,4].includes(v.down)&&Number.isFinite(v.distance)?`${v.down}${['st','nd','rd','th'][v.down-1]} & ${v.distance}`:'Unavailable';
 export const teamName=(s,t)=>s?.[t===0?'awayTeamAndRecords':'homeTeamAndRecords']?.name??'Team unavailable';
 export const available=d=>d?.availability?.status==='AVAILABLE';
