@@ -48,7 +48,7 @@ if(mode==='prepare'){
   const response=await get(route+'/'+name);
   assert.equal(response.status,200,name);
   assert.equal(digest(Buffer.from(await response.arrayBuffer())),digest(fs.readFileSync(file)),name);
- });
+ }));
  for(const name of ['week14/','v5.0.8/w13/','v5.1.0/review/']){
   assert.equal((await get(name)).status,200,name);
  }
