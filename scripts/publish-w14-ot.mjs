@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { OPERATING_SLATE } from '../release-assets/week14/backend/runtime/week14.mjs';
 
 const base = 'https://rgbslb11.github.io/Synthcast-Console/';
@@ -18,9 +19,16 @@ const old = [
   ...json('release-assets/week14/pages-stats-baseline.json'),
 ];
 const week14 = inventory('public/week14');
+const previousPublisher = 'd82ca6dc26377fdff7717e75cb005ea7b8ad6ace';
+const previousWeek14 = execFileSync('git', ['ls-tree', '-r', '--name-only', previousPublisher, 'public/week14'], { encoding: 'utf8' })
+  .trim().split('\n').map(file => ({
+    path: file.slice(7),
+    sha256: hash(execFileSync('git', ['show', `${previousPublisher}:${file}`])),
+  }));
 assert.equal(old.length, 296);
-assert.equal(week14.length, 15);
-assert.equal(new Set([...old, ...week14].map(item => item.path)).size, 311);
+assert.equal(previousWeek14.length, 15);
+assert.equal(week14.length, 16);
+assert.equal(new Set([...old, ...week14].map(item => item.path)).size, 312);
 const { publicSlug, engine, week } = json('release-assets/week14/operating-session.json');
 const api = 'https://xsvdmcipviejxynkdbhq.supabase.co/functions/v1/gamecast-week14-ot-';
 const request = { headers: { Origin: new URL(base).origin }, signal: AbortSignal.timeout(25000) };
@@ -43,14 +51,14 @@ const chairman = await fetch(api + 'chairman?api=read&session=' + publicSlug, { 
 assert.equal(chairman.status, 401);
 const mode = process.argv[2];
 assert.ok(['prepare', 'verify'].includes(mode));
-const items = mode === 'verify' ? [...old, ...week14] : old;
+const items = mode === 'verify' ? [...old, ...week14] : [...old, ...previousWeek14];
 for (let i = 0; i < items.length; i += 8) await Promise.all(items.slice(i, i + 8).map(async item => {
   assert.ok(!item.path.startsWith('/') && !item.path.split('/').includes('..'));
   const result = await fetch(new URL(item.path, base), { cache: 'no-store', signal: AbortSignal.timeout(25000) });
   assert.equal(result.status, 200, item.path);
   const bytes = Buffer.from(await result.arrayBuffer());
   assert.equal(hash(bytes), item.sha256, item.path);
-  if (mode === 'prepare') {
+  if (mode === 'prepare' && !item.path.startsWith('week14/')) {
     const destination = path.join('out-w14', item.path);
     fs.mkdirSync(path.dirname(destination), { recursive: true });
     fs.writeFileSync(destination, bytes);

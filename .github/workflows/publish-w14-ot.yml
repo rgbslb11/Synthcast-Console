@@ -19,6 +19,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 4
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -32,7 +33,7 @@ jobs:
             for (const run of runs.filter(r=>r.status==='completed' && /publish|deploy/i.test(r.name)).sort((a,b)=>b.id-a.id)) {
               const {data} = await github.rest.actions.listJobsForWorkflowRun({...context.repo,run_id:run.id});
               if (!data.jobs.some(job=>/publish|deploy/i.test(job.name) && job.conclusion==='success')) continue;
-              if (run.id!==44844295810) throw Error('Published baseline changed: '+run.id);
+              if (run.id!==45321014603) throw Error('Published baseline changed: '+run.id);
               return;
             }
             throw Error('Published baseline missing');
@@ -56,6 +57,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 4
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
