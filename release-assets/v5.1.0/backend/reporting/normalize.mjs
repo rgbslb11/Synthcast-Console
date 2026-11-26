@@ -28,7 +28,7 @@ export function normalizePlays(game,{sessionId,engineVersion}){
   if(h.score.some((n,t)=>n!==scoreTally[t]))throw Error('PLAY_SCORE_MISMATCH');
   if(!['1','2','3','4'].includes(String(h.period)))throw Error('OVERTIME_SNAP_UNSUPPORTED');
   if(!Number.isInteger(pre.down)||!Number.isInteger(post.down)||!range(pre.down,1,4)||!range(post.down,1,4)||!range(pre.distance,1,100)||!range(post.distance,1,100)||!range(pre.fieldPos,0,100)||!range(post.fieldPos,0,100)||!range(h.clock,0,game.quarterLengthSeconds)||!range(h.gl,0,Number.MAX_SAFE_INTEGER)||!Number.isInteger(post.points)||post.points<0||h.score.some(x=>!Number.isInteger(x)||x<0))throw Error('INVALID_PLAY_STATE');
-  if(h.ruling!=null&&!['SAFETY','TURNOVER_ON_DOWNS'].includes(h.ruling))throw Error('UNKNOWN_PLAY_RULING');
+  if(h.ruling!=null&&!['SAFETY','TURNOVER_ON_DOWNS','PUNT_TOUCHBACK'].includes(h.ruling))throw Error('UNKNOWN_PLAY_RULING');
   if(h.originalDescription!=null&&typeof h.originalDescription!=='string')throw Error('INCOMPLETE_PLAY_RECORD');
   const description=h.originalDescription??h.desc.replace(/^(TOUCHDOWN|SAFETY) · /,'').replace(/^Turnover on downs · /,'');
   let category;
@@ -42,6 +42,7 @@ export function normalizePlays(game,{sessionId,engineVersion}){
   else if(/^Punt · \d+ net yards$/.test(description))category='PUNT';
   else if(/^\d+-yard field goal (GOOD|NO GOOD)$/.test(description))category='FIELD_GOAL';
   else throw Error('UNKNOWN_PLAY_CATEGORY');
+  if(h.ruling==='PUNT_TOUCHBACK'&&(category!=='PUNT'||post.possession===h.team||post.fieldPos!==20||pre.fieldPos+h.yards<100||post.points!==0))throw Error('INVALID_PUNT_TOUCHBACK');
   const offensive=!['PUNT','FIELD_GOAL'].includes(category),giveaway=['INTERCEPTION','FUMBLE_LOST'].includes(category);
   const touchdown=h.desc.startsWith('TOUCHDOWN · '),safety=h.ruling==='SAFETY';
   let creditedYards=0;
